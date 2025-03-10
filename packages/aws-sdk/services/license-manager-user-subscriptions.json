@@ -30,7 +30,78 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateLicenseServerEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/license-server/CreateLicenseServerEndpoint"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLicenseServerEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLicenseServerEndpointRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLicenseServerEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/license-server/DeleteLicenseServerEndpoint"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLicenseServerEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLicenseServerEndpointRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -64,7 +135,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -98,7 +170,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -132,7 +205,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -166,7 +240,43 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLicenseServerEndpoints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/license-server/ListLicenseServerEndpoints"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLicenseServerEndpointsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLicenseServerEndpointsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -200,7 +310,47 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -234,7 +384,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -268,7 +419,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -302,7 +454,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -336,7 +489,86 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -370,7 +602,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -445,6 +678,9 @@
                 "Status": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
+                "InstanceUserArn": {
+                    "$ref": "#/$defs/Arn"
+                },
                 "StatusMessage": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
@@ -471,9 +707,83 @@
             "type": "object",
             "properties": {
                 "DirectoryId": {
+                    "$ref": "#/$defs/Directory"
+                },
+                "ActiveDirectorySettings": {
+                    "$ref": "#/$defs/ActiveDirectorySettings"
+                },
+                "ActiveDirectoryType": {
+                    "$ref": "#/$defs/ActiveDirectoryType"
+                }
+            }
+        },
+        "Directory": {
+            "type": "string"
+        },
+        "ActiveDirectorySettings": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "DomainIpv4List": {
+                    "$ref": "#/$defs/IpV4List"
+                },
+                "DomainCredentialsProvider": {
+                    "$ref": "#/$defs/CredentialsProvider"
+                },
+                "DomainNetworkSettings": {
+                    "$ref": "#/$defs/DomainNetworkSettings"
+                }
+            }
+        },
+        "IpV4List": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IpV4"
+            }
+        },
+        "IpV4": {
+            "type": "string"
+        },
+        "CredentialsProvider": {
+            "type": "object",
+            "properties": {
+                "SecretsManagerCredentialsProvider": {
+                    "$ref": "#/$defs/SecretsManagerCredentialsProvider"
+                }
+            }
+        },
+        "SecretsManagerCredentialsProvider": {
+            "type": "object",
+            "properties": {
+                "SecretId": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
+        },
+        "DomainNetworkSettings": {
+            "type": "object",
+            "properties": {
+                "Subnets": {
+                    "$ref": "#/$defs/Subnets"
+                }
+            }
+        },
+        "Subnets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Subnet"
+            }
+        },
+        "Subnet": {
+            "type": "string"
+        },
+        "ActiveDirectoryType": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
         },
         "AssociateUserRequest": {
             "type": "object",
@@ -489,6 +799,158 @@
                 },
                 "Domain": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "CreateLicenseServerEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseServerEndpointArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "CreateLicenseServerEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseServerSettings": {
+                    "$ref": "#/$defs/LicenseServerSettings"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "LicenseServerSettings": {
+            "type": "object",
+            "properties": {
+                "ServerType": {
+                    "$ref": "#/$defs/ServerType"
+                },
+                "ServerSettings": {
+                    "$ref": "#/$defs/ServerSettings"
+                }
+            }
+        },
+        "ServerType": {
+            "type": "string"
+        },
+        "ServerSettings": {
+            "type": "object",
+            "properties": {
+                "RdsSalSettings": {
+                    "$ref": "#/$defs/RdsSalSettings"
+                }
+            }
+        },
+        "RdsSalSettings": {
+            "type": "object",
+            "properties": {
+                "RdsSalCredentialsProvider": {
+                    "$ref": "#/$defs/CredentialsProvider"
+                }
+            }
+        },
+        "DeleteLicenseServerEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "LicenseServerEndpoint": {
+                    "$ref": "#/$defs/LicenseServerEndpoint"
+                }
+            }
+        },
+        "LicenseServerEndpoint": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ServerType": {
+                    "$ref": "#/$defs/ServerType"
+                },
+                "ServerEndpoint": {
+                    "$ref": "#/$defs/ServerEndpoint"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LicenseServerEndpointId": {
+                    "$ref": "#/$defs/LicenseServerEndpointId"
+                },
+                "LicenseServerEndpointArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseServerEndpointProvisioningStatus": {
+                    "$ref": "#/$defs/LicenseServerEndpointProvisioningStatus"
+                },
+                "LicenseServers": {
+                    "$ref": "#/$defs/LicenseServerList"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ServerEndpoint": {
+            "type": "object",
+            "properties": {
+                "Endpoint": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "LicenseServerEndpointId": {
+            "type": "string"
+        },
+        "LicenseServerEndpointProvisioningStatus": {
+            "type": "string"
+        },
+        "LicenseServerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LicenseServer"
+            }
+        },
+        "LicenseServer": {
+            "type": "object",
+            "properties": {
+                "ProvisioningStatus": {
+                    "$ref": "#/$defs/LicenseServerEndpointProvisioningStatus"
+                },
+                "HealthStatus": {
+                    "$ref": "#/$defs/LicenseServerHealthStatus"
+                },
+                "Ipv4Address": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "LicenseServerHealthStatus": {
+            "type": "string"
+        },
+        "DeleteLicenseServerEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseServerEndpointArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ServerType": {
+                    "$ref": "#/$defs/ServerType"
                 }
             }
         },
@@ -515,6 +977,9 @@
                 "Status": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
+                "IdentityProviderArn": {
+                    "$ref": "#/$defs/Arn"
+                },
                 "FailureMessage": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
@@ -531,15 +996,6 @@
                 }
             }
         },
-        "Subnets": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Subnet"
-            }
-        },
-        "Subnet": {
-            "type": "string"
-        },
         "SecurityGroup": {
             "type": "string"
         },
@@ -551,6 +1007,9 @@
                 },
                 "Product": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProviderArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -573,6 +1032,9 @@
                 },
                 "IdentityProvider": {
                     "$ref": "#/$defs/IdentityProvider"
+                },
+                "InstanceUserArn": {
+                    "$ref": "#/$defs/Arn"
                 },
                 "Domain": {
                     "$ref": "#/$defs/smithy.api#String"
@@ -602,6 +1064,9 @@
                 "MaxResults": {
                     "$ref": "#/$defs/BoxInteger"
                 },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
                 "NextToken": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
@@ -610,6 +1075,26 @@
         "BoxInteger": {
             "type": "integer",
             "format": "int32"
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Attribute": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Operation": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
         },
         "ListInstancesResponse": {
             "type": "object",
@@ -668,22 +1153,33 @@
                 }
             }
         },
-        "FilterList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Filter"
-            }
-        },
-        "Filter": {
+        "ListLicenseServerEndpointsResponse": {
             "type": "object",
             "properties": {
-                "Attribute": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "LicenseServerEndpoints": {
+                    "$ref": "#/$defs/LicenseServerEndpointList"
                 },
-                "Operation": {
+                "NextToken": {
                     "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "LicenseServerEndpointList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LicenseServerEndpoint"
+            }
+        },
+        "ListLicenseServerEndpointsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
                 },
-                "Value": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
@@ -720,6 +1216,9 @@
                 "Status": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
+                "ProductUserArn": {
+                    "$ref": "#/$defs/Arn"
+                },
                 "StatusMessage": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
@@ -753,6 +1252,25 @@
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
         },
         "ListUserAssociationsResponse": {
             "type": "object",
@@ -810,6 +1328,9 @@
                 },
                 "Settings": {
                     "$ref": "#/$defs/Settings"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -835,6 +1356,9 @@
                 },
                 "Domain": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -858,9 +1382,48 @@
                 "Product": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
+                "ProductUserArn": {
+                    "$ref": "#/$defs/Arn"
+                },
                 "Domain": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
             }
         },
         "UpdateIdentityProviderSettingsResponse": {
@@ -879,6 +1442,9 @@
                 },
                 "Product": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProviderArn": {
+                    "$ref": "#/$defs/Arn"
                 },
                 "UpdateSettings": {
                     "$ref": "#/$defs/UpdateSettings"

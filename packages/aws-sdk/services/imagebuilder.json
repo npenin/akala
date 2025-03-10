@@ -1157,6 +1157,41 @@
             }
         },
         {
+            "name": "GetMarketplaceResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/GetMarketplaceResource"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMarketplaceResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMarketplaceResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetWorkflow",
             "config": {
                 "http": {
@@ -1281,6 +1316,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ImportComponentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ImportDiskImage",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "PUT",
+                    "route": "/ImportDiskImage"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ImportDiskImageResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ImportDiskImageRequest"
                         }
                     }
                 },
@@ -2735,7 +2805,8 @@
         "Platform": {
             "enum": [
                 "WINDOWS",
-                "LINUX"
+                "LINUX",
+                "MACOS"
             ]
         },
         "OsVersionList": {
@@ -3656,6 +3727,9 @@
                 "tags": {
                     "$ref": "#/$defs/TagMap"
                 },
+                "placement": {
+                    "$ref": "#/$defs/Placement"
+                },
                 "clientToken": {
                     "$ref": "#/$defs/ClientToken"
                 }
@@ -3724,6 +3798,30 @@
         "HttpPutResponseHopLimit": {
             "type": "integer",
             "format": "int32"
+        },
+        "Placement": {
+            "type": "object",
+            "properties": {
+                "availabilityZone": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "tenancy": {
+                    "$ref": "#/$defs/TenancyType"
+                },
+                "hostId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "hostResourceGroupArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "TenancyType": {
+            "enum": [
+                "DEFAULT",
+                "DEDICATED",
+                "HOST"
+            ]
         },
         "CreateLifecyclePolicyResponse": {
             "type": "object",
@@ -4239,6 +4337,9 @@
                 },
                 "obfuscate": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "productCodes": {
+                    "$ref": "#/$defs/ProductCodeList"
                 }
             }
         },
@@ -4264,7 +4365,9 @@
         },
         "ComponentStatus": {
             "enum": [
-                "DEPRECATED"
+                "DEPRECATED",
+                "DISABLED",
+                "ACTIVE"
             ]
         },
         "ComponentParameterDetailList": {
@@ -4301,6 +4404,31 @@
         },
         "DateTime": {
             "type": "string"
+        },
+        "ProductCodeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProductCodeListItem"
+            }
+        },
+        "ProductCodeListItem": {
+            "type": "object",
+            "properties": {
+                "productCodeId": {
+                    "$ref": "#/$defs/ProductCodeId"
+                },
+                "productCodeType": {
+                    "$ref": "#/$defs/ProductCodeType"
+                }
+            }
+        },
+        "ProductCodeId": {
+            "type": "string"
+        },
+        "ProductCodeType": {
+            "enum": [
+                "MARKETPLACE"
+            ]
         },
         "GetComponentRequest": {
             "type": "object",
@@ -4708,6 +4836,9 @@
                 },
                 "tags": {
                     "$ref": "#/$defs/TagMap"
+                },
+                "placement": {
+                    "$ref": "#/$defs/Placement"
                 }
             }
         },
@@ -4772,7 +4903,8 @@
             "enum": [
                 "USER_INITIATED",
                 "SCHEDULED",
-                "IMPORT"
+                "IMPORT",
+                "IMPORT_ISO"
             ]
         },
         "ImageSource": {
@@ -5104,6 +5236,43 @@
                     "$ref": "#/$defs/LifecyclePolicyArn"
                 }
             }
+        },
+        "GetMarketplaceResourceResponse": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ImageBuilderArn"
+                },
+                "url": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "data": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "GetMarketplaceResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceType": {
+                    "$ref": "#/$defs/MarketplaceResourceType"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ImageBuilderArn"
+                },
+                "resourceLocation": {
+                    "$ref": "#/$defs/MarketplaceResourceLocation"
+                }
+            }
+        },
+        "MarketplaceResourceType": {
+            "enum": [
+                "COMPONENT_DATA",
+                "COMPONENT_ARTIFACT"
+            ]
+        },
+        "MarketplaceResourceLocation": {
+            "type": "string"
         },
         "GetWorkflowResponse": {
             "type": "object",
@@ -5457,6 +5626,52 @@
                 "SHELL"
             ]
         },
+        "ImportDiskImageResponse": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "imageBuildVersionArn": {
+                    "$ref": "#/$defs/ImageBuildVersionArn"
+                }
+            }
+        },
+        "ImportDiskImageRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "semanticVersion": {
+                    "$ref": "#/$defs/VersionNumber"
+                },
+                "description": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "platform": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "osVersion": {
+                    "$ref": "#/$defs/OsVersion"
+                },
+                "executionRole": {
+                    "$ref": "#/$defs/RoleNameOrArn"
+                },
+                "infrastructureConfigurationArn": {
+                    "$ref": "#/$defs/InfrastructureConfigurationArn"
+                },
+                "uri": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
         "ImportVmImageResponse": {
             "type": "object",
             "properties": {
@@ -5640,6 +5855,12 @@
                 },
                 "dateCreated": {
                     "$ref": "#/$defs/DateTime"
+                },
+                "status": {
+                    "$ref": "#/$defs/ComponentStatus"
+                },
+                "productCodes": {
+                    "$ref": "#/$defs/ProductCodeList"
                 }
             }
         },
@@ -5668,7 +5889,8 @@
                 "SELF",
                 "SHARED",
                 "AMAZON",
-                "THIRDPARTY"
+                "THIRDPARTY",
+                "AWS_MARKETPLACE"
             ]
         },
         "FilterList": {
@@ -6637,6 +6859,9 @@
                 },
                 "instanceProfileName": {
                     "$ref": "#/$defs/InstanceProfileNameType"
+                },
+                "placement": {
+                    "$ref": "#/$defs/Placement"
                 }
             }
         },
@@ -7660,14 +7885,17 @@
                 "snsTopicArn": {
                     "$ref": "#/$defs/SnsTopicArn"
                 },
-                "clientToken": {
-                    "$ref": "#/$defs/ClientToken"
-                },
                 "resourceTags": {
                     "$ref": "#/$defs/ResourceTagMap"
                 },
                 "instanceMetadataOptions": {
                     "$ref": "#/$defs/InstanceMetadataOptions"
+                },
+                "placement": {
+                    "$ref": "#/$defs/Placement"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },

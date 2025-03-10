@@ -30,7 +30,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -64,7 +65,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -98,7 +100,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -136,7 +139,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -174,7 +178,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -212,7 +217,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -250,7 +256,47 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConnectorOperation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "connectorOperationArn": "route.connectorOperationArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v1/connectorOperations/{connectorOperationArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectorOperationResponse"
+                    },
+                    "inject": [
+                        "param.0.connectorOperationArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectorOperationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -288,7 +334,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -326,7 +373,47 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConnectorOperations",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "connectorArn": "route.connectorArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v1/connectors/{connectorArn}/operations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConnectorOperationsResponse"
+                    },
+                    "inject": [
+                        "param.0.connectorArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConnectorOperationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -360,7 +447,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -394,7 +482,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -432,7 +521,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -466,7 +556,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -504,7 +595,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -542,7 +634,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -580,7 +673,8 @@
                     ],
                     "options": {
                         "type": {},
-                        "members": {}
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -659,7 +753,7 @@
                     "$ref": "#/$defs/Capacity"
                 },
                 "connectorConfiguration": {
-                    "$ref": "#/$defs/__sensitive__mapOf__string"
+                    "$ref": "#/$defs/ConnectorConfiguration"
                 },
                 "connectorDescription": {
                     "$ref": "#/$defs/__stringMax1024"
@@ -711,13 +805,13 @@
             "type": "object",
             "properties": {
                 "maxWorkerCount": {
-                    "$ref": "#/$defs/__integerMin1Max10"
+                    "$ref": "#/$defs/__integer"
                 },
                 "mcuCount": {
                     "$ref": "#/$defs/__integerMin1Max8"
                 },
                 "minWorkerCount": {
-                    "$ref": "#/$defs/__integerMin1Max10"
+                    "$ref": "#/$defs/__integer"
                 },
                 "scaleInPolicy": {
                     "$ref": "#/$defs/ScaleInPolicy"
@@ -727,7 +821,7 @@
                 }
             }
         },
-        "__integerMin1Max10": {
+        "__integer": {
             "type": "integer",
             "format": "int32"
         },
@@ -762,11 +856,11 @@
                     "$ref": "#/$defs/__integerMin1Max8"
                 },
                 "workerCount": {
-                    "$ref": "#/$defs/__integerMin1Max10"
+                    "$ref": "#/$defs/__integer"
                 }
             }
         },
-        "__sensitive__mapOf__string": {
+        "ConnectorConfiguration": {
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/__string"
@@ -1146,7 +1240,7 @@
                     "$ref": "#/$defs/__string"
                 },
                 "connectorConfiguration": {
-                    "$ref": "#/$defs/__sensitive__mapOf__string"
+                    "$ref": "#/$defs/ConnectorConfiguration"
                 },
                 "connectorDescription": {
                     "$ref": "#/$defs/__string"
@@ -1222,10 +1316,6 @@
                     "$ref": "#/$defs/ScaleOutPolicyDescription"
                 }
             }
-        },
-        "__integer": {
-            "type": "integer",
-            "format": "int32"
         },
         "ScaleInPolicyDescription": {
             "type": "object",
@@ -1413,6 +1503,92 @@
                 }
             }
         },
+        "DescribeConnectorOperationResponse": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorOperationArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorOperationState": {
+                    "$ref": "#/$defs/ConnectorOperationState"
+                },
+                "connectorOperationType": {
+                    "$ref": "#/$defs/ConnectorOperationType"
+                },
+                "operationSteps": {
+                    "$ref": "#/$defs/__listOfConnectorOperationStep"
+                },
+                "originWorkerSetting": {
+                    "$ref": "#/$defs/WorkerSetting"
+                },
+                "originConnectorConfiguration": {
+                    "$ref": "#/$defs/ConnectorConfiguration"
+                },
+                "targetWorkerSetting": {
+                    "$ref": "#/$defs/WorkerSetting"
+                },
+                "targetConnectorConfiguration": {
+                    "$ref": "#/$defs/ConnectorConfiguration"
+                },
+                "errorInfo": {
+                    "$ref": "#/$defs/StateDescription"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                }
+            }
+        },
+        "ConnectorOperationState": {
+            "type": "string"
+        },
+        "ConnectorOperationType": {
+            "type": "string"
+        },
+        "__listOfConnectorOperationStep": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorOperationStep"
+            }
+        },
+        "ConnectorOperationStep": {
+            "type": "object",
+            "properties": {
+                "stepType": {
+                    "$ref": "#/$defs/ConnectorOperationStepType"
+                },
+                "stepState": {
+                    "$ref": "#/$defs/ConnectorOperationStepState"
+                }
+            }
+        },
+        "ConnectorOperationStepType": {
+            "type": "string"
+        },
+        "ConnectorOperationStepState": {
+            "type": "string"
+        },
+        "WorkerSetting": {
+            "type": "object",
+            "properties": {
+                "capacity": {
+                    "$ref": "#/$defs/CapacityDescription"
+                }
+            }
+        },
+        "DescribeConnectorOperationRequest": {
+            "type": "object",
+            "properties": {
+                "connectorOperationArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
         "DescribeCustomPluginResponse": {
             "type": "object",
             "properties": {
@@ -1551,6 +1727,61 @@
                 }
             }
         },
+        "ListConnectorOperationsResponse": {
+            "type": "object",
+            "properties": {
+                "connectorOperations": {
+                    "$ref": "#/$defs/__listOfConnectorOperationSummary"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__listOfConnectorOperationSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorOperationSummary"
+            }
+        },
+        "ConnectorOperationSummary": {
+            "type": "object",
+            "properties": {
+                "connectorOperationArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorOperationType": {
+                    "$ref": "#/$defs/ConnectorOperationType"
+                },
+                "connectorOperationState": {
+                    "$ref": "#/$defs/ConnectorOperationState"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                }
+            }
+        },
+        "ListConnectorOperationsRequest": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ListConnectorsResponse": {
             "type": "object",
             "properties": {
@@ -1631,10 +1862,6 @@
                     "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListCustomPluginsResponse": {
             "type": "object",
@@ -1807,6 +2034,9 @@
                 },
                 "connectorState": {
                     "$ref": "#/$defs/ConnectorState"
+                },
+                "connectorOperationArn": {
+                    "$ref": "#/$defs/__string"
                 }
             }
         },
@@ -1815,6 +2045,9 @@
             "properties": {
                 "capacity": {
                     "$ref": "#/$defs/CapacityUpdate"
+                },
+                "connectorConfiguration": {
+                    "$ref": "#/$defs/ConnectorConfigurationUpdate"
                 },
                 "connectorArn": {
                     "$ref": "#/$defs/__string"
@@ -1839,13 +2072,13 @@
             "type": "object",
             "properties": {
                 "maxWorkerCount": {
-                    "$ref": "#/$defs/__integerMin1Max10"
+                    "$ref": "#/$defs/__integer"
                 },
                 "mcuCount": {
                     "$ref": "#/$defs/__integerMin1Max8"
                 },
                 "minWorkerCount": {
-                    "$ref": "#/$defs/__integerMin1Max10"
+                    "$ref": "#/$defs/__integer"
                 },
                 "scaleInPolicy": {
                     "$ref": "#/$defs/ScaleInPolicyUpdate"
@@ -1878,8 +2111,14 @@
                     "$ref": "#/$defs/__integerMin1Max8"
                 },
                 "workerCount": {
-                    "$ref": "#/$defs/__integerMin1Max10"
+                    "$ref": "#/$defs/__integer"
                 }
+            }
+        },
+        "ConnectorConfigurationUpdate": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
             }
         }
     },

@@ -404,6 +404,41 @@
             }
         },
         {
+            "name": "GetFindingsStatistics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/analyzer/findings/statistics"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetFindingsStatisticsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetFindingsStatisticsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetFindingV2",
             "config": {
                 "http": {
@@ -1876,6 +1911,9 @@
                 },
                 "sources": {
                     "$ref": "#/$defs/FindingSourceList"
+                },
+                "resourceControlPolicyRestriction": {
+                    "$ref": "#/$defs/ResourceControlPolicyRestriction"
                 }
             }
         },
@@ -1924,6 +1962,9 @@
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
+        },
+        "ResourceControlPolicyRestriction": {
+            "type": "string"
         },
         "GetFindingRequest": {
             "type": "object",
@@ -2036,6 +2077,139 @@
                 }
             }
         },
+        "GetFindingsStatisticsResponse": {
+            "type": "object",
+            "properties": {
+                "findingsStatistics": {
+                    "$ref": "#/$defs/FindingsStatisticsList"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "FindingsStatisticsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingsStatistics"
+            }
+        },
+        "FindingsStatistics": {
+            "type": "object",
+            "properties": {
+                "externalAccessFindingsStatistics": {
+                    "$ref": "#/$defs/ExternalAccessFindingsStatistics"
+                },
+                "unusedAccessFindingsStatistics": {
+                    "$ref": "#/$defs/UnusedAccessFindingsStatistics"
+                }
+            }
+        },
+        "ExternalAccessFindingsStatistics": {
+            "type": "object",
+            "properties": {
+                "resourceTypeStatistics": {
+                    "$ref": "#/$defs/ResourceTypeStatisticsMap"
+                },
+                "totalActiveFindings": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "totalArchivedFindings": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "totalResolvedFindings": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ResourceTypeStatisticsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ResourceTypeDetails"
+            }
+        },
+        "ResourceTypeDetails": {
+            "type": "object",
+            "properties": {
+                "totalActivePublic": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "totalActiveCrossAccount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "UnusedAccessFindingsStatistics": {
+            "type": "object",
+            "properties": {
+                "unusedAccessTypeStatistics": {
+                    "$ref": "#/$defs/UnusedAccessTypeStatisticsList"
+                },
+                "topAccounts": {
+                    "$ref": "#/$defs/AccountAggregations"
+                },
+                "totalActiveFindings": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "totalArchivedFindings": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "totalResolvedFindings": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "UnusedAccessTypeStatisticsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnusedAccessTypeStatistics"
+            }
+        },
+        "UnusedAccessTypeStatistics": {
+            "type": "object",
+            "properties": {
+                "unusedAccessType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "total": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "AccountAggregations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingAggregationAccountDetails"
+            }
+        },
+        "FindingAggregationAccountDetails": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "numberOfActiveFindings": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "details": {
+                    "$ref": "#/$defs/FindingAggregationAccountDetailsMap"
+                }
+            }
+        },
+        "FindingAggregationAccountDetailsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#Integer"
+            }
+        },
+        "GetFindingsStatisticsRequest": {
+            "type": "object",
+            "properties": {
+                "analyzerArn": {
+                    "$ref": "#/$defs/AnalyzerArn"
+                }
+            }
+        },
         "GetFindingV2Response": {
             "type": "object",
             "properties": {
@@ -2120,6 +2294,9 @@
                 },
                 "sources": {
                     "$ref": "#/$defs/FindingSourceList"
+                },
+                "resourceControlPolicyRestriction": {
+                    "$ref": "#/$defs/ResourceControlPolicyRestriction"
                 }
             }
         },
@@ -2412,6 +2589,9 @@
                 },
                 "sources": {
                     "$ref": "#/$defs/FindingSourceList"
+                },
+                "resourceControlPolicyRestriction": {
+                    "$ref": "#/$defs/ResourceControlPolicyRestriction"
                 }
             }
         },
@@ -2630,6 +2810,9 @@
                 },
                 "sources": {
                     "$ref": "#/$defs/FindingSourceList"
+                },
+                "resourceControlPolicyRestriction": {
+                    "$ref": "#/$defs/ResourceControlPolicyRestriction"
                 }
             }
         },

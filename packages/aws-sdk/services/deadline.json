@@ -41,6 +41,45 @@
             }
         },
         {
+            "name": "CreateQueueLimitAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateQueueLimitAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateQueueLimitAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteQueueFleetAssociation",
             "config": {
                 "http": {
@@ -84,6 +123,49 @@
             }
         },
         {
+            "name": "DeleteQueueLimitAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "queueId": "route.queueId",
+                            "limitId": "route.limitId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteQueueLimitAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0.queueId",
+                        "param.0.limitId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteQueueLimitAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetQueueFleetAssociation",
             "config": {
                 "http": {
@@ -111,6 +193,49 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetQueueFleetAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQueueLimitAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "queueId": "route.queueId",
+                            "limitId": "route.limitId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQueueLimitAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0.queueId",
+                        "param.0.limitId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQueueLimitAssociationRequest"
                         }
                     }
                 },
@@ -224,6 +349,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListQueueFleetAssociationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQueueLimitAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQueueLimitAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQueueLimitAssociationsRequest"
                         }
                     }
                 },
@@ -593,6 +757,49 @@
                     }
                 }
             }
+        },
+        {
+            "name": "UpdateQueueLimitAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "queueId": "route.queueId",
+                            "limitId": "route.limitId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateQueueLimitAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0.queueId",
+                        "param.0.limitId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateQueueLimitAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -668,6 +875,27 @@
         "FleetId": {
             "type": "string"
         },
+        "CreateQueueLimitAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateQueueLimitAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                }
+            }
+        },
+        "LimitId": {
+            "type": "string"
+        },
         "DeleteQueueFleetAssociationResponse": {
             "type": "object",
             "properties": {}
@@ -683,6 +911,24 @@
                 },
                 "fleetId": {
                     "$ref": "#/$defs/FleetId"
+                }
+            }
+        },
+        "DeleteQueueLimitAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteQueueLimitAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
                 }
             }
         },
@@ -745,6 +991,54 @@
                 },
                 "fleetId": {
                     "$ref": "#/$defs/FleetId"
+                }
+            }
+        },
+        "GetQueueLimitAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedAt"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueueLimitAssociationStatus"
+                }
+            }
+        },
+        "QueueLimitAssociationStatus": {
+            "enum": [
+                "ACTIVE",
+                "STOP_LIMIT_USAGE_AND_COMPLETE_TASKS",
+                "STOP_LIMIT_USAGE_AND_CANCEL_TASKS",
+                "STOPPED"
+            ]
+        },
+        "GetQueueLimitAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
                 }
             }
         },
@@ -1018,6 +1312,69 @@
                 }
             }
         },
+        "ListQueueLimitAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "queueLimitAssociations": {
+                    "$ref": "#/$defs/QueueLimitAssociationSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "QueueLimitAssociationSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueueLimitAssociationSummary"
+            }
+        },
+        "QueueLimitAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedAt"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueueLimitAssociationStatus"
+                }
+            }
+        },
+        "ListQueueLimitAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -1110,6 +1467,9 @@
                 },
                 "jobParameters": {
                     "$ref": "#/$defs/JobParameters"
+                },
+                "maxWorkerCount": {
+                    "$ref": "#/$defs/MaxWorkerCount"
                 },
                 "sourceJobId": {
                     "$ref": "#/$defs/JobId"
@@ -1215,6 +1575,10 @@
         },
         "PathString": {
             "type": "string"
+        },
+        "MaxWorkerCount": {
+            "type": "integer",
+            "format": "int32"
         },
         "NextItemOffset": {
             "type": "integer",
@@ -1992,6 +2356,34 @@
                 "ACTIVE",
                 "STOP_SCHEDULING_AND_COMPLETE_TASKS",
                 "STOP_SCHEDULING_AND_CANCEL_TASKS"
+            ]
+        },
+        "UpdateQueueLimitAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateQueueLimitAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                },
+                "status": {
+                    "$ref": "#/$defs/UpdateQueueLimitAssociationStatus"
+                }
+            }
+        },
+        "UpdateQueueLimitAssociationStatus": {
+            "enum": [
+                "ACTIVE",
+                "STOP_LIMIT_USAGE_AND_COMPLETE_TASKS",
+                "STOP_LIMIT_USAGE_AND_CANCEL_TASKS"
             ]
         }
     },

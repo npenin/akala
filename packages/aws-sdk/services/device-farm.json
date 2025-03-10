@@ -2728,6 +2728,9 @@
                 },
                 "vpcConfig": {
                     "$ref": "#/$defs/VpcConfig"
+                },
+                "deviceProxy": {
+                    "$ref": "#/$defs/DeviceProxy"
                 }
             }
         },
@@ -2951,6 +2954,24 @@
         "SkipAppResign": {
             "type": "boolean"
         },
+        "DeviceProxy": {
+            "type": "object",
+            "properties": {
+                "host": {
+                    "$ref": "#/$defs/DeviceProxyHost"
+                },
+                "port": {
+                    "$ref": "#/$defs/DeviceProxyPort"
+                }
+            }
+        },
+        "DeviceProxyHost": {
+            "type": "string"
+        },
+        "DeviceProxyPort": {
+            "type": "integer",
+            "format": "int32"
+        },
         "CreateRemoteAccessSessionRequest": {
             "type": "object",
             "properties": {
@@ -3003,6 +3024,9 @@
                 },
                 "vpceConfigurationArns": {
                     "$ref": "#/$defs/AmazonResourceNames"
+                },
+                "deviceProxy": {
+                    "$ref": "#/$defs/DeviceProxy"
                 }
             }
         },
@@ -3650,6 +3674,9 @@
                 "vpceConfigurationArns": {
                     "$ref": "#/$defs/AmazonResourceNames"
                 },
+                "deviceProxy": {
+                    "$ref": "#/$defs/DeviceProxy"
+                },
                 "customerArtifactPaths": {
                     "$ref": "#/$defs/CustomerArtifactPaths"
                 },
@@ -4062,6 +4089,9 @@
                 },
                 "networkProfile": {
                     "$ref": "#/$defs/NetworkProfile"
+                },
+                "deviceProxy": {
+                    "$ref": "#/$defs/DeviceProxy"
                 },
                 "parsingResultUrl": {
                     "$ref": "#/$defs/String"

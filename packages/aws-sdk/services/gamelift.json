@@ -118,6 +118,35 @@
             }
         },
         {
+            "name": "CreateContainerFleet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.CreateContainerFleet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateContainerFleetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateContainerFleetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateContainerGroupDefinition",
             "config": {
                 "http": {
@@ -582,6 +611,35 @@
             }
         },
         {
+            "name": "DeleteContainerFleet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.DeleteContainerFleet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteContainerFleetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteContainerFleetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteContainerGroupDefinition",
             "config": {
                 "http": {
@@ -597,7 +655,7 @@
                 },
                 "schema": {
                     "resultSchema": {
-                        "type": "object"
+                        "$ref": "#/$defs/DeleteContainerGroupDefinitionOutput"
                     },
                     "inject": [
                         "param.0"
@@ -1075,6 +1133,35 @@
             }
         },
         {
+            "name": "DescribeContainerFleet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.DescribeContainerFleet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeContainerFleetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeContainerFleetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeContainerGroupDefinition",
             "config": {
                 "http": {
@@ -1185,6 +1272,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeFleetCapacityInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFleetDeployment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.DescribeFleetDeployment"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFleetDeploymentOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFleetDeploymentInput"
                         }
                     }
                 }
@@ -2061,6 +2177,35 @@
             }
         },
         {
+            "name": "ListContainerFleets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.ListContainerFleets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListContainerFleetsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListContainerFleetsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListContainerGroupDefinitions",
             "config": {
                 "http": {
@@ -2084,6 +2229,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListContainerGroupDefinitionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListContainerGroupDefinitionVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.ListContainerGroupDefinitionVersions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListContainerGroupDefinitionVersionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListContainerGroupDefinitionVersionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListFleetDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.ListFleetDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFleetDeploymentsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFleetDeploymentsInput"
                         }
                     }
                 }
@@ -2728,6 +2931,35 @@
             }
         },
         {
+            "name": "TerminateGameSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.TerminateGameSession"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TerminateGameSessionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TerminateGameSessionInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "UntagResource",
             "config": {
                 "http": {
@@ -2809,6 +3041,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateBuildInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateContainerFleet",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.UpdateContainerFleet"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateContainerFleetOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateContainerFleetInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateContainerGroupDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "GameLift.UpdateContainerGroupDefinition"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateContainerGroupDefinitionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateContainerGroupDefinitionInput"
                         }
                     }
                 }
@@ -3579,6 +3869,332 @@
                 }
             }
         },
+        "CreateContainerFleetOutput": {
+            "type": "object",
+            "properties": {
+                "ContainerFleet": {
+                    "$ref": "#/$defs/ContainerFleet"
+                }
+            }
+        },
+        "ContainerFleet": {
+            "type": "object",
+            "properties": {
+                "FleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
+                "FleetArn": {
+                    "$ref": "#/$defs/FleetArn"
+                },
+                "FleetRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "GameServerContainerGroupDefinitionName": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionName"
+                },
+                "GameServerContainerGroupDefinitionArn": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionArn"
+                },
+                "PerInstanceContainerGroupDefinitionName": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionName"
+                },
+                "PerInstanceContainerGroupDefinitionArn": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionArn"
+                },
+                "InstanceConnectionPortRange": {
+                    "$ref": "#/$defs/ConnectionPortRange"
+                },
+                "InstanceInboundPermissions": {
+                    "$ref": "#/$defs/IpPermissionsList"
+                },
+                "GameServerContainerGroupsPerInstance": {
+                    "$ref": "#/$defs/GameServerContainerGroupsPerInstance"
+                },
+                "MaximumGameServerContainerGroupsPerInstance": {
+                    "$ref": "#/$defs/MaximumGameServerContainerGroupsPerInstance"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                },
+                "BillingType": {
+                    "$ref": "#/$defs/ContainerFleetBillingType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "MetricGroups": {
+                    "$ref": "#/$defs/MetricGroupList"
+                },
+                "NewGameSessionProtectionPolicy": {
+                    "$ref": "#/$defs/ProtectionPolicy"
+                },
+                "GameSessionCreationLimitPolicy": {
+                    "$ref": "#/$defs/GameSessionCreationLimitPolicy"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ContainerFleetStatus"
+                },
+                "DeploymentDetails": {
+                    "$ref": "#/$defs/DeploymentDetails"
+                },
+                "LogConfiguration": {
+                    "$ref": "#/$defs/LogConfiguration"
+                },
+                "LocationAttributes": {
+                    "$ref": "#/$defs/ContainerFleetLocationAttributesList"
+                }
+            }
+        },
+        "FleetArn": {
+            "type": "string"
+        },
+        "IamRoleArn": {
+            "type": "string"
+        },
+        "ContainerGroupDefinitionName": {
+            "type": "string"
+        },
+        "ContainerGroupDefinitionArn": {
+            "type": "string"
+        },
+        "ConnectionPortRange": {
+            "type": "object",
+            "properties": {
+                "FromPort": {
+                    "$ref": "#/$defs/PortNumber"
+                },
+                "ToPort": {
+                    "$ref": "#/$defs/PortNumber"
+                }
+            }
+        },
+        "PortNumber": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IpPermissionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IpPermission"
+            }
+        },
+        "IpPermission": {
+            "type": "object",
+            "properties": {
+                "FromPort": {
+                    "$ref": "#/$defs/PortNumber"
+                },
+                "ToPort": {
+                    "$ref": "#/$defs/PortNumber"
+                },
+                "IpRange": {
+                    "$ref": "#/$defs/IpRange"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/IpProtocol"
+                }
+            }
+        },
+        "IpRange": {
+            "type": "string"
+        },
+        "IpProtocol": {
+            "enum": [
+                "TCP",
+                "UDP"
+            ]
+        },
+        "GameServerContainerGroupsPerInstance": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaximumGameServerContainerGroupsPerInstance": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ContainerFleetBillingType": {
+            "enum": [
+                "ON_DEMAND",
+                "SPOT"
+            ]
+        },
+        "MetricGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricGroup"
+            }
+        },
+        "MetricGroup": {
+            "type": "string"
+        },
+        "ProtectionPolicy": {
+            "enum": [
+                "NoProtection",
+                "FullProtection"
+            ]
+        },
+        "GameSessionCreationLimitPolicy": {
+            "type": "object",
+            "properties": {
+                "NewGameSessionsPerCreator": {
+                    "$ref": "#/$defs/WholeNumber"
+                },
+                "PolicyPeriodInMinutes": {
+                    "$ref": "#/$defs/WholeNumber"
+                }
+            }
+        },
+        "WholeNumber": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ContainerFleetStatus": {
+            "enum": [
+                "PENDING",
+                "CREATING",
+                "CREATED",
+                "ACTIVATING",
+                "ACTIVE",
+                "UPDATING",
+                "DELETING"
+            ]
+        },
+        "DeploymentDetails": {
+            "type": "object",
+            "properties": {
+                "LatestDeploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                }
+            }
+        },
+        "DeploymentId": {
+            "type": "string"
+        },
+        "LogConfiguration": {
+            "type": "object",
+            "properties": {
+                "LogDestination": {
+                    "$ref": "#/$defs/LogDestination"
+                },
+                "S3BucketName": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "LogGroupArn": {
+                    "$ref": "#/$defs/LogGroupArnStringModel"
+                }
+            }
+        },
+        "LogDestination": {
+            "enum": [
+                "NONE",
+                "CLOUDWATCH",
+                "S3"
+            ]
+        },
+        "LogGroupArnStringModel": {
+            "type": "string"
+        },
+        "ContainerFleetLocationAttributesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerFleetLocationAttributes"
+            }
+        },
+        "ContainerFleetLocationAttributes": {
+            "type": "object",
+            "properties": {
+                "Location": {
+                    "$ref": "#/$defs/LocationStringModel"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ContainerFleetLocationStatus"
+                }
+            }
+        },
+        "LocationStringModel": {
+            "type": "string"
+        },
+        "ContainerFleetLocationStatus": {
+            "enum": [
+                "PENDING",
+                "CREATING",
+                "CREATED",
+                "ACTIVATING",
+                "ACTIVE",
+                "UPDATING",
+                "DELETING"
+            ]
+        },
+        "CreateContainerFleetInput": {
+            "type": "object",
+            "properties": {
+                "FleetRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                },
+                "GameServerContainerGroupDefinitionName": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "PerInstanceContainerGroupDefinitionName": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "InstanceConnectionPortRange": {
+                    "$ref": "#/$defs/ConnectionPortRange"
+                },
+                "InstanceInboundPermissions": {
+                    "$ref": "#/$defs/IpPermissionsList"
+                },
+                "GameServerContainerGroupsPerInstance": {
+                    "$ref": "#/$defs/GameServerContainerGroupsPerInstance"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                },
+                "BillingType": {
+                    "$ref": "#/$defs/ContainerFleetBillingType"
+                },
+                "Locations": {
+                    "$ref": "#/$defs/LocationConfigurationList"
+                },
+                "MetricGroups": {
+                    "$ref": "#/$defs/MetricGroupList"
+                },
+                "NewGameSessionProtectionPolicy": {
+                    "$ref": "#/$defs/ProtectionPolicy"
+                },
+                "GameSessionCreationLimitPolicy": {
+                    "$ref": "#/$defs/GameSessionCreationLimitPolicy"
+                },
+                "LogConfiguration": {
+                    "$ref": "#/$defs/LogConfiguration"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ContainerGroupDefinitionNameOrArn": {
+            "type": "string"
+        },
+        "LocationConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationConfiguration"
+            }
+        },
+        "LocationConfiguration": {
+            "type": "object",
+            "properties": {
+                "Location": {
+                    "$ref": "#/$defs/LocationStringModel"
+                }
+            }
+        },
         "CreateContainerGroupDefinitionOutput": {
             "type": "object",
             "properties": {
@@ -3602,17 +4218,26 @@
                 "Name": {
                     "$ref": "#/$defs/ContainerGroupDefinitionName"
                 },
-                "SchedulingStrategy": {
-                    "$ref": "#/$defs/ContainerSchedulingStrategy"
+                "ContainerGroupType": {
+                    "$ref": "#/$defs/ContainerGroupType"
                 },
-                "TotalMemoryLimit": {
+                "TotalMemoryLimitMebibytes": {
                     "$ref": "#/$defs/ContainerTotalMemoryLimit"
                 },
-                "TotalCpuLimit": {
-                    "$ref": "#/$defs/ContainerTotalCpuLimit"
+                "TotalVcpuLimit": {
+                    "$ref": "#/$defs/ContainerTotalVcpuLimit"
                 },
-                "ContainerDefinitions": {
-                    "$ref": "#/$defs/ContainerDefinitionList"
+                "GameServerContainerDefinition": {
+                    "$ref": "#/$defs/GameServerContainerDefinition"
+                },
+                "SupportContainerDefinitions": {
+                    "$ref": "#/$defs/SupportContainerDefinitionList"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/PositiveInteger"
+                },
+                "VersionDescription": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
                 },
                 "Status": {
                     "$ref": "#/$defs/ContainerGroupDefinitionStatus"
@@ -3622,104 +4247,136 @@
                 }
             }
         },
-        "ContainerGroupDefinitionArn": {
-            "type": "string"
-        },
         "ContainerOperatingSystem": {
             "enum": [
                 "AMAZON_LINUX_2023"
             ]
         },
-        "ContainerGroupDefinitionName": {
-            "type": "string"
-        },
-        "ContainerSchedulingStrategy": {
+        "ContainerGroupType": {
             "enum": [
-                "REPLICA",
-                "DAEMON"
+                "GAME_SERVER",
+                "PER_INSTANCE"
             ]
         },
         "ContainerTotalMemoryLimit": {
             "type": "integer",
             "format": "int32"
         },
-        "ContainerTotalCpuLimit": {
-            "type": "integer",
-            "format": "int32"
+        "ContainerTotalVcpuLimit": {
+            "type": "number",
+            "format": "double"
         },
-        "ContainerDefinitionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ContainerDefinition"
-            }
-        },
-        "ContainerDefinition": {
+        "GameServerContainerDefinition": {
             "type": "object",
             "properties": {
                 "ContainerName": {
                     "$ref": "#/$defs/NonZeroAnd128MaxAsciiString"
                 },
+                "DependsOn": {
+                    "$ref": "#/$defs/ContainerDependencyList"
+                },
+                "MountPoints": {
+                    "$ref": "#/$defs/ContainerMountPointList"
+                },
+                "EnvironmentOverride": {
+                    "$ref": "#/$defs/ContainerEnvironmentList"
+                },
                 "ImageUri": {
                     "$ref": "#/$defs/ImageUriString"
-                },
-                "ResolvedImageDigest": {
-                    "$ref": "#/$defs/Sha256"
-                },
-                "MemoryLimits": {
-                    "$ref": "#/$defs/ContainerMemoryLimits"
                 },
                 "PortConfiguration": {
                     "$ref": "#/$defs/ContainerPortConfiguration"
                 },
-                "Cpu": {
-                    "$ref": "#/$defs/ContainerCpu"
+                "ResolvedImageDigest": {
+                    "$ref": "#/$defs/Sha256"
                 },
-                "HealthCheck": {
-                    "$ref": "#/$defs/ContainerHealthCheck"
-                },
-                "Command": {
-                    "$ref": "#/$defs/ContainerCommandStringList"
-                },
-                "Essential": {
-                    "$ref": "#/$defs/BooleanModel"
-                },
-                "EntryPoint": {
-                    "$ref": "#/$defs/ContainerEntryPointList"
-                },
-                "WorkingDirectory": {
-                    "$ref": "#/$defs/NonZeroAnd255MaxString"
-                },
-                "Environment": {
-                    "$ref": "#/$defs/ContainerEnvironmentList"
-                },
-                "DependsOn": {
-                    "$ref": "#/$defs/ContainerDependencyList"
+                "ServerSdkVersion": {
+                    "$ref": "#/$defs/ServerSdkVersion"
                 }
             }
         },
         "NonZeroAnd128MaxAsciiString": {
             "type": "string"
         },
-        "ImageUriString": {
-            "type": "string"
+        "ContainerDependencyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerDependency"
+            }
         },
-        "Sha256": {
-            "type": "string"
-        },
-        "ContainerMemoryLimits": {
+        "ContainerDependency": {
             "type": "object",
             "properties": {
-                "SoftLimit": {
-                    "$ref": "#/$defs/ContainerMemoryLimit"
+                "ContainerName": {
+                    "$ref": "#/$defs/NonZeroAnd128MaxAsciiString"
                 },
-                "HardLimit": {
-                    "$ref": "#/$defs/ContainerMemoryLimit"
+                "Condition": {
+                    "$ref": "#/$defs/ContainerDependencyCondition"
                 }
             }
         },
-        "ContainerMemoryLimit": {
-            "type": "integer",
-            "format": "int32"
+        "ContainerDependencyCondition": {
+            "enum": [
+                "START",
+                "COMPLETE",
+                "SUCCESS",
+                "HEALTHY"
+            ]
+        },
+        "ContainerMountPointList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerMountPoint"
+            }
+        },
+        "ContainerMountPoint": {
+            "type": "object",
+            "properties": {
+                "InstancePath": {
+                    "$ref": "#/$defs/InstancePathString"
+                },
+                "ContainerPath": {
+                    "$ref": "#/$defs/ContainerPathString"
+                },
+                "AccessLevel": {
+                    "$ref": "#/$defs/ContainerMountPointAccessLevel"
+                }
+            }
+        },
+        "InstancePathString": {
+            "type": "string"
+        },
+        "ContainerPathString": {
+            "type": "string"
+        },
+        "ContainerMountPointAccessLevel": {
+            "enum": [
+                "READ_ONLY",
+                "READ_AND_WRITE"
+            ]
+        },
+        "ContainerEnvironmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerEnvironment"
+            }
+        },
+        "ContainerEnvironment": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NonZeroAnd255MaxString"
+                },
+                "Value": {
+                    "$ref": "#/$defs/NonZeroAnd255MaxString"
+                }
+            }
+        },
+        "NonZeroAnd255MaxString": {
+            "type": "string"
+        },
+        "ImageUriString": {
+            "type": "string"
         },
         "ContainerPortConfiguration": {
             "type": "object",
@@ -3749,19 +4406,55 @@
                 }
             }
         },
-        "PortNumber": {
-            "type": "integer",
-            "format": "int32"
+        "Sha256": {
+            "type": "string"
         },
-        "IpProtocol": {
-            "enum": [
-                "TCP",
-                "UDP"
-            ]
+        "SupportContainerDefinitionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupportContainerDefinition"
+            }
         },
-        "ContainerCpu": {
-            "type": "integer",
-            "format": "int32"
+        "SupportContainerDefinition": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/NonZeroAnd128MaxAsciiString"
+                },
+                "DependsOn": {
+                    "$ref": "#/$defs/ContainerDependencyList"
+                },
+                "MountPoints": {
+                    "$ref": "#/$defs/ContainerMountPointList"
+                },
+                "EnvironmentOverride": {
+                    "$ref": "#/$defs/ContainerEnvironmentList"
+                },
+                "Essential": {
+                    "$ref": "#/$defs/BooleanModel"
+                },
+                "HealthCheck": {
+                    "$ref": "#/$defs/ContainerHealthCheck"
+                },
+                "ImageUri": {
+                    "$ref": "#/$defs/ImageUriString"
+                },
+                "MemoryHardLimitMebibytes": {
+                    "$ref": "#/$defs/ContainerMemoryLimit"
+                },
+                "PortConfiguration": {
+                    "$ref": "#/$defs/ContainerPortConfiguration"
+                },
+                "ResolvedImageDigest": {
+                    "$ref": "#/$defs/Sha256"
+                },
+                "Vcpu": {
+                    "$ref": "#/$defs/ContainerVcpu"
+                }
+            }
+        },
+        "BooleanModel": {
+            "type": "boolean"
         },
         "ContainerHealthCheck": {
             "type": "object",
@@ -3772,14 +4465,14 @@
                 "Interval": {
                     "$ref": "#/$defs/ContainerHealthCheckInterval"
                 },
-                "Timeout": {
-                    "$ref": "#/$defs/ContainerHealthCheckTimeout"
-                },
                 "Retries": {
                     "$ref": "#/$defs/ContainerHealthCheckRetries"
                 },
                 "StartPeriod": {
                     "$ref": "#/$defs/ContainerHealthCheckStartPeriod"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/ContainerHealthCheckTimeout"
                 }
             }
         },
@@ -3789,14 +4482,7 @@
                 "$ref": "#/$defs/NonZeroAnd255MaxString"
             }
         },
-        "NonZeroAnd255MaxString": {
-            "type": "string"
-        },
         "ContainerHealthCheckInterval": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ContainerHealthCheckTimeout": {
             "type": "integer",
             "format": "int32"
         },
@@ -3808,56 +4494,21 @@
             "type": "integer",
             "format": "int32"
         },
-        "BooleanModel": {
-            "type": "boolean"
+        "ContainerHealthCheckTimeout": {
+            "type": "integer",
+            "format": "int32"
         },
-        "ContainerEntryPointList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/NonZeroAndMaxString"
-            }
+        "ContainerMemoryLimit": {
+            "type": "integer",
+            "format": "int32"
         },
-        "ContainerEnvironmentList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ContainerEnvironment"
-            }
+        "ContainerVcpu": {
+            "type": "number",
+            "format": "double"
         },
-        "ContainerEnvironment": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/NonZeroAnd255MaxString"
-                },
-                "Value": {
-                    "$ref": "#/$defs/NonZeroAnd255MaxString"
-                }
-            }
-        },
-        "ContainerDependencyList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ContainerDependency"
-            }
-        },
-        "ContainerDependency": {
-            "type": "object",
-            "properties": {
-                "ContainerName": {
-                    "$ref": "#/$defs/NonZeroAnd128MaxAsciiString"
-                },
-                "Condition": {
-                    "$ref": "#/$defs/ContainerDependencyCondition"
-                }
-            }
-        },
-        "ContainerDependencyCondition": {
-            "enum": [
-                "START",
-                "COMPLETE",
-                "SUCCESS",
-                "HEALTHY"
-            ]
+        "PositiveInteger": {
+            "type": "integer",
+            "format": "int32"
         },
         "ContainerGroupDefinitionStatus": {
             "enum": [
@@ -3872,70 +4523,96 @@
                 "Name": {
                     "$ref": "#/$defs/ContainerGroupDefinitionName"
                 },
-                "SchedulingStrategy": {
-                    "$ref": "#/$defs/ContainerSchedulingStrategy"
+                "ContainerGroupType": {
+                    "$ref": "#/$defs/ContainerGroupType"
                 },
-                "TotalMemoryLimit": {
+                "TotalMemoryLimitMebibytes": {
                     "$ref": "#/$defs/ContainerTotalMemoryLimit"
                 },
-                "TotalCpuLimit": {
-                    "$ref": "#/$defs/ContainerTotalCpuLimit"
+                "TotalVcpuLimit": {
+                    "$ref": "#/$defs/ContainerTotalVcpuLimit"
                 },
-                "ContainerDefinitions": {
-                    "$ref": "#/$defs/ContainerDefinitionInputList"
+                "GameServerContainerDefinition": {
+                    "$ref": "#/$defs/GameServerContainerDefinitionInput"
+                },
+                "SupportContainerDefinitions": {
+                    "$ref": "#/$defs/SupportContainerDefinitionInputList"
                 },
                 "OperatingSystem": {
                     "$ref": "#/$defs/ContainerOperatingSystem"
+                },
+                "VersionDescription": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
                 }
             }
         },
-        "ContainerDefinitionInputList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ContainerDefinitionInput"
-            }
-        },
-        "ContainerDefinitionInput": {
+        "GameServerContainerDefinitionInput": {
             "type": "object",
             "properties": {
                 "ContainerName": {
                     "$ref": "#/$defs/NonZeroAnd128MaxAsciiString"
                 },
+                "DependsOn": {
+                    "$ref": "#/$defs/ContainerDependencyList"
+                },
+                "MountPoints": {
+                    "$ref": "#/$defs/ContainerMountPointList"
+                },
+                "EnvironmentOverride": {
+                    "$ref": "#/$defs/ContainerEnvironmentList"
+                },
                 "ImageUri": {
                     "$ref": "#/$defs/ImageUriString"
-                },
-                "MemoryLimits": {
-                    "$ref": "#/$defs/ContainerMemoryLimits"
                 },
                 "PortConfiguration": {
                     "$ref": "#/$defs/ContainerPortConfiguration"
                 },
-                "Cpu": {
-                    "$ref": "#/$defs/ContainerCpu"
+                "ServerSdkVersion": {
+                    "$ref": "#/$defs/ServerSdkVersion"
+                }
+            }
+        },
+        "SupportContainerDefinitionInputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupportContainerDefinitionInput"
+            }
+        },
+        "SupportContainerDefinitionInput": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/NonZeroAnd128MaxAsciiString"
                 },
-                "HealthCheck": {
-                    "$ref": "#/$defs/ContainerHealthCheck"
+                "DependsOn": {
+                    "$ref": "#/$defs/ContainerDependencyList"
                 },
-                "Command": {
-                    "$ref": "#/$defs/ContainerCommandStringList"
+                "MountPoints": {
+                    "$ref": "#/$defs/ContainerMountPointList"
+                },
+                "EnvironmentOverride": {
+                    "$ref": "#/$defs/ContainerEnvironmentList"
                 },
                 "Essential": {
                     "$ref": "#/$defs/BooleanModel"
                 },
-                "EntryPoint": {
-                    "$ref": "#/$defs/ContainerEntryPointList"
+                "HealthCheck": {
+                    "$ref": "#/$defs/ContainerHealthCheck"
                 },
-                "WorkingDirectory": {
-                    "$ref": "#/$defs/NonZeroAnd255MaxString"
+                "ImageUri": {
+                    "$ref": "#/$defs/ImageUriString"
                 },
-                "Environment": {
-                    "$ref": "#/$defs/ContainerEnvironmentList"
+                "MemoryHardLimitMebibytes": {
+                    "$ref": "#/$defs/ContainerMemoryLimit"
                 },
-                "DependsOn": {
-                    "$ref": "#/$defs/ContainerDependencyList"
+                "PortConfiguration": {
+                    "$ref": "#/$defs/ContainerPortConfiguration"
+                },
+                "Vcpu": {
+                    "$ref": "#/$defs/ContainerVcpu"
                 }
             }
         },
@@ -4030,14 +4707,8 @@
                 },
                 "InstanceRoleCredentialsProvider": {
                     "$ref": "#/$defs/InstanceRoleCredentialsProvider"
-                },
-                "ContainerGroupsAttributes": {
-                    "$ref": "#/$defs/ContainerGroupsAttributes"
                 }
             }
-        },
-        "FleetArn": {
-            "type": "string"
         },
         "FleetType": {
             "enum": [
@@ -4256,12 +4927,6 @@
                 "$ref": "#/$defs/NonZeroAndMaxString"
             }
         },
-        "ProtectionPolicy": {
-            "enum": [
-                "NoProtection",
-                "FullProtection"
-            ]
-        },
         "ResourceCreationLimitPolicy": {
             "type": "object",
             "properties": {
@@ -4272,19 +4937,6 @@
                     "$ref": "#/$defs/WholeNumber"
                 }
             }
-        },
-        "WholeNumber": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "MetricGroupList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/MetricGroup"
-            }
-        },
-        "MetricGroup": {
-            "type": "string"
         },
         "FleetActionList": {
             "type": "array",
@@ -4314,8 +4966,7 @@
         "ComputeType": {
             "enum": [
                 "EC2",
-                "ANYWHERE",
-                "CONTAINER"
+                "ANYWHERE"
             ]
         },
         "AnywhereConfiguration": {
@@ -4334,63 +4985,6 @@
                 "SHARED_CREDENTIAL_FILE"
             ]
         },
-        "ContainerGroupsAttributes": {
-            "type": "object",
-            "properties": {
-                "ContainerGroupDefinitionProperties": {
-                    "$ref": "#/$defs/ContainerGroupDefinitionPropertiesList"
-                },
-                "ConnectionPortRange": {
-                    "$ref": "#/$defs/ConnectionPortRange"
-                },
-                "ContainerGroupsPerInstance": {
-                    "$ref": "#/$defs/ContainerGroupsPerInstance"
-                }
-            }
-        },
-        "ContainerGroupDefinitionPropertiesList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ContainerGroupDefinitionProperty"
-            }
-        },
-        "ContainerGroupDefinitionProperty": {
-            "type": "object",
-            "properties": {
-                "SchedulingStrategy": {
-                    "$ref": "#/$defs/ContainerSchedulingStrategy"
-                },
-                "ContainerGroupDefinitionName": {
-                    "$ref": "#/$defs/ContainerGroupDefinitionName"
-                }
-            }
-        },
-        "ConnectionPortRange": {
-            "type": "object",
-            "properties": {
-                "FromPort": {
-                    "$ref": "#/$defs/PortNumber"
-                },
-                "ToPort": {
-                    "$ref": "#/$defs/PortNumber"
-                }
-            }
-        },
-        "ContainerGroupsPerInstance": {
-            "type": "object",
-            "properties": {
-                "DesiredReplicaContainerGroupsPerInstance": {
-                    "$ref": "#/$defs/ReplicaContainerGroupsPerInstance"
-                },
-                "MaxReplicaContainerGroupsPerInstance": {
-                    "$ref": "#/$defs/ReplicaContainerGroupsPerInstance"
-                }
-            }
-        },
-        "ReplicaContainerGroupsPerInstance": {
-            "type": "integer",
-            "format": "int32"
-        },
         "LocationStateList": {
             "type": "array",
             "items": {
@@ -4407,9 +5001,6 @@
                     "$ref": "#/$defs/FleetStatus"
                 }
             }
-        },
-        "LocationStringModel": {
-            "type": "string"
         },
         "CreateFleetInput": {
             "type": "object",
@@ -4482,9 +5073,6 @@
                 },
                 "InstanceRoleCredentialsProvider": {
                     "$ref": "#/$defs/InstanceRoleCredentialsProvider"
-                },
-                "ContainerGroupsConfiguration": {
-                    "$ref": "#/$defs/ContainerGroupsConfiguration"
                 }
             }
         },
@@ -4492,32 +5080,6 @@
             "type": "string"
         },
         "ScriptIdOrArn": {
-            "type": "string"
-        },
-        "IpPermissionsList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/IpPermission"
-            }
-        },
-        "IpPermission": {
-            "type": "object",
-            "properties": {
-                "FromPort": {
-                    "$ref": "#/$defs/PortNumber"
-                },
-                "ToPort": {
-                    "$ref": "#/$defs/PortNumber"
-                },
-                "IpRange": {
-                    "$ref": "#/$defs/IpRange"
-                },
-                "Protocol": {
-                    "$ref": "#/$defs/IpProtocol"
-                }
-            }
-        },
-        "IpRange": {
             "type": "string"
         },
         "RuntimeConfiguration": {
@@ -4554,10 +5116,6 @@
                 }
             }
         },
-        "PositiveInteger": {
-            "type": "integer",
-            "format": "int32"
-        },
         "MaxConcurrentGameSessionActivations": {
             "type": "integer",
             "format": "int32"
@@ -4565,43 +5123,6 @@
         "GameSessionActivationTimeoutSeconds": {
             "type": "integer",
             "format": "int32"
-        },
-        "LocationConfigurationList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/LocationConfiguration"
-            }
-        },
-        "LocationConfiguration": {
-            "type": "object",
-            "properties": {
-                "Location": {
-                    "$ref": "#/$defs/LocationStringModel"
-                }
-            }
-        },
-        "ContainerGroupsConfiguration": {
-            "type": "object",
-            "properties": {
-                "ContainerGroupDefinitionNames": {
-                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArnLimitedList"
-                },
-                "ConnectionPortRange": {
-                    "$ref": "#/$defs/ConnectionPortRange"
-                },
-                "DesiredReplicaContainerGroupsPerInstance": {
-                    "$ref": "#/$defs/ReplicaContainerGroupsPerInstance"
-                }
-            }
-        },
-        "ContainerGroupDefinitionNameOrArnLimitedList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
-            }
-        },
-        "ContainerGroupDefinitionNameOrArn": {
-            "type": "string"
         },
         "CreateFleetLocationsOutput": {
             "type": "object",
@@ -4679,9 +5200,6 @@
                     "$ref": "#/$defs/Timestamp"
                 }
             }
-        },
-        "IamRoleArn": {
-            "type": "string"
         },
         "InstanceDefinitions": {
             "type": "array",
@@ -5007,7 +5525,9 @@
         },
         "GameSessionStatusReason": {
             "enum": [
-                "INTERRUPTED"
+                "INTERRUPTED",
+                "TRIGGERED_ON_PROCESS_TERMINATE",
+                "FORCE_TERMINATED"
             ]
         },
         "GamePropertyList": {
@@ -5733,11 +6253,33 @@
                 }
             }
         },
+        "DeleteContainerFleetOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteContainerFleetInput": {
+            "type": "object",
+            "properties": {
+                "FleetId": {
+                    "$ref": "#/$defs/FleetIdOrArn"
+                }
+            }
+        },
+        "DeleteContainerGroupDefinitionOutput": {
+            "type": "object",
+            "properties": {}
+        },
         "DeleteContainerGroupDefinitionInput": {
             "type": "object",
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/PositiveInteger"
+                },
+                "VersionCountToRetain": {
+                    "$ref": "#/$defs/WholeNumber"
                 }
             }
         },
@@ -6022,6 +6564,9 @@
                 },
                 "ContainerAttributes": {
                     "$ref": "#/$defs/ContainerAttributes"
+                },
+                "GameServerContainerGroupDefinitionArn": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
                 }
             }
         },
@@ -6035,7 +6580,8 @@
             "enum": [
                 "PENDING",
                 "ACTIVE",
-                "TERMINATING"
+                "TERMINATING",
+                "IMPAIRED"
             ]
         },
         "GameLiftServiceSdkEndpointOutput": {
@@ -6048,30 +6594,19 @@
             "type": "string"
         },
         "ContainerAttributes": {
-            "type": "object",
-            "properties": {
-                "ContainerPortMappings": {
-                    "$ref": "#/$defs/ContainerPortMappingList"
-                }
-            }
-        },
-        "ContainerPortMappingList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/ContainerPortMapping"
+                "$ref": "#/$defs/ContainerAttribute"
             }
         },
-        "ContainerPortMapping": {
+        "ContainerAttribute": {
             "type": "object",
             "properties": {
-                "ContainerPort": {
-                    "$ref": "#/$defs/PortNumber"
+                "ContainerName": {
+                    "$ref": "#/$defs/NonZeroAnd128MaxAsciiString"
                 },
-                "ConnectionPort": {
-                    "$ref": "#/$defs/PortNumber"
-                },
-                "Protocol": {
-                    "$ref": "#/$defs/IpProtocol"
+                "ContainerRuntimeId": {
+                    "$ref": "#/$defs/NonEmptyString"
                 }
             }
         },
@@ -6083,6 +6618,22 @@
                 },
                 "ComputeName": {
                     "$ref": "#/$defs/ComputeNameOrArn"
+                }
+            }
+        },
+        "DescribeContainerFleetOutput": {
+            "type": "object",
+            "properties": {
+                "ContainerFleet": {
+                    "$ref": "#/$defs/ContainerFleet"
+                }
+            }
+        },
+        "DescribeContainerFleetInput": {
+            "type": "object",
+            "properties": {
+                "FleetId": {
+                    "$ref": "#/$defs/FleetIdOrArn"
                 }
             }
         },
@@ -6099,6 +6650,9 @@
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "VersionNumber": {
+                    "$ref": "#/$defs/PositiveInteger"
                 }
             }
         },
@@ -6216,8 +6770,8 @@
                 "Location": {
                     "$ref": "#/$defs/LocationStringModel"
                 },
-                "ReplicaContainerGroupCounts": {
-                    "$ref": "#/$defs/ReplicaContainerGroupCounts"
+                "GameServerContainerGroupCounts": {
+                    "$ref": "#/$defs/GameServerContainerGroupCounts"
                 }
             }
         },
@@ -6247,7 +6801,7 @@
                 }
             }
         },
-        "ReplicaContainerGroupCounts": {
+        "GameServerContainerGroupCounts": {
             "type": "object",
             "properties": {
                 "PENDING": {
@@ -6275,6 +6829,118 @@
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NonZeroAndMaxString"
+                }
+            }
+        },
+        "DescribeFleetDeploymentOutput": {
+            "type": "object",
+            "properties": {
+                "FleetDeployment": {
+                    "$ref": "#/$defs/FleetDeployment"
+                },
+                "LocationalDeployments": {
+                    "$ref": "#/$defs/LocationalDeployments"
+                }
+            }
+        },
+        "FleetDeployment": {
+            "type": "object",
+            "properties": {
+                "DeploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
+                },
+                "FleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
+                "GameServerBinaryArn": {
+                    "$ref": "#/$defs/FleetBinaryArn"
+                },
+                "RollbackGameServerBinaryArn": {
+                    "$ref": "#/$defs/FleetBinaryArn"
+                },
+                "PerInstanceBinaryArn": {
+                    "$ref": "#/$defs/FleetBinaryArn"
+                },
+                "RollbackPerInstanceBinaryArn": {
+                    "$ref": "#/$defs/FleetBinaryArn"
+                },
+                "DeploymentStatus": {
+                    "$ref": "#/$defs/DeploymentStatus"
+                },
+                "DeploymentConfiguration": {
+                    "$ref": "#/$defs/DeploymentConfiguration"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "FleetBinaryArn": {
+            "type": "string"
+        },
+        "DeploymentStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "IMPAIRED",
+                "COMPLETE",
+                "ROLLBACK_IN_PROGRESS",
+                "ROLLBACK_COMPLETE",
+                "CANCELLED",
+                "PENDING"
+            ]
+        },
+        "DeploymentConfiguration": {
+            "type": "object",
+            "properties": {
+                "ProtectionStrategy": {
+                    "$ref": "#/$defs/DeploymentProtectionStrategy"
+                },
+                "MinimumHealthyPercentage": {
+                    "$ref": "#/$defs/MinimumHealthyPercentage"
+                },
+                "ImpairmentStrategy": {
+                    "$ref": "#/$defs/DeploymentImpairmentStrategy"
+                }
+            }
+        },
+        "DeploymentProtectionStrategy": {
+            "enum": [
+                "WITH_PROTECTION",
+                "IGNORE_PROTECTION"
+            ]
+        },
+        "MinimumHealthyPercentage": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DeploymentImpairmentStrategy": {
+            "enum": [
+                "MAINTAIN",
+                "ROLLBACK"
+            ]
+        },
+        "LocationalDeployments": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/LocationalDeployment"
+            }
+        },
+        "LocationalDeployment": {
+            "type": "object",
+            "properties": {
+                "DeploymentStatus": {
+                    "$ref": "#/$defs/DeploymentStatus"
+                }
+            }
+        },
+        "DescribeFleetDeploymentInput": {
+            "type": "object",
+            "properties": {
+                "FleetId": {
+                    "$ref": "#/$defs/FleetIdOrArn"
+                },
+                "DeploymentId": {
+                    "$ref": "#/$defs/DeploymentId"
                 }
             }
         },
@@ -6333,6 +6999,10 @@
                 "FLEET_STATE_ACTIVATING",
                 "FLEET_STATE_ACTIVE",
                 "FLEET_STATE_ERROR",
+                "FLEET_STATE_PENDING",
+                "FLEET_STATE_CREATING",
+                "FLEET_STATE_CREATED",
+                "FLEET_STATE_UPDATING",
                 "FLEET_INITIALIZATION_FAILED",
                 "FLEET_BINARY_DOWNLOAD_FAILED",
                 "FLEET_VALIDATION_LAUNCH_PATH_NOT_FOUND",
@@ -6348,6 +7018,8 @@
                 "SERVER_PROCESS_TERMINATED_UNHEALTHY",
                 "SERVER_PROCESS_FORCE_TERMINATED",
                 "SERVER_PROCESS_PROCESS_EXIT_TIMEOUT",
+                "SERVER_PROCESS_SDK_INITIALIZATION_FAILED",
+                "SERVER_PROCESS_MISCONFIGURED_CONTAINER_PORT",
                 "GAME_SESSION_ACTIVATION_TIMEOUT",
                 "FLEET_CREATION_EXTRACTING_BUILD",
                 "FLEET_CREATION_RUNNING_INSTALLER",
@@ -6357,8 +7029,22 @@
                 "FLEET_VPC_PEERING_DELETED",
                 "INSTANCE_INTERRUPTED",
                 "INSTANCE_RECYCLED",
+                "INSTANCE_REPLACED_UNHEALTHY",
                 "FLEET_CREATION_COMPLETED_INSTALLER",
-                "FLEET_CREATION_FAILED_INSTALLER"
+                "FLEET_CREATION_FAILED_INSTALLER",
+                "COMPUTE_LOG_UPLOAD_FAILED",
+                "GAME_SERVER_CONTAINER_GROUP_CRASHED",
+                "PER_INSTANCE_CONTAINER_GROUP_CRASHED",
+                "GAME_SERVER_CONTAINER_GROUP_REPLACED_UNHEALTHY",
+                "LOCATION_STATE_PENDING",
+                "LOCATION_STATE_CREATING",
+                "LOCATION_STATE_CREATED",
+                "LOCATION_STATE_ACTIVATING",
+                "LOCATION_STATE_ACTIVE",
+                "LOCATION_STATE_UPDATING",
+                "LOCATION_STATE_ERROR",
+                "LOCATION_STATE_DELETING",
+                "LOCATION_STATE_DELETED"
             ]
         },
         "EventCount": {
@@ -6787,6 +7473,9 @@
                 },
                 "MatchmakerData": {
                     "$ref": "#/$defs/MatchmakerData"
+                },
+                "PriorityConfigurationOverride": {
+                    "$ref": "#/$defs/PriorityConfigurationOverride"
                 }
             }
         },
@@ -6838,6 +7527,29 @@
                 "PlayerSessionId": {
                     "$ref": "#/$defs/PlayerSessionId"
                 }
+            }
+        },
+        "PriorityConfigurationOverride": {
+            "type": "object",
+            "properties": {
+                "PlacementFallbackStrategy": {
+                    "$ref": "#/$defs/PlacementFallbackStrategy"
+                },
+                "LocationOrder": {
+                    "$ref": "#/$defs/LocationOrderOverrideList"
+                }
+            }
+        },
+        "PlacementFallbackStrategy": {
+            "enum": [
+                "DEFAULT_AFTER_SINGLE_PASS",
+                "NONE"
+            ]
+        },
+        "LocationOrderOverrideList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationStringModel"
             }
         },
         "DescribeGameSessionPlacementInput": {
@@ -7588,11 +8300,31 @@
                 },
                 "Target": {
                     "$ref": "#/$defs/SessionTarget"
+                },
+                "ContainerIdentifiers": {
+                    "$ref": "#/$defs/ContainerIdentifierList"
                 }
             }
         },
         "SessionTarget": {
             "type": "string"
+        },
+        "ContainerIdentifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerIdentifier"
+            }
+        },
+        "ContainerIdentifier": {
+            "type": "object",
+            "properties": {
+                "ContainerName": {
+                    "$ref": "#/$defs/NonZeroAnd128MaxAsciiString"
+                },
+                "ContainerRuntimeId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
         },
         "GetComputeAccessInput": {
             "type": "object",
@@ -7799,6 +8531,49 @@
                 "Location": {
                     "$ref": "#/$defs/LocationStringModel"
                 },
+                "ContainerGroupDefinitionName": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "ComputeStatus": {
+                    "$ref": "#/$defs/ListComputeInputStatus"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/PositiveInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                }
+            }
+        },
+        "ListComputeInputStatus": {
+            "enum": [
+                "ACTIVE",
+                "IMPAIRED"
+            ]
+        },
+        "ListContainerFleetsOutput": {
+            "type": "object",
+            "properties": {
+                "ContainerFleets": {
+                    "$ref": "#/$defs/ContainerFleetList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                }
+            }
+        },
+        "ContainerFleetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerFleet"
+            }
+        },
+        "ListContainerFleetsInput": {
+            "type": "object",
+            "properties": {
+                "ContainerGroupDefinitionName": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
                 "Limit": {
                     "$ref": "#/$defs/PositiveInteger"
                 },
@@ -7814,7 +8589,7 @@
                     "$ref": "#/$defs/ContainerGroupDefinitionList"
                 },
                 "NextToken": {
-                    "$ref": "#/$defs/NonEmptyString"
+                    "$ref": "#/$defs/NonZeroAndMaxString"
                 }
             }
         },
@@ -7827,20 +8602,80 @@
         "ListContainerGroupDefinitionsInput": {
             "type": "object",
             "properties": {
-                "SchedulingStrategy": {
-                    "$ref": "#/$defs/ContainerSchedulingStrategy"
+                "ContainerGroupType": {
+                    "$ref": "#/$defs/ContainerGroupType"
                 },
                 "Limit": {
                     "$ref": "#/$defs/ListContainerGroupDefinitionsLimit"
                 },
                 "NextToken": {
-                    "$ref": "#/$defs/NonEmptyString"
+                    "$ref": "#/$defs/NonZeroAndMaxString"
                 }
             }
         },
         "ListContainerGroupDefinitionsLimit": {
             "type": "integer",
             "format": "int32"
+        },
+        "ListContainerGroupDefinitionVersionsOutput": {
+            "type": "object",
+            "properties": {
+                "ContainerGroupDefinitions": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                }
+            }
+        },
+        "ListContainerGroupDefinitionVersionsInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/ListContainerGroupDefinitionVersionsLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                }
+            }
+        },
+        "ListContainerGroupDefinitionVersionsLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListFleetDeploymentsOutput": {
+            "type": "object",
+            "properties": {
+                "FleetDeployments": {
+                    "$ref": "#/$defs/FleetDeployments"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                }
+            }
+        },
+        "FleetDeployments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FleetDeployment"
+            }
+        },
+        "ListFleetDeploymentsInput": {
+            "type": "object",
+            "properties": {
+                "FleetId": {
+                    "$ref": "#/$defs/FleetIdOrArn"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/PositiveInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                }
+            }
         },
         "ListFleetsOutput": {
             "type": "object",
@@ -7867,9 +8702,6 @@
                 },
                 "ScriptId": {
                     "$ref": "#/$defs/ScriptIdOrArn"
-                },
-                "ContainerGroupDefinitionName": {
-                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
                 },
                 "Limit": {
                     "$ref": "#/$defs/PositiveInteger"
@@ -8299,6 +9131,9 @@
                 },
                 "GameSessionData": {
                     "$ref": "#/$defs/LargeGameSessionData"
+                },
+                "PriorityConfigurationOverride": {
+                    "$ref": "#/$defs/PriorityConfigurationOverride"
                 }
             }
         },
@@ -8453,6 +9288,31 @@
                 }
             }
         },
+        "TerminateGameSessionOutput": {
+            "type": "object",
+            "properties": {
+                "GameSession": {
+                    "$ref": "#/$defs/GameSession"
+                }
+            }
+        },
+        "TerminateGameSessionInput": {
+            "type": "object",
+            "properties": {
+                "GameSessionId": {
+                    "$ref": "#/$defs/ArnStringModel"
+                },
+                "TerminationMode": {
+                    "$ref": "#/$defs/TerminationMode"
+                }
+            }
+        },
+        "TerminationMode": {
+            "enum": [
+                "TRIGGER_ON_PROCESS_TERMINATE",
+                "FORCE_TERMINATE"
+            ]
+        },
         "UntagResourceResponse": {
             "type": "object",
             "properties": {}
@@ -8518,6 +9378,109 @@
                 },
                 "Version": {
                     "$ref": "#/$defs/NonZeroAndMaxString"
+                }
+            }
+        },
+        "UpdateContainerFleetOutput": {
+            "type": "object",
+            "properties": {
+                "ContainerFleet": {
+                    "$ref": "#/$defs/ContainerFleet"
+                }
+            }
+        },
+        "UpdateContainerFleetInput": {
+            "type": "object",
+            "properties": {
+                "FleetId": {
+                    "$ref": "#/$defs/FleetIdOrArn"
+                },
+                "GameServerContainerGroupDefinitionName": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "PerInstanceContainerGroupDefinitionName": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "GameServerContainerGroupsPerInstance": {
+                    "$ref": "#/$defs/GameServerContainerGroupsPerInstance"
+                },
+                "InstanceConnectionPortRange": {
+                    "$ref": "#/$defs/ConnectionPortRange"
+                },
+                "InstanceInboundPermissionAuthorizations": {
+                    "$ref": "#/$defs/IpPermissionsList"
+                },
+                "InstanceInboundPermissionRevocations": {
+                    "$ref": "#/$defs/IpPermissionsList"
+                },
+                "DeploymentConfiguration": {
+                    "$ref": "#/$defs/DeploymentConfiguration"
+                },
+                "Description": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                },
+                "MetricGroups": {
+                    "$ref": "#/$defs/MetricGroupList"
+                },
+                "NewGameSessionProtectionPolicy": {
+                    "$ref": "#/$defs/ProtectionPolicy"
+                },
+                "GameSessionCreationLimitPolicy": {
+                    "$ref": "#/$defs/GameSessionCreationLimitPolicy"
+                },
+                "LogConfiguration": {
+                    "$ref": "#/$defs/LogConfiguration"
+                },
+                "RemoveAttributes": {
+                    "$ref": "#/$defs/ContainerFleetRemoveAttributeList"
+                }
+            }
+        },
+        "ContainerFleetRemoveAttributeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerFleetRemoveAttribute"
+            }
+        },
+        "ContainerFleetRemoveAttribute": {
+            "enum": [
+                "PER_INSTANCE_CONTAINER_GROUP_DEFINITION"
+            ]
+        },
+        "UpdateContainerGroupDefinitionOutput": {
+            "type": "object",
+            "properties": {
+                "ContainerGroupDefinition": {
+                    "$ref": "#/$defs/ContainerGroupDefinition"
+                }
+            }
+        },
+        "UpdateContainerGroupDefinitionInput": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ContainerGroupDefinitionNameOrArn"
+                },
+                "GameServerContainerDefinition": {
+                    "$ref": "#/$defs/GameServerContainerDefinitionInput"
+                },
+                "SupportContainerDefinitions": {
+                    "$ref": "#/$defs/SupportContainerDefinitionInputList"
+                },
+                "TotalMemoryLimitMebibytes": {
+                    "$ref": "#/$defs/ContainerTotalMemoryLimit"
+                },
+                "TotalVcpuLimit": {
+                    "$ref": "#/$defs/ContainerTotalVcpuLimit"
+                },
+                "VersionDescription": {
+                    "$ref": "#/$defs/NonZeroAndMaxString"
+                },
+                "SourceVersionNumber": {
+                    "$ref": "#/$defs/PositiveInteger"
+                },
+                "OperatingSystem": {
+                    "$ref": "#/$defs/ContainerOperatingSystem"
                 }
             }
         },

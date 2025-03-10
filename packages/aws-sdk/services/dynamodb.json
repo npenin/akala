@@ -2318,6 +2318,9 @@
                 "OnDemandThroughputOverride": {
                     "$ref": "#/$defs/OnDemandThroughputOverride"
                 },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/TableWarmThroughputDescription"
+                },
                 "GlobalSecondaryIndexes": {
                     "$ref": "#/$defs/ReplicaGlobalSecondaryIndexDescriptionList"
                 },
@@ -2376,6 +2379,31 @@
             "type": "integer",
             "format": "int64"
         },
+        "TableWarmThroughputDescription": {
+            "type": "object",
+            "properties": {
+                "ReadUnitsPerSecond": {
+                    "$ref": "#/$defs/PositiveLongObject"
+                },
+                "WriteUnitsPerSecond": {
+                    "$ref": "#/$defs/PositiveLongObject"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TableStatus"
+                }
+            }
+        },
+        "TableStatus": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "DELETING",
+                "ACTIVE",
+                "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+                "ARCHIVING",
+                "ARCHIVED"
+            ]
+        },
         "ReplicaGlobalSecondaryIndexDescriptionList": {
             "type": "array",
             "items": {
@@ -2393,11 +2421,36 @@
                 },
                 "OnDemandThroughputOverride": {
                     "$ref": "#/$defs/OnDemandThroughputOverride"
+                },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/GlobalSecondaryIndexWarmThroughputDescription"
                 }
             }
         },
         "IndexName": {
             "type": "string"
+        },
+        "GlobalSecondaryIndexWarmThroughputDescription": {
+            "type": "object",
+            "properties": {
+                "ReadUnitsPerSecond": {
+                    "$ref": "#/$defs/PositiveLongObject"
+                },
+                "WriteUnitsPerSecond": {
+                    "$ref": "#/$defs/PositiveLongObject"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IndexStatus"
+                }
+            }
+        },
+        "IndexStatus": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "DELETING",
+                "ACTIVE"
+            ]
         },
         "TableClassSummary": {
             "type": "object",
@@ -2534,6 +2587,12 @@
                 },
                 "OnDemandThroughput": {
                     "$ref": "#/$defs/OnDemandThroughput"
+                },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/TableWarmThroughputDescription"
+                },
+                "MultiRegionConsistency": {
+                    "$ref": "#/$defs/MultiRegionConsistency"
                 }
             }
         },
@@ -2585,17 +2644,6 @@
             "enum": [
                 "HASH",
                 "RANGE"
-            ]
-        },
-        "TableStatus": {
-            "enum": [
-                "CREATING",
-                "UPDATING",
-                "DELETING",
-                "ACTIVE",
-                "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
-                "ARCHIVING",
-                "ARCHIVED"
             ]
         },
         "ProvisionedThroughputDescription": {
@@ -2736,16 +2784,11 @@
                 },
                 "OnDemandThroughput": {
                     "$ref": "#/$defs/OnDemandThroughput"
+                },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/GlobalSecondaryIndexWarmThroughputDescription"
                 }
             }
-        },
-        "IndexStatus": {
-            "enum": [
-                "CREATING",
-                "UPDATING",
-                "DELETING",
-                "ACTIVE"
-            ]
         },
         "Backfilling": {
             "type": "boolean"
@@ -2861,6 +2904,12 @@
         "DeletionProtectionEnabled": {
             "type": "boolean"
         },
+        "MultiRegionConsistency": {
+            "enum": [
+                "EVENTUAL",
+                "STRONG"
+            ]
+        },
         "CreateTableInput": {
             "type": "object",
             "properties": {
@@ -2899,6 +2948,9 @@
                 },
                 "DeletionProtectionEnabled": {
                     "$ref": "#/$defs/DeletionProtectionEnabled"
+                },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/WarmThroughput"
                 },
                 "ResourcePolicy": {
                     "$ref": "#/$defs/ResourcePolicy"
@@ -2951,6 +3003,9 @@
                 },
                 "OnDemandThroughput": {
                     "$ref": "#/$defs/OnDemandThroughput"
+                },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/WarmThroughput"
                 }
             }
         },
@@ -2962,6 +3017,17 @@
                 },
                 "WriteCapacityUnits": {
                     "$ref": "#/$defs/PositiveLongObject"
+                }
+            }
+        },
+        "WarmThroughput": {
+            "type": "object",
+            "properties": {
+                "ReadUnitsPerSecond": {
+                    "$ref": "#/$defs/LongObject"
+                },
+                "WriteUnitsPerSecond": {
+                    "$ref": "#/$defs/LongObject"
                 }
             }
         },
@@ -3382,6 +3448,9 @@
                 "PointInTimeRecoveryStatus": {
                     "$ref": "#/$defs/PointInTimeRecoveryStatus"
                 },
+                "RecoveryPeriodInDays": {
+                    "$ref": "#/$defs/RecoveryPeriodInDays"
+                },
                 "EarliestRestorableDateTime": {
                     "$ref": "#/$defs/Date"
                 },
@@ -3395,6 +3464,10 @@
                 "ENABLED",
                 "DISABLED"
             ]
+        },
+        "RecoveryPeriodInDays": {
+            "type": "integer",
+            "format": "int32"
         },
         "DescribeContinuousBackupsInput": {
             "type": "object",
@@ -5506,6 +5579,9 @@
             "properties": {
                 "PointInTimeRecoveryEnabled": {
                     "$ref": "#/$defs/BooleanObject"
+                },
+                "RecoveryPeriodInDays": {
+                    "$ref": "#/$defs/RecoveryPeriodInDays"
                 }
             }
         },
@@ -5908,8 +5984,14 @@
                 "DeletionProtectionEnabled": {
                     "$ref": "#/$defs/DeletionProtectionEnabled"
                 },
+                "MultiRegionConsistency": {
+                    "$ref": "#/$defs/MultiRegionConsistency"
+                },
                 "OnDemandThroughput": {
                     "$ref": "#/$defs/OnDemandThroughput"
+                },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/WarmThroughput"
                 }
             }
         },
@@ -5944,6 +6026,9 @@
                 },
                 "OnDemandThroughput": {
                     "$ref": "#/$defs/OnDemandThroughput"
+                },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/WarmThroughput"
                 }
             }
         },
@@ -5964,6 +6049,9 @@
                 },
                 "OnDemandThroughput": {
                     "$ref": "#/$defs/OnDemandThroughput"
+                },
+                "WarmThroughput": {
+                    "$ref": "#/$defs/WarmThroughput"
                 }
             }
         },

@@ -2256,6 +2256,9 @@
                 "MulticastIp": {
                     "$ref": "#/$defs/__string"
                 },
+                "MulticastSourceSettings": {
+                    "$ref": "#/$defs/MulticastSourceSettings"
+                },
                 "Name": {
                     "$ref": "#/$defs/__string"
                 },
@@ -2267,6 +2270,14 @@
                 },
                 "Protocol": {
                     "$ref": "#/$defs/Protocol"
+                }
+            }
+        },
+        "MulticastSourceSettings": {
+            "type": "object",
+            "properties": {
+                "MulticastSourceIp": {
+                    "$ref": "#/$defs/__string"
                 }
             }
         },
@@ -2317,6 +2328,9 @@
             "properties": {
                 "MulticastIp": {
                     "$ref": "#/$defs/__string"
+                },
+                "MulticastSourceSettings": {
+                    "$ref": "#/$defs/MulticastSourceSettings"
                 },
                 "Name": {
                     "$ref": "#/$defs/__string"
@@ -3587,6 +3601,15 @@
             "properties": {
                 "ThumbnailState": {
                     "$ref": "#/$defs/ThumbnailState"
+                },
+                "AudioMonitoringSettings": {
+                    "$ref": "#/$defs/__listOfAudioMonitoringSetting"
+                },
+                "ContentQualityAnalysisState": {
+                    "$ref": "#/$defs/ContentQualityAnalysisState"
+                },
+                "VideoMonitoringSettings": {
+                    "$ref": "#/$defs/__listOfVideoMonitoringSetting"
                 }
             }
         },
@@ -3595,6 +3618,76 @@
                 "ENABLED",
                 "DISABLED"
             ]
+        },
+        "__listOfAudioMonitoringSetting": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AudioMonitoringSetting"
+            }
+        },
+        "AudioMonitoringSetting": {
+            "type": "object",
+            "properties": {
+                "SilentAudio": {
+                    "$ref": "#/$defs/SilentAudio"
+                }
+            }
+        },
+        "SilentAudio": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "ThresholdSeconds": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "ContentQualityAnalysisState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "__listOfVideoMonitoringSetting": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VideoMonitoringSetting"
+            }
+        },
+        "VideoMonitoringSetting": {
+            "type": "object",
+            "properties": {
+                "BlackFrames": {
+                    "$ref": "#/$defs/BlackFrames"
+                },
+                "FrozenFrames": {
+                    "$ref": "#/$defs/FrozenFrames"
+                }
+            }
+        },
+        "BlackFrames": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "ThresholdSeconds": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
+        },
+        "FrozenFrames": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/State"
+                },
+                "ThresholdSeconds": {
+                    "$ref": "#/$defs/__integer"
+                }
+            }
         },
         "CreateFlowRequest": {
             "type": "object",
@@ -4968,6 +5061,9 @@
             "properties": {
                 "MulticastIp": {
                     "$ref": "#/$defs/__string"
+                },
+                "MulticastSourceSettings": {
+                    "$ref": "#/$defs/MulticastSourceSettings"
                 },
                 "NetworkName": {
                     "$ref": "#/$defs/__string"

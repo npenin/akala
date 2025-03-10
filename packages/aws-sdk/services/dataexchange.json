@@ -2,6 +2,45 @@
     "name": "dataexchange",
     "commands": [
         {
+            "name": "AcceptDataGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DataGrantArn": "route.DataGrantArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v1/data-grants/{DataGrantArn}/accept"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AcceptDataGrantResponse"
+                    },
+                    "inject": [
+                        "param.0.DataGrantArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AcceptDataGrantRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CancelJob",
             "config": {
                 "http": {
@@ -35,6 +74,41 @@
                     "options": {
                         "type": {},
                         "members": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateDataGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v1/data-grants"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDataGrantResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDataGrantRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -222,6 +296,45 @@
             }
         },
         {
+            "name": "DeleteDataGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DataGrantId": "route.DataGrantId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/v1/data-grants/{DataGrantId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.DataGrantId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDataGrantRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteDataSet",
             "config": {
                 "http": {
@@ -380,6 +493,45 @@
             }
         },
         {
+            "name": "GetDataGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DataGrantId": "route.DataGrantId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v1/data-grants/{DataGrantId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDataGrantResponse"
+                    },
+                    "inject": [
+                        "param.0.DataGrantId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDataGrantRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetDataSet",
             "config": {
                 "http": {
@@ -494,6 +646,45 @@
             }
         },
         {
+            "name": "GetReceivedDataGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DataGrantArn": "route.DataGrantArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v1/received-data-grants/{DataGrantArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetReceivedDataGrantResponse"
+                    },
+                    "inject": [
+                        "param.0.DataGrantArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetReceivedDataGrantRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetRevision",
             "config": {
                 "http": {
@@ -529,6 +720,41 @@
                     "options": {
                         "type": {},
                         "members": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDataGrants",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/v1/data-grants"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDataGrantsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDataGrantsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -669,6 +895,41 @@
                     "options": {
                         "type": {},
                         "members": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListReceivedDataGrants",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/v1/received-data-grants"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListReceivedDataGrantsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListReceivedDataGrantsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
                     }
                 }
             }
@@ -1183,6 +1444,89 @@
             "type": "string",
             "format": "binary"
         },
+        "AcceptDataGrantResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DataGrantName"
+                },
+                "SenderPrincipal": {
+                    "$ref": "#/$defs/SenderPrincipal"
+                },
+                "ReceiverPrincipal": {
+                    "$ref": "#/$defs/ReceiverPrincipal"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DataGrantDescription"
+                },
+                "AcceptanceState": {
+                    "$ref": "#/$defs/DataGrantAcceptanceState"
+                },
+                "AcceptedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndsAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "GrantDistributionScope": {
+                    "$ref": "#/$defs/GrantDistributionScope"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "DataGrantName": {
+            "type": "string"
+        },
+        "SenderPrincipal": {
+            "type": "string"
+        },
+        "ReceiverPrincipal": {
+            "type": "string"
+        },
+        "DataGrantDescription": {
+            "type": "string"
+        },
+        "DataGrantAcceptanceState": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "GrantDistributionScope": {
+            "type": "string"
+        },
+        "Id": {
+            "type": "string"
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "AcceptDataGrantRequest": {
+            "type": "object",
+            "properties": {
+                "DataGrantArn": {
+                    "$ref": "#/$defs/DataGrantArn"
+                }
+            }
+        },
+        "DataGrantArn": {
+            "type": "string"
+        },
         "CancelJobRequest": {
             "type": "object",
             "properties": {
@@ -1192,6 +1536,91 @@
             }
         },
         "__string": {
+            "type": "string"
+        },
+        "CreateDataGrantResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DataGrantName"
+                },
+                "SenderPrincipal": {
+                    "$ref": "#/$defs/SenderPrincipal"
+                },
+                "ReceiverPrincipal": {
+                    "$ref": "#/$defs/ReceiverPrincipal"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DataGrantDescription"
+                },
+                "AcceptanceState": {
+                    "$ref": "#/$defs/DataGrantAcceptanceState"
+                },
+                "AcceptedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndsAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "GrantDistributionScope": {
+                    "$ref": "#/$defs/GrantDistributionScope"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceDataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                }
+            }
+        },
+        "MapOf__string": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/__string"
+            }
+        },
+        "CreateDataGrantRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DataGrantName"
+                },
+                "GrantDistributionScope": {
+                    "$ref": "#/$defs/GrantDistributionScope"
+                },
+                "ReceiverPrincipal": {
+                    "$ref": "#/$defs/ReceiverPrincipal"
+                },
+                "SourceDataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "EndsAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                }
+            }
+        },
+        "Description": {
             "type": "string"
         },
         "CreateDataSetResponse": {
@@ -1232,20 +1661,7 @@
                 }
             }
         },
-        "Arn": {
-            "type": "string"
-        },
         "AssetType": {
-            "type": "string"
-        },
-        "Timestamp": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "Description": {
-            "type": "string"
-        },
-        "Id": {
             "type": "string"
         },
         "Name": {
@@ -1259,13 +1675,10 @@
             "properties": {
                 "ProductId": {
                     "$ref": "#/$defs/__string"
+                },
+                "DataGrantId": {
+                    "$ref": "#/$defs/__string"
                 }
-            }
-        },
-        "MapOf__string": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/__string"
             }
         },
         "CreateDataSetRequest": {
@@ -2162,6 +2575,17 @@
                 }
             }
         },
+        "DeleteDataGrantRequest": {
+            "type": "object",
+            "properties": {
+                "DataGrantId": {
+                    "$ref": "#/$defs/DataGrantId"
+                }
+            }
+        },
+        "DataGrantId": {
+            "type": "string"
+        },
         "DeleteDataSetRequest": {
             "type": "object",
             "properties": {
@@ -2414,6 +2838,64 @@
                 }
             }
         },
+        "GetDataGrantResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DataGrantName"
+                },
+                "SenderPrincipal": {
+                    "$ref": "#/$defs/SenderPrincipal"
+                },
+                "ReceiverPrincipal": {
+                    "$ref": "#/$defs/ReceiverPrincipal"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DataGrantDescription"
+                },
+                "AcceptanceState": {
+                    "$ref": "#/$defs/DataGrantAcceptanceState"
+                },
+                "AcceptedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndsAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "GrantDistributionScope": {
+                    "$ref": "#/$defs/GrantDistributionScope"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceDataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/MapOf__string"
+                }
+            }
+        },
+        "GetDataGrantRequest": {
+            "type": "object",
+            "properties": {
+                "DataGrantId": {
+                    "$ref": "#/$defs/DataGrantId"
+                }
+            }
+        },
         "GetDataSetResponse": {
             "type": "object",
             "properties": {
@@ -2528,6 +3010,58 @@
                 }
             }
         },
+        "GetReceivedDataGrantResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DataGrantName"
+                },
+                "SenderPrincipal": {
+                    "$ref": "#/$defs/SenderPrincipal"
+                },
+                "ReceiverPrincipal": {
+                    "$ref": "#/$defs/ReceiverPrincipal"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DataGrantDescription"
+                },
+                "AcceptanceState": {
+                    "$ref": "#/$defs/DataGrantAcceptanceState"
+                },
+                "AcceptedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndsAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "GrantDistributionScope": {
+                    "$ref": "#/$defs/GrantDistributionScope"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "GetReceivedDataGrantRequest": {
+            "type": "object",
+            "properties": {
+                "DataGrantArn": {
+                    "$ref": "#/$defs/DataGrantArn"
+                }
+            }
+        },
         "GetRevisionResponse": {
             "type": "object",
             "properties": {
@@ -2580,6 +3114,82 @@
                 }
             }
         },
+        "ListDataGrantsResponse": {
+            "type": "object",
+            "properties": {
+                "DataGrantSummaries": {
+                    "$ref": "#/$defs/ListOfDataGrantSummaryEntry"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOfDataGrantSummaryEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataGrantSummaryEntry"
+            }
+        },
+        "DataGrantSummaryEntry": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DataGrantName"
+                },
+                "SenderPrincipal": {
+                    "$ref": "#/$defs/SenderPrincipal"
+                },
+                "ReceiverPrincipal": {
+                    "$ref": "#/$defs/ReceiverPrincipal"
+                },
+                "AcceptanceState": {
+                    "$ref": "#/$defs/DataGrantAcceptanceState"
+                },
+                "AcceptedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndsAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "SourceDataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListDataGrantsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ListDataSetRevisionsResponse": {
             "type": "object",
             "properties": {
@@ -2590,9 +3200,6 @@
                     "$ref": "#/$defs/ListOfRevisionEntry"
                 }
             }
-        },
-        "NextToken": {
-            "type": "string"
         },
         "ListOfRevisionEntry": {
             "type": "array",
@@ -2651,10 +3258,6 @@
                     "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListDataSetsResponse": {
             "type": "object",
@@ -2838,6 +3441,84 @@
                     "$ref": "#/$defs/__string"
                 }
             }
+        },
+        "ListReceivedDataGrantsResponse": {
+            "type": "object",
+            "properties": {
+                "DataGrantSummaries": {
+                    "$ref": "#/$defs/ListOfReceivedDataGrantSummariesEntry"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOfReceivedDataGrantSummariesEntry": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReceivedDataGrantSummariesEntry"
+            }
+        },
+        "ReceivedDataGrantSummariesEntry": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DataGrantName"
+                },
+                "SenderPrincipal": {
+                    "$ref": "#/$defs/SenderPrincipal"
+                },
+                "ReceiverPrincipal": {
+                    "$ref": "#/$defs/ReceiverPrincipal"
+                },
+                "AcceptanceState": {
+                    "$ref": "#/$defs/DataGrantAcceptanceState"
+                },
+                "AcceptedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndsAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DataSetId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListReceivedDataGrantsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "AcceptanceState": {
+                    "$ref": "#/$defs/AcceptanceStateFilterValues"
+                }
+            }
+        },
+        "AcceptanceStateFilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AcceptanceStateFilterValue"
+            }
+        },
+        "AcceptanceStateFilterValue": {
+            "type": "string"
         },
         "ListRevisionAssetsResponse": {
             "type": "object",

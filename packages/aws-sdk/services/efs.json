@@ -1670,6 +1670,9 @@
                 },
                 "Destinations": {
                     "$ref": "#/$defs/Destinations"
+                },
+                "SourceFileSystemOwnerId": {
+                    "$ref": "#/$defs/AwsAccountId"
                 }
             }
         },
@@ -1696,6 +1699,15 @@
                 },
                 "LastReplicatedTimestamp": {
                     "$ref": "#/$defs/Timestamp"
+                },
+                "OwnerId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/StatusMessage"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
                 }
             }
         },
@@ -1708,6 +1720,12 @@
                 "PAUSED",
                 "PAUSING"
             ]
+        },
+        "StatusMessage": {
+            "type": "string"
+        },
+        "RoleArn": {
+            "type": "string"
         },
         "CreateReplicationConfigurationRequest": {
             "type": "object",
@@ -1740,6 +1758,9 @@
                 },
                 "FileSystemId": {
                     "$ref": "#/$defs/FileSystemId"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
                 }
             }
         },
@@ -1791,8 +1812,17 @@
             "properties": {
                 "SourceFileSystemId": {
                     "$ref": "#/$defs/FileSystemId"
+                },
+                "DeletionMode": {
+                    "$ref": "#/$defs/DeletionMode"
                 }
             }
+        },
+        "DeletionMode": {
+            "enum": [
+                "ALL_CONFIGURATIONS",
+                "LOCAL_CONFIGURATION_ONLY"
+            ]
         },
         "DeleteTagsRequest": {
             "type": "object",

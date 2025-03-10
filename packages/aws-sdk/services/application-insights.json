@@ -1053,6 +1053,8 @@
                 "SAP_HANA_MULTI_NODE",
                 "SAP_HANA_SINGLE_NODE",
                 "SAP_HANA_HIGH_AVAILABILITY",
+                "SAP_ASE_SINGLE_NODE",
+                "SAP_ASE_HIGH_AVAILABILITY",
                 "SQL_SERVER_FAILOVER_CLUSTER_INSTANCE",
                 "SHAREPOINT",
                 "ACTIVE_DIRECTORY",
@@ -1107,6 +1109,9 @@
                 "OpsItemSNSTopicArn": {
                     "$ref": "#/$defs/OpsItemSNSTopicArn"
                 },
+                "SNSNotificationArn": {
+                    "$ref": "#/$defs/SNSNotificationArn"
+                },
                 "OpsCenterEnabled": {
                     "$ref": "#/$defs/OpsCenterEnabled"
                 },
@@ -1134,6 +1139,9 @@
             "type": "string"
         },
         "OpsItemSNSTopicArn": {
+            "type": "string"
+        },
+        "SNSNotificationArn": {
             "type": "string"
         },
         "OpsCenterEnabled": {
@@ -1171,6 +1179,9 @@
                 },
                 "OpsItemSNSTopicArn": {
                     "$ref": "#/$defs/OpsItemSNSTopicArn"
+                },
+                "SNSNotificationArn": {
+                    "$ref": "#/$defs/SNSNotificationArn"
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
@@ -1864,6 +1875,9 @@
             "properties": {
                 "Problem": {
                     "$ref": "#/$defs/Problem"
+                },
+                "SNSNotificationArn": {
+                    "$ref": "#/$defs/SNSNotificationArn"
                 }
             }
         },
@@ -1875,6 +1889,9 @@
                 },
                 "Title": {
                     "$ref": "#/$defs/Title"
+                },
+                "ShortName": {
+                    "$ref": "#/$defs/ShortName"
                 },
                 "Insights": {
                     "$ref": "#/$defs/Insights"
@@ -1921,6 +1938,9 @@
             "type": "string"
         },
         "Title": {
+            "type": "string"
+        },
+        "ShortName": {
             "type": "string"
         },
         "Insights": {
@@ -2415,8 +2435,14 @@
                 },
                 "WorkloadRemarks": {
                     "$ref": "#/$defs/Remarks"
+                },
+                "MissingWorkloadConfig": {
+                    "$ref": "#/$defs/MissingWorkloadConfig"
                 }
             }
+        },
+        "MissingWorkloadConfig": {
+            "type": "boolean"
         },
         "ListWorkloadsRequest": {
             "type": "object",
@@ -2514,6 +2540,9 @@
                 },
                 "OpsItemSNSTopicArn": {
                     "$ref": "#/$defs/OpsItemSNSTopicArn"
+                },
+                "SNSNotificationArn": {
+                    "$ref": "#/$defs/SNSNotificationArn"
                 },
                 "RemoveSNSTopic": {
                     "$ref": "#/$defs/RemoveSNSTopic"

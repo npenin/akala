@@ -1058,6 +1058,12 @@
                 },
                 "CrlDistributionPointExtensionConfiguration": {
                     "$ref": "#/$defs/CrlDistributionPointExtensionConfiguration"
+                },
+                "CrlType": {
+                    "$ref": "#/$defs/CrlType"
+                },
+                "CustomPath": {
+                    "$ref": "#/$defs/CrlPathString"
                 }
             }
         },
@@ -1084,6 +1090,15 @@
                     "$ref": "#/$defs/Boolean"
                 }
             }
+        },
+        "CrlType": {
+            "enum": [
+                "COMPLETE",
+                "PARTITIONED"
+            ]
+        },
+        "CrlPathString": {
+            "type": "string"
         },
         "OcspConfiguration": {
             "type": "object",

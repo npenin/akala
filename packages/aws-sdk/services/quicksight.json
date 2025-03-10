@@ -246,6 +246,86 @@
             }
         },
         {
+            "name": "CreateBrand",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "BrandId": "route.BrandId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/accounts/{AwsAccountId}/brands/{BrandId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateBrandResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.BrandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateBrandRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateCustomPermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/accounts/{AwsAccountId}/custom-permissions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCustomPermissionsResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCustomPermissionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateDashboard",
             "config": {
                 "http": {
@@ -1152,6 +1232,127 @@
             }
         },
         {
+            "name": "DeleteBrand",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "BrandId": "route.BrandId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/accounts/{AwsAccountId}/brands/{BrandId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteBrandResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.BrandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBrandRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBrandAssignment",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/accounts/{AwsAccountId}/brandassignments"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteBrandAssignmentResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBrandAssignmentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCustomPermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "CustomPermissionsName": "route.CustomPermissionsName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/accounts/{AwsAccountId}/custom-permissions/{CustomPermissionsName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCustomPermissionsResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.CustomPermissionsName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCustomPermissionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteDashboard",
             "config": {
                 "http": {
@@ -1300,6 +1501,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteDataSourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDefaultQBusinessApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/accounts/{AwsAccountId}/default-qbusiness-application"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDefaultQBusinessApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDefaultQBusinessApplicationRequest"
                         }
                     }
                 },
@@ -2084,6 +2324,49 @@
             }
         },
         {
+            "name": "DeleteUserCustomPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "Namespace": "route.Namespace",
+                            "UserName": "route.UserName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}/custom-permission"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteUserCustomPermissionResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.Namespace",
+                        "param.0.UserName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteUserCustomPermissionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteVPCConnection",
             "config": {
                 "http": {
@@ -2447,6 +2730,168 @@
             }
         },
         {
+            "name": "DescribeBrand",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "BrandId": "route.BrandId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/brands/{BrandId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBrandResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.BrandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBrandRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBrandAssignment",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/brandassignments"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBrandAssignmentResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBrandAssignmentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeBrandPublishedVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "BrandId": "route.BrandId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/brands/{BrandId}/publishedversion"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeBrandPublishedVersionResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.BrandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeBrandPublishedVersionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCustomPermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "CustomPermissionsName": "route.CustomPermissionsName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/custom-permissions/{CustomPermissionsName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCustomPermissionsResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.CustomPermissionsName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCustomPermissionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeDashboard",
             "config": {
                 "http": {
@@ -2656,6 +3101,45 @@
             }
         },
         {
+            "name": "DescribeDashboardsQAConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/dashboards-qa-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDashboardsQAConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDashboardsQAConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeDataSet",
             "config": {
                 "http": {
@@ -2845,6 +3329,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeDataSourcePermissionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDefaultQBusinessApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/default-qbusiness-application"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDefaultQBusinessApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDefaultQBusinessApplicationRequest"
                         }
                     }
                 },
@@ -3300,6 +3823,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeQPersonalizationConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeQuickSightQSearchConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/quicksight-q-search-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeQuickSightQSearchConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeQuickSightQSearchConfigurationRequest"
                         }
                     }
                 },
@@ -4023,6 +4585,45 @@
             }
         },
         {
+            "name": "GenerateEmbedUrlForRegisteredUserWithIdentity",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/accounts/{AwsAccountId}/embed-url/registered-user-with-identity"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateEmbedUrlForRegisteredUserWithIdentityResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateEmbedUrlForRegisteredUserWithIdentityRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetDashboardEmbedUrl",
             "config": {
                 "http": {
@@ -4204,6 +4805,84 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListAssetBundleImportJobsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBrands",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/brands"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBrandsResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBrandsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCustomPermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/accounts/{AwsAccountId}/custom-permissions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCustomPermissionsResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCustomPermissionsRequest"
                         }
                     }
                 },
@@ -5395,6 +6074,45 @@
             }
         },
         {
+            "name": "PredictQAResults",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/accounts/{AwsAccountId}/qa/predict"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PredictQAResultsResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PredictQAResultsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "PutDataSetRefreshProperties",
             "config": {
                 "http": {
@@ -5754,6 +6472,45 @@
             }
         },
         {
+            "name": "SearchTopics",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/accounts/{AwsAccountId}/search/topics"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchTopicsResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchTopicsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "StartAssetBundleExportJob",
             "config": {
                 "http": {
@@ -5857,6 +6614,49 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/StartDashboardSnapshotJobRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDashboardSnapshotJobSchedule",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "DashboardId": "route.DashboardId",
+                            "ScheduleId": "route.ScheduleId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/accounts/{AwsAccountId}/dashboards/{DashboardId}/schedules/{ScheduleId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDashboardSnapshotJobScheduleResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.DashboardId",
+                        "param.0.ScheduleId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDashboardSnapshotJobScheduleRequest"
                         }
                     }
                 },
@@ -6111,6 +6911,207 @@
             }
         },
         {
+            "name": "UpdateApplicationWithTokenExchangeGrant",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/application-with-token-exchange-grant"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateApplicationWithTokenExchangeGrantResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationWithTokenExchangeGrantRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateBrand",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "BrandId": "route.BrandId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/brands/{BrandId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateBrandResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.BrandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateBrandRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateBrandAssignment",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/brandassignments"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateBrandAssignmentResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateBrandAssignmentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateBrandPublishedVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "BrandId": "route.BrandId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/brands/{BrandId}/publishedversion"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateBrandPublishedVersionResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.BrandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateBrandPublishedVersionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateCustomPermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "CustomPermissionsName": "route.CustomPermissionsName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/custom-permissions/{CustomPermissionsName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateCustomPermissionsResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.CustomPermissionsName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCustomPermissionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateDashboard",
             "config": {
                 "http": {
@@ -6277,6 +7278,45 @@
             }
         },
         {
+            "name": "UpdateDashboardsQAConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/dashboards-qa-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDashboardsQAConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDashboardsQAConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateDataSet",
             "config": {
                 "http": {
@@ -6425,6 +7465,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateDataSourcePermissionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDefaultQBusinessApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/default-qbusiness-application"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDefaultQBusinessApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDefaultQBusinessApplicationRequest"
                         }
                     }
                 },
@@ -6790,6 +7869,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateQPersonalizationConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateQuickSightQSearchConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/quicksight-q-search-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateQuickSightQSearchConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateQuickSightQSearchConfigurationRequest"
                         }
                     }
                 },
@@ -7347,6 +8465,49 @@
             }
         },
         {
+            "name": "UpdateUserCustomPermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AwsAccountId": "route.AwsAccountId",
+                            "Namespace": "route.Namespace",
+                            "UserName": "route.UserName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/accounts/{AwsAccountId}/namespaces/{Namespace}/users/{UserName}/custom-permission"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateUserCustomPermissionResponse"
+                    },
+                    "inject": [
+                        "param.0.AwsAccountId",
+                        "param.0.Namespace",
+                        "param.0.UserName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateUserCustomPermissionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateVPCConnection",
             "config": {
                 "http": {
@@ -7809,7 +8970,9 @@
                 "THOUSANDS",
                 "MILLIONS",
                 "BILLIONS",
-                "TRILLIONS"
+                "TRILLIONS",
+                "LAKHS",
+                "CRORES"
             ]
         },
         "NegativeFormat": {
@@ -8794,6 +9957,9 @@
                 },
                 "QueryExecutionOptions": {
                     "$ref": "#/$defs/QueryExecutionOptions"
+                },
+                "StaticFiles": {
+                    "$ref": "#/$defs/StaticFileList"
                 }
             }
         },
@@ -8849,6 +10015,9 @@
                 },
                 "TextBoxes": {
                     "$ref": "#/$defs/SheetTextBoxList"
+                },
+                "Images": {
+                    "$ref": "#/$defs/SheetImageList"
                 },
                 "Layouts": {
                     "$ref": "#/$defs/LayoutList"
@@ -8979,6 +10148,9 @@
                 },
                 "FontStyle": {
                     "$ref": "#/$defs/FontStyle"
+                },
+                "FontFamily": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -8987,6 +10159,9 @@
             "properties": {
                 "Relative": {
                     "$ref": "#/$defs/RelativeFontSize"
+                },
+                "Absolute": {
+                    "$ref": "#/$defs/PixelLength"
                 }
             }
         },
@@ -8998,6 +10173,9 @@
                 "LARGE",
                 "EXTRA_LARGE"
             ]
+        },
+        "PixelLength": {
+            "type": "string"
         },
         "FontDecoration": {
             "enum": [
@@ -9621,6 +10799,9 @@
                 "FilledMapVisual": {
                     "$ref": "#/$defs/FilledMapVisual"
                 },
+                "LayerMapVisual": {
+                    "$ref": "#/$defs/LayerMapVisual"
+                },
                 "FunnelChartVisual": {
                     "$ref": "#/$defs/FunnelChartVisual"
                 },
@@ -9656,6 +10837,9 @@
                 },
                 "RadarChartVisual": {
                     "$ref": "#/$defs/RadarChartVisual"
+                },
+                "PluginVisual": {
+                    "$ref": "#/$defs/PluginVisual"
                 }
             }
         },
@@ -9679,6 +10863,9 @@
                 },
                 "Actions": {
                     "$ref": "#/$defs/VisualCustomActionList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -9912,8 +11099,17 @@
                 },
                 "Visibility": {
                     "$ref": "#/$defs/Visibility"
+                },
+                "GroupingStyle": {
+                    "$ref": "#/$defs/DigitGroupingStyle"
                 }
             }
+        },
+        "DigitGroupingStyle": {
+            "enum": [
+                "DEFAULT",
+                "LAKHS"
+            ]
         },
         "DecimalPlacesConfiguration": {
             "type": "object",
@@ -10210,11 +11406,11 @@
             "type": "object",
             "properties": {
                 "Values": {
-                    "$ref": "#/$defs/UnaggregatedFieldList"
+                    "$ref": "#/$defs/TableUnaggregatedFieldList"
                 }
             }
         },
-        "UnaggregatedFieldList": {
+        "TableUnaggregatedFieldList": {
             "type": "array",
             "items": {
                 "$ref": "#/$defs/UnaggregatedField"
@@ -10631,9 +11827,6 @@
                     "$ref": "#/$defs/TableFieldURLConfiguration"
                 }
             }
-        },
-        "PixelLength": {
-            "type": "string"
         },
         "CustomLabel": {
             "type": "string"
@@ -11346,6 +12539,9 @@
                 },
                 "Actions": {
                     "$ref": "#/$defs/VisualCustomActionList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -11861,6 +13057,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -12364,6 +13563,9 @@
                 },
                 "Height": {
                     "$ref": "#/$defs/PixelLength"
+                },
+                "ValueFontConfiguration": {
+                    "$ref": "#/$defs/FontConfiguration"
                 }
             }
         },
@@ -12951,6 +14153,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -13222,6 +14427,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -13360,6 +14568,9 @@
                 },
                 "Actions": {
                     "$ref": "#/$defs/VisualCustomActionList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -13535,6 +14746,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -13953,6 +15167,9 @@
                 },
                 "Actions": {
                     "$ref": "#/$defs/VisualCustomActionList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -14096,6 +15313,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -14199,6 +15419,9 @@
                 },
                 "Actions": {
                     "$ref": "#/$defs/VisualCustomActionList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -14409,6 +15632,9 @@
                 },
                 "Actions": {
                     "$ref": "#/$defs/VisualCustomActionList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -14518,6 +15744,489 @@
                 }
             }
         },
+        "LayerMapVisual": {
+            "type": "object",
+            "properties": {
+                "VisualId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "Title": {
+                    "$ref": "#/$defs/VisualTitleLabelOptions"
+                },
+                "Subtitle": {
+                    "$ref": "#/$defs/VisualSubtitleLabelOptions"
+                },
+                "ChartConfiguration": {
+                    "$ref": "#/$defs/GeospatialLayerMapConfiguration"
+                },
+                "DataSetIdentifier": {
+                    "$ref": "#/$defs/DataSetIdentifier"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
+                }
+            }
+        },
+        "GeospatialLayerMapConfiguration": {
+            "type": "object",
+            "properties": {
+                "Legend": {
+                    "$ref": "#/$defs/LegendOptions"
+                },
+                "MapLayers": {
+                    "$ref": "#/$defs/GeospatialMapLayerList"
+                },
+                "MapState": {
+                    "$ref": "#/$defs/GeospatialMapState"
+                },
+                "MapStyle": {
+                    "$ref": "#/$defs/GeospatialMapStyle"
+                },
+                "Interactions": {
+                    "$ref": "#/$defs/VisualInteractionOptions"
+                }
+            }
+        },
+        "GeospatialMapLayerList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GeospatialLayerItem"
+            }
+        },
+        "GeospatialLayerItem": {
+            "type": "object",
+            "properties": {
+                "LayerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "LayerType": {
+                    "$ref": "#/$defs/GeospatialLayerType"
+                },
+                "DataSource": {
+                    "$ref": "#/$defs/GeospatialDataSourceItem"
+                },
+                "Label": {
+                    "$ref": "#/$defs/String"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/Visibility"
+                },
+                "LayerDefinition": {
+                    "$ref": "#/$defs/GeospatialLayerDefinition"
+                },
+                "Tooltip": {
+                    "$ref": "#/$defs/TooltipOptions"
+                },
+                "JoinDefinition": {
+                    "$ref": "#/$defs/GeospatialLayerJoinDefinition"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/LayerCustomActionList"
+                }
+            }
+        },
+        "GeospatialLayerType": {
+            "enum": [
+                "POINT",
+                "LINE",
+                "POLYGON"
+            ]
+        },
+        "GeospatialDataSourceItem": {
+            "type": "object",
+            "properties": {
+                "StaticFileDataSource": {
+                    "$ref": "#/$defs/GeospatialStaticFileSource"
+                }
+            }
+        },
+        "GeospatialStaticFileSource": {
+            "type": "object",
+            "properties": {
+                "StaticFileId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                }
+            }
+        },
+        "GeospatialLayerDefinition": {
+            "type": "object",
+            "properties": {
+                "PointLayer": {
+                    "$ref": "#/$defs/GeospatialPointLayer"
+                },
+                "LineLayer": {
+                    "$ref": "#/$defs/GeospatialLineLayer"
+                },
+                "PolygonLayer": {
+                    "$ref": "#/$defs/GeospatialPolygonLayer"
+                }
+            }
+        },
+        "GeospatialPointLayer": {
+            "type": "object",
+            "properties": {
+                "Style": {
+                    "$ref": "#/$defs/GeospatialPointStyle"
+                }
+            }
+        },
+        "GeospatialPointStyle": {
+            "type": "object",
+            "properties": {
+                "CircleSymbolStyle": {
+                    "$ref": "#/$defs/GeospatialCircleSymbolStyle"
+                }
+            }
+        },
+        "GeospatialCircleSymbolStyle": {
+            "type": "object",
+            "properties": {
+                "FillColor": {
+                    "$ref": "#/$defs/GeospatialColor"
+                },
+                "StrokeColor": {
+                    "$ref": "#/$defs/GeospatialColor"
+                },
+                "StrokeWidth": {
+                    "$ref": "#/$defs/GeospatialLineWidth"
+                },
+                "CircleRadius": {
+                    "$ref": "#/$defs/GeospatialCircleRadius"
+                }
+            }
+        },
+        "GeospatialColor": {
+            "type": "object",
+            "properties": {
+                "Solid": {
+                    "$ref": "#/$defs/GeospatialSolidColor"
+                },
+                "Gradient": {
+                    "$ref": "#/$defs/GeospatialGradientColor"
+                },
+                "Categorical": {
+                    "$ref": "#/$defs/GeospatialCategoricalColor"
+                }
+            }
+        },
+        "GeospatialSolidColor": {
+            "type": "object",
+            "properties": {
+                "Color": {
+                    "$ref": "#/$defs/HexColorWithTransparency"
+                },
+                "State": {
+                    "$ref": "#/$defs/GeospatialColorState"
+                }
+            }
+        },
+        "GeospatialColorState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "GeospatialGradientColor": {
+            "type": "object",
+            "properties": {
+                "StepColors": {
+                    "$ref": "#/$defs/GeospatialGradientStepColorList"
+                },
+                "NullDataVisibility": {
+                    "$ref": "#/$defs/Visibility"
+                },
+                "NullDataSettings": {
+                    "$ref": "#/$defs/GeospatialNullDataSettings"
+                },
+                "DefaultOpacity": {
+                    "$ref": "#/$defs/Opacity"
+                }
+            }
+        },
+        "GeospatialGradientStepColorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GeospatialGradientStepColor"
+            }
+        },
+        "GeospatialGradientStepColor": {
+            "type": "object",
+            "properties": {
+                "Color": {
+                    "$ref": "#/$defs/HexColorWithTransparency"
+                },
+                "DataValue": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "GeospatialNullDataSettings": {
+            "type": "object",
+            "properties": {
+                "SymbolStyle": {
+                    "$ref": "#/$defs/GeospatialNullSymbolStyle"
+                }
+            }
+        },
+        "GeospatialNullSymbolStyle": {
+            "type": "object",
+            "properties": {
+                "FillColor": {
+                    "$ref": "#/$defs/HexColorWithTransparency"
+                },
+                "StrokeColor": {
+                    "$ref": "#/$defs/HexColorWithTransparency"
+                },
+                "StrokeWidth": {
+                    "$ref": "#/$defs/GeospatialWidth"
+                }
+            }
+        },
+        "GeospatialWidth": {
+            "type": "number",
+            "format": "double"
+        },
+        "Opacity": {
+            "type": "number",
+            "format": "double"
+        },
+        "GeospatialCategoricalColor": {
+            "type": "object",
+            "properties": {
+                "CategoryDataColors": {
+                    "$ref": "#/$defs/GeospatialCategoricalDataColorList"
+                },
+                "NullDataVisibility": {
+                    "$ref": "#/$defs/Visibility"
+                },
+                "NullDataSettings": {
+                    "$ref": "#/$defs/GeospatialNullDataSettings"
+                },
+                "DefaultOpacity": {
+                    "$ref": "#/$defs/Opacity"
+                }
+            }
+        },
+        "GeospatialCategoricalDataColorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GeospatialCategoricalDataColor"
+            }
+        },
+        "GeospatialCategoricalDataColor": {
+            "type": "object",
+            "properties": {
+                "Color": {
+                    "$ref": "#/$defs/HexColorWithTransparency"
+                },
+                "DataValue": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GeospatialLineWidth": {
+            "type": "object",
+            "properties": {
+                "LineWidth": {
+                    "$ref": "#/$defs/GeospatialWidth"
+                }
+            }
+        },
+        "GeospatialCircleRadius": {
+            "type": "object",
+            "properties": {
+                "Radius": {
+                    "$ref": "#/$defs/GeospatialRadius"
+                }
+            }
+        },
+        "GeospatialRadius": {
+            "type": "number",
+            "format": "double"
+        },
+        "GeospatialLineLayer": {
+            "type": "object",
+            "properties": {
+                "Style": {
+                    "$ref": "#/$defs/GeospatialLineStyle"
+                }
+            }
+        },
+        "GeospatialLineStyle": {
+            "type": "object",
+            "properties": {
+                "LineSymbolStyle": {
+                    "$ref": "#/$defs/GeospatialLineSymbolStyle"
+                }
+            }
+        },
+        "GeospatialLineSymbolStyle": {
+            "type": "object",
+            "properties": {
+                "FillColor": {
+                    "$ref": "#/$defs/GeospatialColor"
+                },
+                "LineWidth": {
+                    "$ref": "#/$defs/GeospatialLineWidth"
+                }
+            }
+        },
+        "GeospatialPolygonLayer": {
+            "type": "object",
+            "properties": {
+                "Style": {
+                    "$ref": "#/$defs/GeospatialPolygonStyle"
+                }
+            }
+        },
+        "GeospatialPolygonStyle": {
+            "type": "object",
+            "properties": {
+                "PolygonSymbolStyle": {
+                    "$ref": "#/$defs/GeospatialPolygonSymbolStyle"
+                }
+            }
+        },
+        "GeospatialPolygonSymbolStyle": {
+            "type": "object",
+            "properties": {
+                "FillColor": {
+                    "$ref": "#/$defs/GeospatialColor"
+                },
+                "StrokeColor": {
+                    "$ref": "#/$defs/GeospatialColor"
+                },
+                "StrokeWidth": {
+                    "$ref": "#/$defs/GeospatialLineWidth"
+                }
+            }
+        },
+        "GeospatialLayerJoinDefinition": {
+            "type": "object",
+            "properties": {
+                "ShapeKeyField": {
+                    "$ref": "#/$defs/String"
+                },
+                "DatasetKeyField": {
+                    "$ref": "#/$defs/UnaggregatedField"
+                },
+                "ColorField": {
+                    "$ref": "#/$defs/GeospatialLayerColorField"
+                }
+            }
+        },
+        "GeospatialLayerColorField": {
+            "type": "object",
+            "properties": {
+                "ColorDimensionsFields": {
+                    "$ref": "#/$defs/GeospatialLayerDimensionFieldList"
+                },
+                "ColorValuesFields": {
+                    "$ref": "#/$defs/GeospatialLayerMeasureFieldList"
+                }
+            }
+        },
+        "GeospatialLayerDimensionFieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DimensionField"
+            }
+        },
+        "GeospatialLayerMeasureFieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MeasureField"
+            }
+        },
+        "LayerCustomActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayerCustomAction"
+            }
+        },
+        "LayerCustomAction": {
+            "type": "object",
+            "properties": {
+                "CustomActionId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/LayerCustomActionName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/WidgetStatus"
+                },
+                "Trigger": {
+                    "$ref": "#/$defs/LayerCustomActionTrigger"
+                },
+                "ActionOperations": {
+                    "$ref": "#/$defs/LayerCustomActionOperationList"
+                }
+            }
+        },
+        "LayerCustomActionName": {
+            "type": "string"
+        },
+        "LayerCustomActionTrigger": {
+            "enum": [
+                "DATA_POINT_CLICK",
+                "DATA_POINT_MENU"
+            ]
+        },
+        "LayerCustomActionOperationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LayerCustomActionOperation"
+            }
+        },
+        "LayerCustomActionOperation": {
+            "type": "object",
+            "properties": {
+                "FilterOperation": {
+                    "$ref": "#/$defs/CustomActionFilterOperation"
+                },
+                "NavigationOperation": {
+                    "$ref": "#/$defs/CustomActionNavigationOperation"
+                },
+                "URLOperation": {
+                    "$ref": "#/$defs/CustomActionURLOperation"
+                },
+                "SetParametersOperation": {
+                    "$ref": "#/$defs/CustomActionSetParametersOperation"
+                }
+            }
+        },
+        "GeospatialMapState": {
+            "type": "object",
+            "properties": {
+                "Bounds": {
+                    "$ref": "#/$defs/GeospatialCoordinateBounds"
+                },
+                "MapNavigation": {
+                    "$ref": "#/$defs/GeospatialMapNavigation"
+                }
+            }
+        },
+        "GeospatialMapNavigation": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "GeospatialMapStyle": {
+            "type": "object",
+            "properties": {
+                "BaseMapStyle": {
+                    "$ref": "#/$defs/BaseMapStyleType"
+                },
+                "BackgroundColor": {
+                    "$ref": "#/$defs/HexColorWithTransparency"
+                },
+                "BaseMapVisibility": {
+                    "$ref": "#/$defs/Visibility"
+                }
+            }
+        },
         "FunnelChartVisual": {
             "type": "object",
             "properties": {
@@ -14538,6 +16247,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -14667,6 +16379,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -14787,6 +16502,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -14911,6 +16629,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -15045,6 +16766,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -15169,6 +16893,9 @@
                 },
                 "Actions": {
                     "$ref": "#/$defs/VisualCustomActionList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -15300,6 +17027,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -15444,6 +17174,9 @@
                 },
                 "DataSetIdentifier": {
                     "$ref": "#/$defs/DataSetIdentifier"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -15785,6 +17518,9 @@
                 },
                 "Actions": {
                     "$ref": "#/$defs/VisualCustomActionList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -15861,6 +17597,9 @@
                 },
                 "DataSetIdentifier": {
                     "$ref": "#/$defs/DataSetIdentifier"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -15929,6 +17668,9 @@
                 },
                 "ColumnHierarchies": {
                     "$ref": "#/$defs/ColumnHierarchyList"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
                 }
             }
         },
@@ -16075,6 +17817,130 @@
                 "SHARED"
             ]
         },
+        "PluginVisual": {
+            "type": "object",
+            "properties": {
+                "VisualId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "PluginArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Title": {
+                    "$ref": "#/$defs/VisualTitleLabelOptions"
+                },
+                "Subtitle": {
+                    "$ref": "#/$defs/VisualSubtitleLabelOptions"
+                },
+                "ChartConfiguration": {
+                    "$ref": "#/$defs/PluginVisualConfiguration"
+                },
+                "VisualContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
+                }
+            }
+        },
+        "PluginVisualConfiguration": {
+            "type": "object",
+            "properties": {
+                "FieldWells": {
+                    "$ref": "#/$defs/PluginVisualFieldWells"
+                },
+                "VisualOptions": {
+                    "$ref": "#/$defs/PluginVisualOptions"
+                },
+                "SortConfiguration": {
+                    "$ref": "#/$defs/PluginVisualSortConfiguration"
+                }
+            }
+        },
+        "PluginVisualFieldWells": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PluginVisualFieldWell"
+            }
+        },
+        "PluginVisualFieldWell": {
+            "type": "object",
+            "properties": {
+                "AxisName": {
+                    "$ref": "#/$defs/PluginVisualAxisName"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/DimensionFieldList"
+                },
+                "Measures": {
+                    "$ref": "#/$defs/MeasureFieldList"
+                },
+                "Unaggregated": {
+                    "$ref": "#/$defs/UnaggregatedFieldList"
+                }
+            }
+        },
+        "PluginVisualAxisName": {
+            "enum": [
+                "GROUP_BY",
+                "VALUE"
+            ]
+        },
+        "UnaggregatedFieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnaggregatedField"
+            }
+        },
+        "PluginVisualOptions": {
+            "type": "object",
+            "properties": {
+                "VisualProperties": {
+                    "$ref": "#/$defs/PluginVisualPropertiesList"
+                }
+            }
+        },
+        "PluginVisualPropertiesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PluginVisualProperty"
+            }
+        },
+        "PluginVisualProperty": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PluginVisualSortConfiguration": {
+            "type": "object",
+            "properties": {
+                "PluginVisualTableQuerySort": {
+                    "$ref": "#/$defs/PluginVisualTableQuerySort"
+                }
+            }
+        },
+        "PluginVisualTableQuerySort": {
+            "type": "object",
+            "properties": {
+                "RowSort": {
+                    "$ref": "#/$defs/RowSortList"
+                },
+                "ItemsLimitConfiguration": {
+                    "$ref": "#/$defs/PluginVisualItemsLimitConfiguration"
+                }
+            }
+        },
+        "PluginVisualItemsLimitConfiguration": {
+            "type": "object",
+            "properties": {
+                "ItemsLimit": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
         "SheetTextBoxList": {
             "type": "array",
             "items": {
@@ -16094,6 +17960,160 @@
         },
         "SheetTextBoxContent": {
             "type": "string"
+        },
+        "SheetImageList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SheetImage"
+            }
+        },
+        "SheetImage": {
+            "type": "object",
+            "properties": {
+                "SheetImageId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "Source": {
+                    "$ref": "#/$defs/SheetImageSource"
+                },
+                "Scaling": {
+                    "$ref": "#/$defs/SheetImageScalingConfiguration"
+                },
+                "Tooltip": {
+                    "$ref": "#/$defs/SheetImageTooltipConfiguration"
+                },
+                "ImageContentAltText": {
+                    "$ref": "#/$defs/LongPlainText"
+                },
+                "Interactions": {
+                    "$ref": "#/$defs/ImageInteractionOptions"
+                },
+                "Actions": {
+                    "$ref": "#/$defs/ImageCustomActionList"
+                }
+            }
+        },
+        "SheetImageSource": {
+            "type": "object",
+            "properties": {
+                "SheetImageStaticFileSource": {
+                    "$ref": "#/$defs/SheetImageStaticFileSource"
+                }
+            }
+        },
+        "SheetImageStaticFileSource": {
+            "type": "object",
+            "properties": {
+                "StaticFileId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                }
+            }
+        },
+        "SheetImageScalingConfiguration": {
+            "type": "object",
+            "properties": {
+                "ScalingType": {
+                    "$ref": "#/$defs/SheetImageScalingType"
+                }
+            }
+        },
+        "SheetImageScalingType": {
+            "enum": [
+                "SCALE_TO_WIDTH",
+                "SCALE_TO_HEIGHT",
+                "SCALE_TO_CONTAINER",
+                "SCALE_NONE"
+            ]
+        },
+        "SheetImageTooltipConfiguration": {
+            "type": "object",
+            "properties": {
+                "TooltipText": {
+                    "$ref": "#/$defs/SheetImageTooltipText"
+                },
+                "Visibility": {
+                    "$ref": "#/$defs/Visibility"
+                }
+            }
+        },
+        "SheetImageTooltipText": {
+            "type": "object",
+            "properties": {
+                "PlainText": {
+                    "$ref": "#/$defs/LongPlainText"
+                }
+            }
+        },
+        "ImageInteractionOptions": {
+            "type": "object",
+            "properties": {
+                "ImageMenuOption": {
+                    "$ref": "#/$defs/ImageMenuOption"
+                }
+            }
+        },
+        "ImageMenuOption": {
+            "type": "object",
+            "properties": {
+                "AvailabilityStatus": {
+                    "$ref": "#/$defs/DashboardBehavior"
+                }
+            }
+        },
+        "ImageCustomActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageCustomAction"
+            }
+        },
+        "ImageCustomAction": {
+            "type": "object",
+            "properties": {
+                "CustomActionId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/ImageCustomActionName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/WidgetStatus"
+                },
+                "Trigger": {
+                    "$ref": "#/$defs/ImageCustomActionTrigger"
+                },
+                "ActionOperations": {
+                    "$ref": "#/$defs/ImageCustomActionOperationList"
+                }
+            }
+        },
+        "ImageCustomActionName": {
+            "type": "string"
+        },
+        "ImageCustomActionTrigger": {
+            "enum": [
+                "CLICK",
+                "MENU"
+            ]
+        },
+        "ImageCustomActionOperationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageCustomActionOperation"
+            }
+        },
+        "ImageCustomActionOperation": {
+            "type": "object",
+            "properties": {
+                "NavigationOperation": {
+                    "$ref": "#/$defs/CustomActionNavigationOperation"
+                },
+                "URLOperation": {
+                    "$ref": "#/$defs/CustomActionURLOperation"
+                },
+                "SetParametersOperation": {
+                    "$ref": "#/$defs/CustomActionSetParametersOperation"
+                }
+            }
         },
         "LayoutList": {
             "type": "array",
@@ -16168,7 +18188,8 @@
                 "VISUAL",
                 "FILTER_CONTROL",
                 "PARAMETER_CONTROL",
-                "TEXT_BOX"
+                "TEXT_BOX",
+                "IMAGE"
             ]
         },
         "GridLayoutElementColumnIndex": {
@@ -17761,6 +19782,78 @@
                 "MANUAL"
             ]
         },
+        "StaticFileList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StaticFile"
+            }
+        },
+        "StaticFile": {
+            "type": "object",
+            "properties": {
+                "ImageStaticFile": {
+                    "$ref": "#/$defs/ImageStaticFile"
+                },
+                "SpatialStaticFile": {
+                    "$ref": "#/$defs/SpatialStaticFile"
+                }
+            }
+        },
+        "ImageStaticFile": {
+            "type": "object",
+            "properties": {
+                "StaticFileId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "Source": {
+                    "$ref": "#/$defs/StaticFileSource"
+                }
+            }
+        },
+        "StaticFileSource": {
+            "type": "object",
+            "properties": {
+                "UrlOptions": {
+                    "$ref": "#/$defs/StaticFileUrlSourceOptions"
+                },
+                "S3Options": {
+                    "$ref": "#/$defs/StaticFileS3SourceOptions"
+                }
+            }
+        },
+        "StaticFileUrlSourceOptions": {
+            "type": "object",
+            "properties": {
+                "Url": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StaticFileS3SourceOptions": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ObjectKey": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SpatialStaticFile": {
+            "type": "object",
+            "properties": {
+                "StaticFileId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "Source": {
+                    "$ref": "#/$defs/StaticFileSource"
+                }
+            }
+        },
         "ValidationStrategy": {
             "type": "object",
             "properties": {
@@ -17780,6 +19873,384 @@
             "items": {
                 "$ref": "#/$defs/Arn"
             }
+        },
+        "CreateBrandResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "BrandDetail": {
+                    "$ref": "#/$defs/BrandDetail"
+                },
+                "BrandDefinition": {
+                    "$ref": "#/$defs/BrandDefinition"
+                }
+            }
+        },
+        "BrandDetail": {
+            "type": "object",
+            "properties": {
+                "BrandId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "BrandStatus": {
+                    "$ref": "#/$defs/BrandStatus"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "VersionStatus": {
+                    "$ref": "#/$defs/BrandVersionStatus"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/ErrorList"
+                },
+                "Logo": {
+                    "$ref": "#/$defs/Logo"
+                }
+            }
+        },
+        "BrandStatus": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "CREATE_SUCCEEDED",
+                "CREATE_FAILED",
+                "DELETE_IN_PROGRESS",
+                "DELETE_FAILED"
+            ]
+        },
+        "BrandVersionStatus": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "CREATE_SUCCEEDED",
+                "CREATE_FAILED"
+            ]
+        },
+        "ErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ErrorMessage"
+            }
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "Logo": {
+            "type": "object",
+            "properties": {
+                "AltText": {
+                    "$ref": "#/$defs/AltText"
+                },
+                "LogoSet": {
+                    "$ref": "#/$defs/LogoSet"
+                }
+            }
+        },
+        "AltText": {
+            "type": "string"
+        },
+        "LogoSet": {
+            "type": "object",
+            "properties": {
+                "Primary": {
+                    "$ref": "#/$defs/ImageSet"
+                },
+                "Favicon": {
+                    "$ref": "#/$defs/ImageSet"
+                }
+            }
+        },
+        "ImageSet": {
+            "type": "object",
+            "properties": {
+                "Original": {
+                    "$ref": "#/$defs/Image"
+                },
+                "Height64": {
+                    "$ref": "#/$defs/Image"
+                },
+                "Height32": {
+                    "$ref": "#/$defs/Image"
+                }
+            }
+        },
+        "Image": {
+            "type": "object",
+            "properties": {
+                "Source": {
+                    "$ref": "#/$defs/ImageSource"
+                },
+                "GeneratedImageUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ImageSource": {
+            "type": "object",
+            "properties": {
+                "PublicUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Uri": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BrandDefinition": {
+            "type": "object",
+            "properties": {
+                "BrandName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ApplicationTheme": {
+                    "$ref": "#/$defs/ApplicationTheme"
+                },
+                "LogoConfiguration": {
+                    "$ref": "#/$defs/LogoConfiguration"
+                }
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "ApplicationTheme": {
+            "type": "object",
+            "properties": {
+                "BrandColorPalette": {
+                    "$ref": "#/$defs/BrandColorPalette"
+                },
+                "BrandElementStyle": {
+                    "$ref": "#/$defs/BrandElementStyle"
+                }
+            }
+        },
+        "BrandColorPalette": {
+            "type": "object",
+            "properties": {
+                "Primary": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "Secondary": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "Accent": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "Measure": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "Dimension": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "Success": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "Info": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "Warning": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "Danger": {
+                    "$ref": "#/$defs/Palette"
+                }
+            }
+        },
+        "Palette": {
+            "type": "object",
+            "properties": {
+                "Foreground": {
+                    "$ref": "#/$defs/HexColor"
+                },
+                "Background": {
+                    "$ref": "#/$defs/HexColor"
+                }
+            }
+        },
+        "BrandElementStyle": {
+            "type": "object",
+            "properties": {
+                "NavbarStyle": {
+                    "$ref": "#/$defs/NavbarStyle"
+                }
+            }
+        },
+        "NavbarStyle": {
+            "type": "object",
+            "properties": {
+                "GlobalNavbar": {
+                    "$ref": "#/$defs/Palette"
+                },
+                "ContextualNavbar": {
+                    "$ref": "#/$defs/Palette"
+                }
+            }
+        },
+        "LogoConfiguration": {
+            "type": "object",
+            "properties": {
+                "AltText": {
+                    "$ref": "#/$defs/String"
+                },
+                "LogoSet": {
+                    "$ref": "#/$defs/LogoSetConfiguration"
+                }
+            }
+        },
+        "LogoSetConfiguration": {
+            "type": "object",
+            "properties": {
+                "Primary": {
+                    "$ref": "#/$defs/ImageSetConfiguration"
+                },
+                "Favicon": {
+                    "$ref": "#/$defs/ImageSetConfiguration"
+                }
+            }
+        },
+        "ImageSetConfiguration": {
+            "type": "object",
+            "properties": {
+                "Original": {
+                    "$ref": "#/$defs/ImageConfiguration"
+                }
+            }
+        },
+        "ImageConfiguration": {
+            "type": "object",
+            "properties": {
+                "Source": {
+                    "$ref": "#/$defs/ImageSource"
+                }
+            }
+        },
+        "CreateBrandRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "BrandId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "BrandDefinition": {
+                    "$ref": "#/$defs/BrandDefinition"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CreateCustomPermissionsResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateCustomPermissionsRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "CustomPermissionsName": {
+                    "$ref": "#/$defs/CustomPermissionsName"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/Capabilities"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CustomPermissionsName": {
+            "type": "string"
+        },
+        "Capabilities": {
+            "type": "object",
+            "properties": {
+                "ExportToCsv": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "ExportToExcel": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "CreateAndUpdateThemes": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "AddOrRunAnomalyDetectionForAnalyses": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "ShareAnalyses": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "CreateAndUpdateDatasets": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "ShareDatasets": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "SubscribeDashboardEmailReports": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "CreateAndUpdateDashboardEmailReports": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "ShareDashboards": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "CreateAndUpdateThresholdAlerts": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "RenameSharedFolders": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "CreateSharedFolders": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "CreateAndUpdateDataSources": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "ShareDataSources": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "ViewAccountSPICECapacity": {
+                    "$ref": "#/$defs/CapabilityState"
+                },
+                "CreateSPICEDataset": {
+                    "$ref": "#/$defs/CapabilityState"
+                }
+            }
+        },
+        "CapabilityState": {
+            "enum": [
+                "DENY"
+            ]
         },
         "CreateDashboardResponse": {
             "type": "object",
@@ -18037,6 +20508,9 @@
                 },
                 "Options": {
                     "$ref": "#/$defs/AssetOptions"
+                },
+                "StaticFiles": {
+                    "$ref": "#/$defs/StaticFileList"
                 }
             }
         },
@@ -18133,6 +20607,9 @@
                 },
                 "FolderArns": {
                     "$ref": "#/$defs/FolderArnList"
+                },
+                "PerformanceConfiguration": {
+                    "$ref": "#/$defs/PerformanceConfiguration"
                 }
             }
         },
@@ -19011,6 +21488,34 @@
                 }
             }
         },
+        "PerformanceConfiguration": {
+            "type": "object",
+            "properties": {
+                "UniqueKeys": {
+                    "$ref": "#/$defs/UniqueKeyList"
+                }
+            }
+        },
+        "UniqueKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UniqueKey"
+            }
+        },
+        "UniqueKey": {
+            "type": "object",
+            "properties": {
+                "ColumnNames": {
+                    "$ref": "#/$defs/UniqueKeyColumnNameList"
+                }
+            }
+        },
+        "UniqueKeyColumnNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColumnName"
+            }
+        },
         "CreateDataSourceResponse": {
             "type": "object",
             "properties": {
@@ -19474,10 +21979,63 @@
                 },
                 "Warehouse": {
                     "$ref": "#/$defs/Warehouse"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "DatabaseAccessControlRole": {
+                    "$ref": "#/$defs/DatabaseAccessControlRole"
+                },
+                "OAuthParameters": {
+                    "$ref": "#/$defs/OAuthParameters"
                 }
             }
         },
         "Warehouse": {
+            "type": "string"
+        },
+        "AuthenticationType": {
+            "enum": [
+                "PASSWORD",
+                "TOKEN",
+                "X509"
+            ]
+        },
+        "DatabaseAccessControlRole": {
+            "type": "string"
+        },
+        "OAuthParameters": {
+            "type": "object",
+            "properties": {
+                "TokenProviderUrl": {
+                    "$ref": "#/$defs/TokenProviderUrl"
+                },
+                "OAuthScope": {
+                    "$ref": "#/$defs/OAuthScope"
+                },
+                "IdentityProviderVpcConnectionProperties": {
+                    "$ref": "#/$defs/VpcConnectionProperties"
+                },
+                "IdentityProviderResourceUri": {
+                    "$ref": "#/$defs/IdentityProviderResourceUri"
+                }
+            }
+        },
+        "TokenProviderUrl": {
+            "type": "string"
+        },
+        "OAuthScope": {
+            "type": "string"
+        },
+        "VpcConnectionProperties": {
+            "type": "object",
+            "properties": {
+                "VpcConnectionArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "IdentityProviderResourceUri": {
             "type": "string"
         },
         "SparkParameters": {
@@ -19583,6 +22141,15 @@
                 },
                 "ProductType": {
                     "$ref": "#/$defs/StarburstProductType"
+                },
+                "DatabaseAccessControlRole": {
+                    "$ref": "#/$defs/DatabaseAccessControlRole"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "OAuthParameters": {
+                    "$ref": "#/$defs/OAuthParameters"
                 }
             }
         },
@@ -19668,14 +22235,6 @@
         },
         "SecretArn": {
             "type": "string"
-        },
-        "VpcConnectionProperties": {
-            "type": "object",
-            "properties": {
-                "VpcConnectionArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
         },
         "SslProperties": {
             "type": "object",
@@ -20341,6 +22900,9 @@
                 },
                 "QueryExecutionOptions": {
                     "$ref": "#/$defs/QueryExecutionOptions"
+                },
+                "StaticFiles": {
+                    "$ref": "#/$defs/StaticFileList"
                 }
             }
         },
@@ -20775,6 +23337,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "FolderArns": {
+                    "$ref": "#/$defs/FolderArnList"
                 }
             }
         },
@@ -21708,6 +24273,66 @@
             "type": "integer",
             "format": "int64"
         },
+        "DeleteBrandResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteBrandRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "BrandId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                }
+            }
+        },
+        "DeleteBrandAssignmentResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteBrandAssignmentRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                }
+            }
+        },
+        "DeleteCustomPermissionsResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteCustomPermissionsRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "CustomPermissionsName": {
+                    "$ref": "#/$defs/CustomPermissionsName"
+                }
+            }
+        },
         "DeleteDashboardResponse": {
             "type": "object",
             "properties": {
@@ -21814,6 +24439,28 @@
                 },
                 "DataSourceId": {
                     "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DeleteDefaultQBusinessApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "DeleteDefaultQBusinessApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
                 }
             }
         },
@@ -21978,7 +24625,8 @@
         },
         "ServiceType": {
             "enum": [
-                "REDSHIFT"
+                "REDSHIFT",
+                "QBUSINESS"
             ]
         },
         "DeleteNamespaceResponse": {
@@ -22332,6 +24980,31 @@
                 }
             }
         },
+        "DeleteUserCustomPermissionResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "DeleteUserCustomPermissionRequest": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                }
+            }
+        },
         "DeleteVPCConnectionResponse": {
             "type": "object",
             "properties": {
@@ -22613,6 +25286,9 @@
                 },
                 "Name": {
                     "$ref": "#/$defs/SheetName"
+                },
+                "Images": {
+                    "$ref": "#/$defs/SheetImageList"
                 }
             }
         },
@@ -22677,7 +25353,7 @@
                     "$ref": "#/$defs/Arn"
                 },
                 "Permissions": {
-                    "$ref": "#/$defs/ResourcePermissionList"
+                    "$ref": "#/$defs/UpdateResourcePermissionList"
                 },
                 "Status": {
                     "$ref": "#/$defs/StatusCode"
@@ -22685,6 +25361,12 @@
                 "RequestId": {
                     "$ref": "#/$defs/String"
                 }
+            }
+        },
+        "UpdateResourcePermissionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourcePermission"
             }
         },
         "DescribeAnalysisPermissionsRequest": {
@@ -23805,6 +26487,117 @@
                 }
             }
         },
+        "DescribeBrandResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "BrandDetail": {
+                    "$ref": "#/$defs/BrandDetail"
+                },
+                "BrandDefinition": {
+                    "$ref": "#/$defs/BrandDefinition"
+                }
+            }
+        },
+        "DescribeBrandRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "BrandId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                }
+            }
+        },
+        "DescribeBrandAssignmentResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "BrandArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeBrandAssignmentRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                }
+            }
+        },
+        "DescribeBrandPublishedVersionResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "BrandDetail": {
+                    "$ref": "#/$defs/BrandDetail"
+                },
+                "BrandDefinition": {
+                    "$ref": "#/$defs/BrandDefinition"
+                }
+            }
+        },
+        "DescribeBrandPublishedVersionRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "BrandId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                }
+            }
+        },
+        "DescribeCustomPermissionsResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "CustomPermissions": {
+                    "$ref": "#/$defs/CustomPermissions"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CustomPermissions": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "CustomPermissionsName": {
+                    "$ref": "#/$defs/CustomPermissionsName"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/Capabilities"
+                }
+            }
+        },
+        "DescribeCustomPermissionsRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "CustomPermissionsName": {
+                    "$ref": "#/$defs/CustomPermissionsName"
+                }
+            }
+        },
         "DescribeDashboardResponse": {
             "type": "object",
             "properties": {
@@ -23993,7 +26786,7 @@
                     "$ref": "#/$defs/Arn"
                 },
                 "Permissions": {
-                    "$ref": "#/$defs/ResourcePermissionList"
+                    "$ref": "#/$defs/UpdateResourcePermissionList"
                 },
                 "Status": {
                     "$ref": "#/$defs/StatusCode"
@@ -24355,6 +27148,34 @@
                 }
             }
         },
+        "DescribeDashboardsQAConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "DashboardsQAStatus": {
+                    "$ref": "#/$defs/DashboardsQAStatus"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "DashboardsQAStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "DescribeDashboardsQAConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                }
+            }
+        },
         "DescribeDataSetResponse": {
             "type": "object",
             "properties": {
@@ -24422,6 +27243,9 @@
                 },
                 "DatasetParameters": {
                     "$ref": "#/$defs/DatasetParameterList"
+                },
+                "PerformanceConfiguration": {
+                    "$ref": "#/$defs/PerformanceConfiguration"
                 }
             }
         },
@@ -24684,6 +27508,31 @@
                 },
                 "DataSourceId": {
                     "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "DescribeDefaultQBusinessApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "ApplicationId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeDefaultQBusinessApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
                 }
             }
         },
@@ -25252,6 +28101,12 @@
                 },
                 "NamespaceError": {
                     "$ref": "#/$defs/NamespaceError"
+                },
+                "IamIdentityCenterApplicationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "IamIdentityCenterInstanceArn": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -25304,6 +28159,34 @@
             ]
         },
         "DescribeQPersonalizationConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                }
+            }
+        },
+        "DescribeQuickSightQSearchConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "QSearchStatus": {
+                    "$ref": "#/$defs/QSearchStatus"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "QSearchStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "DescribeQuickSightQSearchConfigurationRequest": {
             "type": "object",
             "properties": {
                 "AwsAccountId": {
@@ -25571,7 +28454,7 @@
                     "$ref": "#/$defs/Arn"
                 },
                 "Permissions": {
-                    "$ref": "#/$defs/ResourcePermissionList"
+                    "$ref": "#/$defs/UpdateResourcePermissionList"
                 },
                 "RequestId": {
                     "$ref": "#/$defs/String"
@@ -25748,7 +28631,7 @@
                     "$ref": "#/$defs/Arn"
                 },
                 "Permissions": {
-                    "$ref": "#/$defs/ResourcePermissionList"
+                    "$ref": "#/$defs/UpdateResourcePermissionList"
                 },
                 "RequestId": {
                     "$ref": "#/$defs/String"
@@ -26440,6 +29323,37 @@
                 }
             }
         },
+        "GenerateEmbedUrlForRegisteredUserWithIdentityResponse": {
+            "type": "object",
+            "properties": {
+                "EmbedUrl": {
+                    "$ref": "#/$defs/EmbeddingUrl"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GenerateEmbedUrlForRegisteredUserWithIdentityRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "SessionLifetimeInMinutes": {
+                    "$ref": "#/$defs/SessionLifetimeInMinutes"
+                },
+                "ExperienceConfiguration": {
+                    "$ref": "#/$defs/RegisteredUserEmbeddingExperienceConfiguration"
+                },
+                "AllowedDomains": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
         "GetDashboardEmbedUrlResponse": {
             "type": "object",
             "properties": {
@@ -26716,6 +29630,100 @@
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListBrandsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Brands": {
+                    "$ref": "#/$defs/BrandSummaryList"
+                }
+            }
+        },
+        "BrandSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BrandSummary"
+            }
+        },
+        "BrandSummary": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "BrandId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "BrandName": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "BrandStatus": {
+                    "$ref": "#/$defs/BrandStatus"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastUpdatedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ListBrandsRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListCustomPermissionsResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "CustomPermissionsList": {
+                    "$ref": "#/$defs/CustomPermissionsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CustomPermissionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CustomPermissions"
+            }
+        },
+        "ListCustomPermissionsRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -28174,6 +31182,166 @@
                 }
             }
         },
+        "PredictQAResultsResponse": {
+            "type": "object",
+            "properties": {
+                "PrimaryResult": {
+                    "$ref": "#/$defs/QAResult"
+                },
+                "AdditionalResults": {
+                    "$ref": "#/$defs/QAResults"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "QAResult": {
+            "type": "object",
+            "properties": {
+                "ResultType": {
+                    "$ref": "#/$defs/QAResultType"
+                },
+                "DashboardVisual": {
+                    "$ref": "#/$defs/DashboardVisualResult"
+                },
+                "GeneratedAnswer": {
+                    "$ref": "#/$defs/GeneratedAnswerResult"
+                }
+            }
+        },
+        "QAResultType": {
+            "enum": [
+                "DASHBOARD_VISUAL",
+                "GENERATED_ANSWER",
+                "NO_ANSWER"
+            ]
+        },
+        "DashboardVisualResult": {
+            "type": "object",
+            "properties": {
+                "DashboardId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "DashboardName": {
+                    "$ref": "#/$defs/DashboardName"
+                },
+                "SheetId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "SheetName": {
+                    "$ref": "#/$defs/SheetName"
+                },
+                "VisualId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "VisualTitle": {
+                    "$ref": "#/$defs/VisualTitle"
+                },
+                "VisualSubtitle": {
+                    "$ref": "#/$defs/VisualSubtitle"
+                },
+                "DashboardUrl": {
+                    "$ref": "#/$defs/QAUrl"
+                }
+            }
+        },
+        "VisualTitle": {
+            "type": "string"
+        },
+        "VisualSubtitle": {
+            "type": "string"
+        },
+        "QAUrl": {
+            "type": "string"
+        },
+        "GeneratedAnswerResult": {
+            "type": "object",
+            "properties": {
+                "QuestionText": {
+                    "$ref": "#/$defs/QAQueryText"
+                },
+                "AnswerStatus": {
+                    "$ref": "#/$defs/GeneratedAnswerStatus"
+                },
+                "TopicId": {
+                    "$ref": "#/$defs/TopicId"
+                },
+                "TopicName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "Restatement": {
+                    "$ref": "#/$defs/QAQueryText"
+                },
+                "QuestionId": {
+                    "$ref": "#/$defs/QuestionId"
+                },
+                "AnswerId": {
+                    "$ref": "#/$defs/AnswerId"
+                },
+                "QuestionUrl": {
+                    "$ref": "#/$defs/QAUrl"
+                }
+            }
+        },
+        "QAQueryText": {
+            "type": "string"
+        },
+        "GeneratedAnswerStatus": {
+            "enum": [
+                "ANSWER_GENERATED",
+                "ANSWER_RETRIEVED",
+                "ANSWER_DOWNGRADE"
+            ]
+        },
+        "QuestionId": {
+            "type": "string"
+        },
+        "QAResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QAResult"
+            }
+        },
+        "PredictQAResultsRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "QueryText": {
+                    "$ref": "#/$defs/QAQueryText"
+                },
+                "IncludeQuickSightQIndex": {
+                    "$ref": "#/$defs/IncludeQuickSightQIndex"
+                },
+                "IncludeGeneratedAnswer": {
+                    "$ref": "#/$defs/IncludeGeneratedAnswer"
+                },
+                "MaxTopicsToConsider": {
+                    "$ref": "#/$defs/MaxTopicsToConsider"
+                }
+            }
+        },
+        "IncludeQuickSightQIndex": {
+            "enum": [
+                "INCLUDE",
+                "EXCLUDE"
+            ]
+        },
+        "IncludeGeneratedAnswer": {
+            "enum": [
+                "INCLUDE",
+                "EXCLUDE"
+            ]
+        },
+        "MaxTopicsToConsider": {
+            "type": "integer",
+            "format": "int32"
+        },
         "PutDataSetRefreshPropertiesResponse": {
             "type": "object",
             "properties": {
@@ -28277,6 +31445,9 @@
                 },
                 "RequestId": {
                     "$ref": "#/$defs/String"
+                },
+                "RestorationFailedFolderArns": {
+                    "$ref": "#/$defs/FolderArnList"
                 }
             }
         },
@@ -28288,6 +31459,9 @@
                 },
                 "AnalysisId": {
                     "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "RestoreToFolders": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
         },
@@ -28714,6 +31888,77 @@
                 "GROUP_NAME"
             ]
         },
+        "SearchTopicsResponse": {
+            "type": "object",
+            "properties": {
+                "TopicSummaryList": {
+                    "$ref": "#/$defs/TopicSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SearchTopicsRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/TopicSearchFilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "TopicSearchFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TopicSearchFilter"
+            }
+        },
+        "TopicSearchFilter": {
+            "type": "object",
+            "properties": {
+                "Operator": {
+                    "$ref": "#/$defs/TopicFilterOperator"
+                },
+                "Name": {
+                    "$ref": "#/$defs/TopicFilterAttribute"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TopicFilterOperator": {
+            "enum": [
+                "StringEquals",
+                "StringLike"
+            ]
+        },
+        "TopicFilterAttribute": {
+            "enum": [
+                "QUICKSIGHT_USER",
+                "QUICKSIGHT_VIEWER_OR_OWNER",
+                "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER",
+                "QUICKSIGHT_OWNER",
+                "DIRECT_QUICKSIGHT_OWNER",
+                "DIRECT_QUICKSIGHT_SOLE_OWNER",
+                "TOPIC_NAME"
+            ]
+        },
         "StartAssetBundleExportJobResponse": {
             "type": "object",
             "properties": {
@@ -28886,6 +32131,31 @@
             "properties": {
                 "RowLevelPermissionTags": {
                     "$ref": "#/$defs/SessionTagList"
+                }
+            }
+        },
+        "StartDashboardSnapshotJobScheduleResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "StartDashboardSnapshotJobScheduleRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "DashboardId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "ScheduleId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
                 }
             }
         },
@@ -29063,7 +32333,7 @@
                     "$ref": "#/$defs/ShortRestrictiveResourceId"
                 },
                 "Permissions": {
-                    "$ref": "#/$defs/ResourcePermissionList"
+                    "$ref": "#/$defs/UpdateResourcePermissionList"
                 },
                 "RequestId": {
                     "$ref": "#/$defs/String"
@@ -29090,10 +32360,129 @@
                 }
             }
         },
-        "UpdateResourcePermissionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ResourcePermission"
+        "UpdateApplicationWithTokenExchangeGrantResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateApplicationWithTokenExchangeGrantRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                }
+            }
+        },
+        "UpdateBrandResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "BrandDetail": {
+                    "$ref": "#/$defs/BrandDetail"
+                },
+                "BrandDefinition": {
+                    "$ref": "#/$defs/BrandDefinition"
+                }
+            }
+        },
+        "UpdateBrandRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "BrandId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "BrandDefinition": {
+                    "$ref": "#/$defs/BrandDefinition"
+                }
+            }
+        },
+        "UpdateBrandAssignmentResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "BrandArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "UpdateBrandAssignmentRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "BrandArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "UpdateBrandPublishedVersionResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                }
+            }
+        },
+        "UpdateBrandPublishedVersionRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "BrandId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/ShortRestrictiveResourceId"
+                }
+            }
+        },
+        "UpdateCustomPermissionsResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateCustomPermissionsRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "CustomPermissionsName": {
+                    "$ref": "#/$defs/CustomPermissionsName"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/Capabilities"
+                }
             }
         },
         "UpdateDashboardResponse": {
@@ -29195,7 +32584,7 @@
                     "$ref": "#/$defs/ShortRestrictiveResourceId"
                 },
                 "Permissions": {
-                    "$ref": "#/$defs/ResourcePermissionList"
+                    "$ref": "#/$defs/UpdateResourcePermissionList"
                 },
                 "RequestId": {
                     "$ref": "#/$defs/String"
@@ -29268,6 +32657,31 @@
                 }
             }
         },
+        "UpdateDashboardsQAConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "DashboardsQAStatus": {
+                    "$ref": "#/$defs/DashboardsQAStatus"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "UpdateDashboardsQAConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "DashboardsQAStatus": {
+                    "$ref": "#/$defs/DashboardsQAStatus"
+                }
+            }
+        },
         "UpdateDataSetResponse": {
             "type": "object",
             "properties": {
@@ -29332,6 +32746,9 @@
                 },
                 "DatasetParameters": {
                     "$ref": "#/$defs/DatasetParameterList"
+                },
+                "PerformanceConfiguration": {
+                    "$ref": "#/$defs/PerformanceConfiguration"
                 }
             }
         },
@@ -29446,6 +32863,31 @@
                 },
                 "RevokePermissions": {
                     "$ref": "#/$defs/ResourcePermissionList"
+                }
+            }
+        },
+        "UpdateDefaultQBusinessApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "UpdateDefaultQBusinessApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "ApplicationId": {
+                    "$ref": "#/$defs/LimitedString"
                 }
             }
         },
@@ -29768,6 +33210,31 @@
                 }
             }
         },
+        "UpdateQuickSightQSearchConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "QSearchStatus": {
+                    "$ref": "#/$defs/QSearchStatus"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "UpdateQuickSightQSearchConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "QSearchStatus": {
+                    "$ref": "#/$defs/QSearchStatus"
+                }
+            }
+        },
         "UpdateRefreshScheduleResponse": {
             "type": "object",
             "properties": {
@@ -29945,7 +33412,7 @@
                     "$ref": "#/$defs/Arn"
                 },
                 "Permissions": {
-                    "$ref": "#/$defs/ResourcePermissionList"
+                    "$ref": "#/$defs/UpdateResourcePermissionList"
                 },
                 "RequestId": {
                     "$ref": "#/$defs/String"
@@ -30059,7 +33526,7 @@
                     "$ref": "#/$defs/Arn"
                 },
                 "Permissions": {
-                    "$ref": "#/$defs/ResourcePermissionList"
+                    "$ref": "#/$defs/UpdateResourcePermissionList"
                 },
                 "RequestId": {
                     "$ref": "#/$defs/String"
@@ -30240,6 +33707,34 @@
                 },
                 "ExternalLoginId": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateUserCustomPermissionResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "UpdateUserCustomPermissionRequest": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "$ref": "#/$defs/UserName"
+                },
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "CustomPermissionsName": {
+                    "$ref": "#/$defs/CustomPermissionsName"
                 }
             }
         },

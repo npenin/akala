@@ -4693,6 +4693,9 @@
                 },
                 "UpdatedAt": {
                     "$ref": "#/$defs/String"
+                },
+                "AssociatedAttackSequenceArn": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -4732,6 +4735,9 @@
                 },
                 "RdsDbInstanceDetails": {
                     "$ref": "#/$defs/RdsDbInstanceDetails"
+                },
+                "RdsLimitlessDbDetails": {
+                    "$ref": "#/$defs/RdsLimitlessDbDetails"
                 },
                 "RdsDbUserDetails": {
                     "$ref": "#/$defs/RdsDbUserDetails"
@@ -5388,6 +5394,32 @@
                     "$ref": "#/$defs/String"
                 },
                 "DbInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "RdsLimitlessDbDetails": {
+            "type": "object",
+            "properties": {
+                "DbShardGroupIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbShardGroupResourceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbShardGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Engine": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "DbClusterIdentifier": {
                     "$ref": "#/$defs/String"
                 },
                 "Tags": {
@@ -6304,6 +6336,9 @@
             "properties": {
                 "Anomaly": {
                     "$ref": "#/$defs/Anomaly"
+                },
+                "Sequence": {
+                    "$ref": "#/$defs/Sequence"
                 }
             }
         },
@@ -6396,6 +6431,542 @@
             "additionalProperties": {
                 "$ref": "#/$defs/AnomalyObject"
             }
+        },
+        "Sequence": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/SequenceDescription"
+                },
+                "Actors": {
+                    "$ref": "#/$defs/Actors"
+                },
+                "Resources": {
+                    "$ref": "#/$defs/Resources"
+                },
+                "Endpoints": {
+                    "$ref": "#/$defs/NetworkEndpoints"
+                },
+                "Signals": {
+                    "$ref": "#/$defs/Signals"
+                },
+                "SequenceIndicators": {
+                    "$ref": "#/$defs/Indicators"
+                }
+            }
+        },
+        "SequenceDescription": {
+            "type": "string"
+        },
+        "Actors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Actor"
+            }
+        },
+        "Actor": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "User": {
+                    "$ref": "#/$defs/User"
+                },
+                "Session": {
+                    "$ref": "#/$defs/Session"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Uid": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/String"
+                },
+                "CredentialUid": {
+                    "$ref": "#/$defs/String"
+                },
+                "Account": {
+                    "$ref": "#/$defs/Account"
+                }
+            }
+        },
+        "Account": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Session": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/String"
+                },
+                "MfaStatus": {
+                    "$ref": "#/$defs/MfaStatus"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MfaStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "Resources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceV2"
+            }
+        },
+        "ResourceV2": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/FindingResourceType"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "Service": {
+                    "$ref": "#/$defs/String"
+                },
+                "CloudPartition": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Data": {
+                    "$ref": "#/$defs/ResourceData"
+                }
+            }
+        },
+        "FindingResourceType": {
+            "enum": [
+                "EC2_INSTANCE",
+                "EC2_NETWORK_INTERFACE",
+                "S3_BUCKET",
+                "S3_OBJECT",
+                "ACCESS_KEY"
+            ]
+        },
+        "ResourceData": {
+            "type": "object",
+            "properties": {
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Bucket"
+                },
+                "Ec2Instance": {
+                    "$ref": "#/$defs/Ec2Instance"
+                },
+                "AccessKey": {
+                    "$ref": "#/$defs/AccessKey"
+                },
+                "Ec2NetworkInterface": {
+                    "$ref": "#/$defs/Ec2NetworkInterface"
+                },
+                "S3Object": {
+                    "$ref": "#/$defs/S3Object"
+                }
+            }
+        },
+        "S3Bucket": {
+            "type": "object",
+            "properties": {
+                "OwnerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EncryptionType": {
+                    "$ref": "#/$defs/String"
+                },
+                "EncryptionKeyArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "EffectivePermission": {
+                    "$ref": "#/$defs/String"
+                },
+                "PublicReadAccess": {
+                    "$ref": "#/$defs/PublicAccessStatus"
+                },
+                "PublicWriteAccess": {
+                    "$ref": "#/$defs/PublicAccessStatus"
+                },
+                "AccountPublicAccess": {
+                    "$ref": "#/$defs/PublicAccessConfiguration"
+                },
+                "BucketPublicAccess": {
+                    "$ref": "#/$defs/PublicAccessConfiguration"
+                },
+                "S3ObjectUids": {
+                    "$ref": "#/$defs/S3ObjectUids"
+                }
+            }
+        },
+        "PublicAccessStatus": {
+            "enum": [
+                "BLOCKED",
+                "ALLOWED"
+            ]
+        },
+        "PublicAccessConfiguration": {
+            "type": "object",
+            "properties": {
+                "PublicAclAccess": {
+                    "$ref": "#/$defs/PublicAccessStatus"
+                },
+                "PublicPolicyAccess": {
+                    "$ref": "#/$defs/PublicAccessStatus"
+                },
+                "PublicAclIgnoreBehavior": {
+                    "$ref": "#/$defs/PublicAclIgnoreBehavior"
+                },
+                "PublicBucketRestrictBehavior": {
+                    "$ref": "#/$defs/PublicBucketRestrictBehavior"
+                }
+            }
+        },
+        "PublicAclIgnoreBehavior": {
+            "enum": [
+                "IGNORED",
+                "NOT_IGNORED"
+            ]
+        },
+        "PublicBucketRestrictBehavior": {
+            "enum": [
+                "RESTRICTED",
+                "NOT_RESTRICTED"
+            ]
+        },
+        "S3ObjectUids": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Ec2Instance": {
+            "type": "object",
+            "properties": {
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "ImageDescription": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceState": {
+                    "$ref": "#/$defs/String"
+                },
+                "IamInstanceProfile": {
+                    "$ref": "#/$defs/IamInstanceProfile"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "OutpostArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Platform": {
+                    "$ref": "#/$defs/String"
+                },
+                "ProductCodes": {
+                    "$ref": "#/$defs/ProductCodes"
+                },
+                "Ec2NetworkInterfaceUids": {
+                    "$ref": "#/$defs/Ec2NetworkInterfaceUids"
+                }
+            }
+        },
+        "Ec2NetworkInterfaceUids": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "AccessKey": {
+            "type": "object",
+            "properties": {
+                "PrincipalId": {
+                    "$ref": "#/$defs/String"
+                },
+                "UserName": {
+                    "$ref": "#/$defs/String"
+                },
+                "UserType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Ec2NetworkInterface": {
+            "type": "object",
+            "properties": {
+                "Ipv6Addresses": {
+                    "$ref": "#/$defs/Ipv6Addresses"
+                },
+                "PrivateIpAddresses": {
+                    "$ref": "#/$defs/PrivateIpAddresses"
+                },
+                "PublicIp": {
+                    "$ref": "#/$defs/String"
+                },
+                "SecurityGroups": {
+                    "$ref": "#/$defs/SecurityGroups"
+                },
+                "SubNetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "S3Object": {
+            "type": "object",
+            "properties": {
+                "ETag": {
+                    "$ref": "#/$defs/String"
+                },
+                "Key": {
+                    "$ref": "#/$defs/String"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "NetworkEndpoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetworkEndpoint"
+            }
+        },
+        "NetworkEndpoint": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "Ip": {
+                    "$ref": "#/$defs/String"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/String"
+                },
+                "Port": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Location": {
+                    "$ref": "#/$defs/NetworkGeoLocation"
+                },
+                "AutonomousSystem": {
+                    "$ref": "#/$defs/AutonomousSystem"
+                },
+                "Connection": {
+                    "$ref": "#/$defs/NetworkConnection"
+                }
+            }
+        },
+        "NetworkGeoLocation": {
+            "type": "object",
+            "properties": {
+                "City": {
+                    "$ref": "#/$defs/String"
+                },
+                "Country": {
+                    "$ref": "#/$defs/String"
+                },
+                "Latitude": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Longitude": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "AutonomousSystem": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Number": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "NetworkConnection": {
+            "type": "object",
+            "properties": {
+                "Direction": {
+                    "$ref": "#/$defs/NetworkDirection"
+                }
+            }
+        },
+        "NetworkDirection": {
+            "enum": [
+                "INBOUND",
+                "OUTBOUND"
+            ]
+        },
+        "Signals": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Signal"
+            }
+        },
+        "Signal": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/SignalType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/SignalDescription"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FirstSeenAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastSeenAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Severity": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ResourceUids": {
+                    "$ref": "#/$defs/ResourceUids"
+                },
+                "ActorIds": {
+                    "$ref": "#/$defs/ActorIds"
+                },
+                "EndpointIds": {
+                    "$ref": "#/$defs/EndpointIds"
+                },
+                "SignalIndicators": {
+                    "$ref": "#/$defs/Indicators"
+                }
+            }
+        },
+        "SignalType": {
+            "enum": [
+                "FINDING",
+                "CLOUD_TRAIL",
+                "S3_DATA_EVENTS"
+            ]
+        },
+        "SignalDescription": {
+            "type": "string"
+        },
+        "ResourceUids": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ActorIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "EndpointIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Indicators": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Indicator"
+            }
+        },
+        "Indicator": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/IndicatorType"
+                },
+                "Values": {
+                    "$ref": "#/$defs/IndicatorValues"
+                },
+                "Title": {
+                    "$ref": "#/$defs/IndicatorTitle"
+                }
+            }
+        },
+        "IndicatorType": {
+            "enum": [
+                "SUSPICIOUS_USER_AGENT",
+                "SUSPICIOUS_NETWORK",
+                "MALICIOUS_IP",
+                "TOR_IP",
+                "ATTACK_TACTIC",
+                "HIGH_RISK_API",
+                "ATTACK_TECHNIQUE",
+                "UNUSUAL_API_FOR_ACCOUNT",
+                "UNUSUAL_ASN_FOR_ACCOUNT",
+                "UNUSUAL_ASN_FOR_USER"
+            ]
+        },
+        "IndicatorValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IndicatorValueString"
+            }
+        },
+        "IndicatorValueString": {
+            "type": "string"
+        },
+        "IndicatorTitle": {
+            "type": "string"
         },
         "MalwareScanDetails": {
             "type": "object",

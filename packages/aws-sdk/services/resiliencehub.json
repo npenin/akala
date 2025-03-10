@@ -786,6 +786,41 @@
             }
         },
         {
+            "name": "DescribeMetricsExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/describe-metrics-export"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMetricsExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeMetricsExportRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeResiliencyPolicy",
             "config": {
                 "http": {
@@ -1299,6 +1334,41 @@
             }
         },
         {
+            "name": "ListMetrics",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/list-metrics"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMetricsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMetricsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListRecommendationTemplates",
             "config": {
                 "http": {
@@ -1781,6 +1851,41 @@
             }
         },
         {
+            "name": "StartMetricsExport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/start-metrics-export"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartMetricsExportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMetricsExportRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "StartResourceGroupingRecommendationTask",
             "config": {
                 "http": {
@@ -2226,7 +2331,14 @@
             "type": "string"
         },
         "ResourceMappingType": {
-            "type": "string"
+            "enum": [
+                "CFN_STACK",
+                "RESOURCE",
+                "APP_REGISTRY_APP",
+                "RESOURCE_GROUP",
+                "TERRAFORM",
+                "EKS"
+            ]
         },
         "PhysicalResourceId": {
             "type": "object",
@@ -2246,7 +2358,10 @@
             }
         },
         "PhysicalIdentifierType": {
-            "type": "string"
+            "enum": [
+                "ARN",
+                "NATIVE"
+            ]
         },
         "AwsRegion": {
             "type": "string"
@@ -2300,6 +2415,9 @@
                 "excluded": {
                     "$ref": "#/$defs/BooleanOptional"
                 },
+                "appComponentId": {
+                    "$ref": "#/$defs/EntityName255"
+                },
                 "excludeReason": {
                     "$ref": "#/$defs/ExcludeRecommendationReason"
                 }
@@ -2328,8 +2446,15 @@
         "BooleanOptional": {
             "type": "boolean"
         },
-        "ExcludeRecommendationReason": {
+        "EntityName255": {
             "type": "string"
+        },
+        "ExcludeRecommendationReason": {
+            "enum": [
+                "ALREADY_IMPLEMENTED",
+                "NOT_RELEVANT",
+                "COMPLEXITY_OF_IMPLEMENTATION"
+            ]
         },
         "BatchUpdateRecommendationStatusFailedEntries": {
             "type": "array",
@@ -2379,6 +2504,9 @@
                 },
                 "excluded": {
                     "$ref": "#/$defs/BooleanOptional"
+                },
+                "appComponentId": {
+                    "$ref": "#/$defs/EntityName255"
                 },
                 "excludeReason": {
                     "$ref": "#/$defs/ExcludeRecommendationReason"
@@ -2449,6 +2577,9 @@
                 },
                 "rpoInSecs": {
                     "$ref": "#/$defs/IntegerOptional"
+                },
+                "awsApplicationArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -2460,10 +2591,20 @@
             "format": "date-time"
         },
         "AppStatusType": {
-            "type": "string"
+            "enum": [
+                "ACTIVE",
+                "DELETING"
+            ]
         },
         "AppComplianceStatusType": {
-            "type": "string"
+            "enum": [
+                "POLICY_BREACHED",
+                "POLICY_MET",
+                "NOT_ASSESSED",
+                "CHANGES_DETECTED",
+                "NOT_APPLICABLE",
+                "MISSING_POLICY"
+            ]
         },
         "Double": {
             "type": "number",
@@ -2479,7 +2620,10 @@
             "type": "string"
         },
         "AppAssessmentScheduleType": {
-            "type": "string"
+            "enum": [
+                "DISABLED",
+                "DAILY"
+            ]
         },
         "PermissionModel": {
             "type": "object",
@@ -2496,7 +2640,10 @@
             }
         },
         "PermissionModelType": {
-            "type": "string"
+            "enum": [
+                "LEGACY_IAM_USER",
+                "ROLE_BASED"
+            ]
         },
         "IamRoleName": {
             "type": "string"
@@ -2531,10 +2678,17 @@
             }
         },
         "EventType": {
-            "type": "string"
+            "enum": [
+                "SCHEDULED_ASSESSMENT_FAILURE",
+                "DRIFT_DETECTED"
+            ]
         },
         "AppDriftStatusType": {
-            "type": "string"
+            "enum": [
+                "NOT_CHECKED",
+                "NOT_DETECTED",
+                "DETECTED"
+            ]
         },
         "IntegerOptional": {
             "type": "integer",
@@ -2566,6 +2720,9 @@
                 },
                 "eventSubscriptions": {
                     "$ref": "#/$defs/EventSubscriptionList"
+                },
+                "awsApplicationArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -2602,9 +2759,6 @@
                     "$ref": "#/$defs/AdditionalInfoMap"
                 }
             }
-        },
-        "EntityName255": {
-            "type": "string"
         },
         "AdditionalInfoMap": {
             "type": "object",
@@ -2717,7 +2871,10 @@
             }
         },
         "ResourceSourceType": {
-            "type": "string"
+            "enum": [
+                "APP_TEMPLATE",
+                "DISCOVERED"
+            ]
         },
         "CreateAppVersionResourceRequest": {
             "type": "object",
@@ -2845,13 +3002,25 @@
             }
         },
         "RenderRecommendationType": {
-            "type": "string"
+            "enum": [
+                "ALARM",
+                "SOP",
+                "TEST"
+            ]
         },
         "TemplateFormat": {
-            "type": "string"
+            "enum": [
+                "CFN_YAML",
+                "CFN_JSON"
+            ]
         },
         "RecommendationTemplateStatus": {
-            "type": "string"
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "FAILED",
+                "SUCCESS"
+            ]
         },
         "CreateRecommendationTemplateRequest": {
             "type": "object",
@@ -2923,13 +3092,29 @@
             }
         },
         "DataLocationConstraint": {
-            "type": "string"
+            "enum": [
+                "ANY_LOCATION",
+                "SAME_CONTINENT",
+                "SAME_COUNTRY"
+            ]
         },
         "ResiliencyPolicyTier": {
-            "type": "string"
+            "enum": [
+                "MISSION_CRITICAL",
+                "CRITICAL",
+                "IMPORTANT",
+                "CORE_SERVICES",
+                "NON_CRITICAL",
+                "NOT_APPLICABLE"
+            ]
         },
         "EstimatedCostTier": {
-            "type": "string"
+            "enum": [
+                "L1",
+                "L2",
+                "L3",
+                "L4"
+            ]
         },
         "DisruptionPolicy": {
             "type": "object",
@@ -3012,7 +3197,12 @@
             }
         },
         "AssessmentStatus": {
-            "type": "string"
+            "enum": [
+                "PENDING",
+                "INPROGRESS",
+                "FAILED",
+                "SUCCESS"
+            ]
         },
         "DeleteAppAssessmentRequest": {
             "type": "object",
@@ -3304,7 +3494,10 @@
             }
         },
         "AssessmentInvoker": {
-            "type": "string"
+            "enum": [
+                "USER",
+                "SYSTEM"
+            ]
         },
         "Cost": {
             "type": "object",
@@ -3324,7 +3517,12 @@
             "type": "string"
         },
         "CostFrequency": {
-            "type": "string"
+            "enum": [
+                "HOURLY",
+                "DAILY",
+                "MONTHLY",
+                "YEARLY"
+            ]
         },
         "ResiliencyScore": {
             "type": "object",
@@ -3415,7 +3613,12 @@
             }
         },
         "ComplianceStatus": {
-            "type": "string"
+            "enum": [
+                "POLICY_BREACHED",
+                "POLICY_MET",
+                "NOT_APPLICABLE",
+                "MISSING_POLICY"
+            ]
         },
         "ResourceErrorsDetails": {
             "type": "object",
@@ -3449,7 +3652,11 @@
             }
         },
         "DriftStatus": {
-            "type": "string"
+            "enum": [
+                "NOT_CHECKED",
+                "NOT_DETECTED",
+                "DETECTED"
+            ]
         },
         "AssessmentSummary": {
             "type": "object",
@@ -3604,7 +3811,12 @@
             }
         },
         "ResourceResolutionStatusType": {
-            "type": "string"
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "FAILED",
+                "SUCCESS"
+            ]
         },
         "DescribeAppVersionResourcesResolutionStatusRequest": {
             "type": "object",
@@ -3665,17 +3877,72 @@
                 },
                 "errorMessage": {
                     "$ref": "#/$defs/String500"
+                },
+                "errorDetails": {
+                    "$ref": "#/$defs/ErrorDetailList"
                 }
             }
         },
         "ResourceImportStatusType": {
-            "type": "string"
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "FAILED",
+                "SUCCESS"
+            ]
+        },
+        "ErrorDetailList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ErrorDetail"
+            }
+        },
+        "ErrorDetail": {
+            "type": "object",
+            "properties": {
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
         },
         "DescribeDraftAppVersionResourcesImportStatusRequest": {
             "type": "object",
             "properties": {
                 "appArn": {
                     "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DescribeMetricsExportResponse": {
+            "type": "object",
+            "properties": {
+                "metricsExportId": {
+                    "$ref": "#/$defs/String255"
+                },
+                "status": {
+                    "$ref": "#/$defs/MetricsExportStatusType"
+                },
+                "exportLocation": {
+                    "$ref": "#/$defs/S3Location"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/String500"
+                }
+            }
+        },
+        "MetricsExportStatusType": {
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "FAILED",
+                "SUCCESS"
+            ]
+        },
+        "DescribeMetricsExportRequest": {
+            "type": "object",
+            "properties": {
+                "metricsExportId": {
+                    "$ref": "#/$defs/String255"
                 }
             }
         },
@@ -3710,7 +3977,12 @@
             }
         },
         "ResourcesGroupingRecGenStatusType": {
-            "type": "string"
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "FAILED",
+                "SUCCESS"
+            ]
         },
         "DescribeResourceGroupingRecommendationTaskRequest": {
             "type": "object",
@@ -3802,7 +4074,10 @@
             }
         },
         "ResourceImportStrategyType": {
-            "type": "string"
+            "enum": [
+                "ADD_ONLY",
+                "REPLACE_ALL"
+            ]
         },
         "ListAlarmRecommendationsResponse": {
             "type": "object",
@@ -3857,7 +4132,13 @@
             }
         },
         "AlarmType": {
-            "type": "string"
+            "enum": [
+                "METRIC",
+                "COMPOSITE",
+                "CANARY",
+                "LOGS",
+                "EVENT"
+            ]
         },
         "EntityId": {
             "type": "string"
@@ -3888,11 +4169,44 @@
                 },
                 "excludeReason": {
                     "$ref": "#/$defs/ExcludeRecommendationReason"
+                },
+                "latestDiscoveredExperiment": {
+                    "$ref": "#/$defs/Experiment"
+                },
+                "discoveredAlarm": {
+                    "$ref": "#/$defs/Alarm"
+                }
+            }
+        },
+        "Experiment": {
+            "type": "object",
+            "properties": {
+                "experimentArn": {
+                    "$ref": "#/$defs/String255"
+                },
+                "experimentTemplateId": {
+                    "$ref": "#/$defs/String255"
+                }
+            }
+        },
+        "Alarm": {
+            "type": "object",
+            "properties": {
+                "alarmArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "source": {
+                    "$ref": "#/$defs/String255"
                 }
             }
         },
         "RecommendationStatus": {
-            "type": "string"
+            "enum": [
+                "IMPLEMENTED",
+                "INACTIVE",
+                "NOT_IMPLEMENTED",
+                "EXCLUDED"
+            ]
         },
         "NextToken": {
             "type": "string"
@@ -3968,10 +4282,17 @@
             }
         },
         "DriftType": {
-            "type": "string"
+            "enum": [
+                "APPLICATION_COMPLIANCE",
+                "APP_COMPONENT_RESILIENCY_COMPLIANCE_STATUS"
+            ]
         },
         "DifferenceType": {
-            "type": "string"
+            "enum": [
+                "NOT_EQUAL",
+                "ADDED",
+                "REMOVED"
+            ]
         },
         "ListAppAssessmentComplianceDriftsRequest": {
             "type": "object",
@@ -4234,7 +4555,12 @@
             }
         },
         "RecommendationComplianceStatus": {
-            "type": "string"
+            "enum": [
+                "BREACHED_UNATTAINABLE",
+                "BREACHED_CAN_MEET",
+                "MET_CAN_IMPROVE",
+                "MISSING_POLICY"
+            ]
         },
         "ConfigRecommendationList": {
             "type": "array",
@@ -4304,7 +4630,14 @@
             }
         },
         "ConfigRecommendationOptimizationType": {
-            "type": "string"
+            "enum": [
+                "LEAST_COST",
+                "LEAST_CHANGE",
+                "BEST_AZ_RECOVERY",
+                "LEAST_ERRORS",
+                "BEST_ATTAINABLE",
+                "BEST_REGION_RECOVERY"
+            ]
         },
         "SuggestedChangesList": {
             "type": "array",
@@ -4313,7 +4646,13 @@
             }
         },
         "HaArchitecture": {
-            "type": "string"
+            "enum": [
+                "MULTI_SITE",
+                "WARM_STANDBY",
+                "PILOT_LIGHT",
+                "BACKUP_AND_RESTORE",
+                "NO_RECOVERY_PLAN"
+            ]
         },
         "ListAppComponentRecommendationsRequest": {
             "type": "object",
@@ -4418,6 +4757,9 @@
                 },
                 "rpoInSecs": {
                     "$ref": "#/$defs/IntegerOptional"
+                },
+                "awsApplicationArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -4444,6 +4786,9 @@
                 },
                 "reverseOrder": {
                     "$ref": "#/$defs/BooleanOptional"
+                },
+                "awsApplicationArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -4604,6 +4949,125 @@
                 },
                 "endTime": {
                     "$ref": "#/$defs/TimeStamp"
+                }
+            }
+        },
+        "ListMetricsResponse": {
+            "type": "object",
+            "properties": {
+                "rows": {
+                    "$ref": "#/$defs/RowList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RowList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Row"
+            }
+        },
+        "Row": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String255"
+            }
+        },
+        "ListMetricsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "fields": {
+                    "$ref": "#/$defs/FieldList"
+                },
+                "dataSource": {
+                    "$ref": "#/$defs/String255"
+                },
+                "conditions": {
+                    "$ref": "#/$defs/ConditionList"
+                },
+                "sorts": {
+                    "$ref": "#/$defs/SortList"
+                }
+            }
+        },
+        "FieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Field"
+            }
+        },
+        "Field": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String255"
+                },
+                "aggregation": {
+                    "$ref": "#/$defs/FieldAggregationType"
+                }
+            }
+        },
+        "FieldAggregationType": {
+            "enum": [
+                "MIN",
+                "MAX",
+                "SUM",
+                "AVG",
+                "COUNT"
+            ]
+        },
+        "ConditionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Condition"
+            }
+        },
+        "Condition": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "$ref": "#/$defs/String255"
+                },
+                "operator": {
+                    "$ref": "#/$defs/ConditionOperatorType"
+                },
+                "value": {
+                    "$ref": "#/$defs/String255"
+                }
+            }
+        },
+        "ConditionOperatorType": {
+            "enum": [
+                "EQUALS",
+                "NOT_EQUALS",
+                "GREATER_THEN",
+                "GREATER_OR_EQUALS",
+                "LESS_THEN",
+                "LESS_OR_EQUALS"
+            ]
+        },
+        "SortList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Sort"
+            }
+        },
+        "Sort": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "$ref": "#/$defs/String255"
+                },
+                "ascending": {
+                    "$ref": "#/$defs/BooleanOptional"
                 }
             }
         },
@@ -4783,13 +5247,25 @@
             }
         },
         "GroupingRecommendationStatusType": {
-            "type": "string"
+            "enum": [
+                "ACCEPTED",
+                "REJECTED",
+                "PENDING_DECISION"
+            ]
         },
         "GroupingRecommendationConfidenceLevel": {
-            "type": "string"
+            "enum": [
+                "HIGH",
+                "MEDIUM"
+            ]
         },
         "GroupingRecommendationRejectionReason": {
-            "type": "string"
+            "enum": [
+                "DISTINCT_BUSINESS_PURPOSE",
+                "SEPARATE_DATA_CONCERN",
+                "DISTINCT_USER_GROUP_HANDLING",
+                "OTHER"
+            ]
         },
         "ListResourceGroupingRecommendationsRequest": {
             "type": "object",
@@ -4855,7 +5331,9 @@
             }
         },
         "SopServiceType": {
-            "type": "string"
+            "enum": [
+                "SSM"
+            ]
         },
         "DocumentName": {
             "type": "string"
@@ -4938,6 +5416,9 @@
                 "referenceId": {
                     "$ref": "#/$defs/SpecReferenceId"
                 },
+                "appComponentId": {
+                    "$ref": "#/$defs/EntityName255"
+                },
                 "appComponentName": {
                     "$ref": "#/$defs/EntityId"
                 },
@@ -4971,10 +5452,19 @@
             }
         },
         "TestRisk": {
-            "type": "string"
+            "enum": [
+                "SMALL",
+                "MEDIUM",
+                "HIGH"
+            ]
         },
         "TestType": {
-            "type": "string"
+            "enum": [
+                "SOFTWARE",
+                "HARDWARE",
+                "AZ",
+                "REGION"
+            ]
         },
         "AlarmReferenceIdList": {
             "type": "array",
@@ -5238,6 +5728,28 @@
                 },
                 "tags": {
                     "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "StartMetricsExportResponse": {
+            "type": "object",
+            "properties": {
+                "metricsExportId": {
+                    "$ref": "#/$defs/String255"
+                },
+                "status": {
+                    "$ref": "#/$defs/MetricsExportStatusType"
+                }
+            }
+        },
+        "StartMetricsExportRequest": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },

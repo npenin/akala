@@ -176,6 +176,35 @@
             }
         },
         {
+            "name": "GetStatementResultV2",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftData.GetStatementResultV2"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetStatementResultV2Response"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetStatementResultV2Request"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListDatabases",
             "config": {
                 "http": {
@@ -426,6 +455,9 @@
                 },
                 "SessionId": {
                     "$ref": "#/$defs/UUID"
+                },
+                "ResultFormat": {
+                    "$ref": "#/$defs/ResultFormatString"
                 }
             }
         },
@@ -447,6 +479,9 @@
         "SessionAliveSeconds": {
             "type": "integer",
             "format": "int32"
+        },
+        "ResultFormatString": {
+            "type": "string"
         },
         "CancelStatementResponse": {
             "type": "object",
@@ -526,6 +561,9 @@
                 },
                 "SessionId": {
                     "$ref": "#/$defs/String"
+                },
+                "ResultFormat": {
+                    "$ref": "#/$defs/ResultFormatString"
                 }
             }
         },
@@ -794,6 +832,9 @@
                 },
                 "SessionId": {
                     "$ref": "#/$defs/UUID"
+                },
+                "ResultFormat": {
+                    "$ref": "#/$defs/ResultFormatString"
                 }
             }
         },
@@ -871,6 +912,51 @@
             }
         },
         "GetStatementResultRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetStatementResultV2Response": {
+            "type": "object",
+            "properties": {
+                "Records": {
+                    "$ref": "#/$defs/FormattedSqlRecords"
+                },
+                "ColumnMetadata": {
+                    "$ref": "#/$defs/ColumnMetadataList"
+                },
+                "TotalNumRows": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ResultFormat": {
+                    "$ref": "#/$defs/ResultFormatString"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FormattedSqlRecords": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueryRecords"
+            }
+        },
+        "QueryRecords": {
+            "type": "object",
+            "properties": {
+                "CSVRecords": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetStatementResultV2Request": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -1023,6 +1109,9 @@
                 "IsBatchStatement": {
                     "$ref": "#/$defs/smithy.api#Boolean"
                 },
+                "ResultFormat": {
+                    "$ref": "#/$defs/ResultFormatString"
+                },
                 "SessionId": {
                     "$ref": "#/$defs/UUID"
                 }
@@ -1051,6 +1140,15 @@
                 },
                 "RoleLevel": {
                     "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "Database": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/ClusterIdentifierString"
+                },
+                "WorkgroupName": {
+                    "$ref": "#/$defs/WorkgroupNameString"
                 }
             }
         },

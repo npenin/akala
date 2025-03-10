@@ -80,6 +80,41 @@
             }
         },
         {
+            "name": "AddDirectQueryDataSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2021-01-01/opensearch/directQueryDataSource"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddDirectQueryDataSourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddDirectQueryDataSourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "AddTags",
             "config": {
                 "http": {
@@ -140,6 +175,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/AssociatePackageRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociatePackages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2021-01-01/packages/associateMultiple"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociatePackagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociatePackagesRequest"
                         }
                     }
                 },
@@ -253,6 +323,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CancelServiceSoftwareUpdateRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2021-01-01/opensearch/application"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApplicationRequest"
                         }
                     }
                 },
@@ -409,6 +514,45 @@
             }
         },
         {
+            "name": "DeleteApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "id": "route.id",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/2021-01-01/opensearch/application/{id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0.id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApplicationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteDataSource",
             "config": {
                 "http": {
@@ -434,6 +578,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteDataSourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDirectQueryDataSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DataSourceName": "route.DataSourceName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.DataSourceName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDirectQueryDataSourceRequest"
                         }
                     }
                 },
@@ -1245,6 +1428,80 @@
             }
         },
         {
+            "name": "DissociatePackages",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2021-01-01/packages/dissociateMultiple"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DissociatePackagesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DissociatePackagesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "id": "route.id",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2021-01-01/opensearch/application/{id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0.id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApplicationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetCompatibleVersions",
             "config": {
                 "http": {
@@ -1305,6 +1562,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetDataSourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDirectQueryDataSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DataSourceName": "route.DataSourceName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDirectQueryDataSourceResponse"
+                    },
+                    "inject": [
+                        "param.0.DataSourceName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDirectQueryDataSourceRequest"
                         }
                     }
                 },
@@ -1477,6 +1773,41 @@
             }
         },
         {
+            "name": "ListApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/2021-01-01/opensearch/list-applications"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApplicationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApplicationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListDataSources",
             "config": {
                 "http": {
@@ -1500,6 +1831,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListDataSourcesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDirectQueryDataSources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/2021-01-01/opensearch/directQueryDataSource"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDirectQueryDataSourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDirectQueryDataSourcesRequest"
                         }
                     }
                 },
@@ -2151,6 +2517,45 @@
             }
         },
         {
+            "name": "UpdateApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "id": "route.id",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/2021-01-01/opensearch/application/{id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0.id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApplicationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateDataSource",
             "config": {
                 "http": {
@@ -2176,6 +2581,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateDataSourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDirectQueryDataSource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DataSourceName": "route.DataSourceName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/2021-01-01/opensearch/directQueryDataSource/{DataSourceName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDirectQueryDataSourceResponse"
+                    },
+                    "inject": [
+                        "param.0.DataSourceName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDirectQueryDataSourceRequest"
                         }
                     }
                 },
@@ -2250,6 +2694,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdatePackageRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePackageScope",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2021-01-01/packages/updateScope"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePackageScopeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePackageScopeRequest"
                         }
                     }
                 },
@@ -2576,15 +3055,74 @@
         "DataSourceDescription": {
             "type": "string"
         },
-        "AddTagsRequest": {
+        "AddDirectQueryDataSourceResponse": {
             "type": "object",
             "properties": {
-                "ARN": {
-                    "$ref": "#/$defs/ARN"
+                "DataSourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AddDirectQueryDataSourceRequest": {
+            "type": "object",
+            "properties": {
+                "DataSourceName": {
+                    "$ref": "#/$defs/DirectQueryDataSourceName"
+                },
+                "DataSourceType": {
+                    "$ref": "#/$defs/DirectQueryDataSourceType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DirectQueryDataSourceDescription"
+                },
+                "OpenSearchArns": {
+                    "$ref": "#/$defs/DirectQueryOpenSearchARNList"
                 },
                 "TagList": {
                     "$ref": "#/$defs/TagList"
                 }
+            }
+        },
+        "DirectQueryDataSourceName": {
+            "type": "string"
+        },
+        "DirectQueryDataSourceType": {
+            "type": "object",
+            "properties": {
+                "CloudWatchLog": {
+                    "$ref": "#/$defs/CloudWatchDirectQueryDataSource"
+                },
+                "SecurityLake": {
+                    "$ref": "#/$defs/SecurityLakeDirectQueryDataSource"
+                }
+            }
+        },
+        "CloudWatchDirectQueryDataSource": {
+            "type": "object",
+            "properties": {
+                "RoleArn": {
+                    "$ref": "#/$defs/DirectQueryDataSourceRoleArn"
+                }
+            }
+        },
+        "DirectQueryDataSourceRoleArn": {
+            "type": "string"
+        },
+        "SecurityLakeDirectQueryDataSource": {
+            "type": "object",
+            "properties": {
+                "RoleArn": {
+                    "$ref": "#/$defs/DirectQueryDataSourceRoleArn"
+                }
+            }
+        },
+        "DirectQueryDataSourceDescription": {
+            "type": "string"
+        },
+        "DirectQueryOpenSearchARNList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ARN"
             }
         },
         "ARN": {
@@ -2612,6 +3150,17 @@
         },
         "TagValue": {
             "type": "string"
+        },
+        "AddTagsRequest": {
+            "type": "object",
+            "properties": {
+                "ARN": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
         },
         "AssociatePackageResponse": {
             "type": "object",
@@ -2645,11 +3194,17 @@
                 "PackageVersion": {
                     "$ref": "#/$defs/PackageVersion"
                 },
+                "PrerequisitePackageIDList": {
+                    "$ref": "#/$defs/PackageIDList"
+                },
                 "ReferencePath": {
                     "$ref": "#/$defs/ReferencePath"
                 },
                 "ErrorDetails": {
                     "$ref": "#/$defs/ErrorDetails"
+                },
+                "AssociationConfiguration": {
+                    "$ref": "#/$defs/PackageAssociationConfiguration"
                 }
             }
         },
@@ -2662,7 +3217,9 @@
         "PackageType": {
             "enum": [
                 "TXT_DICTIONARY",
-                "ZIP_PLUGIN"
+                "ZIP_PLUGIN",
+                "PACKAGE_LICENSE",
+                "PACKAGE_CONFIG"
             ]
         },
         "LastUpdated": {
@@ -2680,6 +3237,12 @@
         },
         "PackageVersion": {
             "type": "string"
+        },
+        "PackageIDList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PackageID"
+            }
         },
         "ReferencePath": {
             "type": "string"
@@ -2701,6 +3264,28 @@
         "ErrorMessage": {
             "type": "string"
         },
+        "PackageAssociationConfiguration": {
+            "type": "object",
+            "properties": {
+                "KeyStoreAccessOption": {
+                    "$ref": "#/$defs/KeyStoreAccessOption"
+                }
+            }
+        },
+        "KeyStoreAccessOption": {
+            "type": "object",
+            "properties": {
+                "KeyAccessRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "KeyStoreAccessEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
         "AssociatePackageRequest": {
             "type": "object",
             "properties": {
@@ -2709,6 +3294,57 @@
                 },
                 "DomainName": {
                     "$ref": "#/$defs/DomainName"
+                },
+                "PrerequisitePackageIDList": {
+                    "$ref": "#/$defs/PackageIDList"
+                },
+                "AssociationConfiguration": {
+                    "$ref": "#/$defs/PackageAssociationConfiguration"
+                }
+            }
+        },
+        "AssociatePackagesResponse": {
+            "type": "object",
+            "properties": {
+                "DomainPackageDetailsList": {
+                    "$ref": "#/$defs/DomainPackageDetailsList"
+                }
+            }
+        },
+        "DomainPackageDetailsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainPackageDetails"
+            }
+        },
+        "AssociatePackagesRequest": {
+            "type": "object",
+            "properties": {
+                "PackageList": {
+                    "$ref": "#/$defs/PackageDetailsForAssociationList"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "PackageDetailsForAssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PackageDetailsForAssociation"
+            }
+        },
+        "PackageDetailsForAssociation": {
+            "type": "object",
+            "properties": {
+                "PackageID": {
+                    "$ref": "#/$defs/PackageID"
+                },
+                "PrerequisitePackageIDList": {
+                    "$ref": "#/$defs/PackageIDList"
+                },
+                "AssociationConfiguration": {
+                    "$ref": "#/$defs/PackageAssociationConfiguration"
                 }
             }
         },
@@ -2745,11 +3381,19 @@
                 },
                 "Account": {
                     "$ref": "#/$defs/AWSAccount"
+                },
+                "Service": {
+                    "$ref": "#/$defs/AWSServicePrincipal"
                 }
             }
         },
         "AWSAccount": {
             "type": "string"
+        },
+        "AWSServicePrincipal": {
+            "enum": [
+                "application_opensearchservice_amazonaws_com"
+            ]
         },
         "CancelDomainConfigChangeResponse": {
             "type": "object",
@@ -2845,9 +3489,6 @@
                 }
             }
         },
-        "Boolean": {
-            "type": "boolean"
-        },
         "DeploymentStatus": {
             "enum": [
                 "PENDING_UPDATE",
@@ -2866,6 +3507,145 @@
             "properties": {
                 "DomainName": {
                     "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "CreateApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "arn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/DataSources"
+                },
+                "iamIdentityCenterOptions": {
+                    "$ref": "#/$defs/IamIdentityCenterOptions"
+                },
+                "appConfigs": {
+                    "$ref": "#/$defs/AppConfigs"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Id": {
+            "type": "string"
+        },
+        "ApplicationName": {
+            "type": "string"
+        },
+        "DataSources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataSource"
+            }
+        },
+        "DataSource": {
+            "type": "object",
+            "properties": {
+                "dataSourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "dataSourceDescription": {
+                    "$ref": "#/$defs/DataSourceDescription"
+                }
+            }
+        },
+        "IamIdentityCenterOptions": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "iamIdentityCenterInstanceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "iamRoleForIdentityCenterApplicationArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "iamIdentityCenterApplicationArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "AppConfigs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AppConfig"
+            }
+        },
+        "AppConfig": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/AppConfigType"
+                },
+                "value": {
+                    "$ref": "#/$defs/AppConfigValue"
+                }
+            }
+        },
+        "AppConfigType": {
+            "enum": [
+                "OpensearchDashboardAdminUsers",
+                "OpensearchDashboardAdminGroups"
+            ]
+        },
+        "AppConfigValue": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/DataSources"
+                },
+                "iamIdentityCenterOptions": {
+                    "$ref": "#/$defs/IamIdentityCenterOptionsInput"
+                },
+                "appConfigs": {
+                    "$ref": "#/$defs/AppConfigs"
+                },
+                "tagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "IamIdentityCenterOptionsInput": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "iamIdentityCenterInstanceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "iamRoleForIdentityCenterApplicationArn": {
+                    "$ref": "#/$defs/RoleArn"
                 }
             }
         },
@@ -2958,6 +3738,9 @@
                 "AdvancedSecurityOptions": {
                     "$ref": "#/$defs/AdvancedSecurityOptions"
                 },
+                "IdentityCenterOptions": {
+                    "$ref": "#/$defs/IdentityCenterOptions"
+                },
                 "AutoTuneOptions": {
                     "$ref": "#/$defs/AutoTuneOptionsOutput"
                 },
@@ -3037,6 +3820,9 @@
                 },
                 "MultiAZWithStandbyEnabled": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "NodeOptions": {
+                    "$ref": "#/$defs/NodeOptionsList"
                 }
             }
         },
@@ -3171,6 +3957,42 @@
             "properties": {
                 "Enabled": {
                     "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "NodeOptionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NodeOption"
+            }
+        },
+        "NodeOption": {
+            "type": "object",
+            "properties": {
+                "NodeType": {
+                    "$ref": "#/$defs/NodeOptionsNodeType"
+                },
+                "NodeConfig": {
+                    "$ref": "#/$defs/NodeConfig"
+                }
+            }
+        },
+        "NodeOptionsNodeType": {
+            "enum": [
+                "COORDINATOR"
+            ]
+        },
+        "NodeConfig": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Type": {
+                    "$ref": "#/$defs/OpenSearchPartitionInstanceType"
+                },
+                "Count": {
+                    "$ref": "#/$defs/IntegerClass"
                 }
             }
         },
@@ -3424,6 +4246,51 @@
             "type": "string",
             "format": "date-time"
         },
+        "IdentityCenterOptions": {
+            "type": "object",
+            "properties": {
+                "EnabledAPIAccess": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IdentityCenterInstanceARN": {
+                    "$ref": "#/$defs/IdentityCenterInstanceARN"
+                },
+                "SubjectKey": {
+                    "$ref": "#/$defs/SubjectKeyIdCOption"
+                },
+                "RolesKey": {
+                    "$ref": "#/$defs/RolesKeyIdCOption"
+                },
+                "IdentityCenterApplicationARN": {
+                    "$ref": "#/$defs/IdentityCenterApplicationARN"
+                },
+                "IdentityStoreId": {
+                    "$ref": "#/$defs/IdentityStoreId"
+                }
+            }
+        },
+        "IdentityCenterInstanceARN": {
+            "type": "string"
+        },
+        "SubjectKeyIdCOption": {
+            "enum": [
+                "UserName",
+                "UserId",
+                "Email"
+            ]
+        },
+        "RolesKeyIdCOption": {
+            "enum": [
+                "GroupName",
+                "GroupId"
+            ]
+        },
+        "IdentityCenterApplicationARN": {
+            "type": "string"
+        },
+        "IdentityStoreId": {
+            "type": "string"
+        },
         "AutoTuneOptionsOutput": {
             "type": "object",
             "properties": {
@@ -3669,6 +4536,9 @@
                 "AdvancedSecurityOptions": {
                     "$ref": "#/$defs/AdvancedSecurityOptionsInput"
                 },
+                "IdentityCenterOptions": {
+                    "$ref": "#/$defs/IdentityCenterOptionsInput"
+                },
                 "TagList": {
                     "$ref": "#/$defs/TagList"
                 },
@@ -3791,6 +4661,23 @@
         },
         "RolesKey": {
             "type": "string"
+        },
+        "IdentityCenterOptionsInput": {
+            "type": "object",
+            "properties": {
+                "EnabledAPIAccess": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IdentityCenterInstanceARN": {
+                    "$ref": "#/$defs/IdentityCenterInstanceARN"
+                },
+                "SubjectKey": {
+                    "$ref": "#/$defs/SubjectKeyIdCOption"
+                },
+                "RolesKey": {
+                    "$ref": "#/$defs/RolesKeyIdCOption"
+                }
+            }
         },
         "AutoTuneOptionsInput": {
             "type": "object",
@@ -4017,6 +4904,21 @@
                 },
                 "AvailablePluginProperties": {
                     "$ref": "#/$defs/PluginProperties"
+                },
+                "AvailablePackageConfiguration": {
+                    "$ref": "#/$defs/PackageConfiguration"
+                },
+                "AllowListedUserList": {
+                    "$ref": "#/$defs/PackageUserList"
+                },
+                "PackageOwner": {
+                    "$ref": "#/$defs/PackageOwner"
+                },
+                "PackageVendingOptions": {
+                    "$ref": "#/$defs/PackageVendingOptions"
+                },
+                "PackageEncryptionOptions": {
+                    "$ref": "#/$defs/PackageEncryptionOptions"
                 }
             }
         },
@@ -4078,6 +4980,64 @@
             "type": "integer",
             "format": "int64"
         },
+        "PackageConfiguration": {
+            "type": "object",
+            "properties": {
+                "LicenseRequirement": {
+                    "$ref": "#/$defs/RequirementLevel"
+                },
+                "LicenseFilepath": {
+                    "$ref": "#/$defs/LicenseFilepath"
+                },
+                "ConfigurationRequirement": {
+                    "$ref": "#/$defs/RequirementLevel"
+                },
+                "RequiresRestartForConfigurationUpdate": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "RequirementLevel": {
+            "enum": [
+                "REQUIRED",
+                "OPTIONAL",
+                "NONE"
+            ]
+        },
+        "LicenseFilepath": {
+            "type": "string"
+        },
+        "PackageUserList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PackageUser"
+            }
+        },
+        "PackageUser": {
+            "type": "string"
+        },
+        "PackageOwner": {
+            "type": "string"
+        },
+        "PackageVendingOptions": {
+            "type": "object",
+            "properties": {
+                "VendingEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "PackageEncryptionOptions": {
+            "type": "object",
+            "properties": {
+                "KmsKeyIdentifier": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "EncryptionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
         "CreatePackageRequest": {
             "type": "object",
             "properties": {
@@ -4092,6 +5052,18 @@
                 },
                 "PackageSource": {
                     "$ref": "#/$defs/PackageSource"
+                },
+                "PackageConfiguration": {
+                    "$ref": "#/$defs/PackageConfiguration"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/EngineVersion"
+                },
+                "PackageVendingOptions": {
+                    "$ref": "#/$defs/PackageVendingOptions"
+                },
+                "PackageEncryptionOptions": {
+                    "$ref": "#/$defs/PackageEncryptionOptions"
                 }
             }
         },
@@ -4174,8 +5146,17 @@
                 }
             }
         },
-        "ClientToken": {
-            "type": "string"
+        "DeleteApplicationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
         },
         "DeleteDataSourceResponse": {
             "type": "object",
@@ -4193,6 +5174,14 @@
                 },
                 "Name": {
                     "$ref": "#/$defs/DataSourceName"
+                }
+            }
+        },
+        "DeleteDirectQueryDataSourceRequest": {
+            "type": "object",
+            "properties": {
+                "DataSourceName": {
+                    "$ref": "#/$defs/DirectQueryDataSourceName"
                 }
             }
         },
@@ -4585,6 +5574,9 @@
                 "AdvancedSecurityOptions": {
                     "$ref": "#/$defs/AdvancedSecurityOptionsStatus"
                 },
+                "IdentityCenterOptions": {
+                    "$ref": "#/$defs/IdentityCenterOptionsStatus"
+                },
                 "AutoTuneOptions": {
                     "$ref": "#/$defs/AutoTuneOptionsStatus"
                 },
@@ -4784,6 +5776,17 @@
             "properties": {
                 "Options": {
                     "$ref": "#/$defs/AdvancedSecurityOptions"
+                },
+                "Status": {
+                    "$ref": "#/$defs/OptionStatus"
+                }
+            }
+        },
+        "IdentityCenterOptionsStatus": {
+            "type": "object",
+            "properties": {
+                "Options": {
+                    "$ref": "#/$defs/IdentityCenterOptions"
                 },
                 "Status": {
                     "$ref": "#/$defs/OptionStatus"
@@ -5484,7 +6487,8 @@
                 "PackageName",
                 "PackageStatus",
                 "PackageType",
-                "EngineVersion"
+                "EngineVersion",
+                "PackageOwner"
             ]
         },
         "DescribePackagesFilterValues": {
@@ -5749,6 +6753,77 @@
                 }
             }
         },
+        "DissociatePackagesResponse": {
+            "type": "object",
+            "properties": {
+                "DomainPackageDetailsList": {
+                    "$ref": "#/$defs/DomainPackageDetailsList"
+                }
+            }
+        },
+        "DissociatePackagesRequest": {
+            "type": "object",
+            "properties": {
+                "PackageList": {
+                    "$ref": "#/$defs/PackageIDList"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "GetApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "arn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "endpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/ApplicationStatus"
+                },
+                "iamIdentityCenterOptions": {
+                    "$ref": "#/$defs/IamIdentityCenterOptions"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/DataSources"
+                },
+                "appConfigs": {
+                    "$ref": "#/$defs/AppConfigs"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ApplicationStatus": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "DELETING",
+                "ACTIVE",
+                "FAILED"
+            ]
+        },
+        "GetApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
         "GetCompatibleVersionsResponse": {
             "type": "object",
             "properties": {
@@ -5819,6 +6894,34 @@
                 },
                 "Name": {
                     "$ref": "#/$defs/DataSourceName"
+                }
+            }
+        },
+        "GetDirectQueryDataSourceResponse": {
+            "type": "object",
+            "properties": {
+                "DataSourceName": {
+                    "$ref": "#/$defs/DirectQueryDataSourceName"
+                },
+                "DataSourceType": {
+                    "$ref": "#/$defs/DirectQueryDataSourceType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DirectQueryDataSourceDescription"
+                },
+                "OpenSearchArns": {
+                    "$ref": "#/$defs/DirectQueryOpenSearchARNList"
+                },
+                "DataSourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetDirectQueryDataSourceRequest": {
+            "type": "object",
+            "properties": {
+                "DataSourceName": {
+                    "$ref": "#/$defs/DirectQueryDataSourceName"
                 }
             }
         },
@@ -5912,6 +7015,9 @@
                 },
                 "PluginProperties": {
                     "$ref": "#/$defs/PluginProperties"
+                },
+                "PackageConfiguration": {
+                    "$ref": "#/$defs/PackageConfiguration"
                 }
             }
         },
@@ -6056,6 +7162,69 @@
                 }
             }
         },
+        "ListApplicationsResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationSummaries": {
+                    "$ref": "#/$defs/ApplicationSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApplicationSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationSummary"
+            }
+        },
+        "ApplicationSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "arn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "endpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/ApplicationStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListApplicationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "statuses": {
+                    "$ref": "#/$defs/ApplicationStatuses"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ApplicationStatuses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationStatus"
+            }
+        },
         "ListDataSourcesResponse": {
             "type": "object",
             "properties": {
@@ -6092,6 +7261,54 @@
             "properties": {
                 "DomainName": {
                     "$ref": "#/$defs/DomainName"
+                }
+            }
+        },
+        "ListDirectQueryDataSourcesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "DirectQueryDataSources": {
+                    "$ref": "#/$defs/DirectQueryDataSourceList"
+                }
+            }
+        },
+        "DirectQueryDataSourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DirectQueryDataSource"
+            }
+        },
+        "DirectQueryDataSource": {
+            "type": "object",
+            "properties": {
+                "DataSourceName": {
+                    "$ref": "#/$defs/DirectQueryDataSourceName"
+                },
+                "DataSourceType": {
+                    "$ref": "#/$defs/DirectQueryDataSourceType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DirectQueryDataSourceDescription"
+                },
+                "OpenSearchArns": {
+                    "$ref": "#/$defs/DirectQueryOpenSearchARNList"
+                },
+                "DataSourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListDirectQueryDataSourcesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
         },
@@ -6209,12 +7426,6 @@
                 "NextToken": {
                     "$ref": "#/$defs/String"
                 }
-            }
-        },
-        "DomainPackageDetailsList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/DomainPackageDetails"
             }
         },
         "ListDomainsForPackageRequest": {
@@ -6617,6 +7828,9 @@
                 },
                 "Account": {
                     "$ref": "#/$defs/AWSAccount"
+                },
+                "Service": {
+                    "$ref": "#/$defs/AWSServicePrincipal"
                 }
             }
         },
@@ -6671,6 +7885,49 @@
                 "OFF_PEAK_WINDOW"
             ]
         },
+        "UpdateApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApplicationName"
+                },
+                "arn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/DataSources"
+                },
+                "iamIdentityCenterOptions": {
+                    "$ref": "#/$defs/IamIdentityCenterOptions"
+                },
+                "appConfigs": {
+                    "$ref": "#/$defs/AppConfigs"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UpdateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/DataSources"
+                },
+                "appConfigs": {
+                    "$ref": "#/$defs/AppConfigs"
+                }
+            }
+        },
         "UpdateDataSourceResponse": {
             "type": "object",
             "properties": {
@@ -6696,6 +7953,31 @@
                 },
                 "Status": {
                     "$ref": "#/$defs/DataSourceStatus"
+                }
+            }
+        },
+        "UpdateDirectQueryDataSourceResponse": {
+            "type": "object",
+            "properties": {
+                "DataSourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "UpdateDirectQueryDataSourceRequest": {
+            "type": "object",
+            "properties": {
+                "DataSourceName": {
+                    "$ref": "#/$defs/DirectQueryDataSourceName"
+                },
+                "DataSourceType": {
+                    "$ref": "#/$defs/DirectQueryDataSourceType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DirectQueryDataSourceDescription"
+                },
+                "OpenSearchArns": {
+                    "$ref": "#/$defs/DirectQueryOpenSearchARNList"
                 }
             }
         },
@@ -6758,6 +8040,9 @@
                 "AdvancedSecurityOptions": {
                     "$ref": "#/$defs/AdvancedSecurityOptionsInput"
                 },
+                "IdentityCenterOptions": {
+                    "$ref": "#/$defs/IdentityCenterOptionsInput"
+                },
                 "AutoTuneOptions": {
                     "$ref": "#/$defs/AutoTuneOptions"
                 },
@@ -6806,6 +8091,47 @@
                 },
                 "CommitMessage": {
                     "$ref": "#/$defs/CommitMessage"
+                },
+                "PackageConfiguration": {
+                    "$ref": "#/$defs/PackageConfiguration"
+                },
+                "PackageEncryptionOptions": {
+                    "$ref": "#/$defs/PackageEncryptionOptions"
+                }
+            }
+        },
+        "UpdatePackageScopeResponse": {
+            "type": "object",
+            "properties": {
+                "PackageID": {
+                    "$ref": "#/$defs/PackageID"
+                },
+                "Operation": {
+                    "$ref": "#/$defs/PackageScopeOperationEnum"
+                },
+                "PackageUserList": {
+                    "$ref": "#/$defs/PackageUserList"
+                }
+            }
+        },
+        "PackageScopeOperationEnum": {
+            "enum": [
+                "ADD",
+                "OVERRIDE",
+                "REMOVE"
+            ]
+        },
+        "UpdatePackageScopeRequest": {
+            "type": "object",
+            "properties": {
+                "PackageID": {
+                    "$ref": "#/$defs/PackageID"
+                },
+                "Operation": {
+                    "$ref": "#/$defs/PackageScopeOperationEnum"
+                },
+                "PackageUserList": {
+                    "$ref": "#/$defs/PackageUserList"
                 }
             }
         },

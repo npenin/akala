@@ -350,6 +350,41 @@
             }
         },
         {
+            "name": "ListFileTransferResults",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/listFileTransferResults"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListFileTransferResultsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListFileTransferResultsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListHostKeys",
             "config": {
                 "http": {
@@ -1578,6 +1613,80 @@
                 }
             }
         },
+        "ListFileTransferResultsResponse": {
+            "type": "object",
+            "properties": {
+                "FileTransferResults": {
+                    "$ref": "#/$defs/ConnectorFileTransferResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConnectorFileTransferResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectorFileTransferResult"
+            }
+        },
+        "ConnectorFileTransferResult": {
+            "type": "object",
+            "properties": {
+                "FilePath": {
+                    "$ref": "#/$defs/FilePath"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/TransferTableStatus"
+                },
+                "FailureCode": {
+                    "$ref": "#/$defs/FailureCode"
+                },
+                "FailureMessage": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
+        },
+        "FilePath": {
+            "type": "string"
+        },
+        "TransferTableStatus": {
+            "enum": [
+                "QUEUED",
+                "IN_PROGRESS",
+                "COMPLETED",
+                "FAILED"
+            ]
+        },
+        "FailureCode": {
+            "type": "string"
+        },
+        "Message": {
+            "type": "string"
+        },
+        "ListFileTransferResultsRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectorId": {
+                    "$ref": "#/$defs/ConnectorId"
+                },
+                "TransferId": {
+                    "$ref": "#/$defs/TransferId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ConnectorId": {
+            "type": "string"
+        },
+        "TransferId": {
+            "type": "string"
+        },
         "ListHostKeysResponse": {
             "type": "object",
             "properties": {
@@ -1755,12 +1864,6 @@
                 }
             }
         },
-        "ConnectorId": {
-            "type": "string"
-        },
-        "FilePath": {
-            "type": "string"
-        },
         "MaxItems": {
             "type": "integer",
             "format": "int32"
@@ -1772,9 +1875,6 @@
                     "$ref": "#/$defs/TransferId"
                 }
             }
-        },
-        "TransferId": {
-            "type": "string"
         },
         "StartFileTransferRequest": {
             "type": "object",
@@ -1844,9 +1944,6 @@
             }
         },
         "Status": {
-            "type": "string"
-        },
-        "Message": {
             "type": "string"
         },
         "TestConnectionRequest": {

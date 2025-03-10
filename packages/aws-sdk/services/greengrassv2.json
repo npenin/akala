@@ -2167,6 +2167,9 @@
                 "architecture": {
                     "$ref": "#/$defs/CoreDeviceArchitectureString"
                 },
+                "runtime": {
+                    "$ref": "#/$defs/CoreDeviceRuntimeString"
+                },
                 "status": {
                     "$ref": "#/$defs/CoreDeviceStatus"
                 },
@@ -2185,6 +2188,9 @@
             "type": "string"
         },
         "CoreDeviceArchitectureString": {
+            "type": "string"
+        },
+        "CoreDeviceRuntimeString": {
             "type": "string"
         },
         "CoreDeviceStatus": {
@@ -2485,6 +2491,15 @@
                 },
                 "lastStatusUpdateTimestamp": {
                     "$ref": "#/$defs/Timestamp"
+                },
+                "platform": {
+                    "$ref": "#/$defs/CoreDevicePlatformString"
+                },
+                "architecture": {
+                    "$ref": "#/$defs/CoreDeviceArchitectureString"
+                },
+                "runtime": {
+                    "$ref": "#/$defs/CoreDeviceRuntimeString"
                 }
             }
         },
@@ -2502,6 +2517,9 @@
                 },
                 "nextToken": {
                     "$ref": "#/$defs/NextTokenString"
+                },
+                "runtime": {
+                    "$ref": "#/$defs/CoreDeviceRuntimeString"
                 }
             }
         },

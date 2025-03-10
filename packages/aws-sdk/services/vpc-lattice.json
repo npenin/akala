@@ -194,6 +194,41 @@
             }
         },
         {
+            "name": "ListServiceNetworkVpcEndpointAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/servicenetworkvpcendpointassociations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServiceNetworkVpcEndpointAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServiceNetworkVpcEndpointAssociationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListTagsForResource",
             "config": {
                 "http": {
@@ -798,6 +833,76 @@
                     "$ref": "#/$defs/ResourceArn"
                 }
             }
+        },
+        "ListServiceNetworkVpcEndpointAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/ServiceNetworkVpcEndpointAssociationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceNetworkVpcEndpointAssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceNetworkEndpointAssociation"
+            }
+        },
+        "ServiceNetworkEndpointAssociation": {
+            "type": "object",
+            "properties": {
+                "vpcEndpointId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "vpcId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "vpcEndpointOwnerId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "state": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "serviceNetworkArn": {
+                    "$ref": "#/$defs/ServiceNetworkArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ServiceNetworkArn": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListServiceNetworkVpcEndpointAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "serviceNetworkIdentifier": {
+                    "$ref": "#/$defs/ServiceNetworkIdentifier"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceNetworkIdentifier": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",

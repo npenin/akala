@@ -907,6 +907,41 @@
             }
         },
         {
+            "name": "CreateContact",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "PUT",
+                    "route": "/contact/create-contact"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateContactResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateContactRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateContactFlow",
             "config": {
                 "http": {
@@ -985,6 +1020,86 @@
             }
         },
         {
+            "name": "CreateContactFlowVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "ContactFlowId": "route.ContactFlowId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/contact-flows/{InstanceId}/{ContactFlowId}/version"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateContactFlowVersionResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.ContactFlowId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateContactFlowVersionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateEmailAddress",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/email-addresses/{InstanceId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEmailAddressResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEmailAddressRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateEvaluationForm",
             "config": {
                 "http": {
@@ -1047,6 +1162,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateHoursOfOperationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateHoursOfOperationOverride",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "HoursOfOperationId": "route.HoursOfOperationId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateHoursOfOperationOverrideResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.HoursOfOperationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateHoursOfOperationOverrideRequest"
                         }
                     }
                 },
@@ -1275,6 +1431,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreatePromptRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePushNotificationRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/push-notification/{InstanceId}/registrations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePushNotificationRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePushNotificationRegistrationRequest"
                         }
                     }
                 },
@@ -2003,6 +2198,90 @@
             }
         },
         {
+            "name": "DeleteContactFlowVersion",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "ContactFlowId": "route.ContactFlowId",
+                            "ContactFlowVersion": "route.ContactFlowVersion",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/contact-flows/{InstanceId}/{ContactFlowId}/version/{ContactFlowVersion}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteContactFlowVersionResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.ContactFlowId",
+                        "param.0.ContactFlowVersion",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteContactFlowVersionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEmailAddress",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "EmailAddressId": "route.EmailAddressId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/email-addresses/{InstanceId}/{EmailAddressId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteEmailAddressResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.EmailAddressId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEmailAddressRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteEvaluationForm",
             "config": {
                 "http": {
@@ -2069,6 +2348,49 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteHoursOfOperationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteHoursOfOperationOverride",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "HoursOfOperationId": "route.HoursOfOperationId",
+                            "HoursOfOperationOverrideId": "route.HoursOfOperationOverrideId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.HoursOfOperationId",
+                        "param.0.HoursOfOperationOverrideId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteHoursOfOperationOverrideRequest"
                         }
                     }
                 },
@@ -2231,6 +2553,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeletePromptRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePushNotificationRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "RegistrationId": "route.RegistrationId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/push-notification/{InstanceId}/registrations/{RegistrationId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePushNotificationRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.RegistrationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePushNotificationRegistrationRequest"
                         }
                     }
                 },
@@ -3028,6 +3391,47 @@
             }
         },
         {
+            "name": "DescribeEmailAddress",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "EmailAddressId": "route.EmailAddressId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/email-addresses/{InstanceId}/{EmailAddressId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEmailAddressResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.EmailAddressId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEmailAddressRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeEvaluationForm",
             "config": {
                 "http": {
@@ -3094,6 +3498,49 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeHoursOfOperationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeHoursOfOperationOverride",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "HoursOfOperationId": "route.HoursOfOperationId",
+                            "HoursOfOperationOverrideId": "route.HoursOfOperationOverrideId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeHoursOfOperationOverrideResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.HoursOfOperationId",
+                        "param.0.HoursOfOperationOverrideId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeHoursOfOperationOverrideRequest"
                         }
                     }
                 },
@@ -4521,6 +4968,47 @@
             }
         },
         {
+            "name": "GetEffectiveHoursOfOperations",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "HoursOfOperationId": "route.HoursOfOperationId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/effective-hours-of-operations/{InstanceId}/{HoursOfOperationId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEffectiveHoursOfOperationsResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.HoursOfOperationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEffectiveHoursOfOperationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetFederationToken",
             "config": {
                 "http": {
@@ -4911,6 +5399,45 @@
             }
         },
         {
+            "name": "ListAnalyticsDataLakeDataSets",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/analytics-data/instance/{InstanceId}/datasets"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAnalyticsDataLakeDataSetsResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAnalyticsDataLakeDataSetsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListApprovedOrigins",
             "config": {
                 "http": {
@@ -4934,6 +5461,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListApprovedOriginsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssociatedContacts",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/contact/associated/{InstanceId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssociatedContactsResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssociatedContactsRequest"
                         }
                     }
                 },
@@ -5145,6 +5711,47 @@
             }
         },
         {
+            "name": "ListContactFlowVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "ContactFlowId": "route.ContactFlowId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/contact-flows/{InstanceId}/{ContactFlowId}/versions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListContactFlowVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.ContactFlowId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListContactFlowVersionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListContactReferences",
             "config": {
                 "http": {
@@ -5328,6 +5935,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListFlowAssociationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListHoursOfOperationOverrides",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "HoursOfOperationId": "route.HoursOfOperationId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListHoursOfOperationOverridesResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.HoursOfOperationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListHoursOfOperationOverridesRequest"
                         }
                     }
                 },
@@ -7030,6 +7678,76 @@
             }
         },
         {
+            "name": "SearchEmailAddresses",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/search-email-addresses"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchEmailAddressesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchEmailAddressesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchHoursOfOperationOverrides",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/search-hours-of-operation-overrides"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchHoursOfOperationOverridesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchHoursOfOperationOverridesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "SearchHoursOfOperations",
             "config": {
                 "http": {
@@ -7454,6 +8172,45 @@
             }
         },
         {
+            "name": "SendOutboundEmail",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/instance/{InstanceId}/outbound-email"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SendOutboundEmailResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SendOutboundEmailRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "StartAttachedFileUpload",
             "config": {
                 "http": {
@@ -7637,6 +8394,41 @@
             }
         },
         {
+            "name": "StartEmailContact",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "PUT",
+                    "route": "/contact/email"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartEmailContactResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartEmailContactRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "StartOutboundChatContact",
             "config": {
                 "http": {
@@ -7672,6 +8464,41 @@
             }
         },
         {
+            "name": "StartOutboundEmailContact",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "PUT",
+                    "route": "/contact/outbound-email"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartOutboundEmailContactResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartOutboundEmailContactRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "StartOutboundVoiceContact",
             "config": {
                 "http": {
@@ -7691,6 +8518,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/StartOutboundVoiceContactRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartScreenSharing",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "PUT",
+                    "route": "/contact/screen-sharing"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartScreenSharingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartScreenSharingRequest"
                         }
                     }
                 },
@@ -8627,6 +9489,47 @@
             }
         },
         {
+            "name": "UpdateEmailAddressMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "EmailAddressId": "route.EmailAddressId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/email-addresses/{InstanceId}/{EmailAddressId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEmailAddressMetadataResponse"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.EmailAddressId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEmailAddressMetadataRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateEvaluationForm",
             "config": {
                 "http": {
@@ -8709,6 +9612,49 @@
             }
         },
         {
+            "name": "UpdateHoursOfOperationOverride",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "HoursOfOperationId": "route.HoursOfOperationId",
+                            "HoursOfOperationOverrideId": "route.HoursOfOperationOverrideId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/hours-of-operations/{InstanceId}/{HoursOfOperationId}/overrides/{HoursOfOperationOverrideId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.HoursOfOperationId",
+                        "param.0.HoursOfOperationOverrideId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateHoursOfOperationOverrideRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateInstanceAttribute",
             "config": {
                 "http": {
@@ -8775,6 +9721,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateInstanceStorageConfigRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateParticipantAuthentication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/contact/update-participant-authentication"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateParticipantAuthenticationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateParticipantAuthenticationRequest"
                         }
                     }
                 },
@@ -9140,6 +10121,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateQueueOutboundCallerConfigRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateQueueOutboundEmailConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "InstanceId": "route.InstanceId",
+                            "QueueId": "route.QueueId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/queues/{InstanceId}/{QueueId}/outbound-email-config"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.InstanceId",
+                        "param.0.QueueId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateQueueOutboundEmailConfigRequest"
                         }
                     }
                 },
@@ -10189,10 +11211,16 @@
                 },
                 "Origin": {
                     "$ref": "#/$defs/Origin"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
         "Origin": {
+            "type": "string"
+        },
+        "ClientToken": {
             "type": "string"
         },
         "AssociateBotRequest": {
@@ -10206,6 +11234,9 @@
                 },
                 "LexV2Bot": {
                     "$ref": "#/$defs/LexV2Bot"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -10318,7 +11349,11 @@
         },
         "FlowAssociationResourceType": {
             "enum": [
-                "SMS_PHONE_NUMBER"
+                "SMS_PHONE_NUMBER",
+                "INBOUND_EMAIL",
+                "OUTBOUND_EMAIL",
+                "ANALYTICS_CONNECTOR",
+                "WHATSAPP_MESSAGING_PHONE_NUMBER"
             ]
         },
         "AssociateInstanceStorageConfigResponse": {
@@ -10343,6 +11378,9 @@
                 },
                 "StorageConfig": {
                     "$ref": "#/$defs/InstanceStorageConfig"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -10359,7 +11397,8 @@
                 "CONTACT_EVALUATIONS",
                 "SCREEN_RECORDINGS",
                 "REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS",
-                "REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS"
+                "REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS",
+                "EMAIL_MESSAGES"
             ]
         },
         "InstanceStorageConfig": {
@@ -10474,6 +11513,9 @@
                 },
                 "FunctionArn": {
                     "$ref": "#/$defs/FunctionArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -10488,6 +11530,9 @@
                 },
                 "LexBot": {
                     "$ref": "#/$defs/LexBot"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -10589,7 +11634,8 @@
             "enum": [
                 "VOICE",
                 "CHAT",
-                "TASK"
+                "TASK",
+                "EMAIL"
             ]
         },
         "Priority": {
@@ -10616,6 +11662,9 @@
                 },
                 "Key": {
                     "$ref": "#/$defs/PEM"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -10721,6 +11770,9 @@
                 },
                 "ResourceShareArn": {
                     "$ref": "#/$defs/ARN"
+                },
+                "ResourceShareStatus": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -10872,6 +11924,7 @@
         },
         "FileUseCaseType": {
             "enum": [
+                "EMAIL_MESSAGE",
                 "ATTACHMENT"
             ]
         },
@@ -10960,7 +12013,11 @@
         },
         "ListFlowAssociationResourceType": {
             "enum": [
-                "VOICE_PHONE_NUMBER"
+                "WHATSAPP_MESSAGING_PHONE_NUMBER",
+                "VOICE_PHONE_NUMBER",
+                "INBOUND_EMAIL",
+                "OUTBOUND_EMAIL",
+                "ANALYTICS_CONNECTOR"
             ]
         },
         "BatchGetFlowAssociationRequest": {
@@ -11065,9 +12122,6 @@
                 }
             }
         },
-        "ClientToken": {
-            "type": "string"
-        },
         "ContactDataRequestList": {
             "type": "array",
             "items": {
@@ -11113,7 +12167,8 @@
                 "TELEPHONE_NUMBER",
                 "VOIP",
                 "CONTACT_FLOW",
-                "CONNECT_PHONENUMBER_ARN"
+                "CONNECT_PHONENUMBER_ARN",
+                "EMAIL_ADDRESS"
             ]
         },
         "EndpointAddress": {
@@ -11250,6 +12305,193 @@
             "type": "integer",
             "format": "int32"
         },
+        "CreateContactResponse": {
+            "type": "object",
+            "properties": {
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "ContactArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "CreateContactRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "RelatedContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "References": {
+                    "$ref": "#/$defs/ContactReferences"
+                },
+                "Channel": {
+                    "$ref": "#/$defs/Channel"
+                },
+                "InitiationMethod": {
+                    "$ref": "#/$defs/ContactInitiationMethod"
+                },
+                "ExpiryDurationInMinutes": {
+                    "$ref": "#/$defs/ExpiryDurationInMinutes"
+                },
+                "UserInfo": {
+                    "$ref": "#/$defs/UserInfo"
+                },
+                "InitiateAs": {
+                    "$ref": "#/$defs/InitiateAs"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "SegmentAttributes": {
+                    "$ref": "#/$defs/SegmentAttributes"
+                }
+            }
+        },
+        "ContactReferences": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Reference"
+            }
+        },
+        "Reference": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/ReferenceValue"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ReferenceType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ReferenceStatus"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/ReferenceArn"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/ReferenceStatusReason"
+                }
+            }
+        },
+        "ReferenceValue": {
+            "type": "string"
+        },
+        "ReferenceType": {
+            "enum": [
+                "URL",
+                "ATTACHMENT",
+                "CONTACT_ANALYSIS",
+                "NUMBER",
+                "STRING",
+                "DATE",
+                "EMAIL",
+                "EMAIL_MESSAGE"
+            ]
+        },
+        "ReferenceStatus": {
+            "enum": [
+                "AVAILABLE",
+                "DELETED",
+                "APPROVED",
+                "REJECTED",
+                "PROCESSING",
+                "FAILED"
+            ]
+        },
+        "ReferenceArn": {
+            "type": "string"
+        },
+        "ReferenceStatusReason": {
+            "type": "string"
+        },
+        "ContactInitiationMethod": {
+            "enum": [
+                "INBOUND",
+                "OUTBOUND",
+                "TRANSFER",
+                "QUEUE_TRANSFER",
+                "CALLBACK",
+                "API",
+                "DISCONNECT",
+                "MONITOR",
+                "EXTERNAL_OUTBOUND",
+                "WEBRTC_API",
+                "AGENT_REPLY",
+                "FLOW"
+            ]
+        },
+        "ExpiryDurationInMinutes": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UserInfo": {
+            "type": "object",
+            "properties": {
+                "UserId": {
+                    "$ref": "#/$defs/AgentResourceId"
+                }
+            }
+        },
+        "AgentResourceId": {
+            "type": "string"
+        },
+        "InitiateAs": {
+            "enum": [
+                "CONNECTED_TO_USER"
+            ]
+        },
+        "Name": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "SegmentAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/SegmentAttributeValue"
+            }
+        },
+        "SegmentAttributeValue": {
+            "type": "object",
+            "properties": {
+                "ValueString": {
+                    "$ref": "#/$defs/SegmentAttributeValueString"
+                },
+                "ValueMap": {
+                    "$ref": "#/$defs/SegmentAttributeValueMap"
+                },
+                "ValueInteger": {
+                    "$ref": "#/$defs/SegmentAttributeValueInteger"
+                }
+            }
+        },
+        "SegmentAttributeValueString": {
+            "type": "string"
+        },
+        "SegmentAttributeValueMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/SegmentAttributeValue"
+            }
+        },
+        "SegmentAttributeValueInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
         "CreateContactFlowResponse": {
             "type": "object",
             "properties": {
@@ -11258,8 +12500,14 @@
                 },
                 "ContactFlowArn": {
                     "$ref": "#/$defs/ARN"
+                },
+                "FlowContentSha256": {
+                    "$ref": "#/$defs/FlowContentSha256"
                 }
             }
+        },
+        "FlowContentSha256": {
+            "type": "string"
         },
         "CreateContactFlowRequest": {
             "type": "object",
@@ -11300,7 +12548,8 @@
                 "AGENT_WHISPER",
                 "OUTBOUND_WHISPER",
                 "AGENT_TRANSFER",
-                "QUEUE_TRANSFER"
+                "QUEUE_TRANSFER",
+                "CAMPAIGN"
             ]
         },
         "ContactFlowDescription": {
@@ -11359,6 +12608,100 @@
             "type": "string"
         },
         "ContactFlowModuleContent": {
+            "type": "string"
+        },
+        "CreateContactFlowVersionResponse": {
+            "type": "object",
+            "properties": {
+                "ContactFlowArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "Version": {
+                    "$ref": "#/$defs/ResourceVersion"
+                }
+            }
+        },
+        "ResourceVersion": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CreateContactFlowVersionRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ContactFlowDescription"
+                },
+                "ContactFlowId": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "FlowContentSha256": {
+                    "$ref": "#/$defs/FlowContentSha256"
+                },
+                "ContactFlowVersion": {
+                    "$ref": "#/$defs/ResourceVersion"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedRegion": {
+                    "$ref": "#/$defs/RegionName"
+                }
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "RegionName": {
+            "type": "string"
+        },
+        "CreateEmailAddressResponse": {
+            "type": "object",
+            "properties": {
+                "EmailAddressId": {
+                    "$ref": "#/$defs/EmailAddressId"
+                },
+                "EmailAddressArn": {
+                    "$ref": "#/$defs/EmailAddressArn"
+                }
+            }
+        },
+        "EmailAddressId": {
+            "type": "string"
+        },
+        "EmailAddressArn": {
+            "type": "string"
+        },
+        "CreateEmailAddressRequest": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/EmailAddressDisplayName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "EmailAddress": {
+            "type": "string"
+        },
+        "EmailAddressDisplayName": {
             "type": "string"
         },
         "CreateEvaluationFormResponse": {
@@ -11790,6 +13133,94 @@
             "type": "integer",
             "format": "int32"
         },
+        "CreateHoursOfOperationOverrideResponse": {
+            "type": "object",
+            "properties": {
+                "HoursOfOperationOverrideId": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideId"
+                }
+            }
+        },
+        "HoursOfOperationOverrideId": {
+            "type": "string"
+        },
+        "CreateHoursOfOperationOverrideRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "HoursOfOperationId": {
+                    "$ref": "#/$defs/HoursOfOperationId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/CommonHumanReadableName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/CommonHumanReadableDescription"
+                },
+                "Config": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideConfigList"
+                },
+                "EffectiveFrom": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                },
+                "EffectiveTill": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                }
+            }
+        },
+        "CommonHumanReadableName": {
+            "type": "string"
+        },
+        "CommonHumanReadableDescription": {
+            "type": "string"
+        },
+        "HoursOfOperationOverrideConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HoursOfOperationOverrideConfig"
+            }
+        },
+        "HoursOfOperationOverrideConfig": {
+            "type": "object",
+            "properties": {
+                "Day": {
+                    "$ref": "#/$defs/OverrideDays"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/OverrideTimeSlice"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/OverrideTimeSlice"
+                }
+            }
+        },
+        "OverrideDays": {
+            "enum": [
+                "SUNDAY",
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY"
+            ]
+        },
+        "OverrideTimeSlice": {
+            "type": "object",
+            "properties": {
+                "Hours": {
+                    "$ref": "#/$defs/Hours24Format"
+                },
+                "Minutes": {
+                    "$ref": "#/$defs/MinutesLimit60"
+                }
+            }
+        },
+        "HoursOfOperationOverrideYearMonthDayDateFormat": {
+            "type": "string"
+        },
         "CreateInstanceResponse": {
             "type": "object",
             "properties": {
@@ -11894,9 +13325,14 @@
                 "WISDOM_ASSISTANT",
                 "WISDOM_KNOWLEDGE_BASE",
                 "WISDOM_QUICK_RESPONSES",
+                "Q_MESSAGE_TEMPLATES",
                 "CASES_DOMAIN",
                 "APPLICATION",
-                "FILE_SCANNER"
+                "FILE_SCANNER",
+                "SES_IDENTITY",
+                "ANALYTICS_CONNECTOR",
+                "CALL_TRANSFER_CONNECTOR",
+                "COGNITO_USER_POOL"
             ]
         },
         "URI": {
@@ -12082,6 +13518,67 @@
         "S3Uri": {
             "type": "string"
         },
+        "CreatePushNotificationRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "RegistrationId": {
+                    "$ref": "#/$defs/RegistrationId"
+                }
+            }
+        },
+        "RegistrationId": {
+            "type": "string"
+        },
+        "CreatePushNotificationRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "PinpointAppArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "DeviceToken": {
+                    "$ref": "#/$defs/DeviceToken"
+                },
+                "DeviceType": {
+                    "$ref": "#/$defs/DeviceType"
+                },
+                "ContactConfiguration": {
+                    "$ref": "#/$defs/ContactConfiguration"
+                }
+            }
+        },
+        "DeviceToken": {
+            "type": "string"
+        },
+        "DeviceType": {
+            "enum": [
+                "GCM",
+                "APNS",
+                "APNS_SANDBOX"
+            ]
+        },
+        "ContactConfiguration": {
+            "type": "object",
+            "properties": {
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "ParticipantRole": {
+                    "$ref": "#/$defs/ParticipantRole"
+                },
+                "IncludeRawMessage": {
+                    "$ref": "#/$defs/IncludeRawMessage"
+                }
+            }
+        },
+        "IncludeRawMessage": {
+            "type": "boolean"
+        },
         "CreateQueueResponse": {
             "type": "object",
             "properties": {
@@ -12107,6 +13604,9 @@
                 },
                 "OutboundCallerConfig": {
                     "$ref": "#/$defs/OutboundCallerConfig"
+                },
+                "OutboundEmailConfig": {
+                    "$ref": "#/$defs/OutboundEmailConfig"
                 },
                 "HoursOfOperationId": {
                     "$ref": "#/$defs/HoursOfOperationId"
@@ -12141,6 +13641,14 @@
         },
         "OutboundCallerIdName": {
             "type": "string"
+        },
+        "OutboundEmailConfig": {
+            "type": "object",
+            "properties": {
+                "OutboundEmailAddressId": {
+                    "$ref": "#/$defs/EmailAddressId"
+                }
+            }
         },
         "QueueMaxContacts": {
             "type": "integer",
@@ -12472,36 +13980,6 @@
         "TaskDescriptionExpression": {
             "type": "string"
         },
-        "ContactReferences": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/Reference"
-            }
-        },
-        "Reference": {
-            "type": "object",
-            "properties": {
-                "Value": {
-                    "$ref": "#/$defs/ReferenceValue"
-                },
-                "Type": {
-                    "$ref": "#/$defs/ReferenceType"
-                }
-            }
-        },
-        "ReferenceValue": {
-            "type": "string"
-        },
-        "ReferenceType": {
-            "enum": [
-                "URL",
-                "ATTACHMENT",
-                "NUMBER",
-                "STRING",
-                "DATE",
-                "EMAIL"
-            ]
-        },
         "EventBridgeActionDefinition": {
             "type": "object",
             "properties": {
@@ -12822,6 +14300,9 @@
                 "ContactFlowId": {
                     "$ref": "#/$defs/ContactFlowId"
                 },
+                "SelfAssignFlowId": {
+                    "$ref": "#/$defs/ContactFlowId"
+                },
                 "Constraints": {
                     "$ref": "#/$defs/TaskTemplateConstraints"
                 },
@@ -12985,7 +14466,9 @@
                 "DATE_TIME",
                 "BOOLEAN",
                 "SINGLE_SELECT",
-                "EMAIL"
+                "EMAIL",
+                "SELF_ASSIGN",
+                "EXPIRY_DURATION"
             ]
         },
         "SingleSelectOptions": {
@@ -13337,10 +14820,6 @@
         "ViewAction": {
             "type": "string"
         },
-        "Timestamp": {
-            "type": "string",
-            "format": "date-time"
-        },
         "ViewContentSha256": {
             "type": "string"
         },
@@ -13550,6 +15029,39 @@
                 }
             }
         },
+        "DeleteContactFlowVersionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteContactFlowVersionRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "ContactFlowId": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "ContactFlowVersion": {
+                    "$ref": "#/$defs/ResourceVersion"
+                }
+            }
+        },
+        "DeleteEmailAddressResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteEmailAddressRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "EmailAddressId": {
+                    "$ref": "#/$defs/EmailAddressId"
+                }
+            }
+        },
         "DeleteEvaluationFormRequest": {
             "type": "object",
             "properties": {
@@ -13575,11 +15087,28 @@
                 }
             }
         },
+        "DeleteHoursOfOperationOverrideRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "HoursOfOperationId": {
+                    "$ref": "#/$defs/HoursOfOperationId"
+                },
+                "HoursOfOperationOverrideId": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideId"
+                }
+            }
+        },
         "DeleteInstanceRequest": {
             "type": "object",
             "properties": {
                 "InstanceId": {
                     "$ref": "#/$defs/InstanceId"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -13613,6 +15142,24 @@
                 },
                 "PromptId": {
                     "$ref": "#/$defs/PromptId"
+                }
+            }
+        },
+        "DeletePushNotificationRegistrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePushNotificationRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "RegistrationId": {
+                    "$ref": "#/$defs/RegistrationId"
+                },
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
                 }
             }
         },
@@ -13842,9 +15389,6 @@
                 "OFFLINE"
             ]
         },
-        "RegionName": {
-            "type": "string"
-        },
         "DescribeAgentStatusRequest": {
             "type": "object",
             "properties": {
@@ -13965,6 +15509,9 @@
                 "PreviousContactId": {
                     "$ref": "#/$defs/ContactId"
                 },
+                "ContactAssociationId": {
+                    "$ref": "#/$defs/ContactId"
+                },
                 "InitiationMethod": {
                     "$ref": "#/$defs/ContactInitiationMethod"
                 },
@@ -14013,6 +15560,15 @@
                 "WisdomInfo": {
                     "$ref": "#/$defs/WisdomInfo"
                 },
+                "CustomerId": {
+                    "$ref": "#/$defs/CustomerId"
+                },
+                "CustomerEndpoint": {
+                    "$ref": "#/$defs/EndpointInfo"
+                },
+                "SystemEndpoint": {
+                    "$ref": "#/$defs/EndpointInfo"
+                },
                 "QueueTimeAdjustmentSeconds": {
                     "$ref": "#/$defs/QueueTimeAdjustmentSeconds"
                 },
@@ -14046,29 +15602,13 @@
                 "DisconnectDetails": {
                     "$ref": "#/$defs/DisconnectDetails"
                 },
+                "AdditionalEmailRecipients": {
+                    "$ref": "#/$defs/AdditionalEmailRecipients"
+                },
                 "SegmentAttributes": {
                     "$ref": "#/$defs/SegmentAttributes"
                 }
             }
-        },
-        "ContactInitiationMethod": {
-            "enum": [
-                "INBOUND",
-                "OUTBOUND",
-                "TRANSFER",
-                "QUEUE_TRANSFER",
-                "CALLBACK",
-                "API",
-                "DISCONNECT",
-                "MONITOR",
-                "EXTERNAL_OUTBOUND"
-            ]
-        },
-        "Name": {
-            "type": "string"
-        },
-        "Description": {
-            "type": "string"
         },
         "QueueInfo": {
             "type": "object",
@@ -14103,9 +15643,6 @@
                     "$ref": "#/$defs/ParticipantCapabilities"
                 }
             }
-        },
-        "AgentResourceId": {
-            "type": "string"
         },
         "AgentPauseDurationInSeconds": {
             "type": "integer",
@@ -14167,10 +15704,18 @@
             "properties": {
                 "Video": {
                     "$ref": "#/$defs/VideoCapability"
+                },
+                "ScreenShare": {
+                    "$ref": "#/$defs/ScreenShareCapability"
                 }
             }
         },
         "VideoCapability": {
+            "enum": [
+                "SEND"
+            ]
+        },
+        "ScreenShareCapability": {
             "enum": [
                 "SEND"
             ]
@@ -14190,6 +15735,26 @@
                     "$ref": "#/$defs/ARN"
                 }
             }
+        },
+        "CustomerId": {
+            "type": "string"
+        },
+        "EndpointInfo": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/EndpointType"
+                },
+                "Address": {
+                    "$ref": "#/$defs/EndpointAddress"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/EndpointDisplayName"
+                }
+            }
+        },
+        "EndpointDisplayName": {
+            "type": "string"
         },
         "QueueTimeAdjustmentSeconds": {
             "type": "integer",
@@ -14268,6 +15833,9 @@
                 },
                 "OrExpression": {
                     "$ref": "#/$defs/Expressions"
+                },
+                "NotAttributeCondition": {
+                    "$ref": "#/$defs/AttributeCondition"
                 }
             }
         },
@@ -14283,6 +15851,9 @@
                 "ProficiencyLevel": {
                     "$ref": "#/$defs/NullableProficiencyLevel"
                 },
+                "Range": {
+                    "$ref": "#/$defs/Range"
+                },
                 "MatchCriteria": {
                     "$ref": "#/$defs/MatchCriteria"
                 },
@@ -14297,6 +15868,17 @@
         "NullableProficiencyLevel": {
             "type": "number",
             "format": "float"
+        },
+        "Range": {
+            "type": "object",
+            "properties": {
+                "MinProficiencyLevel": {
+                    "$ref": "#/$defs/NullableProficiencyLevel"
+                },
+                "MaxProficiencyLevel": {
+                    "$ref": "#/$defs/NullableProficiencyLevel"
+                }
+            }
         },
         "MatchCriteria": {
             "type": "object",
@@ -14446,22 +16028,33 @@
         "PotentialDisconnectIssue": {
             "type": "string"
         },
-        "SegmentAttributes": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/SegmentAttributeValue"
-            }
-        },
-        "SegmentAttributeValue": {
+        "AdditionalEmailRecipients": {
             "type": "object",
             "properties": {
-                "ValueString": {
-                    "$ref": "#/$defs/SegmentAttributeValueString"
+                "ToList": {
+                    "$ref": "#/$defs/EmailRecipientsList"
+                },
+                "CcList": {
+                    "$ref": "#/$defs/EmailRecipientsList"
                 }
             }
         },
-        "SegmentAttributeValueString": {
-            "type": "string"
+        "EmailRecipientsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EmailRecipient"
+            }
+        },
+        "EmailRecipient": {
+            "type": "object",
+            "properties": {
+                "Address": {
+                    "$ref": "#/$defs/EndpointAddress"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/EndpointDisplayName"
+                }
+            }
         },
         "DescribeContactRequest": {
             "type": "object",
@@ -14696,6 +16289,21 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
+                },
+                "FlowContentSha256": {
+                    "$ref": "#/$defs/FlowContentSha256"
+                },
+                "Version": {
+                    "$ref": "#/$defs/ResourceVersion"
+                },
+                "VersionDescription": {
+                    "$ref": "#/$defs/ContactFlowDescription"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedRegion": {
+                    "$ref": "#/$defs/RegionName"
                 }
             }
         },
@@ -14773,6 +16381,46 @@
                 },
                 "ContactFlowModuleId": {
                     "$ref": "#/$defs/ContactFlowModuleId"
+                }
+            }
+        },
+        "DescribeEmailAddressResponse": {
+            "type": "object",
+            "properties": {
+                "EmailAddressId": {
+                    "$ref": "#/$defs/EmailAddressId"
+                },
+                "EmailAddressArn": {
+                    "$ref": "#/$defs/EmailAddressArn"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/EmailAddressDisplayName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "CreateTimestamp": {
+                    "$ref": "#/$defs/ISO8601Datetime"
+                },
+                "ModifiedTimestamp": {
+                    "$ref": "#/$defs/ISO8601Datetime"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "DescribeEmailAddressRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "EmailAddressId": {
+                    "$ref": "#/$defs/EmailAddressId"
                 }
             }
         },
@@ -14902,6 +16550,57 @@
                 },
                 "HoursOfOperationId": {
                     "$ref": "#/$defs/HoursOfOperationId"
+                }
+            }
+        },
+        "DescribeHoursOfOperationOverrideResponse": {
+            "type": "object",
+            "properties": {
+                "HoursOfOperationOverride": {
+                    "$ref": "#/$defs/HoursOfOperationOverride"
+                }
+            }
+        },
+        "HoursOfOperationOverride": {
+            "type": "object",
+            "properties": {
+                "HoursOfOperationOverrideId": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideId"
+                },
+                "HoursOfOperationId": {
+                    "$ref": "#/$defs/HoursOfOperationId"
+                },
+                "HoursOfOperationArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "Name": {
+                    "$ref": "#/$defs/CommonHumanReadableName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/CommonHumanReadableDescription"
+                },
+                "Config": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideConfigList"
+                },
+                "EffectiveFrom": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                },
+                "EffectiveTill": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                }
+            }
+        },
+        "DescribeHoursOfOperationOverrideRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "HoursOfOperationId": {
+                    "$ref": "#/$defs/HoursOfOperationId"
+                },
+                "HoursOfOperationOverrideId": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideId"
                 }
             }
         },
@@ -15067,7 +16766,8 @@
                 "MULTI_PARTY_CONFERENCE",
                 "HIGH_VOLUME_OUTBOUND",
                 "ENHANCED_CONTACT_MONITORING",
-                "ENHANCED_CHAT_MONITORING"
+                "ENHANCED_CHAT_MONITORING",
+                "MULTI_PARTY_CHAT_CONFERENCE"
             ]
         },
         "InstanceAttributeValue": {
@@ -15539,6 +17239,9 @@
                 },
                 "OutboundCallerConfig": {
                     "$ref": "#/$defs/OutboundCallerConfig"
+                },
+                "OutboundEmailConfig": {
+                    "$ref": "#/$defs/OutboundEmailConfig"
                 },
                 "HoursOfOperationId": {
                     "$ref": "#/$defs/HoursOfOperationId"
@@ -16191,6 +17894,9 @@
                 },
                 "Origin": {
                     "$ref": "#/$defs/Origin"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -16205,6 +17911,9 @@
                 },
                 "LexV2Bot": {
                     "$ref": "#/$defs/LexV2Bot"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -16237,6 +17946,9 @@
                 },
                 "ResourceType": {
                     "$ref": "#/$defs/InstanceStorageResourceType"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -16248,6 +17960,9 @@
                 },
                 "FunctionArn": {
                     "$ref": "#/$defs/FunctionArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -16262,6 +17977,9 @@
                 },
                 "LexRegion": {
                     "$ref": "#/$defs/LexRegion"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -16318,6 +18036,9 @@
                 },
                 "AssociationId": {
                     "$ref": "#/$defs/AssociationId"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -16959,6 +18680,68 @@
                 "$ref": "#/$defs/HierarchyGroupId"
             }
         },
+        "GetEffectiveHoursOfOperationsResponse": {
+            "type": "object",
+            "properties": {
+                "EffectiveHoursOfOperationList": {
+                    "$ref": "#/$defs/EffectiveHoursOfOperationList"
+                },
+                "TimeZone": {
+                    "$ref": "#/$defs/TimeZone"
+                }
+            }
+        },
+        "EffectiveHoursOfOperationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EffectiveHoursOfOperations"
+            }
+        },
+        "EffectiveHoursOfOperations": {
+            "type": "object",
+            "properties": {
+                "Date": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                },
+                "OperationalHours": {
+                    "$ref": "#/$defs/OperationalHours"
+                }
+            }
+        },
+        "OperationalHours": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationalHour"
+            }
+        },
+        "OperationalHour": {
+            "type": "object",
+            "properties": {
+                "Start": {
+                    "$ref": "#/$defs/OverrideTimeSlice"
+                },
+                "End": {
+                    "$ref": "#/$defs/OverrideTimeSlice"
+                }
+            }
+        },
+        "GetEffectiveHoursOfOperationsRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "HoursOfOperationId": {
+                    "$ref": "#/$defs/HoursOfOperationId"
+                },
+                "FromDate": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                },
+                "ToDate": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                }
+            }
+        },
         "GetFederationTokenResponse": {
             "type": "object",
             "properties": {
@@ -17462,6 +19245,9 @@
                 "ContactFlowId": {
                     "$ref": "#/$defs/ContactFlowId"
                 },
+                "SelfAssignFlowId": {
+                    "$ref": "#/$defs/ContactFlowId"
+                },
                 "Constraints": {
                     "$ref": "#/$defs/TaskTemplateConstraints"
                 },
@@ -17718,6 +19504,48 @@
                 }
             }
         },
+        "ListAnalyticsDataLakeDataSetsResponse": {
+            "type": "object",
+            "properties": {
+                "Results": {
+                    "$ref": "#/$defs/AnalyticsDataSetsResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AnalyticsDataSetsResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnalyticsDataSetsResult"
+            }
+        },
+        "AnalyticsDataSetsResult": {
+            "type": "object",
+            "properties": {
+                "DataSetId": {
+                    "$ref": "#/$defs/DataSetId"
+                },
+                "DataSetName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListAnalyticsDataLakeDataSetsRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResult1000"
+                }
+            }
+        },
         "ListApprovedOriginsResponse": {
             "type": "object",
             "properties": {
@@ -17750,6 +19578,76 @@
             }
         },
         "MaxResult25": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListAssociatedContactsResponse": {
+            "type": "object",
+            "properties": {
+                "ContactSummaryList": {
+                    "$ref": "#/$defs/AssociatedContactSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AssociatedContactSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssociatedContactSummary"
+            }
+        },
+        "AssociatedContactSummary": {
+            "type": "object",
+            "properties": {
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "ContactArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "InitiationTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DisconnectTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "InitialContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "PreviousContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "RelatedContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "InitiationMethod": {
+                    "$ref": "#/$defs/ContactInitiationMethod"
+                },
+                "Channel": {
+                    "$ref": "#/$defs/Channel"
+                }
+            }
+        },
+        "ListAssociatedContactsRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListAssociatedContactsRequestMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListAssociatedContactsRequestMaxResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -18035,6 +19933,54 @@
                 "$ref": "#/$defs/ContactFlowType"
             }
         },
+        "ListContactFlowVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "ContactFlowVersionSummaryList": {
+                    "$ref": "#/$defs/ContactFlowVersionSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ContactFlowVersionSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContactFlowVersionSummary"
+            }
+        },
+        "ContactFlowVersionSummary": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "VersionDescription": {
+                    "$ref": "#/$defs/ContactFlowDescription"
+                },
+                "Version": {
+                    "$ref": "#/$defs/ResourceVersion"
+                }
+            }
+        },
+        "ListContactFlowVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "ContactFlowId": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResult1000"
+                }
+            }
+        },
         "ListContactReferencesResponse": {
             "type": "object",
             "properties": {
@@ -18060,6 +20006,9 @@
                 },
                 "Attachment": {
                     "$ref": "#/$defs/AttachmentReference"
+                },
+                "EmailMessage": {
+                    "$ref": "#/$defs/EmailMessageReference"
                 },
                 "String": {
                     "$ref": "#/$defs/StringReference"
@@ -18100,14 +20049,22 @@
                 },
                 "Status": {
                     "$ref": "#/$defs/ReferenceStatus"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/ReferenceArn"
                 }
             }
         },
-        "ReferenceStatus": {
-            "enum": [
-                "APPROVED",
-                "REJECTED"
-            ]
+        "EmailMessageReference": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ReferenceKey"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/ReferenceArn"
+                }
+            }
         },
         "StringReference": {
             "type": "object",
@@ -18390,6 +20347,46 @@
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResult1000"
+                }
+            }
+        },
+        "ListHoursOfOperationOverridesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "HoursOfOperationOverrideList": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideList"
+                },
+                "LastModifiedRegion": {
+                    "$ref": "#/$defs/RegionName"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "HoursOfOperationOverrideList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HoursOfOperationOverride"
+            }
+        },
+        "ListHoursOfOperationOverridesRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "HoursOfOperationId": {
+                    "$ref": "#/$defs/HoursOfOperationId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResult100"
                 }
             }
         },
@@ -20514,8 +22511,18 @@
                 },
                 "InitialContactId": {
                     "$ref": "#/$defs/ContactId"
+                },
+                "ContactRecordingType": {
+                    "$ref": "#/$defs/ContactRecordingType"
                 }
             }
+        },
+        "ContactRecordingType": {
+            "enum": [
+                "AGENT",
+                "IVR",
+                "SCREEN"
+            ]
         },
         "SearchAgentStatusesResponse": {
             "type": "object",
@@ -20787,6 +22794,12 @@
                 },
                 "StringCondition": {
                     "$ref": "#/$defs/StringCondition"
+                },
+                "StateCondition": {
+                    "$ref": "#/$defs/ContactFlowModuleState"
+                },
+                "StatusCondition": {
+                    "$ref": "#/$defs/ContactFlowModuleStatus"
                 }
             }
         },
@@ -20928,6 +22941,9 @@
                 },
                 "ScheduledTimestamp": {
                     "$ref": "#/$defs/Timestamp"
+                },
+                "SegmentAttributes": {
+                    "$ref": "#/$defs/ContactSearchSummarySegmentAttributes"
                 }
             }
         },
@@ -20950,6 +22966,20 @@
                 },
                 "ConnectedToAgentTimestamp": {
                     "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ContactSearchSummarySegmentAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ContactSearchSummarySegmentAttributeValue"
+            }
+        },
+        "ContactSearchSummarySegmentAttributeValue": {
+            "type": "object",
+            "properties": {
+                "ValueString": {
+                    "$ref": "#/$defs/SegmentAttributeValueString"
                 }
             }
         },
@@ -21025,6 +23055,9 @@
                 },
                 "SearchableContactAttributes": {
                     "$ref": "#/$defs/SearchableContactAttributes"
+                },
+                "SearchableSegmentAttributes": {
+                    "$ref": "#/$defs/SearchableSegmentAttributes"
                 }
             }
         },
@@ -21172,6 +23205,46 @@
         "SearchableContactAttributeValue": {
             "type": "string"
         },
+        "SearchableSegmentAttributes": {
+            "type": "object",
+            "properties": {
+                "Criteria": {
+                    "$ref": "#/$defs/SearchableSegmentAttributesCriteriaList"
+                },
+                "MatchType": {
+                    "$ref": "#/$defs/SearchContactsMatchType"
+                }
+            }
+        },
+        "SearchableSegmentAttributesCriteriaList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchableSegmentAttributesCriteria"
+            }
+        },
+        "SearchableSegmentAttributesCriteria": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/SearchableSegmentAttributeKey"
+                },
+                "Values": {
+                    "$ref": "#/$defs/SearchableSegmentAttributeValueList"
+                }
+            }
+        },
+        "SearchableSegmentAttributeKey": {
+            "type": "string"
+        },
+        "SearchableSegmentAttributeValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchableSegmentAttributeValue"
+            }
+        },
+        "SearchableSegmentAttributeValue": {
+            "type": "string"
+        },
         "Sort": {
             "type": "object",
             "properties": {
@@ -21191,6 +23264,185 @@
                 "DISCONNECT_TIMESTAMP",
                 "INITIATION_METHOD",
                 "CHANNEL"
+            ]
+        },
+        "SearchEmailAddressesResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "EmailAddresses": {
+                    "$ref": "#/$defs/EmailAddressList"
+                },
+                "ApproximateTotalCount": {
+                    "$ref": "#/$defs/ApproximateTotalCount"
+                }
+            }
+        },
+        "EmailAddressList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EmailAddressMetadata"
+            }
+        },
+        "EmailAddressMetadata": {
+            "type": "object",
+            "properties": {
+                "EmailAddressId": {
+                    "$ref": "#/$defs/EmailAddressId"
+                },
+                "EmailAddressArn": {
+                    "$ref": "#/$defs/EmailAddressArn"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/EmailAddressDisplayName"
+                }
+            }
+        },
+        "SearchEmailAddressesRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResult100"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken2500"
+                },
+                "SearchCriteria": {
+                    "$ref": "#/$defs/EmailAddressSearchCriteria"
+                },
+                "SearchFilter": {
+                    "$ref": "#/$defs/EmailAddressSearchFilter"
+                }
+            }
+        },
+        "EmailAddressSearchCriteria": {
+            "type": "object",
+            "properties": {
+                "OrConditions": {
+                    "$ref": "#/$defs/EmailAddressSearchConditionList"
+                },
+                "AndConditions": {
+                    "$ref": "#/$defs/EmailAddressSearchConditionList"
+                },
+                "StringCondition": {
+                    "$ref": "#/$defs/StringCondition"
+                }
+            }
+        },
+        "EmailAddressSearchConditionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EmailAddressSearchCriteria"
+            }
+        },
+        "EmailAddressSearchFilter": {
+            "type": "object",
+            "properties": {
+                "TagFilter": {
+                    "$ref": "#/$defs/ControlPlaneTagFilter"
+                }
+            }
+        },
+        "SearchHoursOfOperationOverridesResponse": {
+            "type": "object",
+            "properties": {
+                "HoursOfOperationOverrides": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken2500"
+                },
+                "ApproximateTotalCount": {
+                    "$ref": "#/$defs/ApproximateTotalCount"
+                }
+            }
+        },
+        "SearchHoursOfOperationOverridesRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken2500"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResult100"
+                },
+                "SearchFilter": {
+                    "$ref": "#/$defs/HoursOfOperationSearchFilter"
+                },
+                "SearchCriteria": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideSearchCriteria"
+                }
+            }
+        },
+        "HoursOfOperationSearchFilter": {
+            "type": "object",
+            "properties": {
+                "TagFilter": {
+                    "$ref": "#/$defs/ControlPlaneTagFilter"
+                }
+            }
+        },
+        "HoursOfOperationOverrideSearchCriteria": {
+            "type": "object",
+            "properties": {
+                "OrConditions": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideSearchConditionList"
+                },
+                "AndConditions": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideSearchConditionList"
+                },
+                "StringCondition": {
+                    "$ref": "#/$defs/StringCondition"
+                },
+                "DateCondition": {
+                    "$ref": "#/$defs/DateCondition"
+                }
+            }
+        },
+        "HoursOfOperationOverrideSearchConditionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HoursOfOperationOverrideSearchCriteria"
+            }
+        },
+        "DateCondition": {
+            "type": "object",
+            "properties": {
+                "FieldName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Value": {
+                    "$ref": "#/$defs/DateYearMonthDayFormat"
+                },
+                "ComparisonType": {
+                    "$ref": "#/$defs/DateComparisonType"
+                }
+            }
+        },
+        "DateYearMonthDayFormat": {
+            "type": "string"
+        },
+        "DateComparisonType": {
+            "enum": [
+                "GREATER_THAN",
+                "LESS_THAN",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "LESS_THAN_OR_EQUAL_TO",
+                "EQUAL_TO"
             ]
         },
         "SearchHoursOfOperationsResponse": {
@@ -21230,14 +23482,6 @@
                 },
                 "SearchCriteria": {
                     "$ref": "#/$defs/HoursOfOperationSearchCriteria"
-                }
-            }
-        },
-        "HoursOfOperationSearchFilter": {
-            "type": "object",
-            "properties": {
-                "TagFilter": {
-                    "$ref": "#/$defs/ControlPlaneTagFilter"
                 }
             }
         },
@@ -22269,6 +24513,161 @@
         "ChatStreamingEndpointARN": {
             "type": "string"
         },
+        "SendOutboundEmailResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "SendOutboundEmailRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "FromEmailAddress": {
+                    "$ref": "#/$defs/EmailAddressInfo"
+                },
+                "DestinationEmailAddress": {
+                    "$ref": "#/$defs/EmailAddressInfo"
+                },
+                "AdditionalRecipients": {
+                    "$ref": "#/$defs/OutboundAdditionalRecipients"
+                },
+                "EmailMessage": {
+                    "$ref": "#/$defs/OutboundEmailContent"
+                },
+                "TrafficType": {
+                    "$ref": "#/$defs/TrafficType"
+                },
+                "SourceCampaign": {
+                    "$ref": "#/$defs/SourceCampaign"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "EmailAddressInfo": {
+            "type": "object",
+            "properties": {
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/EmailAddressDisplayName"
+                }
+            }
+        },
+        "OutboundAdditionalRecipients": {
+            "type": "object",
+            "properties": {
+                "CcEmailAddresses": {
+                    "$ref": "#/$defs/EmailAddressRecipientList"
+                }
+            }
+        },
+        "EmailAddressRecipientList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EmailAddressInfo"
+            }
+        },
+        "OutboundEmailContent": {
+            "type": "object",
+            "properties": {
+                "MessageSourceType": {
+                    "$ref": "#/$defs/OutboundMessageSourceType"
+                },
+                "TemplatedMessageConfig": {
+                    "$ref": "#/$defs/TemplatedMessageConfig"
+                },
+                "RawMessage": {
+                    "$ref": "#/$defs/OutboundRawMessage"
+                }
+            }
+        },
+        "OutboundMessageSourceType": {
+            "enum": [
+                "TEMPLATE",
+                "RAW"
+            ]
+        },
+        "TemplatedMessageConfig": {
+            "type": "object",
+            "properties": {
+                "KnowledgeBaseId": {
+                    "$ref": "#/$defs/MessageTemplateKnowledgeBaseId"
+                },
+                "MessageTemplateId": {
+                    "$ref": "#/$defs/MessageTemplateId"
+                },
+                "TemplateAttributes": {
+                    "$ref": "#/$defs/TemplateAttributes"
+                }
+            }
+        },
+        "MessageTemplateKnowledgeBaseId": {
+            "type": "string"
+        },
+        "MessageTemplateId": {
+            "type": "string"
+        },
+        "TemplateAttributes": {
+            "type": "object",
+            "properties": {
+                "CustomAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "CustomerProfileAttributes": {
+                    "$ref": "#/$defs/CustomerProfileAttributesSerialized"
+                }
+            }
+        },
+        "CustomerProfileAttributesSerialized": {
+            "type": "string"
+        },
+        "OutboundRawMessage": {
+            "type": "object",
+            "properties": {
+                "Subject": {
+                    "$ref": "#/$defs/OutboundSubject"
+                },
+                "Body": {
+                    "$ref": "#/$defs/Body"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/EmailMessageContentType"
+                }
+            }
+        },
+        "OutboundSubject": {
+            "type": "string"
+        },
+        "Body": {
+            "type": "string"
+        },
+        "EmailMessageContentType": {
+            "type": "string"
+        },
+        "TrafficType": {
+            "enum": [
+                "GENERAL",
+                "CAMPAIGN"
+            ]
+        },
+        "SourceCampaign": {
+            "type": "object",
+            "properties": {
+                "CampaignId": {
+                    "$ref": "#/$defs/CampaignId"
+                },
+                "OutboundRequestId": {
+                    "$ref": "#/$defs/OutboundRequestId"
+                }
+            }
+        },
+        "OutboundRequestId": {
+            "type": "string"
+        },
         "StartAttachedFileUploadResponse": {
             "type": "object",
             "properties": {
@@ -22399,6 +24798,9 @@
                 },
                 "SegmentAttributes": {
                     "$ref": "#/$defs/SegmentAttributes"
+                },
+                "CustomerId": {
+                    "$ref": "#/$defs/CustomerIdNonEmpty"
                 }
             }
         },
@@ -22427,6 +24829,9 @@
                     "$ref": "#/$defs/ContactId"
                 }
             }
+        },
+        "CustomerIdNonEmpty": {
+            "type": "string"
         },
         "StartContactEvaluationResponse": {
             "type": "object",
@@ -22482,6 +24887,9 @@
             "properties": {
                 "VoiceRecordingTrack": {
                     "$ref": "#/$defs/VoiceRecordingTrack"
+                },
+                "IvrRecordingTrack": {
+                    "$ref": "#/$defs/IvrRecordingTrack"
                 }
             }
         },
@@ -22489,6 +24897,11 @@
             "enum": [
                 "FROM_AGENT",
                 "TO_AGENT",
+                "ALL"
+            ]
+        },
+        "IvrRecordingTrack": {
+            "enum": [
                 "ALL"
             ]
         },
@@ -22519,6 +24932,137 @@
                     "$ref": "#/$defs/ClientToken"
                 }
             }
+        },
+        "StartEmailContactResponse": {
+            "type": "object",
+            "properties": {
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                }
+            }
+        },
+        "StartEmailContactRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "FromEmailAddress": {
+                    "$ref": "#/$defs/EmailAddressInfo"
+                },
+                "DestinationEmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "References": {
+                    "$ref": "#/$defs/ContactReferences"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "EmailMessage": {
+                    "$ref": "#/$defs/InboundEmailContent"
+                },
+                "AdditionalRecipients": {
+                    "$ref": "#/$defs/InboundAdditionalRecipients"
+                },
+                "Attachments": {
+                    "$ref": "#/$defs/EmailAttachments"
+                },
+                "ContactFlowId": {
+                    "$ref": "#/$defs/ContactFlowId"
+                },
+                "RelatedContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "SegmentAttributes": {
+                    "$ref": "#/$defs/SegmentAttributes"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "InboundEmailContent": {
+            "type": "object",
+            "properties": {
+                "MessageSourceType": {
+                    "$ref": "#/$defs/InboundMessageSourceType"
+                },
+                "RawMessage": {
+                    "$ref": "#/$defs/InboundRawMessage"
+                }
+            }
+        },
+        "InboundMessageSourceType": {
+            "enum": [
+                "RAW"
+            ]
+        },
+        "InboundRawMessage": {
+            "type": "object",
+            "properties": {
+                "Subject": {
+                    "$ref": "#/$defs/InboundSubject"
+                },
+                "Body": {
+                    "$ref": "#/$defs/Body"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/EmailMessageContentType"
+                },
+                "Headers": {
+                    "$ref": "#/$defs/EmailHeaders"
+                }
+            }
+        },
+        "InboundSubject": {
+            "type": "string"
+        },
+        "EmailHeaders": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EmailHeaderValue"
+            }
+        },
+        "EmailHeaderValue": {
+            "type": "string"
+        },
+        "InboundAdditionalRecipients": {
+            "type": "object",
+            "properties": {
+                "ToAddresses": {
+                    "$ref": "#/$defs/EmailAddressRecipientList"
+                },
+                "CcAddresses": {
+                    "$ref": "#/$defs/EmailAddressRecipientList"
+                }
+            }
+        },
+        "EmailAttachments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EmailAttachment"
+            }
+        },
+        "EmailAttachment": {
+            "type": "object",
+            "properties": {
+                "FileName": {
+                    "$ref": "#/$defs/FileName"
+                },
+                "S3Url": {
+                    "$ref": "#/$defs/PreSignedAttachmentUrl"
+                }
+            }
+        },
+        "PreSignedAttachmentUrl": {
+            "type": "string"
         },
         "StartOutboundChatContactResponse": {
             "type": "object",
@@ -22563,6 +25107,40 @@
                 },
                 "SupportedMessagingContentTypes": {
                     "$ref": "#/$defs/SupportedMessagingContentTypes"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "StartOutboundEmailContactResponse": {
+            "type": "object",
+            "properties": {
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                }
+            }
+        },
+        "StartOutboundEmailContactRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "FromEmailAddress": {
+                    "$ref": "#/$defs/EmailAddressInfo"
+                },
+                "DestinationEmailAddress": {
+                    "$ref": "#/$defs/EmailAddressInfo"
+                },
+                "AdditionalRecipients": {
+                    "$ref": "#/$defs/OutboundAdditionalRecipients"
+                },
+                "EmailMessage": {
+                    "$ref": "#/$defs/OutboundEmailContent"
                 },
                 "ClientToken": {
                     "$ref": "#/$defs/ClientToken"
@@ -22635,11 +25213,23 @@
                 }
             }
         },
-        "TrafficType": {
-            "enum": [
-                "GENERAL",
-                "CAMPAIGN"
-            ]
+        "StartScreenSharingResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartScreenSharingRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                }
+            }
         },
         "StartTaskContactResponse": {
             "type": "object",
@@ -22687,6 +25277,9 @@
                 },
                 "RelatedContactId": {
                     "$ref": "#/$defs/ContactId"
+                },
+                "SegmentAttributes": {
+                    "$ref": "#/$defs/SegmentAttributes"
                 }
             }
         },
@@ -22887,6 +25480,9 @@
                 },
                 "InitialContactId": {
                     "$ref": "#/$defs/ContactId"
+                },
+                "ContactRecordingType": {
+                    "$ref": "#/$defs/ContactRecordingType"
                 }
             }
         },
@@ -22965,6 +25561,9 @@
                 },
                 "InitialContactId": {
                     "$ref": "#/$defs/ContactId"
+                },
+                "ContactRecordingType": {
+                    "$ref": "#/$defs/ContactRecordingType"
                 }
             }
         },
@@ -23151,6 +25750,29 @@
                 },
                 "References": {
                     "$ref": "#/$defs/ContactReferences"
+                },
+                "SegmentAttributes": {
+                    "$ref": "#/$defs/SegmentAttributes"
+                },
+                "QueueInfo": {
+                    "$ref": "#/$defs/QueueInfoInput"
+                },
+                "UserInfo": {
+                    "$ref": "#/$defs/UserInfo"
+                },
+                "CustomerEndpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                },
+                "SystemEndpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                }
+            }
+        },
+        "QueueInfoInput": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/QueueId"
                 }
             }
         },
@@ -23380,6 +26002,37 @@
                 }
             }
         },
+        "UpdateEmailAddressMetadataResponse": {
+            "type": "object",
+            "properties": {
+                "EmailAddressId": {
+                    "$ref": "#/$defs/EmailAddressId"
+                },
+                "EmailAddressArn": {
+                    "$ref": "#/$defs/EmailAddressArn"
+                }
+            }
+        },
+        "UpdateEmailAddressMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "EmailAddressId": {
+                    "$ref": "#/$defs/EmailAddressId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/EmailAddressDisplayName"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
         "UpdateEvaluationFormResponse": {
             "type": "object",
             "properties": {
@@ -23455,6 +26108,35 @@
         "UpdateHoursOfOperationDescription": {
             "type": "string"
         },
+        "UpdateHoursOfOperationOverrideRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "HoursOfOperationId": {
+                    "$ref": "#/$defs/HoursOfOperationId"
+                },
+                "HoursOfOperationOverrideId": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/CommonHumanReadableName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/CommonHumanReadableDescription"
+                },
+                "Config": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideConfigList"
+                },
+                "EffectiveFrom": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                },
+                "EffectiveTill": {
+                    "$ref": "#/$defs/HoursOfOperationOverrideYearMonthDayDateFormat"
+                }
+            }
+        },
         "UpdateInstanceAttributeRequest": {
             "type": "object",
             "properties": {
@@ -23466,6 +26148,9 @@
                 },
                 "Value": {
                     "$ref": "#/$defs/InstanceAttributeValue"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -23483,8 +26168,44 @@
                 },
                 "StorageConfig": {
                     "$ref": "#/$defs/InstanceStorageConfig"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
+        },
+        "UpdateParticipantAuthenticationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateParticipantAuthenticationRequest": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/ParticipantToken"
+                },
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "Code": {
+                    "$ref": "#/$defs/AuthorizationCode"
+                },
+                "Error": {
+                    "$ref": "#/$defs/AuthenticationError"
+                },
+                "ErrorDescription": {
+                    "$ref": "#/$defs/AuthenticationErrorDescription"
+                }
+            }
+        },
+        "AuthorizationCode": {
+            "type": "string"
+        },
+        "AuthenticationError": {
+            "type": "string"
+        },
+        "AuthenticationErrorDescription": {
+            "type": "string"
         },
         "UpdateParticipantRoleConfigResponse": {
             "type": "object",
@@ -23718,6 +26439,20 @@
                 }
             }
         },
+        "UpdateQueueOutboundEmailConfigRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "QueueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "OutboundEmailConfig": {
+                    "$ref": "#/$defs/OutboundEmailConfig"
+                }
+            }
+        },
         "UpdateQueueStatusRequest": {
             "type": "object",
             "properties": {
@@ -23915,6 +26650,9 @@
                 "ContactFlowId": {
                     "$ref": "#/$defs/ContactFlowId"
                 },
+                "SelfAssignFlowId": {
+                    "$ref": "#/$defs/ContactFlowId"
+                },
                 "Constraints": {
                     "$ref": "#/$defs/TaskTemplateConstraints"
                 },
@@ -23951,6 +26689,9 @@
                     "$ref": "#/$defs/TaskTemplateDescription"
                 },
                 "ContactFlowId": {
+                    "$ref": "#/$defs/ContactFlowId"
+                },
+                "SelfAssignFlowId": {
                     "$ref": "#/$defs/ContactFlowId"
                 },
                 "Constraints": {

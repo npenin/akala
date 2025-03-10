@@ -41,6 +41,86 @@
             }
         },
         {
+            "name": "BatchGetCalculatedAttributeForProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "CalculatedAttributeName": "route.CalculatedAttributeName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/domains/{DomainName}/calculated-attributes/{CalculatedAttributeName}/batch-get-for-profiles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetCalculatedAttributeForProfileResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.CalculatedAttributeName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetCalculatedAttributeForProfileRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchGetProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/domains/{DomainName}/batch-get-profiles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetProfileResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetProfileRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateCalculatedAttributeDefinition",
             "config": {
                 "http": {
@@ -162,6 +242,47 @@
             }
         },
         {
+            "name": "CreateEventTrigger",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "EventTriggerName": "route.EventTriggerName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/domains/{DomainName}/event-triggers/{EventTriggerName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateEventTriggerResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.EventTriggerName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateEventTriggerRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateIntegrationWorkflow",
             "config": {
                 "http": {
@@ -224,6 +345,127 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateProfileRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSegmentDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "SegmentDefinitionName": "route.SegmentDefinitionName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSegmentDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.SegmentDefinitionName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSegmentDefinitionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSegmentEstimate",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/domains/{DomainName}/segment-estimates"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSegmentEstimateResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSegmentEstimateRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateSegmentSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "SegmentDefinitionName": "route.SegmentDefinitionName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/domains/{DomainName}/segments/{SegmentDefinitionName}/snapshots"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSegmentSnapshotResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.SegmentDefinitionName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSegmentSnapshotRequest"
                         }
                     }
                 },
@@ -345,6 +587,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteEventStreamRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteEventTrigger",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "EventTriggerName": "route.EventTriggerName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/domains/{DomainName}/event-triggers/{EventTriggerName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteEventTriggerResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.EventTriggerName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteEventTriggerRequest"
                         }
                     }
                 },
@@ -542,6 +825,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteProfileObjectTypeRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteSegmentDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "SegmentDefinitionName": "route.SegmentDefinitionName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSegmentDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.SegmentDefinitionName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSegmentDefinitionRequest"
                         }
                     }
                 },
@@ -841,6 +1165,47 @@
             }
         },
         {
+            "name": "GetEventTrigger",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "EventTriggerName": "route.EventTriggerName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/event-triggers/{EventTriggerName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEventTriggerResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.EventTriggerName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEventTriggerRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetIdentityResolutionJob",
             "config": {
                 "http": {
@@ -1024,6 +1389,172 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetProfileObjectTypeTemplateRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSegmentDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "SegmentDefinitionName": "route.SegmentDefinitionName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/segment-definitions/{SegmentDefinitionName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSegmentDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.SegmentDefinitionName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSegmentDefinitionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSegmentEstimate",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "EstimateId": "route.EstimateId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/segment-estimates/{EstimateId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSegmentEstimateResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.EstimateId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSegmentEstimateRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSegmentMembership",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "SegmentDefinitionName": "route.SegmentDefinitionName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/domains/{DomainName}/segments/{SegmentDefinitionName}/membership"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSegmentMembershipResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.SegmentDefinitionName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSegmentMembershipRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetSegmentSnapshot",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "SegmentDefinitionName": "route.SegmentDefinitionName",
+                            "SnapshotId": "route.SnapshotId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/segments/{SegmentDefinitionName}/snapshots/{SnapshotId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetSegmentSnapshotResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.SegmentDefinitionName",
+                        "param.0.SnapshotId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetSegmentSnapshotRequest"
                         }
                     }
                 },
@@ -1350,6 +1881,45 @@
             }
         },
         {
+            "name": "ListEventTriggers",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/event-triggers"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEventTriggersResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEventTriggersRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListIdentityResolutionJobs",
             "config": {
                 "http": {
@@ -1412,6 +1982,88 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListIntegrationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListObjectTypeAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "ObjectTypeName": "route.ObjectTypeName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/object-types/{ObjectTypeName}/attributes"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListObjectTypeAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.ObjectTypeName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListObjectTypeAttributesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProfileAttributeValues",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "AttributeName": "route.AttributeName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/profile-attributes/{AttributeName}/values"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ProfileAttributeValuesResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.AttributeName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ProfileAttributeValuesRequest"
                         }
                     }
                 },
@@ -1564,6 +2216,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListRuleBasedMatchesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSegmentDefinitions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/domains/{DomainName}/segment-definitions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSegmentDefinitionsResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSegmentDefinitionsRequest"
                         }
                     }
                 },
@@ -2013,6 +2704,47 @@
             }
         },
         {
+            "name": "UpdateEventTrigger",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "DomainName": "route.DomainName",
+                            "EventTriggerName": "route.EventTriggerName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/domains/{DomainName}/event-triggers/{EventTriggerName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateEventTriggerResponse"
+                    },
+                    "inject": [
+                        "param.0.DomainName",
+                        "param.0.EventTriggerName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateEventTriggerRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateProfile",
             "config": {
                 "http": {
@@ -2141,6 +2873,345 @@
         "uuid": {
             "type": "string"
         },
+        "BatchGetCalculatedAttributeForProfileResponse": {
+            "type": "object",
+            "properties": {
+                "Errors": {
+                    "$ref": "#/$defs/BatchGetCalculatedAttributeForProfileErrorList"
+                },
+                "CalculatedAttributeValues": {
+                    "$ref": "#/$defs/CalculatedAttributeValueList"
+                },
+                "ConditionOverrides": {
+                    "$ref": "#/$defs/ConditionOverrides"
+                }
+            }
+        },
+        "BatchGetCalculatedAttributeForProfileErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchGetCalculatedAttributeForProfileError"
+            }
+        },
+        "BatchGetCalculatedAttributeForProfileError": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Message": {
+                    "$ref": "#/$defs/string1To1000"
+                },
+                "ProfileId": {
+                    "$ref": "#/$defs/uuid"
+                }
+            }
+        },
+        "string1To1000": {
+            "type": "string"
+        },
+        "CalculatedAttributeValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CalculatedAttributeValue"
+            }
+        },
+        "CalculatedAttributeValue": {
+            "type": "object",
+            "properties": {
+                "CalculatedAttributeName": {
+                    "$ref": "#/$defs/typeName"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/displayName"
+                },
+                "IsDataPartial": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "ProfileId": {
+                    "$ref": "#/$defs/uuid"
+                },
+                "Value": {
+                    "$ref": "#/$defs/string1To255"
+                }
+            }
+        },
+        "typeName": {
+            "type": "string"
+        },
+        "displayName": {
+            "type": "string"
+        },
+        "ConditionOverrides": {
+            "type": "object",
+            "properties": {
+                "Range": {
+                    "$ref": "#/$defs/RangeOverride"
+                }
+            }
+        },
+        "RangeOverride": {
+            "type": "object",
+            "properties": {
+                "Start": {
+                    "$ref": "#/$defs/Start"
+                },
+                "End": {
+                    "$ref": "#/$defs/End"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/RangeUnit"
+                }
+            }
+        },
+        "Start": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "End": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RangeUnit": {
+            "enum": [
+                "DAYS"
+            ]
+        },
+        "BatchGetCalculatedAttributeForProfileRequest": {
+            "type": "object",
+            "properties": {
+                "CalculatedAttributeName": {
+                    "$ref": "#/$defs/typeName"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ProfileIds": {
+                    "$ref": "#/$defs/BatchGetCalculatedAttributeForProfileIdList"
+                },
+                "ConditionOverrides": {
+                    "$ref": "#/$defs/ConditionOverrides"
+                }
+            }
+        },
+        "BatchGetCalculatedAttributeForProfileIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/uuid"
+            }
+        },
+        "BatchGetProfileResponse": {
+            "type": "object",
+            "properties": {
+                "Errors": {
+                    "$ref": "#/$defs/BatchGetProfileErrorList"
+                },
+                "Profiles": {
+                    "$ref": "#/$defs/ProfileList"
+                }
+            }
+        },
+        "BatchGetProfileErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchGetProfileError"
+            }
+        },
+        "BatchGetProfileError": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Message": {
+                    "$ref": "#/$defs/string1To1000"
+                },
+                "ProfileId": {
+                    "$ref": "#/$defs/uuid"
+                }
+            }
+        },
+        "ProfileList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Profile"
+            }
+        },
+        "Profile": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/uuid"
+                },
+                "AccountNumber": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "AdditionalInformation": {
+                    "$ref": "#/$defs/sensitiveString1To1000"
+                },
+                "PartyType": {
+                    "$ref": "#/$defs/PartyType"
+                },
+                "BusinessName": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "FirstName": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "MiddleName": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "LastName": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "BirthDate": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "Gender": {
+                    "$ref": "#/$defs/Gender"
+                },
+                "PhoneNumber": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "MobilePhoneNumber": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "HomePhoneNumber": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "BusinessPhoneNumber": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "PersonalEmailAddress": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "BusinessEmailAddress": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Address"
+                },
+                "ShippingAddress": {
+                    "$ref": "#/$defs/Address"
+                },
+                "MailingAddress": {
+                    "$ref": "#/$defs/Address"
+                },
+                "BillingAddress": {
+                    "$ref": "#/$defs/Address"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/Attributes"
+                },
+                "FoundByItems": {
+                    "$ref": "#/$defs/foundByList"
+                },
+                "PartyTypeString": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                },
+                "GenderString": {
+                    "$ref": "#/$defs/sensitiveString1To255"
+                }
+            }
+        },
+        "sensitiveString1To255": {
+            "type": "string"
+        },
+        "sensitiveString1To1000": {
+            "type": "string"
+        },
+        "PartyType": {
+            "enum": [
+                "INDIVIDUAL",
+                "BUSINESS",
+                "OTHER"
+            ]
+        },
+        "Gender": {
+            "enum": [
+                "MALE",
+                "FEMALE",
+                "UNSPECIFIED"
+            ]
+        },
+        "Address": {
+            "type": "object",
+            "properties": {
+                "Address1": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Address2": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Address3": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Address4": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "City": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "County": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "State": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Province": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Country": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "PostalCode": {
+                    "$ref": "#/$defs/string1To255"
+                }
+            }
+        },
+        "Attributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/string1To255"
+            }
+        },
+        "foundByList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FoundByKeyValue"
+            }
+        },
+        "FoundByKeyValue": {
+            "type": "object",
+            "properties": {
+                "KeyName": {
+                    "$ref": "#/$defs/name"
+                },
+                "Values": {
+                    "$ref": "#/$defs/requestValueList"
+                }
+            }
+        },
+        "BatchGetProfileRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ProfileIds": {
+                    "$ref": "#/$defs/BatchGetProfileIdList"
+                }
+            }
+        },
+        "BatchGetProfileIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/uuid"
+            }
+        },
         "CreateCalculatedAttributeDefinitionResponse": {
             "type": "object",
             "properties": {
@@ -2159,6 +3230,9 @@
                 "Conditions": {
                     "$ref": "#/$defs/Conditions"
                 },
+                "Filter": {
+                    "$ref": "#/$defs/Filter"
+                },
                 "Statistic": {
                     "$ref": "#/$defs/Statistic"
                 },
@@ -2172,12 +3246,6 @@
                     "$ref": "#/$defs/TagMap"
                 }
             }
-        },
-        "typeName": {
-            "type": "string"
-        },
-        "displayName": {
-            "type": "string"
         },
         "sensitiveText": {
             "type": "string"
@@ -2267,6 +3335,104 @@
                 "NOT_EQUAL_TO"
             ]
         },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Include": {
+                    "$ref": "#/$defs/Include"
+                },
+                "Groups": {
+                    "$ref": "#/$defs/GroupList"
+                }
+            }
+        },
+        "Include": {
+            "enum": [
+                "ALL",
+                "ANY",
+                "NONE"
+            ]
+        },
+        "GroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterGroup"
+            }
+        },
+        "FilterGroup": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/FilterDimensionList"
+                }
+            }
+        },
+        "Type": {
+            "enum": [
+                "ALL",
+                "ANY",
+                "NONE"
+            ]
+        },
+        "FilterDimensionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FilterDimension"
+            }
+        },
+        "FilterDimension": {
+            "type": "object",
+            "properties": {
+                "Attributes": {
+                    "$ref": "#/$defs/AttributeMap"
+                }
+            }
+        },
+        "AttributeMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/FilterAttributeDimension"
+            }
+        },
+        "FilterAttributeDimension": {
+            "type": "object",
+            "properties": {
+                "DimensionType": {
+                    "$ref": "#/$defs/FilterDimensionType"
+                },
+                "Values": {
+                    "$ref": "#/$defs/ValueList"
+                }
+            }
+        },
+        "FilterDimensionType": {
+            "enum": [
+                "INCLUSIVE",
+                "EXCLUSIVE",
+                "CONTAINS",
+                "BEGINS_WITH",
+                "ENDS_WITH",
+                "BEFORE",
+                "AFTER",
+                "BETWEEN",
+                "NOT_BETWEEN",
+                "ON",
+                "GREATER_THAN",
+                "LESS_THAN",
+                "GREATER_THAN_OR_EQUAL",
+                "LESS_THAN_OR_EQUAL",
+                "EQUAL"
+            ]
+        },
+        "ValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string1To255"
+            }
+        },
         "Statistic": {
             "enum": [
                 "FIRST_OCCURRENCE",
@@ -2312,6 +3478,9 @@
                 },
                 "Conditions": {
                     "$ref": "#/$defs/Conditions"
+                },
+                "Filter": {
+                    "$ref": "#/$defs/Filter"
                 },
                 "Statistic": {
                     "$ref": "#/$defs/Statistic"
@@ -2693,6 +3862,216 @@
                 }
             }
         },
+        "CreateEventTriggerResponse": {
+            "type": "object",
+            "properties": {
+                "EventTriggerName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ObjectTypeName": {
+                    "$ref": "#/$defs/typeName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
+                },
+                "EventTriggerConditions": {
+                    "$ref": "#/$defs/EventTriggerConditions"
+                },
+                "SegmentFilter": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerLimits": {
+                    "$ref": "#/$defs/EventTriggerLimits"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "EventTriggerConditions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventTriggerCondition"
+            }
+        },
+        "EventTriggerCondition": {
+            "type": "object",
+            "properties": {
+                "EventTriggerDimensions": {
+                    "$ref": "#/$defs/EventTriggerDimensions"
+                },
+                "LogicalOperator": {
+                    "$ref": "#/$defs/EventTriggerLogicalOperator"
+                }
+            }
+        },
+        "EventTriggerDimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventTriggerDimension"
+            }
+        },
+        "EventTriggerDimension": {
+            "type": "object",
+            "properties": {
+                "ObjectAttributes": {
+                    "$ref": "#/$defs/ObjectAttributes"
+                }
+            }
+        },
+        "ObjectAttributes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ObjectAttribute"
+            }
+        },
+        "ObjectAttribute": {
+            "type": "object",
+            "properties": {
+                "Source": {
+                    "$ref": "#/$defs/text"
+                },
+                "FieldName": {
+                    "$ref": "#/$defs/fieldName"
+                },
+                "ComparisonOperator": {
+                    "$ref": "#/$defs/ComparisonOperator"
+                },
+                "Values": {
+                    "$ref": "#/$defs/EventTriggerValues"
+                }
+            }
+        },
+        "text": {
+            "type": "string"
+        },
+        "fieldName": {
+            "type": "string"
+        },
+        "ComparisonOperator": {
+            "enum": [
+                "INCLUSIVE",
+                "EXCLUSIVE",
+                "CONTAINS",
+                "BEGINS_WITH",
+                "ENDS_WITH",
+                "GREATER_THAN",
+                "LESS_THAN",
+                "GREATER_THAN_OR_EQUAL",
+                "LESS_THAN_OR_EQUAL",
+                "EQUAL",
+                "BEFORE",
+                "AFTER",
+                "ON",
+                "BETWEEN",
+                "NOT_BETWEEN"
+            ]
+        },
+        "EventTriggerValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string1To255"
+            }
+        },
+        "EventTriggerLogicalOperator": {
+            "enum": [
+                "ANY",
+                "ALL",
+                "NONE"
+            ]
+        },
+        "EventTriggerLimits": {
+            "type": "object",
+            "properties": {
+                "EventExpiration": {
+                    "$ref": "#/$defs/optionalLong"
+                },
+                "Periods": {
+                    "$ref": "#/$defs/Periods"
+                }
+            }
+        },
+        "optionalLong": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Periods": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Period"
+            }
+        },
+        "Period": {
+            "type": "object",
+            "properties": {
+                "Unit": {
+                    "$ref": "#/$defs/PeriodUnit"
+                },
+                "Value": {
+                    "$ref": "#/$defs/maxSize24"
+                },
+                "MaxInvocationsPerProfile": {
+                    "$ref": "#/$defs/maxSize1000"
+                },
+                "Unlimited": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "PeriodUnit": {
+            "enum": [
+                "HOURS",
+                "DAYS",
+                "WEEKS",
+                "MONTHS"
+            ]
+        },
+        "maxSize24": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "maxSize1000": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "boolean": {
+            "type": "boolean"
+        },
+        "CreateEventTriggerRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ObjectTypeName": {
+                    "$ref": "#/$defs/typeName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
+                },
+                "EventTriggerConditions": {
+                    "$ref": "#/$defs/EventTriggerConditions"
+                },
+                "SegmentFilter": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerLimits": {
+                    "$ref": "#/$defs/EventTriggerLimits"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
         "CreateIntegrationWorkflowResponse": {
             "type": "object",
             "properties": {
@@ -2884,9 +4263,6 @@
                     "$ref": "#/$defs/boolean"
                 }
             }
-        },
-        "boolean": {
-            "type": "boolean"
         },
         "ServiceNowSourceProperties": {
             "type": "object",
@@ -3271,66 +4647,420 @@
                 }
             }
         },
-        "sensitiveString1To255": {
-            "type": "string"
-        },
-        "sensitiveString1To1000": {
-            "type": "string"
-        },
-        "PartyType": {
-            "enum": [
-                "INDIVIDUAL",
-                "BUSINESS",
-                "OTHER"
-            ]
-        },
-        "Gender": {
-            "enum": [
-                "MALE",
-                "FEMALE",
-                "UNSPECIFIED"
-            ]
-        },
-        "Address": {
+        "CreateSegmentDefinitionResponse": {
             "type": "object",
             "properties": {
-                "Address1": {
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                },
+                "DisplayName": {
                     "$ref": "#/$defs/string1To255"
                 },
-                "Address2": {
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "SegmentDefinitionArn": {
+                    "$ref": "#/$defs/SegmentDefinitionArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "SegmentDefinitionArn": {
+            "type": "string"
+        },
+        "CreateSegmentDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                },
+                "DisplayName": {
                     "$ref": "#/$defs/string1To255"
                 },
-                "Address3": {
-                    "$ref": "#/$defs/string1To255"
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
                 },
-                "Address4": {
-                    "$ref": "#/$defs/string1To255"
+                "SegmentGroups": {
+                    "$ref": "#/$defs/SegmentGroup"
                 },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "SegmentGroup": {
+            "type": "object",
+            "properties": {
+                "Groups": {
+                    "$ref": "#/$defs/SegmentGroupList"
+                },
+                "Include": {
+                    "$ref": "#/$defs/IncludeOptions"
+                }
+            }
+        },
+        "SegmentGroupList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Group"
+            }
+        },
+        "Group": {
+            "type": "object",
+            "properties": {
+                "Dimensions": {
+                    "$ref": "#/$defs/DimensionList"
+                },
+                "SourceSegments": {
+                    "$ref": "#/$defs/SourceSegmentList"
+                },
+                "SourceType": {
+                    "$ref": "#/$defs/IncludeOptions"
+                },
+                "Type": {
+                    "$ref": "#/$defs/IncludeOptions"
+                }
+            }
+        },
+        "DimensionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Dimension"
+            }
+        },
+        "Dimension": {
+            "type": "object",
+            "properties": {
+                "ProfileAttributes": {
+                    "$ref": "#/$defs/ProfileAttributes"
+                },
+                "CalculatedAttributes": {
+                    "$ref": "#/$defs/CalculatedCustomAttributes"
+                }
+            }
+        },
+        "ProfileAttributes": {
+            "type": "object",
+            "properties": {
+                "AccountNumber": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "AdditionalInformation": {
+                    "$ref": "#/$defs/ExtraLengthValueProfileDimension"
+                },
+                "FirstName": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "LastName": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "MiddleName": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "GenderString": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "PartyTypeString": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "BirthDate": {
+                    "$ref": "#/$defs/DateDimension"
+                },
+                "PhoneNumber": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "BusinessName": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "BusinessPhoneNumber": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "HomePhoneNumber": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "MobilePhoneNumber": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "PersonalEmailAddress": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "BusinessEmailAddress": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "Address": {
+                    "$ref": "#/$defs/AddressDimension"
+                },
+                "ShippingAddress": {
+                    "$ref": "#/$defs/AddressDimension"
+                },
+                "MailingAddress": {
+                    "$ref": "#/$defs/AddressDimension"
+                },
+                "BillingAddress": {
+                    "$ref": "#/$defs/AddressDimension"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/CustomAttributes"
+                }
+            }
+        },
+        "ProfileDimension": {
+            "type": "object",
+            "properties": {
+                "DimensionType": {
+                    "$ref": "#/$defs/StringDimensionType"
+                },
+                "Values": {
+                    "$ref": "#/$defs/Values"
+                }
+            }
+        },
+        "StringDimensionType": {
+            "enum": [
+                "INCLUSIVE",
+                "EXCLUSIVE",
+                "CONTAINS",
+                "BEGINS_WITH",
+                "ENDS_WITH"
+            ]
+        },
+        "Values": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string1To255"
+            }
+        },
+        "ExtraLengthValueProfileDimension": {
+            "type": "object",
+            "properties": {
+                "DimensionType": {
+                    "$ref": "#/$defs/StringDimensionType"
+                },
+                "Values": {
+                    "$ref": "#/$defs/ExtraLengthValues"
+                }
+            }
+        },
+        "ExtraLengthValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string1To1000"
+            }
+        },
+        "DateDimension": {
+            "type": "object",
+            "properties": {
+                "DimensionType": {
+                    "$ref": "#/$defs/DateDimensionType"
+                },
+                "Values": {
+                    "$ref": "#/$defs/DateValues"
+                }
+            }
+        },
+        "DateDimensionType": {
+            "enum": [
+                "BEFORE",
+                "AFTER",
+                "BETWEEN",
+                "NOT_BETWEEN",
+                "ON"
+            ]
+        },
+        "DateValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "AddressDimension": {
+            "type": "object",
+            "properties": {
                 "City": {
-                    "$ref": "#/$defs/string1To255"
-                },
-                "County": {
-                    "$ref": "#/$defs/string1To255"
-                },
-                "State": {
-                    "$ref": "#/$defs/string1To255"
-                },
-                "Province": {
-                    "$ref": "#/$defs/string1To255"
+                    "$ref": "#/$defs/ProfileDimension"
                 },
                 "Country": {
-                    "$ref": "#/$defs/string1To255"
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "County": {
+                    "$ref": "#/$defs/ProfileDimension"
                 },
                 "PostalCode": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "Province": {
+                    "$ref": "#/$defs/ProfileDimension"
+                },
+                "State": {
+                    "$ref": "#/$defs/ProfileDimension"
+                }
+            }
+        },
+        "CustomAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttributeDimension"
+            }
+        },
+        "AttributeDimension": {
+            "type": "object",
+            "properties": {
+                "DimensionType": {
+                    "$ref": "#/$defs/AttributeDimensionType"
+                },
+                "Values": {
+                    "$ref": "#/$defs/Values"
+                }
+            }
+        },
+        "AttributeDimensionType": {
+            "enum": [
+                "INCLUSIVE",
+                "EXCLUSIVE",
+                "CONTAINS",
+                "BEGINS_WITH",
+                "ENDS_WITH",
+                "BEFORE",
+                "AFTER",
+                "BETWEEN",
+                "NOT_BETWEEN",
+                "ON",
+                "GREATER_THAN",
+                "LESS_THAN",
+                "GREATER_THAN_OR_EQUAL",
+                "LESS_THAN_OR_EQUAL",
+                "EQUAL"
+            ]
+        },
+        "CalculatedCustomAttributes": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CalculatedAttributeDimension"
+            }
+        },
+        "CalculatedAttributeDimension": {
+            "type": "object",
+            "properties": {
+                "DimensionType": {
+                    "$ref": "#/$defs/AttributeDimensionType"
+                },
+                "Values": {
+                    "$ref": "#/$defs/Values"
+                },
+                "ConditionOverrides": {
+                    "$ref": "#/$defs/ConditionOverrides"
+                }
+            }
+        },
+        "SourceSegmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceSegment"
+            }
+        },
+        "SourceSegment": {
+            "type": "object",
+            "properties": {
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                }
+            }
+        },
+        "IncludeOptions": {
+            "enum": [
+                "ALL",
+                "ANY",
+                "NONE"
+            ]
+        },
+        "CreateSegmentEstimateResponse": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "EstimateId": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "StatusCode": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateSegmentEstimateRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "SegmentQuery": {
+                    "$ref": "#/$defs/SegmentGroupStructure"
+                }
+            }
+        },
+        "SegmentGroupStructure": {
+            "type": "object",
+            "properties": {
+                "Groups": {
+                    "$ref": "#/$defs/SegmentGroupList"
+                },
+                "Include": {
+                    "$ref": "#/$defs/IncludeOptions"
+                }
+            }
+        },
+        "CreateSegmentSnapshotResponse": {
+            "type": "object",
+            "properties": {
+                "SnapshotId": {
+                    "$ref": "#/$defs/uuid"
+                }
+            }
+        },
+        "CreateSegmentSnapshotRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                },
+                "DataFormat": {
+                    "$ref": "#/$defs/DataFormat"
+                },
+                "EncryptionKey": {
+                    "$ref": "#/$defs/encryptionKey"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "DestinationUri": {
                     "$ref": "#/$defs/string1To255"
                 }
             }
         },
-        "Attributes": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/string1To255"
-            }
+        "DataFormat": {
+            "enum": [
+                "CSV",
+                "JSONL",
+                "ORC"
+            ]
         },
         "DeleteCalculatedAttributeDefinitionResponse": {
             "type": "object",
@@ -3377,6 +5107,25 @@
                     "$ref": "#/$defs/name"
                 },
                 "EventStreamName": {
+                    "$ref": "#/$defs/name"
+                }
+            }
+        },
+        "DeleteEventTriggerResponse": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/message"
+                }
+            }
+        },
+        "DeleteEventTriggerRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerName": {
                     "$ref": "#/$defs/name"
                 }
             }
@@ -3488,6 +5237,25 @@
                 }
             }
         },
+        "DeleteSegmentDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/string1To1000"
+                }
+            }
+        },
+        "DeleteSegmentDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                }
+            }
+        },
         "DeleteWorkflowResponse": {
             "type": "object",
             "properties": {}
@@ -3551,9 +5319,6 @@
                 }
             }
         },
-        "text": {
-            "type": "string"
-        },
         "FieldContentType": {
             "enum": [
                 "STRING",
@@ -3597,11 +5362,12 @@
                 "PROFILE",
                 "ASSET",
                 "CASE",
+                "ORDER",
+                "COMMUNICATION_RECORD",
                 "UNIQUE",
                 "SECONDARY",
                 "LOOKUP_ONLY",
-                "NEW_ONLY",
-                "ORDER"
+                "NEW_ONLY"
             ]
         },
         "FieldNameList": {
@@ -3688,6 +5454,9 @@
                 },
                 "Statistic": {
                     "$ref": "#/$defs/Statistic"
+                },
+                "Filter": {
+                    "$ref": "#/$defs/Filter"
                 },
                 "Conditions": {
                     "$ref": "#/$defs/Conditions"
@@ -3857,9 +5626,6 @@
                 "UNHEALTHY"
             ]
         },
-        "string1To1000": {
-            "type": "string"
-        },
         "GetEventStreamRequest": {
             "type": "object",
             "properties": {
@@ -3867,6 +5633,49 @@
                     "$ref": "#/$defs/name"
                 },
                 "EventStreamName": {
+                    "$ref": "#/$defs/name"
+                }
+            }
+        },
+        "GetEventTriggerResponse": {
+            "type": "object",
+            "properties": {
+                "EventTriggerName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ObjectTypeName": {
+                    "$ref": "#/$defs/typeName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
+                },
+                "EventTriggerConditions": {
+                    "$ref": "#/$defs/EventTriggerConditions"
+                },
+                "SegmentFilter": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerLimits": {
+                    "$ref": "#/$defs/EventTriggerLimits"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "GetEventTriggerRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerName": {
                     "$ref": "#/$defs/name"
                 }
             }
@@ -3999,6 +5808,9 @@
                 },
                 "RoleArn": {
                     "$ref": "#/$defs/RoleArn"
+                },
+                "EventTriggerNames": {
+                    "$ref": "#/$defs/EventTriggerNames"
                 }
             }
         },
@@ -4006,6 +5818,12 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/typeName"
+            }
+        },
+        "EventTriggerNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/name"
             }
         },
         "GetIntegrationRequest": {
@@ -4188,6 +6006,221 @@
             "properties": {
                 "TemplateId": {
                     "$ref": "#/$defs/name"
+                }
+            }
+        },
+        "GetSegmentDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
+                },
+                "SegmentGroups": {
+                    "$ref": "#/$defs/SegmentGroup"
+                },
+                "SegmentDefinitionArn": {
+                    "$ref": "#/$defs/SegmentDefinitionArn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "GetSegmentDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                }
+            }
+        },
+        "GetSegmentEstimateResponse": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "EstimateId": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Status": {
+                    "$ref": "#/$defs/EstimateStatus"
+                },
+                "Estimate": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Message": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "EstimateStatus": {
+            "enum": [
+                "RUNNING",
+                "SUCCEEDED",
+                "FAILED"
+            ]
+        },
+        "GetSegmentEstimateRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "EstimateId": {
+                    "$ref": "#/$defs/string1To255"
+                }
+            }
+        },
+        "GetSegmentMembershipResponse": {
+            "type": "object",
+            "properties": {
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                },
+                "Profiles": {
+                    "$ref": "#/$defs/Profiles"
+                },
+                "Failures": {
+                    "$ref": "#/$defs/Failures"
+                }
+            }
+        },
+        "Profiles": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProfileQueryResult"
+            }
+        },
+        "ProfileQueryResult": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ProfileId"
+                },
+                "QueryResult": {
+                    "$ref": "#/$defs/QueryResult"
+                },
+                "Profile": {
+                    "$ref": "#/$defs/Profile"
+                }
+            }
+        },
+        "ProfileId": {
+            "type": "string"
+        },
+        "QueryResult": {
+            "enum": [
+                "PRESENT",
+                "ABSENT"
+            ]
+        },
+        "Failures": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProfileQueryFailures"
+            }
+        },
+        "ProfileQueryFailures": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ProfileId"
+                },
+                "Message": {
+                    "$ref": "#/$defs/GetSegmentMembershipMessage"
+                },
+                "Status": {
+                    "$ref": "#/$defs/GetSegmentMembershipStatus"
+                }
+            }
+        },
+        "GetSegmentMembershipMessage": {
+            "type": "string"
+        },
+        "GetSegmentMembershipStatus": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetSegmentMembershipRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ProfileIds": {
+                    "$ref": "#/$defs/ProfileIds"
+                }
+            }
+        },
+        "ProfileIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/uuid"
+            }
+        },
+        "GetSegmentSnapshotResponse": {
+            "type": "object",
+            "properties": {
+                "SnapshotId": {
+                    "$ref": "#/$defs/uuid"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SegmentSnapshotStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/string1To1000"
+                },
+                "DataFormat": {
+                    "$ref": "#/$defs/DataFormat"
+                },
+                "EncryptionKey": {
+                    "$ref": "#/$defs/encryptionKey"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "DestinationUri": {
+                    "$ref": "#/$defs/string1To255"
+                }
+            }
+        },
+        "SegmentSnapshotStatus": {
+            "enum": [
+                "COMPLETED",
+                "IN_PROGRESS",
+                "FAILED"
+            ]
+        },
+        "GetSegmentSnapshotRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                },
+                "SnapshotId": {
+                    "$ref": "#/$defs/uuid"
                 }
             }
         },
@@ -4468,6 +6501,9 @@
                 },
                 "RoleArn": {
                     "$ref": "#/$defs/RoleArn"
+                },
+                "EventTriggerNames": {
+                    "$ref": "#/$defs/EventTriggerNames"
                 }
             }
         },
@@ -4709,6 +6745,60 @@
                 }
             }
         },
+        "ListEventTriggersResponse": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/EventTriggerSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/token"
+                }
+            }
+        },
+        "EventTriggerSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventTriggerSummaryItem"
+            }
+        },
+        "EventTriggerSummaryItem": {
+            "type": "object",
+            "properties": {
+                "ObjectTypeName": {
+                    "$ref": "#/$defs/typeName"
+                },
+                "EventTriggerName": {
+                    "$ref": "#/$defs/name"
+                },
+                "Description": {
+                    "$ref": "#/$defs/text"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListEventTriggersRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/maxSize100"
+                }
+            }
+        },
         "ListIdentityResolutionJobsResponse": {
             "type": "object",
             "properties": {
@@ -4794,6 +6884,93 @@
                 },
                 "IncludeHidden": {
                     "$ref": "#/$defs/optionalBoolean"
+                }
+            }
+        },
+        "ListObjectTypeAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/ListObjectTypeAttributesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/token"
+                }
+            }
+        },
+        "ListObjectTypeAttributesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListObjectTypeAttributeItem"
+            }
+        },
+        "ListObjectTypeAttributeItem": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/name"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "ListObjectTypeAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/maxSize100"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ObjectTypeName": {
+                    "$ref": "#/$defs/typeName"
+                }
+            }
+        },
+        "ProfileAttributeValuesResponse": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "AttributeName": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Items": {
+                    "$ref": "#/$defs/AttributeValueItemList"
+                },
+                "StatusCode": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "AttributeValueItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttributeValueItem"
+            }
+        },
+        "AttributeValueItem": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/string1To255"
+                }
+            }
+        },
+        "ProfileAttributeValuesRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "AttributeName": {
+                    "$ref": "#/$defs/string1To255"
                 }
             }
         },
@@ -4991,6 +7168,64 @@
                     "$ref": "#/$defs/name"
                 }
             }
+        },
+        "ListSegmentDefinitionsResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/token"
+                },
+                "Items": {
+                    "$ref": "#/$defs/SegmentDefinitionsList"
+                }
+            }
+        },
+        "SegmentDefinitionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SegmentDefinitionItem"
+            }
+        },
+        "SegmentDefinitionItem": {
+            "type": "object",
+            "properties": {
+                "SegmentDefinitionName": {
+                    "$ref": "#/$defs/name"
+                },
+                "DisplayName": {
+                    "$ref": "#/$defs/string1To255"
+                },
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
+                },
+                "SegmentDefinitionArn": {
+                    "$ref": "#/$defs/SegmentDefinitionArn"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListSegmentDefinitionsRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxSize500"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/token"
+                }
+            }
+        },
+        "MaxSize500": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -5214,6 +7449,9 @@
                 },
                 "RoleArn": {
                     "$ref": "#/$defs/RoleArn"
+                },
+                "EventTriggerNames": {
+                    "$ref": "#/$defs/EventTriggerNames"
                 }
             }
         },
@@ -5240,6 +7478,9 @@
                 },
                 "RoleArn": {
                     "$ref": "#/$defs/RoleArn"
+                },
+                "EventTriggerNames": {
+                    "$ref": "#/$defs/EventTriggerNames"
                 }
             }
         },
@@ -5361,109 +7602,6 @@
                 },
                 "NextToken": {
                     "$ref": "#/$defs/token"
-                }
-            }
-        },
-        "ProfileList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Profile"
-            }
-        },
-        "Profile": {
-            "type": "object",
-            "properties": {
-                "ProfileId": {
-                    "$ref": "#/$defs/uuid"
-                },
-                "AccountNumber": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "AdditionalInformation": {
-                    "$ref": "#/$defs/sensitiveString1To1000"
-                },
-                "PartyType": {
-                    "$ref": "#/$defs/PartyType"
-                },
-                "BusinessName": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "FirstName": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "MiddleName": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "LastName": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "BirthDate": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "Gender": {
-                    "$ref": "#/$defs/Gender"
-                },
-                "PhoneNumber": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "MobilePhoneNumber": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "HomePhoneNumber": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "BusinessPhoneNumber": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "EmailAddress": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "PersonalEmailAddress": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "BusinessEmailAddress": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "Address": {
-                    "$ref": "#/$defs/Address"
-                },
-                "ShippingAddress": {
-                    "$ref": "#/$defs/Address"
-                },
-                "MailingAddress": {
-                    "$ref": "#/$defs/Address"
-                },
-                "BillingAddress": {
-                    "$ref": "#/$defs/Address"
-                },
-                "Attributes": {
-                    "$ref": "#/$defs/Attributes"
-                },
-                "FoundByItems": {
-                    "$ref": "#/$defs/foundByList"
-                },
-                "PartyTypeString": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                },
-                "GenderString": {
-                    "$ref": "#/$defs/sensitiveString1To255"
-                }
-            }
-        },
-        "foundByList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/FoundByKeyValue"
-            }
-        },
-        "FoundByKeyValue": {
-            "type": "object",
-            "properties": {
-                "KeyName": {
-                    "$ref": "#/$defs/name"
-                },
-                "Values": {
-                    "$ref": "#/$defs/requestValueList"
                 }
             }
         },
@@ -5662,6 +7800,64 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UpdateEventTriggerResponse": {
+            "type": "object",
+            "properties": {
+                "EventTriggerName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ObjectTypeName": {
+                    "$ref": "#/$defs/typeName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
+                },
+                "EventTriggerConditions": {
+                    "$ref": "#/$defs/EventTriggerConditions"
+                },
+                "SegmentFilter": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerLimits": {
+                    "$ref": "#/$defs/EventTriggerLimits"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UpdateEventTriggerRequest": {
+            "type": "object",
+            "properties": {
+                "DomainName": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerName": {
+                    "$ref": "#/$defs/name"
+                },
+                "ObjectTypeName": {
+                    "$ref": "#/$defs/typeName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/sensitiveText"
+                },
+                "EventTriggerConditions": {
+                    "$ref": "#/$defs/EventTriggerConditions"
+                },
+                "SegmentFilter": {
+                    "$ref": "#/$defs/name"
+                },
+                "EventTriggerLimits": {
+                    "$ref": "#/$defs/EventTriggerLimits"
                 }
             }
         },

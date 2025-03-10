@@ -2063,6 +2063,9 @@
                 },
                 "StorageType": {
                     "$ref": "#/$defs/String"
+                },
+                "MasterUserSecret": {
+                    "$ref": "#/$defs/ClusterMasterUserSecret"
                 }
             }
         },
@@ -2139,6 +2142,20 @@
                 "$ref": "#/$defs/String"
             }
         },
+        "ClusterMasterUserSecret": {
+            "type": "object",
+            "properties": {
+                "SecretArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "SecretStatus": {
+                    "$ref": "#/$defs/String"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "CreateDBClusterMessage": {
             "type": "object",
             "properties": {
@@ -2203,6 +2220,12 @@
                     "$ref": "#/$defs/GlobalClusterIdentifier"
                 },
                 "StorageType": {
+                    "$ref": "#/$defs/String"
+                },
+                "ManageMasterUserPassword": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "MasterUserSecretKmsKeyId": {
                     "$ref": "#/$defs/String"
                 }
             }
@@ -3793,6 +3816,15 @@
                 },
                 "StorageType": {
                     "$ref": "#/$defs/String"
+                },
+                "ManageMasterUserPassword": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "MasterUserSecretKmsKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "RotateMasterUserPassword": {
+                    "$ref": "#/$defs/BooleanOptional"
                 }
             }
         },

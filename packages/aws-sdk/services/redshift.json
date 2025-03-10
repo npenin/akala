@@ -640,6 +640,35 @@
             }
         },
         {
+            "name": "CreateIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftServiceVersion20121201.CreateIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Integration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateIntegrationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateRedshiftIdcApplication",
             "config": {
                 "http": {
@@ -1162,6 +1191,35 @@
             }
         },
         {
+            "name": "DeleteIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftServiceVersion20121201.DeleteIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Integration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIntegrationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeletePartner",
             "config": {
                 "http": {
@@ -1388,6 +1446,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteUsageLimitMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftServiceVersion20121201.DeregisterNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterNamespaceOutputMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterNamespaceInputMessage"
                         }
                     }
                 }
@@ -2084,6 +2171,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeInboundIntegrationsMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeIntegrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftServiceVersion20121201.DescribeIntegrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/IntegrationsMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeIntegrationsMessage"
                         }
                     }
                 }
@@ -3279,6 +3395,35 @@
             }
         },
         {
+            "name": "ModifyIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftServiceVersion20121201.ModifyIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/Integration"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyIntegrationMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ModifyRedshiftIdcApplication",
             "config": {
                 "http": {
@@ -3534,6 +3679,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/RebootClusterMessage"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftServiceVersion20121201.RegisterNamespace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterNamespaceOutputMessage"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterNamespaceInputMessage"
                         }
                     }
                 }
@@ -4063,6 +4237,9 @@
                 },
                 "ManagedBy": {
                     "$ref": "#/$defs/String"
+                },
+                "DataShareType": {
+                    "$ref": "#/$defs/DataShareType"
                 }
             }
         },
@@ -4113,6 +4290,11 @@
         },
         "BooleanOptional": {
             "type": "boolean"
+        },
+        "DataShareType": {
+            "enum": [
+                "INTERNAL"
+            ]
         },
         "AssociateDataShareConsumerMessage": {
             "type": "object",
@@ -5934,6 +6116,122 @@
                 }
             }
         },
+        "Integration": {
+            "type": "object",
+            "properties": {
+                "IntegrationArn": {
+                    "$ref": "#/$defs/IntegrationArn"
+                },
+                "IntegrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/SourceArn"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ZeroETLIntegrationStatus"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/IntegrationErrorList"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AdditionalEncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "IntegrationArn": {
+            "type": "string"
+        },
+        "IntegrationName": {
+            "type": "string"
+        },
+        "SourceArn": {
+            "type": "string"
+        },
+        "TargetArn": {
+            "type": "string"
+        },
+        "ZeroETLIntegrationStatus": {
+            "enum": [
+                "CREATING",
+                "ACTIVE",
+                "MODIFYING",
+                "FAILED",
+                "DELETING",
+                "SYNCING",
+                "NEEDS_ATTENTION"
+            ]
+        },
+        "IntegrationErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IntegrationError"
+            }
+        },
+        "IntegrationError": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Description": {
+            "type": "string"
+        },
+        "EncryptionContextMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "CreateIntegrationMessage": {
+            "type": "object",
+            "properties": {
+                "SourceArn": {
+                    "$ref": "#/$defs/SourceArn"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "IntegrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                },
+                "KMSKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "TagList": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "AdditionalEncryptionContext": {
+                    "$ref": "#/$defs/EncryptionContextMap"
+                },
+                "Description": {
+                    "$ref": "#/$defs/IntegrationDescription"
+                }
+            }
+        },
+        "IntegrationDescription": {
+            "type": "string"
+        },
         "CreateRedshiftIdcApplicationResult": {
             "type": "object",
             "properties": {
@@ -6020,6 +6318,9 @@
             "properties": {
                 "LakeFormation": {
                     "$ref": "#/$defs/LakeFormationServiceIntegrations"
+                },
+                "S3AccessGrants": {
+                    "$ref": "#/$defs/S3AccessGrantsServiceIntegrations"
                 }
             }
         },
@@ -6050,6 +6351,28 @@
                 "ENABLED",
                 "DISABLED"
             ]
+        },
+        "S3AccessGrantsServiceIntegrations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/S3AccessGrantsScopeUnion"
+            }
+        },
+        "S3AccessGrantsScopeUnion": {
+            "type": "object",
+            "properties": {
+                "ReadWriteAccess": {
+                    "$ref": "#/$defs/ReadWriteAccess"
+                }
+            }
+        },
+        "ReadWriteAccess": {
+            "type": "object",
+            "properties": {
+                "Authorization": {
+                    "$ref": "#/$defs/ServiceAuthorization"
+                }
+            }
         },
         "CreateRedshiftIdcApplicationMessage": {
             "type": "object",
@@ -6540,6 +6863,14 @@
                 }
             }
         },
+        "DeleteIntegrationMessage": {
+            "type": "object",
+            "properties": {
+                "IntegrationArn": {
+                    "$ref": "#/$defs/IntegrationArn"
+                }
+            }
+        },
         "DeleteRedshiftIdcApplicationMessage": {
             "type": "object",
             "properties": {
@@ -6603,6 +6934,67 @@
                 "UsageLimitId": {
                     "$ref": "#/$defs/String"
                 }
+            }
+        },
+        "DeregisterNamespaceOutputMessage": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/NamespaceRegistrationStatus"
+                }
+            }
+        },
+        "NamespaceRegistrationStatus": {
+            "enum": [
+                "REGISTERING",
+                "DEREGISTERING"
+            ]
+        },
+        "DeregisterNamespaceInputMessage": {
+            "type": "object",
+            "properties": {
+                "NamespaceIdentifier": {
+                    "$ref": "#/$defs/NamespaceIdentifierUnion"
+                },
+                "ConsumerIdentifiers": {
+                    "$ref": "#/$defs/ConsumerIdentifierList"
+                }
+            }
+        },
+        "NamespaceIdentifierUnion": {
+            "type": "object",
+            "properties": {
+                "ServerlessIdentifier": {
+                    "$ref": "#/$defs/ServerlessIdentifier"
+                },
+                "ProvisionedIdentifier": {
+                    "$ref": "#/$defs/ProvisionedIdentifier"
+                }
+            }
+        },
+        "ServerlessIdentifier": {
+            "type": "object",
+            "properties": {
+                "NamespaceIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "WorkgroupIdentifier": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ProvisionedIdentifier": {
+            "type": "object",
+            "properties": {
+                "ClusterIdentifier": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ConsumerIdentifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
             }
         },
         "AccountAttributeList": {
@@ -7749,13 +8141,13 @@
             "type": "object",
             "properties": {
                 "IntegrationArn": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/InboundIntegrationArn"
                 },
                 "SourceArn": {
                     "$ref": "#/$defs/String"
                 },
                 "TargetArn": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/TargetArn"
                 },
                 "Status": {
                     "$ref": "#/$defs/ZeroETLIntegrationStatus"
@@ -7768,42 +8160,17 @@
                 }
             }
         },
-        "ZeroETLIntegrationStatus": {
-            "enum": [
-                "CREATING",
-                "ACTIVE",
-                "MODIFYING",
-                "FAILED",
-                "DELETING",
-                "SYNCING",
-                "NEEDS_ATTENTION"
-            ]
-        },
-        "IntegrationErrorList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/IntegrationError"
-            }
-        },
-        "IntegrationError": {
-            "type": "object",
-            "properties": {
-                "ErrorCode": {
-                    "$ref": "#/$defs/String"
-                },
-                "ErrorMessage": {
-                    "$ref": "#/$defs/String"
-                }
-            }
+        "InboundIntegrationArn": {
+            "type": "string"
         },
         "DescribeInboundIntegrationsMessage": {
             "type": "object",
             "properties": {
                 "IntegrationArn": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/InboundIntegrationArn"
                 },
                 "TargetArn": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/TargetArn"
                 },
                 "MaxRecords": {
                     "$ref": "#/$defs/IntegerOptional"
@@ -7811,6 +8178,71 @@
                 "Marker": {
                     "$ref": "#/$defs/String"
                 }
+            }
+        },
+        "IntegrationsMessage": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "Integrations": {
+                    "$ref": "#/$defs/IntegrationList"
+                }
+            }
+        },
+        "IntegrationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Integration"
+            }
+        },
+        "DescribeIntegrationsMessage": {
+            "type": "object",
+            "properties": {
+                "IntegrationArn": {
+                    "$ref": "#/$defs/IntegrationArn"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/DescribeIntegrationsFilterList"
+                }
+            }
+        },
+        "DescribeIntegrationsFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DescribeIntegrationsFilter"
+            }
+        },
+        "DescribeIntegrationsFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DescribeIntegrationsFilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/DescribeIntegrationsFilterValueList"
+                }
+            }
+        },
+        "DescribeIntegrationsFilterName": {
+            "enum": [
+                "INTEGRATION_ARN",
+                "SOURCE_ARN",
+                "SOURCE_TYPES",
+                "STATUS"
+            ]
+        },
+        "DescribeIntegrationsFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
             }
         },
         "LoggingStatus": {
@@ -9414,6 +9846,20 @@
                 }
             }
         },
+        "ModifyIntegrationMessage": {
+            "type": "object",
+            "properties": {
+                "IntegrationArn": {
+                    "$ref": "#/$defs/IntegrationArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/IntegrationDescription"
+                },
+                "IntegrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                }
+            }
+        },
         "ModifyRedshiftIdcApplicationResult": {
             "type": "object",
             "properties": {
@@ -9580,6 +10026,25 @@
             "properties": {
                 "ClusterIdentifier": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegisterNamespaceOutputMessage": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/NamespaceRegistrationStatus"
+                }
+            }
+        },
+        "RegisterNamespaceInputMessage": {
+            "type": "object",
+            "properties": {
+                "NamespaceIdentifier": {
+                    "$ref": "#/$defs/NamespaceIdentifierUnion"
+                },
+                "ConsumerIdentifiers": {
+                    "$ref": "#/$defs/ConsumerIdentifierList"
                 }
             }
         },

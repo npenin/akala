@@ -1927,7 +1927,9 @@
                 "AUTHORIZED",
                 "DEAUTHORIZED",
                 "AUTHORIZING",
-                "DEAUTHORIZING"
+                "DEAUTHORIZING",
+                "ACTIVE",
+                "FAILED_CONNECTIVITY"
             ]
         },
         "CreateConnectionRequest": {
@@ -1944,6 +1946,9 @@
                 },
                 "AuthParameters": {
                     "$ref": "#/$defs/CreateConnectionAuthRequestParameters"
+                },
+                "InvocationConnectivityParameters": {
+                    "$ref": "#/$defs/ConnectivityResourceParameters"
                 }
             }
         },
@@ -1974,6 +1979,9 @@
                 },
                 "InvocationHttpParameters": {
                     "$ref": "#/$defs/ConnectionHttpParameters"
+                },
+                "ConnectivityParameters": {
+                    "$ref": "#/$defs/ConnectivityResourceParameters"
                 }
             }
         },
@@ -2134,6 +2142,25 @@
                     "$ref": "#/$defs/AuthHeaderParametersSensitive"
                 }
             }
+        },
+        "ConnectivityResourceParameters": {
+            "type": "object",
+            "properties": {
+                "ResourceParameters": {
+                    "$ref": "#/$defs/ConnectivityResourceConfigurationArn"
+                }
+            }
+        },
+        "ConnectivityResourceConfigurationArn": {
+            "type": "object",
+            "properties": {
+                "ResourceConfigurationArn": {
+                    "$ref": "#/$defs/ResourceConfigurationArn"
+                }
+            }
+        },
+        "ResourceConfigurationArn": {
+            "type": "string"
         },
         "CreateEndpointResponse": {
             "type": "object",
@@ -2628,6 +2655,9 @@
                 "Description": {
                     "$ref": "#/$defs/ConnectionDescription"
                 },
+                "InvocationConnectivityParameters": {
+                    "$ref": "#/$defs/DescribeConnectionConnectivityParameters"
+                },
                 "ConnectionState": {
                     "$ref": "#/$defs/ConnectionState"
                 },
@@ -2654,6 +2684,28 @@
                 }
             }
         },
+        "DescribeConnectionConnectivityParameters": {
+            "type": "object",
+            "properties": {
+                "ResourceParameters": {
+                    "$ref": "#/$defs/DescribeConnectionResourceParameters"
+                }
+            }
+        },
+        "DescribeConnectionResourceParameters": {
+            "type": "object",
+            "properties": {
+                "ResourceConfigurationArn": {
+                    "$ref": "#/$defs/ResourceConfigurationArn"
+                },
+                "ResourceAssociationArn": {
+                    "$ref": "#/$defs/ResourceAssociationArn"
+                }
+            }
+        },
+        "ResourceAssociationArn": {
+            "type": "string"
+        },
         "ConnectionStateReason": {
             "type": "string"
         },
@@ -2674,6 +2726,9 @@
                 },
                 "InvocationHttpParameters": {
                     "$ref": "#/$defs/ConnectionHttpParameters"
+                },
+                "ConnectivityParameters": {
+                    "$ref": "#/$defs/DescribeConnectionConnectivityParameters"
                 }
             }
         },
@@ -4838,6 +4893,9 @@
                 },
                 "AuthParameters": {
                     "$ref": "#/$defs/UpdateConnectionAuthRequestParameters"
+                },
+                "InvocationConnectivityParameters": {
+                    "$ref": "#/$defs/ConnectivityResourceParameters"
                 }
             }
         },
@@ -4855,6 +4913,9 @@
                 },
                 "InvocationHttpParameters": {
                     "$ref": "#/$defs/ConnectionHttpParameters"
+                },
+                "ConnectivityParameters": {
+                    "$ref": "#/$defs/ConnectivityResourceParameters"
                 }
             }
         },

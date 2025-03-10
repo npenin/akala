@@ -299,6 +299,9 @@
                 "RequestToken": {
                     "$ref": "#/$defs/RequestToken"
                 },
+                "HooksRequestToken": {
+                    "$ref": "#/$defs/RequestToken"
+                },
                 "Operation": {
                     "$ref": "#/$defs/Operation"
                 },
@@ -467,8 +470,58 @@
             "properties": {
                 "ProgressEvent": {
                     "$ref": "#/$defs/ProgressEvent"
+                },
+                "HooksProgressEvent": {
+                    "$ref": "#/$defs/HooksProgressEvent"
                 }
             }
+        },
+        "HooksProgressEvent": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HookProgressEvent"
+            }
+        },
+        "HookProgressEvent": {
+            "type": "object",
+            "properties": {
+                "HookTypeName": {
+                    "$ref": "#/$defs/TypeName"
+                },
+                "HookTypeVersionId": {
+                    "$ref": "#/$defs/TypeVersionId"
+                },
+                "HookTypeArn": {
+                    "$ref": "#/$defs/HookTypeArn"
+                },
+                "InvocationPoint": {
+                    "$ref": "#/$defs/HookInvocationPoint"
+                },
+                "HookStatus": {
+                    "$ref": "#/$defs/HookStatus"
+                },
+                "HookEventTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "HookStatusMessage": {
+                    "$ref": "#/$defs/StatusMessage"
+                },
+                "FailureMode": {
+                    "$ref": "#/$defs/HookFailureMode"
+                }
+            }
+        },
+        "HookTypeArn": {
+            "type": "string"
+        },
+        "HookInvocationPoint": {
+            "type": "string"
+        },
+        "HookStatus": {
+            "type": "string"
+        },
+        "HookFailureMode": {
+            "type": "string"
         },
         "GetResourceRequestStatusInput": {
             "type": "object",

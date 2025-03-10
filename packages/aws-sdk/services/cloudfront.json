@@ -80,6 +80,41 @@
             }
         },
         {
+            "name": "CreateAnycastIpList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2020-05-31/anycast-ip-list"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAnycastIpListResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAnycastIpListRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateCachePolicy",
             "config": {
                 "http": {
@@ -753,6 +788,80 @@
             }
         },
         {
+            "name": "CreateVpcOrigin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2020-05-31/vpc-origin"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateVpcOriginResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateVpcOriginRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAnycastIpList",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/2020-05-31/anycast-ip-list/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAnycastIpListRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteCachePolicy",
             "config": {
                 "http": {
@@ -1373,6 +1482,45 @@
             }
         },
         {
+            "name": "DeleteVpcOrigin",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/2020-05-31/vpc-origin/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteVpcOriginResult"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVpcOriginRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeFunction",
             "config": {
                 "http": {
@@ -1435,6 +1583,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeKeyValueStoreRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAnycastIpList",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/anycast-ip-list/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAnycastIpListResult"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAnycastIpListRequest"
                         }
                     }
                 },
@@ -2541,6 +2728,80 @@
             }
         },
         {
+            "name": "GetVpcOrigin",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/vpc-origin/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetVpcOriginResult"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetVpcOriginRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAnycastIpLists",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/anycast-ip-list"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAnycastIpListsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAnycastIpListsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListCachePolicies",
             "config": {
                 "http": {
@@ -2700,6 +2961,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListDistributionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDistributionsByAnycastIpListId",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AnycastIpListId": "route.AnycastIpListId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByAnycastIpListId/{AnycastIpListId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDistributionsByAnycastIpListIdResult"
+                    },
+                    "inject": [
+                        "param.0.AnycastIpListId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDistributionsByAnycastIpListIdRequest"
                         }
                     }
                 },
@@ -2891,6 +3191,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListDistributionsByResponseHeadersPolicyIdRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDistributionsByVpcOriginId",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "VpcOriginId": "route.VpcOriginId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByVpcOriginId/{VpcOriginId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDistributionsByVpcOriginIdResult"
+                    },
+                    "inject": [
+                        "param.0.VpcOriginId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDistributionsByVpcOriginIdRequest"
                         }
                     }
                 },
@@ -3389,6 +3728,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListVpcOrigins",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/vpc-origin"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListVpcOriginsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListVpcOriginsRequest"
                         }
                     }
                 },
@@ -4171,6 +4545,45 @@
                     }
                 }
             }
+        },
+        {
+            "name": "UpdateVpcOrigin",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/2020-05-31/vpc-origin/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateVpcOriginResult"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateVpcOriginRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -4431,6 +4844,9 @@
                 },
                 "Staging": {
                     "$ref": "#/$defs/boolean"
+                },
+                "AnycastIpListId": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -4488,6 +4904,9 @@
                 },
                 "CustomOriginConfig": {
                     "$ref": "#/$defs/CustomOriginConfig"
+                },
+                "VpcOriginConfig": {
+                    "$ref": "#/$defs/VpcOriginConfig"
                 },
                 "ConnectionAttempts": {
                     "$ref": "#/$defs/integer"
@@ -4597,6 +5016,20 @@
                 "TLSv1_2"
             ]
         },
+        "VpcOriginConfig": {
+            "type": "object",
+            "properties": {
+                "VpcOriginId": {
+                    "$ref": "#/$defs/string"
+                },
+                "OriginReadTimeout": {
+                    "$ref": "#/$defs/integer"
+                },
+                "OriginKeepaliveTimeout": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
         "OriginShield": {
             "type": "object",
             "properties": {
@@ -4639,6 +5072,9 @@
                 },
                 "Members": {
                     "$ref": "#/$defs/OriginGroupMembers"
+                },
+                "SelectionCriteria": {
+                    "$ref": "#/$defs/OriginGroupSelectionCriteria"
                 }
             }
         },
@@ -4692,6 +5128,12 @@
                 }
             }
         },
+        "OriginGroupSelectionCriteria": {
+            "enum": [
+                "Default",
+                "MediaQualityBased"
+            ]
+        },
         "DefaultCacheBehavior": {
             "type": "object",
             "properties": {
@@ -4736,6 +5178,9 @@
                 },
                 "ResponseHeadersPolicyId": {
                     "$ref": "#/$defs/string"
+                },
+                "GrpcConfig": {
+                    "$ref": "#/$defs/GrpcConfig"
                 },
                 "ForwardedValues": {
                     "$ref": "#/$defs/ForwardedValues"
@@ -4913,6 +5358,14 @@
         "FunctionARN": {
             "type": "string"
         },
+        "GrpcConfig": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
         "ForwardedValues": {
             "type": "object",
             "properties": {
@@ -5067,6 +5520,9 @@
                 },
                 "ResponseHeadersPolicyId": {
                     "$ref": "#/$defs/string"
+                },
+                "GrpcConfig": {
+                    "$ref": "#/$defs/GrpcConfig"
                 },
                 "ForwardedValues": {
                     "$ref": "#/$defs/ForwardedValues"
@@ -5280,6 +5736,97 @@
                     "$ref": "#/$defs/boolean"
                 }
             }
+        },
+        "CreateAnycastIpListResult": {
+            "type": "object",
+            "properties": {
+                "AnycastIpList": {
+                    "$ref": "#/$defs/AnycastIpList"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "AnycastIpList": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AnycastIpListName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "AnycastIps": {
+                    "$ref": "#/$defs/AnycastIps"
+                },
+                "IpCount": {
+                    "$ref": "#/$defs/integer"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "AnycastIpListName": {
+            "type": "string"
+        },
+        "AnycastIps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string"
+            }
+        },
+        "CreateAnycastIpListRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/AnycastIpListName"
+                },
+                "IpCount": {
+                    "$ref": "#/$defs/integer"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
         },
         "CreateCachePolicyResult": {
             "type": "object",
@@ -5657,37 +6204,6 @@
                     "$ref": "#/$defs/Tags"
                 }
             }
-        },
-        "Tags": {
-            "type": "object",
-            "properties": {
-                "Items": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
-        "TagList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Tag"
-            }
-        },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "$ref": "#/$defs/TagKey"
-                },
-                "Value": {
-                    "$ref": "#/$defs/TagValue"
-                }
-            }
-        },
-        "TagKey": {
-            "type": "string"
-        },
-        "TagValue": {
-            "type": "string"
         },
         "CreateFieldLevelEncryptionConfigResult": {
             "type": "object",
@@ -7098,6 +7614,88 @@
                 }
             }
         },
+        "CreateVpcOriginResult": {
+            "type": "object",
+            "properties": {
+                "VpcOrigin": {
+                    "$ref": "#/$defs/VpcOrigin"
+                },
+                "Location": {
+                    "$ref": "#/$defs/string"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "VpcOrigin": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "VpcOriginEndpointConfig": {
+                    "$ref": "#/$defs/VpcOriginEndpointConfig"
+                }
+            }
+        },
+        "VpcOriginEndpointConfig": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "HTTPPort": {
+                    "$ref": "#/$defs/integer"
+                },
+                "HTTPSPort": {
+                    "$ref": "#/$defs/integer"
+                },
+                "OriginProtocolPolicy": {
+                    "$ref": "#/$defs/OriginProtocolPolicy"
+                },
+                "OriginSslProtocols": {
+                    "$ref": "#/$defs/OriginSslProtocols"
+                }
+            }
+        },
+        "CreateVpcOriginRequest": {
+            "type": "object",
+            "properties": {
+                "VpcOriginEndpointConfig": {
+                    "$ref": "#/$defs/VpcOriginEndpointConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "DeleteAnycastIpListRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
         "DeleteCachePolicyRequest": {
             "type": "object",
             "properties": {
@@ -7275,6 +7873,28 @@
                 }
             }
         },
+        "DeleteVpcOriginResult": {
+            "type": "object",
+            "properties": {
+                "VpcOrigin": {
+                    "$ref": "#/$defs/VpcOrigin"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DeleteVpcOriginRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
         "DescribeFunctionResult": {
             "type": "object",
             "properties": {
@@ -7313,6 +7933,25 @@
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/KeyValueStoreName"
+                }
+            }
+        },
+        "GetAnycastIpListResult": {
+            "type": "object",
+            "properties": {
+                "AnycastIpList": {
+                    "$ref": "#/$defs/AnycastIpList"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetAnycastIpListRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -7851,6 +8490,96 @@
                 }
             }
         },
+        "GetVpcOriginResult": {
+            "type": "object",
+            "properties": {
+                "VpcOrigin": {
+                    "$ref": "#/$defs/VpcOrigin"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetVpcOriginRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListAnycastIpListsResult": {
+            "type": "object",
+            "properties": {
+                "AnycastIpLists": {
+                    "$ref": "#/$defs/AnycastIpListCollection"
+                }
+            }
+        },
+        "AnycastIpListCollection": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/AnycastIpListSummaries"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                },
+                "IsTruncated": {
+                    "$ref": "#/$defs/boolean"
+                },
+                "Quantity": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
+        "AnycastIpListSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnycastIpListSummary"
+            }
+        },
+        "AnycastIpListSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AnycastIpListName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "IpCount": {
+                    "$ref": "#/$defs/integer"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "ListAnycastIpListsRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
         "ListCachePoliciesResult": {
             "type": "object",
             "properties": {
@@ -8199,6 +8928,9 @@
                 },
                 "Staging": {
                     "$ref": "#/$defs/boolean"
+                },
+                "AnycastIpListId": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -8210,6 +8942,28 @@
                 },
                 "MaxItems": {
                     "$ref": "#/$defs/integer"
+                }
+            }
+        },
+        "ListDistributionsByAnycastIpListIdResult": {
+            "type": "object",
+            "properties": {
+                "DistributionList": {
+                    "$ref": "#/$defs/DistributionList"
+                }
+            }
+        },
+        "ListDistributionsByAnycastIpListIdRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                },
+                "AnycastIpListId": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -8351,6 +9105,28 @@
                     "$ref": "#/$defs/integer"
                 },
                 "ResponseHeadersPolicyId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListDistributionsByVpcOriginIdResult": {
+            "type": "object",
+            "properties": {
+                "DistributionIdList": {
+                    "$ref": "#/$defs/DistributionIdList"
+                }
+            }
+        },
+        "ListDistributionsByVpcOriginIdRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                },
+                "VpcOriginId": {
                     "$ref": "#/$defs/string"
                 }
             }
@@ -9113,6 +9889,80 @@
         "ResourceARN": {
             "type": "string"
         },
+        "ListVpcOriginsResult": {
+            "type": "object",
+            "properties": {
+                "VpcOriginList": {
+                    "$ref": "#/$defs/VpcOriginList"
+                }
+            }
+        },
+        "VpcOriginList": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                },
+                "IsTruncated": {
+                    "$ref": "#/$defs/boolean"
+                },
+                "Quantity": {
+                    "$ref": "#/$defs/integer"
+                },
+                "Items": {
+                    "$ref": "#/$defs/VpcOriginSummaryList"
+                }
+            }
+        },
+        "VpcOriginSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VpcOriginSummary"
+            }
+        },
+        "VpcOriginSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "OriginEndpointArn": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListVpcOriginsRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
         "PublishFunctionResult": {
             "type": "object",
             "properties": {
@@ -9620,6 +10470,31 @@
             "properties": {
                 "StreamingDistributionConfig": {
                     "$ref": "#/$defs/StreamingDistributionConfig"
+                },
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "UpdateVpcOriginResult": {
+            "type": "object",
+            "properties": {
+                "VpcOrigin": {
+                    "$ref": "#/$defs/VpcOrigin"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "UpdateVpcOriginRequest": {
+            "type": "object",
+            "properties": {
+                "VpcOriginEndpointConfig": {
+                    "$ref": "#/$defs/VpcOriginEndpointConfig"
                 },
                 "Id": {
                     "$ref": "#/$defs/string"

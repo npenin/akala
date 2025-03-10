@@ -51,12 +51,6 @@
         "endpoint": {
             "version": "1.0",
             "parameters": {
-                "Region": {
-                    "builtIn": "AWS::Region",
-                    "required": false,
-                    "documentation": "The AWS region used to dispatch the request.",
-                    "type": "String"
-                },
                 "UseDualStack": {
                     "builtIn": "AWS::UseDualStack",
                     "required": true,
@@ -75,6 +69,12 @@
                     "builtIn": "SDK::Endpoint",
                     "required": false,
                     "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                },
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
                     "type": "String"
                 }
             },
@@ -227,18 +227,19 @@
                                                     "rules": [
                                                         {
                                                             "conditions": [],
-                                                            "rules": [
-                                                                {
-                                                                    "conditions": [],
-                                                                    "endpoint": {
-                                                                        "url": "https://artifact-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                                        "properties": {},
-                                                                        "headers": {}
-                                                                    },
-                                                                    "type": "endpoint"
-                                                                }
-                                                            ],
-                                                            "type": "tree"
+                                                            "endpoint": {
+                                                                "url": "https://artifact-fips.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "properties": {
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "name": "sigv4",
+                                                                            "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
                                                         }
                                                     ],
                                                     "type": "tree"
@@ -260,6 +261,15 @@
                                                             "ref": "UseFIPS"
                                                         },
                                                         true
+                                                    ]
+                                                },
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseDualStack"
+                                                        },
+                                                        false
                                                     ]
                                                 }
                                             ],
@@ -285,18 +295,19 @@
                                                     "rules": [
                                                         {
                                                             "conditions": [],
-                                                            "rules": [
-                                                                {
-                                                                    "conditions": [],
-                                                                    "endpoint": {
-                                                                        "url": "https://artifact-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                                        "properties": {},
-                                                                        "headers": {}
-                                                                    },
-                                                                    "type": "endpoint"
-                                                                }
-                                                            ],
-                                                            "type": "tree"
+                                                            "endpoint": {
+                                                                "url": "https://artifact-fips.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dnsSuffix}",
+                                                                "properties": {
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "name": "sigv4",
+                                                                            "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
                                                         }
                                                     ],
                                                     "type": "tree"
@@ -311,6 +322,15 @@
                                         },
                                         {
                                             "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        false
+                                                    ]
+                                                },
                                                 {
                                                     "fn": "booleanEquals",
                                                     "argv": [
@@ -343,18 +363,19 @@
                                                     "rules": [
                                                         {
                                                             "conditions": [],
-                                                            "rules": [
-                                                                {
-                                                                    "conditions": [],
-                                                                    "endpoint": {
-                                                                        "url": "https://artifact.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                                        "properties": {},
-                                                                        "headers": {}
-                                                                    },
-                                                                    "type": "endpoint"
-                                                                }
-                                                            ],
-                                                            "type": "tree"
+                                                            "endpoint": {
+                                                                "url": "https://artifact.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
+                                                                "properties": {
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "name": "sigv4",
+                                                                            "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
                                                         }
                                                     ],
                                                     "type": "tree"
@@ -369,18 +390,19 @@
                                         },
                                         {
                                             "conditions": [],
-                                            "rules": [
-                                                {
-                                                    "conditions": [],
-                                                    "endpoint": {
-                                                        "url": "https://artifact.{Region}.{PartitionResult#dnsSuffix}",
-                                                        "properties": {},
-                                                        "headers": {}
-                                                    },
-                                                    "type": "endpoint"
-                                                }
-                                            ],
-                                            "type": "tree"
+                                            "endpoint": {
+                                                "url": "https://artifact.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dnsSuffix}",
+                                                "properties": {
+                                                    "authSchemes": [
+                                                        {
+                                                            "name": "sigv4",
+                                                            "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                        }
+                                                    ]
+                                                },
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
                                         }
                                     ],
                                     "type": "tree"

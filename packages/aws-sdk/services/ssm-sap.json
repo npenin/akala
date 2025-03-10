@@ -1817,6 +1817,9 @@
                 },
                 "DatabaseArn": {
                     "$ref": "#/$defs/SsmSapArn"
+                },
+                "ComponentsInfo": {
+                    "$ref": "#/$defs/ComponentInfoList"
                 }
             }
         },
@@ -1828,6 +1831,26 @@
         },
         "InstanceId": {
             "type": "string"
+        },
+        "ComponentInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComponentInfo"
+            }
+        },
+        "ComponentInfo": {
+            "type": "object",
+            "properties": {
+                "ComponentType": {
+                    "$ref": "#/$defs/ComponentType"
+                },
+                "Sid": {
+                    "$ref": "#/$defs/SID"
+                },
+                "Ec2InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
         },
         "StartApplicationOutput": {
             "type": "object",

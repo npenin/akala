@@ -4746,6 +4746,9 @@
                 },
                 "FragmentIntervalMS": {
                     "$ref": "#/$defs/FragmentIntervalMS"
+                },
+                "Descriptor": {
+                    "$ref": "#/$defs/FileDescriptor"
                 }
             }
         },
@@ -4795,6 +4798,9 @@
             "type": "integer",
             "format": "int32"
         },
+        "FileDescriptor": {
+            "type": "string"
+        },
         "CreateMulticastGroupResponse": {
             "type": "object",
             "properties": {
@@ -4840,6 +4846,9 @@
                 },
                 "DlClass": {
                     "$ref": "#/$defs/DlClass"
+                },
+                "ParticipatingGateways": {
+                    "$ref": "#/$defs/ParticipatingGatewaysMulticast"
                 }
             }
         },
@@ -4848,6 +4857,27 @@
                 "ClassB",
                 "ClassC"
             ]
+        },
+        "ParticipatingGatewaysMulticast": {
+            "type": "object",
+            "properties": {
+                "GatewayList": {
+                    "$ref": "#/$defs/GatewayListMulticast"
+                },
+                "TransmissionInterval": {
+                    "$ref": "#/$defs/TransmissionIntervalMulticast"
+                }
+            }
+        },
+        "GatewayListMulticast": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WirelessGatewayId"
+            }
+        },
+        "TransmissionIntervalMulticast": {
+            "type": "integer",
+            "format": "int32"
         },
         "CreateNetworkAnalyzerConfigurationResponse": {
             "type": "object",
@@ -6104,6 +6134,9 @@
                 },
                 "FragmentIntervalMS": {
                     "$ref": "#/$defs/FragmentIntervalMS"
+                },
+                "Descriptor": {
+                    "$ref": "#/$defs/FileDescriptor"
                 }
             }
         },
@@ -6154,6 +6187,9 @@
                 },
                 "WirelessDeviceLogOptions": {
                     "$ref": "#/$defs/WirelessDeviceLogOptionList"
+                },
+                "FuotaTaskLogOptions": {
+                    "$ref": "#/$defs/FuotaTaskLogOptionList"
                 }
             }
         },
@@ -6249,6 +6285,53 @@
                 "Uplink_Data",
                 "Downlink_Data",
                 "Registration"
+            ]
+        },
+        "FuotaTaskLogOptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FuotaTaskLogOption"
+            }
+        },
+        "FuotaTaskLogOption": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/FuotaTaskType"
+                },
+                "LogLevel": {
+                    "$ref": "#/$defs/LogLevel"
+                },
+                "Events": {
+                    "$ref": "#/$defs/FuotaTaskEventLogOptionList"
+                }
+            }
+        },
+        "FuotaTaskType": {
+            "enum": [
+                "LoRaWAN"
+            ]
+        },
+        "FuotaTaskEventLogOptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FuotaTaskEventLogOption"
+            }
+        },
+        "FuotaTaskEventLogOption": {
+            "type": "object",
+            "properties": {
+                "Event": {
+                    "$ref": "#/$defs/FuotaTaskEvent"
+                },
+                "LogLevel": {
+                    "$ref": "#/$defs/LogLevel"
+                }
+            }
+        },
+        "FuotaTaskEvent": {
+            "enum": [
+                "Fuota"
             ]
         },
         "GetLogLevelsByResourceTypesRequest": {
@@ -6568,6 +6651,9 @@
                 },
                 "NumberOfDevicesInGroup": {
                     "$ref": "#/$defs/NumberOfDevicesInGroup"
+                },
+                "ParticipatingGateways": {
+                    "$ref": "#/$defs/ParticipatingGatewaysMulticast"
                 }
             }
         },
@@ -7625,6 +7711,7 @@
             "enum": [
                 "PartnerAccountId",
                 "DevEui",
+                "FuotaTaskId",
                 "GatewayEui",
                 "WirelessDeviceId",
                 "WirelessGatewayId"
@@ -8667,6 +8754,7 @@
         },
         "EventNotificationResourceType": {
             "enum": [
+                "FuotaTask",
                 "SidewalkAccount",
                 "WirelessDevice",
                 "WirelessGateway"
@@ -9884,6 +9972,9 @@
                 },
                 "FragmentIntervalMS": {
                     "$ref": "#/$defs/FragmentIntervalMS"
+                },
+                "Descriptor": {
+                    "$ref": "#/$defs/FileDescriptor"
                 }
             }
         },
@@ -9896,6 +9987,9 @@
             "properties": {
                 "DefaultLogLevel": {
                     "$ref": "#/$defs/LogLevel"
+                },
+                "FuotaTaskLogOptions": {
+                    "$ref": "#/$defs/FuotaTaskLogOptionList"
                 },
                 "WirelessDeviceLogOptions": {
                     "$ref": "#/$defs/WirelessDeviceLogOptionList"

@@ -1712,6 +1712,9 @@
                 "LastUpdateTime": {
                     "$ref": "#/$defs/DateTime"
                 },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
                 "InputType": {
                     "$ref": "#/$defs/InputType"
                 }
@@ -1906,6 +1909,29 @@
             "type": "string",
             "format": "date-time"
         },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
         "InputType": {
             "enum": [
                 "REAL_TIME",
@@ -1920,6 +1946,9 @@
                 },
                 "Rules": {
                     "$ref": "#/$defs/RuleList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 },
                 "InputType": {
                     "$ref": "#/$defs/InputType"
@@ -2012,29 +2041,6 @@
                     "$ref": "#/$defs/TagList"
                 }
             }
-        },
-        "TagList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Tag"
-            }
-        },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "$ref": "#/$defs/TagKey"
-                },
-                "Value": {
-                    "$ref": "#/$defs/TagValue"
-                }
-            }
-        },
-        "TagKey": {
-            "type": "string"
-        },
-        "TagValue": {
-            "type": "string"
         },
         "CreateMedicalVocabularyResponse": {
             "type": "object",
@@ -2502,6 +2508,9 @@
                 },
                 "ChannelDefinitions": {
                     "$ref": "#/$defs/ChannelDefinitions"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
         },
@@ -2839,12 +2848,29 @@
                 },
                 "VocabularyFilterMethod": {
                     "$ref": "#/$defs/VocabularyFilterMethod"
+                },
+                "ClinicalNoteGenerationSettings": {
+                    "$ref": "#/$defs/ClinicalNoteGenerationSettings"
                 }
             }
         },
         "MaxSpeakers": {
             "type": "integer",
             "format": "int32"
+        },
+        "ClinicalNoteGenerationSettings": {
+            "type": "object",
+            "properties": {
+                "NoteTemplate": {
+                    "$ref": "#/$defs/MedicalScribeNoteTemplate"
+                }
+            }
+        },
+        "MedicalScribeNoteTemplate": {
+            "enum": [
+                "HISTORY_AND_PHYSICAL",
+                "GIRPP"
+            ]
         },
         "MedicalScribeChannelDefinitions": {
             "type": "array",
@@ -3869,6 +3895,9 @@
                 },
                 "Settings": {
                     "$ref": "#/$defs/CallAnalyticsJobSettings"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 },
                 "ChannelDefinitions": {
                     "$ref": "#/$defs/ChannelDefinitions"

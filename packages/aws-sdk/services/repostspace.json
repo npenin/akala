@@ -2,6 +2,84 @@
     "name": "repostspace",
     "commands": [
         {
+            "name": "BatchAddRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "spaceId": "route.spaceId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/spaces/{spaceId}/roles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchAddRoleOutput"
+                    },
+                    "inject": [
+                        "param.0.spaceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchAddRoleInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchRemoveRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "spaceId": "route.spaceId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/spaces/{spaceId}/roles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchRemoveRoleOutput"
+                    },
+                    "inject": [
+                        "param.0.spaceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchRemoveRoleInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateSpace",
             "config": {
                 "http": {
@@ -473,6 +551,103 @@
             "type": "string",
             "format": "binary"
         },
+        "BatchAddRoleOutput": {
+            "type": "object",
+            "properties": {
+                "addedAccessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchErrorList"
+                }
+            }
+        },
+        "AccessorIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessorId"
+            }
+        },
+        "AccessorId": {
+            "type": "string"
+        },
+        "BatchErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchError"
+            }
+        },
+        "BatchError": {
+            "type": "object",
+            "properties": {
+                "accessorId": {
+                    "$ref": "#/$defs/AccessorId"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorCode": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "BatchAddRoleInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "accessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "role": {
+                    "$ref": "#/$defs/Role"
+                }
+            }
+        },
+        "SpaceId": {
+            "type": "string"
+        },
+        "Role": {
+            "enum": [
+                "EXPERT",
+                "MODERATOR",
+                "ADMINISTRATOR",
+                "SUPPORTREQUESTOR"
+            ]
+        },
+        "BatchRemoveRoleOutput": {
+            "type": "object",
+            "properties": {
+                "removedAccessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchErrorList"
+                }
+            }
+        },
+        "BatchRemoveRoleInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "accessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "role": {
+                    "$ref": "#/$defs/Role"
+                }
+            }
+        },
         "CreateSpaceOutput": {
             "type": "object",
             "properties": {
@@ -480,9 +655,6 @@
                     "$ref": "#/$defs/SpaceId"
                 }
             }
-        },
-        "SpaceId": {
-            "type": "string"
         },
         "CreateSpaceInput": {
             "type": "object",
@@ -616,6 +788,9 @@
                 "groupAdmins": {
                     "$ref": "#/$defs/GroupAdmins"
                 },
+                "roles": {
+                    "$ref": "#/$defs/Roles"
+                },
                 "userKMSKey": {
                     "$ref": "#/$defs/KMSKey"
                 },
@@ -663,6 +838,18 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/AdminId"
+            }
+        },
+        "Roles": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/RoleList"
+            }
+        },
+        "RoleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Role"
             }
         },
         "UserCount": {
@@ -809,15 +996,6 @@
                     "$ref": "#/$defs/InviteBody"
                 }
             }
-        },
-        "AccessorIdList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AccessorId"
-            }
-        },
-        "AccessorId": {
-            "type": "string"
         },
         "InviteTitle": {
             "type": "string"

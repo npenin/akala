@@ -3078,6 +3078,12 @@
                 },
                 "EventSourceMappingArn": {
                     "$ref": "#/$defs/EventSourceMappingArn"
+                },
+                "MetricsConfig": {
+                    "$ref": "#/$defs/EventSourceMappingMetricsConfig"
+                },
+                "ProvisionedPollerConfig": {
+                    "$ref": "#/$defs/ProvisionedPollerConfig"
                 }
             }
         },
@@ -3335,6 +3341,44 @@
         "EventSourceMappingArn": {
             "type": "string"
         },
+        "EventSourceMappingMetricsConfig": {
+            "type": "object",
+            "properties": {
+                "Metrics": {
+                    "$ref": "#/$defs/EventSourceMappingMetricList"
+                }
+            }
+        },
+        "EventSourceMappingMetricList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventSourceMappingMetric"
+            }
+        },
+        "EventSourceMappingMetric": {
+            "enum": [
+                "EventCount"
+            ]
+        },
+        "ProvisionedPollerConfig": {
+            "type": "object",
+            "properties": {
+                "MinimumPollers": {
+                    "$ref": "#/$defs/MinimumNumberOfPollers"
+                },
+                "MaximumPollers": {
+                    "$ref": "#/$defs/MaximumNumberOfPollers"
+                }
+            }
+        },
+        "MinimumNumberOfPollers": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaximumNumberOfPollers": {
+            "type": "integer",
+            "format": "int32"
+        },
         "CreateEventSourceMappingRequest": {
             "type": "object",
             "properties": {
@@ -3412,6 +3456,12 @@
                 },
                 "KMSKeyArn": {
                     "$ref": "#/$defs/KMSKeyArn"
+                },
+                "MetricsConfig": {
+                    "$ref": "#/$defs/EventSourceMappingMetricsConfig"
+                },
+                "ProvisionedPollerConfig": {
+                    "$ref": "#/$defs/ProvisionedPollerConfig"
                 }
             }
         },
@@ -3576,7 +3626,9 @@
                 "nodejs20x",
                 "providedal2023",
                 "python312",
-                "java21"
+                "java21",
+                "python313",
+                "nodejs22x"
             ]
         },
         "RoleArn": {
@@ -4080,6 +4132,9 @@
                 },
                 "ImageUri": {
                     "$ref": "#/$defs/String"
+                },
+                "SourceKMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
                 }
             }
         },
@@ -4458,6 +4513,9 @@
                 "Tags": {
                     "$ref": "#/$defs/Tags"
                 },
+                "TagsError": {
+                    "$ref": "#/$defs/TagsError"
+                },
                 "Concurrency": {
                     "$ref": "#/$defs/Concurrency"
                 }
@@ -4477,8 +4535,28 @@
                 },
                 "ResolvedImageUri": {
                     "$ref": "#/$defs/String"
+                },
+                "SourceKMSKeyArn": {
+                    "$ref": "#/$defs/String"
                 }
             }
+        },
+        "TagsError": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/TagsErrorCode"
+                },
+                "Message": {
+                    "$ref": "#/$defs/TagsErrorMessage"
+                }
+            }
+        },
+        "TagsErrorCode": {
+            "type": "string"
+        },
+        "TagsErrorMessage": {
+            "type": "string"
         },
         "Concurrency": {
             "type": "object",
@@ -5913,6 +5991,12 @@
                 },
                 "KMSKeyArn": {
                     "$ref": "#/$defs/KMSKeyArn"
+                },
+                "MetricsConfig": {
+                    "$ref": "#/$defs/EventSourceMappingMetricsConfig"
+                },
+                "ProvisionedPollerConfig": {
+                    "$ref": "#/$defs/ProvisionedPollerConfig"
                 }
             }
         },
@@ -5948,6 +6032,9 @@
                 },
                 "Architectures": {
                     "$ref": "#/$defs/ArchitecturesList"
+                },
+                "SourceKMSKeyArn": {
+                    "$ref": "#/$defs/KMSKeyArn"
                 }
             }
         },

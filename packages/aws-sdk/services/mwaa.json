@@ -193,6 +193,45 @@
             }
         },
         {
+            "name": "InvokeRestApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/restapi/{Name}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeRestApiResponse"
+                    },
+                    "inject": [
+                        "param.0.Name",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeRestApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListEnvironments",
             "config": {
                 "http": {
@@ -980,6 +1019,45 @@
                 }
             }
         },
+        "InvokeRestApiResponse": {
+            "type": "object",
+            "properties": {
+                "RestApiStatusCode": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "RestApiResponse": {
+                    "$ref": "#/$defs/RestApiResponse"
+                }
+            }
+        },
+        "RestApiResponse": {},
+        "InvokeRestApiRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "Path": {
+                    "$ref": "#/$defs/RestApiPath"
+                },
+                "Method": {
+                    "$ref": "#/$defs/RestApiMethod"
+                },
+                "QueryParameters": {
+                    "$ref": "#/$defs/smithy.api#Document"
+                },
+                "Body": {
+                    "$ref": "#/$defs/RestApiRequestBody"
+                }
+            }
+        },
+        "RestApiPath": {
+            "type": "string"
+        },
+        "RestApiMethod": {
+            "type": "string"
+        },
+        "RestApiRequestBody": {},
         "ListEnvironmentsOutput": {
             "type": "object",
             "properties": {

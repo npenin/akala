@@ -709,6 +709,45 @@
             }
         },
         {
+            "name": "DeleteVoiceConnectorExternalSystemsConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/voice-connectors/{VoiceConnectorId}/external-systems-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVoiceConnectorExternalSystemsConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteVoiceConnectorGroup",
             "config": {
                 "http": {
@@ -1539,6 +1578,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetVoiceConnectorEmergencyCallingConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetVoiceConnectorExternalSystemsConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/voice-connectors/{VoiceConnectorId}/external-systems-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetVoiceConnectorExternalSystemsConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetVoiceConnectorExternalSystemsConfigurationRequest"
                         }
                     }
                 },
@@ -2507,6 +2585,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/PutVoiceConnectorEmergencyCallingConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutVoiceConnectorExternalSystemsConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "VoiceConnectorId": "route.VoiceConnectorId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/voice-connectors/{VoiceConnectorId}/external-systems-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutVoiceConnectorExternalSystemsConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0.VoiceConnectorId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutVoiceConnectorExternalSystemsConfigurationRequest"
                         }
                     }
                 },
@@ -4282,6 +4399,9 @@
                 },
                 "VoiceConnectorArn": {
                     "$ref": "#/$defs/NonEmptyString"
+                },
+                "IntegrationType": {
+                    "$ref": "#/$defs/VoiceConnectorIntegrationType"
                 }
             }
         },
@@ -4302,6 +4422,12 @@
         "VoiceConnectorName": {
             "type": "string"
         },
+        "VoiceConnectorIntegrationType": {
+            "enum": [
+                "CONNECT_CALL_TRANSFER_CONNECTOR",
+                "CONNECT_ANALYTICS_CONNECTOR"
+            ]
+        },
         "CreateVoiceConnectorRequest": {
             "type": "object",
             "properties": {
@@ -4316,6 +4442,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "IntegrationType": {
+                    "$ref": "#/$defs/VoiceConnectorIntegrationType"
                 }
             }
         },
@@ -4545,6 +4674,14 @@
             }
         },
         "DeleteVoiceConnectorEmergencyCallingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "VoiceConnectorId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "DeleteVoiceConnectorExternalSystemsConfigurationRequest": {
             "type": "object",
             "properties": {
                 "VoiceConnectorId": {
@@ -5118,6 +5255,62 @@
             }
         },
         "GetVoiceConnectorEmergencyCallingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "VoiceConnectorId": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "GetVoiceConnectorExternalSystemsConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "ExternalSystemsConfiguration": {
+                    "$ref": "#/$defs/ExternalSystemsConfiguration"
+                }
+            }
+        },
+        "ExternalSystemsConfiguration": {
+            "type": "object",
+            "properties": {
+                "SessionBorderControllerTypes": {
+                    "$ref": "#/$defs/SessionBorderControllerTypeList"
+                },
+                "ContactCenterSystemTypes": {
+                    "$ref": "#/$defs/ContactCenterSystemTypeList"
+                }
+            }
+        },
+        "SessionBorderControllerTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SessionBorderControllerType"
+            }
+        },
+        "SessionBorderControllerType": {
+            "enum": [
+                "RIBBON_SBC",
+                "ORACLE_ACME_PACKET_SBC",
+                "AVAYA_SBCE",
+                "CISCO_UNIFIED_BORDER_ELEMENT",
+                "AUDIOCODES_MEDIANT_SBC"
+            ]
+        },
+        "ContactCenterSystemTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContactCenterSystemType"
+            }
+        },
+        "ContactCenterSystemType": {
+            "enum": [
+                "GENESYS_ENGAGE_ON_PREMISES",
+                "AVAYA_AURA_CALL_CENTER_ELITE",
+                "AVAYA_AURA_CONTACT_CENTER",
+                "CISCO_UNIFIED_CONTACT_CENTER_ENTERPRISE"
+            ]
+        },
+        "GetVoiceConnectorExternalSystemsConfigurationRequest": {
             "type": "object",
             "properties": {
                 "VoiceConnectorId": {
@@ -5975,6 +6168,28 @@
                 },
                 "EmergencyCallingConfiguration": {
                     "$ref": "#/$defs/EmergencyCallingConfiguration"
+                }
+            }
+        },
+        "PutVoiceConnectorExternalSystemsConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "ExternalSystemsConfiguration": {
+                    "$ref": "#/$defs/ExternalSystemsConfiguration"
+                }
+            }
+        },
+        "PutVoiceConnectorExternalSystemsConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "VoiceConnectorId": {
+                    "$ref": "#/$defs/NonEmptyString128"
+                },
+                "SessionBorderControllerTypes": {
+                    "$ref": "#/$defs/SessionBorderControllerTypeList"
+                },
+                "ContactCenterSystemTypes": {
+                    "$ref": "#/$defs/ContactCenterSystemTypeList"
                 }
             }
         },

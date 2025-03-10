@@ -508,6 +508,41 @@
             }
         },
         {
+            "name": "CreateDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/datasets"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDatasetRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateGateway",
             "config": {
                 "http": {
@@ -794,6 +829,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteDashboardRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "datasetId": "route.datasetId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/datasets/{datasetId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0.datasetId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDatasetRequest"
                         }
                     }
                 },
@@ -1303,6 +1377,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeDashboardRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "datasetId": "route.datasetId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/datasets/{datasetId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0.datasetId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDatasetRequest"
                         }
                     }
                 },
@@ -1901,6 +2014,41 @@
             }
         },
         {
+            "name": "InvokeAssistant",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/assistant/invocation"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeAssistantResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeAssistantRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListAccessPolicies",
             "config": {
                 "http": {
@@ -2329,6 +2477,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListDashboardsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDatasets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/datasets"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDatasetsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDatasetsRequest"
                         }
                     }
                 },
@@ -2956,6 +3139,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateDashboardRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateDataset",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "datasetId": "route.datasetId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/datasets/{datasetId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDatasetResponse"
+                    },
+                    "inject": [
+                        "param.0.datasetId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDatasetRequest"
                         }
                     }
                 },
@@ -3651,6 +3873,9 @@
                 },
                 "booleanValue": {
                     "$ref": "#/$defs/PropertyValueBooleanValue"
+                },
+                "nullValue": {
+                    "$ref": "#/$defs/PropertyValueNullValue"
                 }
             }
         },
@@ -3667,6 +3892,23 @@
         },
         "PropertyValueBooleanValue": {
             "type": "boolean"
+        },
+        "PropertyValueNullValue": {
+            "type": "object",
+            "properties": {
+                "valueType": {
+                    "$ref": "#/$defs/RawValueType"
+                }
+            }
+        },
+        "RawValueType": {
+            "enum": [
+                "DOUBLE",
+                "BOOLEAN",
+                "STRING",
+                "INTEGER",
+                "UNKNOWN"
+            ]
         },
         "TimeInNanos": {
             "type": "object",
@@ -3970,10 +4212,16 @@
         "BatchPutAssetPropertyValueRequest": {
             "type": "object",
             "properties": {
+                "enablePartialEntryProcessing": {
+                    "$ref": "#/$defs/BooleanValue"
+                },
                 "entries": {
                     "$ref": "#/$defs/PutAssetPropertyValueEntries"
                 }
             }
+        },
+        "BooleanValue": {
+            "type": "boolean"
         },
         "PutAssetPropertyValueEntries": {
             "type": "array",
@@ -4081,15 +4329,18 @@
             "type": "object",
             "properties": {
                 "arn": {
-                    "$ref": "#/$defs/ARN"
+                    "$ref": "#/$defs/IamArn"
                 }
             }
+        },
+        "IamArn": {
+            "type": "string"
         },
         "IAMRoleIdentity": {
             "type": "object",
             "properties": {
                 "arn": {
-                    "$ref": "#/$defs/ARN"
+                    "$ref": "#/$defs/IamArn"
                 }
             }
         },
@@ -4884,6 +5135,112 @@
         "DashboardDefinition": {
             "type": "string"
         },
+        "CreateDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "datasetId": {
+                    "$ref": "#/$defs/ID"
+                },
+                "datasetArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "datasetStatus": {
+                    "$ref": "#/$defs/DatasetStatus"
+                }
+            }
+        },
+        "DatasetStatus": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "$ref": "#/$defs/DatasetState"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorDetails"
+                }
+            }
+        },
+        "DatasetState": {
+            "enum": [
+                "CREATING",
+                "ACTIVE",
+                "UPDATING",
+                "DELETING",
+                "FAILED"
+            ]
+        },
+        "CreateDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "datasetId": {
+                    "$ref": "#/$defs/ID"
+                },
+                "datasetName": {
+                    "$ref": "#/$defs/RestrictedName"
+                },
+                "datasetDescription": {
+                    "$ref": "#/$defs/RestrictedDescription"
+                },
+                "datasetSource": {
+                    "$ref": "#/$defs/DatasetSource"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "RestrictedName": {
+            "type": "string"
+        },
+        "RestrictedDescription": {
+            "type": "string"
+        },
+        "DatasetSource": {
+            "type": "object",
+            "properties": {
+                "sourceType": {
+                    "$ref": "#/$defs/DatasetSourceType"
+                },
+                "sourceFormat": {
+                    "$ref": "#/$defs/DatasetSourceFormat"
+                },
+                "sourceDetail": {
+                    "$ref": "#/$defs/SourceDetail"
+                }
+            }
+        },
+        "DatasetSourceType": {
+            "enum": [
+                "KENDRA"
+            ]
+        },
+        "DatasetSourceFormat": {
+            "enum": [
+                "KNOWLEDGE_BASE"
+            ]
+        },
+        "SourceDetail": {
+            "type": "object",
+            "properties": {
+                "kendra": {
+                    "$ref": "#/$defs/KendraSourceDetail"
+                }
+            }
+        },
+        "KendraSourceDetail": {
+            "type": "object",
+            "properties": {
+                "knowledgeBaseArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
         "CreateGatewayResponse": {
             "type": "object",
             "properties": {
@@ -4903,6 +5260,9 @@
                 },
                 "gatewayPlatform": {
                     "$ref": "#/$defs/GatewayPlatform"
+                },
+                "gatewayVersion": {
+                    "$ref": "#/$defs/GatewayVersion"
                 },
                 "tags": {
                     "$ref": "#/$defs/TagMap"
@@ -4939,11 +5299,21 @@
             "properties": {
                 "coreDeviceThingName": {
                     "$ref": "#/$defs/CoreDeviceThingName"
+                },
+                "coreDeviceOperatingSystem": {
+                    "$ref": "#/$defs/CoreDeviceOperatingSystem"
                 }
             }
         },
         "CoreDeviceThingName": {
             "type": "string"
+        },
+        "CoreDeviceOperatingSystem": {
+            "enum": [
+                "LINUX_AARCH64",
+                "LINUX_AMD64",
+                "WINDOWS_AMD64"
+            ]
         },
         "SiemensIE": {
             "type": "object",
@@ -4954,6 +5324,9 @@
             }
         },
         "IotCoreThingName": {
+            "type": "string"
+        },
+        "GatewayVersion": {
             "type": "string"
         },
         "CreatePortalResponse": {
@@ -4993,6 +5366,7 @@
         "PortalState": {
             "enum": [
                 "CREATING",
+                "PENDING",
                 "UPDATING",
                 "DELETING",
                 "ACTIVE",
@@ -5042,7 +5416,7 @@
                     "$ref": "#/$defs/ImageFile"
                 },
                 "roleArn": {
-                    "$ref": "#/$defs/ARN"
+                    "$ref": "#/$defs/IamArn"
                 },
                 "tags": {
                     "$ref": "#/$defs/TagMap"
@@ -5055,6 +5429,12 @@
                 },
                 "alarms": {
                     "$ref": "#/$defs/Alarms"
+                },
+                "portalType": {
+                    "$ref": "#/$defs/PortalType"
+                },
+                "portalTypeConfiguration": {
+                    "$ref": "#/$defs/PortalTypeConfiguration"
                 }
             }
         },
@@ -5091,11 +5471,37 @@
             "type": "object",
             "properties": {
                 "alarmRoleArn": {
-                    "$ref": "#/$defs/ARN"
+                    "$ref": "#/$defs/IamArn"
                 },
                 "notificationLambdaArn": {
                     "$ref": "#/$defs/ARN"
                 }
+            }
+        },
+        "PortalType": {
+            "enum": [
+                "SITEWISE_PORTAL_V1",
+                "SITEWISE_PORTAL_V2"
+            ]
+        },
+        "PortalTypeConfiguration": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/PortalTypeEntry"
+            }
+        },
+        "PortalTypeEntry": {
+            "type": "object",
+            "properties": {
+                "portalTools": {
+                    "$ref": "#/$defs/PortalTools"
+                }
+            }
+        },
+        "PortalTools": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Name"
             }
         },
         "CreateProjectResponse": {
@@ -5231,6 +5637,25 @@
             "properties": {
                 "dashboardId": {
                     "$ref": "#/$defs/ID"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "DeleteDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "datasetStatus": {
+                    "$ref": "#/$defs/DatasetStatus"
+                }
+            }
+        },
+        "DeleteDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "datasetId": {
+                    "$ref": "#/$defs/CustomID"
                 },
                 "clientToken": {
                     "$ref": "#/$defs/ClientToken"
@@ -6100,6 +6525,46 @@
                 }
             }
         },
+        "DescribeDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "datasetId": {
+                    "$ref": "#/$defs/ID"
+                },
+                "datasetArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "datasetName": {
+                    "$ref": "#/$defs/RestrictedName"
+                },
+                "datasetDescription": {
+                    "$ref": "#/$defs/RestrictedDescription"
+                },
+                "datasetSource": {
+                    "$ref": "#/$defs/DatasetSource"
+                },
+                "datasetStatus": {
+                    "$ref": "#/$defs/DatasetStatus"
+                },
+                "datasetCreationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "datasetLastUpdateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "datasetVersion": {
+                    "$ref": "#/$defs/Version"
+                }
+            }
+        },
+        "DescribeDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "datasetId": {
+                    "$ref": "#/$defs/CustomID"
+                }
+            }
+        },
         "DescribeDefaultEncryptionConfigurationResponse": {
             "type": "object",
             "properties": {
@@ -6167,6 +6632,9 @@
                 },
                 "gatewayPlatform": {
                     "$ref": "#/$defs/GatewayPlatform"
+                },
+                "gatewayVersion": {
+                    "$ref": "#/$defs/GatewayVersion"
                 },
                 "gatewayCapabilitySummaries": {
                     "$ref": "#/$defs/GatewayCapabilitySummaries"
@@ -6311,7 +6779,7 @@
                     "$ref": "#/$defs/ImageLocation"
                 },
                 "roleArn": {
-                    "$ref": "#/$defs/ARN"
+                    "$ref": "#/$defs/IamArn"
                 },
                 "portalAuthMode": {
                     "$ref": "#/$defs/AuthMode"
@@ -6321,6 +6789,12 @@
                 },
                 "alarms": {
                     "$ref": "#/$defs/Alarms"
+                },
+                "portalType": {
+                    "$ref": "#/$defs/PortalType"
+                },
+                "portalTypeConfiguration": {
+                    "$ref": "#/$defs/PortalTypeConfiguration"
                 }
             }
         },
@@ -6406,6 +6880,9 @@
                 },
                 "warmTierRetentionPeriod": {
                     "$ref": "#/$defs/WarmTierRetentionPeriod"
+                },
+                "disallowIngestNullNaN": {
+                    "$ref": "#/$defs/DisallowIngestNullNaN"
                 }
             }
         },
@@ -6474,6 +6951,9 @@
                     "$ref": "#/$defs/Unlimited"
                 }
             }
+        },
+        "DisallowIngestNullNaN": {
+            "type": "boolean"
         },
         "DescribeStorageConfigurationRequest": {
             "type": "object",
@@ -6692,6 +7172,9 @@
                 },
                 "maxResults": {
                     "$ref": "#/$defs/ExecuteQueryMaxResults"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -6911,6 +7394,219 @@
             "type": "integer",
             "format": "int64"
         },
+        "InvokeAssistantResponse": {
+            "type": "object",
+            "properties": {
+                "body": {
+                    "$ref": "#/$defs/ResponseStream"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                }
+            }
+        },
+        "ResponseStream": {
+            "type": "object",
+            "properties": {
+                "trace": {
+                    "$ref": "#/$defs/Trace"
+                },
+                "output": {
+                    "$ref": "#/$defs/InvocationOutput"
+                },
+                "accessDeniedException": {
+                    "$ref": "#/$defs/AccessDeniedException"
+                },
+                "conflictingOperationException": {
+                    "$ref": "#/$defs/ConflictingOperationException"
+                },
+                "internalFailureException": {
+                    "$ref": "#/$defs/InternalFailureException"
+                },
+                "invalidRequestException": {
+                    "$ref": "#/$defs/InvalidRequestException"
+                },
+                "limitExceededException": {
+                    "$ref": "#/$defs/LimitExceededException"
+                },
+                "resourceNotFoundException": {
+                    "$ref": "#/$defs/ResourceNotFoundException"
+                },
+                "throttlingException": {
+                    "$ref": "#/$defs/ThrottlingException"
+                }
+            }
+        },
+        "Trace": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "InvocationOutput": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                },
+                "citations": {
+                    "$ref": "#/$defs/Citations"
+                }
+            }
+        },
+        "Citations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Citation"
+            }
+        },
+        "Citation": {
+            "type": "object",
+            "properties": {
+                "reference": {
+                    "$ref": "#/$defs/Reference"
+                },
+                "content": {
+                    "$ref": "#/$defs/Content"
+                }
+            }
+        },
+        "Reference": {
+            "type": "object",
+            "properties": {
+                "dataset": {
+                    "$ref": "#/$defs/DataSetReference"
+                }
+            }
+        },
+        "DataSetReference": {
+            "type": "object",
+            "properties": {
+                "datasetArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "source": {
+                    "$ref": "#/$defs/Source"
+                }
+            }
+        },
+        "Source": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "location": {
+                    "$ref": "#/$defs/Location"
+                }
+            }
+        },
+        "Location": {
+            "type": "object",
+            "properties": {
+                "uri": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Content": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AccessDeniedException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ConflictingOperationException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "resourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "InternalFailureException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "InvalidRequestException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "LimitExceededException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ResourceNotFoundException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ThrottlingException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ConversationId": {
+            "type": "string"
+        },
+        "InvokeAssistantRequest": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "message": {
+                    "$ref": "#/$defs/MessageInput"
+                },
+                "enableTrace": {
+                    "$ref": "#/$defs/smithy.api#PrimitiveBoolean"
+                }
+            }
+        },
+        "MessageInput": {
+            "type": "string"
+        },
         "ListAccessPoliciesResponse": {
             "type": "object",
             "properties": {
@@ -6967,7 +7663,7 @@
                     "$ref": "#/$defs/ID"
                 },
                 "iamArn": {
-                    "$ref": "#/$defs/ARN"
+                    "$ref": "#/$defs/IamArn"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/NextToken"
@@ -7662,6 +8358,63 @@
                 }
             }
         },
+        "ListDatasetsResponse": {
+            "type": "object",
+            "properties": {
+                "datasetSummaries": {
+                    "$ref": "#/$defs/DatasetSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DatasetSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatasetSummary"
+            }
+        },
+        "DatasetSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ID"
+                },
+                "arn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "name": {
+                    "$ref": "#/$defs/RestrictedName"
+                },
+                "description": {
+                    "$ref": "#/$defs/RestrictedDescription"
+                },
+                "creationDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastUpdateDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/DatasetStatus"
+                }
+            }
+        },
+        "ListDatasetsRequest": {
+            "type": "object",
+            "properties": {
+                "sourceType": {
+                    "$ref": "#/$defs/DatasetSourceType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
         "ListGatewaysResponse": {
             "type": "object",
             "properties": {
@@ -7690,6 +8443,9 @@
                 },
                 "gatewayPlatform": {
                     "$ref": "#/$defs/GatewayPlatform"
+                },
+                "gatewayVersion": {
+                    "$ref": "#/$defs/GatewayVersion"
                 },
                 "gatewayCapabilitySummaries": {
                     "$ref": "#/$defs/GatewayCapabilitySummaries"
@@ -7752,10 +8508,13 @@
                     "$ref": "#/$defs/Timestamp"
                 },
                 "roleArn": {
-                    "$ref": "#/$defs/ARN"
+                    "$ref": "#/$defs/IamArn"
                 },
                 "status": {
                     "$ref": "#/$defs/PortalStatus"
+                },
+                "portalType": {
+                    "$ref": "#/$defs/PortalType"
                 }
             }
         },
@@ -8009,6 +8768,9 @@
                 },
                 "warmTierRetentionPeriod": {
                     "$ref": "#/$defs/WarmTierRetentionPeriod"
+                },
+                "disallowIngestNullNaN": {
+                    "$ref": "#/$defs/DisallowIngestNullNaN"
                 }
             }
         },
@@ -8032,6 +8794,9 @@
                 },
                 "warmTierRetentionPeriod": {
                     "$ref": "#/$defs/WarmTierRetentionPeriod"
+                },
+                "disallowIngestNullNaN": {
+                    "$ref": "#/$defs/DisallowIngestNullNaN"
                 }
             }
         },
@@ -8265,6 +9030,40 @@
                 }
             }
         },
+        "UpdateDatasetResponse": {
+            "type": "object",
+            "properties": {
+                "datasetId": {
+                    "$ref": "#/$defs/CustomID"
+                },
+                "datasetArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "datasetStatus": {
+                    "$ref": "#/$defs/DatasetStatus"
+                }
+            }
+        },
+        "UpdateDatasetRequest": {
+            "type": "object",
+            "properties": {
+                "datasetId": {
+                    "$ref": "#/$defs/CustomID"
+                },
+                "datasetName": {
+                    "$ref": "#/$defs/RestrictedName"
+                },
+                "datasetDescription": {
+                    "$ref": "#/$defs/RestrictedDescription"
+                },
+                "datasetSource": {
+                    "$ref": "#/$defs/DatasetSource"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
         "UpdateGatewayRequest": {
             "type": "object",
             "properties": {
@@ -8328,7 +9127,7 @@
                     "$ref": "#/$defs/Image"
                 },
                 "roleArn": {
-                    "$ref": "#/$defs/ARN"
+                    "$ref": "#/$defs/IamArn"
                 },
                 "clientToken": {
                     "$ref": "#/$defs/ClientToken"
@@ -8338,6 +9137,12 @@
                 },
                 "alarms": {
                     "$ref": "#/$defs/Alarms"
+                },
+                "portalType": {
+                    "$ref": "#/$defs/PortalType"
+                },
+                "portalTypeConfiguration": {
+                    "$ref": "#/$defs/PortalTypeConfiguration"
                 }
             }
         },

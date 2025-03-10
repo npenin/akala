@@ -118,6 +118,35 @@
             }
         },
         {
+            "name": "CreateMultiRegionCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonMemoryDB.CreateMultiRegionCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateMultiRegionClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateMultiRegionClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateParameterGroup",
             "config": {
                 "http": {
@@ -286,6 +315,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMultiRegionCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonMemoryDB.DeleteMultiRegionCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteMultiRegionClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMultiRegionClusterRequest"
                         }
                     }
                 }
@@ -518,6 +576,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeEventsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeMultiRegionClusters",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonMemoryDB.DescribeMultiRegionClusters"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeMultiRegionClustersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeMultiRegionClustersRequest"
                         }
                     }
                 }
@@ -785,6 +872,35 @@
             }
         },
         {
+            "name": "ListAllowedMultiRegionClusterUpdates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonMemoryDB.ListAllowedMultiRegionClusterUpdates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAllowedMultiRegionClusterUpdatesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAllowedMultiRegionClusterUpdatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListAllowedNodeTypeUpdates",
             "config": {
                 "http": {
@@ -1017,6 +1133,35 @@
             }
         },
         {
+            "name": "UpdateMultiRegionCluster",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonMemoryDB.UpdateMultiRegionCluster"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateMultiRegionClusterResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateMultiRegionClusterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateParameterGroup",
             "config": {
                 "http": {
@@ -1181,6 +1326,9 @@
                 },
                 "PendingUpdates": {
                     "$ref": "#/$defs/ClusterPendingUpdates"
+                },
+                "MultiRegionClusterName": {
+                    "$ref": "#/$defs/String"
                 },
                 "NumberOfShards": {
                     "$ref": "#/$defs/IntegerOptional"
@@ -1559,6 +1707,12 @@
                 },
                 "Shards": {
                     "$ref": "#/$defs/ShardDetails"
+                },
+                "MultiRegionParameterGroupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "MultiRegionClusterName": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -1736,6 +1890,9 @@
                 "NodeType": {
                     "$ref": "#/$defs/String"
                 },
+                "MultiRegionClusterName": {
+                    "$ref": "#/$defs/String"
+                },
                 "ParameterGroupName": {
                     "$ref": "#/$defs/String"
                 },
@@ -1811,6 +1968,107 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/String"
+            }
+        },
+        "CreateMultiRegionClusterResponse": {
+            "type": "object",
+            "properties": {
+                "MultiRegionCluster": {
+                    "$ref": "#/$defs/MultiRegionCluster"
+                }
+            }
+        },
+        "MultiRegionCluster": {
+            "type": "object",
+            "properties": {
+                "MultiRegionClusterName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "NodeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Engine": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "NumberOfShards": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "Clusters": {
+                    "$ref": "#/$defs/RegionalClusterList"
+                },
+                "MultiRegionParameterGroupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "TLSEnabled": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "ARN": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RegionalClusterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RegionalCluster"
+            }
+        },
+        "RegionalCluster": {
+            "type": "object",
+            "properties": {
+                "ClusterName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "ARN": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateMultiRegionClusterRequest": {
+            "type": "object",
+            "properties": {
+                "MultiRegionClusterNameSuffix": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "Engine": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "NodeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "MultiRegionParameterGroupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "NumShards": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "TLSEnabled": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
             }
         },
         "CreateParameterGroupResponse": {
@@ -2087,7 +2345,26 @@
                 "ClusterName": {
                     "$ref": "#/$defs/String"
                 },
+                "MultiRegionClusterName": {
+                    "$ref": "#/$defs/String"
+                },
                 "FinalSnapshotName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteMultiRegionClusterResponse": {
+            "type": "object",
+            "properties": {
+                "MultiRegionCluster": {
+                    "$ref": "#/$defs/MultiRegionCluster"
+                }
+            }
+        },
+        "DeleteMultiRegionClusterRequest": {
+            "type": "object",
+            "properties": {
+                "MultiRegionClusterName": {
                     "$ref": "#/$defs/String"
                 }
             }
@@ -2342,6 +2619,40 @@
                 },
                 "NextToken": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeMultiRegionClustersResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MultiRegionClusters": {
+                    "$ref": "#/$defs/MultiRegionClusterList"
+                }
+            }
+        },
+        "MultiRegionClusterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MultiRegionCluster"
+            }
+        },
+        "DescribeMultiRegionClustersRequest": {
+            "type": "object",
+            "properties": {
+                "MultiRegionClusterName": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "ShowClusterDetails": {
+                    "$ref": "#/$defs/BooleanOptional"
                 }
             }
         },
@@ -2824,7 +3135,7 @@
                 }
             }
         },
-        "ListAllowedNodeTypeUpdatesResponse": {
+        "ListAllowedMultiRegionClusterUpdatesResponse": {
             "type": "object",
             "properties": {
                 "ScaleUpNodeTypes": {
@@ -2839,6 +3150,25 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/String"
+            }
+        },
+        "ListAllowedMultiRegionClusterUpdatesRequest": {
+            "type": "object",
+            "properties": {
+                "MultiRegionClusterName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListAllowedNodeTypeUpdatesResponse": {
+            "type": "object",
+            "properties": {
+                "ScaleUpNodeTypes": {
+                    "$ref": "#/$defs/NodeTypeList"
+                },
+                "ScaleDownNodeTypes": {
+                    "$ref": "#/$defs/NodeTypeList"
+                }
             }
         },
         "ListAllowedNodeTypeUpdatesRequest": {
@@ -3057,6 +3387,46 @@
                     "$ref": "#/$defs/Integer"
                 }
             }
+        },
+        "UpdateMultiRegionClusterResponse": {
+            "type": "object",
+            "properties": {
+                "MultiRegionCluster": {
+                    "$ref": "#/$defs/MultiRegionCluster"
+                }
+            }
+        },
+        "UpdateMultiRegionClusterRequest": {
+            "type": "object",
+            "properties": {
+                "MultiRegionClusterName": {
+                    "$ref": "#/$defs/String"
+                },
+                "NodeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
+                },
+                "EngineVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "ShardConfiguration": {
+                    "$ref": "#/$defs/ShardConfigurationRequest"
+                },
+                "MultiRegionParameterGroupName": {
+                    "$ref": "#/$defs/String"
+                },
+                "UpdateStrategy": {
+                    "$ref": "#/$defs/UpdateStrategy"
+                }
+            }
+        },
+        "UpdateStrategy": {
+            "enum": [
+                "COORDINATED",
+                "UNCOORDINATED"
+            ]
         },
         "UpdateParameterGroupResponse": {
             "type": "object",

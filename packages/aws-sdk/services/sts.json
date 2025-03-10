@@ -89,6 +89,35 @@
             }
         },
         {
+            "name": "AssumeRoot",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSSecurityTokenServiceV20110615.AssumeRoot"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssumeRootResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssumeRootRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DecodeAuthorizationMessage",
             "config": {
                 "http": {
@@ -610,6 +639,38 @@
         },
         "urlType": {
             "type": "string"
+        },
+        "AssumeRootResponse": {
+            "type": "object",
+            "properties": {
+                "Credentials": {
+                    "$ref": "#/$defs/Credentials"
+                },
+                "SourceIdentity": {
+                    "$ref": "#/$defs/sourceIdentityType"
+                }
+            }
+        },
+        "AssumeRootRequest": {
+            "type": "object",
+            "properties": {
+                "TargetPrincipal": {
+                    "$ref": "#/$defs/TargetPrincipalType"
+                },
+                "TaskPolicyArn": {
+                    "$ref": "#/$defs/PolicyDescriptorType"
+                },
+                "DurationSeconds": {
+                    "$ref": "#/$defs/RootDurationSecondsType"
+                }
+            }
+        },
+        "TargetPrincipalType": {
+            "type": "string"
+        },
+        "RootDurationSecondsType": {
+            "type": "integer",
+            "format": "int32"
         },
         "DecodeAuthorizationMessageResponse": {
             "type": "object",

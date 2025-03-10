@@ -3291,6 +3291,12 @@
                 },
                 "MetricData": {
                     "$ref": "#/$defs/MetricData"
+                },
+                "EntityMetricData": {
+                    "$ref": "#/$defs/EntityMetricDataList"
+                },
+                "StrictEntityValidation": {
+                    "$ref": "#/$defs/StrictEntityValidation"
                 }
             }
         },
@@ -3364,6 +3370,55 @@
         "StorageResolution": {
             "type": "integer",
             "format": "int32"
+        },
+        "EntityMetricDataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntityMetricData"
+            }
+        },
+        "EntityMetricData": {
+            "type": "object",
+            "properties": {
+                "Entity": {
+                    "$ref": "#/$defs/Entity"
+                },
+                "MetricData": {
+                    "$ref": "#/$defs/MetricData"
+                }
+            }
+        },
+        "Entity": {
+            "type": "object",
+            "properties": {
+                "KeyAttributes": {
+                    "$ref": "#/$defs/EntityKeyAttributesMap"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/EntityAttributesMap"
+                }
+            }
+        },
+        "EntityKeyAttributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EntityKeyAttributesMapValueString"
+            }
+        },
+        "EntityKeyAttributesMapValueString": {
+            "type": "string"
+        },
+        "EntityAttributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EntityAttributesMapValueString"
+            }
+        },
+        "EntityAttributesMapValueString": {
+            "type": "string"
+        },
+        "StrictEntityValidation": {
+            "type": "boolean"
         },
         "PutMetricStreamOutput": {
             "type": "object",

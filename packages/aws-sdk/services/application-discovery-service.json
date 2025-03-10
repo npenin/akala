@@ -1030,6 +1030,9 @@
                 },
                 "description": {
                     "$ref": "#/$defs/ApplicationDescription"
+                },
+                "wave": {
+                    "$ref": "#/$defs/ApplicationWave"
                 }
             }
         },
@@ -1037,6 +1040,9 @@
             "type": "string"
         },
         "ApplicationDescription": {
+            "type": "string"
+        },
+        "ApplicationWave": {
             "type": "string"
         },
         "CreateTagsResponse": {
@@ -1681,6 +1687,9 @@
                 "importDeletedTime": {
                     "$ref": "#/$defs/TimeStamp"
                 },
+                "fileClassification": {
+                    "$ref": "#/$defs/FileClassification"
+                },
                 "serverImportSuccess": {
                     "$ref": "#/$defs/Integer"
                 },
@@ -1715,11 +1724,20 @@
                 "IMPORT_FAILED",
                 "IMPORT_FAILED_SERVER_LIMIT_EXCEEDED",
                 "IMPORT_FAILED_RECORD_LIMIT_EXCEEDED",
+                "IMPORT_FAILED_UNSUPPORTED_FILE_TYPE",
                 "DELETE_IN_PROGRESS",
                 "DELETE_COMPLETE",
                 "DELETE_FAILED",
                 "DELETE_FAILED_LIMIT_EXCEEDED",
                 "INTERNAL_ERROR"
+            ]
+        },
+        "FileClassification": {
+            "enum": [
+                "MODELIZEIT_EXPORT",
+                "RVTOOLS_EXPORT",
+                "VMWARE_NSX_EXPORT",
+                "IMPORT_TEMPLATE"
             ]
         },
         "S3PresignedUrl": {
@@ -1760,7 +1778,8 @@
             "enum": [
                 "IMPORT_TASK_ID",
                 "STATUS",
-                "NAME"
+                "NAME",
+                "FILE_CLASSIFICATION"
             ]
         },
         "ImportTaskFilterValueList": {
@@ -2445,6 +2464,9 @@
                 },
                 "description": {
                     "$ref": "#/$defs/ApplicationDescription"
+                },
+                "wave": {
+                    "$ref": "#/$defs/ApplicationWave"
                 }
             }
         }

@@ -1313,6 +1313,12 @@
                 },
                 "playbackRestrictionPolicyArn": {
                     "$ref": "#/$defs/ChannelPlaybackRestrictionPolicyArn"
+                },
+                "multitrackInputConfiguration": {
+                    "$ref": "#/$defs/MultitrackInputConfiguration"
+                },
+                "containerFormat": {
+                    "$ref": "#/$defs/ContainerFormat"
                 }
             }
         },
@@ -1381,6 +1387,39 @@
             "type": "string"
         },
         "ChannelPlaybackRestrictionPolicyArn": {
+            "type": "string"
+        },
+        "MultitrackInputConfiguration": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/IsMultitrackInputEnabled"
+                },
+                "policy": {
+                    "$ref": "#/$defs/MultitrackPolicy"
+                },
+                "maximumResolution": {
+                    "$ref": "#/$defs/MultitrackMaximumResolution"
+                }
+            }
+        },
+        "IsMultitrackInputEnabled": {
+            "type": "boolean"
+        },
+        "MultitrackPolicy": {
+            "enum": [
+                "ALLOW",
+                "REQUIRE"
+            ]
+        },
+        "MultitrackMaximumResolution": {
+            "enum": [
+                "SD",
+                "HD",
+                "FULL_HD"
+            ]
+        },
+        "ContainerFormat": {
             "type": "string"
         },
         "BatchErrors": {
@@ -1586,6 +1625,12 @@
                 },
                 "playbackRestrictionPolicyArn": {
                     "$ref": "#/$defs/ChannelPlaybackRestrictionPolicyArn"
+                },
+                "multitrackInputConfiguration": {
+                    "$ref": "#/$defs/MultitrackInputConfiguration"
+                },
+                "containerFormat": {
+                    "$ref": "#/$defs/ContainerFormat"
                 }
             }
         },
@@ -2085,6 +2130,9 @@
                 "ingestConfiguration": {
                     "$ref": "#/$defs/IngestConfiguration"
                 },
+                "ingestConfigurations": {
+                    "$ref": "#/$defs/IngestConfigurations"
+                },
                 "recordingConfiguration": {
                     "$ref": "#/$defs/RecordingConfiguration"
                 },
@@ -2134,6 +2182,15 @@
                 },
                 "videoWidth": {
                     "$ref": "#/$defs/Integer"
+                },
+                "level": {
+                    "$ref": "#/$defs/String"
+                },
+                "track": {
+                    "$ref": "#/$defs/String"
+                },
+                "profile": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -2158,7 +2215,33 @@
                 },
                 "channels": {
                     "$ref": "#/$defs/Integer"
+                },
+                "track": {
+                    "$ref": "#/$defs/String"
                 }
+            }
+        },
+        "IngestConfigurations": {
+            "type": "object",
+            "properties": {
+                "videoConfigurations": {
+                    "$ref": "#/$defs/VideoConfigurationList"
+                },
+                "audioConfigurations": {
+                    "$ref": "#/$defs/AudioConfigurationList"
+                }
+            }
+        },
+        "VideoConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VideoConfiguration"
+            }
+        },
+        "AudioConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AudioConfiguration"
             }
         },
         "StreamEvents": {
@@ -2178,6 +2261,9 @@
                 },
                 "eventTime": {
                     "$ref": "#/$defs/Time"
+                },
+                "code": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -2748,6 +2834,12 @@
                 },
                 "playbackRestrictionPolicyArn": {
                     "$ref": "#/$defs/ChannelPlaybackRestrictionPolicyArn"
+                },
+                "multitrackInputConfiguration": {
+                    "$ref": "#/$defs/MultitrackInputConfiguration"
+                },
+                "containerFormat": {
+                    "$ref": "#/$defs/ContainerFormat"
                 }
             }
         },

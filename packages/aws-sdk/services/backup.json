@@ -1622,6 +1622,47 @@
             }
         },
         {
+            "name": "GetRecoveryPointIndexDetails",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "RecoveryPointArn": "route.RecoveryPointArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/index"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRecoveryPointIndexDetailsOutput"
+                    },
+                    "inject": [
+                        "param.0.BackupVaultName",
+                        "param.0.RecoveryPointArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRecoveryPointIndexDetailsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetRecoveryPointRestoreMetadata",
             "config": {
                 "http": {
@@ -2190,6 +2231,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListFrameworksInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListIndexedRecoveryPoints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/indexes/recovery-point"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIndexedRecoveryPointsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIndexedRecoveryPointsInput"
                         }
                     }
                 },
@@ -3254,6 +3330,47 @@
             }
         },
         {
+            "name": "UpdateRecoveryPointIndexSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "BackupVaultName": "route.BackupVaultName",
+                            "RecoveryPointArn": "route.RecoveryPointArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/backup-vaults/{BackupVaultName}/recovery-points/{RecoveryPointArn}/index"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateRecoveryPointIndexSettingsOutput"
+                    },
+                    "inject": [
+                        "param.0.BackupVaultName",
+                        "param.0.RecoveryPointArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateRecoveryPointIndexSettingsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateRecoveryPointLifecycle",
             "config": {
                 "http": {
@@ -3645,6 +3762,9 @@
                 },
                 "ScheduleExpressionTimezone": {
                     "$ref": "#/$defs/Timezone"
+                },
+                "IndexActions": {
+                    "$ref": "#/$defs/IndexActions"
                 }
             }
         },
@@ -3706,6 +3826,26 @@
         },
         "Timezone": {
             "type": "string"
+        },
+        "IndexActions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IndexAction"
+            }
+        },
+        "IndexAction": {
+            "type": "object",
+            "properties": {
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypes"
+                }
+            }
+        },
+        "ResourceTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceType"
+            }
         },
         "CreateBackupSelectionOutput": {
             "type": "object",
@@ -4978,6 +5118,12 @@
                 },
                 "VaultType": {
                     "$ref": "#/$defs/VaultType"
+                },
+                "IndexStatus": {
+                    "$ref": "#/$defs/IndexStatus"
+                },
+                "IndexStatusMessage": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -5005,6 +5151,14 @@
                 "WARM",
                 "COLD",
                 "DELETED"
+            ]
+        },
+        "IndexStatus": {
+            "enum": [
+                "PENDING",
+                "ACTIVE",
+                "FAILED",
+                "DELETING"
             ]
         },
         "DescribeRecoveryPointInput": {
@@ -5388,6 +5542,9 @@
                 },
                 "ScheduleExpressionTimezone": {
                     "$ref": "#/$defs/Timezone"
+                },
+                "IndexActions": {
+                    "$ref": "#/$defs/IndexActions"
                 }
             }
         },
@@ -5585,6 +5742,49 @@
                 }
             }
         },
+        "GetRecoveryPointIndexDetailsOutput": {
+            "type": "object",
+            "properties": {
+                "RecoveryPointArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "BackupVaultArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "SourceResourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "IndexCreationDate": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "IndexDeletionDate": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "IndexCompletionDate": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "IndexStatus": {
+                    "$ref": "#/$defs/IndexStatus"
+                },
+                "IndexStatusMessage": {
+                    "$ref": "#/$defs/string"
+                },
+                "TotalItemsIndexed": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "GetRecoveryPointIndexDetailsInput": {
+            "type": "object",
+            "properties": {
+                "BackupVaultName": {
+                    "$ref": "#/$defs/BackupVaultName"
+                },
+                "RecoveryPointArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
         "GetRecoveryPointRestoreMetadataOutput": {
             "type": "object",
             "properties": {
@@ -5777,12 +5977,6 @@
                 "ResourceTypes": {
                     "$ref": "#/$defs/ResourceTypes"
                 }
-            }
-        },
-        "ResourceTypes": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ResourceType"
             }
         },
         "ListBackupJobsOutput": {
@@ -6501,6 +6695,81 @@
             "type": "integer",
             "format": "int32"
         },
+        "ListIndexedRecoveryPointsOutput": {
+            "type": "object",
+            "properties": {
+                "IndexedRecoveryPoints": {
+                    "$ref": "#/$defs/IndexedRecoveryPointList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "IndexedRecoveryPointList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IndexedRecoveryPoint"
+            }
+        },
+        "IndexedRecoveryPoint": {
+            "type": "object",
+            "properties": {
+                "RecoveryPointArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "SourceResourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "IamRoleArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "BackupCreationDate": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "IndexCreationDate": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "IndexStatus": {
+                    "$ref": "#/$defs/IndexStatus"
+                },
+                "IndexStatusMessage": {
+                    "$ref": "#/$defs/string"
+                },
+                "BackupVaultArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "ListIndexedRecoveryPointsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "SourceResourceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "CreatedBefore": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "CreatedAfter": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "IndexStatus": {
+                    "$ref": "#/$defs/IndexStatus"
+                }
+            }
+        },
         "ListLegalHoldsOutput": {
             "type": "object",
             "properties": {
@@ -6722,6 +6991,12 @@
                 },
                 "VaultType": {
                     "$ref": "#/$defs/VaultType"
+                },
+                "IndexStatus": {
+                    "$ref": "#/$defs/IndexStatus"
+                },
+                "IndexStatusMessage": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -6860,6 +7135,12 @@
                 },
                 "VaultType": {
                     "$ref": "#/$defs/VaultType"
+                },
+                "IndexStatus": {
+                    "$ref": "#/$defs/IndexStatus"
+                },
+                "IndexStatusMessage": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -7423,8 +7704,17 @@
                 },
                 "BackupOptions": {
                     "$ref": "#/$defs/BackupOptions"
+                },
+                "Index": {
+                    "$ref": "#/$defs/Index"
                 }
             }
+        },
+        "Index": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
         },
         "StartCopyJobOutput": {
             "type": "object",
@@ -7616,6 +7906,40 @@
             "properties": {
                 "GlobalSettings": {
                     "$ref": "#/$defs/GlobalSettings"
+                }
+            }
+        },
+        "UpdateRecoveryPointIndexSettingsOutput": {
+            "type": "object",
+            "properties": {
+                "BackupVaultName": {
+                    "$ref": "#/$defs/BackupVaultName"
+                },
+                "RecoveryPointArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "IndexStatus": {
+                    "$ref": "#/$defs/IndexStatus"
+                },
+                "Index": {
+                    "$ref": "#/$defs/Index"
+                }
+            }
+        },
+        "UpdateRecoveryPointIndexSettingsInput": {
+            "type": "object",
+            "properties": {
+                "BackupVaultName": {
+                    "$ref": "#/$defs/BackupVaultName"
+                },
+                "RecoveryPointArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "IamRoleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "Index": {
+                    "$ref": "#/$defs/Index"
                 }
             }
         },

@@ -4125,6 +4125,9 @@
                 },
                 "AwsAccountName": {
                     "$ref": "#/$defs/NonEmptyString"
+                },
+                "Detection": {
+                    "$ref": "#/$defs/Detection"
                 }
             }
         },
@@ -16530,6 +16533,261 @@
                 },
                 "Labels": {
                     "$ref": "#/$defs/TypeList"
+                }
+            }
+        },
+        "Detection": {
+            "type": "object",
+            "properties": {
+                "Sequence": {
+                    "$ref": "#/$defs/Sequence"
+                }
+            }
+        },
+        "Sequence": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Actors": {
+                    "$ref": "#/$defs/ActorsList"
+                },
+                "Endpoints": {
+                    "$ref": "#/$defs/NetworkEndpointsList"
+                },
+                "Signals": {
+                    "$ref": "#/$defs/SignalsList"
+                },
+                "SequenceIndicators": {
+                    "$ref": "#/$defs/IndicatorsList"
+                }
+            }
+        },
+        "ActorsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Actor"
+            }
+        },
+        "Actor": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "User": {
+                    "$ref": "#/$defs/ActorUser"
+                },
+                "Session": {
+                    "$ref": "#/$defs/ActorSession"
+                }
+            }
+        },
+        "ActorUser": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Uid": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Type": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "CredentialUid": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Account": {
+                    "$ref": "#/$defs/UserAccount"
+                }
+            }
+        },
+        "UserAccount": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ActorSession": {
+            "type": "object",
+            "properties": {
+                "Uid": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "MfaStatus": {
+                    "$ref": "#/$defs/ActorSessionMfaStatus"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "ActorSessionMfaStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "NetworkEndpointsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NetworkEndpoint"
+            }
+        },
+        "NetworkEndpoint": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Ip": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Port": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Location": {
+                    "$ref": "#/$defs/NetworkGeoLocation"
+                },
+                "AutonomousSystem": {
+                    "$ref": "#/$defs/NetworkAutonomousSystem"
+                },
+                "Connection": {
+                    "$ref": "#/$defs/NetworkConnection"
+                }
+            }
+        },
+        "NetworkGeoLocation": {
+            "type": "object",
+            "properties": {
+                "City": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Country": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Lat": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Lon": {
+                    "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "NetworkAutonomousSystem": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Number": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "NetworkConnection": {
+            "type": "object",
+            "properties": {
+                "Direction": {
+                    "$ref": "#/$defs/ConnectionDirection"
+                }
+            }
+        },
+        "ConnectionDirection": {
+            "enum": [
+                "INBOUND",
+                "OUTBOUND"
+            ]
+        },
+        "SignalsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Signal"
+            }
+        },
+        "Signal": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Id": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Title": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "ProductArn": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "ResourceIds": {
+                    "$ref": "#/$defs/NonEmptyStringList"
+                },
+                "SignalIndicators": {
+                    "$ref": "#/$defs/IndicatorsList"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "UpdatedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "FirstSeenAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "LastSeenAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "Severity": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ActorIds": {
+                    "$ref": "#/$defs/NonEmptyStringList"
+                },
+                "EndpointIds": {
+                    "$ref": "#/$defs/NonEmptyStringList"
+                }
+            }
+        },
+        "IndicatorsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Indicator"
+            }
+        },
+        "Indicator": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Values": {
+                    "$ref": "#/$defs/NonEmptyStringList"
+                },
+                "Title": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "Type": {
+                    "$ref": "#/$defs/NonEmptyString"
                 }
             }
         },

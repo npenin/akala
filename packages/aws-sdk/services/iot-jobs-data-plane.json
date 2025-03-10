@@ -82,6 +82,41 @@
             }
         },
         {
+            "name": "StartCommandExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/command-executions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartCommandExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartCommandExecutionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "StartNextPendingJobExecution",
             "config": {
                 "http": {
@@ -378,6 +413,107 @@
                     "$ref": "#/$defs/ThingName"
                 }
             }
+        },
+        "StartCommandExecutionResponse": {
+            "type": "object",
+            "properties": {
+                "executionId": {
+                    "$ref": "#/$defs/CommandExecutionId"
+                }
+            }
+        },
+        "CommandExecutionId": {
+            "type": "string"
+        },
+        "StartCommandExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "commandArn": {
+                    "$ref": "#/$defs/CommandArn"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/CommandExecutionParameterMap"
+                },
+                "executionTimeoutSeconds": {
+                    "$ref": "#/$defs/CommandExecutionTimeoutInSeconds"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientRequestTokenV2"
+                }
+            }
+        },
+        "TargetArn": {
+            "type": "string"
+        },
+        "CommandArn": {
+            "type": "string"
+        },
+        "CommandExecutionParameterMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CommandParameterValue"
+            }
+        },
+        "CommandParameterValue": {
+            "type": "object",
+            "properties": {
+                "S": {
+                    "$ref": "#/$defs/StringParameterValue"
+                },
+                "B": {
+                    "$ref": "#/$defs/BooleanParameterValue"
+                },
+                "I": {
+                    "$ref": "#/$defs/IntegerParameterValue"
+                },
+                "L": {
+                    "$ref": "#/$defs/LongParameterValue"
+                },
+                "D": {
+                    "$ref": "#/$defs/DoubleParameterValue"
+                },
+                "BIN": {
+                    "$ref": "#/$defs/BinaryParameterValue"
+                },
+                "UL": {
+                    "$ref": "#/$defs/UnsignedLongParameterValue"
+                }
+            }
+        },
+        "StringParameterValue": {
+            "type": "string"
+        },
+        "BooleanParameterValue": {
+            "type": "boolean"
+        },
+        "IntegerParameterValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LongParameterValue": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DoubleParameterValue": {
+            "type": "number",
+            "format": "double"
+        },
+        "BinaryParameterValue": {
+            "type": "string",
+            "format": "binary"
+        },
+        "UnsignedLongParameterValue": {
+            "type": "string"
+        },
+        "CommandExecutionTimeoutInSeconds": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ClientRequestTokenV2": {
+            "type": "string"
         },
         "StartNextPendingJobExecutionResponse": {
             "type": "object",

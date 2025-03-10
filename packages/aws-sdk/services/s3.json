@@ -164,6 +164,45 @@
             }
         },
         {
+            "name": "CreateBucketMetadataTableConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Bucket": "route.Bucket",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/{Bucket}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.Bucket",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateBucketMetadataTableConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateMultipartUpload",
             "config": {
                 "http": {
@@ -501,6 +540,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteBucketLifecycleRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBucketMetadataTableConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Bucket": "route.Bucket",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/{Bucket}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.Bucket",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBucketMetadataTableConfigurationRequest"
                         }
                     }
                 },
@@ -1285,6 +1363,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetBucketLoggingRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBucketMetadataTableConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Bucket": "route.Bucket",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/{Bucket}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBucketMetadataTableConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0.Bucket",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBucketMetadataTableConfigurationRequest"
                         }
                     }
                 },
@@ -3819,6 +3936,9 @@
                 },
                 "ExpectedBucketOwner": {
                     "$ref": "#/$defs/AccountId"
+                },
+                "IfMatchInitiatedTime": {
+                    "$ref": "#/$defs/IfMatchInitiatedTime"
                 }
             }
         },
@@ -3838,6 +3958,10 @@
         },
         "AccountId": {
             "type": "string"
+        },
+        "IfMatchInitiatedTime": {
+            "type": "string",
+            "format": "date-time"
         },
         "CompleteMultipartUploadOutput": {
             "type": "object",
@@ -3863,11 +3987,17 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
                 "ChecksumSHA256": {
                     "$ref": "#/$defs/ChecksumSHA256"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 },
                 "ServerSideEncryption": {
                     "$ref": "#/$defs/ServerSideEncryption"
@@ -3901,11 +4031,20 @@
         "ChecksumCRC32C": {
             "type": "string"
         },
+        "ChecksumCRC64NVME": {
+            "type": "string"
+        },
         "ChecksumSHA1": {
             "type": "string"
         },
         "ChecksumSHA256": {
             "type": "string"
+        },
+        "ChecksumType": {
+            "enum": [
+                "COMPOSITE",
+                "FULL_OBJECT"
+            ]
         },
         "ServerSideEncryption": {
             "enum": [
@@ -3944,17 +4083,29 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
                 "ChecksumSHA256": {
                     "$ref": "#/$defs/ChecksumSHA256"
                 },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
+                },
+                "MpuObjectSize": {
+                    "$ref": "#/$defs/MpuObjectSize"
+                },
                 "RequestPayer": {
                     "$ref": "#/$defs/RequestPayer"
                 },
                 "ExpectedBucketOwner": {
                     "$ref": "#/$defs/AccountId"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/IfMatch"
                 },
                 "IfNoneMatch": {
                     "$ref": "#/$defs/IfNoneMatch"
@@ -3996,6 +4147,9 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
@@ -4010,6 +4164,13 @@
         "PartNumber": {
             "type": "integer",
             "format": "int32"
+        },
+        "MpuObjectSize": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "IfMatch": {
+            "type": "string"
         },
         "IfNoneMatch": {
             "type": "string"
@@ -4070,11 +4231,17 @@
                 "LastModified": {
                     "$ref": "#/$defs/LastModified"
                 },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
+                },
                 "ChecksumCRC32": {
                     "$ref": "#/$defs/ChecksumCRC32"
                 },
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
+                },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
                 },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
@@ -4241,7 +4408,8 @@
                 "CRC32",
                 "CRC32C",
                 "SHA1",
-                "SHA256"
+                "SHA256",
+                "CRC64NVME"
             ]
         },
         "ContentDisposition": {
@@ -4433,17 +4601,22 @@
                 "ap_southeast_1",
                 "ap_southeast_2",
                 "ap_southeast_3",
+                "ap_southeast_4",
+                "ap_southeast_5",
                 "ca_central_1",
                 "cn_north_1",
                 "cn_northwest_1",
                 "EU",
                 "eu_central_1",
+                "eu_central_2",
                 "eu_north_1",
                 "eu_south_1",
                 "eu_south_2",
                 "eu_west_1",
                 "eu_west_2",
                 "eu_west_3",
+                "il_central_1",
+                "me_central_1",
                 "me_south_1",
                 "sa_east_1",
                 "us_east_2",
@@ -4466,7 +4639,8 @@
         },
         "LocationType": {
             "enum": [
-                "AvailabilityZone"
+                "AvailabilityZone",
+                "LocalZone"
             ]
         },
         "LocationNameAsString": {
@@ -4485,7 +4659,8 @@
         },
         "DataRedundancy": {
             "enum": [
-                "SingleAvailabilityZone"
+                "SingleAvailabilityZone",
+                "SingleLocalZone"
             ]
         },
         "BucketType": {
@@ -4505,6 +4680,54 @@
                 "ObjectWriter",
                 "BucketOwnerEnforced"
             ]
+        },
+        "CreateBucketMetadataTableConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "ContentMD5": {
+                    "$ref": "#/$defs/ContentMD5"
+                },
+                "ChecksumAlgorithm": {
+                    "$ref": "#/$defs/ChecksumAlgorithm"
+                },
+                "MetadataTableConfiguration": {
+                    "$ref": "#/$defs/MetadataTableConfiguration"
+                },
+                "ExpectedBucketOwner": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "ContentMD5": {
+            "type": "string"
+        },
+        "MetadataTableConfiguration": {
+            "type": "object",
+            "properties": {
+                "S3TablesDestination": {
+                    "$ref": "#/$defs/S3TablesDestination"
+                }
+            }
+        },
+        "S3TablesDestination": {
+            "type": "object",
+            "properties": {
+                "TableBucketArn": {
+                    "$ref": "#/$defs/S3TablesBucketArn"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/S3TablesName"
+                }
+            }
+        },
+        "S3TablesBucketArn": {
+            "type": "string"
+        },
+        "S3TablesName": {
+            "type": "string"
         },
         "CreateMultipartUploadOutput": {
             "type": "object",
@@ -4547,6 +4770,9 @@
                 },
                 "ChecksumAlgorithm": {
                     "$ref": "#/$defs/ChecksumAlgorithm"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 }
             }
         },
@@ -4649,6 +4875,9 @@
                 },
                 "ChecksumAlgorithm": {
                     "$ref": "#/$defs/ChecksumAlgorithm"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 }
             }
         },
@@ -4820,6 +5049,17 @@
                 }
             }
         },
+        "DeleteBucketMetadataTableConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "ExpectedBucketOwner": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
         "DeleteBucketMetricsConfigurationRequest": {
             "type": "object",
             "properties": {
@@ -4932,6 +5172,15 @@
                 },
                 "ExpectedBucketOwner": {
                     "$ref": "#/$defs/AccountId"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/IfMatch"
+                },
+                "IfMatchLastModifiedTime": {
+                    "$ref": "#/$defs/IfMatchLastModifiedTime"
+                },
+                "IfMatchSize": {
+                    "$ref": "#/$defs/IfMatchSize"
                 }
             }
         },
@@ -4940,6 +5189,14 @@
         },
         "BypassGovernanceRetention": {
             "type": "boolean"
+        },
+        "IfMatchLastModifiedTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "IfMatchSize": {
+            "type": "integer",
+            "format": "int64"
         },
         "DeleteObjectsOutput": {
             "type": "object",
@@ -5061,8 +5318,25 @@
                 },
                 "VersionId": {
                     "$ref": "#/$defs/ObjectVersionId"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/ETag"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/LastModifiedTime"
+                },
+                "Size": {
+                    "$ref": "#/$defs/Size"
                 }
             }
+        },
+        "LastModifiedTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Size": {
+            "type": "integer",
+            "format": "int64"
         },
         "Quiet": {
             "type": "boolean"
@@ -6102,6 +6376,90 @@
                 }
             }
         },
+        "GetBucketMetadataTableConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "GetBucketMetadataTableConfigurationResult": {
+                    "$ref": "#/$defs/GetBucketMetadataTableConfigurationResult"
+                }
+            }
+        },
+        "GetBucketMetadataTableConfigurationResult": {
+            "type": "object",
+            "properties": {
+                "MetadataTableConfigurationResult": {
+                    "$ref": "#/$defs/MetadataTableConfigurationResult"
+                },
+                "Status": {
+                    "$ref": "#/$defs/MetadataTableStatus"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ErrorDetails"
+                }
+            }
+        },
+        "MetadataTableConfigurationResult": {
+            "type": "object",
+            "properties": {
+                "S3TablesDestinationResult": {
+                    "$ref": "#/$defs/S3TablesDestinationResult"
+                }
+            }
+        },
+        "S3TablesDestinationResult": {
+            "type": "object",
+            "properties": {
+                "TableBucketArn": {
+                    "$ref": "#/$defs/S3TablesBucketArn"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/S3TablesName"
+                },
+                "TableArn": {
+                    "$ref": "#/$defs/S3TablesArn"
+                },
+                "TableNamespace": {
+                    "$ref": "#/$defs/S3TablesNamespace"
+                }
+            }
+        },
+        "S3TablesArn": {
+            "type": "string"
+        },
+        "S3TablesNamespace": {
+            "type": "string"
+        },
+        "MetadataTableStatus": {
+            "type": "string"
+        },
+        "ErrorDetails": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorCode": {
+            "type": "string"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "GetBucketMetadataTableConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Bucket": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "ExpectedBucketOwner": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
         "GetBucketMetricsConfigurationOutput": {
             "type": "object",
             "properties": {
@@ -6964,11 +7322,17 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
                 "ChecksumSHA256": {
                     "$ref": "#/$defs/ChecksumSHA256"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 },
                 "MissingMeta": {
                     "$ref": "#/$defs/MissingMeta"
@@ -7150,9 +7514,6 @@
                 }
             }
         },
-        "IfMatch": {
-            "type": "string"
-        },
         "IfModifiedSince": {
             "type": "string",
             "format": "date-time"
@@ -7263,11 +7624,17 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
                 "ChecksumSHA256": {
                     "$ref": "#/$defs/ChecksumSHA256"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 }
             }
         },
@@ -7328,6 +7695,9 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
@@ -7335,10 +7705,6 @@
                     "$ref": "#/$defs/ChecksumSHA256"
                 }
             }
-        },
-        "Size": {
-            "type": "integer",
-            "format": "int64"
         },
         "ObjectSize": {
             "type": "integer",
@@ -7704,11 +8070,17 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
                 "ChecksumSHA256": {
                     "$ref": "#/$defs/ChecksumSHA256"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 },
                 "ETag": {
                     "$ref": "#/$defs/ETag"
@@ -7733,6 +8105,9 @@
                 },
                 "ContentType": {
                     "$ref": "#/$defs/ContentType"
+                },
+                "ContentRange": {
+                    "$ref": "#/$defs/ContentRange"
                 },
                 "Expires": {
                     "$ref": "#/$defs/Expires"
@@ -8017,6 +8392,9 @@
                 },
                 "ContinuationToken": {
                     "$ref": "#/$defs/NextToken"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/Prefix"
                 }
             }
         },
@@ -8034,12 +8412,18 @@
                 },
                 "CreationDate": {
                     "$ref": "#/$defs/CreationDate"
+                },
+                "BucketRegion": {
+                    "$ref": "#/$defs/BucketRegion"
                 }
             }
         },
         "CreationDate": {
             "type": "string",
             "format": "date-time"
+        },
+        "BucketRegion": {
+            "type": "string"
         },
         "ListBucketsRequest": {
             "type": "object",
@@ -8049,6 +8433,12 @@
                 },
                 "ContinuationToken": {
                     "$ref": "#/$defs/Token"
+                },
+                "Prefix": {
+                    "$ref": "#/$defs/Prefix"
+                },
+                "BucketRegion": {
+                    "$ref": "#/$defs/BucketRegion"
                 }
             }
         },
@@ -8177,6 +8567,9 @@
                 },
                 "ChecksumAlgorithm": {
                     "$ref": "#/$defs/ChecksumAlgorithm"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 }
             }
         },
@@ -8310,6 +8703,9 @@
                 },
                 "ChecksumAlgorithm": {
                     "$ref": "#/$defs/ChecksumAlgorithmList"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 },
                 "Size": {
                     "$ref": "#/$defs/Size"
@@ -8571,6 +8967,9 @@
                 "ChecksumAlgorithm": {
                     "$ref": "#/$defs/ChecksumAlgorithmList"
                 },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
+                },
                 "Size": {
                     "$ref": "#/$defs/Size"
                 },
@@ -8713,6 +9112,9 @@
                 },
                 "ChecksumAlgorithm": {
                     "$ref": "#/$defs/ChecksumAlgorithm"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 }
             }
         },
@@ -8742,6 +9144,9 @@
                 },
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
+                },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
                 },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
@@ -8859,9 +9264,6 @@
                     "$ref": "#/$defs/Owner"
                 }
             }
-        },
-        "ContentMD5": {
-            "type": "string"
         },
         "PutBucketAnalyticsConfigurationRequest": {
             "type": "object",
@@ -9277,11 +9679,17 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
                 "ChecksumSHA256": {
                     "$ref": "#/$defs/ChecksumSHA256"
+                },
+                "ChecksumType": {
+                    "$ref": "#/$defs/ChecksumType"
                 },
                 "ServerSideEncryption": {
                     "$ref": "#/$defs/ServerSideEncryption"
@@ -9303,6 +9711,9 @@
                 },
                 "BucketKeyEnabled": {
                     "$ref": "#/$defs/BucketKeyEnabled"
+                },
+                "Size": {
+                    "$ref": "#/$defs/Size"
                 },
                 "RequestCharged": {
                     "$ref": "#/$defs/RequestCharged"
@@ -9351,6 +9762,9 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
@@ -9359,6 +9773,9 @@
                 },
                 "Expires": {
                     "$ref": "#/$defs/Expires"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/IfMatch"
                 },
                 "IfNoneMatch": {
                     "$ref": "#/$defs/IfNoneMatch"
@@ -9377,6 +9794,9 @@
                 },
                 "Key": {
                     "$ref": "#/$defs/ObjectKey"
+                },
+                "WriteOffsetBytes": {
+                    "$ref": "#/$defs/WriteOffsetBytes"
                 },
                 "Metadata": {
                     "$ref": "#/$defs/Metadata"
@@ -9427,6 +9847,10 @@
                     "$ref": "#/$defs/AccountId"
                 }
             }
+        },
+        "WriteOffsetBytes": {
+            "type": "integer",
+            "format": "int64"
         },
         "PutObjectAclOutput": {
             "type": "object",
@@ -10170,6 +10594,9 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
@@ -10216,6 +10643,9 @@
                 },
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
+                },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
                 },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
@@ -10292,6 +10722,9 @@
                 },
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
+                },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
                 },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
@@ -10417,6 +10850,9 @@
                 "ChecksumCRC32C": {
                     "$ref": "#/$defs/ChecksumCRC32C"
                 },
+                "ChecksumCRC64NVME": {
+                    "$ref": "#/$defs/ChecksumCRC64NVME"
+                },
                 "ChecksumSHA1": {
                     "$ref": "#/$defs/ChecksumSHA1"
                 },
@@ -10500,12 +10936,6 @@
         "GetObjectResponseStatusCode": {
             "type": "integer",
             "format": "int32"
-        },
-        "ErrorCode": {
-            "type": "string"
-        },
-        "ErrorMessage": {
-            "type": "string"
         }
     },
     "aws": {
@@ -11375,6 +11805,270 @@
                                                     "type": "tree"
                                                 },
                                                 {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "substring",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Bucket"
+                                                                },
+                                                                6,
+                                                                19,
+                                                                true
+                                                            ],
+                                                            "assign": "s3expressAvailabilityZoneId"
+                                                        },
+                                                        {
+                                                            "fn": "substring",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Bucket"
+                                                                },
+                                                                19,
+                                                                21,
+                                                                true
+                                                            ],
+                                                            "assign": "s3expressAvailabilityZoneDelim"
+                                                        },
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "s3expressAvailabilityZoneDelim"
+                                                                },
+                                                                "--"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [
+                                                                {
+                                                                    "fn": "booleanEquals",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "UseFIPS"
+                                                                        },
+                                                                        true
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            "endpoint": {
+                                                                "url": "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                                "properties": {
+                                                                    "backend": "S3Express",
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "disableDoubleEncoding": true,
+                                                                            "name": "sigv4",
+                                                                            "signingName": "s3express",
+                                                                            "signingRegion": "{Region}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
+                                                        },
+                                                        {
+                                                            "conditions": [],
+                                                            "endpoint": {
+                                                                "url": "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                                "properties": {
+                                                                    "backend": "S3Express",
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "disableDoubleEncoding": true,
+                                                                            "name": "sigv4",
+                                                                            "signingName": "s3express",
+                                                                            "signingRegion": "{Region}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "substring",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Bucket"
+                                                                },
+                                                                6,
+                                                                20,
+                                                                true
+                                                            ],
+                                                            "assign": "s3expressAvailabilityZoneId"
+                                                        },
+                                                        {
+                                                            "fn": "substring",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Bucket"
+                                                                },
+                                                                20,
+                                                                22,
+                                                                true
+                                                            ],
+                                                            "assign": "s3expressAvailabilityZoneDelim"
+                                                        },
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "s3expressAvailabilityZoneDelim"
+                                                                },
+                                                                "--"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [
+                                                                {
+                                                                    "fn": "booleanEquals",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "UseFIPS"
+                                                                        },
+                                                                        true
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            "endpoint": {
+                                                                "url": "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                                "properties": {
+                                                                    "backend": "S3Express",
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "disableDoubleEncoding": true,
+                                                                            "name": "sigv4",
+                                                                            "signingName": "s3express",
+                                                                            "signingRegion": "{Region}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
+                                                        },
+                                                        {
+                                                            "conditions": [],
+                                                            "endpoint": {
+                                                                "url": "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                                "properties": {
+                                                                    "backend": "S3Express",
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "disableDoubleEncoding": true,
+                                                                            "name": "sigv4",
+                                                                            "signingName": "s3express",
+                                                                            "signingRegion": "{Region}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "substring",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Bucket"
+                                                                },
+                                                                6,
+                                                                26,
+                                                                true
+                                                            ],
+                                                            "assign": "s3expressAvailabilityZoneId"
+                                                        },
+                                                        {
+                                                            "fn": "substring",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Bucket"
+                                                                },
+                                                                26,
+                                                                28,
+                                                                true
+                                                            ],
+                                                            "assign": "s3expressAvailabilityZoneDelim"
+                                                        },
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "s3expressAvailabilityZoneDelim"
+                                                                },
+                                                                "--"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [
+                                                                {
+                                                                    "fn": "booleanEquals",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "UseFIPS"
+                                                                        },
+                                                                        true
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            "endpoint": {
+                                                                "url": "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                                "properties": {
+                                                                    "backend": "S3Express",
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "disableDoubleEncoding": true,
+                                                                            "name": "sigv4",
+                                                                            "signingName": "s3express",
+                                                                            "signingRegion": "{Region}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
+                                                        },
+                                                        {
+                                                            "conditions": [],
+                                                            "endpoint": {
+                                                                "url": "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                                "properties": {
+                                                                    "backend": "S3Express",
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "disableDoubleEncoding": true,
+                                                                            "name": "sigv4",
+                                                                            "signingName": "s3express",
+                                                                            "signingRegion": "{Region}"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
                                                     "conditions": [],
                                                     "error": "Unrecognized S3Express bucket name format.",
                                                     "type": "error"
@@ -11492,6 +12186,270 @@
                                                         },
                                                         15,
                                                         17,
+                                                        true
+                                                    ],
+                                                    "assign": "s3expressAvailabilityZoneDelim"
+                                                },
+                                                {
+                                                    "fn": "stringEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "s3expressAvailabilityZoneDelim"
+                                                        },
+                                                        "--"
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "UseFIPS"
+                                                                },
+                                                                true
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                        "properties": {
+                                                            "backend": "S3Express",
+                                                            "authSchemes": [
+                                                                {
+                                                                    "disableDoubleEncoding": true,
+                                                                    "name": "sigv4-s3express",
+                                                                    "signingName": "s3express",
+                                                                    "signingRegion": "{Region}"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                        "properties": {
+                                                            "backend": "S3Express",
+                                                            "authSchemes": [
+                                                                {
+                                                                    "disableDoubleEncoding": true,
+                                                                    "name": "sigv4-s3express",
+                                                                    "signingName": "s3express",
+                                                                    "signingRegion": "{Region}"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "substring",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Bucket"
+                                                        },
+                                                        6,
+                                                        19,
+                                                        true
+                                                    ],
+                                                    "assign": "s3expressAvailabilityZoneId"
+                                                },
+                                                {
+                                                    "fn": "substring",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Bucket"
+                                                        },
+                                                        19,
+                                                        21,
+                                                        true
+                                                    ],
+                                                    "assign": "s3expressAvailabilityZoneDelim"
+                                                },
+                                                {
+                                                    "fn": "stringEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "s3expressAvailabilityZoneDelim"
+                                                        },
+                                                        "--"
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "UseFIPS"
+                                                                },
+                                                                true
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                        "properties": {
+                                                            "backend": "S3Express",
+                                                            "authSchemes": [
+                                                                {
+                                                                    "disableDoubleEncoding": true,
+                                                                    "name": "sigv4-s3express",
+                                                                    "signingName": "s3express",
+                                                                    "signingRegion": "{Region}"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                        "properties": {
+                                                            "backend": "S3Express",
+                                                            "authSchemes": [
+                                                                {
+                                                                    "disableDoubleEncoding": true,
+                                                                    "name": "sigv4-s3express",
+                                                                    "signingName": "s3express",
+                                                                    "signingRegion": "{Region}"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "substring",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Bucket"
+                                                        },
+                                                        6,
+                                                        20,
+                                                        true
+                                                    ],
+                                                    "assign": "s3expressAvailabilityZoneId"
+                                                },
+                                                {
+                                                    "fn": "substring",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Bucket"
+                                                        },
+                                                        20,
+                                                        22,
+                                                        true
+                                                    ],
+                                                    "assign": "s3expressAvailabilityZoneDelim"
+                                                },
+                                                {
+                                                    "fn": "stringEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "s3expressAvailabilityZoneDelim"
+                                                        },
+                                                        "--"
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "UseFIPS"
+                                                                },
+                                                                true
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                        "properties": {
+                                                            "backend": "S3Express",
+                                                            "authSchemes": [
+                                                                {
+                                                                    "disableDoubleEncoding": true,
+                                                                    "name": "sigv4-s3express",
+                                                                    "signingName": "s3express",
+                                                                    "signingRegion": "{Region}"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "endpoint": {
+                                                        "url": "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.amazonaws.com",
+                                                        "properties": {
+                                                            "backend": "S3Express",
+                                                            "authSchemes": [
+                                                                {
+                                                                    "disableDoubleEncoding": true,
+                                                                    "name": "sigv4-s3express",
+                                                                    "signingName": "s3express",
+                                                                    "signingRegion": "{Region}"
+                                                                }
+                                                            ]
+                                                        },
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "substring",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Bucket"
+                                                        },
+                                                        6,
+                                                        26,
+                                                        true
+                                                    ],
+                                                    "assign": "s3expressAvailabilityZoneId"
+                                                },
+                                                {
+                                                    "fn": "substring",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Bucket"
+                                                        },
+                                                        26,
+                                                        28,
                                                         true
                                                     ],
                                                     "assign": "s3expressAvailabilityZoneDelim"

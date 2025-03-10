@@ -321,6 +321,35 @@
             }
         },
         {
+            "name": "GetCommitmentPurchaseAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSInsightsIndexService.GetCommitmentPurchaseAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCommitmentPurchaseAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCommitmentPurchaseAnalysisRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetCostAndUsage",
             "config": {
                 "http": {
@@ -785,6 +814,35 @@
             }
         },
         {
+            "name": "ListCommitmentPurchaseAnalyses",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSInsightsIndexService.ListCommitmentPurchaseAnalyses"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCommitmentPurchaseAnalysesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCommitmentPurchaseAnalysesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListCostAllocationTagBackfillHistory",
             "config": {
                 "http": {
@@ -953,6 +1011,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ProvideAnomalyFeedbackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartCommitmentPurchaseAnalysis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSInsightsIndexService.StartCommitmentPurchaseAnalysis"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartCommitmentPurchaseAnalysisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartCommitmentPurchaseAnalysisRequest"
                         }
                     }
                 }
@@ -1924,13 +2011,28 @@
                 "LinkedAccount": {
                     "$ref": "#/$defs/GenericString"
                 },
+                "LinkedAccountName": {
+                    "$ref": "#/$defs/GenericString"
+                },
                 "UsageType": {
                     "$ref": "#/$defs/GenericString"
                 },
-                "LinkedAccountName": {
-                    "$ref": "#/$defs/GenericString"
+                "Impact": {
+                    "$ref": "#/$defs/RootCauseImpact"
                 }
             }
+        },
+        "RootCauseImpact": {
+            "type": "object",
+            "properties": {
+                "Contribution": {
+                    "$ref": "#/$defs/GenericDouble"
+                }
+            }
+        },
+        "GenericDouble": {
+            "type": "number",
+            "format": "double"
         },
         "AnomalyScore": {
             "type": "object",
@@ -1942,10 +2044,6 @@
                     "$ref": "#/$defs/GenericDouble"
                 }
             }
-        },
-        "GenericDouble": {
-            "type": "number",
-            "format": "double"
         },
         "Impact": {
             "type": "object",
@@ -2172,6 +2270,281 @@
                 "RESOURCE"
             ]
         },
+        "GetCommitmentPurchaseAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "EstimatedCompletionTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                },
+                "AnalysisCompletionTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                },
+                "AnalysisStartedTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                },
+                "AnalysisId": {
+                    "$ref": "#/$defs/AnalysisId"
+                },
+                "AnalysisStatus": {
+                    "$ref": "#/$defs/AnalysisStatus"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "AnalysisDetails": {
+                    "$ref": "#/$defs/AnalysisDetails"
+                },
+                "CommitmentPurchaseAnalysisConfiguration": {
+                    "$ref": "#/$defs/CommitmentPurchaseAnalysisConfiguration"
+                }
+            }
+        },
+        "AnalysisId": {
+            "type": "string"
+        },
+        "AnalysisStatus": {
+            "enum": [
+                "SUCCEEDED",
+                "PROCESSING",
+                "FAILED"
+            ]
+        },
+        "ErrorCode": {
+            "enum": [
+                "NO_USAGE_FOUND",
+                "INTERNAL_FAILURE",
+                "INVALID_SAVINGS_PLANS_TO_ADD",
+                "INVALID_SAVINGS_PLANS_TO_EXCLUDE",
+                "INVALID_ACCOUNT_ID"
+            ]
+        },
+        "AnalysisDetails": {
+            "type": "object",
+            "properties": {
+                "SavingsPlansPurchaseAnalysisDetails": {
+                    "$ref": "#/$defs/SavingsPlansPurchaseAnalysisDetails"
+                }
+            }
+        },
+        "SavingsPlansPurchaseAnalysisDetails": {
+            "type": "object",
+            "properties": {
+                "CurrencyCode": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "LookbackPeriodInHours": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "CurrentAverageCoverage": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "CurrentAverageHourlyOnDemandSpend": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "CurrentMaximumHourlyOnDemandSpend": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "CurrentMinimumHourlyOnDemandSpend": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "CurrentOnDemandSpend": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "ExistingHourlyCommitment": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "HourlyCommitmentToPurchase": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedAverageCoverage": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedAverageUtilization": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedMonthlySavingsAmount": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedOnDemandCost": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedOnDemandCostWithCurrentCommitment": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedROI": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedSavingsAmount": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedSavingsPercentage": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedCommitmentCost": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "LatestUsageTimestamp": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "UpfrontCost": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "AdditionalMetadata": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "MetricsOverLookbackPeriod": {
+                    "$ref": "#/$defs/MetricsOverLookbackPeriod"
+                }
+            }
+        },
+        "MetricsOverLookbackPeriod": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationDetailHourlyMetrics"
+            }
+        },
+        "RecommendationDetailHourlyMetrics": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                },
+                "EstimatedOnDemandCost": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "CurrentCoverage": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedCoverage": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "EstimatedNewCommitmentUtilization": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "CommitmentPurchaseAnalysisConfiguration": {
+            "type": "object",
+            "properties": {
+                "SavingsPlansPurchaseAnalysisConfiguration": {
+                    "$ref": "#/$defs/SavingsPlansPurchaseAnalysisConfiguration"
+                }
+            }
+        },
+        "SavingsPlansPurchaseAnalysisConfiguration": {
+            "type": "object",
+            "properties": {
+                "AccountScope": {
+                    "$ref": "#/$defs/AccountScope"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "AnalysisType": {
+                    "$ref": "#/$defs/AnalysisType"
+                },
+                "SavingsPlansToAdd": {
+                    "$ref": "#/$defs/SavingsPlansToAdd"
+                },
+                "SavingsPlansToExclude": {
+                    "$ref": "#/$defs/SavingsPlansToExclude"
+                },
+                "LookBackTimePeriod": {
+                    "$ref": "#/$defs/DateInterval"
+                }
+            }
+        },
+        "AccountScope": {
+            "enum": [
+                "PAYER",
+                "LINKED"
+            ]
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "AnalysisType": {
+            "enum": [
+                "MAX_SAVINGS",
+                "CUSTOM_COMMITMENT"
+            ]
+        },
+        "SavingsPlansToAdd": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlans"
+            }
+        },
+        "SavingsPlans": {
+            "type": "object",
+            "properties": {
+                "PaymentOption": {
+                    "$ref": "#/$defs/PaymentOption"
+                },
+                "SavingsPlansType": {
+                    "$ref": "#/$defs/SupportedSavingsPlansType"
+                },
+                "Region": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "InstanceFamily": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "TermInYears": {
+                    "$ref": "#/$defs/TermInYears"
+                },
+                "SavingsPlansCommitment": {
+                    "$ref": "#/$defs/SavingsPlansCommitment"
+                },
+                "OfferingId": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "PaymentOption": {
+            "enum": [
+                "NO_UPFRONT",
+                "PARTIAL_UPFRONT",
+                "ALL_UPFRONT",
+                "LIGHT_UTILIZATION",
+                "MEDIUM_UTILIZATION",
+                "HEAVY_UTILIZATION"
+            ]
+        },
+        "SupportedSavingsPlansType": {
+            "enum": [
+                "COMPUTE_SP",
+                "EC2_INSTANCE_SP",
+                "SAGEMAKER_SP"
+            ]
+        },
+        "TermInYears": {
+            "enum": [
+                "ONE_YEAR",
+                "THREE_YEARS"
+            ]
+        },
+        "SavingsPlansCommitment": {
+            "type": "number",
+            "format": "double"
+        },
+        "SavingsPlansToExclude": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlansId"
+            }
+        },
+        "SavingsPlansId": {
+            "type": "string"
+        },
+        "GetCommitmentPurchaseAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "AnalysisId": {
+                    "$ref": "#/$defs/AnalysisId"
+                }
+            }
+        },
         "GetCostAndUsageResponse": {
             "type": "object",
             "properties": {
@@ -2335,6 +2708,9 @@
                 "GroupBy": {
                     "$ref": "#/$defs/GroupDefinitions"
                 },
+                "BillingViewArn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
                 "NextPageToken": {
                     "$ref": "#/$defs/NextPageToken"
                 }
@@ -2347,6 +2723,9 @@
             }
         },
         "MetricName": {
+            "type": "string"
+        },
+        "BillingViewArn": {
             "type": "string"
         },
         "GetCostAndUsageWithResourcesResponse": {
@@ -2383,6 +2762,9 @@
                 },
                 "GroupBy": {
                     "$ref": "#/$defs/GroupDefinitions"
+                },
+                "BillingViewArn": {
+                    "$ref": "#/$defs/BillingViewArn"
                 },
                 "NextPageToken": {
                     "$ref": "#/$defs/NextPageToken"
@@ -2438,6 +2820,9 @@
                 },
                 "SortBy": {
                     "$ref": "#/$defs/SortDefinitions"
+                },
+                "BillingViewArn": {
+                    "$ref": "#/$defs/BillingViewArn"
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
@@ -2529,6 +2914,9 @@
                 "Filter": {
                     "$ref": "#/$defs/Expression"
                 },
+                "BillingViewArn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
                 "PredictionIntervalLevel": {
                     "$ref": "#/$defs/PredictionIntervalLevel"
                 }
@@ -2586,6 +2974,9 @@
                 },
                 "SortBy": {
                     "$ref": "#/$defs/SortDefinitions"
+                },
+                "BillingViewArn": {
+                    "$ref": "#/$defs/BillingViewArn"
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
@@ -2825,33 +3216,11 @@
                 }
             }
         },
-        "AccountScope": {
-            "enum": [
-                "PAYER",
-                "LINKED"
-            ]
-        },
         "LookbackPeriodInDays": {
             "enum": [
                 "SEVEN_DAYS",
                 "THIRTY_DAYS",
                 "SIXTY_DAYS"
-            ]
-        },
-        "TermInYears": {
-            "enum": [
-                "ONE_YEAR",
-                "THREE_YEARS"
-            ]
-        },
-        "PaymentOption": {
-            "enum": [
-                "NO_UPFRONT",
-                "PARTIAL_UPFRONT",
-                "ALL_UPFRONT",
-                "LIGHT_UTILIZATION",
-                "MEDIUM_UTILIZATION",
-                "HEAVY_UTILIZATION"
             ]
         },
         "ServiceSpecification": {
@@ -3883,39 +4252,6 @@
                 }
             }
         },
-        "SupportedSavingsPlansType": {
-            "enum": [
-                "COMPUTE_SP",
-                "EC2_INSTANCE_SP",
-                "SAGEMAKER_SP"
-            ]
-        },
-        "MetricsOverLookbackPeriod": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/RecommendationDetailHourlyMetrics"
-            }
-        },
-        "RecommendationDetailHourlyMetrics": {
-            "type": "object",
-            "properties": {
-                "StartTime": {
-                    "$ref": "#/$defs/ZonedDateTime"
-                },
-                "EstimatedOnDemandCost": {
-                    "$ref": "#/$defs/GenericString"
-                },
-                "CurrentCoverage": {
-                    "$ref": "#/$defs/GenericString"
-                },
-                "EstimatedCoverage": {
-                    "$ref": "#/$defs/GenericString"
-                },
-                "EstimatedNewCommitmentUtilization": {
-                    "$ref": "#/$defs/GenericString"
-                }
-            }
-        },
         "GetSavingsPlanPurchaseRecommendationDetailsRequest": {
             "type": "object",
             "properties": {
@@ -4432,6 +4768,9 @@
                 "SortBy": {
                     "$ref": "#/$defs/SortDefinitions"
                 },
+                "BillingViewArn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
                 },
@@ -4466,9 +4805,78 @@
                 "Filter": {
                     "$ref": "#/$defs/Expression"
                 },
+                "BillingViewArn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
                 "PredictionIntervalLevel": {
                     "$ref": "#/$defs/PredictionIntervalLevel"
                 }
+            }
+        },
+        "ListCommitmentPurchaseAnalysesResponse": {
+            "type": "object",
+            "properties": {
+                "AnalysisSummaryList": {
+                    "$ref": "#/$defs/AnalysisSummaryList"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                }
+            }
+        },
+        "AnalysisSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnalysisSummary"
+            }
+        },
+        "AnalysisSummary": {
+            "type": "object",
+            "properties": {
+                "EstimatedCompletionTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                },
+                "AnalysisCompletionTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                },
+                "AnalysisStartedTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                },
+                "AnalysisStatus": {
+                    "$ref": "#/$defs/AnalysisStatus"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "AnalysisId": {
+                    "$ref": "#/$defs/AnalysisId"
+                },
+                "CommitmentPurchaseAnalysisConfiguration": {
+                    "$ref": "#/$defs/CommitmentPurchaseAnalysisConfiguration"
+                }
+            }
+        },
+        "ListCommitmentPurchaseAnalysesRequest": {
+            "type": "object",
+            "properties": {
+                "AnalysisStatus": {
+                    "$ref": "#/$defs/AnalysisStatus"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/NextPageToken"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/NonNegativeInteger"
+                },
+                "AnalysisIds": {
+                    "$ref": "#/$defs/AnalysisIds"
+                }
+            }
+        },
+        "AnalysisIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnalysisId"
             }
         },
         "ListCostAllocationTagBackfillHistoryResponse": {
@@ -4771,6 +5179,28 @@
                 },
                 "Feedback": {
                     "$ref": "#/$defs/AnomalyFeedbackType"
+                }
+            }
+        },
+        "StartCommitmentPurchaseAnalysisResponse": {
+            "type": "object",
+            "properties": {
+                "AnalysisId": {
+                    "$ref": "#/$defs/AnalysisId"
+                },
+                "AnalysisStartedTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                },
+                "EstimatedCompletionTime": {
+                    "$ref": "#/$defs/ZonedDateTime"
+                }
+            }
+        },
+        "StartCommitmentPurchaseAnalysisRequest": {
+            "type": "object",
+            "properties": {
+                "CommitmentPurchaseAnalysisConfiguration": {
+                    "$ref": "#/$defs/CommitmentPurchaseAnalysisConfiguration"
                 }
             }
         },

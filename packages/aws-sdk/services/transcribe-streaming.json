@@ -2,6 +2,45 @@
     "name": "transcribe",
     "commands": [
         {
+            "name": "GetMedicalScribeStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "SessionId": "route.SessionId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/medical-scribe-stream/{SessionId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMedicalScribeStreamResponse"
+                    },
+                    "inject": [
+                        "param.0.SessionId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMedicalScribeStreamRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "StartCallAnalyticsStreamTranscription",
             "config": {
                 "http": {
@@ -21,6 +60,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/StartCallAnalyticsStreamTranscriptionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartMedicalScribeStream",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/medical-scribe-stream"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartMedicalScribeStreamResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartMedicalScribeStreamRequest"
                         }
                     }
                 },
@@ -153,6 +227,235 @@
             "type": "string",
             "format": "binary"
         },
+        "GetMedicalScribeStreamResponse": {
+            "type": "object",
+            "properties": {
+                "MedicalScribeStreamDetails": {
+                    "$ref": "#/$defs/MedicalScribeStreamDetails"
+                }
+            }
+        },
+        "MedicalScribeStreamDetails": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "StreamCreatedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "StreamEndedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/MedicalScribeLanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MedicalScribeMediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MedicalScribeMediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/MedicalScribeVocabularyFilterMethod"
+                },
+                "ResourceAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ChannelDefinitions": {
+                    "$ref": "#/$defs/MedicalScribeChannelDefinitions"
+                },
+                "EncryptionSettings": {
+                    "$ref": "#/$defs/MedicalScribeEncryptionSettings"
+                },
+                "StreamStatus": {
+                    "$ref": "#/$defs/MedicalScribeStreamStatus"
+                },
+                "PostStreamAnalyticsSettings": {
+                    "$ref": "#/$defs/MedicalScribePostStreamAnalyticsSettings"
+                },
+                "PostStreamAnalyticsResult": {
+                    "$ref": "#/$defs/MedicalScribePostStreamAnalyticsResult"
+                }
+            }
+        },
+        "SessionId": {
+            "type": "string"
+        },
+        "DateTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "MedicalScribeLanguageCode": {
+            "enum": [
+                "EN_US"
+            ]
+        },
+        "MedicalScribeMediaSampleRateHertz": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MedicalScribeMediaEncoding": {
+            "enum": [
+                "PCM",
+                "OGG_OPUS",
+                "FLAC"
+            ]
+        },
+        "VocabularyName": {
+            "type": "string"
+        },
+        "VocabularyFilterName": {
+            "type": "string"
+        },
+        "MedicalScribeVocabularyFilterMethod": {
+            "enum": [
+                "REMOVE",
+                "MASK",
+                "TAG"
+            ]
+        },
+        "IamRoleArn": {
+            "type": "string"
+        },
+        "MedicalScribeChannelDefinitions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MedicalScribeChannelDefinition"
+            }
+        },
+        "MedicalScribeChannelDefinition": {
+            "type": "object",
+            "properties": {
+                "ChannelId": {
+                    "$ref": "#/$defs/MedicalScribeChannelId"
+                },
+                "ParticipantRole": {
+                    "$ref": "#/$defs/MedicalScribeParticipantRole"
+                }
+            }
+        },
+        "MedicalScribeChannelId": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MedicalScribeParticipantRole": {
+            "enum": [
+                "PATIENT",
+                "CLINICIAN"
+            ]
+        },
+        "MedicalScribeEncryptionSettings": {
+            "type": "object",
+            "properties": {
+                "KmsEncryptionContext": {
+                    "$ref": "#/$defs/KMSEncryptionContextMap"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                }
+            }
+        },
+        "KMSEncryptionContextMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "NonEmptyString": {
+            "type": "string"
+        },
+        "KMSKeyId": {
+            "type": "string"
+        },
+        "MedicalScribeStreamStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "PAUSED",
+                "FAILED",
+                "COMPLETED"
+            ]
+        },
+        "MedicalScribePostStreamAnalyticsSettings": {
+            "type": "object",
+            "properties": {
+                "ClinicalNoteGenerationSettings": {
+                    "$ref": "#/$defs/ClinicalNoteGenerationSettings"
+                }
+            }
+        },
+        "ClinicalNoteGenerationSettings": {
+            "type": "object",
+            "properties": {
+                "OutputBucketName": {
+                    "$ref": "#/$defs/BucketName"
+                },
+                "NoteTemplate": {
+                    "$ref": "#/$defs/MedicalScribeNoteTemplate"
+                }
+            }
+        },
+        "BucketName": {
+            "type": "string"
+        },
+        "MedicalScribeNoteTemplate": {
+            "enum": [
+                "HISTORY_AND_PHYSICAL",
+                "GIRPP"
+            ]
+        },
+        "MedicalScribePostStreamAnalyticsResult": {
+            "type": "object",
+            "properties": {
+                "ClinicalNoteGenerationResult": {
+                    "$ref": "#/$defs/ClinicalNoteGenerationResult"
+                }
+            }
+        },
+        "ClinicalNoteGenerationResult": {
+            "type": "object",
+            "properties": {
+                "ClinicalNoteOutputLocation": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "TranscriptOutputLocation": {
+                    "$ref": "#/$defs/Uri"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ClinicalNoteGenerationStatus"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Uri": {
+            "type": "string"
+        },
+        "ClinicalNoteGenerationStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "FAILED",
+                "COMPLETED"
+            ]
+        },
+        "String": {
+            "type": "string"
+        },
+        "GetMedicalScribeStreamRequest": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                }
+            }
+        },
         "StartCallAnalyticsStreamTranscriptionResponse": {
             "type": "object",
             "properties": {
@@ -230,12 +533,6 @@
                 "FLAC"
             ]
         },
-        "VocabularyName": {
-            "type": "string"
-        },
-        "SessionId": {
-            "type": "string"
-        },
         "CallAnalyticsTranscriptResultStream": {
             "type": "object",
             "properties": {
@@ -296,9 +593,6 @@
                     "$ref": "#/$defs/IssuesDetected"
                 }
             }
-        },
-        "String": {
-            "type": "string"
         },
         "Boolean": {
             "type": "boolean"
@@ -512,9 +806,6 @@
                 }
             }
         },
-        "VocabularyFilterName": {
-            "type": "string"
-        },
         "VocabularyFilterMethod": {
             "enum": [
                 "REMOVE",
@@ -670,6 +961,209 @@
                 "REDACTED_AND_UNREDACTED"
             ]
         },
+        "StartMedicalScribeStreamResponse": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/MedicalScribeLanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MedicalScribeMediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MedicalScribeMediaEncoding"
+                },
+                "ResultStream": {
+                    "$ref": "#/$defs/MedicalScribeResultStream"
+                }
+            }
+        },
+        "MedicalScribeResultStream": {
+            "type": "object",
+            "properties": {
+                "TranscriptEvent": {
+                    "$ref": "#/$defs/MedicalScribeTranscriptEvent"
+                },
+                "BadRequestException": {
+                    "$ref": "#/$defs/BadRequestException"
+                },
+                "LimitExceededException": {
+                    "$ref": "#/$defs/LimitExceededException"
+                },
+                "InternalFailureException": {
+                    "$ref": "#/$defs/InternalFailureException"
+                },
+                "ConflictException": {
+                    "$ref": "#/$defs/ConflictException"
+                },
+                "ServiceUnavailableException": {
+                    "$ref": "#/$defs/ServiceUnavailableException"
+                }
+            }
+        },
+        "MedicalScribeTranscriptEvent": {
+            "type": "object",
+            "properties": {
+                "TranscriptSegment": {
+                    "$ref": "#/$defs/MedicalScribeTranscriptSegment"
+                }
+            }
+        },
+        "MedicalScribeTranscriptSegment": {
+            "type": "object",
+            "properties": {
+                "SegmentId": {
+                    "$ref": "#/$defs/String"
+                },
+                "BeginAudioTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "EndAudioTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Content": {
+                    "$ref": "#/$defs/String"
+                },
+                "Items": {
+                    "$ref": "#/$defs/MedicalScribeTranscriptItemList"
+                },
+                "IsPartial": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ChannelId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "MedicalScribeTranscriptItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MedicalScribeTranscriptItem"
+            }
+        },
+        "MedicalScribeTranscriptItem": {
+            "type": "object",
+            "properties": {
+                "BeginAudioTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "EndAudioTime": {
+                    "$ref": "#/$defs/Double"
+                },
+                "Type": {
+                    "$ref": "#/$defs/MedicalScribeTranscriptItemType"
+                },
+                "Confidence": {
+                    "$ref": "#/$defs/Confidence"
+                },
+                "Content": {
+                    "$ref": "#/$defs/String"
+                },
+                "VocabularyFilterMatch": {
+                    "$ref": "#/$defs/NullableBoolean"
+                }
+            }
+        },
+        "MedicalScribeTranscriptItemType": {
+            "enum": [
+                "PRONUNCIATION",
+                "PUNCTUATION"
+            ]
+        },
+        "NullableBoolean": {
+            "type": "boolean"
+        },
+        "StartMedicalScribeStreamRequest": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/MedicalScribeLanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MedicalScribeMediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MedicalScribeMediaEncoding"
+                },
+                "InputStream": {
+                    "$ref": "#/$defs/MedicalScribeInputStream"
+                }
+            }
+        },
+        "MedicalScribeInputStream": {
+            "type": "object",
+            "properties": {
+                "AudioEvent": {
+                    "$ref": "#/$defs/MedicalScribeAudioEvent"
+                },
+                "SessionControlEvent": {
+                    "$ref": "#/$defs/MedicalScribeSessionControlEvent"
+                },
+                "ConfigurationEvent": {
+                    "$ref": "#/$defs/MedicalScribeConfigurationEvent"
+                }
+            }
+        },
+        "MedicalScribeAudioEvent": {
+            "type": "object",
+            "properties": {
+                "AudioChunk": {
+                    "$ref": "#/$defs/AudioChunk"
+                }
+            }
+        },
+        "MedicalScribeSessionControlEvent": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/MedicalScribeSessionControlEventType"
+                }
+            }
+        },
+        "MedicalScribeSessionControlEventType": {
+            "enum": [
+                "END_OF_SESSION"
+            ]
+        },
+        "MedicalScribeConfigurationEvent": {
+            "type": "object",
+            "properties": {
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/MedicalScribeVocabularyFilterMethod"
+                },
+                "ResourceAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ChannelDefinitions": {
+                    "$ref": "#/$defs/MedicalScribeChannelDefinitions"
+                },
+                "EncryptionSettings": {
+                    "$ref": "#/$defs/MedicalScribeEncryptionSettings"
+                },
+                "PostStreamAnalyticsSettings": {
+                    "$ref": "#/$defs/MedicalScribePostStreamAnalyticsSettings"
+                }
+            }
+        },
         "StartMedicalStreamTranscriptionResponse": {
             "type": "object",
             "properties": {
@@ -728,8 +1222,48 @@
                 "JA_JP",
                 "KO_KR",
                 "ZH_CN",
+                "TH_TH",
+                "ES_ES",
+                "AR_SA",
+                "PT_PT",
+                "CA_ES",
+                "AR_AE",
                 "HI_IN",
-                "TH_TH"
+                "ZH_HK",
+                "NL_NL",
+                "NO_NO",
+                "SV_SE",
+                "PL_PL",
+                "FI_FI",
+                "ZH_TW",
+                "EN_IN",
+                "EN_IE",
+                "EN_NZ",
+                "EN_AB",
+                "EN_ZA",
+                "EN_WL",
+                "DE_CH",
+                "AF_ZA",
+                "EU_ES",
+                "HR_HR",
+                "CS_CZ",
+                "DA_DK",
+                "FA_IR",
+                "GL_ES",
+                "EL_GR",
+                "HE_IL",
+                "ID_ID",
+                "LV_LV",
+                "MS_MY",
+                "RO_RO",
+                "RU_RU",
+                "SR_RS",
+                "SK_SK",
+                "SO_SO",
+                "TL_PH",
+                "UK_UA",
+                "VI_VN",
+                "ZU_ZA"
             ]
         },
         "Specialty": {
@@ -815,10 +1349,6 @@
                     "$ref": "#/$defs/String"
                 }
             }
-        },
-        "Double": {
-            "type": "number",
-            "format": "double"
         },
         "MedicalAlternativeList": {
             "type": "array",

@@ -785,6 +785,35 @@
             }
         },
         {
+            "name": "AssociateSecurityGroupVpc",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.AssociateSecurityGroupVpc"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateSecurityGroupVpcResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateSecurityGroupVpcRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "AssociateSubnetCidrBlock",
             "config": {
                 "http": {
@@ -1359,6 +1388,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CancelConversionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelDeclarativePoliciesReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.CancelDeclarativePoliciesReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelDeclarativePoliciesReportResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelDeclarativePoliciesReportRequest"
                         }
                     }
                 }
@@ -3888,6 +3946,35 @@
             }
         },
         {
+            "name": "CreateVpcBlockPublicAccessExclusion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.CreateVpcBlockPublicAccessExclusion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateVpcBlockPublicAccessExclusionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateVpcBlockPublicAccessExclusionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateVpcEndpoint",
             "config": {
                 "http": {
@@ -5295,7 +5382,7 @@
                 },
                 "schema": {
                     "resultSchema": {
-                        "type": "object"
+                        "$ref": "#/$defs/DeleteSecurityGroupResult"
                     },
                     "inject": [
                         "param.0"
@@ -6063,6 +6150,35 @@
             }
         },
         {
+            "name": "DeleteVpcBlockPublicAccessExclusion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DeleteVpcBlockPublicAccessExclusion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteVpcBlockPublicAccessExclusionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVpcBlockPublicAccessExclusionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteVpcEndpointConnectionNotifications",
             "config": {
                 "http": {
@@ -6397,7 +6513,7 @@
                 },
                 "schema": {
                     "resultSchema": {
-                        "type": "object"
+                        "$ref": "#/$defs/DeregisterImageResult"
                     },
                     "inject": [
                         "param.0"
@@ -6753,6 +6869,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeByoipCidrsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCapacityBlockExtensionHistory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DescribeCapacityBlockExtensionHistory"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCapacityBlockExtensionHistoryResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCapacityBlockExtensionHistoryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCapacityBlockExtensionOfferings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DescribeCapacityBlockExtensionOfferings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCapacityBlockExtensionOfferingsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCapacityBlockExtensionOfferingsRequest"
                         }
                     }
                 }
@@ -7159,6 +7333,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeCustomerGatewaysRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeDeclarativePoliciesReports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DescribeDeclarativePoliciesReports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeDeclarativePoliciesReportsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeDeclarativePoliciesReportsRequest"
                         }
                     }
                 }
@@ -7971,6 +8174,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeInstanceEventWindowsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInstanceImageMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DescribeInstanceImageMetadata"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeInstanceImageMetadataResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeInstanceImageMetadataRequest"
                         }
                     }
                 }
@@ -9485,6 +9717,35 @@
             }
         },
         {
+            "name": "DescribeSecurityGroupVpcAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DescribeSecurityGroupVpcAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeSecurityGroupVpcAssociationsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeSecurityGroupVpcAssociationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeSnapshotAttribute",
             "config": {
                 "http": {
@@ -10587,6 +10848,64 @@
             }
         },
         {
+            "name": "DescribeVpcBlockPublicAccessExclusions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DescribeVpcBlockPublicAccessExclusions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeVpcBlockPublicAccessExclusionsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeVpcBlockPublicAccessExclusionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeVpcBlockPublicAccessOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DescribeVpcBlockPublicAccessOptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeVpcBlockPublicAccessOptionsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeVpcBlockPublicAccessOptionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeVpcClassicLink",
             "config": {
                 "http": {
@@ -10639,6 +10958,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeVpcClassicLinkDnsSupportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeVpcEndpointAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DescribeVpcEndpointAssociations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeVpcEndpointAssociationsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeVpcEndpointAssociationsRequest"
                         }
                     }
                 }
@@ -11132,6 +11480,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DisableAddressTransferRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableAllowedImagesSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DisableAllowedImagesSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisableAllowedImagesSettingsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableAllowedImagesSettingsRequest"
                         }
                     }
                 }
@@ -11863,6 +12240,35 @@
             }
         },
         {
+            "name": "DisassociateSecurityGroupVpc",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.DisassociateSecurityGroupVpc"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateSecurityGroupVpcResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateSecurityGroupVpcRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DisassociateSubnetCidrBlock",
             "config": {
                 "http": {
@@ -12060,6 +12466,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/EnableAddressTransferRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableAllowedImagesSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.EnableAllowedImagesSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnableAllowedImagesSettingsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableAllowedImagesSettingsRequest"
                         }
                     }
                 }
@@ -12675,6 +13110,64 @@
             }
         },
         {
+            "name": "ExportVerifiedAccessInstanceClientConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.ExportVerifiedAccessInstanceClientConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExportVerifiedAccessInstanceClientConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExportVerifiedAccessInstanceClientConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAllowedImagesSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.GetAllowedImagesSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAllowedImagesSettingsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAllowedImagesSettingsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetAssociatedEnclaveCertificateIamRoles",
             "config": {
                 "http": {
@@ -12872,6 +13365,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetConsoleScreenshotRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDeclarativePoliciesReportSummary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.GetDeclarativePoliciesReportSummary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDeclarativePoliciesReportSummaryResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDeclarativePoliciesReportSummaryRequest"
                         }
                     }
                 }
@@ -13980,6 +14502,35 @@
             }
         },
         {
+            "name": "GetVerifiedAccessEndpointTargets",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.GetVerifiedAccessEndpointTargets"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetVerifiedAccessEndpointTargetsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetVerifiedAccessEndpointTargetsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetVerifiedAccessGroupPolicy",
             "config": {
                 "http": {
@@ -14995,6 +15546,35 @@
             }
         },
         {
+            "name": "ModifyInstanceNetworkPerformanceOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.ModifyInstanceNetworkPerformanceOptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyInstanceNetworkPerformanceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyInstanceNetworkPerformanceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ModifyInstancePlacement",
             "config": {
                 "http": {
@@ -15952,6 +16532,64 @@
             }
         },
         {
+            "name": "ModifyVpcBlockPublicAccessExclusion",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.ModifyVpcBlockPublicAccessExclusion"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyVpcBlockPublicAccessExclusionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyVpcBlockPublicAccessExclusionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ModifyVpcBlockPublicAccessOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.ModifyVpcBlockPublicAccessOptions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyVpcBlockPublicAccessOptionsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyVpcBlockPublicAccessOptionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ModifyVpcEndpoint",
             "config": {
                 "http": {
@@ -16532,6 +17170,35 @@
             }
         },
         {
+            "name": "PurchaseCapacityBlockExtension",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.PurchaseCapacityBlockExtension"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PurchaseCapacityBlockExtensionResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PurchaseCapacityBlockExtensionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "PurchaseHostReservation",
             "config": {
                 "http": {
@@ -17048,6 +17715,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ReplaceIamInstanceProfileAssociationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ReplaceImageCriteriaInAllowedImagesSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.ReplaceImageCriteriaInAllowedImagesSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ReplaceImageCriteriaInAllowedImagesSettingsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ReplaceImageCriteriaInAllowedImagesSettingsRequest"
                         }
                     }
                 }
@@ -17924,6 +18620,35 @@
             }
         },
         {
+            "name": "StartDeclarativePoliciesReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2.StartDeclarativePoliciesReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDeclarativePoliciesReportResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDeclarativePoliciesReportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "StartInstances",
             "config": {
                 "http": {
@@ -18488,6 +19213,7 @@
                 "customer_gateway",
                 "carrier_gateway",
                 "coip_pool",
+                "declarative_policies_report",
                 "dedicated_host",
                 "dhcp_options",
                 "egress_only_internet_gateway",
@@ -18569,6 +19295,7 @@
                 "ipam_resource_discovery",
                 "ipam_resource_discovery_association",
                 "instance_connect_endpoint",
+                "verified_access_endpoint_target",
                 "ipam_external_resource_verification_token"
             ]
         },
@@ -20343,6 +21070,38 @@
         "RouteTableId": {
             "type": "string"
         },
+        "AssociateSecurityGroupVpcResult": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/SecurityGroupVpcAssociationState"
+                }
+            }
+        },
+        "SecurityGroupVpcAssociationState": {
+            "enum": [
+                "associating",
+                "associated",
+                "association_failed",
+                "disassociating",
+                "disassociated",
+                "disassociation_failed"
+            ]
+        },
+        "AssociateSecurityGroupVpcRequest": {
+            "type": "object",
+            "properties": {
+                "GroupId": {
+                    "$ref": "#/$defs/SecurityGroupId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/VpcId"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
         "AssociateSubnetCidrBlockResult": {
             "type": "object",
             "properties": {
@@ -20893,6 +21652,9 @@
                 },
                 "SseSpecification": {
                     "$ref": "#/$defs/VerifiedAccessSseSpecificationResponse"
+                },
+                "NativeApplicationOidcOptions": {
+                    "$ref": "#/$defs/NativeApplicationOidcOptions"
                 }
             }
         },
@@ -20969,6 +21731,32 @@
         "KmsKeyArn": {
             "type": "string"
         },
+        "NativeApplicationOidcOptions": {
+            "type": "object",
+            "properties": {
+                "PublicSigningKeyEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/String"
+                },
+                "AuthorizationEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "TokenEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "UserInfoEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Scope": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "VerifiedAccessInstance": {
             "type": "object",
             "properties": {
@@ -20992,6 +21780,9 @@
                 },
                 "FipsEnabled": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "CidrEndpointsCustomSubDomain": {
+                    "$ref": "#/$defs/VerifiedAccessInstanceCustomSubDomain"
                 }
             }
         },
@@ -21018,6 +21809,17 @@
                 },
                 "DeviceTrustProviderType": {
                     "$ref": "#/$defs/DeviceTrustProviderType"
+                }
+            }
+        },
+        "VerifiedAccessInstanceCustomSubDomain": {
+            "type": "object",
+            "properties": {
+                "SubDomain": {
+                    "$ref": "#/$defs/String"
+                },
+                "Nameservers": {
+                    "$ref": "#/$defs/ValueStringList"
                 }
             }
         },
@@ -21257,6 +22059,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "SecurityGroupRuleArn": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -21752,6 +22557,28 @@
         "ConversionTaskId": {
             "type": "string"
         },
+        "CancelDeclarativePoliciesReportResult": {
+            "type": "object",
+            "properties": {
+                "Return": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CancelDeclarativePoliciesReportRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ReportId": {
+                    "$ref": "#/$defs/DeclarativePoliciesReportId"
+                }
+            }
+        },
+        "DeclarativePoliciesReportId": {
+            "type": "string"
+        },
         "CancelExportTaskRequest": {
             "type": "object",
             "properties": {
@@ -22197,6 +23024,9 @@
                 "TagSpecifications": {
                     "$ref": "#/$defs/TagSpecificationList"
                 },
+                "SnapshotCopyCompletionDurationMinutes": {
+                    "$ref": "#/$defs/Long"
+                },
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
                 }
@@ -22246,6 +23076,9 @@
                 "TagSpecifications": {
                     "$ref": "#/$defs/TagSpecificationList"
                 },
+                "CompletionDurationMinutes": {
+                    "$ref": "#/$defs/SnapshotCompletionDurationMinutesRequest"
+                },
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
                 }
@@ -22253,6 +23086,10 @@
         },
         "CopySnapshotRequestPSU": {
             "type": "string"
+        },
+        "SnapshotCompletionDurationMinutesRequest": {
+            "type": "integer",
+            "format": "int32"
         },
         "CreateCapacityReservationResult": {
             "type": "object",
@@ -22339,6 +23176,12 @@
                 },
                 "UnusedReservationBillingOwnerId": {
                     "$ref": "#/$defs/AccountID"
+                },
+                "CommitmentInfo": {
+                    "$ref": "#/$defs/CapacityReservationCommitmentInfo"
+                },
+                "DeliveryPreference": {
+                    "$ref": "#/$defs/CapacityReservationDeliveryPreference"
                 }
             }
         },
@@ -22379,7 +23222,10 @@
                 "failed",
                 "scheduled",
                 "payment_pending",
-                "payment_failed"
+                "payment_failed",
+                "assessing",
+                "delayed",
+                "unsupported"
             ]
         },
         "EndDateType": {
@@ -22419,13 +23265,31 @@
         },
         "AllocationType": {
             "enum": [
-                "used"
+                "used",
+                "future"
             ]
         },
         "CapacityReservationType": {
             "enum": [
                 "DEFAULT",
                 "CAPACITY_BLOCK"
+            ]
+        },
+        "CapacityReservationCommitmentInfo": {
+            "type": "object",
+            "properties": {
+                "CommittedInstanceCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CommitmentEndDate": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                }
+            }
+        },
+        "CapacityReservationDeliveryPreference": {
+            "enum": [
+                "FIXED",
+                "INCREMENTAL"
             ]
         },
         "CreateCapacityReservationRequest": {
@@ -22478,6 +23342,15 @@
                 },
                 "PlacementGroupArn": {
                     "$ref": "#/$defs/PlacementGroupArn"
+                },
+                "StartDate": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "CommitmentDuration": {
+                    "$ref": "#/$defs/CapacityReservationCommitmentDuration"
+                },
+                "DeliveryPreference": {
+                    "$ref": "#/$defs/CapacityReservationDeliveryPreference"
                 }
             }
         },
@@ -22486,6 +23359,10 @@
         },
         "AvailabilityZoneId": {
             "type": "string"
+        },
+        "CapacityReservationCommitmentDuration": {
+            "type": "integer",
+            "format": "int64"
         },
         "CreateCapacityReservationBySplittingResult": {
             "type": "object",
@@ -23442,7 +24319,69 @@
                 "g6e_12xlarge",
                 "g6e_16xlarge",
                 "g6e_24xlarge",
-                "g6e_48xlarge"
+                "g6e_48xlarge",
+                "c8g_medium",
+                "c8g_large",
+                "c8g_xlarge",
+                "c8g_2xlarge",
+                "c8g_4xlarge",
+                "c8g_8xlarge",
+                "c8g_12xlarge",
+                "c8g_16xlarge",
+                "c8g_24xlarge",
+                "c8g_48xlarge",
+                "c8g_metal_24xl",
+                "c8g_metal_48xl",
+                "m8g_medium",
+                "m8g_large",
+                "m8g_xlarge",
+                "m8g_2xlarge",
+                "m8g_4xlarge",
+                "m8g_8xlarge",
+                "m8g_12xlarge",
+                "m8g_16xlarge",
+                "m8g_24xlarge",
+                "m8g_48xlarge",
+                "m8g_metal_24xl",
+                "m8g_metal_48xl",
+                "x8g_medium",
+                "x8g_large",
+                "x8g_xlarge",
+                "x8g_2xlarge",
+                "x8g_4xlarge",
+                "x8g_8xlarge",
+                "x8g_12xlarge",
+                "x8g_16xlarge",
+                "x8g_24xlarge",
+                "x8g_48xlarge",
+                "x8g_metal_24xl",
+                "x8g_metal_48xl",
+                "i7ie_large",
+                "i7ie_xlarge",
+                "i7ie_2xlarge",
+                "i7ie_3xlarge",
+                "i7ie_6xlarge",
+                "i7ie_12xlarge",
+                "i7ie_18xlarge",
+                "i7ie_24xlarge",
+                "i7ie_48xlarge",
+                "i8g_large",
+                "i8g_xlarge",
+                "i8g_2xlarge",
+                "i8g_4xlarge",
+                "i8g_8xlarge",
+                "i8g_12xlarge",
+                "i8g_16xlarge",
+                "i8g_24xlarge",
+                "i8g_metal_24xl",
+                "u7i_6tb_112xlarge",
+                "u7i_8tb_112xlarge",
+                "u7inh_32tb_480xlarge",
+                "p5e_48xlarge",
+                "p5en_48xlarge",
+                "f2_12xlarge",
+                "f2_48xlarge",
+                "trn2_48xlarge"
             ]
         },
         "DoubleWithConstraints": {
@@ -23662,6 +24601,9 @@
                 },
                 "ClientLoginBannerOptions": {
                     "$ref": "#/$defs/ClientLoginBannerOptions"
+                },
+                "DisconnectOnSessionTimeout": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
         },
@@ -24031,6 +24973,9 @@
                 "PrivateDnsNameOptionsOnLaunch": {
                     "$ref": "#/$defs/PrivateDnsNameOptionsOnLaunch"
                 },
+                "BlockPublicAccessStates": {
+                    "$ref": "#/$defs/BlockPublicAccessStates"
+                },
                 "SubnetId": {
                     "$ref": "#/$defs/String"
                 },
@@ -24086,6 +25031,21 @@
                 "resource_name"
             ]
         },
+        "BlockPublicAccessStates": {
+            "type": "object",
+            "properties": {
+                "InternetGatewayBlockMode": {
+                    "$ref": "#/$defs/BlockPublicAccessMode"
+                }
+            }
+        },
+        "BlockPublicAccessMode": {
+            "enum": [
+                "off",
+                "block_bidirectional",
+                "block_ingress"
+            ]
+        },
         "SubnetState": {
             "enum": [
                 "pending",
@@ -24133,8 +25093,14 @@
                 "IsDefault": {
                     "$ref": "#/$defs/Boolean"
                 },
+                "EncryptionControl": {
+                    "$ref": "#/$defs/VpcEncryptionControl"
+                },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "BlockPublicAccessStates": {
+                    "$ref": "#/$defs/BlockPublicAccessStates"
                 },
                 "VpcId": {
                     "$ref": "#/$defs/String"
@@ -24168,6 +25134,91 @@
             "items": {
                 "$ref": "#/$defs/VpcCidrBlockAssociation"
             }
+        },
+        "VpcEncryptionControl": {
+            "type": "object",
+            "properties": {
+                "VpcId": {
+                    "$ref": "#/$defs/VpcId"
+                },
+                "VpcEncryptionControlId": {
+                    "$ref": "#/$defs/VpcEncryptionControlId"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/VpcEncryptionControlMode"
+                },
+                "State": {
+                    "$ref": "#/$defs/VpcEncryptionControlState"
+                },
+                "StateMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceExclusions": {
+                    "$ref": "#/$defs/VpcEncryptionControlExclusions"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "VpcEncryptionControlId": {
+            "type": "string"
+        },
+        "VpcEncryptionControlMode": {
+            "enum": [
+                "monitor",
+                "enforce"
+            ]
+        },
+        "VpcEncryptionControlState": {
+            "enum": [
+                "enforce_in_progress",
+                "monitor_in_progress",
+                "enforce_failed",
+                "monitor_failed",
+                "deleting",
+                "deleted",
+                "available"
+            ]
+        },
+        "VpcEncryptionControlExclusions": {
+            "type": "object",
+            "properties": {
+                "InternetGateway": {
+                    "$ref": "#/$defs/VpcEncryptionControlExclusion"
+                },
+                "EgressOnlyInternetGateway": {
+                    "$ref": "#/$defs/VpcEncryptionControlExclusion"
+                },
+                "NatGateway": {
+                    "$ref": "#/$defs/VpcEncryptionControlExclusion"
+                },
+                "VirtualPrivateGateway": {
+                    "$ref": "#/$defs/VpcEncryptionControlExclusion"
+                },
+                "VpcPeering": {
+                    "$ref": "#/$defs/VpcEncryptionControlExclusion"
+                }
+            }
+        },
+        "VpcEncryptionControlExclusion": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/VpcEncryptionControlExclusionState"
+                },
+                "StateMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "VpcEncryptionControlExclusionState": {
+            "enum": [
+                "enabling",
+                "enabled",
+                "disabling",
+                "disabled"
+            ]
         },
         "VpcState": {
             "enum": [
@@ -24429,6 +25480,9 @@
                 },
                 "ImageId": {
                     "$ref": "#/$defs/ImageId"
+                },
+                "BlockDeviceMappings": {
+                    "$ref": "#/$defs/BlockDeviceMappingResponseList"
                 }
             }
         },
@@ -24517,6 +25571,9 @@
                 },
                 "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice": {
                     "$ref": "#/$defs/Integer"
+                },
+                "BaselinePerformanceFactors": {
+                    "$ref": "#/$defs/BaselinePerformanceFactors"
                 }
             }
         },
@@ -24552,7 +25609,8 @@
             "enum": [
                 "INTEL",
                 "AMD",
-                "AMAZON_WEB_SERVICES"
+                "AMAZON_WEB_SERVICES",
+                "APPLE"
             ]
         },
         "MemoryGiBPerVCpu": {
@@ -24744,6 +25802,102 @@
         },
         "AllowedInstanceType": {
             "type": "string"
+        },
+        "BaselinePerformanceFactors": {
+            "type": "object",
+            "properties": {
+                "Cpu": {
+                    "$ref": "#/$defs/CpuPerformanceFactor"
+                }
+            }
+        },
+        "CpuPerformanceFactor": {
+            "type": "object",
+            "properties": {
+                "References": {
+                    "$ref": "#/$defs/PerformanceFactorReferenceSet"
+                }
+            }
+        },
+        "PerformanceFactorReferenceSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PerformanceFactorReference"
+            }
+        },
+        "PerformanceFactorReference": {
+            "type": "object",
+            "properties": {
+                "InstanceFamily": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BlockDeviceMappingResponseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BlockDeviceMappingResponse"
+            }
+        },
+        "BlockDeviceMappingResponse": {
+            "type": "object",
+            "properties": {
+                "DeviceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "VirtualName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Ebs": {
+                    "$ref": "#/$defs/EbsBlockDeviceResponse"
+                },
+                "NoDevice": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EbsBlockDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "Encrypted": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DeleteOnTermination": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Iops": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Throughput": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "SnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "VolumeSize": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "VolumeType": {
+                    "$ref": "#/$defs/VolumeType"
+                }
+            }
+        },
+        "SnapshotId": {
+            "type": "string"
+        },
+        "VolumeType": {
+            "enum": [
+                "standard",
+                "io1",
+                "io2",
+                "gp2",
+                "sc1",
+                "st1",
+                "gp3"
+            ]
         },
         "InstanceLifecycle": {
             "enum": [
@@ -24944,9 +26098,7 @@
         },
         "FleetCapacityReservationUsageStrategy": {
             "enum": [
-                "USE_CAPACITY_RESERVATIONS_FIRST",
-                "USE_CAPACITY_RESERVATIONS_ONLY",
-                "NONE"
+                "USE_CAPACITY_RESERVATIONS_FIRST"
             ]
         },
         "FleetExcessCapacityTerminationPolicy": {
@@ -25019,6 +26171,9 @@
                 "Placement": {
                     "$ref": "#/$defs/Placement"
                 },
+                "BlockDeviceMappings": {
+                    "$ref": "#/$defs/FleetBlockDeviceMappingRequestList"
+                },
                 "InstanceRequirements": {
                     "$ref": "#/$defs/InstanceRequirementsRequest"
                 },
@@ -25061,6 +26216,58 @@
         },
         "PlacementGroupId": {
             "type": "string"
+        },
+        "FleetBlockDeviceMappingRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FleetBlockDeviceMappingRequest"
+            }
+        },
+        "FleetBlockDeviceMappingRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "VirtualName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Ebs": {
+                    "$ref": "#/$defs/FleetEbsBlockDeviceRequest"
+                },
+                "NoDevice": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "FleetEbsBlockDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "Encrypted": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DeleteOnTermination": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Iops": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Throughput": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/KmsKeyId"
+                },
+                "SnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "VolumeSize": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "VolumeType": {
+                    "$ref": "#/$defs/VolumeType"
+                }
+            }
         },
         "InstanceRequirementsRequest": {
             "type": "object",
@@ -25136,6 +26343,9 @@
                 },
                 "MaxSpotPriceAsPercentageOfOptimalOnDemandPrice": {
                     "$ref": "#/$defs/Integer"
+                },
+                "BaselinePerformanceFactors": {
+                    "$ref": "#/$defs/BaselinePerformanceFactorsRequest"
                 }
             }
         },
@@ -25235,6 +26445,36 @@
                 },
                 "Max": {
                     "$ref": "#/$defs/Double"
+                }
+            }
+        },
+        "BaselinePerformanceFactorsRequest": {
+            "type": "object",
+            "properties": {
+                "Cpu": {
+                    "$ref": "#/$defs/CpuPerformanceFactorRequest"
+                }
+            }
+        },
+        "CpuPerformanceFactorRequest": {
+            "type": "object",
+            "properties": {
+                "References": {
+                    "$ref": "#/$defs/PerformanceFactorReferenceSetRequest"
+                }
+            }
+        },
+        "PerformanceFactorReferenceSetRequest": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PerformanceFactorReferenceRequest"
+            }
+        },
+        "PerformanceFactorReferenceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceFamily": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -25528,20 +26768,6 @@
                     "$ref": "#/$defs/Boolean"
                 }
             }
-        },
-        "SnapshotId": {
-            "type": "string"
-        },
-        "VolumeType": {
-            "enum": [
-                "standard",
-                "io1",
-                "io2",
-                "gp2",
-                "sc1",
-                "st1",
-                "gp3"
-            ]
         },
         "CreateInstanceConnectEndpointResult": {
             "type": "object",
@@ -26390,6 +27616,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "OrganizationalUnitExclusions": {
+                    "$ref": "#/$defs/IpamOrganizationalUnitExclusionSet"
                 }
             }
         },
@@ -26408,6 +27637,20 @@
                 "ISOLATE_COMPLETE",
                 "RESTORE_IN_PROGRESS"
             ]
+        },
+        "IpamOrganizationalUnitExclusionSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IpamOrganizationalUnitExclusion"
+            }
+        },
+        "IpamOrganizationalUnitExclusion": {
+            "type": "object",
+            "properties": {
+                "OrganizationsEntityPath": {
+                    "$ref": "#/$defs/String"
+                }
+            }
         },
         "CreateIpamResourceDiscoveryRequest": {
             "type": "object",
@@ -26600,6 +27843,20 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
+                }
+            }
+        },
+        "OperatorResponse": {
+            "type": "object",
+            "properties": {
+                "Managed": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Principal": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -26645,6 +27902,9 @@
                 },
                 "LaunchTemplateData": {
                     "$ref": "#/$defs/RequestLaunchTemplateData"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorRequest"
                 },
                 "TagSpecifications": {
                     "$ref": "#/$defs/TagSpecificationList"
@@ -26749,6 +28009,12 @@
                 },
                 "DisableApiStop": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorRequest"
+                },
+                "NetworkPerformanceOptions": {
+                    "$ref": "#/$defs/LaunchTemplateNetworkPerformanceOptionsRequest"
                 }
             }
         },
@@ -27194,6 +28460,7 @@
         },
         "CapacityReservationPreference": {
             "enum": [
+                "capacity_reservations_only",
                 "open",
                 "none"
             ]
@@ -27311,6 +28578,29 @@
                 "disabled"
             ]
         },
+        "OperatorRequest": {
+            "type": "object",
+            "properties": {
+                "Principal": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LaunchTemplateNetworkPerformanceOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "BandwidthWeighting": {
+                    "$ref": "#/$defs/InstanceBandwidthWeighting"
+                }
+            }
+        },
+        "InstanceBandwidthWeighting": {
+            "enum": [
+                "DEFAULT",
+                "VPC_1",
+                "EBS_1"
+            ]
+        },
         "CreateLaunchTemplateVersionResult": {
             "type": "object",
             "properties": {
@@ -27348,6 +28638,9 @@
                 },
                 "LaunchTemplateData": {
                     "$ref": "#/$defs/ResponseLaunchTemplateData"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
                 }
             }
         },
@@ -27446,6 +28739,12 @@
                 },
                 "DisableApiStop": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
+                },
+                "NetworkPerformanceOptions": {
+                    "$ref": "#/$defs/LaunchTemplateNetworkPerformanceOptions"
                 }
             }
         },
@@ -27908,6 +29207,14 @@
             "properties": {
                 "AutoRecovery": {
                     "$ref": "#/$defs/LaunchTemplateAutoRecoveryState"
+                }
+            }
+        },
+        "LaunchTemplateNetworkPerformanceOptions": {
+            "type": "object",
+            "properties": {
+                "BandwidthWeighting": {
+                    "$ref": "#/$defs/InstanceBandwidthWeighting"
                 }
             }
         },
@@ -29117,6 +30424,9 @@
                 },
                 "Ipv6Address": {
                     "$ref": "#/$defs/String"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
                 }
             }
         },
@@ -29233,6 +30543,7 @@
                 "interface",
                 "natGateway",
                 "efa",
+                "efa_only",
                 "trunk",
                 "load_balancer",
                 "network_load_balancer",
@@ -29342,6 +30653,9 @@
                 "ConnectionTrackingSpecification": {
                     "$ref": "#/$defs/ConnectionTrackingSpecificationRequest"
                 },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorRequest"
+                },
                 "SubnetId": {
                     "$ref": "#/$defs/SubnetId"
                 },
@@ -29374,6 +30688,7 @@
         "NetworkInterfaceCreationType": {
             "enum": [
                 "efa",
+                "efa_only",
                 "branch",
                 "trunk"
             ]
@@ -29956,6 +31271,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "SecurityGroupArn": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -29999,6 +31317,21 @@
                 },
                 "SseType": {
                     "$ref": "#/$defs/SSEType"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "TransferType": {
+                    "$ref": "#/$defs/TransferType"
+                },
+                "CompletionDurationMinutes": {
+                    "$ref": "#/$defs/SnapshotCompletionDurationMinutesResponse"
+                },
+                "CompletionTime": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "FullSnapshotSizeInBytes": {
+                    "$ref": "#/$defs/Long"
                 },
                 "SnapshotId": {
                     "$ref": "#/$defs/String"
@@ -30051,6 +31384,16 @@
                 "none"
             ]
         },
+        "TransferType": {
+            "enum": [
+                "time_based",
+                "standard"
+            ]
+        },
+        "SnapshotCompletionDurationMinutesResponse": {
+            "type": "integer",
+            "format": "int32"
+        },
         "SnapshotState": {
             "enum": [
                 "pending",
@@ -30075,10 +31418,19 @@
                 "TagSpecifications": {
                     "$ref": "#/$defs/TagSpecificationList"
                 },
+                "Location": {
+                    "$ref": "#/$defs/SnapshotLocationEnum"
+                },
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
                 }
             }
+        },
+        "SnapshotLocationEnum": {
+            "enum": [
+                "REGIONAL",
+                "LOCAL"
+            ]
         },
         "CreateSnapshotsResult": {
             "type": "object",
@@ -30132,6 +31484,9 @@
                 },
                 "SseType": {
                     "$ref": "#/$defs/SSEType"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -30155,6 +31510,9 @@
                 },
                 "CopyTagsFromSource": {
                     "$ref": "#/$defs/CopyTagsFromSource"
+                },
+                "Location": {
+                    "$ref": "#/$defs/SnapshotLocationEnum"
                 }
             }
         },
@@ -31776,13 +33134,21 @@
                 },
                 "SseSpecification": {
                     "$ref": "#/$defs/VerifiedAccessSseSpecificationResponse"
+                },
+                "RdsOptions": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointRdsOptions"
+                },
+                "CidrOptions": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointCidrOptions"
                 }
             }
         },
         "VerifiedAccessEndpointType": {
             "enum": [
                 "load_balancer",
-                "network_interface"
+                "network_interface",
+                "rds",
+                "cidr"
             ]
         },
         "VerifiedAccessEndpointAttachmentType": {
@@ -31810,13 +33176,17 @@
                 },
                 "SubnetIds": {
                     "$ref": "#/$defs/VerifiedAccessEndpointSubnetIdList"
+                },
+                "PortRanges": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortRangeList"
                 }
             }
         },
         "VerifiedAccessEndpointProtocol": {
             "enum": [
                 "http",
-                "https"
+                "https",
+                "tcp"
             ]
         },
         "VerifiedAccessEndpointPortNumber": {
@@ -31827,6 +33197,23 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "VerifiedAccessEndpointPortRangeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VerifiedAccessEndpointPortRange"
+            }
+        },
+        "VerifiedAccessEndpointPortRange": {
+            "type": "object",
+            "properties": {
+                "FromPort": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "ToPort": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                }
             }
         },
         "VerifiedAccessEndpointEniOptions": {
@@ -31840,6 +33227,9 @@
                 },
                 "Port": {
                     "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "PortRanges": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortRangeList"
                 }
             }
         },
@@ -31862,6 +33252,49 @@
                 "deleting",
                 "deleted"
             ]
+        },
+        "VerifiedAccessEndpointRdsOptions": {
+            "type": "object",
+            "properties": {
+                "Protocol": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointProtocol"
+                },
+                "Port": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "RdsDbInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "RdsDbClusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "RdsDbProxyArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "RdsEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointSubnetIdList"
+                }
+            }
+        },
+        "VerifiedAccessEndpointCidrOptions": {
+            "type": "object",
+            "properties": {
+                "Cidr": {
+                    "$ref": "#/$defs/String"
+                },
+                "PortRanges": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortRangeList"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointProtocol"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointSubnetIdList"
+                }
+            }
         },
         "CreateVerifiedAccessEndpointRequest": {
             "type": "object",
@@ -31910,6 +33343,12 @@
                 },
                 "SseSpecification": {
                     "$ref": "#/$defs/VerifiedAccessSseSpecificationRequest"
+                },
+                "RdsOptions": {
+                    "$ref": "#/$defs/CreateVerifiedAccessEndpointRdsOptions"
+                },
+                "CidrOptions": {
+                    "$ref": "#/$defs/CreateVerifiedAccessEndpointCidrOptions"
                 }
             }
         },
@@ -31933,6 +33372,9 @@
                 },
                 "SubnetIds": {
                     "$ref": "#/$defs/CreateVerifiedAccessEndpointSubnetIdList"
+                },
+                "PortRanges": {
+                    "$ref": "#/$defs/CreateVerifiedAccessEndpointPortRangeList"
                 }
             }
         },
@@ -31943,6 +33385,23 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "CreateVerifiedAccessEndpointPortRangeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateVerifiedAccessEndpointPortRange"
+            }
+        },
+        "CreateVerifiedAccessEndpointPortRange": {
+            "type": "object",
+            "properties": {
+                "FromPort": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "ToPort": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                }
             }
         },
         "CreateVerifiedAccessEndpointEniOptions": {
@@ -31956,6 +33415,9 @@
                 },
                 "Port": {
                     "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "PortRanges": {
+                    "$ref": "#/$defs/CreateVerifiedAccessEndpointPortRangeList"
                 }
             }
         },
@@ -31967,6 +33429,58 @@
                 },
                 "KmsKeyArn": {
                     "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "CreateVerifiedAccessEndpointRdsOptions": {
+            "type": "object",
+            "properties": {
+                "Protocol": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointProtocol"
+                },
+                "Port": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "RdsDbInstanceArn": {
+                    "$ref": "#/$defs/RdsDbInstanceArn"
+                },
+                "RdsDbClusterArn": {
+                    "$ref": "#/$defs/RdsDbClusterArn"
+                },
+                "RdsDbProxyArn": {
+                    "$ref": "#/$defs/RdsDbProxyArn"
+                },
+                "RdsEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/CreateVerifiedAccessEndpointSubnetIdList"
+                }
+            }
+        },
+        "RdsDbInstanceArn": {
+            "type": "string"
+        },
+        "RdsDbClusterArn": {
+            "type": "string"
+        },
+        "RdsDbProxyArn": {
+            "type": "string"
+        },
+        "CreateVerifiedAccessEndpointCidrOptions": {
+            "type": "object",
+            "properties": {
+                "Protocol": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointProtocol"
+                },
+                "SubnetIds": {
+                    "$ref": "#/$defs/CreateVerifiedAccessEndpointSubnetIdList"
+                },
+                "Cidr": {
+                    "$ref": "#/$defs/String"
+                },
+                "PortRanges": {
+                    "$ref": "#/$defs/CreateVerifiedAccessEndpointPortRangeList"
                 }
             }
         },
@@ -32064,6 +33578,9 @@
                 },
                 "FIPSEnabled": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "CidrEndpointsCustomSubDomain": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -32110,6 +33627,9 @@
                 },
                 "SseSpecification": {
                     "$ref": "#/$defs/VerifiedAccessSseSpecificationRequest"
+                },
+                "NativeApplicationOidcOptions": {
+                    "$ref": "#/$defs/CreateVerifiedAccessNativeApplicationOidcOptions"
                 }
             }
         },
@@ -32150,6 +33670,35 @@
                 }
             }
         },
+        "CreateVerifiedAccessNativeApplicationOidcOptions": {
+            "type": "object",
+            "properties": {
+                "PublicSigningKeyEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/String"
+                },
+                "AuthorizationEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "TokenEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "UserInfoEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClientSecret": {
+                    "$ref": "#/$defs/ClientSecretType"
+                },
+                "Scope": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "Volume": {
             "type": "object",
             "properties": {
@@ -32176,6 +33725,9 @@
                 },
                 "SseType": {
                     "$ref": "#/$defs/SSEType"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
                 },
                 "VolumeId": {
                     "$ref": "#/$defs/String"
@@ -32261,6 +33813,9 @@
                 "ClientToken": {
                     "$ref": "#/$defs/String"
                 },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorRequest"
+                },
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
                 }
@@ -32312,6 +33867,89 @@
                 },
                 "AmazonProvidedIpv6CidrBlock": {
                     "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CreateVpcBlockPublicAccessExclusionResult": {
+            "type": "object",
+            "properties": {
+                "VpcBlockPublicAccessExclusion": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusion"
+                }
+            }
+        },
+        "VpcBlockPublicAccessExclusion": {
+            "type": "object",
+            "properties": {
+                "ExclusionId": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusionId"
+                },
+                "InternetGatewayExclusionMode": {
+                    "$ref": "#/$defs/InternetGatewayExclusionMode"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "State": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusionState"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreationTimestamp": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "LastUpdateTimestamp": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "DeletionTimestamp": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "VpcBlockPublicAccessExclusionId": {
+            "type": "string"
+        },
+        "InternetGatewayExclusionMode": {
+            "enum": [
+                "allow_bidirectional",
+                "allow_egress"
+            ]
+        },
+        "VpcBlockPublicAccessExclusionState": {
+            "enum": [
+                "create_in_progress",
+                "create_complete",
+                "create_failed",
+                "update_in_progress",
+                "update_complete",
+                "update_failed",
+                "delete_in_progress",
+                "delete_complete",
+                "disable_in_progress",
+                "disable_complete"
+            ]
+        },
+        "CreateVpcBlockPublicAccessExclusionRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SubnetId": {
+                    "$ref": "#/$defs/SubnetId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/VpcId"
+                },
+                "InternetGatewayExclusionMode": {
+                    "$ref": "#/$defs/InternetGatewayExclusionMode"
+                },
+                "TagSpecifications": {
+                    "$ref": "#/$defs/TagSpecificationList"
                 }
             }
         },
@@ -32385,6 +34023,24 @@
                 },
                 "LastError": {
                     "$ref": "#/$defs/LastError"
+                },
+                "Ipv4Prefixes": {
+                    "$ref": "#/$defs/SubnetIpPrefixesList"
+                },
+                "Ipv6Prefixes": {
+                    "$ref": "#/$defs/SubnetIpPrefixesList"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "ServiceNetworkArn": {
+                    "$ref": "#/$defs/ServiceNetworkArn"
+                },
+                "ResourceConfigurationArn": {
+                    "$ref": "#/$defs/ResourceConfigurationArn"
+                },
+                "ServiceRegion": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -32392,7 +34048,9 @@
             "enum": [
                 "Interface",
                 "Gateway",
-                "GatewayLoadBalancer"
+                "GatewayLoadBalancer",
+                "Resource",
+                "ServiceNetwork"
             ]
         },
         "State": {
@@ -32404,7 +34062,8 @@
                 "Deleted",
                 "Rejected",
                 "Failed",
-                "Expired"
+                "Expired",
+                "Partial"
             ]
         },
         "GroupIdentifierSet": {
@@ -32478,6 +34137,29 @@
                 }
             }
         },
+        "SubnetIpPrefixesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubnetIpPrefixes"
+            }
+        },
+        "SubnetIpPrefixes": {
+            "type": "object",
+            "properties": {
+                "SubnetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "IpPrefixes": {
+                    "$ref": "#/$defs/ValueStringList"
+                }
+            }
+        },
+        "ServiceNetworkArn": {
+            "type": "string"
+        },
+        "ResourceConfigurationArn": {
+            "type": "string"
+        },
         "CreateVpcEndpointRequest": {
             "type": "object",
             "properties": {
@@ -32522,6 +34204,15 @@
                 },
                 "SubnetConfigurations": {
                     "$ref": "#/$defs/SubnetConfigurationsList"
+                },
+                "ServiceNetworkArn": {
+                    "$ref": "#/$defs/ServiceNetworkArn"
+                },
+                "ResourceConfigurationArn": {
+                    "$ref": "#/$defs/ResourceConfigurationArn"
+                },
+                "ServiceRegion": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -32608,6 +34299,9 @@
                 },
                 "ConnectionNotificationState": {
                     "$ref": "#/$defs/ConnectionNotificationState"
+                },
+                "ServiceRegion": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -32703,6 +34397,12 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "SupportedRegions": {
+                    "$ref": "#/$defs/SupportedRegionSet"
+                },
+                "RemoteAccessEnabled": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
         },
@@ -32777,6 +34477,23 @@
                 "ServiceOwner"
             ]
         },
+        "SupportedRegionSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupportedRegionDetail"
+            }
+        },
+        "SupportedRegionDetail": {
+            "type": "object",
+            "properties": {
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "ServiceState": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "CreateVpcEndpointServiceConfigurationRequest": {
             "type": "object",
             "properties": {
@@ -32796,6 +34513,9 @@
                     "$ref": "#/$defs/ValueStringList"
                 },
                 "SupportedIpAddressTypes": {
+                    "$ref": "#/$defs/ValueStringList"
+                },
+                "SupportedRegions": {
                     "$ref": "#/$defs/ValueStringList"
                 },
                 "ClientToken": {
@@ -34562,6 +36282,17 @@
                 }
             }
         },
+        "DeleteSecurityGroupResult": {
+            "type": "object",
+            "properties": {
+                "Return": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "GroupId": {
+                    "$ref": "#/$defs/SecurityGroupId"
+                }
+            }
+        },
         "DeleteSecurityGroupRequest": {
             "type": "object",
             "properties": {
@@ -35049,6 +36780,25 @@
                 }
             }
         },
+        "DeleteVpcBlockPublicAccessExclusionResult": {
+            "type": "object",
+            "properties": {
+                "VpcBlockPublicAccessExclusion": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusion"
+                }
+            }
+        },
+        "DeleteVpcBlockPublicAccessExclusionRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ExclusionId": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusionId"
+                }
+            }
+        },
         "DeleteVpcEndpointConnectionNotificationsResult": {
             "type": "object",
             "properties": {
@@ -35346,6 +37096,10 @@
                 }
             }
         },
+        "DeregisterImageResult": {
+            "type": "object",
+            "properties": {}
+        },
         "DeregisterImageRequest": {
             "type": "object",
             "properties": {
@@ -35603,6 +37357,9 @@
                 "CarrierIp": {
                     "$ref": "#/$defs/String"
                 },
+                "ServiceManaged": {
+                    "$ref": "#/$defs/ServiceManaged"
+                },
                 "InstanceId": {
                     "$ref": "#/$defs/String"
                 },
@@ -35610,6 +37367,12 @@
                     "$ref": "#/$defs/String"
                 }
             }
+        },
+        "ServiceManaged": {
+            "enum": [
+                "alb",
+                "nlb"
+            ]
         },
         "DescribeAddressesRequest": {
             "type": "object",
@@ -36075,6 +37838,189 @@
             "type": "integer",
             "format": "int32"
         },
+        "DescribeCapacityBlockExtensionHistoryResult": {
+            "type": "object",
+            "properties": {
+                "CapacityBlockExtensions": {
+                    "$ref": "#/$defs/CapacityBlockExtensionSet"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CapacityBlockExtensionSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CapacityBlockExtension"
+            }
+        },
+        "CapacityBlockExtension": {
+            "type": "object",
+            "properties": {
+                "CapacityReservationId": {
+                    "$ref": "#/$defs/CapacityReservationId"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/AvailabilityZoneName"
+                },
+                "AvailabilityZoneId": {
+                    "$ref": "#/$defs/AvailabilityZoneId"
+                },
+                "CapacityBlockExtensionOfferingId": {
+                    "$ref": "#/$defs/OfferingId"
+                },
+                "CapacityBlockExtensionDurationHours": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CapacityBlockExtensionStatus": {
+                    "$ref": "#/$defs/CapacityBlockExtensionStatus"
+                },
+                "CapacityBlockExtensionPurchaseDate": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "CapacityBlockExtensionStartDate": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "CapacityBlockExtensionEndDate": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "UpfrontFee": {
+                    "$ref": "#/$defs/String"
+                },
+                "CurrencyCode": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "OfferingId": {
+            "type": "string"
+        },
+        "CapacityBlockExtensionStatus": {
+            "enum": [
+                "PAYMENT_PENDING",
+                "PAYMENT_FAILED",
+                "PAYMENT_SUCCEEDED"
+            ]
+        },
+        "DescribeCapacityBlockExtensionHistoryRequest": {
+            "type": "object",
+            "properties": {
+                "CapacityReservationIds": {
+                    "$ref": "#/$defs/CapacityReservationIdSet"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DescribeFutureCapacityMaxResults"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "CapacityReservationIdSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CapacityReservationId"
+            }
+        },
+        "DescribeFutureCapacityMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeCapacityBlockExtensionOfferingsResult": {
+            "type": "object",
+            "properties": {
+                "CapacityBlockExtensionOfferings": {
+                    "$ref": "#/$defs/CapacityBlockExtensionOfferingSet"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CapacityBlockExtensionOfferingSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CapacityBlockExtensionOffering"
+            }
+        },
+        "CapacityBlockExtensionOffering": {
+            "type": "object",
+            "properties": {
+                "CapacityBlockExtensionOfferingId": {
+                    "$ref": "#/$defs/OfferingId"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "InstanceCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/AvailabilityZoneName"
+                },
+                "AvailabilityZoneId": {
+                    "$ref": "#/$defs/AvailabilityZoneId"
+                },
+                "StartDate": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "CapacityBlockExtensionStartDate": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "CapacityBlockExtensionEndDate": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "CapacityBlockExtensionDurationHours": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "UpfrontFee": {
+                    "$ref": "#/$defs/String"
+                },
+                "CurrencyCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tenancy": {
+                    "$ref": "#/$defs/CapacityReservationTenancy"
+                }
+            }
+        },
+        "DescribeCapacityBlockExtensionOfferingsRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CapacityBlockExtensionDurationHours": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CapacityReservationId": {
+                    "$ref": "#/$defs/CapacityReservationId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DescribeCapacityBlockExtensionOfferingsMaxResults"
+                }
+            }
+        },
+        "DescribeCapacityBlockExtensionOfferingsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
         "DescribeCapacityBlockOfferingsResult": {
             "type": "object",
             "properties": {
@@ -36124,11 +38070,11 @@
                 },
                 "Tenancy": {
                     "$ref": "#/$defs/CapacityReservationTenancy"
+                },
+                "CapacityBlockDurationMinutes": {
+                    "$ref": "#/$defs/Integer"
                 }
             }
-        },
-        "OfferingId": {
-            "type": "string"
         },
         "DescribeCapacityBlockOfferingsRequest": {
             "type": "object",
@@ -36251,12 +38197,6 @@
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
                 }
-            }
-        },
-        "CapacityReservationIdSet": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/CapacityReservationId"
             }
         },
         "CallerRole": {
@@ -36762,6 +38702,9 @@
                 },
                 "ClientLoginBannerOptions": {
                     "$ref": "#/$defs/ClientLoginBannerResponseOptions"
+                },
+                "DisconnectOnSessionTimeout": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
         },
@@ -37307,6 +39250,81 @@
             "items": {
                 "$ref": "#/$defs/CustomerGatewayId"
             }
+        },
+        "DescribeDeclarativePoliciesReportsResult": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "Reports": {
+                    "$ref": "#/$defs/DeclarativePoliciesReportList"
+                }
+            }
+        },
+        "DeclarativePoliciesReportList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeclarativePoliciesReport"
+            }
+        },
+        "DeclarativePoliciesReport": {
+            "type": "object",
+            "properties": {
+                "ReportId": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Bucket": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Prefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ReportState"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ReportState": {
+            "enum": [
+                "running",
+                "cancelled",
+                "complete",
+                "error"
+            ]
+        },
+        "DescribeDeclarativePoliciesReportsRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DeclarativePoliciesMaxResults"
+                },
+                "ReportIds": {
+                    "$ref": "#/$defs/ValueStringList"
+                }
+            }
+        },
+        "DeclarativePoliciesMaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "DescribeDhcpOptionsResult": {
             "type": "object",
@@ -39251,6 +41269,15 @@
                 "LastLaunchedTime": {
                     "$ref": "#/$defs/String"
                 },
+                "ImageAllowed": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SourceImageId": {
+                    "$ref": "#/$defs/String"
+                },
+                "SourceImageRegion": {
+                    "$ref": "#/$defs/String"
+                },
                 "ImageId": {
                     "$ref": "#/$defs/String"
                 },
@@ -39761,6 +41788,9 @@
                 },
                 "VolumeOwnerId": {
                     "$ref": "#/$defs/String"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
                 }
             }
         },
@@ -39970,6 +42000,135 @@
             "type": "integer",
             "format": "int32"
         },
+        "DescribeInstanceImageMetadataResult": {
+            "type": "object",
+            "properties": {
+                "InstanceImageMetadata": {
+                    "$ref": "#/$defs/InstanceImageMetadataList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "InstanceImageMetadataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceImageMetadata"
+            }
+        },
+        "InstanceImageMetadata": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/InstanceType"
+                },
+                "LaunchTime": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/String"
+                },
+                "ZoneId": {
+                    "$ref": "#/$defs/String"
+                },
+                "State": {
+                    "$ref": "#/$defs/InstanceState"
+                },
+                "OwnerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ImageMetadata": {
+                    "$ref": "#/$defs/ImageMetadata"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
+                }
+            }
+        },
+        "InstanceState": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Name": {
+                    "$ref": "#/$defs/InstanceStateName"
+                }
+            }
+        },
+        "InstanceStateName": {
+            "enum": [
+                "pending",
+                "running",
+                "shutting_down",
+                "terminated",
+                "stopping",
+                "stopped"
+            ]
+        },
+        "ImageMetadata": {
+            "type": "object",
+            "properties": {
+                "ImageId": {
+                    "$ref": "#/$defs/ImageId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "OwnerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "State": {
+                    "$ref": "#/$defs/ImageState"
+                },
+                "ImageOwnerAlias": {
+                    "$ref": "#/$defs/String"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/String"
+                },
+                "DeprecationTime": {
+                    "$ref": "#/$defs/String"
+                },
+                "ImageAllowed": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IsPublic": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeInstanceImageMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "InstanceIds": {
+                    "$ref": "#/$defs/InstanceIdStringList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DescribeInstanceImageMetadataMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeInstanceImageMetadataMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
         "DescribeInstancesResult": {
             "type": "object",
             "properties": {
@@ -40126,6 +42285,12 @@
                 },
                 "CurrentInstanceBootMode": {
                     "$ref": "#/$defs/InstanceBootModeValues"
+                },
+                "NetworkPerformanceOptions": {
+                    "$ref": "#/$defs/InstanceNetworkPerformanceOptions"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
                 },
                 "InstanceId": {
                     "$ref": "#/$defs/String"
@@ -40307,6 +42472,9 @@
                 },
                 "ConnectionTrackingConfiguration": {
                     "$ref": "#/$defs/ConnectionTrackingSpecificationResponse"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
                 }
             }
         },
@@ -40574,26 +42742,13 @@
                 "uefi"
             ]
         },
-        "InstanceState": {
+        "InstanceNetworkPerformanceOptions": {
             "type": "object",
             "properties": {
-                "Code": {
-                    "$ref": "#/$defs/Integer"
-                },
-                "Name": {
-                    "$ref": "#/$defs/InstanceStateName"
+                "BandwidthWeighting": {
+                    "$ref": "#/$defs/InstanceBandwidthWeighting"
                 }
             }
-        },
-        "InstanceStateName": {
-            "enum": [
-                "pending",
-                "running",
-                "shutting_down",
-                "terminated",
-                "stopping",
-                "stopped"
-            ]
         },
         "Monitoring": {
             "type": "object",
@@ -40656,6 +42811,9 @@
                 },
                 "OutpostArn": {
                     "$ref": "#/$defs/String"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorResponse"
                 },
                 "Events": {
                     "$ref": "#/$defs/InstanceStatusEventList"
@@ -41432,6 +43590,9 @@
                 },
                 "EnaSrdSupported": {
                     "$ref": "#/$defs/EnaSrdSupported"
+                },
+                "BandwidthWeightings": {
+                    "$ref": "#/$defs/BandwidthWeightingTypeList"
                 }
             }
         },
@@ -41526,6 +43687,19 @@
         },
         "EnaSrdSupported": {
             "type": "boolean"
+        },
+        "BandwidthWeightingTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BandwidthWeightingType"
+            }
+        },
+        "BandwidthWeightingType": {
+            "enum": [
+                "DEFAULT",
+                "VPC_1",
+                "EBS_1"
+            ]
         },
         "GpuInfo": {
             "type": "object",
@@ -45499,6 +47673,9 @@
                 "VpcId": {
                     "$ref": "#/$defs/String"
                 },
+                "SecurityGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
                 "OwnerId": {
                     "$ref": "#/$defs/String"
                 },
@@ -45543,6 +47720,64 @@
             }
         },
         "DescribeSecurityGroupsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeSecurityGroupVpcAssociationsResult": {
+            "type": "object",
+            "properties": {
+                "SecurityGroupVpcAssociations": {
+                    "$ref": "#/$defs/SecurityGroupVpcAssociationList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SecurityGroupVpcAssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroupVpcAssociation"
+            }
+        },
+        "SecurityGroupVpcAssociation": {
+            "type": "object",
+            "properties": {
+                "GroupId": {
+                    "$ref": "#/$defs/SecurityGroupId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/VpcId"
+                },
+                "VpcOwnerId": {
+                    "$ref": "#/$defs/String"
+                },
+                "State": {
+                    "$ref": "#/$defs/SecurityGroupVpcAssociationState"
+                },
+                "StateReason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeSecurityGroupVpcAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DescribeSecurityGroupVpcAssociationsMaxResults"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DescribeSecurityGroupVpcAssociationsMaxResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -48292,6 +50527,124 @@
                 "enableNetworkAddressUsageMetrics"
             ]
         },
+        "DescribeVpcBlockPublicAccessExclusionsResult": {
+            "type": "object",
+            "properties": {
+                "VpcBlockPublicAccessExclusions": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "VpcBlockPublicAccessExclusionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VpcBlockPublicAccessExclusion"
+            }
+        },
+        "DescribeVpcBlockPublicAccessExclusionsRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "ExclusionIds": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusionIdList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/DescribeVpcBlockPublicAccessExclusionsMaxResults"
+                }
+            }
+        },
+        "VpcBlockPublicAccessExclusionIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VpcBlockPublicAccessExclusionId"
+            }
+        },
+        "DescribeVpcBlockPublicAccessExclusionsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeVpcBlockPublicAccessOptionsResult": {
+            "type": "object",
+            "properties": {
+                "VpcBlockPublicAccessOptions": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessOptions"
+                }
+            }
+        },
+        "VpcBlockPublicAccessOptions": {
+            "type": "object",
+            "properties": {
+                "AwsAccountId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AwsRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "State": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessState"
+                },
+                "InternetGatewayBlockMode": {
+                    "$ref": "#/$defs/InternetGatewayBlockMode"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "LastUpdateTimestamp": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "ManagedBy": {
+                    "$ref": "#/$defs/ManagedBy"
+                },
+                "ExclusionsAllowed": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusionsAllowed"
+                }
+            }
+        },
+        "VpcBlockPublicAccessState": {
+            "enum": [
+                "default_state",
+                "update_in_progress",
+                "update_complete"
+            ]
+        },
+        "InternetGatewayBlockMode": {
+            "enum": [
+                "off",
+                "block_bidirectional",
+                "block_ingress"
+            ]
+        },
+        "ManagedBy": {
+            "enum": [
+                "account",
+                "declarative_policy"
+            ]
+        },
+        "VpcBlockPublicAccessExclusionsAllowed": {
+            "enum": [
+                "allowed",
+                "not_allowed"
+            ]
+        },
+        "DescribeVpcBlockPublicAccessOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
         "DescribeVpcClassicLinkResult": {
             "type": "object",
             "properties": {
@@ -48389,6 +50742,88 @@
             "type": "integer",
             "format": "int32"
         },
+        "DescribeVpcEndpointAssociationsResult": {
+            "type": "object",
+            "properties": {
+                "VpcEndpointAssociations": {
+                    "$ref": "#/$defs/VpcEndpointAssociationSet"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "VpcEndpointAssociationSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VpcEndpointAssociation"
+            }
+        },
+        "VpcEndpointAssociation": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
+                "VpcEndpointId": {
+                    "$ref": "#/$defs/VpcEndpointId"
+                },
+                "ServiceNetworkArn": {
+                    "$ref": "#/$defs/ServiceNetworkArn"
+                },
+                "ServiceNetworkName": {
+                    "$ref": "#/$defs/String"
+                },
+                "AssociatedResourceAccessibility": {
+                    "$ref": "#/$defs/String"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "FailureCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "DnsEntry": {
+                    "$ref": "#/$defs/DnsEntry"
+                },
+                "PrivateDnsEntry": {
+                    "$ref": "#/$defs/DnsEntry"
+                },
+                "AssociatedResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResourceConfigurationGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "DescribeVpcEndpointAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "VpcEndpointIds": {
+                    "$ref": "#/$defs/VpcEndpointIdList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults2"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MaxResults2": {
+            "type": "integer",
+            "format": "int32"
+        },
         "DescribeVpcEndpointConnectionNotificationsResult": {
             "type": "object",
             "properties": {
@@ -48478,6 +50913,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "VpcEndpointRegion": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -48671,6 +51109,9 @@
                 "ServiceType": {
                     "$ref": "#/$defs/ServiceTypeDetailSet"
                 },
+                "ServiceRegion": {
+                    "$ref": "#/$defs/String"
+                },
                 "AvailabilityZones": {
                     "$ref": "#/$defs/ValueStringList"
                 },
@@ -48740,6 +51181,9 @@
                 },
                 "NextToken": {
                     "$ref": "#/$defs/String"
+                },
+                "ServiceRegions": {
+                    "$ref": "#/$defs/ValueStringList"
                 }
             }
         },
@@ -49040,6 +51484,27 @@
                 "AllocationId": {
                     "$ref": "#/$defs/AllocationId"
                 },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DisableAllowedImagesSettingsResult": {
+            "type": "object",
+            "properties": {
+                "AllowedImagesSettingsState": {
+                    "$ref": "#/$defs/AllowedImagesSettingsDisabledState"
+                }
+            }
+        },
+        "AllowedImagesSettingsDisabledState": {
+            "enum": [
+                "disabled"
+            ]
+        },
+        "DisableAllowedImagesSettingsRequest": {
+            "type": "object",
+            "properties": {
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
                 }
@@ -49727,6 +52192,31 @@
         "RouteTableAssociationId": {
             "type": "string"
         },
+        "DisassociateSecurityGroupVpcResult": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/SecurityGroupVpcAssociationState"
+                }
+            }
+        },
+        "DisassociateSecurityGroupVpcRequest": {
+            "type": "object",
+            "properties": {
+                "GroupId": {
+                    "$ref": "#/$defs/DisassociateSecurityGroupVpcSecurityGroupId"
+                },
+                "VpcId": {
+                    "$ref": "#/$defs/String"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "DisassociateSecurityGroupVpcSecurityGroupId": {
+            "type": "string"
+        },
         "DisassociateSubnetCidrBlockResult": {
             "type": "object",
             "properties": {
@@ -49881,6 +52371,31 @@
                 },
                 "TransferAccountId": {
                     "$ref": "#/$defs/String"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "EnableAllowedImagesSettingsResult": {
+            "type": "object",
+            "properties": {
+                "AllowedImagesSettingsState": {
+                    "$ref": "#/$defs/AllowedImagesSettingsEnabledState"
+                }
+            }
+        },
+        "AllowedImagesSettingsEnabledState": {
+            "enum": [
+                "enabled",
+                "audit_mode"
+            ]
+        },
+        "EnableAllowedImagesSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "AllowedImagesSettingsState": {
+                    "$ref": "#/$defs/AllowedImagesSettingsEnabledState"
                 },
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
@@ -50522,6 +53037,157 @@
                 }
             }
         },
+        "ExportVerifiedAccessInstanceClientConfigurationResult": {
+            "type": "object",
+            "properties": {
+                "Version": {
+                    "$ref": "#/$defs/String"
+                },
+                "VerifiedAccessInstanceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/String"
+                },
+                "DeviceTrustProviders": {
+                    "$ref": "#/$defs/DeviceTrustProviderTypeList"
+                },
+                "UserTrustProvider": {
+                    "$ref": "#/$defs/VerifiedAccessInstanceUserTrustProviderClientConfiguration"
+                },
+                "OpenVpnConfigurations": {
+                    "$ref": "#/$defs/VerifiedAccessInstanceOpenVpnClientConfigurationList"
+                }
+            }
+        },
+        "DeviceTrustProviderTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DeviceTrustProviderType"
+            }
+        },
+        "VerifiedAccessInstanceUserTrustProviderClientConfiguration": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/UserTrustProviderType"
+                },
+                "Scopes": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/String"
+                },
+                "AuthorizationEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "PublicSigningKeyEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "TokenEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "UserInfoEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClientSecret": {
+                    "$ref": "#/$defs/ClientSecretType"
+                },
+                "PkceEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "VerifiedAccessInstanceOpenVpnClientConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VerifiedAccessInstanceOpenVpnClientConfiguration"
+            }
+        },
+        "VerifiedAccessInstanceOpenVpnClientConfiguration": {
+            "type": "object",
+            "properties": {
+                "Config": {
+                    "$ref": "#/$defs/String"
+                },
+                "Routes": {
+                    "$ref": "#/$defs/VerifiedAccessInstanceOpenVpnClientConfigurationRouteList"
+                }
+            }
+        },
+        "VerifiedAccessInstanceOpenVpnClientConfigurationRouteList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VerifiedAccessInstanceOpenVpnClientConfigurationRoute"
+            }
+        },
+        "VerifiedAccessInstanceOpenVpnClientConfigurationRoute": {
+            "type": "object",
+            "properties": {
+                "Cidr": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ExportVerifiedAccessInstanceClientConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "VerifiedAccessInstanceId": {
+                    "$ref": "#/$defs/VerifiedAccessInstanceId"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "GetAllowedImagesSettingsResult": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/String"
+                },
+                "ImageCriteria": {
+                    "$ref": "#/$defs/ImageCriterionList"
+                },
+                "ManagedBy": {
+                    "$ref": "#/$defs/ManagedBy"
+                }
+            }
+        },
+        "ImageCriterionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageCriterion"
+            }
+        },
+        "ImageCriterion": {
+            "type": "object",
+            "properties": {
+                "ImageProviders": {
+                    "$ref": "#/$defs/ImageProviderList"
+                }
+            }
+        },
+        "ImageProviderList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageProvider"
+            }
+        },
+        "ImageProvider": {
+            "type": "string"
+        },
+        "GetAllowedImagesSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
         "GetAssociatedEnclaveCertificateIamRolesResult": {
             "type": "object",
             "properties": {
@@ -50904,6 +53570,95 @@
                 }
             }
         },
+        "GetDeclarativePoliciesReportSummaryResult": {
+            "type": "object",
+            "properties": {
+                "ReportId": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Bucket": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Prefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "NumberOfAccounts": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NumberOfFailedAccounts": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "AttributeSummaries": {
+                    "$ref": "#/$defs/AttributeSummaryList"
+                }
+            }
+        },
+        "AttributeSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AttributeSummary"
+            }
+        },
+        "AttributeSummary": {
+            "type": "object",
+            "properties": {
+                "AttributeName": {
+                    "$ref": "#/$defs/String"
+                },
+                "MostFrequentValue": {
+                    "$ref": "#/$defs/String"
+                },
+                "NumberOfMatchedAccounts": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NumberOfUnmatchedAccounts": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "RegionalSummaries": {
+                    "$ref": "#/$defs/RegionalSummaryList"
+                }
+            }
+        },
+        "RegionalSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RegionalSummary"
+            }
+        },
+        "RegionalSummary": {
+            "type": "object",
+            "properties": {
+                "RegionName": {
+                    "$ref": "#/$defs/String"
+                },
+                "NumberOfMatchedAccounts": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "NumberOfUnmatchedAccounts": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "GetDeclarativePoliciesReportSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ReportId": {
+                    "$ref": "#/$defs/DeclarativePoliciesReportId"
+                }
+            }
+        },
         "GetDefaultCreditSpecificationResult": {
             "type": "object",
             "properties": {
@@ -51164,6 +53919,9 @@
             "properties": {
                 "ImageBlockPublicAccessState": {
                     "$ref": "#/$defs/String"
+                },
+                "ManagedBy": {
+                    "$ref": "#/$defs/ManagedBy"
                 }
             }
         },
@@ -51197,6 +53955,12 @@
                 },
                 "InstanceMetadataTags": {
                     "$ref": "#/$defs/InstanceMetadataTagsState"
+                },
+                "ManagedBy": {
+                    "$ref": "#/$defs/ManagedBy"
+                },
+                "ManagedExceptionMessage": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -51489,6 +54253,9 @@
                 },
                 "LastSuccessfulDiscoveryTime": {
                     "$ref": "#/$defs/MillisecondDateTime"
+                },
+                "OrganizationalUnitId": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -52414,6 +55181,9 @@
             "properties": {
                 "SerialConsoleAccessEnabled": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "ManagedBy": {
+                    "$ref": "#/$defs/ManagedBy"
                 }
             }
         },
@@ -52430,6 +55200,9 @@
             "properties": {
                 "State": {
                     "$ref": "#/$defs/SnapshotBlockPublicAccessState"
+                },
+                "ManagedBy": {
+                    "$ref": "#/$defs/ManagedBy"
                 }
             }
         },
@@ -52975,6 +55748,58 @@
                     "$ref": "#/$defs/Boolean"
                 }
             }
+        },
+        "GetVerifiedAccessEndpointTargetsResult": {
+            "type": "object",
+            "properties": {
+                "VerifiedAccessEndpointTargets": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointTargetList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "VerifiedAccessEndpointTargetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VerifiedAccessEndpointTarget"
+            }
+        },
+        "VerifiedAccessEndpointTarget": {
+            "type": "object",
+            "properties": {
+                "VerifiedAccessEndpointId": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointId"
+                },
+                "VerifiedAccessEndpointTargetIpAddress": {
+                    "$ref": "#/$defs/String"
+                },
+                "VerifiedAccessEndpointTargetDns": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetVerifiedAccessEndpointTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "VerifiedAccessEndpointId": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/GetVerifiedAccessEndpointTargetsMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "GetVerifiedAccessEndpointTargetsMaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "GetVerifiedAccessGroupPolicyResult": {
             "type": "object",
@@ -53924,6 +56749,9 @@
                 },
                 "ClientLoginBannerOptions": {
                     "$ref": "#/$defs/ClientLoginBannerOptions"
+                },
+                "DisconnectOnSessionTimeout": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
         },
@@ -54655,6 +57483,31 @@
                 }
             }
         },
+        "ModifyInstanceNetworkPerformanceResult": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "BandwidthWeighting": {
+                    "$ref": "#/$defs/InstanceBandwidthWeighting"
+                }
+            }
+        },
+        "ModifyInstanceNetworkPerformanceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "BandwidthWeighting": {
+                    "$ref": "#/$defs/InstanceBandwidthWeighting"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
         "ModifyInstancePlacementResult": {
             "type": "object",
             "properties": {
@@ -54855,6 +57708,40 @@
                 },
                 "RemoveOperatingRegions": {
                     "$ref": "#/$defs/RemoveIpamOperatingRegionSet"
+                },
+                "AddOrganizationalUnitExclusions": {
+                    "$ref": "#/$defs/AddIpamOrganizationalUnitExclusionSet"
+                },
+                "RemoveOrganizationalUnitExclusions": {
+                    "$ref": "#/$defs/RemoveIpamOrganizationalUnitExclusionSet"
+                }
+            }
+        },
+        "AddIpamOrganizationalUnitExclusionSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AddIpamOrganizationalUnitExclusion"
+            }
+        },
+        "AddIpamOrganizationalUnitExclusion": {
+            "type": "object",
+            "properties": {
+                "OrganizationsEntityPath": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "RemoveIpamOrganizationalUnitExclusionSet": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RemoveIpamOrganizationalUnitExclusion"
+            }
+        },
+        "RemoveIpamOrganizationalUnitExclusion": {
+            "type": "object",
+            "properties": {
+                "OrganizationsEntityPath": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -55601,6 +58488,12 @@
                 },
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "RdsOptions": {
+                    "$ref": "#/$defs/ModifyVerifiedAccessEndpointRdsOptions"
+                },
+                "CidrOptions": {
+                    "$ref": "#/$defs/ModifyVerifiedAccessEndpointCidrOptions"
                 }
             }
         },
@@ -55615,6 +58508,9 @@
                 },
                 "Port": {
                     "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "PortRanges": {
+                    "$ref": "#/$defs/ModifyVerifiedAccessEndpointPortRangeList"
                 }
             }
         },
@@ -55622,6 +58518,23 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "ModifyVerifiedAccessEndpointPortRangeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ModifyVerifiedAccessEndpointPortRange"
+            }
+        },
+        "ModifyVerifiedAccessEndpointPortRange": {
+            "type": "object",
+            "properties": {
+                "FromPort": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "ToPort": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                }
             }
         },
         "ModifyVerifiedAccessEndpointEniOptions": {
@@ -55632,6 +58545,31 @@
                 },
                 "Port": {
                     "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "PortRanges": {
+                    "$ref": "#/$defs/ModifyVerifiedAccessEndpointPortRangeList"
+                }
+            }
+        },
+        "ModifyVerifiedAccessEndpointRdsOptions": {
+            "type": "object",
+            "properties": {
+                "SubnetIds": {
+                    "$ref": "#/$defs/ModifyVerifiedAccessEndpointSubnetIdList"
+                },
+                "Port": {
+                    "$ref": "#/$defs/VerifiedAccessEndpointPortNumber"
+                },
+                "RdsEndpoint": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ModifyVerifiedAccessEndpointCidrOptions": {
+            "type": "object",
+            "properties": {
+                "PortRanges": {
+                    "$ref": "#/$defs/ModifyVerifiedAccessEndpointPortRangeList"
                 }
             }
         },
@@ -55759,6 +58697,9 @@
                 },
                 "ClientToken": {
                     "$ref": "#/$defs/String"
+                },
+                "CidrEndpointsCustomSubDomain": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -55877,6 +58818,9 @@
                 },
                 "SseSpecification": {
                     "$ref": "#/$defs/VerifiedAccessSseSpecificationRequest"
+                },
+                "NativeApplicationOidcOptions": {
+                    "$ref": "#/$defs/ModifyVerifiedAccessNativeApplicationOidcOptions"
                 }
             }
         },
@@ -55910,6 +58854,35 @@
             "type": "object",
             "properties": {
                 "PublicSigningKeyUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ModifyVerifiedAccessNativeApplicationOidcOptions": {
+            "type": "object",
+            "properties": {
+                "PublicSigningKeyEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "Issuer": {
+                    "$ref": "#/$defs/String"
+                },
+                "AuthorizationEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "TokenEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "UserInfoEndpoint": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ClientSecret": {
+                    "$ref": "#/$defs/ClientSecretType"
+                },
+                "Scope": {
                     "$ref": "#/$defs/String"
                 }
             }
@@ -55976,6 +58949,47 @@
                 },
                 "EnableNetworkAddressUsageMetrics": {
                     "$ref": "#/$defs/AttributeBooleanValue"
+                }
+            }
+        },
+        "ModifyVpcBlockPublicAccessExclusionResult": {
+            "type": "object",
+            "properties": {
+                "VpcBlockPublicAccessExclusion": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusion"
+                }
+            }
+        },
+        "ModifyVpcBlockPublicAccessExclusionRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ExclusionId": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessExclusionId"
+                },
+                "InternetGatewayExclusionMode": {
+                    "$ref": "#/$defs/InternetGatewayExclusionMode"
+                }
+            }
+        },
+        "ModifyVpcBlockPublicAccessOptionsResult": {
+            "type": "object",
+            "properties": {
+                "VpcBlockPublicAccessOptions": {
+                    "$ref": "#/$defs/VpcBlockPublicAccessOptions"
+                }
+            }
+        },
+        "ModifyVpcBlockPublicAccessOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "InternetGatewayBlockMode": {
+                    "$ref": "#/$defs/InternetGatewayBlockMode"
                 }
             }
         },
@@ -56101,6 +59115,12 @@
                     "$ref": "#/$defs/ValueStringList"
                 },
                 "RemoveSupportedIpAddressTypes": {
+                    "$ref": "#/$defs/ValueStringList"
+                },
+                "AddSupportedRegions": {
+                    "$ref": "#/$defs/ValueStringList"
+                },
+                "RemoveSupportedRegions": {
                     "$ref": "#/$defs/ValueStringList"
                 }
             }
@@ -56753,6 +59773,28 @@
                 }
             }
         },
+        "PurchaseCapacityBlockExtensionResult": {
+            "type": "object",
+            "properties": {
+                "CapacityBlockExtensions": {
+                    "$ref": "#/$defs/CapacityBlockExtensionSet"
+                }
+            }
+        },
+        "PurchaseCapacityBlockExtensionRequest": {
+            "type": "object",
+            "properties": {
+                "CapacityBlockExtensionOfferingId": {
+                    "$ref": "#/$defs/OfferingId"
+                },
+                "CapacityReservationId": {
+                    "$ref": "#/$defs/CapacityReservationId"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
         "PurchaseHostReservationResult": {
             "type": "object",
             "properties": {
@@ -57278,6 +60320,48 @@
                 }
             }
         },
+        "ReplaceImageCriteriaInAllowedImagesSettingsResult": {
+            "type": "object",
+            "properties": {
+                "ReturnValue": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ReplaceImageCriteriaInAllowedImagesSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "ImageCriteria": {
+                    "$ref": "#/$defs/ImageCriterionRequestList"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "ImageCriterionRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageCriterionRequest"
+            }
+        },
+        "ImageCriterionRequest": {
+            "type": "object",
+            "properties": {
+                "ImageProviders": {
+                    "$ref": "#/$defs/ImageProviderRequestList"
+                }
+            }
+        },
+        "ImageProviderRequestList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImageProviderRequest"
+            }
+        },
+        "ImageProviderRequest": {
+            "type": "string"
+        },
         "ReplaceNetworkAclAssociationResult": {
             "type": "object",
             "properties": {
@@ -57628,7 +60712,7 @@
                     "$ref": "#/$defs/KernelId"
                 },
                 "KeyName": {
-                    "$ref": "#/$defs/KeyPairName"
+                    "$ref": "#/$defs/KeyPairNameWithResolver"
                 },
                 "Monitoring": {
                     "$ref": "#/$defs/RunInstancesMonitoringEnabled"
@@ -57977,6 +61061,53 @@
                 },
                 "UnknownIpPermissions": {
                     "$ref": "#/$defs/IpPermissionList"
+                },
+                "RevokedSecurityGroupRules": {
+                    "$ref": "#/$defs/RevokedSecurityGroupRuleList"
+                }
+            }
+        },
+        "RevokedSecurityGroupRuleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RevokedSecurityGroupRule"
+            }
+        },
+        "RevokedSecurityGroupRule": {
+            "type": "object",
+            "properties": {
+                "SecurityGroupRuleId": {
+                    "$ref": "#/$defs/SecurityGroupRuleId"
+                },
+                "GroupId": {
+                    "$ref": "#/$defs/SecurityGroupId"
+                },
+                "IsEgress": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IpProtocol": {
+                    "$ref": "#/$defs/String"
+                },
+                "FromPort": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ToPort": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "CidrIpv4": {
+                    "$ref": "#/$defs/String"
+                },
+                "CidrIpv6": {
+                    "$ref": "#/$defs/String"
+                },
+                "PrefixListId": {
+                    "$ref": "#/$defs/PrefixListResourceId"
+                },
+                "ReferencedGroupId": {
+                    "$ref": "#/$defs/SecurityGroupId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -58023,6 +61154,9 @@
                 },
                 "UnknownIpPermissions": {
                     "$ref": "#/$defs/IpPermissionList"
+                },
+                "RevokedSecurityGroupRules": {
+                    "$ref": "#/$defs/RevokedSecurityGroupRuleList"
                 }
             }
         },
@@ -58162,6 +61296,12 @@
                 },
                 "EnablePrimaryIpv6": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "NetworkPerformanceOptions": {
+                    "$ref": "#/$defs/InstanceNetworkPerformanceOptionsRequest"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/OperatorRequest"
                 },
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
@@ -58350,6 +61490,14 @@
             "properties": {
                 "AutoRecovery": {
                     "$ref": "#/$defs/InstanceAutoRecoveryState"
+                }
+            }
+        },
+        "InstanceNetworkPerformanceOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "BandwidthWeighting": {
+                    "$ref": "#/$defs/InstanceBandwidthWeighting"
                 }
             }
         },
@@ -58761,6 +61909,34 @@
                 },
                 "DryRun": {
                     "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "StartDeclarativePoliciesReportResult": {
+            "type": "object",
+            "properties": {
+                "ReportId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StartDeclarativePoliciesReportRequest": {
+            "type": "object",
+            "properties": {
+                "DryRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "S3Bucket": {
+                    "$ref": "#/$defs/String"
+                },
+                "S3Prefix": {
+                    "$ref": "#/$defs/String"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/String"
+                },
+                "TagSpecifications": {
+                    "$ref": "#/$defs/TagSpecificationList"
                 }
             }
         },

@@ -3510,6 +3510,12 @@
                 },
                 "AssessmentRunName": {
                     "$ref": "#/$defs/String"
+                },
+                "IsLatestTaskAssessmentRun": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ResultStatistic": {
+                    "$ref": "#/$defs/ReplicationTaskAssessmentRunResultStatistic"
                 }
             }
         },
@@ -3527,6 +3533,32 @@
         "Integer": {
             "type": "integer",
             "format": "int32"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "ReplicationTaskAssessmentRunResultStatistic": {
+            "type": "object",
+            "properties": {
+                "Passed": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Failed": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Error": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Warning": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Cancelled": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Skipped": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
         },
         "CancelReplicationTaskAssessmentRunMessage": {
             "type": "object",
@@ -3577,6 +3609,9 @@
                 "SourceDataSettings": {
                     "$ref": "#/$defs/SourceDataSettings"
                 },
+                "TargetDataSettings": {
+                    "$ref": "#/$defs/TargetDataSettings"
+                },
                 "DataMigrationStatistics": {
                     "$ref": "#/$defs/DataMigrationStatistics"
                 },
@@ -3585,6 +3620,9 @@
                 },
                 "PublicIpAddresses": {
                     "$ref": "#/$defs/PublicIpAddressList"
+                },
+                "DataMigrationCidrBlocks": {
+                    "$ref": "#/$defs/DataMigrationCidrBlock"
                 },
                 "LastFailureMessage": {
                     "$ref": "#/$defs/String"
@@ -3652,6 +3690,27 @@
                 }
             }
         },
+        "TargetDataSettings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetDataSetting"
+            }
+        },
+        "TargetDataSetting": {
+            "type": "object",
+            "properties": {
+                "TablePreparationMode": {
+                    "$ref": "#/$defs/TablePreparationMode"
+                }
+            }
+        },
+        "TablePreparationMode": {
+            "enum": [
+                "DO_NOTHING",
+                "TRUNCATE",
+                "DROP_TABLES_ON_TARGET"
+            ]
+        },
         "DataMigrationStatistics": {
             "type": "object",
             "properties": {
@@ -3694,6 +3753,12 @@
                 "$ref": "#/$defs/String"
             }
         },
+        "DataMigrationCidrBlock": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
         "CreateDataMigrationMessage": {
             "type": "object",
             "properties": {
@@ -3714,6 +3779,9 @@
                 },
                 "SourceDataSettings": {
                     "$ref": "#/$defs/SourceDataSettings"
+                },
+                "TargetDataSettings": {
+                    "$ref": "#/$defs/TargetDataSettings"
                 },
                 "NumberOfJobs": {
                     "$ref": "#/$defs/IntegerOptional"
@@ -3780,6 +3848,12 @@
                 },
                 "MariaDbSettings": {
                     "$ref": "#/$defs/MariaDbDataProviderSettings"
+                },
+                "IbmDb2LuwSettings": {
+                    "$ref": "#/$defs/IbmDb2LuwDataProviderSettings"
+                },
+                "IbmDb2zOsSettings": {
+                    "$ref": "#/$defs/IbmDb2zOsDataProviderSettings"
                 },
                 "MongoDbSettings": {
                     "$ref": "#/$defs/MongoDbDataProviderSettings"
@@ -3928,6 +4002,46 @@
                 },
                 "Port": {
                     "$ref": "#/$defs/IntegerOptional"
+                },
+                "SslMode": {
+                    "$ref": "#/$defs/DmsSslModeValue"
+                },
+                "CertificateArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "IbmDb2LuwDataProviderSettings": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Port": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/String"
+                },
+                "SslMode": {
+                    "$ref": "#/$defs/DmsSslModeValue"
+                },
+                "CertificateArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "IbmDb2zOsDataProviderSettings": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Port": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "DatabaseName": {
+                    "$ref": "#/$defs/String"
                 },
                 "SslMode": {
                     "$ref": "#/$defs/DmsSslModeValue"
@@ -4424,6 +4538,9 @@
                 },
                 "NoHexPrefix": {
                     "$ref": "#/$defs/BooleanOptional"
+                },
+                "UseLargeIntegerValue": {
+                    "$ref": "#/$defs/BooleanOptional"
                 }
             }
         },
@@ -4495,6 +4612,9 @@
                 },
                 "SslEndpointIdentificationAlgorithm": {
                     "$ref": "#/$defs/KafkaSslEndpointIdentificationAlgorithm"
+                },
+                "UseLargeIntegerValue": {
+                    "$ref": "#/$defs/BooleanOptional"
                 }
             }
         },
@@ -4736,6 +4856,9 @@
                 },
                 "BabelfishDatabaseName": {
                     "$ref": "#/$defs/String"
+                },
+                "DisableUnicodeSourceFilter": {
+                    "$ref": "#/$defs/BooleanOptional"
                 }
             }
         },
@@ -4946,6 +5069,9 @@
                 },
                 "OpenTransactionWindow": {
                     "$ref": "#/$defs/IntegerOptional"
+                },
+                "AuthenticationMethod": {
+                    "$ref": "#/$defs/OracleAuthenticationMethod"
                 }
             }
         },
@@ -4960,6 +5086,12 @@
                 "DEFAULT",
                 "CHAR",
                 "BYTE"
+            ]
+        },
+        "OracleAuthenticationMethod": {
+            "enum": [
+                "Password",
+                "Kerberos"
             ]
         },
         "SybaseSettings": {
@@ -5041,6 +5173,9 @@
                 },
                 "ForceLobLookup": {
                     "$ref": "#/$defs/BooleanOptional"
+                },
+                "AuthenticationMethod": {
+                    "$ref": "#/$defs/SqlServerAuthenticationMethod"
                 }
             }
         },
@@ -5057,6 +5192,12 @@
                 "PreferBackup",
                 "PreferTlog",
                 "TlogOnly"
+            ]
+        },
+        "SqlServerAuthenticationMethod": {
+            "enum": [
+                "Password",
+                "Kerberos"
             ]
         },
         "IBMDb2Settings": {
@@ -5417,9 +5558,6 @@
             "items": {
                 "$ref": "#/$defs/String"
             }
-        },
-        "Boolean": {
-            "type": "boolean"
         },
         "CreateEventSubscriptionMessage": {
             "type": "object",
@@ -5819,7 +5957,7 @@
                     "$ref": "#/$defs/String"
                 },
                 "ReplicationInstanceClass": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/ReplicationInstanceClass"
                 },
                 "ReplicationInstanceStatus": {
                     "$ref": "#/$defs/String"
@@ -5889,8 +6027,14 @@
                 },
                 "NetworkType": {
                     "$ref": "#/$defs/String"
+                },
+                "KerberosAuthenticationSettings": {
+                    "$ref": "#/$defs/KerberosAuthenticationSettings"
                 }
             }
+        },
+        "ReplicationInstanceClass": {
+            "type": "string"
         },
         "VpcSecurityGroupMembershipList": {
             "type": "array",
@@ -5964,7 +6108,7 @@
             "type": "object",
             "properties": {
                 "ReplicationInstanceClass": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/ReplicationInstanceClass"
                 },
                 "AllocatedStorage": {
                     "$ref": "#/$defs/IntegerOptional"
@@ -5998,6 +6142,20 @@
                 "$ref": "#/$defs/String"
             }
         },
+        "KerberosAuthenticationSettings": {
+            "type": "object",
+            "properties": {
+                "KeyCacheSecretId": {
+                    "$ref": "#/$defs/String"
+                },
+                "KeyCacheSecretIamArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "Krb5FileContents": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "CreateReplicationInstanceMessage": {
             "type": "object",
             "properties": {
@@ -6008,7 +6166,7 @@
                     "$ref": "#/$defs/IntegerOptional"
                 },
                 "ReplicationInstanceClass": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/ReplicationInstanceClass"
                 },
                 "VpcSecurityGroupIds": {
                     "$ref": "#/$defs/VpcSecurityGroupIdList"
@@ -6048,6 +6206,9 @@
                 },
                 "NetworkType": {
                     "$ref": "#/$defs/String"
+                },
+                "KerberosAuthenticationSettings": {
+                    "$ref": "#/$defs/KerberosAuthenticationSettings"
                 }
             }
         },
@@ -6592,6 +6753,9 @@
                     "$ref": "#/$defs/String"
                 },
                 "ReplicationInstanceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ReplicationConfigArn": {
                     "$ref": "#/$defs/String"
                 },
                 "SourceEngineName": {
@@ -7893,7 +8057,7 @@
                     "$ref": "#/$defs/String"
                 },
                 "ReplicationInstanceClass": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/ReplicationInstanceClass"
                 },
                 "StorageType": {
                     "$ref": "#/$defs/String"
@@ -8351,6 +8515,9 @@
                 "ProvisionData": {
                     "$ref": "#/$defs/ProvisionData"
                 },
+                "PremigrationAssessmentStatuses": {
+                    "$ref": "#/$defs/PremigrationAssessmentStatusList"
+                },
                 "StopReason": {
                     "$ref": "#/$defs/String"
                 },
@@ -8409,6 +8576,50 @@
                 },
                 "ReasonForNewProvisioningData": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PremigrationAssessmentStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PremigrationAssessmentStatus"
+            }
+        },
+        "PremigrationAssessmentStatus": {
+            "type": "object",
+            "properties": {
+                "PremigrationAssessmentRunArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "FailOnAssessmentFailure": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Status": {
+                    "$ref": "#/$defs/String"
+                },
+                "PremigrationAssessmentRunCreationDate": {
+                    "$ref": "#/$defs/TStamp"
+                },
+                "AssessmentProgress": {
+                    "$ref": "#/$defs/ReplicationTaskAssessmentRunProgress"
+                },
+                "LastFailureMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResultLocationBucket": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResultLocationFolder": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResultEncryptionMode": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResultKmsKeyArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ResultStatistic": {
+                    "$ref": "#/$defs/ReplicationTaskAssessmentRunResultStatistic"
                 }
             }
         },
@@ -8648,7 +8859,7 @@
                     "$ref": "#/$defs/String"
                 },
                 "S3ObjectUrl": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/SecretString"
                 }
             }
         },
@@ -8999,6 +9210,9 @@
                 "SourceDataSettings": {
                     "$ref": "#/$defs/SourceDataSettings"
                 },
+                "TargetDataSettings": {
+                    "$ref": "#/$defs/TargetDataSettings"
+                },
                 "NumberOfJobs": {
                     "$ref": "#/$defs/IntegerOptional"
                 },
@@ -9319,7 +9533,7 @@
                     "$ref": "#/$defs/Boolean"
                 },
                 "ReplicationInstanceClass": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/ReplicationInstanceClass"
                 },
                 "VpcSecurityGroupIds": {
                     "$ref": "#/$defs/VpcSecurityGroupIdList"
@@ -9344,6 +9558,9 @@
                 },
                 "NetworkType": {
                     "$ref": "#/$defs/String"
+                },
+                "KerberosAuthenticationSettings": {
+                    "$ref": "#/$defs/KerberosAuthenticationSettings"
                 }
             }
         },
@@ -9754,6 +9971,9 @@
                 "StartReplicationType": {
                     "$ref": "#/$defs/String"
                 },
+                "PremigrationAssessmentSettings": {
+                    "$ref": "#/$defs/String"
+                },
                 "CdcStartTime": {
                     "$ref": "#/$defs/TStamp"
                 },
@@ -9853,6 +10073,9 @@
                 },
                 "Exclude": {
                     "$ref": "#/$defs/ExcludeTestList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
         },

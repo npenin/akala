@@ -3049,6 +3049,41 @@
             }
         },
         {
+            "name": "ListVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/prod/versions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListVersionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "PurchaseOffering",
             "config": {
                 "http": {
@@ -4608,6 +4643,12 @@
                 },
                 "StaticImageOutputDeactivateSettings": {
                     "$ref": "#/$defs/StaticImageOutputDeactivateScheduleActionSettings"
+                },
+                "Id3SegmentTaggingSettings": {
+                    "$ref": "#/$defs/Id3SegmentTaggingScheduleActionSettings"
+                },
+                "TimedMetadataSettings": {
+                    "$ref": "#/$defs/TimedMetadataScheduleActionSettings"
                 }
             }
         },
@@ -5056,6 +5097,25 @@
                 }
             }
         },
+        "Id3SegmentTaggingScheduleActionSettings": {
+            "type": "object",
+            "properties": {
+                "Id3": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tag": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "TimedMetadataScheduleActionSettings": {
+            "type": "object",
+            "properties": {
+                "Id3": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
         "ScheduleActionStartSettings": {
             "type": "object",
             "properties": {
@@ -5228,6 +5288,9 @@
                 },
                 "AnywhereSettings": {
                     "$ref": "#/$defs/DescribeAnywhereSettings"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionResponse"
                 }
             }
         },
@@ -5289,6 +5352,12 @@
             "type": "object",
             "properties": {
                 "ChannelId": {
+                    "$ref": "#/$defs/__stringMin1"
+                },
+                "ChannelGroup": {
+                    "$ref": "#/$defs/__stringMin1"
+                },
+                "ChannelName": {
                     "$ref": "#/$defs/__stringMin1"
                 }
             }
@@ -7778,6 +7847,24 @@
                 },
                 "SendDelayMs": {
                     "$ref": "#/$defs/__integerMin0Max2000"
+                },
+                "KlvBehavior": {
+                    "$ref": "#/$defs/CmafKLVBehavior"
+                },
+                "KlvNameModifier": {
+                    "$ref": "#/$defs/__stringMax100"
+                },
+                "NielsenId3NameModifier": {
+                    "$ref": "#/$defs/__stringMax100"
+                },
+                "Scte35NameModifier": {
+                    "$ref": "#/$defs/__stringMax100"
+                },
+                "Id3Behavior": {
+                    "$ref": "#/$defs/CmafId3Behavior"
+                },
+                "Id3NameModifier": {
+                    "$ref": "#/$defs/__stringMax100"
                 }
             }
         },
@@ -7802,6 +7889,21 @@
         "__integerMin0Max2000": {
             "type": "integer",
             "format": "int32"
+        },
+        "CmafKLVBehavior": {
+            "enum": [
+                "NO_PASSTHROUGH",
+                "PASSTHROUGH"
+            ]
+        },
+        "__stringMax100": {
+            "type": "string"
+        },
+        "CmafId3Behavior": {
+            "enum": [
+                "DISABLED",
+                "ENABLED"
+            ]
         },
         "SrtGroupSettings": {
             "type": "object",
@@ -9362,6 +9464,9 @@
                 },
                 "MinQp": {
                     "$ref": "#/$defs/__integerMin1Max51"
+                },
+                "Deblocking": {
+                    "$ref": "#/$defs/H265Deblocking"
                 }
             }
         },
@@ -9554,6 +9659,12 @@
             "enum": [
                 "AUTO",
                 "TREE_SIZE_32X32"
+            ]
+        },
+        "H265Deblocking": {
+            "enum": [
+                "DISABLED",
+                "ENABLED"
             ]
         },
         "Mpeg2Settings": {
@@ -10559,8 +10670,26 @@
                 },
                 "PipelineId": {
                     "$ref": "#/$defs/__string"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionResponse"
                 }
             }
+        },
+        "ChannelEngineVersionResponse": {
+            "type": "object",
+            "properties": {
+                "ExpirationDate": {
+                    "$ref": "#/$defs/__timestampIso8601"
+                },
+                "Version": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__timestampIso8601": {
+            "type": "string",
+            "format": "date-time"
         },
         "ChannelState": {
             "enum": [
@@ -10658,6 +10787,12 @@
                 },
                 "AnywhereSettings": {
                     "$ref": "#/$defs/AnywhereSettings"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionRequest"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/__boolean"
                 }
             }
         },
@@ -10699,6 +10834,17 @@
                     "$ref": "#/$defs/__string"
                 }
             }
+        },
+        "ChannelEngineVersionRequest": {
+            "type": "object",
+            "properties": {
+                "Version": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__boolean": {
+            "type": "boolean"
         },
         "CreateChannelPlacementGroupResponse": {
             "type": "object",
@@ -10824,10 +10970,6 @@
                 "LessThanOrEqualToThreshold"
             ]
         },
-        "__timestampIso8601": {
-            "type": "string",
-            "format": "date-time"
-        },
         "__stringMin0Max1024": {
             "type": "string"
         },
@@ -10868,7 +11010,8 @@
                 "MEDIAPACKAGE_CHANNEL",
                 "MEDIAPACKAGE_ORIGIN_ENDPOINT",
                 "MEDIACONNECT_FLOW",
-                "S3_BUCKET"
+                "S3_BUCKET",
+                "MEDIATAILOR_PLAYBACK_CONFIGURATION"
             ]
         },
         "CloudWatchAlarmTemplateTreatMissingData": {
@@ -10920,10 +11063,16 @@
                 },
                 "TreatMissingData": {
                     "$ref": "#/$defs/CloudWatchAlarmTemplateTreatMissingData"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternS"
                 }
             }
         },
         "__stringPatternS": {
+            "type": "string"
+        },
+        "__stringMin1Max256PatternS": {
             "type": "string"
         },
         "CreateCloudWatchAlarmTemplateGroupResponse": {
@@ -10966,6 +11115,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternS"
                 }
             }
         },
@@ -11184,6 +11336,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternS"
                 }
             }
         },
@@ -11227,6 +11382,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternS"
                 }
             }
         },
@@ -12569,9 +12727,6 @@
                 "$ref": "#/$defs/MediaResource"
             }
         },
-        "__boolean": {
-            "type": "boolean"
-        },
         "MonitorDeployment": {
             "type": "object",
             "properties": {
@@ -12619,6 +12774,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
+                },
+                "RequestId": {
+                    "$ref": "#/$defs/__stringMin1Max256PatternS"
                 }
             }
         },
@@ -12698,6 +12856,9 @@
                 },
                 "AnywhereSettings": {
                     "$ref": "#/$defs/DescribeAnywhereSettings"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionResponse"
                 }
             }
         },
@@ -13292,6 +13453,9 @@
                 },
                 "AnywhereSettings": {
                     "$ref": "#/$defs/DescribeAnywhereSettings"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionResponse"
                 }
             }
         },
@@ -14536,7 +14700,19 @@
                 },
                 "AnywhereSettings": {
                     "$ref": "#/$defs/DescribeAnywhereSettings"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionResponse"
+                },
+                "UsedChannelEngineVersions": {
+                    "$ref": "#/$defs/__listOfChannelEngineVersionResponse"
                 }
+            }
+        },
+        "__listOfChannelEngineVersionResponse": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelEngineVersionResponse"
             }
         },
         "ListChannelsRequest": {
@@ -15612,6 +15788,18 @@
                 }
             }
         },
+        "ListVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "Versions": {
+                    "$ref": "#/$defs/__listOfChannelEngineVersionResponse"
+                }
+            }
+        },
+        "ListVersionsRequest": {
+            "type": "object",
+            "properties": {}
+        },
         "PurchaseOfferingResponse": {
             "type": "object",
             "properties": {
@@ -15741,6 +15929,9 @@
                 },
                 "AnywhereSettings": {
                     "$ref": "#/$defs/DescribeAnywhereSettings"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionResponse"
                 }
             }
         },
@@ -15826,6 +16017,9 @@
                 },
                 "AnywhereSettings": {
                     "$ref": "#/$defs/DescribeAnywhereSettings"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionResponse"
                 }
             }
         },
@@ -16185,6 +16379,9 @@
                 },
                 "AnywhereSettings": {
                     "$ref": "#/$defs/DescribeAnywhereSettings"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionResponse"
                 }
             }
         },
@@ -16328,6 +16525,12 @@
                 },
                 "RoleArn": {
                     "$ref": "#/$defs/__string"
+                },
+                "ChannelEngineVersion": {
+                    "$ref": "#/$defs/ChannelEngineVersionRequest"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/__boolean"
                 }
             }
         },

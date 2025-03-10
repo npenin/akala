@@ -1642,6 +1642,12 @@
                 },
                 "mediaTypes": {
                     "$ref": "#/$defs/ParticipantRecordingMediaTypeList"
+                },
+                "thumbnailConfiguration": {
+                    "$ref": "#/$defs/ParticipantThumbnailConfiguration"
+                },
+                "recordingReconnectWindowSeconds": {
+                    "$ref": "#/$defs/ParticipantRecordingReconnectWindowSeconds"
                 }
             }
         },
@@ -1655,7 +1661,51 @@
             }
         },
         "ParticipantRecordingMediaType": {
-            "type": "string"
+            "enum": [
+                "AUDIO_VIDEO",
+                "AUDIO_ONLY",
+                "NONE"
+            ]
+        },
+        "ParticipantThumbnailConfiguration": {
+            "type": "object",
+            "properties": {
+                "targetIntervalSeconds": {
+                    "$ref": "#/$defs/ThumbnailIntervalSeconds"
+                },
+                "storage": {
+                    "$ref": "#/$defs/ThumbnailStorageTypeList"
+                },
+                "recordingMode": {
+                    "$ref": "#/$defs/ThumbnailRecordingMode"
+                }
+            }
+        },
+        "ThumbnailIntervalSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ThumbnailStorageTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ThumbnailStorageType"
+            }
+        },
+        "ThumbnailStorageType": {
+            "enum": [
+                "SEQUENTIAL",
+                "LATEST"
+            ]
+        },
+        "ThumbnailRecordingMode": {
+            "enum": [
+                "INTERVAL",
+                "DISABLED"
+            ]
+        },
+        "ParticipantRecordingReconnectWindowSeconds": {
+            "type": "integer",
+            "format": "int32"
         },
         "StageEndpoints": {
             "type": "object",
@@ -2107,6 +2157,9 @@
                 },
                 "recordingConfiguration": {
                     "$ref": "#/$defs/RecordingConfiguration"
+                },
+                "thumbnailConfigurations": {
+                    "$ref": "#/$defs/CompositionThumbnailConfigurationList"
                 }
             }
         },
@@ -2126,6 +2179,23 @@
         },
         "RecordingConfigurationFormat": {
             "type": "string"
+        },
+        "CompositionThumbnailConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CompositionThumbnailConfiguration"
+            }
+        },
+        "CompositionThumbnailConfiguration": {
+            "type": "object",
+            "properties": {
+                "targetIntervalSeconds": {
+                    "$ref": "#/$defs/ThumbnailIntervalSeconds"
+                },
+                "storage": {
+                    "$ref": "#/$defs/ThumbnailStorageTypeList"
+                }
+            }
         },
         "DestinationDetail": {
             "type": "object",

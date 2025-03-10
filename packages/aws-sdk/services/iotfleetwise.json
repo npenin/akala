@@ -556,6 +556,9 @@
                 },
                 "tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "stateTemplates": {
+                    "$ref": "#/$defs/StateTemplateAssociations"
                 }
             }
         },
@@ -596,6 +599,72 @@
         },
         "TagValue": {
             "type": "string"
+        },
+        "StateTemplateAssociations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StateTemplateAssociation"
+            }
+        },
+        "StateTemplateAssociation": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "stateTemplateUpdateStrategy": {
+                    "$ref": "#/$defs/StateTemplateUpdateStrategy"
+                }
+            }
+        },
+        "ResourceIdentifier": {
+            "type": "string"
+        },
+        "StateTemplateUpdateStrategy": {
+            "type": "object",
+            "properties": {
+                "periodic": {
+                    "$ref": "#/$defs/PeriodicStateTemplateUpdateStrategy"
+                },
+                "onChange": {
+                    "$ref": "#/$defs/OnChangeStateTemplateUpdateStrategy"
+                }
+            }
+        },
+        "PeriodicStateTemplateUpdateStrategy": {
+            "type": "object",
+            "properties": {
+                "stateTemplateUpdateRate": {
+                    "$ref": "#/$defs/TimePeriod"
+                }
+            }
+        },
+        "TimePeriod": {
+            "type": "object",
+            "properties": {
+                "unit": {
+                    "$ref": "#/$defs/TimeUnit"
+                },
+                "value": {
+                    "$ref": "#/$defs/positiveInteger"
+                }
+            }
+        },
+        "TimeUnit": {
+            "enum": [
+                "MILLISECOND",
+                "SECOND",
+                "MINUTE",
+                "HOUR"
+            ]
+        },
+        "positiveInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OnChangeStateTemplateUpdateStrategy": {
+            "type": "object",
+            "properties": {}
         },
         "BatchUpdateVehicleResponse": {
             "type": "object",
@@ -680,6 +749,12 @@
                 },
                 "attributeUpdateMode": {
                     "$ref": "#/$defs/UpdateMode"
+                },
+                "stateTemplatesToAdd": {
+                    "$ref": "#/$defs/StateTemplateAssociations"
+                },
+                "stateTemplatesToRemove": {
+                    "$ref": "#/$defs/StateTemplateAssociationIdentifiers"
                 }
             }
         },
@@ -688,6 +763,12 @@
                 "OVERWRITE",
                 "MERGE"
             ]
+        },
+        "StateTemplateAssociationIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceIdentifier"
+            }
         },
         "GetEncryptionConfigurationResponse": {
             "type": "object",

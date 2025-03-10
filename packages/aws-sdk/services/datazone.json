@@ -295,6 +295,45 @@
             }
         },
         {
+            "name": "CreateConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v2/domains/{domainIdentifier}/connections"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateConnectionOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConnectionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateEnvironment",
             "config": {
                 "http": {
@@ -572,6 +611,45 @@
             }
         },
         {
+            "name": "CreateProjectProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v2/domains/{domainIdentifier}/project-profiles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateProjectProfileOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateProjectProfileInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateSubscriptionGrant",
             "config": {
                 "http": {
@@ -757,6 +835,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteAssetFilterInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/connections/{identifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteConnectionOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConnectionInput"
                         }
                     }
                 },
@@ -964,6 +1083,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteProjectMembershipInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteProjectProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/v2/domains/{domainIdentifier}/project-profiles/{identifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteProjectProfileOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteProjectProfileInput"
                         }
                     }
                 },
@@ -1218,6 +1378,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetAssetFilterInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/connections/{identifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetConnectionOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetConnectionInput"
                         }
                     }
                 },
@@ -1521,6 +1722,88 @@
             }
         },
         {
+            "name": "GetJobRun",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/jobRuns/{identifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetJobRunOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetJobRunInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetLineageEvent",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/lineage/events/{identifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLineageEventOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLineageEventInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetLineageNode",
             "config": {
                 "http": {
@@ -1587,6 +1870,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetProjectInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetProjectProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/project-profiles/{identifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetProjectProfileOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetProjectProfileInput"
                         }
                     }
                 },
@@ -1937,6 +2261,45 @@
             }
         },
         {
+            "name": "ListConnections",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/connections"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConnectionsOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConnectionsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListDataProductRevisions",
             "config": {
                 "http": {
@@ -2220,6 +2583,86 @@
             }
         },
         {
+            "name": "ListJobRuns",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "jobIdentifier": "route.jobIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/jobs/{jobIdentifier}/runs"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobRunsOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.jobIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobRunsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLineageEvents",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/lineage/events"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLineageEventsOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLineageEventsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListLineageNodeHistory",
             "config": {
                 "http": {
@@ -2368,6 +2811,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListProjectMembershipsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListProjectProfiles",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/domains/{domainIdentifier}/project-profiles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProjectProfilesOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProjectProfilesInput"
                         }
                     }
                 },
@@ -3270,6 +3752,47 @@
             }
         },
         {
+            "name": "UpdateConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/connections/{identifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateConnectionOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConnectionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateEnvironment",
             "config": {
                 "http": {
@@ -3461,6 +3984,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateProjectInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateProjectProfile",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainIdentifier": "route.domainIdentifier",
+                            "identifier": "route.identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/v2/domains/{domainIdentifier}/project-profiles/{identifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateProjectProfileOutput"
+                    },
+                    "inject": [
+                        "param.0.domainIdentifier",
+                        "param.0.identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateProjectProfileInput"
                         }
                     }
                 },
@@ -3821,6 +4385,12 @@
                 },
                 "decisionComment": {
                     "$ref": "#/$defs/DecisionComment"
+                },
+                "existingSubscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "metadataForms": {
+                    "$ref": "#/$defs/MetadataForms"
                 }
             }
         },
@@ -4058,6 +4628,38 @@
         "DecisionComment": {
             "type": "string"
         },
+        "SubscriptionId": {
+            "type": "string"
+        },
+        "MetadataForms": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FormOutput"
+            }
+        },
+        "FormOutput": {
+            "type": "object",
+            "properties": {
+                "formName": {
+                    "$ref": "#/$defs/FormName"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/FormTypeName"
+                },
+                "typeRevision": {
+                    "$ref": "#/$defs/Revision"
+                },
+                "content": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "FormName": {
+            "type": "string"
+        },
+        "FormTypeName": {
+            "type": "string"
+        },
         "AcceptSubscriptionRequestInput": {
             "type": "object",
             "properties": {
@@ -4203,7 +4805,9 @@
                 "CREATE_PROJECT",
                 "CREATE_ENVIRONMENT_PROFILE",
                 "DELEGATE_CREATE_ENVIRONMENT_PROFILE",
-                "CREATE_ENVIRONMENT"
+                "CREATE_ENVIRONMENT",
+                "CREATE_ENVIRONMENT_FROM_BLUEPRINT",
+                "CREATE_PROJECT_FROM_PROJECT_PROFILE"
             ]
         },
         "PolicyGrantPrincipal": {
@@ -4263,7 +4867,8 @@
         "ProjectDesignation": {
             "enum": [
                 "OWNER",
-                "CONTRIBUTOR"
+                "CONTRIBUTOR",
+                "PROJECT_CATALOG_STEWARD"
             ]
         },
         "ProjectGrantFilter": {
@@ -4354,6 +4959,12 @@
                 },
                 "createEnvironment": {
                     "$ref": "#/$defs/Unit"
+                },
+                "createEnvironmentFromBlueprint": {
+                    "$ref": "#/$defs/Unit"
+                },
+                "createProjectFromProjectProfile": {
+                    "$ref": "#/$defs/CreateProjectFromProjectProfilePolicyGrantDetail"
                 }
             }
         },
@@ -4433,6 +5044,23 @@
             "type": "object",
             "properties": {}
         },
+        "CreateProjectFromProjectProfilePolicyGrantDetail": {
+            "type": "object",
+            "properties": {
+                "includeChildDomainUnits": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "projectProfiles": {
+                    "$ref": "#/$defs/ProjectProfileList"
+                }
+            }
+        },
+        "ProjectProfileList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
         "AssociateEnvironmentRoleOutput": {
             "type": "object",
             "properties": {}
@@ -4491,9 +5119,6 @@
                     "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
-        },
-        "SubscriptionId": {
-            "type": "string"
         },
         "SubscriptionStatus": {
             "enum": [
@@ -4812,6 +5437,887 @@
                 }
             }
         },
+        "CreateConnectionOutput": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "domainUnitId": {
+                    "$ref": "#/$defs/DomainUnitId"
+                },
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "physicalEndpoints": {
+                    "$ref": "#/$defs/PhysicalEndpoints"
+                },
+                "projectId": {
+                    "$ref": "#/$defs/ProjectId"
+                },
+                "props": {
+                    "$ref": "#/$defs/ConnectionPropertiesOutput"
+                },
+                "type": {
+                    "$ref": "#/$defs/ConnectionType"
+                }
+            }
+        },
+        "ConnectionId": {
+            "type": "string"
+        },
+        "ConnectionName": {
+            "type": "string"
+        },
+        "PhysicalEndpoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PhysicalEndpoint"
+            }
+        },
+        "PhysicalEndpoint": {
+            "type": "object",
+            "properties": {
+                "awsLocation": {
+                    "$ref": "#/$defs/AwsLocation"
+                },
+                "glueConnectionName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "glueConnection": {
+                    "$ref": "#/$defs/GlueConnection"
+                },
+                "host": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "port": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "stage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "AwsLocation": {
+            "type": "object",
+            "properties": {
+                "accessRole": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "awsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "awsRegion": {
+                    "$ref": "#/$defs/AwsRegion"
+                },
+                "iamConnectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                }
+            }
+        },
+        "AwsAccountId": {
+            "type": "string"
+        },
+        "AwsRegion": {
+            "type": "string"
+        },
+        "GlueConnection": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "connectionType": {
+                    "$ref": "#/$defs/ConnectionType"
+                },
+                "matchCriteria": {
+                    "$ref": "#/$defs/MatchCriteria"
+                },
+                "connectionProperties": {
+                    "$ref": "#/$defs/ConnectionProperties"
+                },
+                "sparkProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
+                "athenaProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
+                "pythonProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
+                "physicalConnectionRequirements": {
+                    "$ref": "#/$defs/PhysicalConnectionRequirements"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedBy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/ConnectionStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "lastConnectionValidationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "authenticationConfiguration": {
+                    "$ref": "#/$defs/AuthenticationConfiguration"
+                },
+                "connectionSchemaVersion": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "compatibleComputeEnvironments": {
+                    "$ref": "#/$defs/ComputeEnvironmentsList"
+                }
+            }
+        },
+        "ConnectionType": {
+            "enum": [
+                "ATHENA",
+                "BIGQUERY",
+                "DATABRICKS",
+                "DOCUMENTDB",
+                "DYNAMODB",
+                "HYPERPOD",
+                "IAM",
+                "MYSQL",
+                "OPENSEARCH",
+                "ORACLE",
+                "POSTGRESQL",
+                "REDSHIFT",
+                "SAPHANA",
+                "SNOWFLAKE",
+                "SPARK",
+                "SQLSERVER",
+                "TERADATA",
+                "VERTICA",
+                "WORKFLOWS_MWAA"
+            ]
+        },
+        "MatchCriteria": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ConnectionProperties": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "PropertyMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "PhysicalConnectionRequirements": {
+            "type": "object",
+            "properties": {
+                "subnetId": {
+                    "$ref": "#/$defs/SubnetId"
+                },
+                "subnetIdList": {
+                    "$ref": "#/$defs/SubnetIdList"
+                },
+                "securityGroupIdList": {
+                    "$ref": "#/$defs/SecurityGroupIdList"
+                },
+                "availabilityZone": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "SubnetIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "SecurityGroupIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ConnectionStatus": {
+            "enum": [
+                "CREATING",
+                "CREATE_FAILED",
+                "DELETING",
+                "DELETE_FAILED",
+                "READY",
+                "UPDATING",
+                "UPDATE_FAILED",
+                "DELETED"
+            ]
+        },
+        "AuthenticationConfiguration": {
+            "type": "object",
+            "properties": {
+                "authenticationType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "secretArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "oAuth2Properties": {
+                    "$ref": "#/$defs/OAuth2Properties"
+                }
+            }
+        },
+        "AuthenticationType": {
+            "enum": [
+                "BASIC",
+                "OAUTH2",
+                "CUSTOM"
+            ]
+        },
+        "OAuth2Properties": {
+            "type": "object",
+            "properties": {
+                "oAuth2GrantType": {
+                    "$ref": "#/$defs/OAuth2GrantType"
+                },
+                "oAuth2ClientApplication": {
+                    "$ref": "#/$defs/OAuth2ClientApplication"
+                },
+                "tokenUrl": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "tokenUrlParametersMap": {
+                    "$ref": "#/$defs/TokenUrlParametersMap"
+                },
+                "authorizationCodeProperties": {
+                    "$ref": "#/$defs/AuthorizationCodeProperties"
+                },
+                "oAuth2Credentials": {
+                    "$ref": "#/$defs/GlueOAuth2Credentials"
+                }
+            }
+        },
+        "OAuth2GrantType": {
+            "enum": [
+                "AUTHORIZATION_CODE",
+                "CLIENT_CREDENTIALS",
+                "JWT_BEARER"
+            ]
+        },
+        "OAuth2ClientApplication": {
+            "type": "object",
+            "properties": {
+                "userManagedClientApplicationClientId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "aWSManagedClientApplicationReference": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "TokenUrlParametersMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "AuthorizationCodeProperties": {
+            "type": "object",
+            "properties": {
+                "authorizationCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "redirectUri": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GlueOAuth2Credentials": {
+            "type": "object",
+            "properties": {
+                "userManagedClientApplicationClientSecret": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "accessToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "refreshToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "jwtToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ComputeEnvironmentsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComputeEnvironments"
+            }
+        },
+        "ComputeEnvironments": {
+            "enum": [
+                "SPARK",
+                "ATHENA",
+                "PYTHON"
+            ]
+        },
+        "Protocol": {
+            "enum": [
+                "ATHENA",
+                "GLUE_INTERACTIVE_SESSION",
+                "HTTPS",
+                "JDBC",
+                "LIVY",
+                "ODBC",
+                "PRISM"
+            ]
+        },
+        "ConnectionPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "athenaProperties": {
+                    "$ref": "#/$defs/AthenaPropertiesOutput"
+                },
+                "glueProperties": {
+                    "$ref": "#/$defs/GluePropertiesOutput"
+                },
+                "hyperPodProperties": {
+                    "$ref": "#/$defs/HyperPodPropertiesOutput"
+                },
+                "iamProperties": {
+                    "$ref": "#/$defs/IamPropertiesOutput"
+                },
+                "redshiftProperties": {
+                    "$ref": "#/$defs/RedshiftPropertiesOutput"
+                },
+                "sparkEmrProperties": {
+                    "$ref": "#/$defs/SparkEmrPropertiesOutput"
+                },
+                "sparkGlueProperties": {
+                    "$ref": "#/$defs/SparkGluePropertiesOutput"
+                }
+            }
+        },
+        "AthenaPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "workgroupName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GluePropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ConnectionStatus"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "HyperPodPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "clusterName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "orchestrator": {
+                    "$ref": "#/$defs/HyperPodOrchestrator"
+                }
+            }
+        },
+        "HyperPodOrchestrator": {
+            "enum": [
+                "EKS",
+                "SLURM"
+            ]
+        },
+        "IamPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "environmentId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "glueLineageSyncEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "RedshiftPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "storage": {
+                    "$ref": "#/$defs/RedshiftStorageProperties"
+                },
+                "credentials": {
+                    "$ref": "#/$defs/RedshiftCredentials"
+                },
+                "isProvisionedSecret": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "jdbcIamUrl": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "jdbcUrl": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "redshiftTempDir": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "lineageSync": {
+                    "$ref": "#/$defs/RedshiftLineageSyncConfigurationOutput"
+                },
+                "status": {
+                    "$ref": "#/$defs/ConnectionStatus"
+                },
+                "databaseName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RedshiftStorageProperties": {
+            "type": "object",
+            "properties": {
+                "clusterName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "workgroupName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "RedshiftCredentials": {
+            "type": "object",
+            "properties": {
+                "secretArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "usernamePassword": {
+                    "$ref": "#/$defs/UsernamePassword"
+                }
+            }
+        },
+        "UsernamePassword": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "$ref": "#/$defs/Password"
+                },
+                "username": {
+                    "$ref": "#/$defs/Username"
+                }
+            }
+        },
+        "Password": {
+            "type": "string"
+        },
+        "Username": {
+            "type": "string"
+        },
+        "RedshiftLineageSyncConfigurationOutput": {
+            "type": "object",
+            "properties": {
+                "lineageJobId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "enabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "schedule": {
+                    "$ref": "#/$defs/LineageSyncSchedule"
+                }
+            }
+        },
+        "LineageSyncSchedule": {
+            "type": "object",
+            "properties": {
+                "schedule": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SparkEmrPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "computeArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "credentials": {
+                    "$ref": "#/$defs/UsernamePassword"
+                },
+                "credentialsExpiration": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "governanceType": {
+                    "$ref": "#/$defs/GovernanceType"
+                },
+                "instanceProfileArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "javaVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "livyEndpoint": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "logUri": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "pythonVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "runtimeRole": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "trustedCertificatesS3Uri": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GovernanceType": {
+            "enum": [
+                "AWS_MANAGED",
+                "USER_MANAGED"
+            ]
+        },
+        "SparkGluePropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "additionalArgs": {
+                    "$ref": "#/$defs/SparkGlueArgs"
+                },
+                "glueConnectionName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "glueVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "idleTimeout": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "javaVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "numberOfWorkers": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "pythonVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "workerType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SparkGlueArgs": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "CreateConnectionInput": {
+            "type": "object",
+            "properties": {
+                "awsLocation": {
+                    "$ref": "#/$defs/AwsLocation"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "environmentIdentifier": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "props": {
+                    "$ref": "#/$defs/ConnectionPropertiesInput"
+                }
+            }
+        },
+        "ConnectionPropertiesInput": {
+            "type": "object",
+            "properties": {
+                "athenaProperties": {
+                    "$ref": "#/$defs/AthenaPropertiesInput"
+                },
+                "glueProperties": {
+                    "$ref": "#/$defs/GluePropertiesInput"
+                },
+                "hyperPodProperties": {
+                    "$ref": "#/$defs/HyperPodPropertiesInput"
+                },
+                "iamProperties": {
+                    "$ref": "#/$defs/IamPropertiesInput"
+                },
+                "redshiftProperties": {
+                    "$ref": "#/$defs/RedshiftPropertiesInput"
+                },
+                "sparkEmrProperties": {
+                    "$ref": "#/$defs/SparkEmrPropertiesInput"
+                },
+                "sparkGlueProperties": {
+                    "$ref": "#/$defs/SparkGluePropertiesInput"
+                }
+            }
+        },
+        "AthenaPropertiesInput": {
+            "type": "object",
+            "properties": {
+                "workgroupName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GluePropertiesInput": {
+            "type": "object",
+            "properties": {
+                "glueConnectionInput": {
+                    "$ref": "#/$defs/GlueConnectionInput"
+                }
+            }
+        },
+        "GlueConnectionInput": {
+            "type": "object",
+            "properties": {
+                "connectionProperties": {
+                    "$ref": "#/$defs/ConnectionProperties"
+                },
+                "physicalConnectionRequirements": {
+                    "$ref": "#/$defs/PhysicalConnectionRequirements"
+                },
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "connectionType": {
+                    "$ref": "#/$defs/GlueConnectionType"
+                },
+                "matchCriteria": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "validateCredentials": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "validateForComputeEnvironments": {
+                    "$ref": "#/$defs/ComputeEnvironmentsList"
+                },
+                "sparkProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
+                "athenaProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
+                "pythonProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
+                "authenticationConfiguration": {
+                    "$ref": "#/$defs/AuthenticationConfigurationInput"
+                }
+            }
+        },
+        "GlueConnectionType": {
+            "enum": [
+                "SNOWFLAKE",
+                "BIGQUERY",
+                "DOCUMENTDB",
+                "DYNAMODB",
+                "MYSQL",
+                "OPENSEARCH",
+                "ORACLE",
+                "POSTGRESQL",
+                "REDSHIFT",
+                "SAPHANA",
+                "SQLSERVER",
+                "TERADATA",
+                "VERTICA"
+            ]
+        },
+        "AuthenticationConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "authenticationType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "oAuth2Properties": {
+                    "$ref": "#/$defs/OAuth2Properties"
+                },
+                "secretArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "basicAuthenticationCredentials": {
+                    "$ref": "#/$defs/BasicAuthenticationCredentials"
+                },
+                "customAuthenticationCredentials": {
+                    "$ref": "#/$defs/CredentialMap"
+                }
+            }
+        },
+        "BasicAuthenticationCredentials": {
+            "type": "object",
+            "properties": {
+                "userName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "password": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "CredentialMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "HyperPodPropertiesInput": {
+            "type": "object",
+            "properties": {
+                "clusterName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "IamPropertiesInput": {
+            "type": "object",
+            "properties": {
+                "glueLineageSyncEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "RedshiftPropertiesInput": {
+            "type": "object",
+            "properties": {
+                "storage": {
+                    "$ref": "#/$defs/RedshiftStorageProperties"
+                },
+                "databaseName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "host": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "port": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "credentials": {
+                    "$ref": "#/$defs/RedshiftCredentials"
+                },
+                "lineageSync": {
+                    "$ref": "#/$defs/RedshiftLineageSyncConfigurationInput"
+                }
+            }
+        },
+        "RedshiftLineageSyncConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "schedule": {
+                    "$ref": "#/$defs/LineageSyncSchedule"
+                }
+            }
+        },
+        "SparkEmrPropertiesInput": {
+            "type": "object",
+            "properties": {
+                "computeArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceProfileArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "javaVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "logUri": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "pythonVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "runtimeRole": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "trustedCertificatesS3Uri": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SparkGluePropertiesInput": {
+            "type": "object",
+            "properties": {
+                "additionalArgs": {
+                    "$ref": "#/$defs/SparkGlueArgs"
+                },
+                "glueConnectionName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "glueVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "idleTimeout": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "javaVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "numberOfWorkers": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "pythonVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "workerType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "CreateEnvironmentOutput": {
             "type": "object",
             "properties": {
@@ -4884,12 +6390,6 @@
             "type": "string"
         },
         "EnvironmentProfileId": {
-            "type": "string"
-        },
-        "AwsAccountId": {
-            "type": "string"
-        },
-        "AwsRegion": {
             "type": "string"
         },
         "ResourceList": {
@@ -5132,6 +6632,12 @@
                     "$ref": "#/$defs/smithy.api#String"
                 },
                 "environmentBlueprintIdentifier": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "deploymentOrder": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "environmentConfigurationId": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
@@ -5425,6 +6931,15 @@
                 },
                 "domainUnitId": {
                     "$ref": "#/$defs/DomainUnitId"
+                },
+                "projectProfileId": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "userParameters": {
+                    "$ref": "#/$defs/EnvironmentConfigurationUserParametersList"
+                },
+                "environmentDeploymentDetails": {
+                    "$ref": "#/$defs/EnvironmentDeploymentDetails"
                 }
             }
         },
@@ -5452,6 +6967,61 @@
                 }
             }
         },
+        "ProjectProfileId": {
+            "type": "string"
+        },
+        "EnvironmentConfigurationUserParametersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentConfigurationUserParameter"
+            }
+        },
+        "EnvironmentConfigurationUserParameter": {
+            "type": "object",
+            "properties": {
+                "environmentConfigurationName": {
+                    "$ref": "#/$defs/EnvironmentConfigurationName"
+                },
+                "environmentParameters": {
+                    "$ref": "#/$defs/EnvironmentParametersList"
+                }
+            }
+        },
+        "EnvironmentConfigurationName": {
+            "type": "string"
+        },
+        "EnvironmentDeploymentDetails": {
+            "type": "object",
+            "properties": {
+                "overallDeploymentStatus": {
+                    "$ref": "#/$defs/OverallDeploymentStatus"
+                },
+                "environmentFailureReasons": {
+                    "$ref": "#/$defs/EnvironmentFailureReasons"
+                }
+            }
+        },
+        "OverallDeploymentStatus": {
+            "enum": [
+                "PENDING_DEPLOYMENT",
+                "IN_PROGRESS",
+                "SUCCESSFUL",
+                "FAILED_VALIDATION",
+                "FAILED_DEPLOYMENT"
+            ]
+        },
+        "EnvironmentFailureReasons": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/EnvironmentFailureReasonsList"
+            }
+        },
+        "EnvironmentFailureReasonsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentError"
+            }
+        },
         "CreateProjectInput": {
             "type": "object",
             "properties": {
@@ -5469,6 +7039,12 @@
                 },
                 "domainUnitId": {
                     "$ref": "#/$defs/DomainUnitId"
+                },
+                "projectProfileId": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "userParameters": {
+                    "$ref": "#/$defs/EnvironmentConfigurationUserParametersList"
                 }
             }
         },
@@ -5507,8 +7083,194 @@
         "UserDesignation": {
             "enum": [
                 "PROJECT_OWNER",
-                "PROJECT_CONTRIBUTOR"
+                "PROJECT_CONTRIBUTOR",
+                "PROJECT_CATALOG_VIEWER",
+                "PROJECT_CATALOG_CONSUMER",
+                "PROJECT_CATALOG_STEWARD"
             ]
+        },
+        "CreateProjectProfileOutput": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "id": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ProjectProfileName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "environmentConfigurations": {
+                    "$ref": "#/$defs/EnvironmentConfigurationsList"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "domainUnitId": {
+                    "$ref": "#/$defs/DomainUnitId"
+                }
+            }
+        },
+        "ProjectProfileName": {
+            "type": "string"
+        },
+        "Status": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "EnvironmentConfigurationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentConfiguration"
+            }
+        },
+        "EnvironmentConfiguration": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/EnvironmentConfigurationName"
+                },
+                "id": {
+                    "$ref": "#/$defs/EnvironmentConfigurationId"
+                },
+                "environmentBlueprintId": {
+                    "$ref": "#/$defs/EnvironmentBlueprintId"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "deploymentMode": {
+                    "$ref": "#/$defs/DeploymentMode"
+                },
+                "configurationParameters": {
+                    "$ref": "#/$defs/EnvironmentConfigurationParametersDetails"
+                },
+                "awsAccount": {
+                    "$ref": "#/$defs/AwsAccount"
+                },
+                "awsRegion": {
+                    "$ref": "#/$defs/Region"
+                },
+                "deploymentOrder": {
+                    "$ref": "#/$defs/DeploymentOrder"
+                }
+            }
+        },
+        "EnvironmentConfigurationId": {
+            "type": "string"
+        },
+        "DeploymentMode": {
+            "enum": [
+                "ON_CREATE",
+                "ON_DEMAND"
+            ]
+        },
+        "EnvironmentConfigurationParametersDetails": {
+            "type": "object",
+            "properties": {
+                "ssmPath": {
+                    "$ref": "#/$defs/ParameterStorePath"
+                },
+                "parameterOverrides": {
+                    "$ref": "#/$defs/EnvironmentConfigurationParametersList"
+                },
+                "resolvedParameters": {
+                    "$ref": "#/$defs/EnvironmentConfigurationParametersList"
+                }
+            }
+        },
+        "ParameterStorePath": {
+            "type": "string"
+        },
+        "EnvironmentConfigurationParametersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentConfigurationParameter"
+            }
+        },
+        "EnvironmentConfigurationParameter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/EnvironmentConfigurationParameterName"
+                },
+                "value": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "isEditable": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "EnvironmentConfigurationParameterName": {
+            "type": "string"
+        },
+        "AwsAccount": {
+            "type": "object",
+            "properties": {
+                "awsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
+                },
+                "awsAccountIdPath": {
+                    "$ref": "#/$defs/ParameterStorePath"
+                }
+            }
+        },
+        "Region": {
+            "type": "object",
+            "properties": {
+                "regionName": {
+                    "$ref": "#/$defs/RegionName"
+                },
+                "regionNamePath": {
+                    "$ref": "#/$defs/ParameterStorePath"
+                }
+            }
+        },
+        "RegionName": {
+            "type": "string"
+        },
+        "DeploymentOrder": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CreateProjectProfileInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ProjectProfileName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "environmentConfigurations": {
+                    "$ref": "#/$defs/EnvironmentConfigurationsList"
+                },
+                "domainUnitIdentifier": {
+                    "$ref": "#/$defs/DomainUnitId"
+                }
+            }
         },
         "CreateSubscriptionGrantOutput": {
             "type": "object",
@@ -5736,6 +7498,12 @@
                 },
                 "decisionComment": {
                     "$ref": "#/$defs/DecisionComment"
+                },
+                "existingSubscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "metadataForms": {
+                    "$ref": "#/$defs/MetadataForms"
                 }
             }
         },
@@ -5756,6 +7524,9 @@
                 },
                 "clientToken": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "metadataForms": {
+                    "$ref": "#/$defs/MetadataFormInputs"
                 }
             }
         },
@@ -5795,6 +7566,35 @@
                 }
             }
         },
+        "MetadataFormInputs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FormInput"
+            }
+        },
+        "FormInput": {
+            "type": "object",
+            "properties": {
+                "formName": {
+                    "$ref": "#/$defs/FormName"
+                },
+                "typeIdentifier": {
+                    "$ref": "#/$defs/FormTypeIdentifier"
+                },
+                "typeRevision": {
+                    "$ref": "#/$defs/RevisionInput"
+                },
+                "content": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "FormTypeIdentifier": {
+            "type": "string"
+        },
+        "RevisionInput": {
+            "type": "string"
+        },
         "CreateSubscriptionTargetOutput": {
             "type": "object",
             "properties": {
@@ -5832,7 +7632,7 @@
                     "$ref": "#/$defs/UpdatedAt"
                 },
                 "manageAccessRole": {
-                    "$ref": "#/$defs/smithy.api#String"
+                    "$ref": "#/$defs/IamRoleArn"
                 },
                 "applicableAssetTypes": {
                     "$ref": "#/$defs/ApplicableAssetTypes"
@@ -5855,6 +7655,9 @@
             "type": "string"
         },
         "SubscriptionTargetName": {
+            "type": "string"
+        },
+        "IamRoleArn": {
             "type": "string"
         },
         "ApplicableAssetTypes": {
@@ -5880,9 +7683,6 @@
                 }
             }
         },
-        "FormName": {
-            "type": "string"
-        },
         "CreateSubscriptionTargetInput": {
             "type": "object",
             "properties": {
@@ -5905,7 +7705,7 @@
                     "$ref": "#/$defs/AuthorizedPrincipalIdentifiers"
                 },
                 "manageAccessRole": {
-                    "$ref": "#/$defs/smithy.api#String"
+                    "$ref": "#/$defs/IamRoleArn"
                 },
                 "applicableAssetTypes": {
                     "$ref": "#/$defs/ApplicableAssetTypes"
@@ -6035,6 +7835,25 @@
                 }
             }
         },
+        "DeleteConnectionOutput": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "DeleteConnectionInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/ConnectionId"
+                }
+            }
+        },
         "DeleteEnvironmentInput": {
             "type": "object",
             "properties": {
@@ -6104,6 +7923,21 @@
                 },
                 "member": {
                     "$ref": "#/$defs/Member"
+                }
+            }
+        },
+        "DeleteProjectProfileOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteProjectProfileInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/ProjectProfileId"
                 }
             }
         },
@@ -6281,6 +8115,78 @@
                 },
                 "identifier": {
                     "$ref": "#/$defs/FilterId"
+                }
+            }
+        },
+        "GetConnectionOutput": {
+            "type": "object",
+            "properties": {
+                "connectionCredentials": {
+                    "$ref": "#/$defs/ConnectionCredentials"
+                },
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "domainUnitId": {
+                    "$ref": "#/$defs/DomainUnitId"
+                },
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "environmentUserRole": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "physicalEndpoints": {
+                    "$ref": "#/$defs/PhysicalEndpoints"
+                },
+                "projectId": {
+                    "$ref": "#/$defs/ProjectId"
+                },
+                "props": {
+                    "$ref": "#/$defs/ConnectionPropertiesOutput"
+                },
+                "type": {
+                    "$ref": "#/$defs/ConnectionType"
+                }
+            }
+        },
+        "ConnectionCredentials": {
+            "type": "object",
+            "properties": {
+                "accessKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "secretAccessKey": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sessionToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "expiration": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "GetConnectionInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "withSecret": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
         },
@@ -6576,6 +8482,186 @@
                 }
             }
         },
+        "GetJobRunOutput": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "jobType": {
+                    "$ref": "#/$defs/JobType"
+                },
+                "runMode": {
+                    "$ref": "#/$defs/JobRunMode"
+                },
+                "details": {
+                    "$ref": "#/$defs/JobRunDetails"
+                },
+                "status": {
+                    "$ref": "#/$defs/JobRunStatus"
+                },
+                "error": {
+                    "$ref": "#/$defs/JobRunError"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "JobType": {
+            "enum": [
+                "LINEAGE"
+            ]
+        },
+        "JobRunMode": {
+            "enum": [
+                "SCHEDULED",
+                "ON_DEMAND"
+            ]
+        },
+        "JobRunDetails": {
+            "type": "object",
+            "properties": {
+                "lineageRunDetails": {
+                    "$ref": "#/$defs/LineageRunDetails"
+                }
+            }
+        },
+        "LineageRunDetails": {
+            "type": "object",
+            "properties": {
+                "sqlQueryRunDetails": {
+                    "$ref": "#/$defs/LineageSqlQueryRunDetails"
+                }
+            }
+        },
+        "LineageSqlQueryRunDetails": {
+            "type": "object",
+            "properties": {
+                "queryStartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "queryEndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "totalQueriesProcessed": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "numQueriesFailed": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "errorMessages": {
+                    "$ref": "#/$defs/FailedQueryProcessingErrorMessages"
+                }
+            }
+        },
+        "FailedQueryProcessingErrorMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "JobRunStatus": {
+            "enum": [
+                "SCHEDULED",
+                "IN_PROGRESS",
+                "SUCCESS",
+                "PARTIALLY_SUCCEEDED",
+                "FAILED",
+                "ABORTED",
+                "TIMED_OUT",
+                "CANCELED"
+            ]
+        },
+        "JobRunError": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetJobRunInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/RunIdentifier"
+                }
+            }
+        },
+        "RunIdentifier": {
+            "type": "string"
+        },
+        "GetLineageEventOutput": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "id": {
+                    "$ref": "#/$defs/LineageEventIdentifier"
+                },
+                "event": {
+                    "$ref": "#/$defs/LineageEvent"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "processingStatus": {
+                    "$ref": "#/$defs/LineageEventProcessingStatus"
+                },
+                "eventTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                }
+            }
+        },
+        "LineageEventIdentifier": {
+            "type": "string"
+        },
+        "LineageEvent": {
+            "type": "string",
+            "format": "binary"
+        },
+        "LineageEventProcessingStatus": {
+            "enum": [
+                "REQUESTED",
+                "PROCESSING",
+                "SUCCESS",
+                "FAILED"
+            ]
+        },
+        "GetLineageEventInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/LineageEventIdentifier"
+                }
+            }
+        },
         "GetLineageNodeOutput": {
             "type": "object",
             "properties": {
@@ -6634,26 +8720,6 @@
             "items": {
                 "$ref": "#/$defs/FormOutput"
             }
-        },
-        "FormOutput": {
-            "type": "object",
-            "properties": {
-                "formName": {
-                    "$ref": "#/$defs/FormName"
-                },
-                "typeName": {
-                    "$ref": "#/$defs/FormTypeName"
-                },
-                "typeRevision": {
-                    "$ref": "#/$defs/Revision"
-                },
-                "content": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "FormTypeName": {
-            "type": "string"
         },
         "LineageNodeReferenceList": {
             "type": "array",
@@ -6724,6 +8790,15 @@
                 },
                 "domainUnitId": {
                     "$ref": "#/$defs/DomainUnitId"
+                },
+                "projectProfileId": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "userParameters": {
+                    "$ref": "#/$defs/EnvironmentConfigurationUserParametersList"
+                },
+                "environmentDeploymentDetails": {
+                    "$ref": "#/$defs/EnvironmentDeploymentDetails"
                 }
             }
         },
@@ -6735,6 +8810,52 @@
                 },
                 "identifier": {
                     "$ref": "#/$defs/ProjectId"
+                }
+            }
+        },
+        "GetProjectProfileOutput": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "id": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ProjectProfileName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "environmentConfigurations": {
+                    "$ref": "#/$defs/EnvironmentConfigurationsList"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "domainUnitId": {
+                    "$ref": "#/$defs/DomainUnitId"
+                }
+            }
+        },
+        "GetProjectProfileInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/ProjectProfileId"
                 }
             }
         },
@@ -6874,6 +8995,12 @@
                 },
                 "decisionComment": {
                     "$ref": "#/$defs/DecisionComment"
+                },
+                "existingSubscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "metadataForms": {
+                    "$ref": "#/$defs/MetadataForms"
                 }
             }
         },
@@ -6925,7 +9052,7 @@
                     "$ref": "#/$defs/UpdatedAt"
                 },
                 "manageAccessRole": {
-                    "$ref": "#/$defs/smithy.api#String"
+                    "$ref": "#/$defs/IamRoleArn"
                 },
                 "applicableAssetTypes": {
                     "$ref": "#/$defs/ApplicableAssetTypes"
@@ -6997,9 +9124,6 @@
                     "$ref": "#/$defs/DataPointIdentifier"
                 }
             }
-        },
-        "FormTypeIdentifier": {
-            "type": "string"
         },
         "DataPointIdentifier": {
             "type": "string"
@@ -7194,6 +9318,98 @@
                 }
             }
         },
+        "ListConnectionsOutput": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/ConnectionSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ConnectionSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectionSummary"
+            }
+        },
+        "ConnectionSummary": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "domainUnitId": {
+                    "$ref": "#/$defs/DomainUnitId"
+                },
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "physicalEndpoints": {
+                    "$ref": "#/$defs/PhysicalEndpoints"
+                },
+                "projectId": {
+                    "$ref": "#/$defs/ProjectId"
+                },
+                "props": {
+                    "$ref": "#/$defs/ConnectionPropertiesOutput"
+                },
+                "type": {
+                    "$ref": "#/$defs/ConnectionType"
+                }
+            }
+        },
+        "ListConnectionsInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/SortFieldConnection"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "environmentIdentifier": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "projectIdentifier": {
+                    "$ref": "#/$defs/ProjectId"
+                },
+                "type": {
+                    "$ref": "#/$defs/ConnectionType"
+                }
+            }
+        },
+        "SortFieldConnection": {
+            "enum": [
+                "NAME"
+            ]
+        },
+        "SortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
         "ListDataProductRevisionsOutput": {
             "type": "object",
             "properties": {
@@ -7295,6 +9511,9 @@
                 "errorMessage": {
                     "$ref": "#/$defs/DataSourceErrorMessage"
                 },
+                "lineageSummary": {
+                    "$ref": "#/$defs/LineageInfo"
+                },
                 "createdAt": {
                     "$ref": "#/$defs/DateTime"
                 },
@@ -7342,6 +9561,23 @@
                 "THROTTLING_EXCEPTION",
                 "VALIDATION_EXCEPTION"
             ]
+        },
+        "LineageInfo": {
+            "type": "object",
+            "properties": {
+                "eventId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "eventStatus": {
+                    "$ref": "#/$defs/LineageEventProcessingStatus"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/LineageEventErrorMessage"
+                }
+            }
+        },
+        "LineageEventErrorMessage": {
+            "type": "string"
         },
         "DateTime": {
             "type": "string",
@@ -7738,6 +9974,208 @@
                 }
             }
         },
+        "ListJobRunsOutput": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/JobRunSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "JobRunSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobRunSummary"
+            }
+        },
+        "JobRunSummary": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "jobType": {
+                    "$ref": "#/$defs/JobType"
+                },
+                "runId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "runMode": {
+                    "$ref": "#/$defs/JobRunMode"
+                },
+                "status": {
+                    "$ref": "#/$defs/JobRunStatus"
+                },
+                "error": {
+                    "$ref": "#/$defs/JobRunError"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "startTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "endTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ListJobRunsInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "jobIdentifier": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "status": {
+                    "$ref": "#/$defs/JobRunStatus"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListLineageEventsOutput": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/LineageEventSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "LineageEventSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LineageEventSummary"
+            }
+        },
+        "LineageEventSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/LineageEventIdentifier"
+                },
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "processingStatus": {
+                    "$ref": "#/$defs/LineageEventProcessingStatus"
+                },
+                "eventTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "eventSummary": {
+                    "$ref": "#/$defs/EventSummary"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                }
+            }
+        },
+        "EventSummary": {
+            "type": "object",
+            "properties": {
+                "openLineageRunEventSummary": {
+                    "$ref": "#/$defs/OpenLineageRunEventSummary"
+                }
+            }
+        },
+        "OpenLineageRunEventSummary": {
+            "type": "object",
+            "properties": {
+                "eventType": {
+                    "$ref": "#/$defs/OpenLineageRunState"
+                },
+                "runId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "job": {
+                    "$ref": "#/$defs/NameIdentifier"
+                },
+                "inputs": {
+                    "$ref": "#/$defs/NameIdentifiers"
+                },
+                "outputs": {
+                    "$ref": "#/$defs/NameIdentifiers"
+                }
+            }
+        },
+        "OpenLineageRunState": {
+            "enum": [
+                "START",
+                "RUNNING",
+                "COMPLETE",
+                "ABORT",
+                "FAIL",
+                "OTHER"
+            ]
+        },
+        "NameIdentifier": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "NameIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NameIdentifier"
+            }
+        },
+        "ListLineageEventsInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "timestampAfter": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "timestampBefore": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "processingStatus": {
+                    "$ref": "#/$defs/LineageEventProcessingStatus"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
         "ListLineageNodeHistoryOutput": {
             "type": "object",
             "properties": {
@@ -7829,12 +10267,6 @@
             "enum": [
                 "UPSTREAM",
                 "DOWNSTREAM"
-            ]
-        },
-        "SortOrder": {
-            "enum": [
-                "ASCENDING",
-                "DESCENDING"
             ]
         },
         "ListNotificationsOutput": {
@@ -8139,6 +10571,78 @@
                 "NAME"
             ]
         },
+        "ListProjectProfilesOutput": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/ProjectProfileSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ProjectProfileSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProjectProfileSummary"
+            }
+        },
+        "ProjectProfileSummary": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "id": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ProjectProfileName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "domainUnitId": {
+                    "$ref": "#/$defs/DomainUnitId"
+                }
+            }
+        },
+        "ListProjectProfilesInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ProjectProfileName"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/SortFieldProject"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
         "ListProjectsOutput": {
             "type": "object",
             "properties": {
@@ -8365,6 +10869,32 @@
                 },
                 "decisionComment": {
                     "$ref": "#/$defs/DecisionComment"
+                },
+                "existingSubscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "metadataFormsSummary": {
+                    "$ref": "#/$defs/MetadataFormsSummary"
+                }
+            }
+        },
+        "MetadataFormsSummary": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetadataFormSummary"
+            }
+        },
+        "MetadataFormSummary": {
+            "type": "object",
+            "properties": {
+                "formName": {
+                    "$ref": "#/$defs/FormName"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/FormTypeName"
+                },
+                "typeRevision": {
+                    "$ref": "#/$defs/Revision"
                 }
             }
         },
@@ -8544,7 +11074,7 @@
                     "$ref": "#/$defs/UpdatedAt"
                 },
                 "manageAccessRole": {
-                    "$ref": "#/$defs/smithy.api#String"
+                    "$ref": "#/$defs/IamRoleArn"
                 },
                 "applicableAssetTypes": {
                     "$ref": "#/$defs/ApplicableAssetTypes"
@@ -8676,7 +11206,14 @@
         },
         "PostLineageEventOutput": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/LineageEventIdentifier"
+                },
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                }
+            }
         },
         "PostLineageEventInput": {
             "type": "object",
@@ -8691,10 +11228,6 @@
                     "$ref": "#/$defs/ClientToken"
                 }
             }
-        },
-        "LineageEvent": {
-            "type": "string",
-            "format": "binary"
         },
         "PostTimeSeriesDataPointsOutput": {
             "type": "object",
@@ -8880,6 +11413,12 @@
                 },
                 "decisionComment": {
                     "$ref": "#/$defs/DecisionComment"
+                },
+                "existingSubscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "metadataForms": {
+                    "$ref": "#/$defs/MetadataForms"
                 }
             }
         },
@@ -10035,6 +12574,179 @@
                 }
             }
         },
+        "UpdateConnectionOutput": {
+            "type": "object",
+            "properties": {
+                "connectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "domainUnitId": {
+                    "$ref": "#/$defs/DomainUnitId"
+                },
+                "environmentId": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ConnectionName"
+                },
+                "physicalEndpoints": {
+                    "$ref": "#/$defs/PhysicalEndpoints"
+                },
+                "projectId": {
+                    "$ref": "#/$defs/ProjectId"
+                },
+                "props": {
+                    "$ref": "#/$defs/ConnectionPropertiesOutput"
+                },
+                "type": {
+                    "$ref": "#/$defs/ConnectionType"
+                }
+            }
+        },
+        "UpdateConnectionInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "awsLocation": {
+                    "$ref": "#/$defs/AwsLocation"
+                },
+                "props": {
+                    "$ref": "#/$defs/ConnectionPropertiesPatch"
+                }
+            }
+        },
+        "ConnectionPropertiesPatch": {
+            "type": "object",
+            "properties": {
+                "athenaProperties": {
+                    "$ref": "#/$defs/AthenaPropertiesPatch"
+                },
+                "glueProperties": {
+                    "$ref": "#/$defs/GluePropertiesPatch"
+                },
+                "iamProperties": {
+                    "$ref": "#/$defs/IamPropertiesPatch"
+                },
+                "redshiftProperties": {
+                    "$ref": "#/$defs/RedshiftPropertiesPatch"
+                },
+                "sparkEmrProperties": {
+                    "$ref": "#/$defs/SparkEmrPropertiesPatch"
+                }
+            }
+        },
+        "AthenaPropertiesPatch": {
+            "type": "object",
+            "properties": {
+                "workgroupName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GluePropertiesPatch": {
+            "type": "object",
+            "properties": {
+                "glueConnectionInput": {
+                    "$ref": "#/$defs/GlueConnectionPatch"
+                }
+            }
+        },
+        "GlueConnectionPatch": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "connectionProperties": {
+                    "$ref": "#/$defs/ConnectionProperties"
+                },
+                "authenticationConfiguration": {
+                    "$ref": "#/$defs/AuthenticationConfigurationPatch"
+                }
+            }
+        },
+        "AuthenticationConfigurationPatch": {
+            "type": "object",
+            "properties": {
+                "secretArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "basicAuthenticationCredentials": {
+                    "$ref": "#/$defs/BasicAuthenticationCredentials"
+                }
+            }
+        },
+        "IamPropertiesPatch": {
+            "type": "object",
+            "properties": {
+                "glueLineageSyncEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "RedshiftPropertiesPatch": {
+            "type": "object",
+            "properties": {
+                "storage": {
+                    "$ref": "#/$defs/RedshiftStorageProperties"
+                },
+                "databaseName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "host": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "port": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "credentials": {
+                    "$ref": "#/$defs/RedshiftCredentials"
+                },
+                "lineageSync": {
+                    "$ref": "#/$defs/RedshiftLineageSyncConfigurationInput"
+                }
+            }
+        },
+        "SparkEmrPropertiesPatch": {
+            "type": "object",
+            "properties": {
+                "computeArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "instanceProfileArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "javaVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "logUri": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "pythonVirtualEnv": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "runtimeRole": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "trustedCertificatesS3Uri": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "UpdateEnvironmentOutput": {
             "type": "object",
             "properties": {
@@ -10302,6 +13014,15 @@
                 },
                 "domainUnitId": {
                     "$ref": "#/$defs/DomainUnitId"
+                },
+                "projectProfileId": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "userParameters": {
+                    "$ref": "#/$defs/EnvironmentConfigurationUserParametersList"
+                },
+                "environmentDeploymentDetails": {
+                    "$ref": "#/$defs/EnvironmentDeploymentDetails"
                 }
             }
         },
@@ -10322,6 +13043,70 @@
                 },
                 "glossaryTerms": {
                     "$ref": "#/$defs/GlossaryTerms"
+                },
+                "environmentDeploymentDetails": {
+                    "$ref": "#/$defs/EnvironmentDeploymentDetails"
+                }
+            }
+        },
+        "UpdateProjectProfileOutput": {
+            "type": "object",
+            "properties": {
+                "domainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "id": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ProjectProfileName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "environmentConfigurations": {
+                    "$ref": "#/$defs/EnvironmentConfigurationsList"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "domainUnitId": {
+                    "$ref": "#/$defs/DomainUnitId"
+                }
+            }
+        },
+        "UpdateProjectProfileInput": {
+            "type": "object",
+            "properties": {
+                "domainIdentifier": {
+                    "$ref": "#/$defs/DomainId"
+                },
+                "identifier": {
+                    "$ref": "#/$defs/ProjectProfileId"
+                },
+                "name": {
+                    "$ref": "#/$defs/ProjectProfileName"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "environmentConfigurations": {
+                    "$ref": "#/$defs/EnvironmentConfigurationsList"
+                },
+                "domainUnitIdentifier": {
+                    "$ref": "#/$defs/DomainUnitId"
                 }
             }
         },
@@ -10424,6 +13209,12 @@
                 },
                 "decisionComment": {
                     "$ref": "#/$defs/DecisionComment"
+                },
+                "existingSubscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "metadataForms": {
+                    "$ref": "#/$defs/MetadataForms"
                 }
             }
         },
@@ -10478,7 +13269,7 @@
                     "$ref": "#/$defs/UpdatedAt"
                 },
                 "manageAccessRole": {
-                    "$ref": "#/$defs/smithy.api#String"
+                    "$ref": "#/$defs/IamRoleArn"
                 },
                 "applicableAssetTypes": {
                     "$ref": "#/$defs/ApplicableAssetTypes"
@@ -10516,7 +13307,7 @@
                     "$ref": "#/$defs/SubscriptionTargetForms"
                 },
                 "manageAccessRole": {
-                    "$ref": "#/$defs/smithy.api#String"
+                    "$ref": "#/$defs/IamRoleArn"
                 },
                 "provider": {
                     "$ref": "#/$defs/smithy.api#String"

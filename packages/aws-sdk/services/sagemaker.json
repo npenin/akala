@@ -89,6 +89,35 @@
             }
         },
         {
+            "name": "BatchDeleteClusterNodes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.BatchDeleteClusterNodes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchDeleteClusterNodesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDeleteClusterNodesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "BatchDescribeModelPackage",
             "config": {
                 "http": {
@@ -350,6 +379,35 @@
             }
         },
         {
+            "name": "CreateClusterSchedulerConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.CreateClusterSchedulerConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateClusterSchedulerConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateClusterSchedulerConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateCodeRepository",
             "config": {
                 "http": {
@@ -402,6 +460,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateCompilationJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateComputeQuota",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.CreateComputeQuota"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateComputeQuotaResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateComputeQuotaRequest"
                         }
                     }
                 }
@@ -1423,6 +1510,64 @@
             }
         },
         {
+            "name": "CreatePartnerApp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.CreatePartnerApp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePartnerAppResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePartnerAppRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePartnerAppPresignedUrl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.CreatePartnerAppPresignedUrl"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePartnerAppPresignedUrlResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePartnerAppPresignedUrlRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreatePipeline",
             "config": {
                 "http": {
@@ -1678,6 +1823,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateTrainingJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateTrainingPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.CreateTrainingPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTrainingPlanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTrainingPlanRequest"
                         }
                     }
                 }
@@ -2061,6 +2235,35 @@
             }
         },
         {
+            "name": "DeleteClusterSchedulerConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.DeleteClusterSchedulerConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteClusterSchedulerConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteCodeRepository",
             "config": {
                 "http": {
@@ -2113,6 +2316,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteCompilationJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteComputeQuota",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.DeleteComputeQuota"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteComputeQuotaRequest"
                         }
                     }
                 }
@@ -3076,6 +3308,35 @@
             }
         },
         {
+            "name": "DeletePartnerApp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.DeletePartnerApp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePartnerAppResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePartnerAppRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeletePipeline",
             "config": {
                 "http": {
@@ -3656,6 +3917,35 @@
             }
         },
         {
+            "name": "DescribeClusterSchedulerConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.DescribeClusterSchedulerConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeClusterSchedulerConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeClusterSchedulerConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeCodeRepository",
             "config": {
                 "http": {
@@ -3708,6 +3998,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeCompilationJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeComputeQuota",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.DescribeComputeQuota"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeComputeQuotaResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeComputeQuotaRequest"
                         }
                     }
                 }
@@ -4787,6 +5106,35 @@
             }
         },
         {
+            "name": "DescribePartnerApp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.DescribePartnerApp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribePartnerAppResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribePartnerAppRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribePipeline",
             "config": {
                 "http": {
@@ -5042,6 +5390,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeTrainingJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeTrainingPlan",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.DescribeTrainingPlan"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeTrainingPlanResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeTrainingPlanRequest"
                         }
                     }
                 }
@@ -5831,6 +6208,35 @@
             }
         },
         {
+            "name": "ListClusterSchedulerConfigs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.ListClusterSchedulerConfigs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListClusterSchedulerConfigsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListClusterSchedulerConfigsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListCodeRepositories",
             "config": {
                 "http": {
@@ -5883,6 +6289,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListCompilationJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListComputeQuotas",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.ListComputeQuotas"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListComputeQuotasResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListComputeQuotasRequest"
                         }
                     }
                 }
@@ -7165,6 +7600,35 @@
             }
         },
         {
+            "name": "ListPartnerApps",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.ListPartnerApps"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPartnerAppsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPartnerAppsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListPipelineExecutions",
             "config": {
                 "http": {
@@ -7571,6 +8035,35 @@
             }
         },
         {
+            "name": "ListTrainingPlans",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.ListTrainingPlans"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTrainingPlansResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTrainingPlansRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListTransformJobs",
             "config": {
                 "http": {
@@ -7913,6 +8406,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/SearchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchTrainingPlanOfferings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.SearchTrainingPlanOfferings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchTrainingPlanOfferingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchTrainingPlanOfferingsRequest"
                         }
                     }
                 }
@@ -8731,6 +9253,35 @@
             }
         },
         {
+            "name": "UpdateClusterSchedulerConfig",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.UpdateClusterSchedulerConfig"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateClusterSchedulerConfigResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateClusterSchedulerConfigRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateClusterSoftware",
             "config": {
                 "http": {
@@ -8783,6 +9334,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateCodeRepositoryInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateComputeQuota",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.UpdateComputeQuota"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateComputeQuotaResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateComputeQuotaRequest"
                         }
                     }
                 }
@@ -9073,6 +9653,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateHubRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateHubContent",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.UpdateHubContent"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateHubContentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateHubContentRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateHubContentReference",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.UpdateHubContentReference"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateHubContentReferenceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateHubContentReferenceRequest"
                         }
                     }
                 }
@@ -9421,6 +10059,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateNotebookInstanceLifecycleConfigInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdatePartnerApp",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "SageMaker.UpdatePartnerApp"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdatePartnerAppResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdatePartnerAppRequest"
                         }
                     }
                 }
@@ -9876,6 +10543,70 @@
         "ExperimentEntityName": {
             "type": "string"
         },
+        "BatchDeleteClusterNodesResponse": {
+            "type": "object",
+            "properties": {
+                "Failed": {
+                    "$ref": "#/$defs/BatchDeleteClusterNodesErrorList"
+                },
+                "Successful": {
+                    "$ref": "#/$defs/ClusterNodeIds"
+                }
+            }
+        },
+        "BatchDeleteClusterNodesErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchDeleteClusterNodesError"
+            }
+        },
+        "BatchDeleteClusterNodesError": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/BatchDeleteClusterNodesErrorCode"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                },
+                "NodeId": {
+                    "$ref": "#/$defs/ClusterNodeId"
+                }
+            }
+        },
+        "BatchDeleteClusterNodesErrorCode": {
+            "enum": [
+                "NODE_ID_NOT_FOUND",
+                "INVALID_NODE_STATUS",
+                "NODE_ID_IN_USE"
+            ]
+        },
+        "String": {
+            "type": "string"
+        },
+        "ClusterNodeId": {
+            "type": "string"
+        },
+        "ClusterNodeIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ClusterNodeId"
+            }
+        },
+        "BatchDeleteClusterNodesRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterName": {
+                    "$ref": "#/$defs/ClusterNameOrArn"
+                },
+                "NodeIds": {
+                    "$ref": "#/$defs/ClusterNodeIds"
+                }
+            }
+        },
+        "ClusterNameOrArn": {
+            "type": "string"
+        },
         "BatchDescribeModelPackageOutput": {
             "type": "object",
             "properties": {
@@ -10003,6 +10734,9 @@
                 },
                 "AdditionalS3DataSource": {
                     "$ref": "#/$defs/AdditionalS3DataSource"
+                },
+                "ModelDataETag": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -10046,6 +10780,12 @@
                 },
                 "ManifestS3Uri": {
                     "$ref": "#/$defs/S3ModelUri"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/String"
+                },
+                "ManifestEtag": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -10109,9 +10849,6 @@
         "DataInputConfig": {
             "type": "string"
         },
-        "String": {
-            "type": "string"
-        },
         "ModelPackageFrameworkVersion": {
             "type": "string"
         },
@@ -10126,6 +10863,9 @@
                 },
                 "CompressionType": {
                     "$ref": "#/$defs/CompressionType"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -10245,7 +10985,13 @@
                 "ML_G5_12XLARGE",
                 "ML_G5_16XLARGE",
                 "ML_G5_24XLARGE",
-                "ML_G5_48XLARGE"
+                "ML_G5_48XLARGE",
+                "ML_TRN1_2XLARGE",
+                "ML_TRN1_32XLARGE",
+                "ML_INF2_XLARGE",
+                "ML_INF2_8XLARGE",
+                "ML_INF2_24XLARGE",
+                "ML_INF2_48XLARGE"
             ]
         },
         "RealtimeInferenceInstanceTypes": {
@@ -10332,6 +11078,24 @@
                 "ML_C6I_16XLARGE",
                 "ML_C6I_24XLARGE",
                 "ML_C6I_32XLARGE",
+                "ML_M6I_LARGE",
+                "ML_M6I_XLARGE",
+                "ML_M6I_2XLARGE",
+                "ML_M6I_4XLARGE",
+                "ML_M6I_8XLARGE",
+                "ML_M6I_12XLARGE",
+                "ML_M6I_16XLARGE",
+                "ML_M6I_24XLARGE",
+                "ML_M6I_32XLARGE",
+                "ML_R6I_LARGE",
+                "ML_R6I_XLARGE",
+                "ML_R6I_2XLARGE",
+                "ML_R6I_4XLARGE",
+                "ML_R6I_8XLARGE",
+                "ML_R6I_12XLARGE",
+                "ML_R6I_16XLARGE",
+                "ML_R6I_24XLARGE",
+                "ML_R6I_32XLARGE",
                 "ML_G5_XLARGE",
                 "ML_G5_2XLARGE",
                 "ML_G5_4XLARGE",
@@ -10348,6 +11112,24 @@
                 "ML_G6_16XLARGE",
                 "ML_G6_24XLARGE",
                 "ML_G6_48XLARGE",
+                "ML_R8G_MEDIUM",
+                "ML_R8G_LARGE",
+                "ML_R8G_XLARGE",
+                "ML_R8G_2XLARGE",
+                "ML_R8G_4XLARGE",
+                "ML_R8G_8XLARGE",
+                "ML_R8G_12XLARGE",
+                "ML_R8G_16XLARGE",
+                "ML_R8G_24XLARGE",
+                "ML_R8G_48XLARGE",
+                "ML_G6E_XLARGE",
+                "ML_G6E_2XLARGE",
+                "ML_G6E_4XLARGE",
+                "ML_G6E_8XLARGE",
+                "ML_G6E_12XLARGE",
+                "ML_G6E_16XLARGE",
+                "ML_G6E_24XLARGE",
+                "ML_G6E_48XLARGE",
                 "ML_P4D_24XLARGE",
                 "ML_C7G_LARGE",
                 "ML_C7G_XLARGE",
@@ -10409,11 +11191,14 @@
                 "ML_TRN1_2XLARGE",
                 "ML_TRN1_32XLARGE",
                 "ML_TRN1N_32XLARGE",
+                "ML_TRN2_48XLARGE",
                 "ML_INF2_XLARGE",
                 "ML_INF2_8XLARGE",
                 "ML_INF2_24XLARGE",
                 "ML_INF2_48XLARGE",
                 "ML_P5_48XLARGE",
+                "ML_P5E_48XLARGE",
+                "ML_P5EN_48XLARGE",
                 "ML_M7I_LARGE",
                 "ML_M7I_XLARGE",
                 "ML_M7I_2XLARGE",
@@ -10820,6 +11605,8 @@
                 "ML_P4D_24XLARGE",
                 "ML_P4DE_24XLARGE",
                 "ML_P5_48XLARGE",
+                "ML_P5E_48XLARGE",
+                "ML_P5EN_48XLARGE",
                 "ML_C5_XLARGE",
                 "ML_C5_2XLARGE",
                 "ML_C5_4XLARGE",
@@ -10838,9 +11625,26 @@
                 "ML_G5_12XLARGE",
                 "ML_G5_24XLARGE",
                 "ML_G5_48XLARGE",
+                "ML_G6_XLARGE",
+                "ML_G6_2XLARGE",
+                "ML_G6_4XLARGE",
+                "ML_G6_8XLARGE",
+                "ML_G6_16XLARGE",
+                "ML_G6_12XLARGE",
+                "ML_G6_24XLARGE",
+                "ML_G6_48XLARGE",
+                "ML_G6E_XLARGE",
+                "ML_G6E_2XLARGE",
+                "ML_G6E_4XLARGE",
+                "ML_G6E_8XLARGE",
+                "ML_G6E_16XLARGE",
+                "ML_G6E_12XLARGE",
+                "ML_G6E_24XLARGE",
+                "ML_G6E_48XLARGE",
                 "ML_TRN1_2XLARGE",
                 "ML_TRN1_32XLARGE",
                 "ML_TRN1N_32XLARGE",
+                "ML_TRN2_48XLARGE",
                 "ML_M6I_LARGE",
                 "ML_M6I_XLARGE",
                 "ML_M6I_2XLARGE",
@@ -11100,6 +11904,12 @@
                 },
                 "InstanceGroupNames": {
                     "$ref": "#/$defs/InstanceGroupNames"
+                },
+                "ModelAccessConfig": {
+                    "$ref": "#/$defs/ModelAccessConfig"
+                },
+                "HubAccessConfig": {
+                    "$ref": "#/$defs/HubAccessConfig"
                 }
             }
         },
@@ -11133,6 +11943,14 @@
         },
         "InstanceGroupName": {
             "type": "string"
+        },
+        "HubAccessConfig": {
+            "type": "object",
+            "properties": {
+                "HubContentArn": {
+                    "$ref": "#/$defs/HubContentArn"
+                }
+            }
         },
         "FileSystemDataSource": {
             "type": "object",
@@ -11230,6 +12048,9 @@
                 },
                 "InstanceGroups": {
                     "$ref": "#/$defs/InstanceGroups"
+                },
+                "TrainingPlanArn": {
+                    "$ref": "#/$defs/TrainingPlanArn"
                 }
             }
         },
@@ -11264,6 +12085,9 @@
                     "$ref": "#/$defs/InstanceGroupName"
                 }
             }
+        },
+        "TrainingPlanArn": {
+            "type": "string"
         },
         "StoppingCondition": {
             "type": "object",
@@ -12669,6 +13493,12 @@
                 },
                 "OnStartDeepHealthChecks": {
                     "$ref": "#/$defs/OnStartDeepHealthChecks"
+                },
+                "TrainingPlanArn": {
+                    "$ref": "#/$defs/TrainingPlanArn"
+                },
+                "OverrideVpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
                 }
             }
         },
@@ -12718,7 +13548,55 @@
                 "ML_T3_MEDIUM",
                 "ML_T3_LARGE",
                 "ML_T3_XLARGE",
-                "ML_T3_2XLARGE"
+                "ML_T3_2XLARGE",
+                "ML_G6_XLARGE",
+                "ML_G6_2XLARGE",
+                "ML_G6_4XLARGE",
+                "ML_G6_8XLARGE",
+                "ML_G6_16XLARGE",
+                "ML_G6_12XLARGE",
+                "ML_G6_24XLARGE",
+                "ML_G6_48XLARGE",
+                "ML_GR6_4XLARGE",
+                "ML_GR6_8XLARGE",
+                "ML_G6E_XLARGE",
+                "ML_G6E_2XLARGE",
+                "ML_G6E_4XLARGE",
+                "ML_G6E_8XLARGE",
+                "ML_G6E_16XLARGE",
+                "ML_G6E_12XLARGE",
+                "ML_G6E_24XLARGE",
+                "ML_G6E_48XLARGE",
+                "ML_P5E_48XLARGE",
+                "ML_P5EN_48XLARGE",
+                "ML_TRN2_48XLARGE",
+                "ML_C6I_LARGE",
+                "ML_C6I_XLARGE",
+                "ML_C6I_2XLARGE",
+                "ML_C6I_4XLARGE",
+                "ML_C6I_8XLARGE",
+                "ML_C6I_12XLARGE",
+                "ML_C6I_16XLARGE",
+                "ML_C6I_24XLARGE",
+                "ML_C6I_32XLARGE",
+                "ML_M6I_LARGE",
+                "ML_M6I_XLARGE",
+                "ML_M6I_2XLARGE",
+                "ML_M6I_4XLARGE",
+                "ML_M6I_8XLARGE",
+                "ML_M6I_12XLARGE",
+                "ML_M6I_16XLARGE",
+                "ML_M6I_24XLARGE",
+                "ML_M6I_32XLARGE",
+                "ML_R6I_LARGE",
+                "ML_R6I_XLARGE",
+                "ML_R6I_2XLARGE",
+                "ML_R6I_4XLARGE",
+                "ML_R6I_8XLARGE",
+                "ML_R6I_12XLARGE",
+                "ML_R6I_16XLARGE",
+                "ML_R6I_24XLARGE",
+                "ML_R6I_32XLARGE"
             ]
         },
         "ClusterLifeCycleConfig": {
@@ -12800,6 +13678,84 @@
             "enum": [
                 "AUTOMATIC",
                 "NONE"
+            ]
+        },
+        "CreateClusterSchedulerConfigResponse": {
+            "type": "object",
+            "properties": {
+                "ClusterSchedulerConfigArn": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigArn"
+                },
+                "ClusterSchedulerConfigId": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigId"
+                }
+            }
+        },
+        "ClusterSchedulerConfigArn": {
+            "type": "string"
+        },
+        "ClusterSchedulerConfigId": {
+            "type": "string"
+        },
+        "CreateClusterSchedulerConfigRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/ClusterArn"
+                },
+                "SchedulerConfig": {
+                    "$ref": "#/$defs/SchedulerConfig"
+                },
+                "Description": {
+                    "$ref": "#/$defs/EntityDescription"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "SchedulerConfig": {
+            "type": "object",
+            "properties": {
+                "PriorityClasses": {
+                    "$ref": "#/$defs/PriorityClassList"
+                },
+                "FairShare": {
+                    "$ref": "#/$defs/FairShare"
+                }
+            }
+        },
+        "PriorityClassList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PriorityClass"
+            }
+        },
+        "PriorityClass": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ClusterSchedulerPriorityClassName"
+                },
+                "Weight": {
+                    "$ref": "#/$defs/PriorityWeight"
+                }
+            }
+        },
+        "ClusterSchedulerPriorityClassName": {
+            "type": "string"
+        },
+        "PriorityWeight": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "FairShare": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
             ]
         },
         "CreateCodeRepositoryOutput": {
@@ -13052,6 +14008,136 @@
         },
         "NeoVpcSubnetId": {
             "type": "string"
+        },
+        "CreateComputeQuotaResponse": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaArn": {
+                    "$ref": "#/$defs/ComputeQuotaArn"
+                },
+                "ComputeQuotaId": {
+                    "$ref": "#/$defs/ComputeQuotaId"
+                }
+            }
+        },
+        "ComputeQuotaArn": {
+            "type": "string"
+        },
+        "ComputeQuotaId": {
+            "type": "string"
+        },
+        "CreateComputeQuotaRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/EntityDescription"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/ClusterArn"
+                },
+                "ComputeQuotaConfig": {
+                    "$ref": "#/$defs/ComputeQuotaConfig"
+                },
+                "ComputeQuotaTarget": {
+                    "$ref": "#/$defs/ComputeQuotaTarget"
+                },
+                "ActivationState": {
+                    "$ref": "#/$defs/ActivationState"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ComputeQuotaConfig": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaResources": {
+                    "$ref": "#/$defs/ComputeQuotaResourceConfigList"
+                },
+                "ResourceSharingConfig": {
+                    "$ref": "#/$defs/ResourceSharingConfig"
+                },
+                "PreemptTeamTasks": {
+                    "$ref": "#/$defs/PreemptTeamTasks"
+                }
+            }
+        },
+        "ComputeQuotaResourceConfigList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComputeQuotaResourceConfig"
+            }
+        },
+        "ComputeQuotaResourceConfig": {
+            "type": "object",
+            "properties": {
+                "InstanceType": {
+                    "$ref": "#/$defs/ClusterInstanceType"
+                },
+                "Count": {
+                    "$ref": "#/$defs/InstanceCount"
+                }
+            }
+        },
+        "InstanceCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ResourceSharingConfig": {
+            "type": "object",
+            "properties": {
+                "Strategy": {
+                    "$ref": "#/$defs/ResourceSharingStrategy"
+                },
+                "BorrowLimit": {
+                    "$ref": "#/$defs/BorrowLimit"
+                }
+            }
+        },
+        "ResourceSharingStrategy": {
+            "enum": [
+                "LEND",
+                "DONTLEND",
+                "LENDANDBORROW"
+            ]
+        },
+        "BorrowLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PreemptTeamTasks": {
+            "enum": [
+                "NEVER",
+                "LOWERPRIORITY"
+            ]
+        },
+        "ComputeQuotaTarget": {
+            "type": "object",
+            "properties": {
+                "TeamName": {
+                    "$ref": "#/$defs/ComputeQuotaTargetTeamName"
+                },
+                "FairShareWeight": {
+                    "$ref": "#/$defs/FairShareWeight"
+                }
+            }
+        },
+        "ComputeQuotaTargetTeamName": {
+            "type": "string"
+        },
+        "FairShareWeight": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ActivationState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
         },
         "CreateContextResponse": {
             "type": "object",
@@ -13619,6 +14705,9 @@
                 "DomainArn": {
                     "$ref": "#/$defs/DomainArn"
                 },
+                "DomainId": {
+                    "$ref": "#/$defs/DomainId"
+                },
                 "Url": {
                     "$ref": "#/$defs/String1024"
                 }
@@ -14183,6 +15272,9 @@
             "properties": {
                 "EFSFileSystemConfig": {
                     "$ref": "#/$defs/EFSFileSystemConfig"
+                },
+                "FSxLustreFileSystemConfig": {
+                    "$ref": "#/$defs/FSxLustreFileSystemConfig"
                 }
             }
         },
@@ -14199,6 +15291,17 @@
         },
         "FileSystemPath": {
             "type": "string"
+        },
+        "FSxLustreFileSystemConfig": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                },
+                "FileSystemPath": {
+                    "$ref": "#/$defs/FileSystemPath"
+                }
+            }
         },
         "StudioWebPortalSettings": {
             "type": "object",
@@ -14239,7 +15342,12 @@
                 "ENDPOINTS",
                 "PROJECTS",
                 "INFERENCE_OPTIMIZATION",
-                "PERFORMANCE_EVALUATION"
+                "PERFORMANCE_EVALUATION",
+                "LAKERA_GUARD",
+                "COMET",
+                "DEEPCHECKS_LLM_EVALUATION",
+                "FIDDLER",
+                "HYPER_POD_CLUSTERS"
             ]
         },
         "HiddenAppTypesList": {
@@ -14970,7 +16078,9 @@
         },
         "ProductionVariantInferenceAmiVersion": {
             "enum": [
-                "AL2_GPU_2"
+                "AL2_GPU_2",
+                "AL2_GPU_2_1",
+                "AL2_GPU_3_1"
             ]
         },
         "DataCaptureConfig": {
@@ -16669,6 +17779,9 @@
                 },
                 "ComputeResourceRequirements": {
                     "$ref": "#/$defs/InferenceComponentComputeResourceRequirements"
+                },
+                "BaseInferenceComponentName": {
+                    "$ref": "#/$defs/InferenceComponentName"
                 }
             }
         },
@@ -16938,6 +18051,13 @@
                 "ML_INF1_2XLARGE",
                 "ML_INF1_6XLARGE",
                 "ML_INF1_24XLARGE",
+                "ML_TRN1_2XLARGE",
+                "ML_TRN1_32XLARGE",
+                "ML_TRN1N_32XLARGE",
+                "ML_INF2_XLARGE",
+                "ML_INF2_8XLARGE",
+                "ML_INF2_24XLARGE",
+                "ML_INF2_48XLARGE",
                 "ML_P4D_24XLARGE",
                 "ML_P4DE_24XLARGE",
                 "ML_P5_48XLARGE",
@@ -18334,6 +19454,9 @@
                 },
                 "ModelCard": {
                     "$ref": "#/$defs/ModelPackageModelCard"
+                },
+                "ModelLifeCycle": {
+                    "$ref": "#/$defs/ModelLifeCycle"
                 }
             }
         },
@@ -18387,6 +19510,9 @@
                 },
                 "ModelDataSource": {
                     "$ref": "#/$defs/ModelDataSource"
+                },
+                "ModelDataETag": {
+                    "$ref": "#/$defs/String"
                 },
                 "AlgorithmName": {
                     "$ref": "#/$defs/ArnOrName"
@@ -18617,6 +19743,23 @@
                     "$ref": "#/$defs/ModelCardStatus"
                 }
             }
+        },
+        "ModelLifeCycle": {
+            "type": "object",
+            "properties": {
+                "Stage": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "StageStatus": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "StageDescription": {
+                    "$ref": "#/$defs/StageDescription"
+                }
+            }
+        },
+        "StageDescription": {
+            "type": "string"
         },
         "CreateModelPackageGroupOutput": {
             "type": "object",
@@ -19204,6 +20347,9 @@
                 },
                 "ModelCompilationConfig": {
                     "$ref": "#/$defs/ModelCompilationConfig"
+                },
+                "ModelShardingConfig": {
+                    "$ref": "#/$defs/ModelShardingConfig"
                 }
             }
         },
@@ -19222,6 +20368,17 @@
             "type": "string"
         },
         "ModelCompilationConfig": {
+            "type": "object",
+            "properties": {
+                "Image": {
+                    "$ref": "#/$defs/OptimizationContainerImage"
+                },
+                "OverrideEnvironment": {
+                    "$ref": "#/$defs/OptimizationJobEnvironmentVariables"
+                }
+            }
+        },
+        "ModelShardingConfig": {
             "type": "object",
             "properties": {
                 "Image": {
@@ -19271,6 +20428,135 @@
         },
         "OptimizationVpcSubnetId": {
             "type": "string"
+        },
+        "CreatePartnerAppResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
+                }
+            }
+        },
+        "PartnerAppArn": {
+            "type": "string"
+        },
+        "CreatePartnerAppRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/PartnerAppName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PartnerAppType"
+                },
+                "ExecutionRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "MaintenanceConfig": {
+                    "$ref": "#/$defs/PartnerAppMaintenanceConfig"
+                },
+                "Tier": {
+                    "$ref": "#/$defs/NonEmptyString64"
+                },
+                "ApplicationConfig": {
+                    "$ref": "#/$defs/PartnerAppConfig"
+                },
+                "AuthType": {
+                    "$ref": "#/$defs/PartnerAppAuthType"
+                },
+                "EnableIamSessionBasedIdentity": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PartnerAppName": {
+            "type": "string"
+        },
+        "PartnerAppType": {
+            "enum": [
+                "LAKERA_GUARD",
+                "COMET",
+                "DEEPCHECKS_LLM_EVALUATION",
+                "FIDDLER"
+            ]
+        },
+        "PartnerAppMaintenanceConfig": {
+            "type": "object",
+            "properties": {
+                "MaintenanceWindowStart": {
+                    "$ref": "#/$defs/WeeklyScheduleTimeFormat"
+                }
+            }
+        },
+        "WeeklyScheduleTimeFormat": {
+            "type": "string"
+        },
+        "PartnerAppConfig": {
+            "type": "object",
+            "properties": {
+                "AdminUsers": {
+                    "$ref": "#/$defs/PartnerAppAdminUserList"
+                },
+                "Arguments": {
+                    "$ref": "#/$defs/PartnerAppArguments"
+                }
+            }
+        },
+        "PartnerAppAdminUserList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString256"
+            }
+        },
+        "PartnerAppArguments": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String1024"
+            }
+        },
+        "PartnerAppAuthType": {
+            "enum": [
+                "IAM"
+            ]
+        },
+        "CreatePartnerAppPresignedUrlResponse": {
+            "type": "object",
+            "properties": {
+                "Url": {
+                    "$ref": "#/$defs/String2048"
+                }
+            }
+        },
+        "String2048": {
+            "type": "string"
+        },
+        "CreatePartnerAppPresignedUrlRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
+                },
+                "ExpiresInSeconds": {
+                    "$ref": "#/$defs/ExpiresInSeconds"
+                },
+                "SessionExpirationDurationInSeconds": {
+                    "$ref": "#/$defs/SessionExpirationDurationInSeconds"
+                }
+            }
+        },
+        "ExpiresInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SessionExpirationDurationInSeconds": {
+            "type": "integer",
+            "format": "int32"
         },
         "CreatePipelineResponse": {
             "type": "object",
@@ -19395,14 +20681,6 @@
                     "$ref": "#/$defs/LandingUri"
                 }
             }
-        },
-        "SessionExpirationDurationInSeconds": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ExpiresInSeconds": {
-            "type": "integer",
-            "format": "int32"
         },
         "CreatePresignedMlflowTrackingServerUrlResponse": {
             "type": "object",
@@ -20056,10 +21334,21 @@
             "properties": {
                 "EFSFileSystem": {
                     "$ref": "#/$defs/EFSFileSystem"
+                },
+                "FSxLustreFileSystem": {
+                    "$ref": "#/$defs/FSxLustreFileSystem"
                 }
             }
         },
         "EFSFileSystem": {
+            "type": "object",
+            "properties": {
+                "FileSystemId": {
+                    "$ref": "#/$defs/FileSystemId"
+                }
+            }
+        },
+        "FSxLustreFileSystem": {
             "type": "object",
             "properties": {
                 "FileSystemId": {
@@ -20504,6 +21793,34 @@
         },
         "EnableSessionTagChaining": {
             "type": "boolean"
+        },
+        "CreateTrainingPlanResponse": {
+            "type": "object",
+            "properties": {
+                "TrainingPlanArn": {
+                    "$ref": "#/$defs/TrainingPlanArn"
+                }
+            }
+        },
+        "CreateTrainingPlanRequest": {
+            "type": "object",
+            "properties": {
+                "TrainingPlanName": {
+                    "$ref": "#/$defs/TrainingPlanName"
+                },
+                "TrainingPlanOfferingId": {
+                    "$ref": "#/$defs/TrainingPlanOfferingId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TrainingPlanName": {
+            "type": "string"
+        },
+        "TrainingPlanOfferingId": {
+            "type": "string"
         },
         "CreateTransformJobResponse": {
             "type": "object",
@@ -21200,8 +22517,13 @@
                 }
             }
         },
-        "ClusterNameOrArn": {
-            "type": "string"
+        "DeleteClusterSchedulerConfigRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterSchedulerConfigId": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigId"
+                }
+            }
         },
         "DeleteCodeRepositoryInput": {
             "type": "object",
@@ -21216,6 +22538,14 @@
             "properties": {
                 "CompilationJobName": {
                     "$ref": "#/$defs/EntityName"
+                }
+            }
+        },
+        "DeleteComputeQuotaRequest": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaId": {
+                    "$ref": "#/$defs/ComputeQuotaId"
                 }
             }
         },
@@ -21576,6 +22906,25 @@
             "properties": {
                 "OptimizationJobName": {
                     "$ref": "#/$defs/EntityName"
+                }
+            }
+        },
+        "DeletePartnerAppResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
+                }
+            }
+        },
+        "DeletePartnerAppRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -22688,12 +24037,38 @@
                 },
                 "OnStartDeepHealthChecks": {
                     "$ref": "#/$defs/OnStartDeepHealthChecks"
+                },
+                "Status": {
+                    "$ref": "#/$defs/InstanceGroupStatus"
+                },
+                "TrainingPlanArn": {
+                    "$ref": "#/$defs/TrainingPlanArn"
+                },
+                "TrainingPlanStatus": {
+                    "$ref": "#/$defs/InstanceGroupTrainingPlanStatus"
+                },
+                "OverrideVpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
                 }
             }
         },
         "ClusterNonNegativeInstanceCount": {
             "type": "integer",
             "format": "int32"
+        },
+        "InstanceGroupStatus": {
+            "enum": [
+                "INSERVICE",
+                "CREATING",
+                "UPDATING",
+                "FAILED",
+                "DEGRADED",
+                "SYSTEMUPDATING",
+                "DELETING"
+            ]
+        },
+        "InstanceGroupTrainingPlanStatus": {
+            "type": "string"
         },
         "DescribeClusterRequest": {
             "type": "object",
@@ -22732,6 +24107,9 @@
                 "LifeCycleConfig": {
                     "$ref": "#/$defs/ClusterLifeCycleConfig"
                 },
+                "OverrideVpcConfig": {
+                    "$ref": "#/$defs/VpcConfig"
+                },
                 "ThreadsPerCore": {
                     "$ref": "#/$defs/ClusterThreadsPerCore"
                 },
@@ -22740,6 +24118,9 @@
                 },
                 "PrivatePrimaryIp": {
                     "$ref": "#/$defs/ClusterPrivatePrimaryIp"
+                },
+                "PrivatePrimaryIpv6": {
+                    "$ref": "#/$defs/ClusterPrivatePrimaryIpv6"
                 },
                 "PrivateDnsHostname": {
                     "$ref": "#/$defs/ClusterPrivateDnsHostname"
@@ -22773,6 +24154,9 @@
         "ClusterPrivatePrimaryIp": {
             "type": "string"
         },
+        "ClusterPrivatePrimaryIpv6": {
+            "type": "string"
+        },
         "ClusterPrivateDnsHostname": {
             "type": "string"
         },
@@ -22804,8 +24188,76 @@
                 }
             }
         },
-        "ClusterNodeId": {
-            "type": "string"
+        "DescribeClusterSchedulerConfigResponse": {
+            "type": "object",
+            "properties": {
+                "ClusterSchedulerConfigArn": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigArn"
+                },
+                "ClusterSchedulerConfigId": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "ClusterSchedulerConfigVersion": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SchedulerResourceStatus"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/ClusterArn"
+                },
+                "SchedulerConfig": {
+                    "$ref": "#/$defs/SchedulerConfig"
+                },
+                "Description": {
+                    "$ref": "#/$defs/EntityDescription"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/UserContext"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedBy": {
+                    "$ref": "#/$defs/UserContext"
+                }
+            }
+        },
+        "SchedulerResourceStatus": {
+            "enum": [
+                "CREATING",
+                "CREATE_FAILED",
+                "CREATE_ROLLBACK_FAILED",
+                "CREATED",
+                "UPDATING",
+                "UPDATE_FAILED",
+                "UPDATE_ROLLBACK_FAILED",
+                "UPDATED",
+                "DELETING",
+                "DELETE_FAILED",
+                "DELETE_ROLLBACK_FAILED",
+                "DELETED"
+            ]
+        },
+        "DescribeClusterSchedulerConfigRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterSchedulerConfigId": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigId"
+                },
+                "ClusterSchedulerConfigVersion": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
         },
         "DescribeCodeRepositoryOutput": {
             "type": "object",
@@ -22943,6 +24395,67 @@
             "properties": {
                 "CompilationJobName": {
                     "$ref": "#/$defs/EntityName"
+                }
+            }
+        },
+        "DescribeComputeQuotaResponse": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaArn": {
+                    "$ref": "#/$defs/ComputeQuotaArn"
+                },
+                "ComputeQuotaId": {
+                    "$ref": "#/$defs/ComputeQuotaId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/EntityDescription"
+                },
+                "ComputeQuotaVersion": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SchedulerResourceStatus"
+                },
+                "FailureReason": {
+                    "$ref": "#/$defs/FailureReason"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/ClusterArn"
+                },
+                "ComputeQuotaConfig": {
+                    "$ref": "#/$defs/ComputeQuotaConfig"
+                },
+                "ComputeQuotaTarget": {
+                    "$ref": "#/$defs/ComputeQuotaTarget"
+                },
+                "ActivationState": {
+                    "$ref": "#/$defs/ActivationState"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedBy": {
+                    "$ref": "#/$defs/UserContext"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedBy": {
+                    "$ref": "#/$defs/UserContext"
+                }
+            }
+        },
+        "DescribeComputeQuotaRequest": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaId": {
+                    "$ref": "#/$defs/ComputeQuotaId"
+                },
+                "ComputeQuotaVersion": {
+                    "$ref": "#/$defs/Integer"
                 }
             }
         },
@@ -24213,6 +25726,9 @@
                 },
                 "CreationTime": {
                     "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
                 }
             }
         },
@@ -24237,7 +25753,8 @@
         "HubContentSupportStatus": {
             "enum": [
                 "SUPPORTED",
-                "DEPRECATED"
+                "DEPRECATED",
+                "RESTRICTED"
             ]
         },
         "HubContentSearchKeywordList": {
@@ -24714,6 +26231,9 @@
                 },
                 "InferenceComponentStatus": {
                     "$ref": "#/$defs/InferenceComponentStatus"
+                },
+                "LastDeploymentConfig": {
+                    "$ref": "#/$defs/InferenceComponentDeploymentConfig"
                 }
             }
         },
@@ -24731,6 +26251,9 @@
                 },
                 "ComputeResourceRequirements": {
                     "$ref": "#/$defs/InferenceComponentComputeResourceRequirements"
+                },
+                "BaseInferenceComponentName": {
+                    "$ref": "#/$defs/InferenceComponentName"
                 }
             }
         },
@@ -24766,6 +26289,51 @@
                 "UPDATING",
                 "FAILED",
                 "DELETING"
+            ]
+        },
+        "InferenceComponentDeploymentConfig": {
+            "type": "object",
+            "properties": {
+                "RollingUpdatePolicy": {
+                    "$ref": "#/$defs/InferenceComponentRollingUpdatePolicy"
+                },
+                "AutoRollbackConfiguration": {
+                    "$ref": "#/$defs/AutoRollbackConfig"
+                }
+            }
+        },
+        "InferenceComponentRollingUpdatePolicy": {
+            "type": "object",
+            "properties": {
+                "MaximumBatchSize": {
+                    "$ref": "#/$defs/InferenceComponentCapacitySize"
+                },
+                "WaitIntervalInSeconds": {
+                    "$ref": "#/$defs/WaitIntervalInSeconds"
+                },
+                "MaximumExecutionTimeoutInSeconds": {
+                    "$ref": "#/$defs/MaximumExecutionTimeoutInSeconds"
+                },
+                "RollbackMaximumBatchSize": {
+                    "$ref": "#/$defs/InferenceComponentCapacitySize"
+                }
+            }
+        },
+        "InferenceComponentCapacitySize": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/InferenceComponentCapacitySizeType"
+                },
+                "Value": {
+                    "$ref": "#/$defs/CapacitySizeValue"
+                }
+            }
+        },
+        "InferenceComponentCapacitySizeType": {
+            "enum": [
+                "COPY_COUNT",
+                "CAPACITY_PERCENT"
             ]
         },
         "DescribeInferenceComponentInput": {
@@ -25745,6 +27313,9 @@
                 },
                 "ModelCard": {
                     "$ref": "#/$defs/ModelPackageModelCard"
+                },
+                "ModelLifeCycle": {
+                    "$ref": "#/$defs/ModelLifeCycle"
                 }
             }
         },
@@ -26185,6 +27756,83 @@
             "properties": {
                 "OptimizationJobName": {
                     "$ref": "#/$defs/EntityName"
+                }
+            }
+        },
+        "DescribePartnerAppResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/PartnerAppName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PartnerAppType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/PartnerAppStatus"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExecutionRoleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "BaseUrl": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "MaintenanceConfig": {
+                    "$ref": "#/$defs/PartnerAppMaintenanceConfig"
+                },
+                "Tier": {
+                    "$ref": "#/$defs/NonEmptyString64"
+                },
+                "Version": {
+                    "$ref": "#/$defs/NonEmptyString64"
+                },
+                "ApplicationConfig": {
+                    "$ref": "#/$defs/PartnerAppConfig"
+                },
+                "AuthType": {
+                    "$ref": "#/$defs/PartnerAppAuthType"
+                },
+                "EnableIamSessionBasedIdentity": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ErrorInfo"
+                }
+            }
+        },
+        "PartnerAppStatus": {
+            "enum": [
+                "CREATING",
+                "UPDATING",
+                "DELETING",
+                "AVAILABLE",
+                "FAILED",
+                "UPDATE_FAILED",
+                "DELETED"
+            ]
+        },
+        "ErrorInfo": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/NonEmptyString64"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/NonEmptyString256"
+                }
+            }
+        },
+        "DescribePartnerAppRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
                 }
             }
         },
@@ -26986,6 +28634,182 @@
             "properties": {
                 "TrainingJobName": {
                     "$ref": "#/$defs/TrainingJobName"
+                }
+            }
+        },
+        "DescribeTrainingPlanResponse": {
+            "type": "object",
+            "properties": {
+                "TrainingPlanArn": {
+                    "$ref": "#/$defs/TrainingPlanArn"
+                },
+                "TrainingPlanName": {
+                    "$ref": "#/$defs/TrainingPlanName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TrainingPlanStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/TrainingPlanStatusMessage"
+                },
+                "DurationHours": {
+                    "$ref": "#/$defs/TrainingPlanDurationHours"
+                },
+                "DurationMinutes": {
+                    "$ref": "#/$defs/TrainingPlanDurationMinutes"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpfrontFee": {
+                    "$ref": "#/$defs/String256"
+                },
+                "CurrencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "TotalInstanceCount": {
+                    "$ref": "#/$defs/TotalInstanceCount"
+                },
+                "AvailableInstanceCount": {
+                    "$ref": "#/$defs/AvailableInstanceCount"
+                },
+                "InUseInstanceCount": {
+                    "$ref": "#/$defs/InUseInstanceCount"
+                },
+                "TargetResources": {
+                    "$ref": "#/$defs/SageMakerResourceNames"
+                },
+                "ReservedCapacitySummaries": {
+                    "$ref": "#/$defs/ReservedCapacitySummaries"
+                }
+            }
+        },
+        "TrainingPlanStatus": {
+            "enum": [
+                "PENDING",
+                "ACTIVE",
+                "SCHEDULED",
+                "EXPIRED",
+                "FAILED"
+            ]
+        },
+        "TrainingPlanStatusMessage": {
+            "type": "string"
+        },
+        "TrainingPlanDurationHours": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "TrainingPlanDurationMinutes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CurrencyCode": {
+            "type": "string"
+        },
+        "TotalInstanceCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AvailableInstanceCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "InUseInstanceCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SageMakerResourceNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SageMakerResourceName"
+            }
+        },
+        "SageMakerResourceName": {
+            "enum": [
+                "TRAINING_JOB",
+                "HYPERPOD_CLUSTER"
+            ]
+        },
+        "ReservedCapacitySummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReservedCapacitySummary"
+            }
+        },
+        "ReservedCapacitySummary": {
+            "type": "object",
+            "properties": {
+                "ReservedCapacityArn": {
+                    "$ref": "#/$defs/ReservedCapacityArn"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/ReservedCapacityInstanceType"
+                },
+                "TotalInstanceCount": {
+                    "$ref": "#/$defs/TotalInstanceCount"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ReservedCapacityStatus"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/AvailabilityZone"
+                },
+                "DurationHours": {
+                    "$ref": "#/$defs/ReservedCapacityDurationHours"
+                },
+                "DurationMinutes": {
+                    "$ref": "#/$defs/ReservedCapacityDurationMinutes"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ReservedCapacityArn": {
+            "type": "string"
+        },
+        "ReservedCapacityInstanceType": {
+            "enum": [
+                "ML_P4D_24XLARGE",
+                "ML_P5_48XLARGE",
+                "ML_P5E_48XLARGE",
+                "ML_P5EN_48XLARGE",
+                "ML_TRN1_32XLARGE",
+                "ML_TRN2_48XLARGE"
+            ]
+        },
+        "ReservedCapacityStatus": {
+            "enum": [
+                "PENDING",
+                "ACTIVE",
+                "SCHEDULED",
+                "EXPIRED",
+                "FAILED"
+            ]
+        },
+        "AvailabilityZone": {
+            "type": "string"
+        },
+        "ReservedCapacityDurationHours": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ReservedCapacityDurationMinutes": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DescribeTrainingPlanRequest": {
+            "type": "object",
+            "properties": {
+                "TrainingPlanName": {
+                    "$ref": "#/$defs/TrainingPlanName"
                 }
             }
         },
@@ -27980,6 +29804,9 @@
                 "HubContentDocument": {
                     "$ref": "#/$defs/HubContentDocument"
                 },
+                "SupportStatus": {
+                    "$ref": "#/$defs/HubContentSupportStatus"
+                },
                 "HubContentSearchKeywords": {
                     "$ref": "#/$defs/HubContentSearchKeywordList"
                 },
@@ -28769,7 +30596,16 @@
                 },
                 "ClusterStatus": {
                     "$ref": "#/$defs/ClusterStatus"
+                },
+                "TrainingPlanArns": {
+                    "$ref": "#/$defs/TrainingPlanArns"
                 }
+            }
+        },
+        "TrainingPlanArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TrainingPlanArn"
             }
         },
         "ListClustersRequest": {
@@ -28795,8 +30631,96 @@
                 },
                 "SortOrder": {
                     "$ref": "#/$defs/SortOrder"
+                },
+                "TrainingPlanArn": {
+                    "$ref": "#/$defs/TrainingPlanArn"
                 }
             }
+        },
+        "ListClusterSchedulerConfigsResponse": {
+            "type": "object",
+            "properties": {
+                "ClusterSchedulerConfigSummaries": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ClusterSchedulerConfigSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ClusterSchedulerConfigSummary"
+            }
+        },
+        "ClusterSchedulerConfigSummary": {
+            "type": "object",
+            "properties": {
+                "ClusterSchedulerConfigArn": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigArn"
+                },
+                "ClusterSchedulerConfigId": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigId"
+                },
+                "ClusterSchedulerConfigVersion": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SchedulerResourceStatus"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/ClusterArn"
+                }
+            }
+        },
+        "ListClusterSchedulerConfigsRequest": {
+            "type": "object",
+            "properties": {
+                "CreatedAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "NameContains": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/ClusterArn"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SchedulerResourceStatus"
+                },
+                "SortBy": {
+                    "$ref": "#/$defs/SortClusterSchedulerConfigBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "SortClusterSchedulerConfigBy": {
+            "enum": [
+                "NAME",
+                "CREATION_TIME",
+                "STATUS"
+            ]
         },
         "ListCodeRepositoriesOutput": {
             "type": "object",
@@ -28978,6 +30902,101 @@
                 "NAME",
                 "CREATION_TIME",
                 "STATUS"
+            ]
+        },
+        "ListComputeQuotasResponse": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaSummaries": {
+                    "$ref": "#/$defs/ComputeQuotaSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ComputeQuotaSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComputeQuotaSummary"
+            }
+        },
+        "ComputeQuotaSummary": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaArn": {
+                    "$ref": "#/$defs/ComputeQuotaArn"
+                },
+                "ComputeQuotaId": {
+                    "$ref": "#/$defs/ComputeQuotaId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "ComputeQuotaVersion": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SchedulerResourceStatus"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/ClusterArn"
+                },
+                "ComputeQuotaConfig": {
+                    "$ref": "#/$defs/ComputeQuotaConfig"
+                },
+                "ComputeQuotaTarget": {
+                    "$ref": "#/$defs/ComputeQuotaTarget"
+                },
+                "ActivationState": {
+                    "$ref": "#/$defs/ActivationState"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListComputeQuotasRequest": {
+            "type": "object",
+            "properties": {
+                "CreatedAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreatedBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "NameContains": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SchedulerResourceStatus"
+                },
+                "ClusterArn": {
+                    "$ref": "#/$defs/ClusterArn"
+                },
+                "SortBy": {
+                    "$ref": "#/$defs/SortQuotaBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "SortQuotaBy": {
+            "enum": [
+                "NAME",
+                "CREATION_TIME",
+                "STATUS",
+                "CLUSTER_ARN"
             ]
         },
         "ListContextsResponse": {
@@ -32506,6 +34525,54 @@
                 "STATUS"
             ]
         },
+        "ListPartnerAppsResponse": {
+            "type": "object",
+            "properties": {
+                "Summaries": {
+                    "$ref": "#/$defs/PartnerAppSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PartnerAppSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartnerAppSummary"
+            }
+        },
+        "PartnerAppSummary": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/PartnerAppName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PartnerAppType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/PartnerAppStatus"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListPartnerAppsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
         "ListPipelineExecutionsResponse": {
             "type": "object",
             "properties": {
@@ -33690,8 +35757,14 @@
                 "TrainingJobStatus": {
                     "$ref": "#/$defs/TrainingJobStatus"
                 },
+                "SecondaryStatus": {
+                    "$ref": "#/$defs/SecondaryStatus"
+                },
                 "WarmPoolStatus": {
                     "$ref": "#/$defs/WarmPoolStatus"
+                },
+                "TrainingPlanArn": {
+                    "$ref": "#/$defs/TrainingPlanArn"
                 }
             }
         },
@@ -33730,6 +35803,9 @@
                 },
                 "WarmPoolStatusEquals": {
                     "$ref": "#/$defs/WarmPoolResourceStatus"
+                },
+                "TrainingPlanArnEquals": {
+                    "$ref": "#/$defs/TrainingPlanArn"
                 }
             }
         },
@@ -33779,6 +35855,134 @@
                 "CreationTime",
                 "Status",
                 "FinalObjectiveMetricValue"
+            ]
+        },
+        "ListTrainingPlansResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "TrainingPlanSummaries": {
+                    "$ref": "#/$defs/TrainingPlanSummaries"
+                }
+            }
+        },
+        "TrainingPlanSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TrainingPlanSummary"
+            }
+        },
+        "TrainingPlanSummary": {
+            "type": "object",
+            "properties": {
+                "TrainingPlanArn": {
+                    "$ref": "#/$defs/TrainingPlanArn"
+                },
+                "TrainingPlanName": {
+                    "$ref": "#/$defs/TrainingPlanName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TrainingPlanStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/TrainingPlanStatusMessage"
+                },
+                "DurationHours": {
+                    "$ref": "#/$defs/TrainingPlanDurationHours"
+                },
+                "DurationMinutes": {
+                    "$ref": "#/$defs/TrainingPlanDurationMinutes"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpfrontFee": {
+                    "$ref": "#/$defs/String256"
+                },
+                "CurrencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "TotalInstanceCount": {
+                    "$ref": "#/$defs/TotalInstanceCount"
+                },
+                "AvailableInstanceCount": {
+                    "$ref": "#/$defs/AvailableInstanceCount"
+                },
+                "InUseInstanceCount": {
+                    "$ref": "#/$defs/InUseInstanceCount"
+                },
+                "TargetResources": {
+                    "$ref": "#/$defs/SageMakerResourceNames"
+                },
+                "ReservedCapacitySummaries": {
+                    "$ref": "#/$defs/ReservedCapacitySummaries"
+                }
+            }
+        },
+        "ListTrainingPlansRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "StartTimeAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "StartTimeBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SortBy": {
+                    "$ref": "#/$defs/TrainingPlanSortBy"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/TrainingPlanSortOrder"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/TrainingPlanFilters"
+                }
+            }
+        },
+        "TrainingPlanSortBy": {
+            "enum": [
+                "NAME",
+                "START_TIME",
+                "STATUS"
+            ]
+        },
+        "TrainingPlanSortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
+        "TrainingPlanFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TrainingPlanFilter"
+            }
+        },
+        "TrainingPlanFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/TrainingPlanFilterName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/String64"
+                }
+            }
+        },
+        "TrainingPlanFilterName": {
+            "enum": [
+                "STATUS"
             ]
         },
         "ListTransformJobsResponse": {
@@ -35167,6 +37371,9 @@
                 "ModelCard": {
                     "$ref": "#/$defs/ModelPackageModelCard"
                 },
+                "ModelLifeCycle": {
+                    "$ref": "#/$defs/ModelLifeCycle"
+                },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
                 },
@@ -35840,6 +38047,115 @@
         "VisibilityConditionsValue": {
             "type": "string"
         },
+        "SearchTrainingPlanOfferingsResponse": {
+            "type": "object",
+            "properties": {
+                "TrainingPlanOfferings": {
+                    "$ref": "#/$defs/TrainingPlanOfferings"
+                }
+            }
+        },
+        "TrainingPlanOfferings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TrainingPlanOffering"
+            }
+        },
+        "TrainingPlanOffering": {
+            "type": "object",
+            "properties": {
+                "TrainingPlanOfferingId": {
+                    "$ref": "#/$defs/TrainingPlanOfferingId"
+                },
+                "TargetResources": {
+                    "$ref": "#/$defs/SageMakerResourceNames"
+                },
+                "RequestedStartTimeAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RequestedEndTimeBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DurationHours": {
+                    "$ref": "#/$defs/TrainingPlanDurationHours"
+                },
+                "DurationMinutes": {
+                    "$ref": "#/$defs/TrainingPlanDurationMinutes"
+                },
+                "UpfrontFee": {
+                    "$ref": "#/$defs/String256"
+                },
+                "CurrencyCode": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "ReservedCapacityOfferings": {
+                    "$ref": "#/$defs/ReservedCapacityOfferings"
+                }
+            }
+        },
+        "ReservedCapacityOfferings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReservedCapacityOffering"
+            }
+        },
+        "ReservedCapacityOffering": {
+            "type": "object",
+            "properties": {
+                "InstanceType": {
+                    "$ref": "#/$defs/ReservedCapacityInstanceType"
+                },
+                "InstanceCount": {
+                    "$ref": "#/$defs/ReservedCapacityInstanceCount"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/AvailabilityZone"
+                },
+                "DurationHours": {
+                    "$ref": "#/$defs/ReservedCapacityDurationHours"
+                },
+                "DurationMinutes": {
+                    "$ref": "#/$defs/ReservedCapacityDurationMinutes"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ReservedCapacityInstanceCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SearchTrainingPlanOfferingsRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceType": {
+                    "$ref": "#/$defs/ReservedCapacityInstanceType"
+                },
+                "InstanceCount": {
+                    "$ref": "#/$defs/ReservedCapacityInstanceCount"
+                },
+                "StartTimeAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTimeBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DurationHours": {
+                    "$ref": "#/$defs/TrainingPlanDurationHoursInput"
+                },
+                "TargetResources": {
+                    "$ref": "#/$defs/SageMakerResourceNames"
+                }
+            }
+        },
+        "TrainingPlanDurationHoursInput": {
+            "type": "integer",
+            "format": "int64"
+        },
         "SendPipelineExecutionStepFailureResponse": {
             "type": "object",
             "properties": {
@@ -36269,6 +38585,43 @@
                 },
                 "NodeRecovery": {
                     "$ref": "#/$defs/ClusterNodeRecovery"
+                },
+                "InstanceGroupsToDelete": {
+                    "$ref": "#/$defs/ClusterInstanceGroupsToDelete"
+                }
+            }
+        },
+        "ClusterInstanceGroupsToDelete": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ClusterInstanceGroupName"
+            }
+        },
+        "UpdateClusterSchedulerConfigResponse": {
+            "type": "object",
+            "properties": {
+                "ClusterSchedulerConfigArn": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigArn"
+                },
+                "ClusterSchedulerConfigVersion": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "UpdateClusterSchedulerConfigRequest": {
+            "type": "object",
+            "properties": {
+                "ClusterSchedulerConfigId": {
+                    "$ref": "#/$defs/ClusterSchedulerConfigId"
+                },
+                "TargetVersion": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "SchedulerConfig": {
+                    "$ref": "#/$defs/SchedulerConfig"
+                },
+                "Description": {
+                    "$ref": "#/$defs/EntityDescription"
                 }
             }
         },
@@ -36312,6 +38665,40 @@
             "properties": {
                 "SecretArn": {
                     "$ref": "#/$defs/SecretArn"
+                }
+            }
+        },
+        "UpdateComputeQuotaResponse": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaArn": {
+                    "$ref": "#/$defs/ComputeQuotaArn"
+                },
+                "ComputeQuotaVersion": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "UpdateComputeQuotaRequest": {
+            "type": "object",
+            "properties": {
+                "ComputeQuotaId": {
+                    "$ref": "#/$defs/ComputeQuotaId"
+                },
+                "TargetVersion": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "ComputeQuotaConfig": {
+                    "$ref": "#/$defs/ComputeQuotaConfig"
+                },
+                "ComputeQuotaTarget": {
+                    "$ref": "#/$defs/ComputeQuotaTarget"
+                },
+                "ActivationState": {
+                    "$ref": "#/$defs/ActivationState"
+                },
+                "Description": {
+                    "$ref": "#/$defs/EntityDescription"
                 }
             }
         },
@@ -36682,6 +39069,77 @@
                 }
             }
         },
+        "UpdateHubContentResponse": {
+            "type": "object",
+            "properties": {
+                "HubArn": {
+                    "$ref": "#/$defs/HubArn"
+                },
+                "HubContentArn": {
+                    "$ref": "#/$defs/HubContentArn"
+                }
+            }
+        },
+        "UpdateHubContentRequest": {
+            "type": "object",
+            "properties": {
+                "HubName": {
+                    "$ref": "#/$defs/HubNameOrArn"
+                },
+                "HubContentName": {
+                    "$ref": "#/$defs/HubContentName"
+                },
+                "HubContentType": {
+                    "$ref": "#/$defs/HubContentType"
+                },
+                "HubContentVersion": {
+                    "$ref": "#/$defs/HubContentVersion"
+                },
+                "HubContentDisplayName": {
+                    "$ref": "#/$defs/HubContentDisplayName"
+                },
+                "HubContentDescription": {
+                    "$ref": "#/$defs/HubContentDescription"
+                },
+                "HubContentMarkdown": {
+                    "$ref": "#/$defs/HubContentMarkdown"
+                },
+                "HubContentSearchKeywords": {
+                    "$ref": "#/$defs/HubContentSearchKeywordList"
+                },
+                "SupportStatus": {
+                    "$ref": "#/$defs/HubContentSupportStatus"
+                }
+            }
+        },
+        "UpdateHubContentReferenceResponse": {
+            "type": "object",
+            "properties": {
+                "HubArn": {
+                    "$ref": "#/$defs/HubArn"
+                },
+                "HubContentArn": {
+                    "$ref": "#/$defs/HubContentArn"
+                }
+            }
+        },
+        "UpdateHubContentReferenceRequest": {
+            "type": "object",
+            "properties": {
+                "HubName": {
+                    "$ref": "#/$defs/HubNameOrArn"
+                },
+                "HubContentName": {
+                    "$ref": "#/$defs/HubContentName"
+                },
+                "HubContentType": {
+                    "$ref": "#/$defs/HubContentType"
+                },
+                "MinVersion": {
+                    "$ref": "#/$defs/HubContentVersion"
+                }
+            }
+        },
         "UpdateImageResponse": {
             "type": "object",
             "properties": {
@@ -36787,6 +39245,9 @@
                 },
                 "RuntimeConfig": {
                     "$ref": "#/$defs/InferenceComponentRuntimeConfig"
+                },
+                "DeploymentConfig": {
+                    "$ref": "#/$defs/InferenceComponentDeploymentConfig"
                 }
             }
         },
@@ -36927,6 +39388,12 @@
                 },
                 "ModelCard": {
                     "$ref": "#/$defs/ModelPackageModelCard"
+                },
+                "ModelLifeCycle": {
+                    "$ref": "#/$defs/ModelLifeCycle"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -37064,6 +39531,40 @@
                 },
                 "OnStart": {
                     "$ref": "#/$defs/NotebookInstanceLifecycleConfigList"
+                }
+            }
+        },
+        "UpdatePartnerAppResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
+                }
+            }
+        },
+        "UpdatePartnerAppRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/PartnerAppArn"
+                },
+                "MaintenanceConfig": {
+                    "$ref": "#/$defs/PartnerAppMaintenanceConfig"
+                },
+                "Tier": {
+                    "$ref": "#/$defs/NonEmptyString64"
+                },
+                "ApplicationConfig": {
+                    "$ref": "#/$defs/PartnerAppConfig"
+                },
+                "EnableIamSessionBasedIdentity": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
         },

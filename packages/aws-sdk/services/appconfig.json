@@ -2068,7 +2068,8 @@
                 "READY_FOR_DEPLOYMENT",
                 "DEPLOYING",
                 "ROLLING_BACK",
-                "ROLLED_BACK"
+                "ROLLED_BACK",
+                "REVERTED"
             ]
         },
         "MonitorList": {
@@ -2586,7 +2587,8 @@
                 "DEPLOYING",
                 "COMPLETE",
                 "ROLLING_BACK",
-                "ROLLED_BACK"
+                "ROLLED_BACK",
+                "REVERTED"
             ]
         },
         "DeploymentEvents": {
@@ -2622,7 +2624,8 @@
                 "ROLLBACK_COMPLETED",
                 "BAKE_TIME_STARTED",
                 "DEPLOYMENT_STARTED",
-                "DEPLOYMENT_COMPLETED"
+                "DEPLOYMENT_COMPLETED",
+                "REVERT_COMPLETED"
             ]
         },
         "TriggeredBy": {
@@ -3223,6 +3226,9 @@
                 },
                 "DeploymentNumber": {
                     "$ref": "#/$defs/Integer"
+                },
+                "AllowRevert": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
         },

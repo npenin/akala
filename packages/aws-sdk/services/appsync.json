@@ -119,6 +119,41 @@
             }
         },
         {
+            "name": "CreateApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v2/apis"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateApiResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateApiCache",
             "config": {
                 "http": {
@@ -181,6 +216,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateApiKeyRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannelNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v2/apis/{apiId}/channelNamespaces"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelNamespaceRequest"
                         }
                     }
                 },
@@ -425,6 +499,45 @@
             }
         },
         {
+            "name": "DeleteApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/v2/apis/{apiId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteApiResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteApiCache",
             "config": {
                 "http": {
@@ -489,6 +602,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteApiKeyRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannelNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "name": "route.name",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/v2/apis/{apiId}/channelNamespaces/{name}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteChannelNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0.name",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelNamespaceRequest"
                         }
                     }
                 },
@@ -979,6 +1133,45 @@
             }
         },
         {
+            "name": "GetApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/apis/{apiId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApiResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetApiAssociation",
             "config": {
                 "http": {
@@ -1041,6 +1234,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetApiCacheRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetChannelNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "name": "route.name",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/apis/{apiId}/channelNamespaces/{name}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetChannelNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0.name",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetChannelNamespaceRequest"
                         }
                     }
                 },
@@ -1521,6 +1755,80 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListApiKeysRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/v2/apis"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApisRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelNamespaces",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/apis/{apiId}/channelNamespaces"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelNamespacesResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelNamespacesRequest"
                         }
                     }
                 },
@@ -2157,6 +2465,45 @@
             }
         },
         {
+            "name": "UpdateApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v2/apis/{apiId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateApiResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateApiCache",
             "config": {
                 "http": {
@@ -2221,6 +2568,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateApiKeyRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChannelNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "name": "route.name",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v2/apis/{apiId}/channelNamespaces/{name}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChannelNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0.name",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChannelNamespaceRequest"
                         }
                     }
                 },
@@ -2735,6 +3123,233 @@
                 }
             }
         },
+        "CreateApiResponse": {
+            "type": "object",
+            "properties": {
+                "api": {
+                    "$ref": "#/$defs/Api"
+                }
+            }
+        },
+        "Api": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApiName"
+                },
+                "ownerContact": {
+                    "$ref": "#/$defs/OwnerContact"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "dns": {
+                    "$ref": "#/$defs/MapOfStringToString"
+                },
+                "apiArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "xrayEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "wafWebAclArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "eventConfig": {
+                    "$ref": "#/$defs/EventConfig"
+                }
+            }
+        },
+        "ApiName": {
+            "type": "string"
+        },
+        "OwnerContact": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "MapOfStringToString": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "EventConfig": {
+            "type": "object",
+            "properties": {
+                "authProviders": {
+                    "$ref": "#/$defs/AuthProviders"
+                },
+                "connectionAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "defaultPublishAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "defaultSubscribeAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "logConfig": {
+                    "$ref": "#/$defs/EventLogConfig"
+                }
+            }
+        },
+        "AuthProviders": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthProvider"
+            }
+        },
+        "AuthProvider": {
+            "type": "object",
+            "properties": {
+                "authType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "cognitoConfig": {
+                    "$ref": "#/$defs/CognitoConfig"
+                },
+                "openIDConnectConfig": {
+                    "$ref": "#/$defs/OpenIDConnectConfig"
+                },
+                "lambdaAuthorizerConfig": {
+                    "$ref": "#/$defs/LambdaAuthorizerConfig"
+                }
+            }
+        },
+        "AuthenticationType": {
+            "enum": [
+                "API_KEY",
+                "AWS_IAM",
+                "AMAZON_COGNITO_USER_POOLS",
+                "OPENID_CONNECT",
+                "AWS_LAMBDA"
+            ]
+        },
+        "CognitoConfig": {
+            "type": "object",
+            "properties": {
+                "userPoolId": {
+                    "$ref": "#/$defs/String"
+                },
+                "awsRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "appIdClientRegex": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "OpenIDConnectConfig": {
+            "type": "object",
+            "properties": {
+                "issuer": {
+                    "$ref": "#/$defs/String"
+                },
+                "clientId": {
+                    "$ref": "#/$defs/String"
+                },
+                "iatTTL": {
+                    "$ref": "#/$defs/Long"
+                },
+                "authTTL": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "LambdaAuthorizerConfig": {
+            "type": "object",
+            "properties": {
+                "authorizerResultTtlInSeconds": {
+                    "$ref": "#/$defs/TTL"
+                },
+                "authorizerUri": {
+                    "$ref": "#/$defs/String"
+                },
+                "identityValidationExpression": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TTL": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AuthModes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthMode"
+            }
+        },
+        "AuthMode": {
+            "type": "object",
+            "properties": {
+                "authType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                }
+            }
+        },
+        "EventLogConfig": {
+            "type": "object",
+            "properties": {
+                "logLevel": {
+                    "$ref": "#/$defs/EventLogLevel"
+                },
+                "cloudWatchLogsRoleArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EventLogLevel": {
+            "enum": [
+                "NONE",
+                "ERROR",
+                "ALL",
+                "INFO",
+                "DEBUG"
+            ]
+        },
+        "CreateApiRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ApiName"
+                },
+                "ownerContact": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "eventConfig": {
+                    "$ref": "#/$defs/EventConfig"
+                }
+            }
+        },
         "CreateApiCacheResponse": {
             "type": "object",
             "properties": {
@@ -2769,18 +3384,12 @@
                 }
             }
         },
-        "Long": {
-            "type": "integer",
-            "format": "int64"
-        },
         "ApiCachingBehavior": {
             "enum": [
                 "FULL_REQUEST_CACHING",
-                "PER_RESOLVER_CACHING"
+                "PER_RESOLVER_CACHING",
+                "OPERATION_LEVEL_CACHING"
             ]
-        },
-        "Boolean": {
-            "type": "boolean"
         },
         "ApiCacheType": {
             "enum": [
@@ -2881,6 +3490,75 @@
                 }
             }
         },
+        "CreateChannelNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "channelNamespace": {
+                    "$ref": "#/$defs/ChannelNamespace"
+                }
+            }
+        },
+        "ChannelNamespace": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "subscribeAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "publishAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "codeHandlers": {
+                    "$ref": "#/$defs/Code"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "channelNamespaceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastModified": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Namespace": {
+            "type": "string"
+        },
+        "Code": {
+            "type": "string"
+        },
+        "CreateChannelNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "subscribeAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "publishAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "codeHandlers": {
+                    "$ref": "#/$defs/Code"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
         "CreateDataSourceResponse": {
             "type": "object",
             "properties": {
@@ -2945,7 +3623,8 @@
                 "HTTP",
                 "RELATIONAL_DATABASE",
                 "AMAZON_OPENSEARCH_SERVICE",
-                "AMAZON_EVENTBRIDGE"
+                "AMAZON_EVENTBRIDGE",
+                "AMAZON_BEDROCK_RUNTIME"
             ]
         },
         "DynamodbDataSourceConfig": {
@@ -3300,9 +3979,6 @@
                 "APPSYNC_JS"
             ]
         },
-        "Code": {
-            "type": "string"
-        },
         "CreateFunctionRequest": {
             "type": "object",
             "properties": {
@@ -3423,15 +4099,6 @@
                 }
             }
         },
-        "AuthenticationType": {
-            "enum": [
-                "API_KEY",
-                "AWS_IAM",
-                "AMAZON_COGNITO_USER_POOLS",
-                "OPENID_CONNECT",
-                "AWS_LAMBDA"
-            ]
-        },
         "LogConfig": {
             "type": "object",
             "properties": {
@@ -3478,38 +4145,6 @@
                 "DENY"
             ]
         },
-        "OpenIDConnectConfig": {
-            "type": "object",
-            "properties": {
-                "issuer": {
-                    "$ref": "#/$defs/String"
-                },
-                "clientId": {
-                    "$ref": "#/$defs/String"
-                },
-                "iatTTL": {
-                    "$ref": "#/$defs/Long"
-                },
-                "authTTL": {
-                    "$ref": "#/$defs/Long"
-                }
-            }
-        },
-        "MapOfStringToString": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/String"
-            }
-        },
-        "TagMap": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
-        },
-        "TagValue": {
-            "type": "string"
-        },
         "AdditionalAuthenticationProviders": {
             "type": "array",
             "items": {
@@ -3546,24 +4181,6 @@
                     "$ref": "#/$defs/String"
                 }
             }
-        },
-        "LambdaAuthorizerConfig": {
-            "type": "object",
-            "properties": {
-                "authorizerResultTtlInSeconds": {
-                    "$ref": "#/$defs/TTL"
-                },
-                "authorizerUri": {
-                    "$ref": "#/$defs/String"
-                },
-                "identityValidationExpression": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "TTL": {
-            "type": "integer",
-            "format": "int32"
         },
         "GraphQLApiVisibility": {
             "enum": [
@@ -3653,14 +4270,14 @@
                 "lambdaAuthorizerConfig": {
                     "$ref": "#/$defs/LambdaAuthorizerConfig"
                 },
-                "visibility": {
-                    "$ref": "#/$defs/GraphQLApiVisibility"
-                },
                 "apiType": {
                     "$ref": "#/$defs/GraphQLApiType"
                 },
                 "mergedApiExecutionRoleArn": {
                     "$ref": "#/$defs/String"
+                },
+                "visibility": {
+                    "$ref": "#/$defs/GraphQLApiVisibility"
                 },
                 "ownerContact": {
                     "$ref": "#/$defs/String"
@@ -3872,6 +4489,18 @@
                 }
             }
         },
+        "DeleteApiResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteApiRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "DeleteApiCacheResponse": {
             "type": "object",
             "properties": {}
@@ -3896,6 +4525,21 @@
                 },
                 "id": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteChannelNamespaceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteChannelNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/Namespace"
                 }
             }
         },
@@ -4047,6 +4691,12 @@
                 },
                 "logs": {
                     "$ref": "#/$defs/Logs"
+                },
+                "stash": {
+                    "$ref": "#/$defs/Stash"
+                },
+                "outErrors": {
+                    "$ref": "#/$defs/OutErrors"
                 }
             }
         },
@@ -4119,6 +4769,12 @@
                 "$ref": "#/$defs/String"
             }
         },
+        "Stash": {
+            "type": "string"
+        },
+        "OutErrors": {
+            "type": "string"
+        },
         "EvaluateCodeRequest": {
             "type": "object",
             "properties": {
@@ -4150,6 +4806,12 @@
                 },
                 "logs": {
                     "$ref": "#/$defs/Logs"
+                },
+                "stash": {
+                    "$ref": "#/$defs/Stash"
+                },
+                "outErrors": {
+                    "$ref": "#/$defs/OutErrors"
                 }
             }
         },
@@ -4187,6 +4849,22 @@
                 }
             }
         },
+        "GetApiResponse": {
+            "type": "object",
+            "properties": {
+                "api": {
+                    "$ref": "#/$defs/Api"
+                }
+            }
+        },
+        "GetApiRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "GetApiAssociationResponse": {
             "type": "object",
             "properties": {
@@ -4216,6 +4894,25 @@
             "properties": {
                 "apiId": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetChannelNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "channelNamespace": {
+                    "$ref": "#/$defs/ChannelNamespace"
+                }
+            }
+        },
+        "GetChannelNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/Namespace"
                 }
             }
         },
@@ -4610,6 +5307,65 @@
             }
         },
         "ListApiKeysRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListApisResponse": {
+            "type": "object",
+            "properties": {
+                "apis": {
+                    "$ref": "#/$defs/Apis"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "Apis": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Api"
+            }
+        },
+        "ListApisRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListChannelNamespacesResponse": {
+            "type": "object",
+            "properties": {
+                "channelNamespaces": {
+                    "$ref": "#/$defs/ChannelNamespaces"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ChannelNamespaces": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelNamespace"
+            }
+        },
+        "ListChannelNamespacesRequest": {
             "type": "object",
             "properties": {
                 "apiId": {
@@ -5097,6 +5853,31 @@
         "TagKey": {
             "type": "string"
         },
+        "UpdateApiResponse": {
+            "type": "object",
+            "properties": {
+                "api": {
+                    "$ref": "#/$defs/Api"
+                }
+            }
+        },
+        "UpdateApiRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApiName"
+                },
+                "ownerContact": {
+                    "$ref": "#/$defs/String"
+                },
+                "eventConfig": {
+                    "$ref": "#/$defs/EventConfig"
+                }
+            }
+        },
         "UpdateApiCacheResponse": {
             "type": "object",
             "properties": {
@@ -5147,6 +5928,34 @@
                 },
                 "expires": {
                     "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "UpdateChannelNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "channelNamespace": {
+                    "$ref": "#/$defs/ChannelNamespace"
+                }
+            }
+        },
+        "UpdateChannelNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "subscribeAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "publishAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "codeHandlers": {
+                    "$ref": "#/$defs/Code"
                 }
             }
         },

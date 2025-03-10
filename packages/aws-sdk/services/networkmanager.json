@@ -380,6 +380,41 @@
             }
         },
         {
+            "name": "CreateDirectConnectGatewayAttachment",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/direct-connect-gateway-attachments"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDirectConnectGatewayAttachmentResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDirectConnectGatewayAttachmentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateGlobalNetwork",
             "config": {
                 "http": {
@@ -1745,6 +1780,45 @@
             }
         },
         {
+            "name": "GetDirectConnectGatewayAttachment",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/direct-connect-gateway-attachments/{AttachmentId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDirectConnectGatewayAttachmentResponse"
+                    },
+                    "inject": [
+                        "param.0.AttachmentId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDirectConnectGatewayAttachmentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetLinkAssociations",
             "config": {
                 "http": {
@@ -3094,6 +3168,45 @@
             }
         },
         {
+            "name": "UpdateDirectConnectGatewayAttachment",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AttachmentId": "route.AttachmentId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/direct-connect-gateway-attachments/{AttachmentId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDirectConnectGatewayAttachmentResponse"
+                    },
+                    "inject": [
+                        "param.0.AttachmentId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDirectConnectGatewayAttachmentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateGlobalNetwork",
             "config": {
                 "http": {
@@ -3373,6 +3486,9 @@
                 "EdgeLocation": {
                     "$ref": "#/$defs/ExternalRegionCode"
                 },
+                "EdgeLocations": {
+                    "$ref": "#/$defs/ExternalRegionCodeList"
+                },
                 "ResourceArn": {
                     "$ref": "#/$defs/ResourceArn"
                 },
@@ -3422,6 +3538,7 @@
                 "CONNECT",
                 "SITE_TO_SITE_VPN",
                 "VPC",
+                "DIRECT_CONNECT_GATEWAY",
                 "TRANSIT_GATEWAY_ROUTE_TABLE"
             ]
         },
@@ -3440,6 +3557,12 @@
         },
         "ExternalRegionCode": {
             "type": "string"
+        },
+        "ExternalRegionCodeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExternalRegionCode"
+            }
         },
         "ResourceArn": {
             "type": "string"
@@ -3541,7 +3664,10 @@
                 "SUBNET_UNSUPPORTED_AVAILABILITY_ZONE",
                 "SUBNET_NO_IPV6_CIDRS",
                 "VPN_CONNECTION_NOT_FOUND",
-                "MAXIMUM_NO_ENCAP_LIMIT_EXCEEDED"
+                "MAXIMUM_NO_ENCAP_LIMIT_EXCEEDED",
+                "DIRECT_CONNECT_GATEWAY_NOT_FOUND",
+                "DIRECT_CONNECT_GATEWAY_EXISTING_ATTACHMENTS",
+                "DIRECT_CONNECT_GATEWAY_NO_PRIVATE_VIF"
             ]
         },
         "ServerSideString": {
@@ -4178,12 +4304,6 @@
                 }
             }
         },
-        "ExternalRegionCodeList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ExternalRegionCode"
-            }
-        },
         "CoreNetworkNetworkFunctionGroupList": {
             "type": "array",
             "items": {
@@ -4384,6 +4504,48 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CreateDirectConnectGatewayAttachmentResponse": {
+            "type": "object",
+            "properties": {
+                "DirectConnectGatewayAttachment": {
+                    "$ref": "#/$defs/DirectConnectGatewayAttachment"
+                }
+            }
+        },
+        "DirectConnectGatewayAttachment": {
+            "type": "object",
+            "properties": {
+                "Attachment": {
+                    "$ref": "#/$defs/Attachment"
+                },
+                "DirectConnectGatewayArn": {
+                    "$ref": "#/$defs/DirectConnectGatewayArn"
+                }
+            }
+        },
+        "DirectConnectGatewayArn": {
+            "type": "string"
+        },
+        "CreateDirectConnectGatewayAttachmentRequest": {
+            "type": "object",
+            "properties": {
+                "CoreNetworkId": {
+                    "$ref": "#/$defs/CoreNetworkId"
+                },
+                "DirectConnectGatewayArn": {
+                    "$ref": "#/$defs/DirectConnectGatewayArn"
+                },
+                "EdgeLocations": {
+                    "$ref": "#/$defs/ExternalRegionCodeList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 }
             }
         },
@@ -5869,6 +6031,22 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/DeviceId"
+            }
+        },
+        "GetDirectConnectGatewayAttachmentResponse": {
+            "type": "object",
+            "properties": {
+                "DirectConnectGatewayAttachment": {
+                    "$ref": "#/$defs/DirectConnectGatewayAttachment"
+                }
+            }
+        },
+        "GetDirectConnectGatewayAttachmentRequest": {
+            "type": "object",
+            "properties": {
+                "AttachmentId": {
+                    "$ref": "#/$defs/AttachmentId"
+                }
             }
         },
         "GetLinkAssociationsResponse": {
@@ -7461,6 +7639,25 @@
                 },
                 "SiteId": {
                     "$ref": "#/$defs/SiteId"
+                }
+            }
+        },
+        "UpdateDirectConnectGatewayAttachmentResponse": {
+            "type": "object",
+            "properties": {
+                "DirectConnectGatewayAttachment": {
+                    "$ref": "#/$defs/DirectConnectGatewayAttachment"
+                }
+            }
+        },
+        "UpdateDirectConnectGatewayAttachmentRequest": {
+            "type": "object",
+            "properties": {
+                "AttachmentId": {
+                    "$ref": "#/$defs/AttachmentId"
+                },
+                "EdgeLocations": {
+                    "$ref": "#/$defs/ExternalRegionCodeList"
                 }
             }
         },

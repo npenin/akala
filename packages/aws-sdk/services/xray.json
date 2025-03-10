@@ -37,6 +37,41 @@
             }
         },
         {
+            "name": "CancelTraceRetrieval",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/CancelTraceRetrieval"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelTraceRetrievalResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelTraceRetrievalRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateGroup",
             "config": {
                 "http": {
@@ -317,6 +352,41 @@
             }
         },
         {
+            "name": "GetIndexingRules",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/GetIndexingRules"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIndexingRulesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIndexingRulesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetInsight",
             "config": {
                 "http": {
@@ -441,6 +511,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetInsightSummariesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetRetrievedTracesGraph",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/GetRetrievedTracesGraph"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetRetrievedTracesGraphResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetRetrievedTracesGraphRequest"
                         }
                     }
                 },
@@ -667,6 +772,41 @@
             }
         },
         {
+            "name": "GetTraceSegmentDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/GetTraceSegmentDestination"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTraceSegmentDestinationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTraceSegmentDestinationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetTraceSummaries",
             "config": {
                 "http": {
@@ -721,6 +861,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListResourcePoliciesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListRetrievedTraces",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/ListRetrievedTraces"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListRetrievedTracesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListRetrievedTracesRequest"
                         }
                     }
                 },
@@ -912,6 +1087,41 @@
             }
         },
         {
+            "name": "StartTraceRetrieval",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/StartTraceRetrieval"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartTraceRetrievalResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartTraceRetrievalRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "TagResource",
             "config": {
                 "http": {
@@ -1017,6 +1227,41 @@
             }
         },
         {
+            "name": "UpdateIndexingRule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/UpdateIndexingRule"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateIndexingRuleResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateIndexingRuleRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateSamplingRule",
             "config": {
                 "http": {
@@ -1036,6 +1281,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateSamplingRuleRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateTraceSegmentDestination",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/UpdateTraceSegmentDestination"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateTraceSegmentDestinationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateTraceSegmentDestinationRequest"
                         }
                     }
                 },
@@ -1193,6 +1473,21 @@
             "items": {
                 "$ref": "#/$defs/TraceId"
             }
+        },
+        "CancelTraceRetrievalResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "CancelTraceRetrievalRequest": {
+            "type": "object",
+            "properties": {
+                "RetrievalToken": {
+                    "$ref": "#/$defs/RetrievalToken"
+                }
+            }
+        },
+        "RetrievalToken": {
+            "type": "string"
         },
         "CreateGroupResult": {
             "type": "object",
@@ -1562,6 +1857,64 @@
         },
         "GetGroupsNextToken": {
             "type": "string"
+        },
+        "GetIndexingRulesResult": {
+            "type": "object",
+            "properties": {
+                "IndexingRules": {
+                    "$ref": "#/$defs/IndexingRuleList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "IndexingRuleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IndexingRule"
+            }
+        },
+        "IndexingRule": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "ModifiedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Rule": {
+                    "$ref": "#/$defs/IndexingRuleValue"
+                }
+            }
+        },
+        "IndexingRuleValue": {
+            "type": "object",
+            "properties": {
+                "Probabilistic": {
+                    "$ref": "#/$defs/ProbabilisticRuleValue"
+                }
+            }
+        },
+        "ProbabilisticRuleValue": {
+            "type": "object",
+            "properties": {
+                "DesiredSamplingPercentage": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "ActualSamplingPercentage": {
+                    "$ref": "#/$defs/NullableDouble"
+                }
+            }
+        },
+        "GetIndexingRulesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
         },
         "GetInsightResult": {
             "type": "object",
@@ -1946,220 +2299,45 @@
             "type": "integer",
             "format": "int32"
         },
-        "GetSamplingRulesResult": {
+        "GetRetrievedTracesGraphResult": {
             "type": "object",
             "properties": {
-                "SamplingRuleRecords": {
-                    "$ref": "#/$defs/SamplingRuleRecordList"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "SamplingRuleRecordList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SamplingRuleRecord"
-            }
-        },
-        "GetSamplingRulesRequest": {
-            "type": "object",
-            "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "GetSamplingStatisticSummariesResult": {
-            "type": "object",
-            "properties": {
-                "SamplingStatisticSummaries": {
-                    "$ref": "#/$defs/SamplingStatisticSummaryList"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "SamplingStatisticSummaryList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SamplingStatisticSummary"
-            }
-        },
-        "SamplingStatisticSummary": {
-            "type": "object",
-            "properties": {
-                "RuleName": {
-                    "$ref": "#/$defs/String"
-                },
-                "Timestamp": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "RequestCount": {
-                    "$ref": "#/$defs/Integer"
-                },
-                "BorrowCount": {
-                    "$ref": "#/$defs/Integer"
-                },
-                "SampledCount": {
-                    "$ref": "#/$defs/Integer"
-                }
-            }
-        },
-        "Integer": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "GetSamplingStatisticSummariesRequest": {
-            "type": "object",
-            "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "GetSamplingTargetsResult": {
-            "type": "object",
-            "properties": {
-                "SamplingTargetDocuments": {
-                    "$ref": "#/$defs/SamplingTargetDocumentList"
-                },
-                "LastRuleModification": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "UnprocessedStatistics": {
-                    "$ref": "#/$defs/UnprocessedStatisticsList"
-                }
-            }
-        },
-        "SamplingTargetDocumentList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SamplingTargetDocument"
-            }
-        },
-        "SamplingTargetDocument": {
-            "type": "object",
-            "properties": {
-                "RuleName": {
-                    "$ref": "#/$defs/String"
-                },
-                "FixedRate": {
-                    "$ref": "#/$defs/Double"
-                },
-                "ReservoirQuota": {
-                    "$ref": "#/$defs/NullableInteger"
-                },
-                "ReservoirQuotaTTL": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "Interval": {
-                    "$ref": "#/$defs/NullableInteger"
-                }
-            }
-        },
-        "Double": {
-            "type": "number",
-            "format": "double"
-        },
-        "UnprocessedStatisticsList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/UnprocessedStatistics"
-            }
-        },
-        "UnprocessedStatistics": {
-            "type": "object",
-            "properties": {
-                "RuleName": {
-                    "$ref": "#/$defs/String"
-                },
-                "ErrorCode": {
-                    "$ref": "#/$defs/String"
-                },
-                "Message": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "GetSamplingTargetsRequest": {
-            "type": "object",
-            "properties": {
-                "SamplingStatisticsDocuments": {
-                    "$ref": "#/$defs/SamplingStatisticsDocumentList"
-                }
-            }
-        },
-        "SamplingStatisticsDocumentList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SamplingStatisticsDocument"
-            }
-        },
-        "SamplingStatisticsDocument": {
-            "type": "object",
-            "properties": {
-                "RuleName": {
-                    "$ref": "#/$defs/RuleName"
-                },
-                "ClientID": {
-                    "$ref": "#/$defs/ClientID"
-                },
-                "Timestamp": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "RequestCount": {
-                    "$ref": "#/$defs/RequestCount"
-                },
-                "SampledCount": {
-                    "$ref": "#/$defs/SampledCount"
-                },
-                "BorrowCount": {
-                    "$ref": "#/$defs/BorrowCount"
-                }
-            }
-        },
-        "ClientID": {
-            "type": "string"
-        },
-        "RequestCount": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "SampledCount": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "BorrowCount": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "GetServiceGraphResult": {
-            "type": "object",
-            "properties": {
-                "StartTime": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "EndTime": {
-                    "$ref": "#/$defs/Timestamp"
+                "RetrievalStatus": {
+                    "$ref": "#/$defs/RetrievalStatus"
                 },
                 "Services": {
-                    "$ref": "#/$defs/ServiceList"
-                },
-                "ContainsOldGroupVersions": {
-                    "$ref": "#/$defs/Boolean"
+                    "$ref": "#/$defs/RetrievedServicesList"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/String"
                 }
             }
         },
-        "ServiceList": {
+        "RetrievalStatus": {
+            "enum": [
+                "SCHEDULED",
+                "RUNNING",
+                "COMPLETE",
+                "FAILED",
+                "CANCELLED",
+                "TIMEOUT"
+            ]
+        },
+        "RetrievedServicesList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/Service"
+                "$ref": "#/$defs/RetrievedService"
+            }
+        },
+        "RetrievedService": {
+            "type": "object",
+            "properties": {
+                "Service": {
+                    "$ref": "#/$defs/Service"
+                },
+                "Links": {
+                    "$ref": "#/$defs/LinksList"
+                }
             }
         },
         "Service": {
@@ -2303,6 +2481,14 @@
                 }
             }
         },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
+        },
         "AliasList": {
             "type": "array",
             "items": {
@@ -2347,6 +2533,245 @@
                 "TotalResponseTime": {
                     "$ref": "#/$defs/NullableDouble"
                 }
+            }
+        },
+        "LinksList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GraphLink"
+            }
+        },
+        "GraphLink": {
+            "type": "object",
+            "properties": {
+                "ReferenceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "SourceTraceId": {
+                    "$ref": "#/$defs/String"
+                },
+                "DestinationTraceIds": {
+                    "$ref": "#/$defs/TraceIdList"
+                }
+            }
+        },
+        "GetRetrievedTracesGraphRequest": {
+            "type": "object",
+            "properties": {
+                "RetrievalToken": {
+                    "$ref": "#/$defs/RetrievalToken"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetSamplingRulesResult": {
+            "type": "object",
+            "properties": {
+                "SamplingRuleRecords": {
+                    "$ref": "#/$defs/SamplingRuleRecordList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SamplingRuleRecordList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SamplingRuleRecord"
+            }
+        },
+        "GetSamplingRulesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetSamplingStatisticSummariesResult": {
+            "type": "object",
+            "properties": {
+                "SamplingStatisticSummaries": {
+                    "$ref": "#/$defs/SamplingStatisticSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "SamplingStatisticSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SamplingStatisticSummary"
+            }
+        },
+        "SamplingStatisticSummary": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RequestCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "BorrowCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "SampledCount": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "GetSamplingStatisticSummariesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetSamplingTargetsResult": {
+            "type": "object",
+            "properties": {
+                "SamplingTargetDocuments": {
+                    "$ref": "#/$defs/SamplingTargetDocumentList"
+                },
+                "LastRuleModification": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UnprocessedStatistics": {
+                    "$ref": "#/$defs/UnprocessedStatisticsList"
+                }
+            }
+        },
+        "SamplingTargetDocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SamplingTargetDocument"
+            }
+        },
+        "SamplingTargetDocument": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/String"
+                },
+                "FixedRate": {
+                    "$ref": "#/$defs/Double"
+                },
+                "ReservoirQuota": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "ReservoirQuotaTTL": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Interval": {
+                    "$ref": "#/$defs/NullableInteger"
+                }
+            }
+        },
+        "UnprocessedStatisticsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UnprocessedStatistics"
+            }
+        },
+        "UnprocessedStatistics": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/String"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/String"
+                },
+                "Message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetSamplingTargetsRequest": {
+            "type": "object",
+            "properties": {
+                "SamplingStatisticsDocuments": {
+                    "$ref": "#/$defs/SamplingStatisticsDocumentList"
+                }
+            }
+        },
+        "SamplingStatisticsDocumentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SamplingStatisticsDocument"
+            }
+        },
+        "SamplingStatisticsDocument": {
+            "type": "object",
+            "properties": {
+                "RuleName": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "ClientID": {
+                    "$ref": "#/$defs/ClientID"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RequestCount": {
+                    "$ref": "#/$defs/RequestCount"
+                },
+                "SampledCount": {
+                    "$ref": "#/$defs/SampledCount"
+                },
+                "BorrowCount": {
+                    "$ref": "#/$defs/BorrowCount"
+                }
+            }
+        },
+        "ClientID": {
+            "type": "string"
+        },
+        "RequestCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SampledCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BorrowCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetServiceGraphResult": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Services": {
+                    "$ref": "#/$defs/ServiceList"
+                },
+                "ContainsOldGroupVersions": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Service"
             }
         },
         "Boolean": {
@@ -2476,6 +2901,33 @@
                     "$ref": "#/$defs/String"
                 }
             }
+        },
+        "GetTraceSegmentDestinationResult": {
+            "type": "object",
+            "properties": {
+                "Destination": {
+                    "$ref": "#/$defs/TraceSegmentDestination"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TraceSegmentDestinationStatus"
+                }
+            }
+        },
+        "TraceSegmentDestination": {
+            "enum": [
+                "XRay",
+                "CloudWatchLogs"
+            ]
+        },
+        "TraceSegmentDestinationStatus": {
+            "enum": [
+                "PENDING",
+                "ACTIVE"
+            ]
+        },
+        "GetTraceSegmentDestinationRequest": {
+            "type": "object",
+            "properties": {}
         },
         "GetTraceSummariesResult": {
             "type": "object",
@@ -3003,6 +3455,86 @@
                 }
             }
         },
+        "ListRetrievedTracesResult": {
+            "type": "object",
+            "properties": {
+                "RetrievalStatus": {
+                    "$ref": "#/$defs/RetrievalStatus"
+                },
+                "TraceFormat": {
+                    "$ref": "#/$defs/TraceFormatType"
+                },
+                "Traces": {
+                    "$ref": "#/$defs/TraceSpanList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TraceFormatType": {
+            "enum": [
+                "XRAY",
+                "OTEL"
+            ]
+        },
+        "TraceSpanList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RetrievedTrace"
+            }
+        },
+        "RetrievedTrace": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/TraceId"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/NullableDouble"
+                },
+                "Spans": {
+                    "$ref": "#/$defs/SpanList"
+                }
+            }
+        },
+        "SpanList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Span"
+            }
+        },
+        "Span": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/SpanId"
+                },
+                "Document": {
+                    "$ref": "#/$defs/SpanDocument"
+                }
+            }
+        },
+        "SpanId": {
+            "type": "string"
+        },
+        "SpanDocument": {
+            "type": "string"
+        },
+        "ListRetrievedTracesRequest": {
+            "type": "object",
+            "properties": {
+                "RetrievalToken": {
+                    "$ref": "#/$defs/RetrievalToken"
+                },
+                "TraceFormat": {
+                    "$ref": "#/$defs/TraceFormatType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -3199,6 +3731,34 @@
         "TraceSegmentDocument": {
             "type": "string"
         },
+        "StartTraceRetrievalResult": {
+            "type": "object",
+            "properties": {
+                "RetrievalToken": {
+                    "$ref": "#/$defs/RetrievalToken"
+                }
+            }
+        },
+        "StartTraceRetrievalRequest": {
+            "type": "object",
+            "properties": {
+                "TraceIds": {
+                    "$ref": "#/$defs/TraceIdListForRetrieval"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "TraceIdListForRetrieval": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TraceId"
+            }
+        },
         "TagResourceResponse": {
             "type": "object",
             "properties": {}
@@ -3260,6 +3820,41 @@
                 }
             }
         },
+        "UpdateIndexingRuleResult": {
+            "type": "object",
+            "properties": {
+                "IndexingRule": {
+                    "$ref": "#/$defs/IndexingRule"
+                }
+            }
+        },
+        "UpdateIndexingRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String"
+                },
+                "Rule": {
+                    "$ref": "#/$defs/IndexingRuleValueUpdate"
+                }
+            }
+        },
+        "IndexingRuleValueUpdate": {
+            "type": "object",
+            "properties": {
+                "Probabilistic": {
+                    "$ref": "#/$defs/ProbabilisticRuleValueUpdate"
+                }
+            }
+        },
+        "ProbabilisticRuleValueUpdate": {
+            "type": "object",
+            "properties": {
+                "DesiredSamplingPercentage": {
+                    "$ref": "#/$defs/NullableDouble"
+                }
+            }
+        },
         "UpdateSamplingRuleResult": {
             "type": "object",
             "properties": {
@@ -3314,6 +3909,25 @@
                 },
                 "Attributes": {
                     "$ref": "#/$defs/AttributeMap"
+                }
+            }
+        },
+        "UpdateTraceSegmentDestinationResult": {
+            "type": "object",
+            "properties": {
+                "Destination": {
+                    "$ref": "#/$defs/TraceSegmentDestination"
+                },
+                "Status": {
+                    "$ref": "#/$defs/TraceSegmentDestinationStatus"
+                }
+            }
+        },
+        "UpdateTraceSegmentDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "Destination": {
+                    "$ref": "#/$defs/TraceSegmentDestination"
                 }
             }
         }

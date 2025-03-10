@@ -899,6 +899,41 @@
             }
         },
         {
+            "name": "DescribeClusterVersions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/cluster-versions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeClusterVersionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeClusterVersionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeEksAnywhereSubscription",
             "config": {
                 "http": {
@@ -2371,7 +2406,9 @@
                 "ADDON_UPDATE",
                 "VPC_CONFIG_UPDATE",
                 "ACCESS_CONFIG_UPDATE",
-                "UPGRADE_POLICY_UPDATE"
+                "UPGRADE_POLICY_UPDATE",
+                "ZONAL_SHIFT_CONFIG_UPDATE",
+                "AUTO_MODE_UPDATE"
             ]
         },
         "UpdateParams": {
@@ -2416,12 +2453,18 @@
                 "RESOLVE_CONFLICTS",
                 "MAX_UNAVAILABLE",
                 "MAX_UNAVAILABLE_PERCENTAGE",
+                "NODE_REPAIR_ENABLED",
+                "UPDATE_STRATEGY",
                 "CONFIGURATION_VALUES",
                 "SECURITY_GROUPS",
                 "SUBNETS",
                 "AUTHENTICATION_MODE",
                 "POD_IDENTITY_ASSOCIATIONS",
-                "UPGRADE_POLICY"
+                "UPGRADE_POLICY",
+                "ZONAL_SHIFT_CONFIG",
+                "COMPUTE_CONFIG",
+                "STORAGE_CONFIG",
+                "KUBERNETES_NETWORK_CONFIG"
             ]
         },
         "ErrorDetails": {
@@ -2906,6 +2949,18 @@
                 },
                 "upgradePolicy": {
                     "$ref": "#/$defs/UpgradePolicyResponse"
+                },
+                "zonalShiftConfig": {
+                    "$ref": "#/$defs/ZonalShiftConfigResponse"
+                },
+                "remoteNetworkConfig": {
+                    "$ref": "#/$defs/RemoteNetworkConfigResponse"
+                },
+                "computeConfig": {
+                    "$ref": "#/$defs/ComputeConfigResponse"
+                },
+                "storageConfig": {
+                    "$ref": "#/$defs/StorageConfigResponse"
                 }
             }
         },
@@ -2949,6 +3004,9 @@
                 },
                 "ipFamily": {
                     "$ref": "#/$defs/IpFamily"
+                },
+                "elasticLoadBalancing": {
+                    "$ref": "#/$defs/ElasticLoadBalancing"
                 }
             }
         },
@@ -2957,6 +3015,17 @@
                 "IPV4",
                 "IPV6"
             ]
+        },
+        "ElasticLoadBalancing": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                }
+            }
+        },
+        "BoxedBoolean": {
+            "type": "boolean"
         },
         "Logging": {
             "type": "object",
@@ -2997,9 +3066,6 @@
                 "CONTROLLER_MANAGER",
                 "SCHEDULER"
             ]
-        },
-        "BoxedBoolean": {
-            "type": "boolean"
         },
         "Identity": {
             "type": "object",
@@ -3160,6 +3226,83 @@
                 "EXTENDED"
             ]
         },
+        "ZonalShiftConfigResponse": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                }
+            }
+        },
+        "RemoteNetworkConfigResponse": {
+            "type": "object",
+            "properties": {
+                "remoteNodeNetworks": {
+                    "$ref": "#/$defs/RemoteNodeNetworkList"
+                },
+                "remotePodNetworks": {
+                    "$ref": "#/$defs/RemotePodNetworkList"
+                }
+            }
+        },
+        "RemoteNodeNetworkList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RemoteNodeNetwork"
+            }
+        },
+        "RemoteNodeNetwork": {
+            "type": "object",
+            "properties": {
+                "cidrs": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "RemotePodNetworkList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RemotePodNetwork"
+            }
+        },
+        "RemotePodNetwork": {
+            "type": "object",
+            "properties": {
+                "cidrs": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "ComputeConfigResponse": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "nodePools": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "nodeRoleArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StorageConfigResponse": {
+            "type": "object",
+            "properties": {
+                "blockStorage": {
+                    "$ref": "#/$defs/BlockStorage"
+                }
+            }
+        },
+        "BlockStorage": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                }
+            }
+        },
         "CreateClusterRequest": {
             "type": "object",
             "properties": {
@@ -3201,6 +3344,18 @@
                 },
                 "upgradePolicy": {
                     "$ref": "#/$defs/UpgradePolicyRequest"
+                },
+                "zonalShiftConfig": {
+                    "$ref": "#/$defs/ZonalShiftConfigRequest"
+                },
+                "remoteNetworkConfig": {
+                    "$ref": "#/$defs/RemoteNetworkConfigRequest"
+                },
+                "computeConfig": {
+                    "$ref": "#/$defs/ComputeConfigRequest"
+                },
+                "storageConfig": {
+                    "$ref": "#/$defs/StorageConfigRequest"
                 }
             }
         },
@@ -3232,6 +3387,9 @@
                 },
                 "ipFamily": {
                     "$ref": "#/$defs/IpFamily"
+                },
+                "elasticLoadBalancing": {
+                    "$ref": "#/$defs/ElasticLoadBalancing"
                 }
             }
         },
@@ -3273,6 +3431,47 @@
             "properties": {
                 "supportType": {
                     "$ref": "#/$defs/SupportType"
+                }
+            }
+        },
+        "ZonalShiftConfigRequest": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                }
+            }
+        },
+        "RemoteNetworkConfigRequest": {
+            "type": "object",
+            "properties": {
+                "remoteNodeNetworks": {
+                    "$ref": "#/$defs/RemoteNodeNetworkList"
+                },
+                "remotePodNetworks": {
+                    "$ref": "#/$defs/RemotePodNetworkList"
+                }
+            }
+        },
+        "ComputeConfigRequest": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "nodePools": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "nodeRoleArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "StorageConfigRequest": {
+            "type": "object",
+            "properties": {
+                "blockStorage": {
+                    "$ref": "#/$defs/BlockStorage"
                 }
             }
         },
@@ -3320,6 +3519,9 @@
                 "licenseArns": {
                     "$ref": "#/$defs/StringList"
                 },
+                "licenses": {
+                    "$ref": "#/$defs/LicenseList"
+                },
                 "tags": {
                     "$ref": "#/$defs/TagMap"
                 }
@@ -3349,6 +3551,23 @@
             "enum": [
                 "MONTHS"
             ]
+        },
+        "LicenseList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/License"
+            }
+        },
+        "License": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/String"
+                },
+                "token": {
+                    "$ref": "#/$defs/String"
+                }
+            }
         },
         "CreateEksAnywhereSubscriptionRequest": {
             "type": "object",
@@ -3590,6 +3809,9 @@
                 "updateConfig": {
                     "$ref": "#/$defs/NodegroupUpdateConfig"
                 },
+                "nodeRepairConfig": {
+                    "$ref": "#/$defs/NodeRepairConfig"
+                },
                 "launchTemplate": {
                     "$ref": "#/$defs/LaunchTemplateSpecification"
                 },
@@ -3804,7 +4026,8 @@
                 "UNKNOWN",
                 "AUTO_SCALING_GROUP_INSTANCE_REFRESH_ACTIVE",
                 "KUBERNETES_LABEL_INVALID",
-                "EC2_LAUNCH_TEMPLATE_VERSION_MAX_LIMIT_EXCEEDED"
+                "EC2_LAUNCH_TEMPLATE_VERSION_MAX_LIMIT_EXCEEDED",
+                "EC2_INSTANCE_TYPE_DOES_NOT_EXIST"
             ]
         },
         "NodegroupUpdateConfig": {
@@ -3815,6 +4038,9 @@
                 },
                 "maxUnavailablePercentage": {
                     "$ref": "#/$defs/PercentCapacity"
+                },
+                "updateStrategy": {
+                    "$ref": "#/$defs/NodegroupUpdateStrategies"
                 }
             }
         },
@@ -3825,6 +4051,20 @@
         "PercentCapacity": {
             "type": "integer",
             "format": "int32"
+        },
+        "NodegroupUpdateStrategies": {
+            "enum": [
+                "DEFAULT",
+                "MINIMAL"
+            ]
+        },
+        "NodeRepairConfig": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                }
+            }
         },
         "LaunchTemplateSpecification": {
             "type": "object",
@@ -3887,6 +4127,9 @@
                 },
                 "updateConfig": {
                     "$ref": "#/$defs/NodegroupUpdateConfig"
+                },
+                "nodeRepairConfig": {
+                    "$ref": "#/$defs/NodeRepairConfig"
                 },
                 "capacityType": {
                     "$ref": "#/$defs/CapacityTypes"
@@ -4245,6 +4488,9 @@
                 "architecture": {
                     "$ref": "#/$defs/StringList"
                 },
+                "computeTypes": {
+                    "$ref": "#/$defs/StringList"
+                },
                 "compatibilities": {
                     "$ref": "#/$defs/Compatibilities"
                 },
@@ -4321,6 +4567,105 @@
                     "$ref": "#/$defs/String"
                 }
             }
+        },
+        "DescribeClusterVersionsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "clusterVersions": {
+                    "$ref": "#/$defs/ClusterVersionList"
+                }
+            }
+        },
+        "ClusterVersionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ClusterVersionInformation"
+            }
+        },
+        "ClusterVersionInformation": {
+            "type": "object",
+            "properties": {
+                "clusterVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "clusterType": {
+                    "$ref": "#/$defs/String"
+                },
+                "defaultPlatformVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "defaultVersion": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "releaseDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endOfStandardSupportDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endOfExtendedSupportDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/ClusterVersionStatus"
+                },
+                "versionStatus": {
+                    "$ref": "#/$defs/VersionStatus"
+                },
+                "kubernetesPatchVersion": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ClusterVersionStatus": {
+            "enum": [
+                "unsupported",
+                "standard_support",
+                "extended_support"
+            ]
+        },
+        "VersionStatus": {
+            "enum": [
+                "UNSUPPORTED",
+                "STANDARD_SUPPORT",
+                "EXTENDED_SUPPORT"
+            ]
+        },
+        "DescribeClusterVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "clusterType": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/DescribeClusterVersionMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "defaultOnly": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "includeAll": {
+                    "$ref": "#/$defs/BoxedBoolean"
+                },
+                "clusterVersions": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "status": {
+                    "$ref": "#/$defs/ClusterVersionStatus"
+                },
+                "versionStatus": {
+                    "$ref": "#/$defs/VersionStatus"
+                }
+            }
+        },
+        "DescribeClusterVersionMaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "DescribeEksAnywhereSubscriptionResponse": {
             "type": "object",
@@ -4547,6 +4892,9 @@
             "properties": {
                 "deprecationDetails": {
                     "$ref": "#/$defs/DeprecationDetails"
+                },
+                "addonCompatibilityDetails": {
+                    "$ref": "#/$defs/AddonCompatibilityDetails"
                 }
             }
         },
@@ -4593,6 +4941,23 @@
                 },
                 "lastRequestTime": {
                     "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "AddonCompatibilityDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AddonCompatibilityDetail"
+            }
+        },
+        "AddonCompatibilityDetail": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "compatibleVersions": {
+                    "$ref": "#/$defs/StringList"
                 }
             }
         },
@@ -5426,6 +5791,18 @@
                 },
                 "upgradePolicy": {
                     "$ref": "#/$defs/UpgradePolicyRequest"
+                },
+                "zonalShiftConfig": {
+                    "$ref": "#/$defs/ZonalShiftConfigRequest"
+                },
+                "computeConfig": {
+                    "$ref": "#/$defs/ComputeConfigRequest"
+                },
+                "kubernetesNetworkConfig": {
+                    "$ref": "#/$defs/KubernetesNetworkConfigRequest"
+                },
+                "storageConfig": {
+                    "$ref": "#/$defs/StorageConfigRequest"
                 }
             }
         },
@@ -5509,6 +5886,9 @@
                 },
                 "updateConfig": {
                     "$ref": "#/$defs/NodegroupUpdateConfig"
+                },
+                "nodeRepairConfig": {
+                    "$ref": "#/$defs/NodeRepairConfig"
                 },
                 "clientRequestToken": {
                     "$ref": "#/$defs/String"

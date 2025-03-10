@@ -1249,6 +1249,12 @@
                 },
                 "ChimeSdkMeetingConfiguration": {
                     "$ref": "#/$defs/ChimeSdkMeetingConfiguration"
+                },
+                "SseAwsKeyManagementParams": {
+                    "$ref": "#/$defs/SseAwsKeyManagementParams"
+                },
+                "SinkIamRoleArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -1602,6 +1608,20 @@
                 "Portrait"
             ]
         },
+        "SseAwsKeyManagementParams": {
+            "type": "object",
+            "properties": {
+                "AwsKmsKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "AwsKmsEncryptionContext": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
         "CreateMediaCapturePipelineRequest": {
             "type": "object",
             "properties": {
@@ -1622,6 +1642,12 @@
                 },
                 "ChimeSdkMeetingConfiguration": {
                     "$ref": "#/$defs/ChimeSdkMeetingConfiguration"
+                },
+                "SseAwsKeyManagementParams": {
+                    "$ref": "#/$defs/SseAwsKeyManagementParams"
+                },
+                "SinkIamRoleArn": {
+                    "$ref": "#/$defs/Arn"
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
@@ -2008,9 +2034,6 @@
             "additionalProperties": {
                 "$ref": "#/$defs/String"
             }
-        },
-        "String": {
-            "type": "string"
         },
         "KinesisVideoStreamRecordingSourceRuntimeConfiguration": {
             "type": "object",

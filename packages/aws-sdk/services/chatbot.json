@@ -2,6 +2,41 @@
     "name": "chatbot",
     "commands": [
         {
+            "name": "AssociateToConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/associate-to-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateToConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateToConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateChimeWebhookConfiguration",
             "config": {
                 "http": {
@@ -492,6 +527,41 @@
             }
         },
         {
+            "name": "DisassociateFromConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/disassociate-from-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateFromConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateFromConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetAccountPreferences",
             "config": {
                 "http": {
@@ -546,6 +616,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetTeamsChannelConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/list-associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssociationsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssociationsRequest"
                         }
                     }
                 },
@@ -958,6 +1063,27 @@
             "type": "string",
             "format": "binary"
         },
+        "AssociateToConfigurationResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "AssociateToConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "ChatConfiguration": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
+                }
+            }
+        },
+        "ResourceIdentifier": {
+            "type": "string"
+        },
+        "ChatConfigurationArn": {
+            "type": "string"
+        },
         "CreateChimeWebhookConfigurationResult": {
             "type": "object",
             "properties": {
@@ -999,9 +1125,6 @@
             }
         },
         "ChimeWebhookDescription": {
-            "type": "string"
-        },
-        "ChatConfigurationArn": {
             "type": "string"
         },
         "Arn": {
@@ -1566,6 +1689,21 @@
                 }
             }
         },
+        "DisassociateFromConfigurationResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisassociateFromConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "ChatConfiguration": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
+                }
+            }
+        },
         "GetAccountPreferencesResult": {
             "type": "object",
             "properties": {
@@ -1602,6 +1740,45 @@
             "properties": {
                 "ChatConfigurationArn": {
                     "$ref": "#/$defs/ChatConfigurationArn"
+                }
+            }
+        },
+        "ListAssociationsResult": {
+            "type": "object",
+            "properties": {
+                "Associations": {
+                    "$ref": "#/$defs/AssociationList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssociationListing"
+            }
+        },
+        "AssociationListing": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "ChatConfiguration": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },

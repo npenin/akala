@@ -1506,6 +1506,9 @@
                 },
                 "Volume": {
                     "$ref": "#/$defs/Volume"
+                },
+                "SizeInBytes": {
+                    "$ref": "#/$defs/SizeInBytes"
                 }
             }
         },
@@ -1683,7 +1686,8 @@
         "StorageType": {
             "enum": [
                 "SSD",
-                "HDD"
+                "HDD",
+                "INTELLIGENT_TIERING"
             ]
         },
         "VpcId": {
@@ -1927,6 +1931,9 @@
                 },
                 "MetadataConfiguration": {
                     "$ref": "#/$defs/FileSystemLustreMetadataConfiguration"
+                },
+                "EfaEnabled": {
+                    "$ref": "#/$defs/Flag"
                 }
             }
         },
@@ -2847,6 +2854,9 @@
                 },
                 "EndpointIpAddress": {
                     "$ref": "#/$defs/IpAddress"
+                },
+                "ReadCacheConfiguration": {
+                    "$ref": "#/$defs/OpenZFSReadCacheConfiguration"
                 }
             }
         },
@@ -2857,6 +2867,24 @@
                 "SINGLE_AZ_HA_1",
                 "SINGLE_AZ_HA_2",
                 "MULTI_AZ_1"
+            ]
+        },
+        "OpenZFSReadCacheConfiguration": {
+            "type": "object",
+            "properties": {
+                "SizingMode": {
+                    "$ref": "#/$defs/OpenZFSReadCacheSizingMode"
+                },
+                "SizeGiB": {
+                    "$ref": "#/$defs/StorageCapacity"
+                }
+            }
+        },
+        "OpenZFSReadCacheSizingMode": {
+            "enum": [
+                "NO_CACHE",
+                "USER_PROVISIONED",
+                "PROPORTIONAL_TO_THROUGHPUT_CAPACITY"
             ]
         },
         "ActiveDirectoryBackupAttributes": {
@@ -2881,6 +2909,10 @@
                 "FILE_SYSTEM",
                 "VOLUME"
             ]
+        },
+        "SizeInBytes": {
+            "type": "integer",
+            "format": "int64"
         },
         "CopyBackupRequest": {
             "type": "object",
@@ -3783,6 +3815,9 @@
                 "DataCompressionType": {
                     "$ref": "#/$defs/DataCompressionType"
                 },
+                "EfaEnabled": {
+                    "$ref": "#/$defs/Flag"
+                },
                 "LogConfiguration": {
                     "$ref": "#/$defs/LustreLogCreateConfiguration"
                 },
@@ -3895,6 +3930,9 @@
                 },
                 "RouteTableIds": {
                     "$ref": "#/$defs/RouteTableIds"
+                },
+                "ReadCacheConfiguration": {
+                    "$ref": "#/$defs/OpenZFSReadCacheConfiguration"
                 }
             }
         },
@@ -5505,6 +5543,9 @@
                 },
                 "StorageType": {
                     "$ref": "#/$defs/StorageType"
+                },
+                "FileSystemTypeVersion": {
+                    "$ref": "#/$defs/FileSystemTypeVersion"
                 }
             }
         },
@@ -5664,6 +5705,9 @@
                 },
                 "RemoveRouteTableIds": {
                     "$ref": "#/$defs/RouteTableIds"
+                },
+                "ReadCacheConfiguration": {
+                    "$ref": "#/$defs/OpenZFSReadCacheConfiguration"
                 }
             }
         },

@@ -205,6 +205,35 @@
             }
         },
         {
+            "name": "CreateIdentityCenterApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkMailService.CreateIdentityCenterApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateIdentityCenterApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateIdentityCenterApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateImpersonationRole",
             "config": {
                 "http": {
@@ -495,6 +524,64 @@
             }
         },
         {
+            "name": "DeleteIdentityCenterApplication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkMailService.DeleteIdentityCenterApplication"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteIdentityCenterApplicationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIdentityCenterApplicationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIdentityProviderConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkMailService.DeleteIdentityProviderConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteIdentityProviderConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIdentityProviderConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteImpersonationRole",
             "config": {
                 "http": {
@@ -634,6 +721,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteOrganizationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeletePersonalAccessToken",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkMailService.DeletePersonalAccessToken"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeletePersonalAccessTokenResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeletePersonalAccessTokenRequest"
                         }
                     }
                 }
@@ -866,6 +982,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeGroupRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeIdentityProviderConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkMailService.DescribeIdentityProviderConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeIdentityProviderConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeIdentityProviderConfigurationRequest"
                         }
                     }
                 }
@@ -1307,6 +1452,35 @@
             }
         },
         {
+            "name": "GetPersonalAccessTokenMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkMailService.GetPersonalAccessTokenMetadata"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPersonalAccessTokenMetadataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPersonalAccessTokenMetadataRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListAccessControlRules",
             "config": {
                 "http": {
@@ -1684,6 +1858,35 @@
             }
         },
         {
+            "name": "ListPersonalAccessTokens",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkMailService.ListPersonalAccessTokens"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPersonalAccessTokensResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPersonalAccessTokensRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListResourceDelegates",
             "config": {
                 "http": {
@@ -1852,6 +2055,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/PutEmailMonitoringConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutIdentityProviderConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkMailService.PutIdentityProviderConfiguration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutIdentityProviderConfigurationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutIdentityProviderConfigurationRequest"
                         }
                     }
                 }
@@ -2695,6 +2927,37 @@
         "Boolean": {
             "type": "boolean"
         },
+        "CreateIdentityCenterApplicationResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationArn": {
+                    "$ref": "#/$defs/ApplicationArn"
+                }
+            }
+        },
+        "ApplicationArn": {
+            "type": "string"
+        },
+        "CreateIdentityCenterApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/IdentityCenterApplicationName"
+                },
+                "InstanceArn": {
+                    "$ref": "#/$defs/InstanceArn"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyClientToken"
+                }
+            }
+        },
+        "IdentityCenterApplicationName": {
+            "type": "string"
+        },
+        "InstanceArn": {
+            "type": "string"
+        },
         "CreateImpersonationRoleResponse": {
             "type": "object",
             "properties": {
@@ -3028,6 +3291,9 @@
                 },
                 "HiddenFromGlobalAddressList": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "IdentityProviderUserId": {
+                    "$ref": "#/$defs/IdentityProviderUserId"
                 }
             }
         },
@@ -3044,6 +3310,9 @@
                 "SYSTEM_USER",
                 "REMOTE_USER"
             ]
+        },
+        "IdentityProviderUserId": {
+            "type": "string"
         },
         "DeleteAccessControlRuleResponse": {
             "type": "object",
@@ -3120,6 +3389,30 @@
                 },
                 "GroupId": {
                     "$ref": "#/$defs/EntityIdentifier"
+                }
+            }
+        },
+        "DeleteIdentityCenterApplicationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteIdentityCenterApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationArn": {
+                    "$ref": "#/$defs/ApplicationArn"
+                }
+            }
+        },
+        "DeleteIdentityProviderConfigurationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteIdentityProviderConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationId"
                 }
             }
         },
@@ -3220,8 +3513,29 @@
                 },
                 "ForceDelete": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "DeleteIdentityCenterApplication": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
+        },
+        "DeletePersonalAccessTokenResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeletePersonalAccessTokenRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationId"
+                },
+                "PersonalAccessTokenId": {
+                    "$ref": "#/$defs/PersonalAccessTokenId"
+                }
+            }
+        },
+        "PersonalAccessTokenId": {
+            "type": "string"
         },
         "DeleteResourceResponse": {
             "type": "object",
@@ -3406,6 +3720,66 @@
                 },
                 "GroupId": {
                     "$ref": "#/$defs/EntityIdentifier"
+                }
+            }
+        },
+        "DescribeIdentityProviderConfigurationResponse": {
+            "type": "object",
+            "properties": {
+                "AuthenticationMode": {
+                    "$ref": "#/$defs/IdentityProviderAuthenticationMode"
+                },
+                "IdentityCenterConfiguration": {
+                    "$ref": "#/$defs/IdentityCenterConfiguration"
+                },
+                "PersonalAccessTokenConfiguration": {
+                    "$ref": "#/$defs/PersonalAccessTokenConfiguration"
+                }
+            }
+        },
+        "IdentityProviderAuthenticationMode": {
+            "enum": [
+                "IDENTITY_PROVIDER_ONLY",
+                "IDENTITY_PROVIDER_AND_DIRECTORY"
+            ]
+        },
+        "IdentityCenterConfiguration": {
+            "type": "object",
+            "properties": {
+                "InstanceArn": {
+                    "$ref": "#/$defs/InstanceArn"
+                },
+                "ApplicationArn": {
+                    "$ref": "#/$defs/ApplicationArn"
+                }
+            }
+        },
+        "PersonalAccessTokenConfiguration": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/PersonalAccessTokenConfigurationStatus"
+                },
+                "LifetimeInDays": {
+                    "$ref": "#/$defs/PersonalAccessTokenLifetimeInDays"
+                }
+            }
+        },
+        "PersonalAccessTokenConfigurationStatus": {
+            "enum": [
+                "ACTIVE",
+                "INACTIVE"
+            ]
+        },
+        "PersonalAccessTokenLifetimeInDays": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeIdentityProviderConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationId"
                 }
             }
         },
@@ -3681,8 +4055,17 @@
                 },
                 "Office": {
                     "$ref": "#/$defs/UserAttribute"
+                },
+                "IdentityProviderUserId": {
+                    "$ref": "#/$defs/IdentityProviderUserId"
+                },
+                "IdentityProviderIdentityStoreId": {
+                    "$ref": "#/$defs/IdentityProviderIdentityStoreId"
                 }
             }
+        },
+        "IdentityProviderIdentityStoreId": {
+            "type": "string"
         },
         "DescribeUserRequest": {
             "type": "object",
@@ -4097,6 +4480,55 @@
                 },
                 "DeviceId": {
                     "$ref": "#/$defs/DeviceId"
+                }
+            }
+        },
+        "GetPersonalAccessTokenMetadataResponse": {
+            "type": "object",
+            "properties": {
+                "PersonalAccessTokenId": {
+                    "$ref": "#/$defs/PersonalAccessTokenId"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/WorkMailIdentifier"
+                },
+                "Name": {
+                    "$ref": "#/$defs/PersonalAccessTokenName"
+                },
+                "DateCreated": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DateLastUsed": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExpiresTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Scopes": {
+                    "$ref": "#/$defs/PersonalAccessTokenScopeList"
+                }
+            }
+        },
+        "PersonalAccessTokenName": {
+            "type": "string"
+        },
+        "PersonalAccessTokenScopeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PersonalAccessTokenScope"
+            }
+        },
+        "PersonalAccessTokenScope": {
+            "type": "string"
+        },
+        "GetPersonalAccessTokenMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationId"
+                },
+                "PersonalAccessTokenId": {
+                    "$ref": "#/$defs/PersonalAccessTokenId"
                 }
             }
         },
@@ -4892,6 +5324,66 @@
                 }
             }
         },
+        "ListPersonalAccessTokensResponse": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "PersonalAccessTokenSummaries": {
+                    "$ref": "#/$defs/PersonalAccessTokenSummaryList"
+                }
+            }
+        },
+        "PersonalAccessTokenSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PersonalAccessTokenSummary"
+            }
+        },
+        "PersonalAccessTokenSummary": {
+            "type": "object",
+            "properties": {
+                "PersonalAccessTokenId": {
+                    "$ref": "#/$defs/PersonalAccessTokenId"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/WorkMailIdentifier"
+                },
+                "Name": {
+                    "$ref": "#/$defs/PersonalAccessTokenName"
+                },
+                "DateCreated": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "DateLastUsed": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ExpiresTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Scopes": {
+                    "$ref": "#/$defs/PersonalAccessTokenScopeList"
+                }
+            }
+        },
+        "ListPersonalAccessTokensRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationId"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/EntityIdentifier"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
         "ListResourceDelegatesResponse": {
             "type": "object",
             "properties": {
@@ -5096,6 +5588,12 @@
                 },
                 "DisabledDate": {
                     "$ref": "#/$defs/Timestamp"
+                },
+                "IdentityProviderUserId": {
+                    "$ref": "#/$defs/IdentityProviderUserId"
+                },
+                "IdentityProviderIdentityStoreId": {
+                    "$ref": "#/$defs/IdentityProviderIdentityStoreId"
                 }
             }
         },
@@ -5130,8 +5628,14 @@
                 },
                 "State": {
                     "$ref": "#/$defs/EntityState"
+                },
+                "IdentityProviderUserIdPrefix": {
+                    "$ref": "#/$defs/IdentityProviderUserIdPrefix"
                 }
             }
+        },
+        "IdentityProviderUserIdPrefix": {
+            "type": "string"
         },
         "PutAccessControlRuleResponse": {
             "type": "object",
@@ -5193,6 +5697,27 @@
                 },
                 "LogGroupArn": {
                     "$ref": "#/$defs/LogGroupArn"
+                }
+            }
+        },
+        "PutIdentityProviderConfigurationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutIdentityProviderConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationId"
+                },
+                "AuthenticationMode": {
+                    "$ref": "#/$defs/IdentityProviderAuthenticationMode"
+                },
+                "IdentityCenterConfiguration": {
+                    "$ref": "#/$defs/IdentityCenterConfiguration"
+                },
+                "PersonalAccessTokenConfiguration": {
+                    "$ref": "#/$defs/PersonalAccessTokenConfiguration"
                 }
             }
         },
@@ -5696,8 +6221,14 @@
                 },
                 "Office": {
                     "$ref": "#/$defs/UserAttribute"
+                },
+                "IdentityProviderUserId": {
+                    "$ref": "#/$defs/IdentityProviderUserIdForUpdate"
                 }
             }
+        },
+        "IdentityProviderUserIdForUpdate": {
+            "type": "string"
         }
     },
     "aws": {

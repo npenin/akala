@@ -2,6 +2,45 @@
     "name": "qbusiness",
     "commands": [
         {
+            "name": "AssociatePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/applications/{applicationId}/policy"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociatePermissionResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociatePermissionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "BatchDeleteDocument",
             "config": {
                 "http": {
@@ -68,6 +107,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/BatchPutDocumentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CancelSubscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "subscriptionId": "route.subscriptionId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/applications/{applicationId}/subscriptions/{subscriptionId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelSubscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0.subscriptionId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelSubscriptionRequest"
                         }
                     }
                 },
@@ -162,6 +242,45 @@
             }
         },
         {
+            "name": "CreateSubscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/applications/{applicationId}/subscriptions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateSubscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateSubscriptionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateUser",
             "config": {
                 "http": {
@@ -185,6 +304,49 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateUserRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAttachment",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "conversationId": "route.conversationId",
+                            "attachmentId": "route.attachmentId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/applications/{applicationId}/conversations/{conversationId}/attachments/{attachmentId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteAttachmentResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0.conversationId",
+                        "param.0.attachmentId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAttachmentRequest"
                         }
                     }
                 },
@@ -365,6 +527,47 @@
             }
         },
         {
+            "name": "DisassociatePermission",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "statementId": "route.statementId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/applications/{applicationId}/policy/{statementId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociatePermissionResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0.statementId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociatePermissionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetChatControlsConfiguration",
             "config": {
                 "http": {
@@ -447,6 +650,90 @@
             }
         },
         {
+            "name": "GetMedia",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "conversationId": "route.conversationId",
+                            "messageId": "route.messageId",
+                            "mediaId": "route.mediaId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/applications/{applicationId}/conversations/{conversationId}/messages/{messageId}/media/{mediaId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMediaResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0.conversationId",
+                        "param.0.messageId",
+                        "param.0.mediaId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMediaRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/applications/{applicationId}/policy"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPolicyRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetUser",
             "config": {
                 "http": {
@@ -472,6 +759,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetUserRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAttachments",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/applications/{applicationId}/attachments"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAttachmentsResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAttachmentsRequest"
                         }
                     }
                 },
@@ -693,6 +1019,160 @@
             }
         },
         {
+            "name": "ListPluginActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "pluginId": "route.pluginId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/applications/{applicationId}/plugins/{pluginId}/actions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPluginActionsResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0.pluginId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPluginActionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPluginTypeActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "pluginType": "route.pluginType",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/pluginTypes/{pluginType}/actions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPluginTypeActionsResponse"
+                    },
+                    "inject": [
+                        "param.0.pluginType",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPluginTypeActionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPluginTypeMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/pluginTypeMetadata"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPluginTypeMetadataResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPluginTypeMetadataRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSubscriptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/applications/{applicationId}/subscriptions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSubscriptionsResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSubscriptionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListTagsForResource",
             "config": {
                 "http": {
@@ -800,6 +1280,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/PutGroupRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "SearchRelevantContent",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/applications/{applicationId}/relevant-content"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchRelevantContentResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchRelevantContentRequest"
                         }
                     }
                 },
@@ -1019,6 +1538,47 @@
             }
         },
         {
+            "name": "UpdateSubscription",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "applicationId": "route.applicationId",
+                            "subscriptionId": "route.subscriptionId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/applications/{applicationId}/subscriptions/{subscriptionId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateSubscriptionResponse"
+                    },
+                    "inject": [
+                        "param.0.applicationId",
+                        "param.0.subscriptionId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateSubscriptionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateUser",
             "config": {
                 "http": {
@@ -1106,6 +1666,52 @@
             "type": "string",
             "format": "binary"
         },
+        "AssociatePermissionResponse": {
+            "type": "object",
+            "properties": {
+                "statement": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "AssociatePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "statementId": {
+                    "$ref": "#/$defs/StatementId"
+                },
+                "actions": {
+                    "$ref": "#/$defs/QIamActions"
+                },
+                "principal": {
+                    "$ref": "#/$defs/PrincipalRoleArn"
+                }
+            }
+        },
+        "ApplicationId": {
+            "type": "string"
+        },
+        "StatementId": {
+            "type": "string"
+        },
+        "QIamActions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QIamAction"
+            }
+        },
+        "QIamAction": {
+            "type": "string"
+        },
+        "PrincipalRoleArn": {
+            "type": "string"
+        },
         "BatchDeleteDocumentResponse": {
             "type": "object",
             "properties": {
@@ -1178,9 +1784,6 @@
                     "$ref": "#/$defs/ExecutionId"
                 }
             }
-        },
-        "ApplicationId": {
-            "type": "string"
         },
         "IndexId": {
             "type": "string"
@@ -1259,6 +1862,9 @@
                 },
                 "documentEnrichmentConfiguration": {
                     "$ref": "#/$defs/DocumentEnrichmentConfiguration"
+                },
+                "mediaExtractionConfiguration": {
+                    "$ref": "#/$defs/MediaExtractionConfiguration"
                 }
             }
         },
@@ -1307,9 +1913,6 @@
             "items": {
                 "$ref": "#/$defs/String"
             }
-        },
-        "String": {
-            "type": "string"
         },
         "Long": {
             "type": "integer",
@@ -1573,6 +2176,107 @@
         "RoleArn": {
             "type": "string"
         },
+        "MediaExtractionConfiguration": {
+            "type": "object",
+            "properties": {
+                "imageExtractionConfiguration": {
+                    "$ref": "#/$defs/ImageExtractionConfiguration"
+                },
+                "audioExtractionConfiguration": {
+                    "$ref": "#/$defs/AudioExtractionConfiguration"
+                },
+                "videoExtractionConfiguration": {
+                    "$ref": "#/$defs/VideoExtractionConfiguration"
+                }
+            }
+        },
+        "ImageExtractionConfiguration": {
+            "type": "object",
+            "properties": {
+                "imageExtractionStatus": {
+                    "$ref": "#/$defs/ImageExtractionStatus"
+                }
+            }
+        },
+        "ImageExtractionStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "AudioExtractionConfiguration": {
+            "type": "object",
+            "properties": {
+                "audioExtractionStatus": {
+                    "$ref": "#/$defs/AudioExtractionStatus"
+                }
+            }
+        },
+        "AudioExtractionStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "VideoExtractionConfiguration": {
+            "type": "object",
+            "properties": {
+                "videoExtractionStatus": {
+                    "$ref": "#/$defs/VideoExtractionStatus"
+                }
+            }
+        },
+        "VideoExtractionStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "CancelSubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "subscriptionArn": {
+                    "$ref": "#/$defs/SubscriptionArn"
+                },
+                "currentSubscription": {
+                    "$ref": "#/$defs/SubscriptionDetails"
+                },
+                "nextSubscription": {
+                    "$ref": "#/$defs/SubscriptionDetails"
+                }
+            }
+        },
+        "SubscriptionArn": {
+            "type": "string"
+        },
+        "SubscriptionDetails": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/SubscriptionType"
+                }
+            }
+        },
+        "SubscriptionType": {
+            "enum": [
+                "Q_LITE",
+                "Q_BUSINESS"
+            ]
+        },
+        "CancelSubscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "subscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                }
+            }
+        },
+        "SubscriptionId": {
+            "type": "string"
+        },
         "ChatOutput": {
             "type": "object",
             "properties": {
@@ -1694,6 +2398,15 @@
                 },
                 "snippetExcerpt": {
                     "$ref": "#/$defs/SnippetExcerpt"
+                },
+                "mediaId": {
+                    "$ref": "#/$defs/SourceAttributionMediaId"
+                },
+                "mediaMimeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "sourceDetails": {
+                    "$ref": "#/$defs/SourceDetails"
                 }
             }
         },
@@ -1707,6 +2420,89 @@
         },
         "SnippetExcerptText": {
             "type": "string"
+        },
+        "SourceAttributionMediaId": {
+            "type": "string"
+        },
+        "SourceDetails": {
+            "type": "object",
+            "properties": {
+                "imageSourceDetails": {
+                    "$ref": "#/$defs/ImageSourceDetails"
+                },
+                "audioSourceDetails": {
+                    "$ref": "#/$defs/AudioSourceDetails"
+                },
+                "videoSourceDetails": {
+                    "$ref": "#/$defs/VideoSourceDetails"
+                }
+            }
+        },
+        "ImageSourceDetails": {
+            "type": "object",
+            "properties": {
+                "mediaId": {
+                    "$ref": "#/$defs/MediaId"
+                },
+                "mediaMimeType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "MediaId": {
+            "type": "string"
+        },
+        "AudioSourceDetails": {
+            "type": "object",
+            "properties": {
+                "mediaId": {
+                    "$ref": "#/$defs/MediaId"
+                },
+                "mediaMimeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "startTimeMilliseconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "endTimeMilliseconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "audioExtractionType": {
+                    "$ref": "#/$defs/AudioExtractionType"
+                }
+            }
+        },
+        "AudioExtractionType": {
+            "enum": [
+                "TRANSCRIPT",
+                "SUMMARY"
+            ]
+        },
+        "VideoSourceDetails": {
+            "type": "object",
+            "properties": {
+                "mediaId": {
+                    "$ref": "#/$defs/MediaId"
+                },
+                "mediaMimeType": {
+                    "$ref": "#/$defs/String"
+                },
+                "startTimeMilliseconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "endTimeMilliseconds": {
+                    "$ref": "#/$defs/Long"
+                },
+                "videoExtractionType": {
+                    "$ref": "#/$defs/VideoExtractionType"
+                }
+            }
+        },
+        "VideoExtractionType": {
+            "enum": [
+                "TRANSCRIPT",
+                "SUMMARY"
+            ]
         },
         "ActionReviewEvent": {
             "type": "object",
@@ -1743,7 +2539,19 @@
                 "SALESFORCE",
                 "JIRA",
                 "ZENDESK",
-                "CUSTOM"
+                "CUSTOM",
+                "QUICKSIGHT",
+                "SERVICENOW_NOW_PLATFORM",
+                "JIRA_CLOUD",
+                "SALESFORCE_CRM",
+                "ZENDESK_SUITE",
+                "ATLASSIAN_CONFLUENCE",
+                "GOOGLE_CALENDAR",
+                "MICROSOFT_TEAMS",
+                "MICROSOFT_EXCHANGE",
+                "PAGERDUTY_ADVANCE",
+                "SMARTSHEET",
+                "ASANA"
             ]
         },
         "ActionReviewPayload": {
@@ -1776,6 +2584,9 @@
                 "allowedFormat": {
                     "$ref": "#/$defs/String"
                 },
+                "arrayItemJsonSchema": {
+                    "$ref": "#/$defs/ActionReviewPayloadFieldArrayItemJsonSchema"
+                },
                 "required": {
                     "$ref": "#/$defs/smithy.api#Boolean"
                 }
@@ -1807,6 +2618,7 @@
                 }
             }
         },
+        "ActionReviewPayloadFieldArrayItemJsonSchema": {},
         "ActionPayloadFieldNameSeparator": {
             "type": "string"
         },
@@ -1838,6 +2650,12 @@
                 },
                 "error": {
                     "$ref": "#/$defs/ErrorDetail"
+                },
+                "attachmentId": {
+                    "$ref": "#/$defs/AttachmentId"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
                 }
             }
         },
@@ -1847,8 +2665,11 @@
         "AttachmentStatus": {
             "enum": [
                 "FAILED",
-                "SUCCEEDED"
+                "SUCCESS"
             ]
+        },
+        "AttachmentId": {
+            "type": "string"
         },
         "AuthChallengeRequestEvent": {
             "type": "object",
@@ -2019,17 +2840,39 @@
         "AttachmentInput": {
             "type": "object",
             "properties": {
+                "data": {
+                    "$ref": "#/$defs/Blob"
+                },
                 "name": {
                     "$ref": "#/$defs/AttachmentName"
                 },
-                "data": {
-                    "$ref": "#/$defs/Blob"
+                "copyFrom": {
+                    "$ref": "#/$defs/CopyFromSource"
                 }
             }
         },
         "Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "CopyFromSource": {
+            "type": "object",
+            "properties": {
+                "conversation": {
+                    "$ref": "#/$defs/ConversationSource"
+                }
+            }
+        },
+        "ConversationSource": {
+            "type": "object",
+            "properties": {
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "attachmentId": {
+                    "$ref": "#/$defs/AttachmentId"
+                }
+            }
         },
         "ActionExecutionEvent": {
             "type": "object",
@@ -2212,6 +3055,57 @@
                 }
             }
         },
+        "CreateSubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "subscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "subscriptionArn": {
+                    "$ref": "#/$defs/SubscriptionArn"
+                },
+                "currentSubscription": {
+                    "$ref": "#/$defs/SubscriptionDetails"
+                },
+                "nextSubscription": {
+                    "$ref": "#/$defs/SubscriptionDetails"
+                }
+            }
+        },
+        "CreateSubscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "principal": {
+                    "$ref": "#/$defs/SubscriptionPrincipal"
+                },
+                "type": {
+                    "$ref": "#/$defs/SubscriptionType"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "SubscriptionPrincipal": {
+            "type": "object",
+            "properties": {
+                "user": {
+                    "$ref": "#/$defs/UserIdentifier"
+                },
+                "group": {
+                    "$ref": "#/$defs/GroupIdentifier"
+                }
+            }
+        },
+        "UserIdentifier": {
+            "type": "string"
+        },
+        "GroupIdentifier": {
+            "type": "string"
+        },
         "CreateUserResponse": {
             "type": "object",
             "properties": {}
@@ -2250,6 +3144,27 @@
                 },
                 "userId": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteAttachmentResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteAttachmentRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "attachmentId": {
+                    "$ref": "#/$defs/AttachmentId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
                 }
             }
         },
@@ -2319,11 +3234,29 @@
                 }
             }
         },
+        "DisassociatePermissionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisassociatePermissionRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "statementId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "GetChatControlsConfigurationResponse": {
             "type": "object",
             "properties": {
                 "responseScope": {
                     "$ref": "#/$defs/ResponseScope"
+                },
+                "orchestrationConfiguration": {
+                    "$ref": "#/$defs/AppliedOrchestrationConfiguration"
                 },
                 "blockedPhrases": {
                     "$ref": "#/$defs/BlockedPhrasesConfiguration"
@@ -2343,6 +3276,20 @@
             "enum": [
                 "ENTERPRISE_CONTENT_ONLY",
                 "EXTENDED_KNOWLEDGE_ENABLED"
+            ]
+        },
+        "AppliedOrchestrationConfiguration": {
+            "type": "object",
+            "properties": {
+                "control": {
+                    "$ref": "#/$defs/OrchestrationControl"
+                }
+            }
+        },
+        "OrchestrationControl": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
             ]
         },
         "BlockedPhrasesConfiguration": {
@@ -2588,6 +3535,50 @@
                 }
             }
         },
+        "GetMediaResponse": {
+            "type": "object",
+            "properties": {
+                "mediaBytes": {
+                    "$ref": "#/$defs/Blob"
+                },
+                "mediaMimeType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetMediaRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "mediaId": {
+                    "$ref": "#/$defs/MediaId"
+                }
+            }
+        },
+        "GetPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "policy": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                }
+            }
+        },
         "GetUserResponse": {
             "type": "object",
             "properties": {
@@ -2606,6 +3597,82 @@
                     "$ref": "#/$defs/String"
                 }
             }
+        },
+        "ListAttachmentsResponse": {
+            "type": "object",
+            "properties": {
+                "attachments": {
+                    "$ref": "#/$defs/AttachmentList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "AttachmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Attachment"
+            }
+        },
+        "Attachment": {
+            "type": "object",
+            "properties": {
+                "attachmentId": {
+                    "$ref": "#/$defs/AttachmentId"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "name": {
+                    "$ref": "#/$defs/AttachmentName"
+                },
+                "copyFrom": {
+                    "$ref": "#/$defs/CopyFromSource"
+                },
+                "fileType": {
+                    "$ref": "#/$defs/String"
+                },
+                "fileSize": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "md5chksum": {
+                    "$ref": "#/$defs/String"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/AttachmentStatus"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorDetail"
+                }
+            }
+        },
+        "ListAttachmentsRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "conversationId": {
+                    "$ref": "#/$defs/ConversationId"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListAttachments"
+                }
+            }
+        },
+        "MaxResultsIntegerForListAttachments": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListConversationsResponse": {
             "type": "object",
@@ -2982,6 +4049,200 @@
             "type": "integer",
             "format": "int32"
         },
+        "ListPluginActionsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "items": {
+                    "$ref": "#/$defs/Actions"
+                }
+            }
+        },
+        "Actions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ActionSummary"
+            }
+        },
+        "ActionSummary": {
+            "type": "object",
+            "properties": {
+                "actionIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/String"
+                },
+                "instructionExample": {
+                    "$ref": "#/$defs/String"
+                },
+                "description": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListPluginActionsRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "pluginId": {
+                    "$ref": "#/$defs/PluginId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListPluginActions"
+                }
+            }
+        },
+        "MaxResultsIntegerForListPluginActions": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPluginTypeActionsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "items": {
+                    "$ref": "#/$defs/Actions"
+                }
+            }
+        },
+        "ListPluginTypeActionsRequest": {
+            "type": "object",
+            "properties": {
+                "pluginType": {
+                    "$ref": "#/$defs/PluginType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListPluginTypeActions"
+                }
+            }
+        },
+        "MaxResultsIntegerForListPluginTypeActions": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListPluginTypeMetadataResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "items": {
+                    "$ref": "#/$defs/ListPluginTypeMetadataSummaries"
+                }
+            }
+        },
+        "ListPluginTypeMetadataSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PluginTypeMetadataSummary"
+            }
+        },
+        "PluginTypeMetadataSummary": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/PluginType"
+                },
+                "category": {
+                    "$ref": "#/$defs/PluginTypeCategory"
+                },
+                "description": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "PluginTypeCategory": {
+            "enum": [
+                "CRM",
+                "PROJECT_MANAGEMENT",
+                "COMMUNICATION",
+                "PRODUCTIVITY",
+                "TICKETING_MANAGEMENT"
+            ]
+        },
+        "ListPluginTypeMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListPluginTypeMetadata"
+                }
+            }
+        },
+        "MaxResultsIntegerForListPluginTypeMetadata": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSubscriptionsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "subscriptions": {
+                    "$ref": "#/$defs/Subscriptions"
+                }
+            }
+        },
+        "Subscriptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Subscription"
+            }
+        },
+        "Subscription": {
+            "type": "object",
+            "properties": {
+                "subscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "subscriptionArn": {
+                    "$ref": "#/$defs/SubscriptionArn"
+                },
+                "principal": {
+                    "$ref": "#/$defs/SubscriptionPrincipal"
+                },
+                "currentSubscription": {
+                    "$ref": "#/$defs/SubscriptionDetails"
+                },
+                "nextSubscription": {
+                    "$ref": "#/$defs/SubscriptionDetails"
+                }
+            }
+        },
+        "ListSubscriptionsRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListSubscriptions"
+                }
+            }
+        },
+        "MaxResultsIntegerForListSubscriptions": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -3116,6 +4377,9 @@
                 },
                 "groupMembers": {
                     "$ref": "#/$defs/GroupMembers"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
                 }
             }
         },
@@ -3127,6 +4391,9 @@
                 },
                 "memberUsers": {
                     "$ref": "#/$defs/MemberUsers"
+                },
+                "s3PathForGroupMembers": {
+                    "$ref": "#/$defs/S3"
                 }
             }
         },
@@ -3166,6 +4433,112 @@
         },
         "DataSourceUserId": {
             "type": "string"
+        },
+        "SearchRelevantContentResponse": {
+            "type": "object",
+            "properties": {
+                "relevantContent": {
+                    "$ref": "#/$defs/RelevantContentList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RelevantContentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RelevantContent"
+            }
+        },
+        "RelevantContent": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "$ref": "#/$defs/String"
+                },
+                "documentId": {
+                    "$ref": "#/$defs/DocumentId"
+                },
+                "documentTitle": {
+                    "$ref": "#/$defs/Title"
+                },
+                "documentUri": {
+                    "$ref": "#/$defs/Url"
+                },
+                "documentAttributes": {
+                    "$ref": "#/$defs/DocumentAttributes"
+                },
+                "scoreAttributes": {
+                    "$ref": "#/$defs/ScoreAttributes"
+                }
+            }
+        },
+        "ScoreAttributes": {
+            "type": "object",
+            "properties": {
+                "scoreConfidence": {
+                    "$ref": "#/$defs/ScoreConfidence"
+                }
+            }
+        },
+        "ScoreConfidence": {
+            "enum": [
+                "VERY_HIGH",
+                "HIGH",
+                "MEDIUM",
+                "LOW",
+                "NOT_AVAILABLE"
+            ]
+        },
+        "SearchRelevantContentRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "queryText": {
+                    "$ref": "#/$defs/QueryText"
+                },
+                "contentSource": {
+                    "$ref": "#/$defs/ContentSource"
+                },
+                "attributeFilter": {
+                    "$ref": "#/$defs/AttributeFilter"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "QueryText": {
+            "type": "string"
+        },
+        "ContentSource": {
+            "type": "object",
+            "properties": {
+                "retriever": {
+                    "$ref": "#/$defs/RetrieverContentSource"
+                }
+            }
+        },
+        "RetrieverContentSource": {
+            "type": "object",
+            "properties": {
+                "retrieverId": {
+                    "$ref": "#/$defs/RetrieverId"
+                }
+            }
+        },
+        "RetrieverId": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "StartDataSourceSyncJobResponse": {
             "type": "object",
@@ -3259,6 +4632,9 @@
                 "responseScope": {
                     "$ref": "#/$defs/ResponseScope"
                 },
+                "orchestrationConfiguration": {
+                    "$ref": "#/$defs/OrchestrationConfiguration"
+                },
                 "blockedPhrasesConfigurationUpdate": {
                     "$ref": "#/$defs/BlockedPhrasesConfigurationUpdate"
                 },
@@ -3270,6 +4646,14 @@
                 },
                 "creatorModeConfiguration": {
                     "$ref": "#/$defs/CreatorModeConfiguration"
+                }
+            }
+        },
+        "OrchestrationConfiguration": {
+            "type": "object",
+            "properties": {
+                "control": {
+                    "$ref": "#/$defs/OrchestrationControl"
                 }
             }
         },
@@ -3292,6 +4676,34 @@
             "properties": {
                 "creatorModeControl": {
                     "$ref": "#/$defs/CreatorModeControl"
+                }
+            }
+        },
+        "UpdateSubscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "subscriptionArn": {
+                    "$ref": "#/$defs/SubscriptionArn"
+                },
+                "currentSubscription": {
+                    "$ref": "#/$defs/SubscriptionDetails"
+                },
+                "nextSubscription": {
+                    "$ref": "#/$defs/SubscriptionDetails"
+                }
+            }
+        },
+        "UpdateSubscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "subscriptionId": {
+                    "$ref": "#/$defs/SubscriptionId"
+                },
+                "type": {
+                    "$ref": "#/$defs/SubscriptionType"
                 }
             }
         },

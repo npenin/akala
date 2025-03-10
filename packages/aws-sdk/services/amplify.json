@@ -1561,6 +1561,9 @@
                 "updateTime": {
                     "$ref": "#/$defs/UpdateTime"
                 },
+                "computeRoleArn": {
+                    "$ref": "#/$defs/ComputeRoleArn"
+                },
                 "iamServiceRoleArn": {
                     "$ref": "#/$defs/ServiceRoleArn"
                 },
@@ -1608,6 +1611,12 @@
                 },
                 "cacheConfig": {
                     "$ref": "#/$defs/CacheConfig"
+                },
+                "webhookCreateTime": {
+                    "$ref": "#/$defs/webhookCreateTime"
+                },
+                "wafConfiguration": {
+                    "$ref": "#/$defs/WafConfiguration"
                 }
             }
         },
@@ -1649,6 +1658,9 @@
         "UpdateTime": {
             "type": "string",
             "format": "date-time"
+        },
+        "ComputeRoleArn": {
+            "type": "string"
         },
         "ServiceRoleArn": {
             "type": "string"
@@ -1837,6 +1849,39 @@
                 "AMPLIFY_MANAGED_NO_COOKIES"
             ]
         },
+        "webhookCreateTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "WafConfiguration": {
+            "type": "object",
+            "properties": {
+                "webAclArn": {
+                    "$ref": "#/$defs/WebAclArn"
+                },
+                "wafStatus": {
+                    "$ref": "#/$defs/WafStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/StatusReason"
+                }
+            }
+        },
+        "WebAclArn": {
+            "type": "string"
+        },
+        "WafStatus": {
+            "enum": [
+                "ASSOCIATING",
+                "ASSOCIATION_FAILED",
+                "ASSOCIATION_SUCCESS",
+                "DISASSOCIATING",
+                "DISASSOCIATION_FAILED"
+            ]
+        },
+        "StatusReason": {
+            "type": "string"
+        },
         "CreateAppRequest": {
             "type": "object",
             "properties": {
@@ -1851,6 +1896,9 @@
                 },
                 "platform": {
                     "$ref": "#/$defs/Platform"
+                },
+                "computeRoleArn": {
+                    "$ref": "#/$defs/ComputeRoleArn"
                 },
                 "iamServiceRoleArn": {
                     "$ref": "#/$defs/ServiceRoleArn"
@@ -2062,6 +2110,9 @@
                 },
                 "backend": {
                     "$ref": "#/$defs/Backend"
+                },
+                "computeRoleArn": {
+                    "$ref": "#/$defs/ComputeRoleArn"
                 }
             }
         },
@@ -2171,6 +2222,9 @@
                 },
                 "backend": {
                     "$ref": "#/$defs/Backend"
+                },
+                "computeRoleArn": {
+                    "$ref": "#/$defs/ComputeRoleArn"
                 }
             }
         },
@@ -2314,9 +2368,6 @@
                 "UPDATE_COMPLETE",
                 "UPDATE_FAILED"
             ]
-        },
-        "StatusReason": {
-            "type": "string"
         },
         "CertificateVerificationDNSRecord": {
             "type": "string"
@@ -2594,6 +2645,12 @@
                 },
                 "jobType": {
                     "$ref": "#/$defs/JobType"
+                },
+                "sourceUrl": {
+                    "$ref": "#/$defs/SourceUrl"
+                },
+                "sourceUrlType": {
+                    "$ref": "#/$defs/SourceUrlType"
                 }
             }
         },
@@ -2616,6 +2673,7 @@
         },
         "JobStatus": {
             "enum": [
+                "CREATED",
                 "PENDING",
                 "PROVISIONING",
                 "RUNNING",
@@ -2635,6 +2693,15 @@
                 "RETRY",
                 "MANUAL",
                 "WEB_HOOK"
+            ]
+        },
+        "SourceUrl": {
+            "type": "string"
+        },
+        "SourceUrlType": {
+            "enum": [
+                "ZIP",
+                "BUCKET_PREFIX"
             ]
         },
         "DeleteJobRequest": {
@@ -3199,11 +3266,11 @@
                 },
                 "sourceUrl": {
                     "$ref": "#/$defs/SourceUrl"
+                },
+                "sourceUrlType": {
+                    "$ref": "#/$defs/SourceUrlType"
                 }
             }
-        },
-        "SourceUrl": {
-            "type": "string"
         },
         "StartJobResult": {
             "type": "object",
@@ -3329,6 +3396,9 @@
                 "platform": {
                     "$ref": "#/$defs/Platform"
                 },
+                "computeRoleArn": {
+                    "$ref": "#/$defs/ComputeRoleArn"
+                },
                 "iamServiceRoleArn": {
                     "$ref": "#/$defs/ServiceRoleArn"
                 },
@@ -3443,6 +3513,9 @@
                 },
                 "backend": {
                     "$ref": "#/$defs/Backend"
+                },
+                "computeRoleArn": {
+                    "$ref": "#/$defs/ComputeRoleArn"
                 }
             }
         },

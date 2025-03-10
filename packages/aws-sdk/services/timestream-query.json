@@ -800,6 +800,9 @@
                 },
                 "QueryPricingModel": {
                     "$ref": "#/$defs/QueryPricingModel"
+                },
+                "QueryCompute": {
+                    "$ref": "#/$defs/QueryComputeResponse"
                 }
             }
         },
@@ -811,6 +814,73 @@
             "enum": [
                 "BYTES_SCANNED",
                 "COMPUTE_UNITS"
+            ]
+        },
+        "QueryComputeResponse": {
+            "type": "object",
+            "properties": {
+                "ComputeMode": {
+                    "$ref": "#/$defs/ComputeMode"
+                },
+                "ProvisionedCapacity": {
+                    "$ref": "#/$defs/ProvisionedCapacityResponse"
+                }
+            }
+        },
+        "ComputeMode": {
+            "enum": [
+                "ON_DEMAND",
+                "PROVISIONED"
+            ]
+        },
+        "ProvisionedCapacityResponse": {
+            "type": "object",
+            "properties": {
+                "ActiveQueryTCU": {
+                    "$ref": "#/$defs/QueryTCU"
+                },
+                "NotificationConfiguration": {
+                    "$ref": "#/$defs/AccountSettingsNotificationConfiguration"
+                },
+                "LastUpdate": {
+                    "$ref": "#/$defs/LastUpdate"
+                }
+            }
+        },
+        "QueryTCU": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AccountSettingsNotificationConfiguration": {
+            "type": "object",
+            "properties": {
+                "SnsConfiguration": {
+                    "$ref": "#/$defs/SnsConfiguration"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "LastUpdate": {
+            "type": "object",
+            "properties": {
+                "TargetQueryTCU": {
+                    "$ref": "#/$defs/QueryTCU"
+                },
+                "Status": {
+                    "$ref": "#/$defs/LastUpdateStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "LastUpdateStatus": {
+            "enum": [
+                "PENDING",
+                "FAILED",
+                "SUCCEEDED"
             ]
         },
         "DescribeAccountSettingsRequest": {
@@ -933,6 +1003,9 @@
                 "ExecutionStats": {
                     "$ref": "#/$defs/ExecutionStats"
                 },
+                "QueryInsightsResponse": {
+                    "$ref": "#/$defs/ScheduledQueryInsightsResponse"
+                },
                 "ErrorReportLocation": {
                     "$ref": "#/$defs/ErrorReportLocation"
                 },
@@ -969,6 +1042,80 @@
                 },
                 "QueryResultRows": {
                     "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "ScheduledQueryInsightsResponse": {
+            "type": "object",
+            "properties": {
+                "QuerySpatialCoverage": {
+                    "$ref": "#/$defs/QuerySpatialCoverage"
+                },
+                "QueryTemporalRange": {
+                    "$ref": "#/$defs/QueryTemporalRange"
+                },
+                "QueryTableCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "OutputRows": {
+                    "$ref": "#/$defs/Long"
+                },
+                "OutputBytes": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "QuerySpatialCoverage": {
+            "type": "object",
+            "properties": {
+                "Max": {
+                    "$ref": "#/$defs/QuerySpatialCoverageMax"
+                }
+            }
+        },
+        "QuerySpatialCoverageMax": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/Double"
+                },
+                "TableArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "PartitionKey": {
+                    "$ref": "#/$defs/PartitionKeyList"
+                }
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
+        },
+        "PartitionKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartitionKey"
+            }
+        },
+        "PartitionKey": {
+            "type": "string"
+        },
+        "QueryTemporalRange": {
+            "type": "object",
+            "properties": {
+                "Max": {
+                    "$ref": "#/$defs/QueryTemporalRangeMax"
+                }
+            }
+        },
+        "QueryTemporalRangeMax": {
+            "type": "object",
+            "properties": {
+                "Value": {
+                    "$ref": "#/$defs/Long"
+                },
+                "TableArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
                 }
             }
         },
@@ -1022,8 +1169,25 @@
                 },
                 "ClientToken": {
                     "$ref": "#/$defs/ClientToken"
+                },
+                "QueryInsights": {
+                    "$ref": "#/$defs/ScheduledQueryInsights"
                 }
             }
+        },
+        "ScheduledQueryInsights": {
+            "type": "object",
+            "properties": {
+                "Mode": {
+                    "$ref": "#/$defs/ScheduledQueryInsightsMode"
+                }
+            }
+        },
+        "ScheduledQueryInsightsMode": {
+            "enum": [
+                "ENABLED_WITH_RATE_CONTROL",
+                "DISABLED"
+            ]
         },
         "ListScheduledQueriesResponse": {
             "type": "object",
@@ -1280,6 +1444,9 @@
                 },
                 "QueryStatus": {
                     "$ref": "#/$defs/QueryStatus"
+                },
+                "QueryInsightsResponse": {
+                    "$ref": "#/$defs/QueryInsightsResponse"
                 }
             }
         },
@@ -1363,9 +1530,34 @@
                 }
             }
         },
-        "Double": {
-            "type": "number",
-            "format": "double"
+        "QueryInsightsResponse": {
+            "type": "object",
+            "properties": {
+                "QuerySpatialCoverage": {
+                    "$ref": "#/$defs/QuerySpatialCoverage"
+                },
+                "QueryTemporalRange": {
+                    "$ref": "#/$defs/QueryTemporalRange"
+                },
+                "QueryTableCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "OutputRows": {
+                    "$ref": "#/$defs/Long"
+                },
+                "OutputBytes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "UnloadPartitionCount": {
+                    "$ref": "#/$defs/Long"
+                },
+                "UnloadWrittenRows": {
+                    "$ref": "#/$defs/Long"
+                },
+                "UnloadWrittenBytes": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
         },
         "QueryRequest": {
             "type": "object",
@@ -1381,6 +1573,9 @@
                 },
                 "MaxRows": {
                     "$ref": "#/$defs/MaxQueryResults"
+                },
+                "QueryInsights": {
+                    "$ref": "#/$defs/QueryInsights"
                 }
             }
         },
@@ -1390,6 +1585,20 @@
         "MaxQueryResults": {
             "type": "integer",
             "format": "int32"
+        },
+        "QueryInsights": {
+            "type": "object",
+            "properties": {
+                "Mode": {
+                    "$ref": "#/$defs/QueryInsightsMode"
+                }
+            }
+        },
+        "QueryInsightsMode": {
+            "enum": [
+                "ENABLED_WITH_RATE_CONTROL",
+                "DISABLED"
+            ]
         },
         "TagResourceResponse": {
             "type": "object",
@@ -1435,6 +1644,9 @@
                 },
                 "QueryPricingModel": {
                     "$ref": "#/$defs/QueryPricingModel"
+                },
+                "QueryCompute": {
+                    "$ref": "#/$defs/QueryComputeResponse"
                 }
             }
         },
@@ -1446,6 +1658,31 @@
                 },
                 "QueryPricingModel": {
                     "$ref": "#/$defs/QueryPricingModel"
+                },
+                "QueryCompute": {
+                    "$ref": "#/$defs/QueryComputeRequest"
+                }
+            }
+        },
+        "QueryComputeRequest": {
+            "type": "object",
+            "properties": {
+                "ComputeMode": {
+                    "$ref": "#/$defs/ComputeMode"
+                },
+                "ProvisionedCapacity": {
+                    "$ref": "#/$defs/ProvisionedCapacityRequest"
+                }
+            }
+        },
+        "ProvisionedCapacityRequest": {
+            "type": "object",
+            "properties": {
+                "TargetQueryTCU": {
+                    "$ref": "#/$defs/QueryTCU"
+                },
+                "NotificationConfiguration": {
+                    "$ref": "#/$defs/AccountSettingsNotificationConfiguration"
                 }
             }
         },

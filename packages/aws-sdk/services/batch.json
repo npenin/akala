@@ -72,6 +72,41 @@
             }
         },
         {
+            "name": "CreateConsumableResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v1/createconsumableresource"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateConsumableResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateConsumableResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateJobQueue",
             "config": {
                 "http": {
@@ -161,6 +196,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteComputeEnvironmentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteConsumableResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v1/deleteconsumableresource"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteConsumableResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteConsumableResourceRequest"
                         }
                     }
                 },
@@ -301,6 +371,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeComputeEnvironmentsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeConsumableResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v1/describeconsumableresource"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConsumableResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConsumableResourceRequest"
                         }
                     }
                 },
@@ -492,6 +597,41 @@
             }
         },
         {
+            "name": "ListConsumableResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v1/listconsumableresources"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConsumableResourcesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConsumableResourcesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListJobs",
             "config": {
                 "http": {
@@ -511,6 +651,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListJobsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListJobsByConsumableResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v1/listjobsbyconsumableresource"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListJobsByConsumableResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListJobsByConsumableResourceRequest"
                         }
                     }
                 },
@@ -819,6 +994,41 @@
             }
         },
         {
+            "name": "UpdateConsumableResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v1/updateconsumableresource"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateConsumableResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateConsumableResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateJobQueue",
             "config": {
                 "http": {
@@ -1107,6 +1317,32 @@
                 },
                 "version": {
                     "$ref": "#/$defs/String"
+                },
+                "overrides": {
+                    "$ref": "#/$defs/LaunchTemplateSpecificationOverrideList"
+                }
+            }
+        },
+        "LaunchTemplateSpecificationOverrideList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LaunchTemplateSpecificationOverride"
+            }
+        },
+        "LaunchTemplateSpecificationOverride": {
+            "type": "object",
+            "properties": {
+                "launchTemplateId": {
+                    "$ref": "#/$defs/String"
+                },
+                "launchTemplateName": {
+                    "$ref": "#/$defs/String"
+                },
+                "version": {
+                    "$ref": "#/$defs/String"
+                },
+                "targetInstanceTypes": {
+                    "$ref": "#/$defs/StringList"
                 }
             }
         },
@@ -1158,6 +1394,38 @@
                     "$ref": "#/$defs/String"
                 }
             }
+        },
+        "CreateConsumableResourceResponse": {
+            "type": "object",
+            "properties": {
+                "consumableResourceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "consumableResourceArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "CreateConsumableResourceRequest": {
+            "type": "object",
+            "properties": {
+                "consumableResourceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "totalQuantity": {
+                    "$ref": "#/$defs/Long"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
         },
         "CreateJobQueueResponse": {
             "type": "object",
@@ -1324,6 +1592,18 @@
                 }
             }
         },
+        "DeleteConsumableResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteConsumableResourceRequest": {
+            "type": "object",
+            "properties": {
+                "consumableResource": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "DeleteJobQueueResponse": {
             "type": "object",
             "properties": {}
@@ -1478,6 +1758,43 @@
                 }
             }
         },
+        "DescribeConsumableResourceResponse": {
+            "type": "object",
+            "properties": {
+                "consumableResourceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "consumableResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "totalQuantity": {
+                    "$ref": "#/$defs/Long"
+                },
+                "inUseQuantity": {
+                    "$ref": "#/$defs/Long"
+                },
+                "availableQuantity": {
+                    "$ref": "#/$defs/Long"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagrisTagsMap"
+                }
+            }
+        },
+        "DescribeConsumableResourceRequest": {
+            "type": "object",
+            "properties": {
+                "consumableResource": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "DescribeJobDefinitionsResponse": {
             "type": "object",
             "properties": {
@@ -1548,6 +1865,9 @@
                 },
                 "containerOrchestrationType": {
                     "$ref": "#/$defs/OrchestrationType"
+                },
+                "consumableResourceProperties": {
+                    "$ref": "#/$defs/ConsumableResourceProperties"
                 }
             }
         },
@@ -2041,6 +2361,9 @@
                 },
                 "eksProperties": {
                     "$ref": "#/$defs/EksProperties"
+                },
+                "consumableResourceProperties": {
+                    "$ref": "#/$defs/ConsumableResourceProperties"
                 }
             }
         },
@@ -2319,6 +2642,9 @@
                 "mountPath": {
                     "$ref": "#/$defs/String"
                 },
+                "subPath": {
+                    "$ref": "#/$defs/String"
+                },
                 "readOnly": {
                     "$ref": "#/$defs/Boolean"
                 }
@@ -2347,10 +2673,6 @@
                 }
             }
         },
-        "Long": {
-            "type": "integer",
-            "format": "int64"
-        },
         "EksVolumes": {
             "type": "array",
             "items": {
@@ -2371,6 +2693,9 @@
                 },
                 "secret": {
                     "$ref": "#/$defs/EksSecret"
+                },
+                "persistentVolumeClaim": {
+                    "$ref": "#/$defs/EksPersistentVolumeClaim"
                 }
             }
         },
@@ -2404,11 +2729,28 @@
                 }
             }
         },
+        "EksPersistentVolumeClaim": {
+            "type": "object",
+            "properties": {
+                "claimName": {
+                    "$ref": "#/$defs/String"
+                },
+                "readOnly": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
         "EksMetadata": {
             "type": "object",
             "properties": {
                 "labels": {
                     "$ref": "#/$defs/EksLabelsMap"
+                },
+                "annotations": {
+                    "$ref": "#/$defs/EksAnnotationsMap"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -2416,6 +2758,37 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/String"
+            }
+        },
+        "EksAnnotationsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "ConsumableResourceProperties": {
+            "type": "object",
+            "properties": {
+                "consumableResourceList": {
+                    "$ref": "#/$defs/ConsumableResourceList"
+                }
+            }
+        },
+        "ConsumableResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConsumableResourceRequirement"
+            }
+        },
+        "ConsumableResourceRequirement": {
+            "type": "object",
+            "properties": {
+                "consumableResource": {
+                    "$ref": "#/$defs/String"
+                },
+                "quantity": {
+                    "$ref": "#/$defs/Long"
+                }
             }
         },
         "PlatformCapabilityList": {
@@ -2629,6 +3002,9 @@
                 },
                 "isTerminated": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "consumableResourceProperties": {
+                    "$ref": "#/$defs/ConsumableResourceProperties"
                 }
             }
         },
@@ -3015,6 +3391,9 @@
                 "podName": {
                     "$ref": "#/$defs/String"
                 },
+                "podNamespace": {
+                    "$ref": "#/$defs/String"
+                },
                 "nodeName": {
                     "$ref": "#/$defs/String"
                 },
@@ -3039,6 +3418,9 @@
             "type": "object",
             "properties": {
                 "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "containerID": {
                     "$ref": "#/$defs/String"
                 },
                 "exitCode": {
@@ -3266,6 +3648,74 @@
                 }
             }
         },
+        "ListConsumableResourcesResponse": {
+            "type": "object",
+            "properties": {
+                "consumableResources": {
+                    "$ref": "#/$defs/ConsumableResourceSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ConsumableResourceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConsumableResourceSummary"
+            }
+        },
+        "ConsumableResourceSummary": {
+            "type": "object",
+            "properties": {
+                "consumableResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "consumableResourceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "totalQuantity": {
+                    "$ref": "#/$defs/Long"
+                },
+                "inUseQuantity": {
+                    "$ref": "#/$defs/Long"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListConsumableResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "filters": {
+                    "$ref": "#/$defs/ListConsumableResourcesFilterList"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListConsumableResourcesFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyValuesPair"
+            }
+        },
+        "KeyValuesPair": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "values": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
         "ListJobsResponse": {
             "type": "object",
             "properties": {
@@ -3392,15 +3842,82 @@
                 "$ref": "#/$defs/KeyValuesPair"
             }
         },
-        "KeyValuesPair": {
+        "ListJobsByConsumableResourceResponse": {
             "type": "object",
             "properties": {
-                "name": {
+                "jobs": {
+                    "$ref": "#/$defs/ListJobsByConsumableResourceSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListJobsByConsumableResourceSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ListJobsByConsumableResourceSummary"
+            }
+        },
+        "ListJobsByConsumableResourceSummary": {
+            "type": "object",
+            "properties": {
+                "jobArn": {
                     "$ref": "#/$defs/String"
                 },
-                "values": {
-                    "$ref": "#/$defs/StringList"
+                "jobQueueArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobName": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobDefinitionArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "shareIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "jobStatus": {
+                    "$ref": "#/$defs/String"
+                },
+                "quantity": {
+                    "$ref": "#/$defs/Long"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Long"
+                },
+                "consumableResourceProperties": {
+                    "$ref": "#/$defs/ConsumableResourceProperties"
                 }
+            }
+        },
+        "ListJobsByConsumableResourceRequest": {
+            "type": "object",
+            "properties": {
+                "consumableResource": {
+                    "$ref": "#/$defs/String"
+                },
+                "filters": {
+                    "$ref": "#/$defs/ListJobsByConsumableResourceFilterList"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListJobsByConsumableResourceFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/KeyValuesPair"
             }
         },
         "ListSchedulingPoliciesResponse": {
@@ -3510,6 +4027,9 @@
                 },
                 "ecsProperties": {
                     "$ref": "#/$defs/EcsProperties"
+                },
+                "consumableResourceProperties": {
+                    "$ref": "#/$defs/ConsumableResourceProperties"
                 }
             }
         },
@@ -3583,6 +4103,9 @@
                 },
                 "ecsPropertiesOverride": {
                     "$ref": "#/$defs/EcsPropertiesOverride"
+                },
+                "consumableResourcePropertiesOverride": {
+                    "$ref": "#/$defs/ConsumableResourceProperties"
                 }
             }
         },
@@ -3651,6 +4174,9 @@
                 },
                 "eksPropertiesOverride": {
                     "$ref": "#/$defs/EksPropertiesOverride"
+                },
+                "consumableResourcePropertiesOverride": {
+                    "$ref": "#/$defs/ConsumableResourceProperties"
                 }
             }
         },
@@ -3903,6 +4429,40 @@
                 "SPOT_CAPACITY_OPTIMIZED",
                 "SPOT_PRICE_CAPACITY_OPTIMIZED"
             ]
+        },
+        "UpdateConsumableResourceResponse": {
+            "type": "object",
+            "properties": {
+                "consumableResourceName": {
+                    "$ref": "#/$defs/String"
+                },
+                "consumableResourceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "totalQuantity": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "UpdateConsumableResourceRequest": {
+            "type": "object",
+            "properties": {
+                "consumableResource": {
+                    "$ref": "#/$defs/String"
+                },
+                "operation": {
+                    "$ref": "#/$defs/String"
+                },
+                "quantity": {
+                    "$ref": "#/$defs/Long"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "type": "string"
         },
         "UpdateJobQueueResponse": {
             "type": "object",

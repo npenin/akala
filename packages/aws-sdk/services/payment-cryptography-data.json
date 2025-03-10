@@ -149,6 +149,41 @@
             }
         },
         {
+            "name": "GenerateMacEmvPinChange",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/macemvpinchange/generate"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateMacEmvPinChangeOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateMacEmvPinChangeInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GeneratePinData",
             "config": {
                 "http": {
@@ -522,13 +557,27 @@
             }
         },
         "EncryptionMode": {
-            "type": "string"
+            "enum": [
+                "ECB",
+                "CBC",
+                "CFB",
+                "CFB1",
+                "CFB8",
+                "CFB64",
+                "CFB128",
+                "OFB"
+            ]
         },
         "InitializationVectorType": {
             "type": "string"
         },
         "PaddingType": {
-            "type": "string"
+            "enum": [
+                "PKCS1",
+                "OAEP_SHA1",
+                "OAEP_SHA256",
+                "OAEP_SHA512"
+            ]
         },
         "AsymmetricEncryptionAttributes": {
             "type": "object",
@@ -562,13 +611,26 @@
             "type": "string"
         },
         "DukptEncryptionMode": {
-            "type": "string"
+            "enum": [
+                "ECB",
+                "CBC"
+            ]
         },
         "DukptDerivationType": {
-            "type": "string"
+            "enum": [
+                "TDES_2KEY",
+                "TDES_3KEY",
+                "AES_128",
+                "AES_192",
+                "AES_256"
+            ]
         },
         "DukptKeyVariant": {
-            "type": "string"
+            "enum": [
+                "BIDIRECTIONAL",
+                "REQUEST",
+                "RESPONSE"
+            ]
         },
         "EmvEncryptionAttributes": {
             "type": "object",
@@ -594,7 +656,10 @@
             }
         },
         "EmvMajorKeyDerivationMode": {
-            "type": "string"
+            "enum": [
+                "EMV_OPTION_A",
+                "EMV_OPTION_B"
+            ]
         },
         "PrimaryAccountNumberType": {
             "type": "string"
@@ -606,7 +671,10 @@
             "type": "string"
         },
         "EmvEncryptionMode": {
-            "type": "string"
+            "enum": [
+                "ECB",
+                "CBC"
+            ]
         },
         "WrappedKey": {
             "type": "object",
@@ -624,10 +692,64 @@
             "properties": {
                 "Tr31KeyBlock": {
                     "$ref": "#/$defs/Tr31WrappedKeyBlock"
+                },
+                "DiffieHellmanSymmetricKey": {
+                    "$ref": "#/$defs/EcdhDerivationAttributes"
                 }
             }
         },
         "Tr31WrappedKeyBlock": {
+            "type": "string"
+        },
+        "EcdhDerivationAttributes": {
+            "type": "object",
+            "properties": {
+                "CertificateAuthorityPublicKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "PublicKeyCertificate": {
+                    "$ref": "#/$defs/CertificateType"
+                },
+                "KeyAlgorithm": {
+                    "$ref": "#/$defs/SymmetricKeyAlgorithm"
+                },
+                "KeyDerivationFunction": {
+                    "$ref": "#/$defs/KeyDerivationFunction"
+                },
+                "KeyDerivationHashAlgorithm": {
+                    "$ref": "#/$defs/KeyDerivationHashAlgorithm"
+                },
+                "SharedInformation": {
+                    "$ref": "#/$defs/SharedInformation"
+                }
+            }
+        },
+        "CertificateType": {
+            "type": "string"
+        },
+        "SymmetricKeyAlgorithm": {
+            "enum": [
+                "TDES_2KEY",
+                "TDES_3KEY",
+                "AES_128",
+                "AES_192",
+                "AES_256"
+            ]
+        },
+        "KeyDerivationFunction": {
+            "enum": [
+                "NIST_SP800",
+                "ANSI_X963"
+            ]
+        },
+        "KeyDerivationHashAlgorithm": {
+            "enum": [
+                "SHA_256",
+                "SHA_384",
+                "SHA_512"
+            ]
+        },
+        "SharedInformation": {
             "type": "string"
         },
         "KeyCheckValueAlgorithm": {
@@ -890,7 +1012,15 @@
             }
         },
         "MacAlgorithm": {
-            "type": "string"
+            "enum": [
+                "ISO9797_ALGORITHM1",
+                "ISO9797_ALGORITHM3",
+                "CMAC",
+                "HMAC_SHA224",
+                "HMAC_SHA256",
+                "HMAC_SHA384",
+                "HMAC_SHA512"
+            ]
         },
         "MacAlgorithmEmv": {
             "type": "object",
@@ -913,10 +1043,19 @@
             }
         },
         "MajorKeyDerivationMode": {
-            "type": "string"
+            "enum": [
+                "EMV_OPTION_A",
+                "EMV_OPTION_B"
+            ]
         },
         "SessionKeyDerivationMode": {
-            "type": "string"
+            "enum": [
+                "EMV_COMMON_SESSION_KEY",
+                "EMV2000",
+                "AMEX",
+                "MASTERCARD_SESSION_KEY",
+                "VISA"
+            ]
         },
         "SessionKeyDerivationValue": {
             "type": "object",
@@ -925,11 +1064,14 @@
                     "$ref": "#/$defs/ApplicationCryptogramType"
                 },
                 "ApplicationTransactionCounter": {
-                    "$ref": "#/$defs/HexLengthBetween2And4"
+                    "$ref": "#/$defs/HexLengthEquals4"
                 }
             }
         },
         "ApplicationCryptogramType": {
+            "type": "string"
+        },
+        "HexLengthEquals4": {
             "type": "string"
         },
         "MacAlgorithmDukpt": {
@@ -949,6 +1091,249 @@
         "IntegerRangeBetween4And16": {
             "type": "integer",
             "format": "int32"
+        },
+        "GenerateMacEmvPinChangeOutput": {
+            "type": "object",
+            "properties": {
+                "NewPinPekArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "SecureMessagingIntegrityKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "SecureMessagingConfidentialityKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "Mac": {
+                    "$ref": "#/$defs/PinChangeMacOutputType"
+                },
+                "EncryptedPinBlock": {
+                    "$ref": "#/$defs/EncryptedPinBlockType"
+                },
+                "NewPinPekKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "SecureMessagingIntegrityKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "SecureMessagingConfidentialityKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "VisaAmexDerivationOutputs": {
+                    "$ref": "#/$defs/VisaAmexDerivationOutputs"
+                }
+            }
+        },
+        "PinChangeMacOutputType": {
+            "type": "string"
+        },
+        "EncryptedPinBlockType": {
+            "type": "string"
+        },
+        "VisaAmexDerivationOutputs": {
+            "type": "object",
+            "properties": {
+                "AuthorizationRequestKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "AuthorizationRequestKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "CurrentPinPekArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "CurrentPinPekKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                }
+            }
+        },
+        "GenerateMacEmvPinChangeInput": {
+            "type": "object",
+            "properties": {
+                "NewPinPekIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "NewEncryptedPinBlock": {
+                    "$ref": "#/$defs/PinBlockLengthEquals16"
+                },
+                "PinBlockFormat": {
+                    "$ref": "#/$defs/PinBlockFormatForEmvPinChange"
+                },
+                "SecureMessagingIntegrityKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "SecureMessagingConfidentialityKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "MessageData": {
+                    "$ref": "#/$defs/CommandMessageDataType"
+                },
+                "DerivationMethodAttributes": {
+                    "$ref": "#/$defs/DerivationMethodAttributes"
+                }
+            }
+        },
+        "PinBlockLengthEquals16": {
+            "type": "string"
+        },
+        "PinBlockFormatForEmvPinChange": {
+            "enum": [
+                "ISO_FORMAT_0",
+                "ISO_FORMAT_1",
+                "ISO_FORMAT_3"
+            ]
+        },
+        "CommandMessageDataType": {
+            "type": "string"
+        },
+        "DerivationMethodAttributes": {
+            "type": "object",
+            "properties": {
+                "EmvCommon": {
+                    "$ref": "#/$defs/EmvCommonAttributes"
+                },
+                "Amex": {
+                    "$ref": "#/$defs/AmexAttributes"
+                },
+                "Visa": {
+                    "$ref": "#/$defs/VisaAttributes"
+                },
+                "Emv2000": {
+                    "$ref": "#/$defs/Emv2000Attributes"
+                },
+                "Mastercard": {
+                    "$ref": "#/$defs/MasterCardAttributes"
+                }
+            }
+        },
+        "EmvCommonAttributes": {
+            "type": "object",
+            "properties": {
+                "MajorKeyDerivationMode": {
+                    "$ref": "#/$defs/MajorKeyDerivationMode"
+                },
+                "PrimaryAccountNumber": {
+                    "$ref": "#/$defs/PrimaryAccountNumberType"
+                },
+                "PanSequenceNumber": {
+                    "$ref": "#/$defs/NumberLengthEquals2"
+                },
+                "ApplicationCryptogram": {
+                    "$ref": "#/$defs/ApplicationCryptogramType"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/EmvEncryptionMode"
+                },
+                "PinBlockPaddingType": {
+                    "$ref": "#/$defs/PinBlockPaddingType"
+                },
+                "PinBlockLengthPosition": {
+                    "$ref": "#/$defs/PinBlockLengthPosition"
+                }
+            }
+        },
+        "PinBlockPaddingType": {
+            "enum": [
+                "NO_PADDING",
+                "ISO_IEC_7816_4"
+            ]
+        },
+        "PinBlockLengthPosition": {
+            "enum": [
+                "NONE",
+                "FRONT_OF_PIN_BLOCK"
+            ]
+        },
+        "AmexAttributes": {
+            "type": "object",
+            "properties": {
+                "MajorKeyDerivationMode": {
+                    "$ref": "#/$defs/MajorKeyDerivationMode"
+                },
+                "PrimaryAccountNumber": {
+                    "$ref": "#/$defs/PrimaryAccountNumberType"
+                },
+                "PanSequenceNumber": {
+                    "$ref": "#/$defs/NumberLengthEquals2"
+                },
+                "ApplicationTransactionCounter": {
+                    "$ref": "#/$defs/HexLengthEquals4"
+                },
+                "AuthorizationRequestKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "CurrentPinAttributes": {
+                    "$ref": "#/$defs/CurrentPinAttributes"
+                }
+            }
+        },
+        "CurrentPinAttributes": {
+            "type": "object",
+            "properties": {
+                "CurrentPinPekIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "CurrentEncryptedPinBlock": {
+                    "$ref": "#/$defs/PinBlockLengthEquals16"
+                }
+            }
+        },
+        "VisaAttributes": {
+            "type": "object",
+            "properties": {
+                "MajorKeyDerivationMode": {
+                    "$ref": "#/$defs/MajorKeyDerivationMode"
+                },
+                "PrimaryAccountNumber": {
+                    "$ref": "#/$defs/PrimaryAccountNumberType"
+                },
+                "PanSequenceNumber": {
+                    "$ref": "#/$defs/NumberLengthEquals2"
+                },
+                "ApplicationTransactionCounter": {
+                    "$ref": "#/$defs/HexLengthEquals4"
+                },
+                "AuthorizationRequestKeyIdentifier": {
+                    "$ref": "#/$defs/KeyArnOrKeyAliasType"
+                },
+                "CurrentPinAttributes": {
+                    "$ref": "#/$defs/CurrentPinAttributes"
+                }
+            }
+        },
+        "Emv2000Attributes": {
+            "type": "object",
+            "properties": {
+                "MajorKeyDerivationMode": {
+                    "$ref": "#/$defs/MajorKeyDerivationMode"
+                },
+                "PrimaryAccountNumber": {
+                    "$ref": "#/$defs/PrimaryAccountNumberType"
+                },
+                "PanSequenceNumber": {
+                    "$ref": "#/$defs/NumberLengthEquals2"
+                },
+                "ApplicationTransactionCounter": {
+                    "$ref": "#/$defs/HexLengthEquals4"
+                }
+            }
+        },
+        "MasterCardAttributes": {
+            "type": "object",
+            "properties": {
+                "MajorKeyDerivationMode": {
+                    "$ref": "#/$defs/MajorKeyDerivationMode"
+                },
+                "PrimaryAccountNumber": {
+                    "$ref": "#/$defs/PrimaryAccountNumberType"
+                },
+                "PanSequenceNumber": {
+                    "$ref": "#/$defs/NumberLengthEquals2"
+                },
+                "ApplicationCryptogram": {
+                    "$ref": "#/$defs/ApplicationCryptogramType"
+                }
+            }
         },
         "GeneratePinDataOutput": {
             "type": "object",
@@ -972,9 +1357,6 @@
                     "$ref": "#/$defs/PinData"
                 }
             }
-        },
-        "EncryptedPinBlockType": {
-            "type": "string"
         },
         "PinData": {
             "type": "object",
@@ -1013,6 +1395,9 @@
                 },
                 "PinBlockFormat": {
                     "$ref": "#/$defs/PinBlockFormatForPinData"
+                },
+                "EncryptionWrappedKey": {
+                    "$ref": "#/$defs/WrappedKey"
                 }
             }
         },
@@ -1138,7 +1523,11 @@
             "format": "int32"
         },
         "PinBlockFormatForPinData": {
-            "type": "string"
+            "enum": [
+                "ISO_FORMAT_0",
+                "ISO_FORMAT_3",
+                "ISO_FORMAT_4"
+            ]
         },
         "ReEncryptDataOutput": {
             "type": "object",
@@ -1359,7 +1748,7 @@
                     "$ref": "#/$defs/NumberLengthEquals2"
                 },
                 "ApplicationTransactionCounter": {
-                    "$ref": "#/$defs/HexLengthBetween2And4"
+                    "$ref": "#/$defs/HexLengthEquals4"
                 }
             }
         },
@@ -1373,7 +1762,7 @@
                     "$ref": "#/$defs/NumberLengthEquals2"
                 },
                 "ApplicationTransactionCounter": {
-                    "$ref": "#/$defs/HexLengthBetween2And4"
+                    "$ref": "#/$defs/HexLengthEquals4"
                 },
                 "UnpredictableNumber": {
                     "$ref": "#/$defs/HexLengthBetween2And8"
@@ -1390,7 +1779,7 @@
                     "$ref": "#/$defs/NumberLengthEquals2"
                 },
                 "ApplicationTransactionCounter": {
-                    "$ref": "#/$defs/HexLengthBetween2And4"
+                    "$ref": "#/$defs/HexLengthEquals4"
                 }
             }
         },
@@ -1434,9 +1823,6 @@
                     "$ref": "#/$defs/HexLengthEquals4"
                 }
             }
-        },
-        "HexLengthEquals4": {
-            "type": "string"
         },
         "CryptogramVerificationArpcMethod2": {
             "type": "object",
@@ -1603,6 +1989,9 @@
                 },
                 "DukptAttributes": {
                     "$ref": "#/$defs/DukptAttributes"
+                },
+                "EncryptionWrappedKey": {
+                    "$ref": "#/$defs/WrappedKey"
                 }
             }
         },

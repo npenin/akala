@@ -1655,6 +1655,9 @@
                 },
                 "debugSessionEnabled": {
                     "$ref": "#/$defs/WrapperBoolean"
+                },
+                "reportArns": {
+                    "$ref": "#/$defs/BuildReportArns"
                 }
             }
         },
@@ -1933,6 +1936,9 @@
                 "computeType": {
                     "$ref": "#/$defs/ComputeType"
                 },
+                "computeConfiguration": {
+                    "$ref": "#/$defs/ComputeConfiguration"
+                },
                 "fleet": {
                     "$ref": "#/$defs/ProjectFleet"
                 },
@@ -1962,6 +1968,9 @@
                 "WINDOWS_SERVER_2019_CONTAINER",
                 "LINUX_LAMBDA_CONTAINER",
                 "ARM_LAMBDA_CONTAINER",
+                "LINUX_EC2",
+                "ARM_EC2",
+                "WINDOWS_EC2",
                 "MAC_ARM"
             ]
         },
@@ -1976,7 +1985,31 @@
                 "BUILD_LAMBDA_2GB",
                 "BUILD_LAMBDA_4GB",
                 "BUILD_LAMBDA_8GB",
-                "BUILD_LAMBDA_10GB"
+                "BUILD_LAMBDA_10GB",
+                "ATTRIBUTE_BASED_COMPUTE"
+            ]
+        },
+        "ComputeConfiguration": {
+            "type": "object",
+            "properties": {
+                "vCpu": {
+                    "$ref": "#/$defs/WrapperLong"
+                },
+                "memory": {
+                    "$ref": "#/$defs/WrapperLong"
+                },
+                "disk": {
+                    "$ref": "#/$defs/WrapperLong"
+                },
+                "machineType": {
+                    "$ref": "#/$defs/MachineType"
+                }
+            }
+        },
+        "MachineType": {
+            "enum": [
+                "GENERAL",
+                "NVME"
             ]
         },
         "ProjectFleet": {
@@ -2176,10 +2209,19 @@
                 },
                 "computeTypesAllowed": {
                     "$ref": "#/$defs/ComputeTypesAllowed"
+                },
+                "fleetsAllowed": {
+                    "$ref": "#/$defs/FleetsAllowed"
                 }
             }
         },
         "ComputeTypesAllowed": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyString"
+            }
+        },
+        "FleetsAllowed": {
             "type": "array",
             "items": {
                 "$ref": "#/$defs/NonEmptyString"
@@ -2274,6 +2316,12 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/BuildSummary"
+            }
+        },
+        "BuildReportArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
             }
         },
         "BuildBatchIds": {
@@ -2405,6 +2453,9 @@
                 },
                 "buildBatchArn": {
                     "$ref": "#/$defs/String"
+                },
+                "autoRetryConfig": {
+                    "$ref": "#/$defs/AutoRetryConfig"
                 }
             }
         },
@@ -2509,12 +2560,6 @@
                 }
             }
         },
-        "BuildReportArns": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/String"
-            }
-        },
         "DebugSession": {
             "type": "object",
             "properties": {
@@ -2523,6 +2568,23 @@
                 },
                 "sessionTarget": {
                     "$ref": "#/$defs/NonEmptyString"
+                }
+            }
+        },
+        "AutoRetryConfig": {
+            "type": "object",
+            "properties": {
+                "autoRetryLimit": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "autoRetryNumber": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "nextAutoRetry": {
+                    "$ref": "#/$defs/String"
+                },
+                "previousAutoRetry": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -2581,6 +2643,9 @@
                 "computeType": {
                     "$ref": "#/$defs/ComputeType"
                 },
+                "computeConfiguration": {
+                    "$ref": "#/$defs/ComputeConfiguration"
+                },
                 "scalingConfiguration": {
                     "$ref": "#/$defs/ScalingConfigurationOutput"
                 },
@@ -2589,6 +2654,9 @@
                 },
                 "vpcConfig": {
                     "$ref": "#/$defs/VpcConfig"
+                },
+                "proxyConfiguration": {
+                    "$ref": "#/$defs/ProxyConfiguration"
                 },
                 "imageId": {
                     "$ref": "#/$defs/NonEmptyString"
@@ -2696,6 +2764,61 @@
                 "QUEUE",
                 "ON_DEMAND"
             ]
+        },
+        "ProxyConfiguration": {
+            "type": "object",
+            "properties": {
+                "defaultBehavior": {
+                    "$ref": "#/$defs/FleetProxyRuleBehavior"
+                },
+                "orderedProxyRules": {
+                    "$ref": "#/$defs/FleetProxyRules"
+                }
+            }
+        },
+        "FleetProxyRuleBehavior": {
+            "enum": [
+                "ALLOW_ALL",
+                "DENY_ALL"
+            ]
+        },
+        "FleetProxyRules": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FleetProxyRule"
+            }
+        },
+        "FleetProxyRule": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/FleetProxyRuleType"
+                },
+                "effect": {
+                    "$ref": "#/$defs/FleetProxyRuleEffectType"
+                },
+                "entities": {
+                    "$ref": "#/$defs/FleetProxyRuleEntities"
+                }
+            }
+        },
+        "FleetProxyRuleType": {
+            "enum": [
+                "DOMAIN",
+                "IP"
+            ]
+        },
+        "FleetProxyRuleEffectType": {
+            "enum": [
+                "ALLOW",
+                "DENY"
+            ]
+        },
+        "FleetProxyRuleEntities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
         },
         "TagList": {
             "type": "array",
@@ -2837,6 +2960,9 @@
                 },
                 "resourceAccessRole": {
                     "$ref": "#/$defs/NonEmptyString"
+                },
+                "autoRetryLimit": {
+                    "$ref": "#/$defs/WrapperInt"
                 }
             }
         },
@@ -2936,6 +3062,12 @@
                 },
                 "scopeConfiguration": {
                     "$ref": "#/$defs/ScopeConfiguration"
+                },
+                "status": {
+                    "$ref": "#/$defs/WebhookStatus"
+                },
+                "statusMessage": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -2975,13 +3107,15 @@
                 "COMMIT_MESSAGE",
                 "WORKFLOW_NAME",
                 "TAG_NAME",
-                "RELEASE_NAME"
+                "RELEASE_NAME",
+                "REPOSITORY_NAME"
             ]
         },
         "WebhookBuildType": {
             "enum": [
                 "BUILD",
-                "BUILD_BATCH"
+                "BUILD_BATCH",
+                "RUNNER_BUILDKITE_BUILD"
             ]
         },
         "ScopeConfiguration": {
@@ -3003,6 +3137,14 @@
                 "GITHUB_ORGANIZATION",
                 "GITHUB_GLOBAL",
                 "GITLAB_GROUP"
+            ]
+        },
+        "WebhookStatus": {
+            "enum": [
+                "CREATING",
+                "CREATE_FAILED",
+                "ACTIVE",
+                "DELETING"
             ]
         },
         "ProjectBadge": {
@@ -3312,6 +3454,9 @@
                 "computeType": {
                     "$ref": "#/$defs/ComputeType"
                 },
+                "computeConfiguration": {
+                    "$ref": "#/$defs/ComputeConfiguration"
+                },
                 "scalingConfiguration": {
                     "$ref": "#/$defs/ScalingConfigurationInput"
                 },
@@ -3320,6 +3465,9 @@
                 },
                 "vpcConfig": {
                     "$ref": "#/$defs/VpcConfig"
+                },
+                "proxyConfiguration": {
+                    "$ref": "#/$defs/ProxyConfiguration"
                 },
                 "imageId": {
                     "$ref": "#/$defs/NonEmptyString"
@@ -3418,6 +3566,9 @@
                     "$ref": "#/$defs/ProjectBuildBatchConfig"
                 },
                 "concurrentBuildLimit": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "autoRetryLimit": {
                     "$ref": "#/$defs/WrapperInt"
                 }
             }
@@ -3728,6 +3879,9 @@
                 },
                 "expired": {
                     "$ref": "#/$defs/Timestamp"
+                },
+                "testSuiteName": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -4566,6 +4720,9 @@
                 },
                 "fleetOverride": {
                     "$ref": "#/$defs/ProjectFleet"
+                },
+                "autoRetryLimitOverride": {
+                    "$ref": "#/$defs/WrapperInt"
                 }
             }
         },
@@ -4730,6 +4887,9 @@
                 "computeType": {
                     "$ref": "#/$defs/ComputeType"
                 },
+                "computeConfiguration": {
+                    "$ref": "#/$defs/ComputeConfiguration"
+                },
                 "scalingConfiguration": {
                     "$ref": "#/$defs/ScalingConfigurationInput"
                 },
@@ -4738,6 +4898,9 @@
                 },
                 "vpcConfig": {
                     "$ref": "#/$defs/VpcConfig"
+                },
+                "proxyConfiguration": {
+                    "$ref": "#/$defs/ProxyConfiguration"
                 },
                 "imageId": {
                     "$ref": "#/$defs/NonEmptyString"
@@ -4822,6 +4985,9 @@
                     "$ref": "#/$defs/ProjectBuildBatchConfig"
                 },
                 "concurrentBuildLimit": {
+                    "$ref": "#/$defs/WrapperInt"
+                },
+                "autoRetryLimit": {
                     "$ref": "#/$defs/WrapperInt"
                 }
             }

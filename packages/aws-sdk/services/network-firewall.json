@@ -553,6 +553,64 @@
             }
         },
         {
+            "name": "GetAnalysisReportResults",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "NetworkFirewall_20201112.GetAnalysisReportResults"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAnalysisReportResultsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAnalysisReportResultsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAnalysisReports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "NetworkFirewall_20201112.ListAnalysisReports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAnalysisReportsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAnalysisReportsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListFirewallPolicies",
             "config": {
                 "http": {
@@ -727,6 +785,35 @@
             }
         },
         {
+            "name": "StartAnalysisReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "NetworkFirewall_20201112.StartAnalysisReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartAnalysisReportResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartAnalysisReportRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "TagResource",
             "config": {
                 "http": {
@@ -779,6 +866,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateFirewallAnalysisSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "NetworkFirewall_20201112.UpdateFirewallAnalysisSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateFirewallAnalysisSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateFirewallAnalysisSettingsRequest"
                         }
                     }
                 }
@@ -1245,6 +1361,9 @@
                 },
                 "EncryptionConfiguration": {
                     "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "EnabledAnalysisTypes": {
+                    "$ref": "#/$defs/EnabledAnalysisTypes"
                 }
             }
         },
@@ -1301,6 +1420,18 @@
             "enum": [
                 "CUSTOMER_KMS",
                 "AWS_OWNED_KMS_KEY"
+            ]
+        },
+        "EnabledAnalysisTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnabledAnalysisType"
+            }
+        },
+        "EnabledAnalysisType": {
+            "enum": [
+                "TLS_SNI",
+                "HTTP_HOST"
             ]
         },
         "FirewallStatus": {
@@ -1483,6 +1614,9 @@
                 },
                 "EncryptionConfiguration": {
                     "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "EnabledAnalysisTypes": {
+                    "$ref": "#/$defs/EnabledAnalysisTypes"
                 }
             }
         },
@@ -1736,6 +1870,9 @@
                 },
                 "StreamExceptionPolicy": {
                     "$ref": "#/$defs/StreamExceptionPolicy"
+                },
+                "FlowTimeouts": {
+                    "$ref": "#/$defs/FlowTimeouts"
                 }
             }
         },
@@ -1751,6 +1888,18 @@
                 "CONTINUE",
                 "REJECT"
             ]
+        },
+        "FlowTimeouts": {
+            "type": "object",
+            "properties": {
+                "TcpIdleTimeoutSeconds": {
+                    "$ref": "#/$defs/TcpIdleTimeoutRangeBound"
+                }
+            }
+        },
+        "TcpIdleTimeoutRangeBound": {
+            "type": "integer",
+            "format": "int32"
         },
         "PolicyVariables": {
             "type": "object",
@@ -2880,6 +3029,191 @@
                 "$ref": "#/$defs/AzSubnet"
             }
         },
+        "GetAnalysisReportResultsResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/StartTime"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/EndTime"
+                },
+                "ReportTime": {
+                    "$ref": "#/$defs/ReportTime"
+                },
+                "AnalysisType": {
+                    "$ref": "#/$defs/EnabledAnalysisType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/AnalysisReportNextToken"
+                },
+                "AnalysisReportResults": {
+                    "$ref": "#/$defs/AnalysisReportResults"
+                }
+            }
+        },
+        "Status": {
+            "type": "string"
+        },
+        "StartTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "EndTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ReportTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "AnalysisReportNextToken": {
+            "type": "string"
+        },
+        "AnalysisReportResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnalysisTypeReportResult"
+            }
+        },
+        "AnalysisTypeReportResult": {
+            "type": "object",
+            "properties": {
+                "Protocol": {
+                    "$ref": "#/$defs/CollectionMember_String"
+                },
+                "FirstAccessed": {
+                    "$ref": "#/$defs/FirstAccessed"
+                },
+                "LastAccessed": {
+                    "$ref": "#/$defs/LastAccessed"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/Domain"
+                },
+                "Hits": {
+                    "$ref": "#/$defs/Hits"
+                },
+                "UniqueSources": {
+                    "$ref": "#/$defs/UniqueSources"
+                }
+            }
+        },
+        "FirstAccessed": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "LastAccessed": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Domain": {
+            "type": "string"
+        },
+        "Hits": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/Count"
+                }
+            }
+        },
+        "Count": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UniqueSources": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/Count"
+                }
+            }
+        },
+        "GetAnalysisReportResultsRequest": {
+            "type": "object",
+            "properties": {
+                "FirewallName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "AnalysisReportId": {
+                    "$ref": "#/$defs/AnalysisReportId"
+                },
+                "FirewallArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/AnalysisReportNextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
+        "AnalysisReportId": {
+            "type": "string"
+        },
+        "PaginationMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListAnalysisReportsResponse": {
+            "type": "object",
+            "properties": {
+                "AnalysisReports": {
+                    "$ref": "#/$defs/AnalysisReports"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "AnalysisReports": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnalysisReport"
+            }
+        },
+        "AnalysisReport": {
+            "type": "object",
+            "properties": {
+                "AnalysisReportId": {
+                    "$ref": "#/$defs/AnalysisReportId"
+                },
+                "AnalysisType": {
+                    "$ref": "#/$defs/EnabledAnalysisType"
+                },
+                "ReportTime": {
+                    "$ref": "#/$defs/ReportTime"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListAnalysisReportsRequest": {
+            "type": "object",
+            "properties": {
+                "FirewallName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "FirewallArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PaginationMaxResults"
+                }
+            }
+        },
         "ListFirewallPoliciesResponse": {
             "type": "object",
             "properties": {
@@ -2890,9 +3224,6 @@
                     "$ref": "#/$defs/FirewallPolicies"
                 }
             }
-        },
-        "PaginationToken": {
-            "type": "string"
         },
         "FirewallPolicies": {
             "type": "array",
@@ -2921,10 +3252,6 @@
                     "$ref": "#/$defs/PaginationMaxResults"
                 }
             }
-        },
-        "PaginationMaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListFirewallsResponse": {
             "type": "object",
@@ -3117,6 +3444,28 @@
                 }
             }
         },
+        "StartAnalysisReportResponse": {
+            "type": "object",
+            "properties": {
+                "AnalysisReportId": {
+                    "$ref": "#/$defs/AnalysisReportId"
+                }
+            }
+        },
+        "StartAnalysisReportRequest": {
+            "type": "object",
+            "properties": {
+                "FirewallName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "FirewallArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "AnalysisType": {
+                    "$ref": "#/$defs/EnabledAnalysisType"
+                }
+            }
+        },
         "TagResourceResponse": {
             "type": "object",
             "properties": {}
@@ -3151,6 +3500,40 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UpdateFirewallAnalysisSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "EnabledAnalysisTypes": {
+                    "$ref": "#/$defs/EnabledAnalysisTypes"
+                },
+                "FirewallArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "FirewallName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "UpdateToken": {
+                    "$ref": "#/$defs/UpdateToken"
+                }
+            }
+        },
+        "UpdateFirewallAnalysisSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "EnabledAnalysisTypes": {
+                    "$ref": "#/$defs/EnabledAnalysisTypes"
+                },
+                "FirewallArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "FirewallName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "UpdateToken": {
+                    "$ref": "#/$defs/UpdateToken"
+                }
             }
         },
         "UpdateFirewallDeleteProtectionResponse": {

@@ -37,6 +37,41 @@
             }
         },
         {
+            "name": "BatchGetTaxExemptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/BatchGetTaxExemptions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchGetTaxExemptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchGetTaxExemptionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "BatchPutTaxRegistration",
             "config": {
                 "http": {
@@ -72,6 +107,41 @@
             }
         },
         {
+            "name": "DeleteSupplementalTaxRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/DeleteSupplementalTaxRegistration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteSupplementalTaxRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteSupplementalTaxRegistrationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteTaxRegistration",
             "config": {
                 "http": {
@@ -91,6 +161,76 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteTaxRegistrationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTaxExemptionTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/GetTaxExemptionTypes"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTaxExemptionTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTaxExemptionTypesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetTaxInheritance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/GetTaxInheritance"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTaxInheritanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTaxInheritanceRequest"
                         }
                     }
                 },
@@ -177,6 +317,76 @@
             }
         },
         {
+            "name": "ListSupplementalTaxRegistrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/ListSupplementalTaxRegistrations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSupplementalTaxRegistrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSupplementalTaxRegistrationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTaxExemptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/ListTaxExemptions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTaxExemptionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTaxExemptionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListTaxRegistrations",
             "config": {
                 "http": {
@@ -196,6 +406,111 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListTaxRegistrationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutSupplementalTaxRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/PutSupplementalTaxRegistration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutSupplementalTaxRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutSupplementalTaxRegistrationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutTaxExemption",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/PutTaxExemption"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutTaxExemptionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutTaxExemptionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutTaxInheritance",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/PutTaxInheritance"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutTaxInheritanceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutTaxInheritanceRequest"
                         }
                     }
                 },
@@ -344,6 +659,131 @@
                 "$ref": "#/$defs/AccountId"
             }
         },
+        "BatchGetTaxExemptionsResponse": {
+            "type": "object",
+            "properties": {
+                "taxExemptionDetailsMap": {
+                    "$ref": "#/$defs/TaxExemptionDetailsMap"
+                },
+                "failedAccounts": {
+                    "$ref": "#/$defs/AccountIds"
+                }
+            }
+        },
+        "TaxExemptionDetailsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TaxExemptionDetails"
+            }
+        },
+        "TaxExemptionDetails": {
+            "type": "object",
+            "properties": {
+                "taxExemptions": {
+                    "$ref": "#/$defs/TaxExemptions"
+                },
+                "heritageObtainedDetails": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "heritageObtainedParentEntity": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "heritageObtainedReason": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "TaxExemptions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaxExemption"
+            }
+        },
+        "TaxExemption": {
+            "type": "object",
+            "properties": {
+                "authority": {
+                    "$ref": "#/$defs/Authority"
+                },
+                "taxExemptionType": {
+                    "$ref": "#/$defs/TaxExemptionType"
+                },
+                "effectiveDate": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "expirationDate": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "systemEffectiveDate": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/EntityExemptionAccountStatus"
+                }
+            }
+        },
+        "Authority": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "$ref": "#/$defs/CountryCode"
+                },
+                "state": {
+                    "$ref": "#/$defs/State"
+                }
+            }
+        },
+        "CountryCode": {
+            "type": "string"
+        },
+        "State": {
+            "type": "string"
+        },
+        "TaxExemptionType": {
+            "type": "object",
+            "properties": {
+                "displayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "description": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "applicableJurisdictions": {
+                    "$ref": "#/$defs/Authorities"
+                }
+            }
+        },
+        "DisplayName": {
+            "type": "string"
+        },
+        "GenericString": {
+            "type": "string"
+        },
+        "Authorities": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Authority"
+            }
+        },
+        "EntityExemptionAccountStatus": {
+            "enum": [
+                "None",
+                "Valid",
+                "Expired",
+                "Pending"
+            ]
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "BatchGetTaxExemptionsRequest": {
+            "type": "object",
+            "properties": {
+                "accountIds": {
+                    "$ref": "#/$defs/AccountIds"
+                }
+            }
+        },
         "BatchPutTaxRegistrationResponse": {
             "type": "object",
             "properties": {
@@ -432,7 +872,9 @@
                 "GST",
                 "CPF",
                 "CNPJ",
-                "SST"
+                "SST",
+                "TIN",
+                "NRIC"
             ]
         },
         "LegalName": {
@@ -482,13 +924,7 @@
         "City": {
             "type": "string"
         },
-        "State": {
-            "type": "string"
-        },
         "PostalCode": {
-            "type": "string"
-        },
-        "CountryCode": {
             "type": "string"
         },
         "Sector": {
@@ -542,6 +978,15 @@
                 },
                 "saudiArabiaAdditionalInfo": {
                     "$ref": "#/$defs/SaudiArabiaAdditionalInfo"
+                },
+                "vietnamAdditionalInfo": {
+                    "$ref": "#/$defs/VietnamAdditionalInfo"
+                },
+                "egyptAdditionalInfo": {
+                    "$ref": "#/$defs/EgyptAdditionalInfo"
+                },
+                "greeceAdditionalInfo": {
+                    "$ref": "#/$defs/GreeceAdditionalInfo"
                 }
             }
         },
@@ -550,6 +995,12 @@
             "properties": {
                 "serviceTaxCodes": {
                     "$ref": "#/$defs/MalaysiaServiceTaxCodesList"
+                },
+                "taxInformationNumber": {
+                    "$ref": "#/$defs/TaxInformationNumber"
+                },
+                "businessRegistrationNumber": {
+                    "$ref": "#/$defs/BusinessRegistrationNumber"
                 }
             }
         },
@@ -566,6 +1017,12 @@
                 "IT_SERVICES",
                 "TRAINING_OR_COACHING"
             ]
+        },
+        "TaxInformationNumber": {
+            "type": "string"
+        },
+        "BusinessRegistrationNumber": {
+            "type": "string"
         },
         "IsraelAdditionalInfo": {
             "type": "object",
@@ -626,9 +1083,6 @@
         },
         "CanadaRetailSalesTaxNumberString": {
             "type": "string"
-        },
-        "Boolean": {
-            "type": "boolean"
         },
         "SpainAdditionalInfo": {
             "type": "object",
@@ -812,6 +1266,60 @@
                 "COMMERCIAL_REGISTRATION_NUMBER"
             ]
         },
+        "VietnamAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "enterpriseIdentificationNumber": {
+                    "$ref": "#/$defs/EnterpriseIdentificationNumber"
+                },
+                "electronicTransactionCodeNumber": {
+                    "$ref": "#/$defs/ElectronicTransactionCodeNumber"
+                },
+                "paymentVoucherNumber": {
+                    "$ref": "#/$defs/PaymentVoucherNumber"
+                },
+                "paymentVoucherNumberDate": {
+                    "$ref": "#/$defs/DateString"
+                }
+            }
+        },
+        "EnterpriseIdentificationNumber": {
+            "type": "string"
+        },
+        "ElectronicTransactionCodeNumber": {
+            "type": "string"
+        },
+        "PaymentVoucherNumber": {
+            "type": "string"
+        },
+        "DateString": {
+            "type": "string"
+        },
+        "EgyptAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "uniqueIdentificationNumber": {
+                    "$ref": "#/$defs/UniqueIdentificationNumber"
+                },
+                "uniqueIdentificationNumberExpirationDate": {
+                    "$ref": "#/$defs/DateString"
+                }
+            }
+        },
+        "UniqueIdentificationNumber": {
+            "type": "string"
+        },
+        "GreeceAdditionalInfo": {
+            "type": "object",
+            "properties": {
+                "contractingAuthorityCode": {
+                    "$ref": "#/$defs/ContractingAuthorityCode"
+                }
+            }
+        },
+        "ContractingAuthorityCode": {
+            "type": "string"
+        },
         "VerificationDetails": {
             "type": "object",
             "properties": {
@@ -837,6 +1345,9 @@
             "properties": {
                 "s3Location": {
                     "$ref": "#/$defs/SourceS3Location"
+                },
+                "file": {
+                    "$ref": "#/$defs/TaxRegistrationDocFile"
                 }
             }
         },
@@ -857,8 +1368,38 @@
         "S3Key": {
             "type": "string"
         },
+        "TaxRegistrationDocFile": {
+            "type": "object",
+            "properties": {
+                "fileName": {
+                    "$ref": "#/$defs/TaxDocumentName"
+                },
+                "fileContent": {
+                    "$ref": "#/$defs/FileBlob"
+                }
+            }
+        },
+        "TaxDocumentName": {
+            "type": "string"
+        },
+        "FileBlob": {
+            "type": "string",
+            "format": "binary"
+        },
         "CertifiedEmailId": {
             "type": "string"
+        },
+        "DeleteSupplementalTaxRegistrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteSupplementalTaxRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "authorityId": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
         },
         "DeleteTaxRegistrationResponse": {
             "type": "object",
@@ -871,6 +1412,42 @@
                     "$ref": "#/$defs/AccountId"
                 }
             }
+        },
+        "GetTaxExemptionTypesResponse": {
+            "type": "object",
+            "properties": {
+                "taxExemptionTypes": {
+                    "$ref": "#/$defs/TaxExemptionTypes"
+                }
+            }
+        },
+        "TaxExemptionTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TaxExemptionType"
+            }
+        },
+        "GetTaxExemptionTypesRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetTaxInheritanceResponse": {
+            "type": "object",
+            "properties": {
+                "heritageStatus": {
+                    "$ref": "#/$defs/HeritageStatus"
+                }
+            }
+        },
+        "HeritageStatus": {
+            "enum": [
+                "OptIn",
+                "OptOut"
+            ]
+        },
+        "GetTaxInheritanceRequest": {
+            "type": "object",
+            "properties": {}
         },
         "GetTaxRegistrationResponse": {
             "type": "object",
@@ -932,9 +1509,6 @@
         "TaxDocumentAccessToken": {
             "type": "string"
         },
-        "TaxDocumentName": {
-            "type": "string"
-        },
         "AdditionalInfoResponse": {
             "type": "object",
             "properties": {
@@ -985,6 +1559,15 @@
                 },
                 "indiaAdditionalInfo": {
                     "$ref": "#/$defs/IndiaAdditionalInfo"
+                },
+                "vietnamAdditionalInfo": {
+                    "$ref": "#/$defs/VietnamAdditionalInfo"
+                },
+                "egyptAdditionalInfo": {
+                    "$ref": "#/$defs/EgyptAdditionalInfo"
+                },
+                "greeceAdditionalInfo": {
+                    "$ref": "#/$defs/GreeceAdditionalInfo"
                 }
             }
         },
@@ -1029,10 +1612,16 @@
             "properties": {
                 "destinationFilePath": {
                     "$ref": "#/$defs/DestinationFilePath"
+                },
+                "presignedS3Url": {
+                    "$ref": "#/$defs/Url"
                 }
             }
         },
         "DestinationFilePath": {
+            "type": "string"
+        },
+        "Url": {
             "type": "string"
         },
         "GetTaxRegistrationDocumentRequest": {
@@ -1059,6 +1648,91 @@
         },
         "S3Prefix": {
             "type": "string"
+        },
+        "ListSupplementalTaxRegistrationsResponse": {
+            "type": "object",
+            "properties": {
+                "taxRegistrations": {
+                    "$ref": "#/$defs/SupplementalTaxRegistrationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationTokenString"
+                }
+            }
+        },
+        "SupplementalTaxRegistrationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SupplementalTaxRegistration"
+            }
+        },
+        "SupplementalTaxRegistration": {
+            "type": "object",
+            "properties": {
+                "registrationId": {
+                    "$ref": "#/$defs/RegistrationId"
+                },
+                "registrationType": {
+                    "$ref": "#/$defs/SupplementalTaxRegistrationType"
+                },
+                "legalName": {
+                    "$ref": "#/$defs/LegalName"
+                },
+                "address": {
+                    "$ref": "#/$defs/Address"
+                },
+                "authorityId": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "status": {
+                    "$ref": "#/$defs/TaxRegistrationStatus"
+                }
+            }
+        },
+        "SupplementalTaxRegistrationType": {
+            "enum": [
+                "VAT"
+            ]
+        },
+        "PaginationTokenString": {
+            "type": "string"
+        },
+        "ListSupplementalTaxRegistrationsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationTokenString"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListTaxExemptionsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationTokenString"
+                },
+                "taxExemptionDetailsMap": {
+                    "$ref": "#/$defs/TaxExemptionDetailsMap"
+                }
+            }
+        },
+        "ListTaxExemptionsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationTokenString"
+                }
+            }
         },
         "ListTaxRegistrationsResponse": {
             "type": "object",
@@ -1190,9 +1864,6 @@
                 "$ref": "#/$defs/Jurisdiction"
             }
         },
-        "PaginationTokenString": {
-            "type": "string"
-        },
         "ListTaxRegistrationsRequest": {
             "type": "object",
             "properties": {
@@ -1204,9 +1875,96 @@
                 }
             }
         },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
+        "PutSupplementalTaxRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "authorityId": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "status": {
+                    "$ref": "#/$defs/TaxRegistrationStatus"
+                }
+            }
+        },
+        "PutSupplementalTaxRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "taxRegistrationEntry": {
+                    "$ref": "#/$defs/SupplementalTaxRegistrationEntry"
+                }
+            }
+        },
+        "SupplementalTaxRegistrationEntry": {
+            "type": "object",
+            "properties": {
+                "registrationId": {
+                    "$ref": "#/$defs/RegistrationId"
+                },
+                "registrationType": {
+                    "$ref": "#/$defs/SupplementalTaxRegistrationType"
+                },
+                "legalName": {
+                    "$ref": "#/$defs/LegalName"
+                },
+                "address": {
+                    "$ref": "#/$defs/Address"
+                }
+            }
+        },
+        "PutTaxExemptionResponse": {
+            "type": "object",
+            "properties": {
+                "caseId": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "PutTaxExemptionRequest": {
+            "type": "object",
+            "properties": {
+                "accountIds": {
+                    "$ref": "#/$defs/AccountIds"
+                },
+                "authority": {
+                    "$ref": "#/$defs/Authority"
+                },
+                "exemptionType": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "exemptionCertificate": {
+                    "$ref": "#/$defs/ExemptionCertificate"
+                }
+            }
+        },
+        "ExemptionCertificate": {
+            "type": "object",
+            "properties": {
+                "documentName": {
+                    "$ref": "#/$defs/ExemptionDocumentName"
+                },
+                "documentFile": {
+                    "$ref": "#/$defs/ExemptionFileBlob"
+                }
+            }
+        },
+        "ExemptionDocumentName": {
+            "type": "string"
+        },
+        "ExemptionFileBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "PutTaxInheritanceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutTaxInheritanceRequest": {
+            "type": "object",
+            "properties": {
+                "heritageStatus": {
+                    "$ref": "#/$defs/HeritageStatus"
+                }
+            }
         },
         "PutTaxRegistrationResponse": {
             "type": "object",

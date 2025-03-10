@@ -408,6 +408,64 @@
             }
         },
         {
+            "name": "DeleteIndexPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.DeleteIndexPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteIndexPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIndexPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.DeleteIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteLogAnomalyDetector",
             "config": {
                 "http": {
@@ -640,6 +698,35 @@
             }
         },
         {
+            "name": "DeleteTransformer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.DeleteTransformer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTransformerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeAccountPolicies",
             "config": {
                 "http": {
@@ -837,6 +924,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeExportTasksRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeFieldIndexes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.DescribeFieldIndexes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeFieldIndexesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeFieldIndexesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeIndexPolicies",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.DescribeIndexPolicies"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeIndexPoliciesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeIndexPoliciesRequest"
                         }
                     }
                 }
@@ -1249,6 +1394,35 @@
             }
         },
         {
+            "name": "GetIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.GetIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetLogAnomalyDetector",
             "config": {
                 "http": {
@@ -1394,6 +1568,35 @@
             }
         },
         {
+            "name": "GetTransformer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.GetTransformer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTransformerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTransformerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListAnomalies",
             "config": {
                 "http": {
@@ -1423,6 +1626,35 @@
             }
         },
         {
+            "name": "ListIntegrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.ListIntegrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListIntegrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListIntegrationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListLogAnomalyDetectors",
             "config": {
                 "http": {
@@ -1446,6 +1678,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListLogAnomalyDetectorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLogGroupsForQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.ListLogGroupsForQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLogGroupsForQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLogGroupsForQueryRequest"
                         }
                     }
                 }
@@ -1713,6 +1974,64 @@
             }
         },
         {
+            "name": "PutIndexPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.PutIndexPolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutIndexPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutIndexPolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.PutIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "PutLogEvents",
             "config": {
                 "http": {
@@ -1887,6 +2206,35 @@
             }
         },
         {
+            "name": "PutTransformer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.PutTransformer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutTransformerRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "StartLiveTail",
             "config": {
                 "http": {
@@ -2055,6 +2403,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/TestMetricFilterRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TestTransformer",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Logs_20140328.TestTransformer"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TestTransformerResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TestTransformerRequest"
                         }
                     }
                 }
@@ -2570,7 +2947,9 @@
         "PolicyType": {
             "enum": [
                 "DATA_PROTECTION_POLICY",
-                "SUBSCRIPTION_FILTER_POLICY"
+                "SUBSCRIPTION_FILTER_POLICY",
+                "FIELD_INDEX_POLICY",
+                "TRANSFORMER_POLICY"
             ]
         },
         "DeleteDataProtectionPolicyRequest": {
@@ -2629,6 +3008,39 @@
         },
         "DestinationName": {
             "type": "string"
+        },
+        "DeleteIndexPolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteIndexPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                }
+            }
+        },
+        "DeleteIntegrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "integrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                },
+                "force": {
+                    "$ref": "#/$defs/Force"
+                }
+            }
+        },
+        "IntegrationName": {
+            "type": "string"
+        },
+        "Force": {
+            "type": "boolean"
         },
         "DeleteLogAnomalyDetectorRequest": {
             "type": "object",
@@ -2720,11 +3132,22 @@
                 }
             }
         },
+        "DeleteTransformerRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                }
+            }
+        },
         "DescribeAccountPoliciesResponse": {
             "type": "object",
             "properties": {
                 "accountPolicies": {
                     "$ref": "#/$defs/AccountPolicies"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
         },
@@ -2774,6 +3197,9 @@
         "AccountId": {
             "type": "string"
         },
+        "NextToken": {
+            "type": "string"
+        },
         "DescribeAccountPoliciesRequest": {
             "type": "object",
             "properties": {
@@ -2785,6 +3211,9 @@
                 },
                 "accountIdentifiers": {
                     "$ref": "#/$defs/AccountIds"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
         },
@@ -2909,9 +3338,6 @@
             "items": {
                 "$ref": "#/$defs/FieldDelimiter"
             }
-        },
-        "NextToken": {
-            "type": "string"
         },
         "DescribeConfigurationTemplatesRequest": {
             "type": "object",
@@ -3266,6 +3692,126 @@
                 }
             }
         },
+        "DescribeFieldIndexesResponse": {
+            "type": "object",
+            "properties": {
+                "fieldIndexes": {
+                    "$ref": "#/$defs/FieldIndexes"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FieldIndexes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldIndex"
+            }
+        },
+        "FieldIndex": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "fieldIndexName": {
+                    "$ref": "#/$defs/FieldIndexName"
+                },
+                "lastScanTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "firstEventTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastEventTime": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "FieldIndexName": {
+            "type": "string"
+        },
+        "DescribeFieldIndexesRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifiers": {
+                    "$ref": "#/$defs/DescribeFieldIndexesLogGroupIdentifiers"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DescribeFieldIndexesLogGroupIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroupIdentifier"
+            }
+        },
+        "DescribeIndexPoliciesResponse": {
+            "type": "object",
+            "properties": {
+                "indexPolicies": {
+                    "$ref": "#/$defs/IndexPolicies"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "IndexPolicies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IndexPolicy"
+            }
+        },
+        "IndexPolicy": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "lastUpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/PolicyDocument"
+                },
+                "policyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "source": {
+                    "$ref": "#/$defs/IndexSource"
+                }
+            }
+        },
+        "PolicyDocument": {
+            "type": "string"
+        },
+        "IndexSource": {
+            "enum": [
+                "ACCOUNT",
+                "LOG_GROUP"
+            ]
+        },
+        "DescribeIndexPoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifiers": {
+                    "$ref": "#/$defs/DescribeIndexPoliciesLogGroupIdentifiers"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "DescribeIndexPoliciesLogGroupIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroupIdentifier"
+            }
+        },
         "DescribeLogGroupsResponse": {
             "type": "object",
             "properties": {
@@ -3502,6 +4048,9 @@
                 },
                 "logGroupName": {
                     "$ref": "#/$defs/LogGroupName"
+                },
+                "applyOnTransformedLogs": {
+                    "$ref": "#/$defs/ApplyOnTransformedLogs"
                 }
             }
         },
@@ -3587,6 +4136,9 @@
                 "None"
             ]
         },
+        "ApplyOnTransformedLogs": {
+            "type": "boolean"
+        },
         "DescribeMetricFiltersRequest": {
             "type": "object",
             "properties": {
@@ -3630,6 +4182,9 @@
         "QueryInfo": {
             "type": "object",
             "properties": {
+                "queryLanguage": {
+                    "$ref": "#/$defs/QueryLanguage"
+                },
                 "queryId": {
                     "$ref": "#/$defs/QueryId"
                 },
@@ -3646,6 +4201,13 @@
                     "$ref": "#/$defs/LogGroupName"
                 }
             }
+        },
+        "QueryLanguage": {
+            "enum": [
+                "CWLI",
+                "SQL",
+                "PPL"
+            ]
         },
         "QueryString": {
             "type": "string"
@@ -3675,6 +4237,9 @@
                 },
                 "nextToken": {
                     "$ref": "#/$defs/NextToken"
+                },
+                "queryLanguage": {
+                    "$ref": "#/$defs/QueryLanguage"
                 }
             }
         },
@@ -3702,6 +4267,9 @@
         "QueryDefinition": {
             "type": "object",
             "properties": {
+                "queryLanguage": {
+                    "$ref": "#/$defs/QueryLanguage"
+                },
                 "queryDefinitionId": {
                     "$ref": "#/$defs/QueryId"
                 },
@@ -3734,6 +4302,9 @@
         "DescribeQueryDefinitionsRequest": {
             "type": "object",
             "properties": {
+                "queryLanguage": {
+                    "$ref": "#/$defs/QueryLanguage"
+                },
                 "queryDefinitionNamePrefix": {
                     "$ref": "#/$defs/QueryDefinitionName"
                 },
@@ -3779,9 +4350,6 @@
                     "$ref": "#/$defs/Timestamp"
                 }
             }
-        },
-        "PolicyDocument": {
-            "type": "string"
         },
         "DescribeResourcePoliciesRequest": {
             "type": "object",
@@ -3831,6 +4399,9 @@
                 },
                 "distribution": {
                     "$ref": "#/$defs/Distribution"
+                },
+                "applyOnTransformedLogs": {
+                    "$ref": "#/$defs/ApplyOnTransformedLogs"
                 },
                 "creationTime": {
                     "$ref": "#/$defs/Timestamp"
@@ -4094,6 +4665,216 @@
                 }
             }
         },
+        "GetIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "integrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                },
+                "integrationType": {
+                    "$ref": "#/$defs/IntegrationType"
+                },
+                "integrationStatus": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                },
+                "integrationDetails": {
+                    "$ref": "#/$defs/IntegrationDetails"
+                }
+            }
+        },
+        "IntegrationType": {
+            "enum": [
+                "OPENSEARCH"
+            ]
+        },
+        "IntegrationStatus": {
+            "enum": [
+                "PROVISIONING",
+                "ACTIVE",
+                "FAILED"
+            ]
+        },
+        "IntegrationDetails": {
+            "type": "object",
+            "properties": {
+                "openSearchIntegrationDetails": {
+                    "$ref": "#/$defs/OpenSearchIntegrationDetails"
+                }
+            }
+        },
+        "OpenSearchIntegrationDetails": {
+            "type": "object",
+            "properties": {
+                "dataSource": {
+                    "$ref": "#/$defs/OpenSearchDataSource"
+                },
+                "application": {
+                    "$ref": "#/$defs/OpenSearchApplication"
+                },
+                "collection": {
+                    "$ref": "#/$defs/OpenSearchCollection"
+                },
+                "workspace": {
+                    "$ref": "#/$defs/OpenSearchWorkspace"
+                },
+                "encryptionPolicy": {
+                    "$ref": "#/$defs/OpenSearchEncryptionPolicy"
+                },
+                "networkPolicy": {
+                    "$ref": "#/$defs/OpenSearchNetworkPolicy"
+                },
+                "accessPolicy": {
+                    "$ref": "#/$defs/OpenSearchDataAccessPolicy"
+                },
+                "lifecyclePolicy": {
+                    "$ref": "#/$defs/OpenSearchLifecyclePolicy"
+                }
+            }
+        },
+        "OpenSearchDataSource": {
+            "type": "object",
+            "properties": {
+                "dataSourceName": {
+                    "$ref": "#/$defs/OpenSearchDataSourceName"
+                },
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatus"
+                }
+            }
+        },
+        "OpenSearchDataSourceName": {
+            "type": "string"
+        },
+        "OpenSearchResourceStatus": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatusType"
+                },
+                "statusMessage": {
+                    "$ref": "#/$defs/IntegrationStatusMessage"
+                }
+            }
+        },
+        "OpenSearchResourceStatusType": {
+            "enum": [
+                "ACTIVE",
+                "NOT_FOUND",
+                "ERROR"
+            ]
+        },
+        "IntegrationStatusMessage": {
+            "type": "string"
+        },
+        "OpenSearchApplication": {
+            "type": "object",
+            "properties": {
+                "applicationEndpoint": {
+                    "$ref": "#/$defs/OpenSearchApplicationEndpoint"
+                },
+                "applicationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "applicationId": {
+                    "$ref": "#/$defs/OpenSearchApplicationId"
+                },
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatus"
+                }
+            }
+        },
+        "OpenSearchApplicationEndpoint": {
+            "type": "string"
+        },
+        "OpenSearchApplicationId": {
+            "type": "string"
+        },
+        "OpenSearchCollection": {
+            "type": "object",
+            "properties": {
+                "collectionEndpoint": {
+                    "$ref": "#/$defs/OpenSearchCollectionEndpoint"
+                },
+                "collectionArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatus"
+                }
+            }
+        },
+        "OpenSearchCollectionEndpoint": {
+            "type": "string"
+        },
+        "OpenSearchWorkspace": {
+            "type": "object",
+            "properties": {
+                "workspaceId": {
+                    "$ref": "#/$defs/OpenSearchWorkspaceId"
+                },
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatus"
+                }
+            }
+        },
+        "OpenSearchWorkspaceId": {
+            "type": "string"
+        },
+        "OpenSearchEncryptionPolicy": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/OpenSearchPolicyName"
+                },
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatus"
+                }
+            }
+        },
+        "OpenSearchPolicyName": {
+            "type": "string"
+        },
+        "OpenSearchNetworkPolicy": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/OpenSearchPolicyName"
+                },
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatus"
+                }
+            }
+        },
+        "OpenSearchDataAccessPolicy": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/OpenSearchPolicyName"
+                },
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatus"
+                }
+            }
+        },
+        "OpenSearchLifecyclePolicy": {
+            "type": "object",
+            "properties": {
+                "policyName": {
+                    "$ref": "#/$defs/OpenSearchPolicyName"
+                },
+                "status": {
+                    "$ref": "#/$defs/OpenSearchResourceStatus"
+                }
+            }
+        },
+        "GetIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "integrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                }
+            }
+        },
         "GetLogAnomalyDetectorResponse": {
             "type": "object",
             "properties": {
@@ -4297,6 +5078,9 @@
         "GetQueryResultsResponse": {
             "type": "object",
             "properties": {
+                "queryLanguage": {
+                    "$ref": "#/$defs/QueryLanguage"
+                },
                 "results": {
                     "$ref": "#/$defs/QueryResults"
                 },
@@ -4343,7 +5127,16 @@
                 "recordsScanned": {
                     "$ref": "#/$defs/StatsValue"
                 },
+                "estimatedRecordsSkipped": {
+                    "$ref": "#/$defs/StatsValue"
+                },
                 "bytesScanned": {
+                    "$ref": "#/$defs/StatsValue"
+                },
+                "estimatedBytesSkipped": {
+                    "$ref": "#/$defs/StatsValue"
+                },
+                "logGroupsScanned": {
                     "$ref": "#/$defs/StatsValue"
                 }
             }
@@ -4360,6 +5153,609 @@
             "properties": {
                 "queryId": {
                     "$ref": "#/$defs/QueryId"
+                }
+            }
+        },
+        "GetTransformerResponse": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastModifiedTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "transformerConfig": {
+                    "$ref": "#/$defs/Processors"
+                }
+            }
+        },
+        "Processors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Processor"
+            }
+        },
+        "Processor": {
+            "type": "object",
+            "properties": {
+                "addKeys": {
+                    "$ref": "#/$defs/AddKeys"
+                },
+                "copyValue": {
+                    "$ref": "#/$defs/CopyValue"
+                },
+                "csv": {
+                    "$ref": "#/$defs/CSV"
+                },
+                "dateTimeConverter": {
+                    "$ref": "#/$defs/DateTimeConverter"
+                },
+                "deleteKeys": {
+                    "$ref": "#/$defs/DeleteKeys"
+                },
+                "grok": {
+                    "$ref": "#/$defs/Grok"
+                },
+                "listToMap": {
+                    "$ref": "#/$defs/ListToMap"
+                },
+                "lowerCaseString": {
+                    "$ref": "#/$defs/LowerCaseString"
+                },
+                "moveKeys": {
+                    "$ref": "#/$defs/MoveKeys"
+                },
+                "parseCloudfront": {
+                    "$ref": "#/$defs/ParseCloudfront"
+                },
+                "parseJSON": {
+                    "$ref": "#/$defs/ParseJSON"
+                },
+                "parseKeyValue": {
+                    "$ref": "#/$defs/ParseKeyValue"
+                },
+                "parseRoute53": {
+                    "$ref": "#/$defs/ParseRoute53"
+                },
+                "parsePostgres": {
+                    "$ref": "#/$defs/ParsePostgres"
+                },
+                "parseVPC": {
+                    "$ref": "#/$defs/ParseVPC"
+                },
+                "parseWAF": {
+                    "$ref": "#/$defs/ParseWAF"
+                },
+                "renameKeys": {
+                    "$ref": "#/$defs/RenameKeys"
+                },
+                "splitString": {
+                    "$ref": "#/$defs/SplitString"
+                },
+                "substituteString": {
+                    "$ref": "#/$defs/SubstituteString"
+                },
+                "trimString": {
+                    "$ref": "#/$defs/TrimString"
+                },
+                "typeConverter": {
+                    "$ref": "#/$defs/TypeConverter"
+                },
+                "upperCaseString": {
+                    "$ref": "#/$defs/UpperCaseString"
+                }
+            }
+        },
+        "AddKeys": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/AddKeyEntries"
+                }
+            }
+        },
+        "AddKeyEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AddKeyEntry"
+            }
+        },
+        "AddKeyEntry": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "value": {
+                    "$ref": "#/$defs/AddKeyValue"
+                },
+                "overwriteIfExists": {
+                    "$ref": "#/$defs/OverwriteIfExists"
+                }
+            }
+        },
+        "Key": {
+            "type": "string"
+        },
+        "AddKeyValue": {
+            "type": "string"
+        },
+        "OverwriteIfExists": {
+            "type": "boolean"
+        },
+        "CopyValue": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/CopyValueEntries"
+                }
+            }
+        },
+        "CopyValueEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CopyValueEntry"
+            }
+        },
+        "CopyValueEntry": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "target": {
+                    "$ref": "#/$defs/Target"
+                },
+                "overwriteIfExists": {
+                    "$ref": "#/$defs/OverwriteIfExists"
+                }
+            }
+        },
+        "Source": {
+            "type": "string"
+        },
+        "Target": {
+            "type": "string"
+        },
+        "CSV": {
+            "type": "object",
+            "properties": {
+                "quoteCharacter": {
+                    "$ref": "#/$defs/QuoteCharacter"
+                },
+                "delimiter": {
+                    "$ref": "#/$defs/Delimiter"
+                },
+                "columns": {
+                    "$ref": "#/$defs/Columns"
+                },
+                "source": {
+                    "$ref": "#/$defs/Source"
+                }
+            }
+        },
+        "QuoteCharacter": {
+            "type": "string"
+        },
+        "Delimiter": {
+            "type": "string"
+        },
+        "Columns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Column"
+            }
+        },
+        "Column": {
+            "type": "string"
+        },
+        "DateTimeConverter": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "target": {
+                    "$ref": "#/$defs/Target"
+                },
+                "targetFormat": {
+                    "$ref": "#/$defs/TargetFormat"
+                },
+                "matchPatterns": {
+                    "$ref": "#/$defs/MatchPatterns"
+                },
+                "sourceTimezone": {
+                    "$ref": "#/$defs/SourceTimezone"
+                },
+                "targetTimezone": {
+                    "$ref": "#/$defs/TargetTimezone"
+                },
+                "locale": {
+                    "$ref": "#/$defs/Locale"
+                }
+            }
+        },
+        "TargetFormat": {
+            "type": "string"
+        },
+        "MatchPatterns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MatchPattern"
+            }
+        },
+        "MatchPattern": {
+            "type": "string"
+        },
+        "SourceTimezone": {
+            "type": "string"
+        },
+        "TargetTimezone": {
+            "type": "string"
+        },
+        "Locale": {
+            "type": "string"
+        },
+        "DeleteKeys": {
+            "type": "object",
+            "properties": {
+                "withKeys": {
+                    "$ref": "#/$defs/DeleteWithKeys"
+                }
+            }
+        },
+        "DeleteWithKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WithKey"
+            }
+        },
+        "WithKey": {
+            "type": "string"
+        },
+        "Grok": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "match": {
+                    "$ref": "#/$defs/GrokMatch"
+                }
+            }
+        },
+        "GrokMatch": {
+            "type": "string"
+        },
+        "ListToMap": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "valueKey": {
+                    "$ref": "#/$defs/ValueKey"
+                },
+                "target": {
+                    "$ref": "#/$defs/Target"
+                },
+                "flatten": {
+                    "$ref": "#/$defs/Flatten"
+                },
+                "flattenedElement": {
+                    "$ref": "#/$defs/FlattenedElement"
+                }
+            }
+        },
+        "ValueKey": {
+            "type": "string"
+        },
+        "Flatten": {
+            "type": "boolean"
+        },
+        "FlattenedElement": {
+            "enum": [
+                "FIRST",
+                "LAST"
+            ]
+        },
+        "LowerCaseString": {
+            "type": "object",
+            "properties": {
+                "withKeys": {
+                    "$ref": "#/$defs/LowerCaseStringWithKeys"
+                }
+            }
+        },
+        "LowerCaseStringWithKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WithKey"
+            }
+        },
+        "MoveKeys": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/MoveKeyEntries"
+                }
+            }
+        },
+        "MoveKeyEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MoveKeyEntry"
+            }
+        },
+        "MoveKeyEntry": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "target": {
+                    "$ref": "#/$defs/Target"
+                },
+                "overwriteIfExists": {
+                    "$ref": "#/$defs/OverwriteIfExists"
+                }
+            }
+        },
+        "ParseCloudfront": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                }
+            }
+        },
+        "ParseJSON": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "destination": {
+                    "$ref": "#/$defs/DestinationField"
+                }
+            }
+        },
+        "DestinationField": {
+            "type": "string"
+        },
+        "ParseKeyValue": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "destination": {
+                    "$ref": "#/$defs/DestinationField"
+                },
+                "fieldDelimiter": {
+                    "$ref": "#/$defs/ParserFieldDelimiter"
+                },
+                "keyValueDelimiter": {
+                    "$ref": "#/$defs/KeyValueDelimiter"
+                },
+                "keyPrefix": {
+                    "$ref": "#/$defs/KeyPrefix"
+                },
+                "nonMatchValue": {
+                    "$ref": "#/$defs/NonMatchValue"
+                },
+                "overwriteIfExists": {
+                    "$ref": "#/$defs/OverwriteIfExists"
+                }
+            }
+        },
+        "ParserFieldDelimiter": {
+            "type": "string"
+        },
+        "KeyValueDelimiter": {
+            "type": "string"
+        },
+        "KeyPrefix": {
+            "type": "string"
+        },
+        "NonMatchValue": {
+            "type": "string"
+        },
+        "ParseRoute53": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                }
+            }
+        },
+        "ParsePostgres": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                }
+            }
+        },
+        "ParseVPC": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                }
+            }
+        },
+        "ParseWAF": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                }
+            }
+        },
+        "RenameKeys": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/RenameKeyEntries"
+                }
+            }
+        },
+        "RenameKeyEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RenameKeyEntry"
+            }
+        },
+        "RenameKeyEntry": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "renameTo": {
+                    "$ref": "#/$defs/RenameTo"
+                },
+                "overwriteIfExists": {
+                    "$ref": "#/$defs/OverwriteIfExists"
+                }
+            }
+        },
+        "RenameTo": {
+            "type": "string"
+        },
+        "SplitString": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/SplitStringEntries"
+                }
+            }
+        },
+        "SplitStringEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SplitStringEntry"
+            }
+        },
+        "SplitStringEntry": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "delimiter": {
+                    "$ref": "#/$defs/Delimiter"
+                }
+            }
+        },
+        "SubstituteString": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/SubstituteStringEntries"
+                }
+            }
+        },
+        "SubstituteStringEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubstituteStringEntry"
+            }
+        },
+        "SubstituteStringEntry": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/Source"
+                },
+                "from": {
+                    "$ref": "#/$defs/FromKey"
+                },
+                "to": {
+                    "$ref": "#/$defs/ToKey"
+                }
+            }
+        },
+        "FromKey": {
+            "type": "string"
+        },
+        "ToKey": {
+            "type": "string"
+        },
+        "TrimString": {
+            "type": "object",
+            "properties": {
+                "withKeys": {
+                    "$ref": "#/$defs/TrimStringWithKeys"
+                }
+            }
+        },
+        "TrimStringWithKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WithKey"
+            }
+        },
+        "TypeConverter": {
+            "type": "object",
+            "properties": {
+                "entries": {
+                    "$ref": "#/$defs/TypeConverterEntries"
+                }
+            }
+        },
+        "TypeConverterEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TypeConverterEntry"
+            }
+        },
+        "TypeConverterEntry": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/Key"
+                },
+                "type": {
+                    "$ref": "#/$defs/Type"
+                }
+            }
+        },
+        "Type": {
+            "enum": [
+                "BOOLEAN",
+                "INTEGER",
+                "DOUBLE",
+                "STRING"
+            ]
+        },
+        "UpperCaseString": {
+            "type": "object",
+            "properties": {
+                "withKeys": {
+                    "$ref": "#/$defs/UpperCaseStringWithKeys"
+                }
+            }
+        },
+        "UpperCaseStringWithKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WithKey"
+            }
+        },
+        "GetTransformerRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
                 }
             }
         },
@@ -4514,6 +5910,9 @@
                 },
                 "enumerations": {
                     "$ref": "#/$defs/Enumerations"
+                },
+                "inferredTokenName": {
+                    "$ref": "#/$defs/InferredTokenName"
                 }
             }
         },
@@ -4533,6 +5932,9 @@
         "TokenValue": {
             "type": "integer",
             "format": "int64"
+        },
+        "InferredTokenName": {
+            "type": "string"
         },
         "ListAnomaliesRequest": {
             "type": "object",
@@ -4560,6 +5962,51 @@
         "ListAnomaliesLimit": {
             "type": "integer",
             "format": "int32"
+        },
+        "ListIntegrationsResponse": {
+            "type": "object",
+            "properties": {
+                "integrationSummaries": {
+                    "$ref": "#/$defs/IntegrationSummaries"
+                }
+            }
+        },
+        "IntegrationSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IntegrationSummary"
+            }
+        },
+        "IntegrationSummary": {
+            "type": "object",
+            "properties": {
+                "integrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                },
+                "integrationType": {
+                    "$ref": "#/$defs/IntegrationType"
+                },
+                "integrationStatus": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                }
+            }
+        },
+        "ListIntegrationsRequest": {
+            "type": "object",
+            "properties": {
+                "integrationNamePrefix": {
+                    "$ref": "#/$defs/IntegrationNamePrefix"
+                },
+                "integrationType": {
+                    "$ref": "#/$defs/IntegrationType"
+                },
+                "integrationStatus": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                }
+            }
+        },
+        "IntegrationNamePrefix": {
+            "type": "string"
         },
         "ListLogAnomalyDetectorsResponse": {
             "type": "object",
@@ -4628,6 +6075,41 @@
             }
         },
         "ListLogAnomalyDetectorsLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListLogGroupsForQueryResponse": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifiers": {
+                    "$ref": "#/$defs/LogGroupIdentifiers"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "LogGroupIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LogGroupIdentifier"
+            }
+        },
+        "ListLogGroupsForQueryRequest": {
+            "type": "object",
+            "properties": {
+                "queryId": {
+                    "$ref": "#/$defs/QueryId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListLogGroupsForQueryMaxResults"
+                }
+            }
+        },
+        "ListLogGroupsForQueryMaxResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -4830,6 +6312,88 @@
         "ForceUpdate": {
             "type": "boolean"
         },
+        "PutIndexPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "indexPolicy": {
+                    "$ref": "#/$defs/IndexPolicy"
+                }
+            }
+        },
+        "PutIndexPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "policyDocument": {
+                    "$ref": "#/$defs/PolicyDocument"
+                }
+            }
+        },
+        "PutIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "integrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                },
+                "integrationStatus": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                }
+            }
+        },
+        "PutIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "integrationName": {
+                    "$ref": "#/$defs/IntegrationName"
+                },
+                "resourceConfig": {
+                    "$ref": "#/$defs/ResourceConfig"
+                },
+                "integrationType": {
+                    "$ref": "#/$defs/IntegrationType"
+                }
+            }
+        },
+        "ResourceConfig": {
+            "type": "object",
+            "properties": {
+                "openSearchResourceConfig": {
+                    "$ref": "#/$defs/OpenSearchResourceConfig"
+                }
+            }
+        },
+        "OpenSearchResourceConfig": {
+            "type": "object",
+            "properties": {
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "dataSourceRoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "dashboardViewerPrincipals": {
+                    "$ref": "#/$defs/DashboardViewerPrincipals"
+                },
+                "applicationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "retentionDays": {
+                    "$ref": "#/$defs/CollectionRetentionDays"
+                }
+            }
+        },
+        "DashboardViewerPrincipals": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "CollectionRetentionDays": {
+            "type": "integer",
+            "format": "int32"
+        },
         "PutLogEventsResponse": {
             "type": "object",
             "properties": {
@@ -4961,6 +6525,9 @@
                 },
                 "metricTransformations": {
                     "$ref": "#/$defs/MetricTransformations"
+                },
+                "applyOnTransformedLogs": {
+                    "$ref": "#/$defs/ApplyOnTransformedLogs"
                 }
             }
         },
@@ -4975,6 +6542,9 @@
         "PutQueryDefinitionRequest": {
             "type": "object",
             "properties": {
+                "queryLanguage": {
+                    "$ref": "#/$defs/QueryLanguage"
+                },
                 "name": {
                     "$ref": "#/$defs/QueryDefinitionName"
                 },
@@ -5045,6 +6615,20 @@
                 },
                 "distribution": {
                     "$ref": "#/$defs/Distribution"
+                },
+                "applyOnTransformedLogs": {
+                    "$ref": "#/$defs/ApplyOnTransformedLogs"
+                }
+            }
+        },
+        "PutTransformerRequest": {
+            "type": "object",
+            "properties": {
+                "logGroupIdentifier": {
+                    "$ref": "#/$defs/LogGroupIdentifier"
+                },
+                "transformerConfig": {
+                    "$ref": "#/$defs/Processors"
                 }
             }
         },
@@ -5203,6 +6787,9 @@
         "StartQueryRequest": {
             "type": "object",
             "properties": {
+                "queryLanguage": {
+                    "$ref": "#/$defs/QueryLanguage"
+                },
                 "logGroupName": {
                     "$ref": "#/$defs/LogGroupName"
                 },
@@ -5224,12 +6811,6 @@
                 "limit": {
                     "$ref": "#/$defs/EventsLimit"
                 }
-            }
-        },
-        "LogGroupIdentifiers": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/LogGroupIdentifier"
             }
         },
         "StopQueryResponse": {
@@ -5325,6 +6906,48 @@
                 "$ref": "#/$defs/EventMessage"
             }
         },
+        "TestTransformerResponse": {
+            "type": "object",
+            "properties": {
+                "transformedLogs": {
+                    "$ref": "#/$defs/TransformedLogs"
+                }
+            }
+        },
+        "TransformedLogs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TransformedLogRecord"
+            }
+        },
+        "TransformedLogRecord": {
+            "type": "object",
+            "properties": {
+                "eventNumber": {
+                    "$ref": "#/$defs/EventNumber"
+                },
+                "eventMessage": {
+                    "$ref": "#/$defs/EventMessage"
+                },
+                "transformedEventMessage": {
+                    "$ref": "#/$defs/TransformedEventMessage"
+                }
+            }
+        },
+        "TransformedEventMessage": {
+            "type": "string"
+        },
+        "TestTransformerRequest": {
+            "type": "object",
+            "properties": {
+                "transformerConfig": {
+                    "$ref": "#/$defs/Processors"
+                },
+                "logEventMessages": {
+                    "$ref": "#/$defs/TestEventMessages"
+                }
+            }
+        },
         "UntagLogGroupRequest": {
             "type": "object",
             "properties": {
@@ -5379,6 +7002,9 @@
                 },
                 "suppressionPeriod": {
                     "$ref": "#/$defs/SuppressionPeriod"
+                },
+                "baseline": {
+                    "$ref": "#/$defs/Baseline"
                 }
             }
         },
@@ -5409,6 +7035,9 @@
                 "MINUTES",
                 "HOURS"
             ]
+        },
+        "Baseline": {
+            "type": "boolean"
         },
         "UpdateDeliveryConfigurationResponse": {
             "type": "object",

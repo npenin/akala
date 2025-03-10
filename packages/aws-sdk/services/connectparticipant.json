@@ -2,6 +2,41 @@
     "name": "connect",
     "commands": [
         {
+            "name": "CancelParticipantAuthentication",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/participant/cancel-authentication"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelParticipantAuthenticationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelParticipantAuthenticationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CompleteAttachmentUpload",
             "config": {
                 "http": {
@@ -165,6 +200,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetAttachmentRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAuthenticationUrl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/participant/authentication-url"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAuthenticationUrlResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAuthenticationUrlRequest"
                         }
                     }
                 },
@@ -367,6 +437,27 @@
             "type": "string",
             "format": "binary"
         },
+        "CancelParticipantAuthenticationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CancelParticipantAuthenticationRequest": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "ConnectionToken": {
+                    "$ref": "#/$defs/ParticipantToken"
+                }
+            }
+        },
+        "SessionId": {
+            "type": "string"
+        },
+        "ParticipantToken": {
+            "type": "string"
+        },
         "CompleteAttachmentUploadResponse": {
             "type": "object",
             "properties": {}
@@ -395,9 +486,6 @@
             "type": "string"
         },
         "NonEmptyClientToken": {
-            "type": "string"
-        },
-        "ParticipantToken": {
             "type": "string"
         },
         "CreateParticipantConnectionResponse": {
@@ -578,11 +666,18 @@
                 },
                 "UrlExpiry": {
                     "$ref": "#/$defs/ISO8601Datetime"
+                },
+                "AttachmentSizeInBytes": {
+                    "$ref": "#/$defs/AttachmentSizeInBytes"
                 }
             }
         },
         "PreSignedAttachmentUrl": {
             "type": "string"
+        },
+        "AttachmentSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
         },
         "GetAttachmentRequest": {
             "type": "object",
@@ -592,8 +687,43 @@
                 },
                 "ConnectionToken": {
                     "$ref": "#/$defs/ParticipantToken"
+                },
+                "UrlExpiryInSeconds": {
+                    "$ref": "#/$defs/URLExpiryInSeconds"
                 }
             }
+        },
+        "URLExpiryInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetAuthenticationUrlResponse": {
+            "type": "object",
+            "properties": {
+                "AuthenticationUrl": {
+                    "$ref": "#/$defs/AuthenticationUrl"
+                }
+            }
+        },
+        "AuthenticationUrl": {
+            "type": "string"
+        },
+        "GetAuthenticationUrlRequest": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "RedirectUri": {
+                    "$ref": "#/$defs/RedirectURI"
+                },
+                "ConnectionToken": {
+                    "$ref": "#/$defs/ParticipantToken"
+                }
+            }
+        },
+        "RedirectURI": {
+            "type": "string"
         },
         "GetTranscriptResponse": {
             "type": "object",
@@ -944,10 +1074,6 @@
                     "$ref": "#/$defs/ParticipantToken"
                 }
             }
-        },
-        "AttachmentSizeInBytes": {
-            "type": "integer",
-            "format": "int64"
         }
     },
     "aws": {

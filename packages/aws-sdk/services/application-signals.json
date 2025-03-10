@@ -936,10 +936,16 @@
                 },
                 "MetricName": {
                     "$ref": "#/$defs/MetricName"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
                 }
             }
         },
         "MetricType": {
+            "type": "string"
+        },
+        "AwsAccountId": {
             "type": "string"
         },
         "LogGroupReferences": {
@@ -1202,6 +1208,12 @@
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
+                },
+                "IncludeLinkedAccounts": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
                 }
             }
         },

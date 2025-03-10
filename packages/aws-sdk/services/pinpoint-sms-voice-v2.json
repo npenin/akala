@@ -669,6 +669,35 @@
             }
         },
         {
+            "name": "DeleteProtectConfigurationRuleSetNumberOverride",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PinpointSMSVoiceV2.DeleteProtectConfigurationRuleSetNumberOverride"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteProtectConfigurationRuleSetNumberOverrideResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteProtectConfigurationRuleSetNumberOverrideRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteRegistration",
             "config": {
                 "http": {
@@ -1597,6 +1626,35 @@
             }
         },
         {
+            "name": "ListProtectConfigurationRuleSetNumberOverrides",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PinpointSMSVoiceV2.ListProtectConfigurationRuleSetNumberOverrides"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListProtectConfigurationRuleSetNumberOverridesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListProtectConfigurationRuleSetNumberOverridesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListRegistrationAssociations",
             "config": {
                 "http": {
@@ -1684,6 +1742,35 @@
             }
         },
         {
+            "name": "PutMessageFeedback",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PinpointSMSVoiceV2.PutMessageFeedback"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutMessageFeedbackResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutMessageFeedbackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "PutOptedOutNumber",
             "config": {
                 "http": {
@@ -1707,6 +1794,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/PutOptedOutNumberRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutProtectConfigurationRuleSetNumberOverride",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PinpointSMSVoiceV2.PutProtectConfigurationRuleSetNumberOverride"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutProtectConfigurationRuleSetNumberOverrideResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutProtectConfigurationRuleSetNumberOverrideRequest"
                         }
                     }
                 }
@@ -2026,6 +2142,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/SetAccountDefaultProtectConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "SetDefaultMessageFeedbackEnabled",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "PinpointSMSVoiceV2.SetDefaultMessageFeedbackEnabled"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SetDefaultMessageFeedbackEnabledResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SetDefaultMessageFeedbackEnabledRequest"
                         }
                     }
                 }
@@ -3113,6 +3258,9 @@
                 "ReviewingTimestamp": {
                     "$ref": "#/$defs/smithy.api#Timestamp"
                 },
+                "RequiresAuthenticationTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
                 "ApprovedTimestamp": {
                     "$ref": "#/$defs/smithy.api#Timestamp"
                 },
@@ -3210,6 +3358,9 @@
                 },
                 "DefaultSenderId": {
                     "$ref": "#/$defs/SenderId"
+                },
+                "DefaultMessageFeedbackEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 },
                 "CreatedTimestamp": {
                     "$ref": "#/$defs/smithy.api#Timestamp"
@@ -3488,6 +3639,46 @@
             "properties": {
                 "ProtectConfigurationId": {
                     "$ref": "#/$defs/ProtectConfigurationIdOrArn"
+                }
+            }
+        },
+        "DeleteProtectConfigurationRuleSetNumberOverrideResult": {
+            "type": "object",
+            "properties": {
+                "ProtectConfigurationArn": {
+                    "$ref": "#/$defs/ProtectConfigurationArn"
+                },
+                "ProtectConfigurationId": {
+                    "$ref": "#/$defs/ProtectConfigurationId"
+                },
+                "DestinationPhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Action": {
+                    "$ref": "#/$defs/ProtectConfigurationRuleOverrideAction"
+                },
+                "IsoCountryCode": {
+                    "$ref": "#/$defs/IsoCountryCode"
+                },
+                "ExpirationTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ProtectConfigurationRuleOverrideAction": {
+            "type": "string"
+        },
+        "DeleteProtectConfigurationRuleSetNumberOverrideRequest": {
+            "type": "object",
+            "properties": {
+                "ProtectConfigurationId": {
+                    "$ref": "#/$defs/ProtectConfigurationIdOrArn"
+                },
+                "DestinationPhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
                 }
             }
         },
@@ -3825,6 +4016,9 @@
                 },
                 "DefaultSenderId": {
                     "$ref": "#/$defs/SenderId"
+                },
+                "DefaultMessageFeedbackEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 },
                 "CreatedTimestamp": {
                     "$ref": "#/$defs/smithy.api#Timestamp"
@@ -5636,6 +5830,86 @@
         "PoolOriginationIdentitiesFilterName": {
             "type": "string"
         },
+        "ListProtectConfigurationRuleSetNumberOverridesResult": {
+            "type": "object",
+            "properties": {
+                "ProtectConfigurationArn": {
+                    "$ref": "#/$defs/ProtectConfigurationArn"
+                },
+                "ProtectConfigurationId": {
+                    "$ref": "#/$defs/ProtectConfigurationId"
+                },
+                "RuleSetNumberOverrides": {
+                    "$ref": "#/$defs/ProtectConfigurationRuleSetNumberOverrideList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ProtectConfigurationRuleSetNumberOverrideList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProtectConfigurationRuleSetNumberOverride"
+            }
+        },
+        "ProtectConfigurationRuleSetNumberOverride": {
+            "type": "object",
+            "properties": {
+                "DestinationPhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Action": {
+                    "$ref": "#/$defs/ProtectConfigurationRuleOverrideAction"
+                },
+                "IsoCountryCode": {
+                    "$ref": "#/$defs/IsoCountryCode"
+                },
+                "ExpirationTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ListProtectConfigurationRuleSetNumberOverridesRequest": {
+            "type": "object",
+            "properties": {
+                "ProtectConfigurationId": {
+                    "$ref": "#/$defs/ProtectConfigurationIdOrArn"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/ListProtectConfigurationRuleSetNumberOverrideFilter"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListProtectConfigurationRuleSetNumberOverrideFilter": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProtectConfigurationRuleSetNumberOverrideFilterItem"
+            }
+        },
+        "ProtectConfigurationRuleSetNumberOverrideFilterItem": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ProtectConfigurationRuleSetNumberOverrideFilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/FilterValueList"
+                }
+            }
+        },
+        "ProtectConfigurationRuleSetNumberOverrideFilterName": {
+            "type": "string"
+        },
         "ListRegistrationAssociationsResult": {
             "type": "object",
             "properties": {
@@ -5775,6 +6049,34 @@
                 }
             }
         },
+        "PutMessageFeedbackResult": {
+            "type": "object",
+            "properties": {
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "MessageFeedbackStatus": {
+                    "$ref": "#/$defs/MessageFeedbackStatus"
+                }
+            }
+        },
+        "MessageId": {
+            "type": "string"
+        },
+        "MessageFeedbackStatus": {
+            "type": "string"
+        },
+        "PutMessageFeedbackRequest": {
+            "type": "object",
+            "properties": {
+                "MessageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "MessageFeedbackStatus": {
+                    "$ref": "#/$defs/MessageFeedbackStatus"
+                }
+            }
+        },
         "PutOptedOutNumberResult": {
             "type": "object",
             "properties": {
@@ -5803,6 +6105,52 @@
                 },
                 "OptedOutNumber": {
                     "$ref": "#/$defs/PhoneNumber"
+                }
+            }
+        },
+        "PutProtectConfigurationRuleSetNumberOverrideResult": {
+            "type": "object",
+            "properties": {
+                "ProtectConfigurationArn": {
+                    "$ref": "#/$defs/ProtectConfigurationArn"
+                },
+                "ProtectConfigurationId": {
+                    "$ref": "#/$defs/ProtectConfigurationId"
+                },
+                "DestinationPhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Action": {
+                    "$ref": "#/$defs/ProtectConfigurationRuleOverrideAction"
+                },
+                "IsoCountryCode": {
+                    "$ref": "#/$defs/IsoCountryCode"
+                },
+                "ExpirationTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "PutProtectConfigurationRuleSetNumberOverrideRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "ProtectConfigurationId": {
+                    "$ref": "#/$defs/ProtectConfigurationIdOrArn"
+                },
+                "DestinationPhoneNumber": {
+                    "$ref": "#/$defs/PhoneNumber"
+                },
+                "Action": {
+                    "$ref": "#/$defs/ProtectConfigurationRuleOverrideAction"
+                },
+                "ExpirationTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
                 }
             }
         },
@@ -6228,6 +6576,9 @@
                 },
                 "ProtectConfigurationId": {
                     "$ref": "#/$defs/ProtectConfigurationIdOrArn"
+                },
+                "MessageFeedbackEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
         },
@@ -6299,6 +6650,9 @@
                 },
                 "ProtectConfigurationId": {
                     "$ref": "#/$defs/ProtectConfigurationIdOrArn"
+                },
+                "MessageFeedbackEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
         },
@@ -6348,6 +6702,9 @@
                 },
                 "ProtectConfigurationId": {
                     "$ref": "#/$defs/ProtectConfigurationIdOrArn"
+                },
+                "MessageFeedbackEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
         },
@@ -6379,6 +6736,31 @@
             "properties": {
                 "ProtectConfigurationId": {
                     "$ref": "#/$defs/ProtectConfigurationIdOrArn"
+                }
+            }
+        },
+        "SetDefaultMessageFeedbackEnabledResult": {
+            "type": "object",
+            "properties": {
+                "ConfigurationSetArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ConfigurationSetName": {
+                    "$ref": "#/$defs/ConfigurationSetName"
+                },
+                "MessageFeedbackEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "SetDefaultMessageFeedbackEnabledRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationSetName": {
+                    "$ref": "#/$defs/ConfigurationSetNameOrArn"
+                },
+                "MessageFeedbackEnabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
         },

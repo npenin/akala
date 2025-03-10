@@ -60,6 +60,35 @@
             }
         },
         {
+            "name": "AssociateSourceResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSMigrationHub.AssociateSourceResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateSourceResourceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateSourceResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateProgressUpdateStream",
             "config": {
                 "http": {
@@ -234,6 +263,35 @@
             }
         },
         {
+            "name": "DisassociateSourceResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSMigrationHub.DisassociateSourceResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateSourceResourceResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateSourceResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ImportMigrationTask",
             "config": {
                 "http": {
@@ -379,6 +437,35 @@
             }
         },
         {
+            "name": "ListMigrationTaskUpdates",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSMigrationHub.ListMigrationTaskUpdates"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMigrationTaskUpdatesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMigrationTaskUpdatesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListProgressUpdateStreams",
             "config": {
                 "http": {
@@ -402,6 +489,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListProgressUpdateStreamsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSourceResources",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSMigrationHub.ListSourceResources"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSourceResourcesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSourceResourcesRequest"
                         }
                     }
                 }
@@ -626,6 +742,50 @@
         "DiscoveredResourceDescription": {
             "type": "string"
         },
+        "AssociateSourceResourceResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "AssociateSourceResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ProgressUpdateStream": {
+                    "$ref": "#/$defs/ProgressUpdateStream"
+                },
+                "MigrationTaskName": {
+                    "$ref": "#/$defs/MigrationTaskName"
+                },
+                "SourceResource": {
+                    "$ref": "#/$defs/SourceResource"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/DryRun"
+                }
+            }
+        },
+        "SourceResource": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/SourceResourceName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/SourceResourceDescription"
+                },
+                "StatusDetail": {
+                    "$ref": "#/$defs/StatusDetail"
+                }
+            }
+        },
+        "SourceResourceName": {
+            "type": "string"
+        },
+        "SourceResourceDescription": {
+            "type": "string"
+        },
+        "StatusDetail": {
+            "type": "string"
+        },
         "CreateProgressUpdateStreamResult": {
             "type": "object",
             "properties": {}
@@ -739,9 +899,6 @@
                 "COMPLETED"
             ]
         },
-        "StatusDetail": {
-            "type": "string"
-        },
         "ProgressPercent": {
             "type": "integer",
             "format": "int32"
@@ -827,6 +984,27 @@
                 },
                 "ConfigurationId": {
                     "$ref": "#/$defs/ConfigurationId"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/DryRun"
+                }
+            }
+        },
+        "DisassociateSourceResourceResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisassociateSourceResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ProgressUpdateStream": {
+                    "$ref": "#/$defs/ProgressUpdateStream"
+                },
+                "MigrationTaskName": {
+                    "$ref": "#/$defs/MigrationTaskName"
+                },
+                "SourceResourceName": {
+                    "$ref": "#/$defs/SourceResourceName"
                 },
                 "DryRun": {
                     "$ref": "#/$defs/DryRun"
@@ -1042,6 +1220,59 @@
         "ResourceName": {
             "type": "string"
         },
+        "ListMigrationTaskUpdatesResult": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MigrationTaskUpdateList": {
+                    "$ref": "#/$defs/MigrationTaskUpdateList"
+                }
+            }
+        },
+        "MigrationTaskUpdateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MigrationTaskUpdate"
+            }
+        },
+        "MigrationTaskUpdate": {
+            "type": "object",
+            "properties": {
+                "UpdateDateTime": {
+                    "$ref": "#/$defs/UpdateDateTime"
+                },
+                "UpdateType": {
+                    "$ref": "#/$defs/UpdateType"
+                },
+                "MigrationTaskState": {
+                    "$ref": "#/$defs/Task"
+                }
+            }
+        },
+        "UpdateType": {
+            "enum": [
+                "MigrationTaskStateUpdated"
+            ]
+        },
+        "ListMigrationTaskUpdatesRequest": {
+            "type": "object",
+            "properties": {
+                "ProgressUpdateStream": {
+                    "$ref": "#/$defs/ProgressUpdateStream"
+                },
+                "MigrationTaskName": {
+                    "$ref": "#/$defs/MigrationTaskName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
         "ListProgressUpdateStreamsResult": {
             "type": "object",
             "properties": {
@@ -1077,6 +1308,44 @@
                     "$ref": "#/$defs/MaxResults"
                 }
             }
+        },
+        "ListSourceResourcesResult": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "SourceResourceList": {
+                    "$ref": "#/$defs/SourceResourceList"
+                }
+            }
+        },
+        "SourceResourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceResource"
+            }
+        },
+        "ListSourceResourcesRequest": {
+            "type": "object",
+            "properties": {
+                "ProgressUpdateStream": {
+                    "$ref": "#/$defs/ProgressUpdateStream"
+                },
+                "MigrationTaskName": {
+                    "$ref": "#/$defs/MigrationTaskName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsSourceResources"
+                }
+            }
+        },
+        "MaxResultsSourceResources": {
+            "type": "integer",
+            "format": "int32"
         },
         "NotifyApplicationStateResult": {
             "type": "object",

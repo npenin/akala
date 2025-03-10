@@ -1284,6 +1284,9 @@
         "MonitoringConfiguration": {
             "type": "object",
             "properties": {
+                "managedLogs": {
+                    "$ref": "#/$defs/ManagedLogs"
+                },
                 "persistentAppUI": {
                     "$ref": "#/$defs/PersistentAppUI"
                 },
@@ -1297,6 +1300,23 @@
                     "$ref": "#/$defs/ContainerLogRotationConfiguration"
                 }
             }
+        },
+        "ManagedLogs": {
+            "type": "object",
+            "properties": {
+                "allowAWSToRetainLogs": {
+                    "$ref": "#/$defs/AllowAWSToRetainLogs"
+                },
+                "encryptionKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "AllowAWSToRetainLogs": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
         },
         "PersistentAppUI": {
             "enum": [

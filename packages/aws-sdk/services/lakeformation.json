@@ -352,6 +352,41 @@
             }
         },
         {
+            "name": "CreateLFTagExpression",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/CreateLFTagExpression"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateLFTagExpressionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateLFTagExpressionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteDataCellsFilter",
             "config": {
                 "http": {
@@ -476,6 +511,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteLFTagRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteLFTagExpression",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/DeleteLFTagExpression"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteLFTagExpressionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteLFTagExpressionRequest"
                         }
                     }
                 },
@@ -877,6 +947,41 @@
             }
         },
         {
+            "name": "GetLFTagExpression",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/GetLFTagExpression"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetLFTagExpressionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetLFTagExpressionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetQueryState",
             "config": {
                 "http": {
@@ -1246,6 +1351,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListLakeFormationOptInsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListLFTagExpressions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/ListLFTagExpressions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListLFTagExpressionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListLFTagExpressionsRequest"
                         }
                     }
                 },
@@ -1822,6 +1962,41 @@
             }
         },
         {
+            "name": "UpdateLFTagExpression",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/UpdateLFTagExpression"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLFTagExpressionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLFTagExpressionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateResource",
             "config": {
                 "http": {
@@ -2084,12 +2259,19 @@
                 },
                 "LFTagPolicy": {
                     "$ref": "#/$defs/LFTagPolicyResource"
+                },
+                "LFTagExpression": {
+                    "$ref": "#/$defs/LFTagExpressionResource"
                 }
             }
         },
         "CatalogResource": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/CatalogIdString"
+                }
+            }
         },
         "DatabaseResource": {
             "type": "object",
@@ -2213,6 +2395,9 @@
                 },
                 "Expression": {
                     "$ref": "#/$defs/Expression"
+                },
+                "ExpressionName": {
+                    "$ref": "#/$defs/NameString"
                 }
             }
         },
@@ -2236,6 +2421,17 @@
                 },
                 "TagValues": {
                     "$ref": "#/$defs/TagValueList"
+                }
+            }
+        },
+        "LFTagExpressionResource": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "Name": {
+                    "$ref": "#/$defs/NameString"
                 }
             }
         },
@@ -2384,7 +2580,10 @@
                 "DATA_LOCATION_ACCESS",
                 "CREATE_LF_TAG",
                 "ASSOCIATE",
-                "GRANT_WITH_LF_TAG_EXPRESSION"
+                "GRANT_WITH_LF_TAG_EXPRESSION",
+                "CREATE_LF_TAG_EXPRESSION",
+                "CREATE_CATALOG",
+                "SUPER_USER"
             ]
         },
         "BatchGrantPermissionsRequest": {
@@ -2620,6 +2819,27 @@
                 }
             }
         },
+        "CreateLFTagExpressionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateLFTagExpressionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "Expression": {
+                    "$ref": "#/$defs/Expression"
+                }
+            }
+        },
         "DeleteDataCellsFilterResponse": {
             "type": "object",
             "properties": {}
@@ -2680,6 +2900,21 @@
                 },
                 "TagKey": {
                     "$ref": "#/$defs/LFTagKey"
+                }
+            }
+        },
+        "DeleteLFTagExpressionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteLFTagExpressionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
                 }
             }
         },
@@ -3023,6 +3258,9 @@
                 "Resource": {
                     "$ref": "#/$defs/Resource"
                 },
+                "Condition": {
+                    "$ref": "#/$defs/Condition"
+                },
                 "Permissions": {
                     "$ref": "#/$defs/PermissionList"
                 },
@@ -3039,6 +3277,17 @@
                     "$ref": "#/$defs/NameString"
                 }
             }
+        },
+        "Condition": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/ExpressionString"
+                }
+            }
+        },
+        "ExpressionString": {
+            "type": "string"
         },
         "DetailsMap": {
             "type": "object",
@@ -3100,6 +3349,34 @@
                 },
                 "TagKey": {
                     "$ref": "#/$defs/LFTagKey"
+                }
+            }
+        },
+        "GetLFTagExpressionResponse": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "Expression": {
+                    "$ref": "#/$defs/Expression"
+                }
+            }
+        },
+        "GetLFTagExpressionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
                 }
             }
         },
@@ -3700,6 +3977,9 @@
                 "Principal": {
                     "$ref": "#/$defs/DataLakePrincipal"
                 },
+                "Condition": {
+                    "$ref": "#/$defs/Condition"
+                },
                 "LastModified": {
                     "$ref": "#/$defs/LastModifiedTimestamp"
                 },
@@ -3716,6 +3996,54 @@
                 },
                 "Resource": {
                     "$ref": "#/$defs/Resource"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ListLFTagExpressionsResponse": {
+            "type": "object",
+            "properties": {
+                "LFTagExpressions": {
+                    "$ref": "#/$defs/LFTagExpressionsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "LFTagExpressionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LFTagExpression"
+            }
+        },
+        "LFTagExpression": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "Expression": {
+                    "$ref": "#/$defs/Expression"
+                }
+            }
+        },
+        "ListLFTagExpressionsRequest": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/PageSize"
@@ -3805,7 +4133,8 @@
                 "LF_TAG",
                 "LF_TAG_POLICY",
                 "LF_TAG_POLICY_DATABASE",
-                "LF_TAG_POLICY_TABLE"
+                "LF_TAG_POLICY_TABLE",
+                "LF_NAMED_TAG_EXPRESSION"
             ]
         },
         "TrueFalseString": {
@@ -4330,6 +4659,27 @@
                 },
                 "TagValuesToAdd": {
                     "$ref": "#/$defs/TagValueList"
+                }
+            }
+        },
+        "UpdateLFTagExpressionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLFTagExpressionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "Expression": {
+                    "$ref": "#/$defs/Expression"
                 }
             }
         },

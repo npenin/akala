@@ -844,6 +844,45 @@
             }
         },
         {
+            "name": "CreateCommand",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "commandId": "route.commandId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/commands/{commandId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCommandResponse"
+                    },
+                    "inject": [
+                        "param.0.commandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCommandRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateCustomMetric",
             "config": {
                 "http": {
@@ -2097,6 +2136,84 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteCertificateProviderRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCommand",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "commandId": "route.commandId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/commands/{commandId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCommandResponse"
+                    },
+                    "inject": [
+                        "param.0.commandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCommandRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCommandExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "executionId": "route.executionId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/command-executions/{executionId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCommandExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0.executionId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCommandExecutionRequest"
                         }
                     }
                 },
@@ -4897,6 +5014,84 @@
             }
         },
         {
+            "name": "GetCommand",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "commandId": "route.commandId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/commands/{commandId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCommandResponse"
+                    },
+                    "inject": [
+                        "param.0.commandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCommandRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCommandExecution",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "executionId": "route.executionId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/command-executions/{executionId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCommandExecutionResponse"
+                    },
+                    "inject": [
+                        "param.0.executionId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCommandExecutionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetEffectivePolicies",
             "config": {
                 "http": {
@@ -5364,6 +5559,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetStatisticsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetThingConnectivityData",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "thingName": "route.thingName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/things/{thingName}/connectivity-data"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetThingConnectivityDataResponse"
+                    },
+                    "inject": [
+                        "param.0.thingName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetThingConnectivityDataRequest"
                         }
                     }
                 },
@@ -5940,6 +6174,76 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListCertificatesByCARequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCommandExecutions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/command-executions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCommandExecutionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCommandExecutionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCommands",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/commands"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCommandsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCommandsRequest"
                         }
                     }
                 },
@@ -6777,6 +7081,41 @@
             }
         },
         {
+            "name": "ListPrincipalThingsV2",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/principals/things-v2"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPrincipalThingsV2Response"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPrincipalThingsV2Request"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListProvisioningTemplates",
             "config": {
                 "http": {
@@ -7312,6 +7651,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListThingPrincipalsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListThingPrincipalsV2",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "thingName": "route.thingName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/things/{thingName}/principals-v2"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListThingPrincipalsV2Response"
+                    },
+                    "inject": [
+                        "param.0.thingName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListThingPrincipalsV2Request"
                         }
                     }
                 },
@@ -8868,6 +9246,45 @@
             }
         },
         {
+            "name": "UpdateCommand",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "commandId": "route.commandId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/commands/{commandId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateCommandResponse"
+                    },
+                    "inject": [
+                        "param.0.commandId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCommandRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateCustomMetric",
             "config": {
                 "http": {
@@ -9634,6 +10051,45 @@
             }
         },
         {
+            "name": "UpdateThingType",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "thingTypeName": "route.thingTypeName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/thing-types/{thingTypeName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateThingTypeResponse"
+                    },
+                    "inject": [
+                        "param.0.thingTypeName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateThingTypeRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateTopicRuleDestination",
             "config": {
                 "http": {
@@ -10033,8 +10489,17 @@
                 },
                 "principal": {
                     "$ref": "#/$defs/Principal"
+                },
+                "thingPrincipalType": {
+                    "$ref": "#/$defs/ThingPrincipalType"
                 }
             }
+        },
+        "ThingPrincipalType": {
+            "enum": [
+                "EXCLUSIVE_THING",
+                "NON_EXCLUSIVE_THING"
+            ]
         },
         "CancelAuditMitigationActionsTaskResponse": {
             "type": "object",
@@ -10532,6 +10997,162 @@
                 "CreateCertificateFromCsr"
             ]
         },
+        "CreateCommandResponse": {
+            "type": "object",
+            "properties": {
+                "commandId": {
+                    "$ref": "#/$defs/CommandId"
+                },
+                "commandArn": {
+                    "$ref": "#/$defs/CommandArn"
+                }
+            }
+        },
+        "CommandId": {
+            "type": "string"
+        },
+        "CommandArn": {
+            "type": "string"
+        },
+        "CreateCommandRequest": {
+            "type": "object",
+            "properties": {
+                "commandId": {
+                    "$ref": "#/$defs/CommandId"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/CommandNamespace"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "description": {
+                    "$ref": "#/$defs/CommandDescription"
+                },
+                "payload": {
+                    "$ref": "#/$defs/CommandPayload"
+                },
+                "mandatoryParameters": {
+                    "$ref": "#/$defs/CommandParameterList"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "CommandNamespace": {
+            "enum": [
+                "AWSIoT",
+                "AWSIoTFleetWise"
+            ]
+        },
+        "DisplayName": {
+            "type": "string"
+        },
+        "CommandDescription": {
+            "type": "string"
+        },
+        "CommandPayload": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "$ref": "#/$defs/CommandPayloadBlob"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/MimeType"
+                }
+            }
+        },
+        "CommandPayloadBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "MimeType": {
+            "type": "string"
+        },
+        "CommandParameterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CommandParameter"
+            }
+        },
+        "CommandParameter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/CommandParameterName"
+                },
+                "value": {
+                    "$ref": "#/$defs/CommandParameterValue"
+                },
+                "defaultValue": {
+                    "$ref": "#/$defs/CommandParameterValue"
+                },
+                "description": {
+                    "$ref": "#/$defs/CommandParameterDescription"
+                }
+            }
+        },
+        "CommandParameterName": {
+            "type": "string"
+        },
+        "CommandParameterValue": {
+            "type": "object",
+            "properties": {
+                "S": {
+                    "$ref": "#/$defs/StringParameterValue"
+                },
+                "B": {
+                    "$ref": "#/$defs/BooleanParameterValue"
+                },
+                "I": {
+                    "$ref": "#/$defs/IntegerParameterValue"
+                },
+                "L": {
+                    "$ref": "#/$defs/LongParameterValue"
+                },
+                "D": {
+                    "$ref": "#/$defs/DoubleParameterValue"
+                },
+                "BIN": {
+                    "$ref": "#/$defs/BinaryParameterValue"
+                },
+                "UL": {
+                    "$ref": "#/$defs/UnsignedLongParameterValue"
+                }
+            }
+        },
+        "StringParameterValue": {
+            "type": "string"
+        },
+        "BooleanParameterValue": {
+            "type": "boolean"
+        },
+        "IntegerParameterValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "LongParameterValue": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "DoubleParameterValue": {
+            "type": "number",
+            "format": "double"
+        },
+        "BinaryParameterValue": {
+            "type": "string",
+            "format": "binary"
+        },
+        "UnsignedLongParameterValue": {
+            "type": "string"
+        },
+        "CommandParameterDescription": {
+            "type": "string"
+        },
         "CreateCustomMetricResponse": {
             "type": "object",
             "properties": {
@@ -10738,11 +11359,20 @@
             "properties": {
                 "enableOCSPCheck": {
                     "$ref": "#/$defs/EnableOCSPCheck"
+                },
+                "ocspLambdaArn": {
+                    "$ref": "#/$defs/OCSPLambdaArn"
+                },
+                "ocspAuthorizedResponderArn": {
+                    "$ref": "#/$defs/AcmCertificateArn"
                 }
             }
         },
         "EnableOCSPCheck": {
             "type": "boolean"
+        },
+        "OCSPLambdaArn": {
+            "type": "string"
         },
         "AuthenticationType": {
             "enum": [
@@ -12932,6 +13562,9 @@
                 },
                 "searchableAttributes": {
                     "$ref": "#/$defs/SearchableAttributes"
+                },
+                "mqtt5Configuration": {
+                    "$ref": "#/$defs/Mqtt5Configuration"
                 }
             }
         },
@@ -12945,6 +13578,40 @@
             }
         },
         "AttributeName": {
+            "type": "string"
+        },
+        "Mqtt5Configuration": {
+            "type": "object",
+            "properties": {
+                "propagatingAttributes": {
+                    "$ref": "#/$defs/PropagatingAttributeList"
+                }
+            }
+        },
+        "PropagatingAttributeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PropagatingAttribute"
+            }
+        },
+        "PropagatingAttribute": {
+            "type": "object",
+            "properties": {
+                "userPropertyKey": {
+                    "$ref": "#/$defs/UserPropertyKeyName"
+                },
+                "thingAttribute": {
+                    "$ref": "#/$defs/AttributeName"
+                },
+                "connectionAttribute": {
+                    "$ref": "#/$defs/ConnectionAttributeName"
+                }
+            }
+        },
+        "UserPropertyKeyName": {
+            "type": "string"
+        },
+        "ConnectionAttributeName": {
             "type": "string"
         },
         "CreateTopicRuleRequest": {
@@ -14162,6 +14829,44 @@
                 }
             }
         },
+        "DeleteCommandResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "$ref": "#/$defs/StatusCode"
+                }
+            }
+        },
+        "StatusCode": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DeleteCommandRequest": {
+            "type": "object",
+            "properties": {
+                "commandId": {
+                    "$ref": "#/$defs/CommandId"
+                }
+            }
+        },
+        "DeleteCommandExecutionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteCommandExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "executionId": {
+                    "$ref": "#/$defs/CommandExecutionId"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                }
+            }
+        },
+        "CommandExecutionId": {
+            "type": "string"
+        },
         "DeleteCustomMetricResponse": {
             "type": "object",
             "properties": {}
@@ -14595,8 +15300,20 @@
             "properties": {
                 "enabled": {
                     "$ref": "#/$defs/Enabled"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/CheckCustomConfiguration"
                 }
             }
+        },
+        "CheckCustomConfiguration": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ConfigValue"
+            }
+        },
+        "ConfigValue": {
+            "type": "string"
         },
         "DescribeAccountAuditConfigurationRequest": {
             "type": "object",
@@ -17060,6 +17777,183 @@
                 }
             }
         },
+        "GetCommandResponse": {
+            "type": "object",
+            "properties": {
+                "commandId": {
+                    "$ref": "#/$defs/CommandId"
+                },
+                "commandArn": {
+                    "$ref": "#/$defs/CommandArn"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/CommandNamespace"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "description": {
+                    "$ref": "#/$defs/CommandDescription"
+                },
+                "mandatoryParameters": {
+                    "$ref": "#/$defs/CommandParameterList"
+                },
+                "payload": {
+                    "$ref": "#/$defs/CommandPayload"
+                },
+                "roleArn": {
+                    "$ref": "#/$defs/RoleArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "deprecated": {
+                    "$ref": "#/$defs/DeprecationFlag"
+                },
+                "pendingDeletion": {
+                    "$ref": "#/$defs/BooleanWrapperObject"
+                }
+            }
+        },
+        "DeprecationFlag": {
+            "type": "boolean"
+        },
+        "GetCommandRequest": {
+            "type": "object",
+            "properties": {
+                "commandId": {
+                    "$ref": "#/$defs/CommandId"
+                }
+            }
+        },
+        "GetCommandExecutionResponse": {
+            "type": "object",
+            "properties": {
+                "executionId": {
+                    "$ref": "#/$defs/CommandExecutionId"
+                },
+                "commandArn": {
+                    "$ref": "#/$defs/CommandArn"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/CommandExecutionStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/StatusReason"
+                },
+                "result": {
+                    "$ref": "#/$defs/CommandExecutionResultMap"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/CommandExecutionParameterMap"
+                },
+                "executionTimeoutSeconds": {
+                    "$ref": "#/$defs/CommandExecutionTimeoutInSeconds"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "completedAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "timeToLive": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "CommandExecutionStatus": {
+            "enum": [
+                "CREATED",
+                "IN_PROGRESS",
+                "SUCCEEDED",
+                "FAILED",
+                "REJECTED",
+                "TIMED_OUT"
+            ]
+        },
+        "StatusReason": {
+            "type": "object",
+            "properties": {
+                "reasonCode": {
+                    "$ref": "#/$defs/StatusReasonCode"
+                },
+                "reasonDescription": {
+                    "$ref": "#/$defs/StatusReasonDescription"
+                }
+            }
+        },
+        "StatusReasonCode": {
+            "type": "string"
+        },
+        "StatusReasonDescription": {
+            "type": "string"
+        },
+        "CommandExecutionResultMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CommandExecutionResult"
+            }
+        },
+        "CommandExecutionResult": {
+            "type": "object",
+            "properties": {
+                "S": {
+                    "$ref": "#/$defs/StringCommandExecutionResult"
+                },
+                "B": {
+                    "$ref": "#/$defs/BooleanCommandExecutionResult"
+                },
+                "BIN": {
+                    "$ref": "#/$defs/BinaryCommandExecutionResult"
+                }
+            }
+        },
+        "StringCommandExecutionResult": {
+            "type": "string"
+        },
+        "BooleanCommandExecutionResult": {
+            "type": "boolean"
+        },
+        "BinaryCommandExecutionResult": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CommandExecutionParameterMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CommandParameterValue"
+            }
+        },
+        "CommandExecutionTimeoutInSeconds": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "GetCommandExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "executionId": {
+                    "$ref": "#/$defs/CommandExecutionId"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "includeResult": {
+                    "$ref": "#/$defs/BooleanWrapperObject"
+                }
+            }
+        },
         "GetEffectivePoliciesResponse": {
             "type": "object",
             "properties": {
@@ -17720,6 +18614,55 @@
                 },
                 "queryVersion": {
                     "$ref": "#/$defs/QueryVersion"
+                }
+            }
+        },
+        "GetThingConnectivityDataResponse": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/ConnectivityApiThingName"
+                },
+                "connected": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "disconnectReason": {
+                    "$ref": "#/$defs/DisconnectReasonValue"
+                }
+            }
+        },
+        "ConnectivityApiThingName": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "DisconnectReasonValue": {
+            "enum": [
+                "AUTH_ERROR",
+                "CLIENT_INITIATED_DISCONNECT",
+                "CLIENT_ERROR",
+                "CONNECTION_LOST",
+                "DUPLICATE_CLIENTID",
+                "FORBIDDEN_ACCESS",
+                "MQTT_KEEP_ALIVE_TIMEOUT",
+                "SERVER_ERROR",
+                "SERVER_INITIATED_DISCONNECT",
+                "THROTTLED",
+                "WEBSOCKET_TTL_EXPIRATION",
+                "CUSTOMAUTH_TTL_EXPIRATION",
+                "UNKNOWN",
+                "NONE"
+            ]
+        },
+        "GetThingConnectivityDataRequest": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/ConnectivityApiThingName"
                 }
             }
         },
@@ -18525,6 +19468,165 @@
                 },
                 "ascendingOrder": {
                     "$ref": "#/$defs/AscendingOrder"
+                }
+            }
+        },
+        "ListCommandExecutionsResponse": {
+            "type": "object",
+            "properties": {
+                "commandExecutions": {
+                    "$ref": "#/$defs/CommandExecutionSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "CommandExecutionSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CommandExecutionSummary"
+            }
+        },
+        "CommandExecutionSummary": {
+            "type": "object",
+            "properties": {
+                "commandArn": {
+                    "$ref": "#/$defs/CommandArn"
+                },
+                "executionId": {
+                    "$ref": "#/$defs/CommandExecutionId"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/CommandExecutionStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "completedAt": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "ListCommandExecutionsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/CommandMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/CommandNamespace"
+                },
+                "status": {
+                    "$ref": "#/$defs/CommandExecutionStatus"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "startedTimeFilter": {
+                    "$ref": "#/$defs/TimeFilter"
+                },
+                "completedTimeFilter": {
+                    "$ref": "#/$defs/TimeFilter"
+                },
+                "targetArn": {
+                    "$ref": "#/$defs/TargetArn"
+                },
+                "commandArn": {
+                    "$ref": "#/$defs/CommandArn"
+                }
+            }
+        },
+        "CommandMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SortOrder": {
+            "enum": [
+                "Ascending",
+                "Descending"
+            ]
+        },
+        "TimeFilter": {
+            "type": "object",
+            "properties": {
+                "after": {
+                    "$ref": "#/$defs/StringDateTime"
+                },
+                "before": {
+                    "$ref": "#/$defs/StringDateTime"
+                }
+            }
+        },
+        "ListCommandsResponse": {
+            "type": "object",
+            "properties": {
+                "commands": {
+                    "$ref": "#/$defs/CommandSummaryList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "CommandSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CommandSummary"
+            }
+        },
+        "CommandSummary": {
+            "type": "object",
+            "properties": {
+                "commandArn": {
+                    "$ref": "#/$defs/CommandArn"
+                },
+                "commandId": {
+                    "$ref": "#/$defs/CommandId"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "deprecated": {
+                    "$ref": "#/$defs/DeprecationFlag"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "pendingDeletion": {
+                    "$ref": "#/$defs/BooleanWrapperObject"
+                }
+            }
+        },
+        "ListCommandsRequest": {
+            "type": "object",
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/CommandMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "namespace": {
+                    "$ref": "#/$defs/CommandNamespace"
+                },
+                "commandParameterName": {
+                    "$ref": "#/$defs/CommandParameterName"
+                },
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
                 }
             }
         },
@@ -19579,6 +20681,51 @@
                 }
             }
         },
+        "ListPrincipalThingsV2Response": {
+            "type": "object",
+            "properties": {
+                "principalThingObjects": {
+                    "$ref": "#/$defs/PrincipalThingObjects"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "PrincipalThingObjects": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PrincipalThingObject"
+            }
+        },
+        "PrincipalThingObject": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/ThingName"
+                },
+                "thingPrincipalType": {
+                    "$ref": "#/$defs/ThingPrincipalType"
+                }
+            }
+        },
+        "ListPrincipalThingsV2Request": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/RegistryMaxResults"
+                },
+                "principal": {
+                    "$ref": "#/$defs/Principal"
+                },
+                "thingPrincipalType": {
+                    "$ref": "#/$defs/ThingPrincipalType"
+                }
+            }
+        },
         "ListProvisioningTemplatesResponse": {
             "type": "object",
             "properties": {
@@ -20165,6 +21312,51 @@
                 },
                 "thingName": {
                     "$ref": "#/$defs/ThingName"
+                }
+            }
+        },
+        "ListThingPrincipalsV2Response": {
+            "type": "object",
+            "properties": {
+                "thingPrincipalObjects": {
+                    "$ref": "#/$defs/ThingPrincipalObjects"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ThingPrincipalObjects": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ThingPrincipalObject"
+            }
+        },
+        "ThingPrincipalObject": {
+            "type": "object",
+            "properties": {
+                "principal": {
+                    "$ref": "#/$defs/Principal"
+                },
+                "thingPrincipalType": {
+                    "$ref": "#/$defs/ThingPrincipalType"
+                }
+            }
+        },
+        "ListThingPrincipalsV2Request": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/RegistryMaxResults"
+                },
+                "thingName": {
+                    "$ref": "#/$defs/ThingName"
+                },
+                "thingPrincipalType": {
+                    "$ref": "#/$defs/ThingPrincipalType"
                 }
             }
         },
@@ -20982,9 +22174,6 @@
                 }
             }
         },
-        "Boolean": {
-            "type": "boolean"
-        },
         "ConnectivityTimestamp": {
             "type": "integer",
             "format": "int64"
@@ -21720,6 +22909,43 @@
                 }
             }
         },
+        "UpdateCommandResponse": {
+            "type": "object",
+            "properties": {
+                "commandId": {
+                    "$ref": "#/$defs/CommandId"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "description": {
+                    "$ref": "#/$defs/CommandDescription"
+                },
+                "deprecated": {
+                    "$ref": "#/$defs/DeprecationFlag"
+                },
+                "lastUpdatedAt": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "UpdateCommandRequest": {
+            "type": "object",
+            "properties": {
+                "commandId": {
+                    "$ref": "#/$defs/CommandId"
+                },
+                "displayName": {
+                    "$ref": "#/$defs/DisplayName"
+                },
+                "description": {
+                    "$ref": "#/$defs/CommandDescription"
+                },
+                "deprecated": {
+                    "$ref": "#/$defs/DeprecationFlag"
+                }
+            }
+        },
         "UpdateCustomMetricResponse": {
             "type": "object",
             "properties": {
@@ -22347,6 +23573,21 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/ThingGroupName"
+            }
+        },
+        "UpdateThingTypeResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateThingTypeRequest": {
+            "type": "object",
+            "properties": {
+                "thingTypeName": {
+                    "$ref": "#/$defs/ThingTypeName"
+                },
+                "thingTypeProperties": {
+                    "$ref": "#/$defs/ThingTypeProperties"
+                }
             }
         },
         "UpdateTopicRuleDestinationResponse": {

@@ -1,0 +1,917 @@
+{
+    "name": "billing",
+    "commands": [
+        {
+            "name": "CreateBillingView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.CreateBillingView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateBillingViewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateBillingViewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteBillingView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.DeleteBillingView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteBillingViewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteBillingViewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetBillingView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.GetBillingView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetBillingViewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetBillingViewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetResourcePolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.GetResourcePolicy"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetResourcePolicyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetResourcePolicyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBillingViews",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBillingViewsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBillingViewsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSourceViewsForBillingView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.ListSourceViewsForBillingView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSourceViewsForBillingViewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSourceViewsForBillingViewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.ListTagsForResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.TagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.UntagResource"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateBillingView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSBilling.UpdateBillingView"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateBillingViewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateBillingViewRequest"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateBillingViewResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "BillingViewArn": {
+            "type": "string"
+        },
+        "CreateBillingViewRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/BillingViewName"
+                },
+                "description": {
+                    "$ref": "#/$defs/BillingViewDescription"
+                },
+                "sourceViews": {
+                    "$ref": "#/$defs/BillingViewSourceViewsList"
+                },
+                "dataFilterExpression": {
+                    "$ref": "#/$defs/Expression"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "resourceTags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "BillingViewName": {
+            "type": "string"
+        },
+        "BillingViewDescription": {
+            "type": "string"
+        },
+        "BillingViewSourceViewsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingViewArn"
+            }
+        },
+        "Expression": {
+            "type": "object",
+            "properties": {
+                "dimensions": {
+                    "$ref": "#/$defs/DimensionValues"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagValues"
+                }
+            }
+        },
+        "DimensionValues": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/Dimension"
+                },
+                "values": {
+                    "$ref": "#/$defs/Values"
+                }
+            }
+        },
+        "Dimension": {
+            "enum": [
+                "LINKED_ACCOUNT"
+            ]
+        },
+        "Values": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Value"
+            }
+        },
+        "Value": {
+            "type": "string"
+        },
+        "TagValues": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "values": {
+                    "$ref": "#/$defs/Values"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "ResourceTagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTag"
+            }
+        },
+        "ResourceTag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/ResourceTagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/ResourceTagValue"
+                }
+            }
+        },
+        "ResourceTagKey": {
+            "type": "string"
+        },
+        "ResourceTagValue": {
+            "type": "string"
+        },
+        "DeleteBillingViewResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                }
+            }
+        },
+        "DeleteBillingViewRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                }
+            }
+        },
+        "GetBillingViewResponse": {
+            "type": "object",
+            "properties": {
+                "billingView": {
+                    "$ref": "#/$defs/BillingViewElement"
+                }
+            }
+        },
+        "BillingViewElement": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/BillingViewName"
+                },
+                "description": {
+                    "$ref": "#/$defs/BillingViewDescription"
+                },
+                "billingViewType": {
+                    "$ref": "#/$defs/BillingViewType"
+                },
+                "ownerAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "dataFilterExpression": {
+                    "$ref": "#/$defs/Expression"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "BillingViewType": {
+            "enum": [
+                "PRIMARY",
+                "BILLING_GROUP",
+                "CUSTOM"
+            ]
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "GetBillingViewRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                }
+            }
+        },
+        "GetResourcePolicyResponse": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "policy": {
+                    "$ref": "#/$defs/PolicyDocument"
+                }
+            }
+        },
+        "ResourceArn": {
+            "type": "string"
+        },
+        "PolicyDocument": {
+            "type": "string"
+        },
+        "GetResourcePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "ListBillingViewsResponse": {
+            "type": "object",
+            "properties": {
+                "billingViews": {
+                    "$ref": "#/$defs/BillingViewList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "BillingViewList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingViewListElement"
+            }
+        },
+        "BillingViewListElement": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/BillingViewName"
+                },
+                "description": {
+                    "$ref": "#/$defs/BillingViewDescription"
+                },
+                "ownerAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "billingViewType": {
+                    "$ref": "#/$defs/BillingViewType"
+                }
+            }
+        },
+        "PageToken": {
+            "type": "string"
+        },
+        "ListBillingViewsRequest": {
+            "type": "object",
+            "properties": {
+                "activeTimeRange": {
+                    "$ref": "#/$defs/ActiveTimeRange"
+                },
+                "arns": {
+                    "$ref": "#/$defs/BillingViewArnList"
+                },
+                "billingViewTypes": {
+                    "$ref": "#/$defs/BillingViewTypeList"
+                },
+                "ownerAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/BillingViewsMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "ActiveTimeRange": {
+            "type": "object",
+            "properties": {
+                "activeAfterInclusive": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "activeBeforeInclusive": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "BillingViewArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingViewArn"
+            }
+        },
+        "BillingViewTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingViewType"
+            }
+        },
+        "BillingViewsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListSourceViewsForBillingViewResponse": {
+            "type": "object",
+            "properties": {
+                "sourceViews": {
+                    "$ref": "#/$defs/BillingViewSourceViewsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "ListSourceViewsForBillingViewRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/BillingViewsMaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "resourceTags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "resourceTags": {
+                    "$ref": "#/$defs/ResourceTagList"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "resourceTagKeys": {
+                    "$ref": "#/$defs/ResourceTagKeyList"
+                }
+            }
+        },
+        "ResourceTagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTagKey"
+            }
+        },
+        "UpdateBillingViewResponse": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "UpdateBillingViewRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/BillingViewName"
+                },
+                "description": {
+                    "$ref": "#/$defs/BillingViewDescription"
+                },
+                "dataFilterExpression": {
+                    "$ref": "#/$defs/Expression"
+                }
+            }
+        }
+    },
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                },
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                }
+            },
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
+                                },
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "isSet",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "aws.partition",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                }
+                                            ],
+                                            "assign": "PartitionResult"
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "endpoint": {
+                                                "url": "https://billing-fips.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {
+                                                    "authSchemes": [
+                                                        {
+                                                            "name": "sigv4",
+                                                            "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                        }
+                                                    ]
+                                                },
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "endpoint": {
+                                                "url": "https://billing.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {
+                                                    "authSchemes": [
+                                                        {
+                                                            "name": "sigv4",
+                                                            "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                        }
+                                                    ]
+                                                },
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                }
+                            ],
+                            "type": "tree"
+                        },
+                        {
+                            "conditions": [],
+                            "error": "Invalid Configuration: Missing Region",
+                            "type": "error"
+                        }
+                    ],
+                    "type": "tree"
+                }
+            ]
+        }
+    }
+}

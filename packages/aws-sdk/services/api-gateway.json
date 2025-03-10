@@ -267,6 +267,41 @@
             }
         },
         {
+            "name": "CreateDomainNameAccessAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/domainnameaccessassociations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DomainNameAccessAssociation"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDomainNameAccessAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateModel",
             "config": {
                 "http": {
@@ -875,6 +910,45 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteDomainNameRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDomainNameAccessAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "domainNameAccessAssociationArn": "route.domainNameAccessAssociationArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/domainnameaccessassociations/{domainNameAccessAssociationArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.domainNameAccessAssociationArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDomainNameAccessAssociationRequest"
                         }
                     }
                 },
@@ -2153,6 +2227,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetDomainNameRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDomainNameAccessAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/domainnameaccessassociations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DomainNameAccessAssociations"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDomainNameAccessAssociationsRequest"
                         }
                     }
                 },
@@ -3726,6 +3835,41 @@
             }
         },
         {
+            "name": "RejectDomainNameAccessAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/rejectdomainnameaccessassociations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RejectDomainNameAccessAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "TagResource",
             "config": {
                 "http": {
@@ -5043,6 +5187,9 @@
                 "domainName": {
                     "$ref": "#/$defs/String"
                 },
+                "domainNameId": {
+                    "$ref": "#/$defs/String"
+                },
                 "basePath": {
                     "$ref": "#/$defs/String"
                 },
@@ -5263,6 +5410,12 @@
                 "domainName": {
                     "$ref": "#/$defs/String"
                 },
+                "domainNameId": {
+                    "$ref": "#/$defs/String"
+                },
+                "domainNameArn": {
+                    "$ref": "#/$defs/String"
+                },
                 "certificateName": {
                     "$ref": "#/$defs/String"
                 },
@@ -5309,6 +5462,12 @@
                     "$ref": "#/$defs/MutualTlsAuthentication"
                 },
                 "ownershipVerificationCertificateArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "managementPolicy": {
+                    "$ref": "#/$defs/String"
+                },
+                "policy": {
                     "$ref": "#/$defs/String"
                 }
             }
@@ -5407,6 +5566,9 @@
                 },
                 "ownershipVerificationCertificateArn": {
                     "$ref": "#/$defs/String"
+                },
+                "policy": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -5418,6 +5580,48 @@
                 },
                 "truststoreVersion": {
                     "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DomainNameAccessAssociation": {
+            "type": "object",
+            "properties": {
+                "domainNameAccessAssociationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "domainNameArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "accessAssociationSourceType": {
+                    "$ref": "#/$defs/AccessAssociationSourceType"
+                },
+                "accessAssociationSource": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/MapOfStringToString"
+                }
+            }
+        },
+        "AccessAssociationSourceType": {
+            "enum": [
+                "VPCE"
+            ]
+        },
+        "CreateDomainNameAccessAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "domainNameArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "accessAssociationSourceType": {
+                    "$ref": "#/$defs/AccessAssociationSourceType"
+                },
+                "accessAssociationSource": {
+                    "$ref": "#/$defs/String"
+                },
+                "tags": {
+                    "$ref": "#/$defs/MapOfStringToString"
                 }
             }
         },
@@ -6198,6 +6402,9 @@
                 "domainName": {
                     "$ref": "#/$defs/String"
                 },
+                "domainNameId": {
+                    "$ref": "#/$defs/String"
+                },
                 "basePath": {
                     "$ref": "#/$defs/String"
                 }
@@ -6248,6 +6455,17 @@
             "type": "object",
             "properties": {
                 "domainName": {
+                    "$ref": "#/$defs/String"
+                },
+                "domainNameId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DeleteDomainNameAccessAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "domainNameAccessAssociationArn": {
                     "$ref": "#/$defs/String"
                 }
             }
@@ -6605,6 +6823,9 @@
                 "domainName": {
                     "$ref": "#/$defs/String"
                 },
+                "domainNameId": {
+                    "$ref": "#/$defs/String"
+                },
                 "basePath": {
                     "$ref": "#/$defs/String"
                 }
@@ -6631,6 +6852,9 @@
             "type": "object",
             "properties": {
                 "domainName": {
+                    "$ref": "#/$defs/String"
+                },
+                "domainNameId": {
                     "$ref": "#/$defs/String"
                 },
                 "position": {
@@ -6829,8 +7053,48 @@
             "properties": {
                 "domainName": {
                     "$ref": "#/$defs/String"
+                },
+                "domainNameId": {
+                    "$ref": "#/$defs/String"
                 }
             }
+        },
+        "DomainNameAccessAssociations": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/ListOfDomainNameAccessAssociation"
+                },
+                "position": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListOfDomainNameAccessAssociation": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DomainNameAccessAssociation"
+            }
+        },
+        "GetDomainNameAccessAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "position": {
+                    "$ref": "#/$defs/String"
+                },
+                "limit": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "resourceOwner": {
+                    "$ref": "#/$defs/ResourceOwner"
+                }
+            }
+        },
+        "ResourceOwner": {
+            "enum": [
+                "SELF",
+                "OTHER_ACCOUNTS"
+            ]
         },
         "DomainNames": {
             "type": "object",
@@ -6857,6 +7121,9 @@
                 },
                 "limit": {
                     "$ref": "#/$defs/NullableInteger"
+                },
+                "resourceOwner": {
+                    "$ref": "#/$defs/ResourceOwner"
                 }
             }
         },
@@ -7826,6 +8093,17 @@
                 }
             }
         },
+        "RejectDomainNameAccessAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "domainNameAccessAssociationArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "domainNameArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -8036,6 +8314,9 @@
                 "domainName": {
                     "$ref": "#/$defs/String"
                 },
+                "domainNameId": {
+                    "$ref": "#/$defs/String"
+                },
                 "basePath": {
                     "$ref": "#/$defs/String"
                 },
@@ -8101,6 +8382,9 @@
             "type": "object",
             "properties": {
                 "domainName": {
+                    "$ref": "#/$defs/String"
+                },
+                "domainNameId": {
                     "$ref": "#/$defs/String"
                 },
                 "patchOperations": {

@@ -920,6 +920,9 @@
                 "VisualReference": {
                     "$ref": "#/$defs/VisualReferenceOutput"
                 },
+                "ProvisionedResourceCleanup": {
+                    "$ref": "#/$defs/ProvisionedResourceCleanupSetting"
+                },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
                 },
@@ -1073,6 +1076,9 @@
                 },
                 "SecurityGroupIds": {
                     "$ref": "#/$defs/SecurityGroupIds"
+                },
+                "Ipv6AllowedForDualStack": {
+                    "$ref": "#/$defs/NullableBoolean"
                 }
             }
         },
@@ -1133,6 +1139,12 @@
         },
         "BaseScreenshotConfigIgnoreCoordinate": {
             "type": "string"
+        },
+        "ProvisionedResourceCleanupSetting": {
+            "enum": [
+                "AUTOMATIC",
+                "OFF"
+            ]
         },
         "TagMap": {
             "type": "object",
@@ -1206,6 +1218,9 @@
                 },
                 "ResourcesToReplicateTags": {
                     "$ref": "#/$defs/ResourceList"
+                },
+                "ProvisionedResourceCleanup": {
+                    "$ref": "#/$defs/ProvisionedResourceCleanupSetting"
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
@@ -1287,6 +1302,9 @@
                 },
                 "SecurityGroupIds": {
                     "$ref": "#/$defs/SecurityGroupIds"
+                },
+                "Ipv6AllowedForDualStack": {
+                    "$ref": "#/$defs/NullableBoolean"
                 }
             }
         },
@@ -1893,6 +1911,9 @@
                 },
                 "ArtifactConfig": {
                     "$ref": "#/$defs/ArtifactConfigInput"
+                },
+                "ProvisionedResourceCleanup": {
+                    "$ref": "#/$defs/ProvisionedResourceCleanupSetting"
                 }
             }
         },

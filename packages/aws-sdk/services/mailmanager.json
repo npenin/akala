@@ -2,6 +2,93 @@
     "name": "ses",
     "commands": [
         {
+            "name": "CreateAddressListImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.CreateAddressListImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAddressListImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAddressListImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeregisterMemberFromAddressList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.DeregisterMemberFromAddressList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeregisterMemberFromAddressListResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeregisterMemberFromAddressListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAddressListImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.GetAddressListImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAddressListImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAddressListImportJobRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetArchiveExport",
             "config": {
                 "http": {
@@ -147,6 +234,64 @@
             }
         },
         {
+            "name": "GetMemberOfAddressList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.GetMemberOfAddressList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMemberOfAddressListResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMemberOfAddressListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAddressListImportJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.ListAddressListImportJobs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAddressListImportJobsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAddressListImportJobsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListArchiveExports",
             "config": {
                 "http": {
@@ -205,6 +350,35 @@
             }
         },
         {
+            "name": "ListMembersOfAddressList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.ListMembersOfAddressList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMembersOfAddressListResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMembersOfAddressListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListTagsForResource",
             "config": {
                 "http": {
@@ -228,6 +402,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "RegisterMemberToAddressList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.RegisterMemberToAddressList"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/RegisterMemberToAddressListResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RegisterMemberToAddressListRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartAddressListImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.StartAddressListImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartAddressListImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartAddressListImportJobRequest"
                         }
                     }
                 }
@@ -286,6 +518,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/StartArchiveSearchRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StopAddressListImportJob",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "MailManagerSvc.StopAddressListImportJob"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopAddressListImportJobResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopAddressListImportJobRequest"
                         }
                     }
                 }
@@ -454,6 +715,146 @@
             "type": "string",
             "format": "binary"
         },
+        "CreateAddressListImportJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "PreSignedUrl": {
+                    "$ref": "#/$defs/PreSignedUrl"
+                }
+            }
+        },
+        "JobId": {
+            "type": "string"
+        },
+        "PreSignedUrl": {
+            "type": "string"
+        },
+        "CreateAddressListImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "AddressListId": {
+                    "$ref": "#/$defs/AddressListId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "ImportDataFormat": {
+                    "$ref": "#/$defs/ImportDataFormat"
+                }
+            }
+        },
+        "IdempotencyToken": {
+            "type": "string"
+        },
+        "AddressListId": {
+            "type": "string"
+        },
+        "JobName": {
+            "type": "string"
+        },
+        "ImportDataFormat": {
+            "type": "object",
+            "properties": {
+                "ImportDataType": {
+                    "$ref": "#/$defs/ImportDataType"
+                }
+            }
+        },
+        "ImportDataType": {
+            "enum": [
+                "CSV",
+                "JSON"
+            ]
+        },
+        "DeregisterMemberFromAddressListResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterMemberFromAddressListRequest": {
+            "type": "object",
+            "properties": {
+                "AddressListId": {
+                    "$ref": "#/$defs/AddressListId"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Address"
+                }
+            }
+        },
+        "Address": {
+            "type": "string"
+        },
+        "GetAddressListImportJobResponse": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ImportJobStatus"
+                },
+                "PreSignedUrl": {
+                    "$ref": "#/$defs/PreSignedUrl"
+                },
+                "ImportedItemsCount": {
+                    "$ref": "#/$defs/JobItemsCount"
+                },
+                "FailedItemsCount": {
+                    "$ref": "#/$defs/JobItemsCount"
+                },
+                "ImportDataFormat": {
+                    "$ref": "#/$defs/ImportDataFormat"
+                },
+                "AddressListId": {
+                    "$ref": "#/$defs/AddressListId"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "StartTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "CompletedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ImportJobStatus": {
+            "enum": [
+                "CREATED",
+                "PROCESSING",
+                "COMPLETED",
+                "FAILED",
+                "STOPPED"
+            ]
+        },
+        "JobItemsCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "GetAddressListImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
         "GetArchiveExportResponse": {
             "type": "object",
             "properties": {
@@ -538,7 +939,9 @@
                 "TO",
                 "FROM",
                 "CC",
-                "SUBJECT"
+                "SUBJECT",
+                "ENVELOPE_TO",
+                "ENVELOPE_FROM"
             ]
         },
         "ArchiveStringOperator": {
@@ -635,9 +1038,6 @@
                 "CANCELLED"
             ]
         },
-        "ErrorMessage": {
-            "type": "string"
-        },
         "GetArchiveExportRequest": {
             "type": "object",
             "properties": {
@@ -654,11 +1054,93 @@
             "properties": {
                 "MessageDownloadLink": {
                     "$ref": "#/$defs/S3PresignedURL"
+                },
+                "Metadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "Envelope": {
+                    "$ref": "#/$defs/Envelope"
                 }
             }
         },
         "S3PresignedURL": {
             "type": "string"
+        },
+        "Metadata": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "IngressPointId": {
+                    "$ref": "#/$defs/IngressPointId"
+                },
+                "TrafficPolicyId": {
+                    "$ref": "#/$defs/TrafficPolicyId"
+                },
+                "RuleSetId": {
+                    "$ref": "#/$defs/RuleSetId"
+                },
+                "SenderHostname": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SenderIpAddress": {
+                    "$ref": "#/$defs/SenderIpAddress"
+                },
+                "TlsCipherSuite": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TlsProtocol": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SendingMethod": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SourceIdentity": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SendingPool": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ConfigurationSet": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "IngressPointId": {
+            "type": "string"
+        },
+        "TrafficPolicyId": {
+            "type": "string"
+        },
+        "RuleSetId": {
+            "type": "string"
+        },
+        "SenderIpAddress": {
+            "type": "string"
+        },
+        "Envelope": {
+            "type": "object",
+            "properties": {
+                "Helo": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "From": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "To": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "StringList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
         },
         "GetArchiveMessageRequest": {
             "type": "object",
@@ -823,6 +1305,21 @@
                 },
                 "XPriority": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "IngressPointId": {
+                    "$ref": "#/$defs/IngressPointId"
+                },
+                "SenderHostname": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SenderIpAddress": {
+                    "$ref": "#/$defs/SenderIpAddress"
+                },
+                "Envelope": {
+                    "$ref": "#/$defs/Envelope"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
@@ -839,6 +1336,107 @@
                     "$ref": "#/$defs/SearchId"
                 }
             }
+        },
+        "GetMemberOfAddressListResponse": {
+            "type": "object",
+            "properties": {
+                "Address": {
+                    "$ref": "#/$defs/Address"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "GetMemberOfAddressListRequest": {
+            "type": "object",
+            "properties": {
+                "AddressListId": {
+                    "$ref": "#/$defs/AddressListId"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Address"
+                }
+            }
+        },
+        "ListAddressListImportJobsResponse": {
+            "type": "object",
+            "properties": {
+                "ImportJobs": {
+                    "$ref": "#/$defs/ImportJobs"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ImportJobs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ImportJob"
+            }
+        },
+        "ImportJob": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ImportJobStatus"
+                },
+                "PreSignedUrl": {
+                    "$ref": "#/$defs/PreSignedUrl"
+                },
+                "ImportedItemsCount": {
+                    "$ref": "#/$defs/JobItemsCount"
+                },
+                "FailedItemsCount": {
+                    "$ref": "#/$defs/JobItemsCount"
+                },
+                "ImportDataFormat": {
+                    "$ref": "#/$defs/ImportDataFormat"
+                },
+                "AddressListId": {
+                    "$ref": "#/$defs/AddressListId"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "StartTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "CompletedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "ListAddressListImportJobsRequest": {
+            "type": "object",
+            "properties": {
+                "AddressListId": {
+                    "$ref": "#/$defs/AddressListId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/PageSize"
+                }
+            }
+        },
+        "PageSize": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListArchiveExportsResponse": {
             "type": "object",
@@ -868,9 +1466,6 @@
                 }
             }
         },
-        "PaginationToken": {
-            "type": "string"
-        },
         "ListArchiveExportsRequest": {
             "type": "object",
             "properties": {
@@ -884,10 +1479,6 @@
                     "$ref": "#/$defs/PageSize"
                 }
             }
-        },
-        "PageSize": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListArchiveSearchesResponse": {
             "type": "object",
@@ -931,6 +1522,66 @@
                 }
             }
         },
+        "ListMembersOfAddressListResponse": {
+            "type": "object",
+            "properties": {
+                "Addresses": {
+                    "$ref": "#/$defs/SavedAddresses"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "SavedAddresses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavedAddress"
+            }
+        },
+        "SavedAddress": {
+            "type": "object",
+            "properties": {
+                "Address": {
+                    "$ref": "#/$defs/Address"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "ListMembersOfAddressListRequest": {
+            "type": "object",
+            "properties": {
+                "AddressListId": {
+                    "$ref": "#/$defs/AddressListId"
+                },
+                "Filter": {
+                    "$ref": "#/$defs/AddressFilter"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/AddressPageSize"
+                }
+            }
+        },
+        "AddressFilter": {
+            "type": "object",
+            "properties": {
+                "AddressPrefix": {
+                    "$ref": "#/$defs/AddressPrefix"
+                }
+            }
+        },
+        "AddressPrefix": {
+            "type": "string"
+        },
+        "AddressPageSize": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -973,6 +1624,33 @@
         "TaggableResourceArn": {
             "type": "string"
         },
+        "RegisterMemberToAddressListResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegisterMemberToAddressListRequest": {
+            "type": "object",
+            "properties": {
+                "AddressListId": {
+                    "$ref": "#/$defs/AddressListId"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Address"
+                }
+            }
+        },
+        "StartAddressListImportJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartAddressListImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
         "StartArchiveExportResponse": {
             "type": "object",
             "properties": {
@@ -1001,6 +1679,9 @@
                 },
                 "ExportDestinationConfiguration": {
                     "$ref": "#/$defs/ExportDestinationConfiguration"
+                },
+                "IncludeMetadata": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
         },
@@ -1029,6 +1710,18 @@
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/SearchMaxResults"
+                }
+            }
+        },
+        "StopAddressListImportJobResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopAddressListImportJobRequest": {
+            "type": "object",
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
                 }
             }
         },

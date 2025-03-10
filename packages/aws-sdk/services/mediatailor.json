@@ -239,6 +239,9 @@
                 },
                 "PlaybackConfigurationName": {
                     "$ref": "#/$defs/__string"
+                },
+                "EnabledLoggingStrategies": {
+                    "$ref": "#/$defs/__listOfLoggingStrategies"
                 }
             }
         },
@@ -249,6 +252,18 @@
         "__string": {
             "type": "string"
         },
+        "__listOfLoggingStrategies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoggingStrategy"
+            }
+        },
+        "LoggingStrategy": {
+            "enum": [
+                "VENDED_LOGS",
+                "LEGACY_CLOUDWATCH"
+            ]
+        },
         "ConfigureLogsForPlaybackConfigurationRequest": {
             "type": "object",
             "properties": {
@@ -257,6 +272,9 @@
                 },
                 "PlaybackConfigurationName": {
                     "$ref": "#/$defs/__string"
+                },
+                "EnabledLoggingStrategies": {
+                    "$ref": "#/$defs/__listOfLoggingStrategies"
                 }
             }
         },

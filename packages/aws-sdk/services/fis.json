@@ -1097,6 +1097,9 @@
                 },
                 "targetAccountConfigurationsCount": {
                     "$ref": "#/$defs/TargetAccountConfigurationsCount"
+                },
+                "experimentReportConfiguration": {
+                    "$ref": "#/$defs/ExperimentTemplateReportConfiguration"
                 }
             }
         },
@@ -1363,6 +1366,73 @@
             "type": "integer",
             "format": "int64"
         },
+        "ExperimentTemplateReportConfiguration": {
+            "type": "object",
+            "properties": {
+                "outputs": {
+                    "$ref": "#/$defs/ExperimentTemplateReportConfigurationOutputs"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/ExperimentTemplateReportConfigurationDataSources"
+                },
+                "preExperimentDuration": {
+                    "$ref": "#/$defs/ReportConfigurationDuration"
+                },
+                "postExperimentDuration": {
+                    "$ref": "#/$defs/ReportConfigurationDuration"
+                }
+            }
+        },
+        "ExperimentTemplateReportConfigurationOutputs": {
+            "type": "object",
+            "properties": {
+                "s3Configuration": {
+                    "$ref": "#/$defs/ReportConfigurationS3Output"
+                }
+            }
+        },
+        "ReportConfigurationS3Output": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/ReportConfigurationS3OutputPrefix"
+                }
+            }
+        },
+        "ReportConfigurationS3OutputPrefix": {
+            "type": "string"
+        },
+        "ExperimentTemplateReportConfigurationDataSources": {
+            "type": "object",
+            "properties": {
+                "cloudWatchDashboards": {
+                    "$ref": "#/$defs/ExperimentTemplateReportConfigurationCloudWatchDashboardList"
+                }
+            }
+        },
+        "ExperimentTemplateReportConfigurationCloudWatchDashboardList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExperimentTemplateReportConfigurationCloudWatchDashboard"
+            }
+        },
+        "ExperimentTemplateReportConfigurationCloudWatchDashboard": {
+            "type": "object",
+            "properties": {
+                "dashboardIdentifier": {
+                    "$ref": "#/$defs/ReportConfigurationCloudWatchDashboardIdentifier"
+                }
+            }
+        },
+        "ReportConfigurationCloudWatchDashboardIdentifier": {
+            "type": "string"
+        },
+        "ReportConfigurationDuration": {
+            "type": "string"
+        },
         "CreateExperimentTemplateRequest": {
             "type": "object",
             "properties": {
@@ -1392,6 +1462,9 @@
                 },
                 "experimentOptions": {
                     "$ref": "#/$defs/CreateExperimentTemplateExperimentOptionsInput"
+                },
+                "experimentReportConfiguration": {
+                    "$ref": "#/$defs/CreateExperimentTemplateReportConfigurationInput"
                 }
             }
         },
@@ -1528,6 +1601,64 @@
                 },
                 "emptyTargetResolutionMode": {
                     "$ref": "#/$defs/EmptyTargetResolutionMode"
+                }
+            }
+        },
+        "CreateExperimentTemplateReportConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "outputs": {
+                    "$ref": "#/$defs/ExperimentTemplateReportConfigurationOutputsInput"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/ExperimentTemplateReportConfigurationDataSourcesInput"
+                },
+                "preExperimentDuration": {
+                    "$ref": "#/$defs/ReportConfigurationDuration"
+                },
+                "postExperimentDuration": {
+                    "$ref": "#/$defs/ReportConfigurationDuration"
+                }
+            }
+        },
+        "ExperimentTemplateReportConfigurationOutputsInput": {
+            "type": "object",
+            "properties": {
+                "s3Configuration": {
+                    "$ref": "#/$defs/ReportConfigurationS3OutputInput"
+                }
+            }
+        },
+        "ReportConfigurationS3OutputInput": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/ReportConfigurationS3OutputPrefix"
+                }
+            }
+        },
+        "ExperimentTemplateReportConfigurationDataSourcesInput": {
+            "type": "object",
+            "properties": {
+                "cloudWatchDashboards": {
+                    "$ref": "#/$defs/ReportConfigurationCloudWatchDashboardInputList"
+                }
+            }
+        },
+        "ReportConfigurationCloudWatchDashboardInputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReportConfigurationCloudWatchDashboardInput"
+            }
+        },
+        "ReportConfigurationCloudWatchDashboardInput": {
+            "type": "object",
+            "properties": {
+                "dashboardIdentifier": {
+                    "$ref": "#/$defs/ReportConfigurationCloudWatchDashboardIdentifier"
                 }
             }
         },
@@ -1748,6 +1879,12 @@
                 },
                 "targetAccountConfigurationsCount": {
                     "$ref": "#/$defs/TargetAccountConfigurationsCount"
+                },
+                "experimentReportConfiguration": {
+                    "$ref": "#/$defs/ExperimentReportConfiguration"
+                },
+                "experimentReport": {
+                    "$ref": "#/$defs/ExperimentReport"
                 }
             }
         },
@@ -2053,6 +2190,135 @@
                 "SKIP_ALL",
                 "RUN_ALL"
             ]
+        },
+        "ExperimentReportConfiguration": {
+            "type": "object",
+            "properties": {
+                "outputs": {
+                    "$ref": "#/$defs/ExperimentReportConfigurationOutputs"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/ExperimentReportConfigurationDataSources"
+                },
+                "preExperimentDuration": {
+                    "$ref": "#/$defs/ReportConfigurationDuration"
+                },
+                "postExperimentDuration": {
+                    "$ref": "#/$defs/ReportConfigurationDuration"
+                }
+            }
+        },
+        "ExperimentReportConfigurationOutputs": {
+            "type": "object",
+            "properties": {
+                "s3Configuration": {
+                    "$ref": "#/$defs/ExperimentReportConfigurationOutputsS3Configuration"
+                }
+            }
+        },
+        "ExperimentReportConfigurationOutputsS3Configuration": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                },
+                "prefix": {
+                    "$ref": "#/$defs/ReportConfigurationS3OutputPrefix"
+                }
+            }
+        },
+        "ExperimentReportConfigurationDataSources": {
+            "type": "object",
+            "properties": {
+                "cloudWatchDashboards": {
+                    "$ref": "#/$defs/ExperimentReportConfigurationCloudWatchDashboardList"
+                }
+            }
+        },
+        "ExperimentReportConfigurationCloudWatchDashboardList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExperimentReportConfigurationCloudWatchDashboard"
+            }
+        },
+        "ExperimentReportConfigurationCloudWatchDashboard": {
+            "type": "object",
+            "properties": {
+                "dashboardIdentifier": {
+                    "$ref": "#/$defs/ReportConfigurationCloudWatchDashboardIdentifier"
+                }
+            }
+        },
+        "ExperimentReport": {
+            "type": "object",
+            "properties": {
+                "state": {
+                    "$ref": "#/$defs/ExperimentReportState"
+                },
+                "s3Reports": {
+                    "$ref": "#/$defs/ExperimentReportS3ReportList"
+                }
+            }
+        },
+        "ExperimentReportState": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ExperimentReportStatus"
+                },
+                "reason": {
+                    "$ref": "#/$defs/ExperimentReportReason"
+                },
+                "error": {
+                    "$ref": "#/$defs/ExperimentReportError"
+                }
+            }
+        },
+        "ExperimentReportStatus": {
+            "enum": [
+                "pending",
+                "running",
+                "completed",
+                "cancelled",
+                "failed"
+            ]
+        },
+        "ExperimentReportReason": {
+            "type": "string"
+        },
+        "ExperimentReportError": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "$ref": "#/$defs/ExperimentReportErrorCode"
+                }
+            }
+        },
+        "ExperimentReportErrorCode": {
+            "type": "string"
+        },
+        "ExperimentReportS3ReportList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExperimentReportS3Report"
+            }
+        },
+        "ExperimentReportS3Report": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/ExperimentReportS3ReportArn"
+                },
+                "reportType": {
+                    "$ref": "#/$defs/ExperimentReportS3ReportType"
+                }
+            }
+        },
+        "ExperimentReportS3ReportArn": {
+            "type": "string"
+        },
+        "ExperimentReportS3ReportType": {
+            "type": "string"
         },
         "GetExperimentRequest": {
             "type": "object",
@@ -2747,6 +3013,9 @@
                 },
                 "experimentOptions": {
                     "$ref": "#/$defs/UpdateExperimentTemplateExperimentOptionsInput"
+                },
+                "experimentReportConfiguration": {
+                    "$ref": "#/$defs/UpdateExperimentTemplateReportConfigurationInput"
                 }
             }
         },
@@ -2841,6 +3110,23 @@
             "properties": {
                 "emptyTargetResolutionMode": {
                     "$ref": "#/$defs/EmptyTargetResolutionMode"
+                }
+            }
+        },
+        "UpdateExperimentTemplateReportConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "outputs": {
+                    "$ref": "#/$defs/ExperimentTemplateReportConfigurationOutputsInput"
+                },
+                "dataSources": {
+                    "$ref": "#/$defs/ExperimentTemplateReportConfigurationDataSourcesInput"
+                },
+                "preExperimentDuration": {
+                    "$ref": "#/$defs/ReportConfigurationDuration"
+                },
+                "postExperimentDuration": {
+                    "$ref": "#/$defs/ReportConfigurationDuration"
                 }
             }
         },

@@ -3925,6 +3925,12 @@
             "properties": {
                 "ComputeLimits": {
                     "$ref": "#/$defs/ComputeLimits"
+                },
+                "UtilizationPerformanceIndex": {
+                    "$ref": "#/$defs/UtilizationPerformanceIndexInteger"
+                },
+                "ScalingStrategy": {
+                    "$ref": "#/$defs/ScalingStrategy"
                 }
             }
         },
@@ -3953,6 +3959,16 @@
                 "InstanceFleetUnits",
                 "Instances",
                 "VCPU"
+            ]
+        },
+        "UtilizationPerformanceIndexInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ScalingStrategy": {
+            "enum": [
+                "DEFAULT",
+                "ADVANCED"
             ]
         },
         "GetManagedScalingPolicyInput": {

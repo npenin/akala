@@ -76,6 +76,45 @@
             }
         },
         {
+            "name": "GetConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ConfigurationId": "route.ConfigurationId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/getConfiguration/{ConfigurationId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetConfigurationOutput"
+                    },
+                    "inject": [
+                        "param.0.ConfigurationId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetConfigurationInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "GetConfigurationManager",
             "config": {
                 "http": {
@@ -165,6 +204,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListConfigurationManagersInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListConfigurations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/listConfigurations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConfigurationsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConfigurationsInput"
                         }
                     }
                 },
@@ -564,16 +638,28 @@
                 }
             }
         },
-        "GetConfigurationManagerOutput": {
+        "GetConfigurationOutput": {
             "type": "object",
             "properties": {
+                "Id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
                 "ManagerArn": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
-                "Description": {
+                "ConfigurationDefinitionId": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
-                "Name": {
+                "Type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TypeVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Account": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Region": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
                 "CreatedAt": {
@@ -585,11 +671,8 @@
                 "StatusSummaries": {
                     "$ref": "#/$defs/StatusSummariesList"
                 },
-                "ConfigurationDefinitions": {
-                    "$ref": "#/$defs/ConfigurationDefinitionsList"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagsMap"
+                "Parameters": {
+                    "$ref": "#/$defs/ConfigurationParametersMap"
                 }
             }
         },
@@ -643,6 +726,43 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "GetConfigurationInput": {
+            "type": "object",
+            "properties": {
+                "ConfigurationId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetConfigurationManagerOutput": {
+            "type": "object",
+            "properties": {
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastModifiedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "StatusSummaries": {
+                    "$ref": "#/$defs/StatusSummariesList"
+                },
+                "ConfigurationDefinitions": {
+                    "$ref": "#/$defs/ConfigurationDefinitionsList"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
             }
         },
         "ConfigurationDefinitionsList": {
@@ -793,6 +913,78 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListConfigurationsOutput": {
+            "type": "object",
+            "properties": {
+                "ConfigurationsList": {
+                    "$ref": "#/$defs/ConfigurationsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ConfigurationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationSummary"
+            }
+        },
+        "ConfigurationSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ConfigurationDefinitionId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TypeVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Region": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Account": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "FirstClassParameters": {
+                    "$ref": "#/$defs/ConfigurationParametersMap"
+                },
+                "StatusSummaries": {
+                    "$ref": "#/$defs/StatusSummariesList"
+                }
+            }
+        },
+        "ListConfigurationsInput": {
+            "type": "object",
+            "properties": {
+                "StartingToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FiltersList"
+                },
+                "ManagerArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ConfigurationDefinitionId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
             }
         },
         "ListQuickSetupTypesOutput": {

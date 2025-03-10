@@ -416,6 +416,9 @@
                 "DeliveryStreamType": {
                     "$ref": "#/$defs/DeliveryStreamType"
                 },
+                "DirectPutSourceConfiguration": {
+                    "$ref": "#/$defs/DirectPutSourceConfiguration"
+                },
                 "KinesisStreamSourceConfiguration": {
                     "$ref": "#/$defs/KinesisStreamSourceConfiguration"
                 },
@@ -457,6 +460,9 @@
                 },
                 "IcebergDestinationConfiguration": {
                     "$ref": "#/$defs/IcebergDestinationConfiguration"
+                },
+                "DatabaseSourceConfiguration": {
+                    "$ref": "#/$defs/DatabaseSourceConfiguration"
                 }
             }
         },
@@ -467,8 +473,21 @@
             "enum": [
                 "DirectPut",
                 "KinesisStreamAsSource",
-                "MSKAsSource"
+                "MSKAsSource",
+                "DatabaseAsSource"
             ]
+        },
+        "DirectPutSourceConfiguration": {
+            "type": "object",
+            "properties": {
+                "ThroughputHintInMBs": {
+                    "$ref": "#/$defs/ThroughputHintInMBs"
+                }
+            }
+        },
+        "ThroughputHintInMBs": {
+            "type": "integer",
+            "format": "int32"
         },
         "KinesisStreamSourceConfiguration": {
             "type": "object",
@@ -1906,6 +1925,12 @@
                 "DestinationTableConfigurationList": {
                     "$ref": "#/$defs/DestinationTableConfigurationList"
                 },
+                "SchemaEvolutionConfiguration": {
+                    "$ref": "#/$defs/SchemaEvolutionConfiguration"
+                },
+                "TableCreationConfiguration": {
+                    "$ref": "#/$defs/TableCreationConfiguration"
+                },
                 "BufferingHints": {
                     "$ref": "#/$defs/BufferingHints"
                 },
@@ -1923,6 +1948,9 @@
                 },
                 "RoleARN": {
                     "$ref": "#/$defs/RoleARN"
+                },
+                "AppendOnly": {
+                    "$ref": "#/$defs/BooleanObject"
                 },
                 "CatalogConfiguration": {
                     "$ref": "#/$defs/CatalogConfiguration"
@@ -1942,16 +1970,60 @@
             "type": "object",
             "properties": {
                 "DestinationTableName": {
-                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                    "$ref": "#/$defs/StringWithLettersDigitsUnderscoresDots"
                 },
                 "DestinationDatabaseName": {
-                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                    "$ref": "#/$defs/StringWithLettersDigitsUnderscoresDots"
                 },
                 "UniqueKeys": {
                     "$ref": "#/$defs/ListOfNonEmptyStringsWithoutWhitespace"
                 },
+                "PartitionSpec": {
+                    "$ref": "#/$defs/PartitionSpec"
+                },
                 "S3ErrorOutputPrefix": {
                     "$ref": "#/$defs/ErrorOutputPrefix"
+                }
+            }
+        },
+        "StringWithLettersDigitsUnderscoresDots": {
+            "type": "string"
+        },
+        "PartitionSpec": {
+            "type": "object",
+            "properties": {
+                "Identity": {
+                    "$ref": "#/$defs/PartitionFields"
+                }
+            }
+        },
+        "PartitionFields": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PartitionField"
+            }
+        },
+        "PartitionField": {
+            "type": "object",
+            "properties": {
+                "SourceName": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                }
+            }
+        },
+        "SchemaEvolutionConfiguration": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanObject"
+                }
+            }
+        },
+        "TableCreationConfiguration": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/BooleanObject"
                 }
             }
         },
@@ -1966,10 +2038,158 @@
             "properties": {
                 "CatalogARN": {
                     "$ref": "#/$defs/GlueDataCatalogARN"
+                },
+                "WarehouseLocation": {
+                    "$ref": "#/$defs/WarehouseLocation"
                 }
             }
         },
         "GlueDataCatalogARN": {
+            "type": "string"
+        },
+        "WarehouseLocation": {
+            "type": "string"
+        },
+        "DatabaseSourceConfiguration": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/DatabaseType"
+                },
+                "Endpoint": {
+                    "$ref": "#/$defs/DatabaseEndpoint"
+                },
+                "Port": {
+                    "$ref": "#/$defs/DatabasePort"
+                },
+                "SSLMode": {
+                    "$ref": "#/$defs/SSLMode"
+                },
+                "Databases": {
+                    "$ref": "#/$defs/DatabaseList"
+                },
+                "Tables": {
+                    "$ref": "#/$defs/DatabaseTableList"
+                },
+                "Columns": {
+                    "$ref": "#/$defs/DatabaseColumnList"
+                },
+                "SurrogateKeys": {
+                    "$ref": "#/$defs/DatabaseSurrogateKeyList"
+                },
+                "SnapshotWatermarkTable": {
+                    "$ref": "#/$defs/DatabaseTableName"
+                },
+                "DatabaseSourceAuthenticationConfiguration": {
+                    "$ref": "#/$defs/DatabaseSourceAuthenticationConfiguration"
+                },
+                "DatabaseSourceVPCConfiguration": {
+                    "$ref": "#/$defs/DatabaseSourceVPCConfiguration"
+                }
+            }
+        },
+        "DatabaseType": {
+            "enum": [
+                "MySQL",
+                "PostgreSQL"
+            ]
+        },
+        "DatabaseEndpoint": {
+            "type": "string"
+        },
+        "DatabasePort": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SSLMode": {
+            "enum": [
+                "Disabled",
+                "Enabled"
+            ]
+        },
+        "DatabaseList": {
+            "type": "object",
+            "properties": {
+                "Include": {
+                    "$ref": "#/$defs/DatabaseIncludeOrExcludeList"
+                },
+                "Exclude": {
+                    "$ref": "#/$defs/DatabaseIncludeOrExcludeList"
+                }
+            }
+        },
+        "DatabaseIncludeOrExcludeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatabaseName"
+            }
+        },
+        "DatabaseName": {
+            "type": "string"
+        },
+        "DatabaseTableList": {
+            "type": "object",
+            "properties": {
+                "Include": {
+                    "$ref": "#/$defs/DatabaseTableIncludeOrExcludeList"
+                },
+                "Exclude": {
+                    "$ref": "#/$defs/DatabaseTableIncludeOrExcludeList"
+                }
+            }
+        },
+        "DatabaseTableIncludeOrExcludeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatabaseTableName"
+            }
+        },
+        "DatabaseTableName": {
+            "type": "string"
+        },
+        "DatabaseColumnList": {
+            "type": "object",
+            "properties": {
+                "Include": {
+                    "$ref": "#/$defs/DatabaseColumnIncludeOrExcludeList"
+                },
+                "Exclude": {
+                    "$ref": "#/$defs/DatabaseColumnIncludeOrExcludeList"
+                }
+            }
+        },
+        "DatabaseColumnIncludeOrExcludeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatabaseColumnName"
+            }
+        },
+        "DatabaseColumnName": {
+            "type": "string"
+        },
+        "DatabaseSurrogateKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+            }
+        },
+        "DatabaseSourceAuthenticationConfiguration": {
+            "type": "object",
+            "properties": {
+                "SecretsManagerConfiguration": {
+                    "$ref": "#/$defs/SecretsManagerConfiguration"
+                }
+            }
+        },
+        "DatabaseSourceVPCConfiguration": {
+            "type": "object",
+            "properties": {
+                "VpcEndpointServiceName": {
+                    "$ref": "#/$defs/VpcEndpointServiceName"
+                }
+            }
+        },
+        "VpcEndpointServiceName": {
             "type": "string"
         },
         "DeleteDeliveryStreamOutput": {
@@ -2058,6 +2278,8 @@
         },
         "DeliveryStreamFailureType": {
             "enum": [
+                "VPC_ENDPOINT_SERVICE_NAME_NOT_FOUND",
+                "VPC_INTERFACE_ENDPOINT_SERVICE_ACCESS_DENIED",
                 "RETIRE_KMS_GRANT_FAILED",
                 "CREATE_KMS_GRANT_FAILED",
                 "KMS_ACCESS_DENIED",
@@ -2112,11 +2334,25 @@
         "SourceDescription": {
             "type": "object",
             "properties": {
+                "DirectPutSourceDescription": {
+                    "$ref": "#/$defs/DirectPutSourceDescription"
+                },
                 "KinesisStreamSourceDescription": {
                     "$ref": "#/$defs/KinesisStreamSourceDescription"
                 },
                 "MSKSourceDescription": {
                     "$ref": "#/$defs/MSKSourceDescription"
+                },
+                "DatabaseSourceDescription": {
+                    "$ref": "#/$defs/DatabaseSourceDescription"
+                }
+            }
+        },
+        "DirectPutSourceDescription": {
+            "type": "object",
+            "properties": {
+                "ThroughputHintInMBs": {
+                    "$ref": "#/$defs/ThroughputHintInMBs"
                 }
             }
         },
@@ -2157,6 +2393,89 @@
                     "$ref": "#/$defs/ReadFromTimestamp"
                 }
             }
+        },
+        "DatabaseSourceDescription": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/DatabaseType"
+                },
+                "Endpoint": {
+                    "$ref": "#/$defs/DatabaseEndpoint"
+                },
+                "Port": {
+                    "$ref": "#/$defs/DatabasePort"
+                },
+                "SSLMode": {
+                    "$ref": "#/$defs/SSLMode"
+                },
+                "Databases": {
+                    "$ref": "#/$defs/DatabaseList"
+                },
+                "Tables": {
+                    "$ref": "#/$defs/DatabaseTableList"
+                },
+                "Columns": {
+                    "$ref": "#/$defs/DatabaseColumnList"
+                },
+                "SurrogateKeys": {
+                    "$ref": "#/$defs/DatabaseColumnIncludeOrExcludeList"
+                },
+                "SnapshotWatermarkTable": {
+                    "$ref": "#/$defs/DatabaseTableName"
+                },
+                "SnapshotInfo": {
+                    "$ref": "#/$defs/DatabaseSnapshotInfoList"
+                },
+                "DatabaseSourceAuthenticationConfiguration": {
+                    "$ref": "#/$defs/DatabaseSourceAuthenticationConfiguration"
+                },
+                "DatabaseSourceVPCConfiguration": {
+                    "$ref": "#/$defs/DatabaseSourceVPCConfiguration"
+                }
+            }
+        },
+        "DatabaseSnapshotInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DatabaseSnapshotInfo"
+            }
+        },
+        "DatabaseSnapshotInfo": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/NonEmptyStringWithoutWhitespace"
+                },
+                "Table": {
+                    "$ref": "#/$defs/DatabaseTableName"
+                },
+                "RequestTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "RequestedBy": {
+                    "$ref": "#/$defs/SnapshotRequestedBy"
+                },
+                "Status": {
+                    "$ref": "#/$defs/SnapshotStatus"
+                },
+                "FailureDescription": {
+                    "$ref": "#/$defs/FailureDescription"
+                }
+            }
+        },
+        "SnapshotRequestedBy": {
+            "enum": [
+                "USER",
+                "FIREHOSE"
+            ]
+        },
+        "SnapshotStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETE",
+                "SUSPENDED"
+            ]
         },
         "DestinationDescriptionList": {
             "type": "array",
@@ -2617,6 +2936,12 @@
                 "DestinationTableConfigurationList": {
                     "$ref": "#/$defs/DestinationTableConfigurationList"
                 },
+                "SchemaEvolutionConfiguration": {
+                    "$ref": "#/$defs/SchemaEvolutionConfiguration"
+                },
+                "TableCreationConfiguration": {
+                    "$ref": "#/$defs/TableCreationConfiguration"
+                },
                 "BufferingHints": {
                     "$ref": "#/$defs/BufferingHints"
                 },
@@ -2634,6 +2959,9 @@
                 },
                 "RoleARN": {
                     "$ref": "#/$defs/RoleARN"
+                },
+                "AppendOnly": {
+                    "$ref": "#/$defs/BooleanObject"
                 },
                 "CatalogConfiguration": {
                     "$ref": "#/$defs/CatalogConfiguration"
@@ -3308,6 +3636,12 @@
                 "DestinationTableConfigurationList": {
                     "$ref": "#/$defs/DestinationTableConfigurationList"
                 },
+                "SchemaEvolutionConfiguration": {
+                    "$ref": "#/$defs/SchemaEvolutionConfiguration"
+                },
+                "TableCreationConfiguration": {
+                    "$ref": "#/$defs/TableCreationConfiguration"
+                },
                 "BufferingHints": {
                     "$ref": "#/$defs/BufferingHints"
                 },
@@ -3325,6 +3659,9 @@
                 },
                 "RoleARN": {
                     "$ref": "#/$defs/RoleARN"
+                },
+                "AppendOnly": {
+                    "$ref": "#/$defs/BooleanObject"
                 },
                 "CatalogConfiguration": {
                     "$ref": "#/$defs/CatalogConfiguration"

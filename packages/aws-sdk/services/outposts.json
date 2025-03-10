@@ -618,6 +618,45 @@
             }
         },
         {
+            "name": "ListAssetInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "OutpostIdentifier": "route.OutpostIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/outposts/{OutpostIdentifier}/assetInstances"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssetInstancesOutput"
+                    },
+                    "inject": [
+                        "param.0.OutpostIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssetInstancesInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListAssets",
             "config": {
                 "http": {
@@ -641,6 +680,47 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListAssetsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBlockingInstancesForCapacityTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "OutpostIdentifier": "route.OutpostIdentifier",
+                            "CapacityTaskId": "route.CapacityTaskId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}/blockingInstances"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBlockingInstancesForCapacityTaskOutput"
+                    },
+                    "inject": [
+                        "param.0.OutpostIdentifier",
+                        "param.0.CapacityTaskId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBlockingInstancesForCapacityTaskInput"
                         }
                     }
                 },
@@ -1443,7 +1523,8 @@
         "PaymentTerm": {
             "enum": [
                 "THREE_YEARS",
-                "ONE_YEAR"
+                "ONE_YEAR",
+                "FIVE_YEARS"
             ]
         },
         "OrderType": {
@@ -1724,7 +1805,8 @@
                 "L6_30P",
                 "IEC309",
                 "AH530P7W",
-                "AH532P6W"
+                "AH532P6W",
+                "CS8365C"
             ]
         },
         "PowerFeedDrop": {
@@ -1914,6 +1996,9 @@
                 "RequestedInstancePools": {
                     "$ref": "#/$defs/RequestedInstancePools"
                 },
+                "InstancesToExclude": {
+                    "$ref": "#/$defs/InstancesToExclude"
+                },
                 "DryRun": {
                     "$ref": "#/$defs/DryRun"
                 },
@@ -1931,6 +2016,9 @@
                 },
                 "LastModifiedDate": {
                     "$ref": "#/$defs/ISO8601Timestamp"
+                },
+                "TaskActionOnBlockingInstances": {
+                    "$ref": "#/$defs/TaskActionOnBlockingInstances"
                 }
             }
         },
@@ -1958,6 +2046,51 @@
             "type": "integer",
             "format": "int32"
         },
+        "InstancesToExclude": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "$ref": "#/$defs/InstanceIdList"
+                },
+                "AccountIds": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "Services": {
+                    "$ref": "#/$defs/AWSServiceNameList"
+                }
+            }
+        },
+        "InstanceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceId"
+            }
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "AccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "AWSServiceNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AWSServiceName"
+            }
+        },
+        "AWSServiceName": {
+            "enum": [
+                "AWS",
+                "EC2",
+                "ELASTICACHE",
+                "ELB",
+                "RDS",
+                "ROUTE53"
+            ]
+        },
         "DryRun": {
             "type": "boolean"
         },
@@ -1967,6 +2100,8 @@
                 "IN_PROGRESS",
                 "FAILED",
                 "COMPLETED",
+                "WAITING_FOR_EVACUATION",
+                "CANCELLATION_IN_PROGRESS",
                 "CANCELLED"
             ]
         },
@@ -1986,7 +2121,17 @@
         },
         "CapacityTaskFailureType": {
             "enum": [
-                "UNSUPPORTED_CAPACITY_CONFIGURATION"
+                "UNSUPPORTED_CAPACITY_CONFIGURATION",
+                "UNEXPECTED_ASSET_STATE",
+                "BLOCKING_INSTANCES_NOT_EVACUATED",
+                "INTERNAL_SERVER_ERROR",
+                "RESOURCE_NOT_FOUND"
+            ]
+        },
+        "TaskActionOnBlockingInstances": {
+            "enum": [
+                "WAIT_FOR_EVACUATION",
+                "FAIL_TASK"
             ]
         },
         "GetCapacityTaskInput": {
@@ -2336,6 +2481,84 @@
                 }
             }
         },
+        "ListAssetInstancesOutput": {
+            "type": "object",
+            "properties": {
+                "AssetInstances": {
+                    "$ref": "#/$defs/AssetInstanceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "AssetInstanceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetInstance"
+            }
+        },
+        "AssetInstance": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/OutpostInstanceType"
+                },
+                "AssetId": {
+                    "$ref": "#/$defs/AssetId"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "AwsServiceName": {
+                    "$ref": "#/$defs/AWSServiceName"
+                }
+            }
+        },
+        "OutpostInstanceType": {
+            "type": "string"
+        },
+        "ListAssetInstancesInput": {
+            "type": "object",
+            "properties": {
+                "OutpostIdentifier": {
+                    "$ref": "#/$defs/OutpostIdentifier"
+                },
+                "AssetIdFilter": {
+                    "$ref": "#/$defs/AssetIdList"
+                },
+                "InstanceTypeFilter": {
+                    "$ref": "#/$defs/OutpostInstanceTypeList"
+                },
+                "AccountIdFilter": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "AwsServiceFilter": {
+                    "$ref": "#/$defs/AWSServiceNameList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults1000"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "AssetIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetId"
+            }
+        },
+        "OutpostInstanceTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OutpostInstanceType"
+            }
+        },
         "ListAssetsOutput": {
             "type": "object",
             "properties": {
@@ -2392,6 +2615,12 @@
                 },
                 "InstanceFamilies": {
                     "$ref": "#/$defs/InstanceFamilies"
+                },
+                "InstanceTypeCapacities": {
+                    "$ref": "#/$defs/AssetInstanceCapacityList"
+                },
+                "MaxVcpus": {
+                    "$ref": "#/$defs/VCPUCount"
                 }
             }
         },
@@ -2413,6 +2642,23 @@
         },
         "InstanceFamilyName": {
             "type": "string"
+        },
+        "AssetInstanceCapacityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetInstanceTypeCapacity"
+            }
+        },
+        "AssetInstanceTypeCapacity": {
+            "type": "object",
+            "properties": {
+                "InstanceType": {
+                    "$ref": "#/$defs/InstanceTypeName"
+                },
+                "Count": {
+                    "$ref": "#/$defs/InstanceTypeCount"
+                }
+            }
         },
         "AssetLocation": {
             "type": "object",
@@ -2464,6 +2710,54 @@
                 "RETIRING",
                 "ISOLATED"
             ]
+        },
+        "ListBlockingInstancesForCapacityTaskOutput": {
+            "type": "object",
+            "properties": {
+                "BlockingInstances": {
+                    "$ref": "#/$defs/BlockingInstancesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "BlockingInstancesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BlockingInstance"
+            }
+        },
+        "BlockingInstance": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "AwsServiceName": {
+                    "$ref": "#/$defs/AWSServiceName"
+                }
+            }
+        },
+        "ListBlockingInstancesForCapacityTaskInput": {
+            "type": "object",
+            "properties": {
+                "OutpostIdentifier": {
+                    "$ref": "#/$defs/OutpostIdentifier"
+                },
+                "CapacityTaskId": {
+                    "$ref": "#/$defs/CapacityTaskId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults1000"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
         },
         "ListCapacityTasksOutput": {
             "type": "object",
@@ -2793,6 +3087,9 @@
                 "RequestedInstancePools": {
                     "$ref": "#/$defs/RequestedInstancePools"
                 },
+                "InstancesToExclude": {
+                    "$ref": "#/$defs/InstancesToExclude"
+                },
                 "DryRun": {
                     "$ref": "#/$defs/DryRun"
                 },
@@ -2810,6 +3107,9 @@
                 },
                 "LastModifiedDate": {
                     "$ref": "#/$defs/ISO8601Timestamp"
+                },
+                "TaskActionOnBlockingInstances": {
+                    "$ref": "#/$defs/TaskActionOnBlockingInstances"
                 }
             }
         },
@@ -2825,8 +3125,14 @@
                 "InstancePools": {
                     "$ref": "#/$defs/RequestedInstancePools"
                 },
+                "InstancesToExclude": {
+                    "$ref": "#/$defs/InstancesToExclude"
+                },
                 "DryRun": {
                     "$ref": "#/$defs/DryRun"
+                },
+                "TaskActionOnBlockingInstances": {
+                    "$ref": "#/$defs/TaskActionOnBlockingInstances"
                 }
             }
         },

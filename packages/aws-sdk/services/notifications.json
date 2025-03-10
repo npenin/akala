@@ -1,0 +1,467 @@
+{
+    "name": "notifications",
+    "commands": [
+        {
+            "name": "ListManagedNotificationChannelAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/channels/list-managed-notification-channel-associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListManagedNotificationChannelAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListManagedNotificationChannelAssociationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "arn": "route.arn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/tags/{arn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.arn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "arn": "route.arn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/tags/{arn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.arn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "arn": "route.arn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/tags/{arn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.arn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ListManagedNotificationChannelAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "channelAssociations": {
+                    "$ref": "#/$defs/ManagedNotificationChannelAssociations"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ManagedNotificationChannelAssociations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ManagedNotificationChannelAssociationSummary"
+            }
+        },
+        "ManagedNotificationChannelAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "channelIdentifier": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "channelType": {
+                    "$ref": "#/$defs/ChannelType"
+                },
+                "overrideOption": {
+                    "$ref": "#/$defs/ChannelAssociationOverrideOption"
+                }
+            }
+        },
+        "ChannelType": {
+            "type": "string"
+        },
+        "ChannelAssociationOverrideOption": {
+            "type": "string"
+        },
+        "ListManagedNotificationChannelAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "managedNotificationConfigurationArn": {
+                    "$ref": "#/$defs/ManagedNotificationConfigurationOsArn"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ManagedNotificationConfigurationOsArn": {
+            "type": "string"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NotificationConfigurationArn"
+                }
+            }
+        },
+        "NotificationConfigurationArn": {
+            "type": "string"
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NotificationConfigurationArn"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/NotificationConfigurationArn"
+                },
+                "tagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        }
+    },
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                },
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                }
+            },
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
+                                },
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "isSet",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "aws.partition",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                }
+                                            ],
+                                            "assign": "PartitionResult"
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "endpoint": {
+                                                "url": "https://notifications-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "endpoint": {
+                                                "url": "https://notifications.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                }
+                            ],
+                            "type": "tree"
+                        },
+                        {
+                            "conditions": [],
+                            "error": "Invalid Configuration: Missing Region",
+                            "type": "error"
+                        }
+                    ],
+                    "type": "tree"
+                }
+            ]
+        }
+    }
+}

@@ -72,6 +72,111 @@
             }
         },
         {
+            "name": "BatchCreateCategory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/catalog.createCategories"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchCreateCategoryInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchDeleteCategory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/catalog.deleteCategories"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchDeleteCategoryInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchUpdateCategory",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/catalog.updateCategories"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchUpdateCategoryInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateLibraryItem",
             "config": {
                 "http": {
@@ -91,6 +196,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateLibraryItemInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreatePresignedUrl",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/apps.createPresignedUrl"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreatePresignedUrlOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreatePresignedUrlInput"
                         }
                     }
                 },
@@ -212,6 +352,41 @@
             }
         },
         {
+            "name": "DescribeQAppPermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/apps.describeQAppPermissions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeQAppPermissionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeQAppPermissionsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "DisassociateLibraryItemReview",
             "config": {
                 "http": {
@@ -266,6 +441,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DisassociateQAppFromUserInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExportQAppSessionData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/runtime.exportQAppSessionData"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExportQAppSessionDataOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExportQAppSessionDataInput"
                         }
                     }
                 },
@@ -387,6 +597,41 @@
             }
         },
         {
+            "name": "GetQAppSessionMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/runtime.getQAppSessionMetadata"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQAppSessionMetadataOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQAppSessionMetadataInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ImportDocument",
             "config": {
                 "http": {
@@ -406,6 +651,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ImportDocumentInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCategories",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/catalog.listCategories"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCategoriesOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCategoriesInput"
                         }
                     }
                 },
@@ -476,6 +756,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListQAppsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQAppSessionData",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/runtime.listQAppSessionData"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQAppSessionDataOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQAppSessionDataInput"
                         }
                     }
                 },
@@ -819,6 +1134,41 @@
             }
         },
         {
+            "name": "UpdateQAppPermissions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/apps.updateQAppPermissions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateQAppPermissionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateQAppPermissionsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateQAppSession",
             "config": {
                 "http": {
@@ -838,6 +1188,41 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateQAppSessionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "type": {},
+                        "members": {},
+                        "traits": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateQAppSessionMetadata",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/runtime.updateQAppSessionMetadata"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateQAppSessionMetadataOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateQAppSessionMetadataInput"
                         }
                     }
                 },
@@ -928,6 +1313,85 @@
                 }
             }
         },
+        "BatchCreateCategoryInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "categories": {
+                    "$ref": "#/$defs/BatchCreateCategoryInputCategoryList"
+                }
+            }
+        },
+        "BatchCreateCategoryInputCategoryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchCreateCategoryInputCategory"
+            }
+        },
+        "BatchCreateCategoryInputCategory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "title": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "color": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "BatchDeleteCategoryInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "categories": {
+                    "$ref": "#/$defs/DeleteCategoryInputList"
+                }
+            }
+        },
+        "DeleteCategoryInputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UUID"
+            }
+        },
+        "BatchUpdateCategoryInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "categories": {
+                    "$ref": "#/$defs/CategoryListInput"
+                }
+            }
+        },
+        "CategoryListInput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CategoryInput"
+            }
+        },
+        "CategoryInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "title": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "color": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "CreateLibraryItemOutput": {
             "type": "object",
             "properties": {
@@ -987,6 +1451,64 @@
             "items": {
                 "$ref": "#/$defs/UUID"
             }
+        },
+        "CreatePresignedUrlOutput": {
+            "type": "object",
+            "properties": {
+                "fileId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "presignedUrl": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "presignedUrlFields": {
+                    "$ref": "#/$defs/PresignedUrlFields"
+                },
+                "presignedUrlExpiration": {
+                    "$ref": "#/$defs/QAppsTimestamp"
+                }
+            }
+        },
+        "PresignedUrlFields": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "CreatePresignedUrlInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "cardId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "appId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "fileContentsSha256": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "fileName": {
+                    "$ref": "#/$defs/Filename"
+                },
+                "scope": {
+                    "$ref": "#/$defs/DocumentScope"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "Filename": {
+            "type": "string"
+        },
+        "DocumentScope": {
+            "enum": [
+                "APPLICATION",
+                "SESSION"
+            ]
         },
         "CreateQAppOutput": {
             "type": "object",
@@ -1113,6 +1635,9 @@
                 },
                 "fileUpload": {
                     "$ref": "#/$defs/FileUploadCardInput"
+                },
+                "formInput": {
+                    "$ref": "#/$defs/FormInputCardInput"
                 }
             }
         },
@@ -1141,7 +1666,8 @@
                 "TEXT_INPUT",
                 "Q_QUERY",
                 "FILE_UPLOAD",
-                "Q_PLUGIN"
+                "Q_PLUGIN",
+                "FORM_INPUT"
             ]
         },
         "Placeholder": {
@@ -1291,10 +1817,16 @@
                 },
                 "pluginId": {
                     "$ref": "#/$defs/PluginId"
+                },
+                "actionIdentifier": {
+                    "$ref": "#/$defs/ActionIdentifier"
                 }
             }
         },
         "PluginId": {
+            "type": "string"
+        },
+        "ActionIdentifier": {
             "type": "string"
         },
         "FileUploadCardInput": {
@@ -1320,8 +1852,40 @@
                 }
             }
         },
-        "Filename": {
-            "type": "string"
+        "FormInputCardInput": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "$ref": "#/$defs/Title"
+                },
+                "id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "type": {
+                    "$ref": "#/$defs/CardType"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/FormInputCardMetadata"
+                },
+                "computeMode": {
+                    "$ref": "#/$defs/InputCardComputeMode"
+                }
+            }
+        },
+        "FormInputCardMetadata": {
+            "type": "object",
+            "properties": {
+                "schema": {
+                    "$ref": "#/$defs/FormInputCardMetadataSchema"
+                }
+            }
+        },
+        "FormInputCardMetadataSchema": {},
+        "InputCardComputeMode": {
+            "enum": [
+                "APPEND",
+                "REPLACE"
+            ]
         },
         "TagMap": {
             "type": "object",
@@ -1351,6 +1915,74 @@
                 }
             }
         },
+        "DescribeQAppPermissionsOutput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "appId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "permissions": {
+                    "$ref": "#/$defs/PermissionsOutputList"
+                }
+            }
+        },
+        "PermissionsOutputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PermissionOutput"
+            }
+        },
+        "PermissionOutput": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "principal": {
+                    "$ref": "#/$defs/PrincipalOutput"
+                }
+            }
+        },
+        "Action": {
+            "enum": [
+                "READ",
+                "WRITE"
+            ]
+        },
+        "PrincipalOutput": {
+            "type": "object",
+            "properties": {
+                "userId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "userType": {
+                    "$ref": "#/$defs/UserType"
+                },
+                "email": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "UserType": {
+            "enum": [
+                "OWNER",
+                "USER"
+            ]
+        },
+        "DescribeQAppPermissionsInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "appId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
         "DisassociateLibraryItemReviewInput": {
             "type": "object",
             "properties": {
@@ -1369,6 +2001,31 @@
                     "$ref": "#/$defs/InstanceId"
                 },
                 "appId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "ExportQAppSessionDataOutput": {
+            "type": "object",
+            "properties": {
+                "csvFileLink": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "expiresAt": {
+                    "$ref": "#/$defs/QAppsTimestamp"
+                },
+                "sessionArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ExportQAppSessionDataInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "sessionId": {
                     "$ref": "#/$defs/UUID"
                 }
             }
@@ -1431,6 +2088,12 @@
                 },
                 "title": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "color": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "appCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
         },
@@ -1526,6 +2189,9 @@
                 },
                 "fileUpload": {
                     "$ref": "#/$defs/FileUploadCard"
+                },
+                "formInput": {
+                    "$ref": "#/$defs/FormInputCard"
                 }
             }
         },
@@ -1581,7 +2247,16 @@
                 },
                 "attributeFilter": {
                     "$ref": "#/$defs/AttributeFilter"
+                },
+                "memoryReferences": {
+                    "$ref": "#/$defs/MemoryReferenceList"
                 }
+            }
+        },
+        "MemoryReferenceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
             }
         },
         "QPluginCard": {
@@ -1607,6 +2282,9 @@
                 },
                 "pluginId": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "actionIdentifier": {
+                    "$ref": "#/$defs/ActionIdentifier"
                 }
             }
         },
@@ -1616,7 +2294,18 @@
                 "SALESFORCE",
                 "JIRA",
                 "ZENDESK",
-                "CUSTOM"
+                "CUSTOM",
+                "ASANA",
+                "ATLASSIAN_CONFLUENCE",
+                "GOOGLE_CALENDAR",
+                "JIRA_CLOUD",
+                "MICROSOFT_EXCHANGE",
+                "MICROSOFT_TEAMS",
+                "PAGERDUTY_ADVANCE",
+                "SALESFORCE_CRM",
+                "SERVICENOW_NOW_PLATFORM",
+                "SMARTSHEET",
+                "ZENDESK_SUITE"
             ]
         },
         "FileUploadCard": {
@@ -1645,6 +2334,29 @@
                 }
             }
         },
+        "FormInputCard": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "title": {
+                    "$ref": "#/$defs/Title"
+                },
+                "dependencies": {
+                    "$ref": "#/$defs/DependencyList"
+                },
+                "type": {
+                    "$ref": "#/$defs/CardType"
+                },
+                "metadata": {
+                    "$ref": "#/$defs/FormInputCardMetadata"
+                },
+                "computeMode": {
+                    "$ref": "#/$defs/InputCardComputeMode"
+                }
+            }
+        },
         "GetQAppInput": {
             "type": "object",
             "properties": {
@@ -1653,6 +2365,9 @@
                 },
                 "appId": {
                     "$ref": "#/$defs/UUID"
+                },
+                "appVersion": {
+                    "$ref": "#/$defs/AppVersion"
                 }
             }
         },
@@ -1665,19 +2380,35 @@
                 "sessionArn": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
+                "sessionName": {
+                    "$ref": "#/$defs/SessionName"
+                },
+                "appVersion": {
+                    "$ref": "#/$defs/AppVersion"
+                },
+                "latestPublishedAppVersion": {
+                    "$ref": "#/$defs/AppVersion"
+                },
                 "status": {
                     "$ref": "#/$defs/ExecutionStatus"
                 },
                 "cardStatus": {
                     "$ref": "#/$defs/CardStatusMap"
+                },
+                "userIsHost": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
+        },
+        "SessionName": {
+            "type": "string"
         },
         "ExecutionStatus": {
             "enum": [
                 "IN_PROGRESS",
                 "WAITING",
-                "COMPLETED"
+                "COMPLETED",
+                "ERROR"
             ]
         },
         "CardStatusMap": {
@@ -1694,10 +2425,87 @@
                 },
                 "currentValue": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "submissions": {
+                    "$ref": "#/$defs/SubmissionList"
+                }
+            }
+        },
+        "SubmissionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Submission"
+            }
+        },
+        "Submission": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "$ref": "#/$defs/smithy.api#Document"
+                },
+                "submissionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/QAppsTimestamp"
                 }
             }
         },
         "GetQAppSessionInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "GetQAppSessionMetadataOutput": {
+            "type": "object",
+            "properties": {
+                "sessionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "sessionArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sessionName": {
+                    "$ref": "#/$defs/SessionName"
+                },
+                "sharingConfiguration": {
+                    "$ref": "#/$defs/SessionSharingConfiguration"
+                },
+                "sessionOwner": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "SessionSharingConfiguration": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/SessionSharingEnabled"
+                },
+                "acceptResponses": {
+                    "$ref": "#/$defs/SessionSharingAcceptResponses"
+                },
+                "revealCards": {
+                    "$ref": "#/$defs/SessionSharingRevealCards"
+                }
+            }
+        },
+        "SessionSharingEnabled": {
+            "type": "boolean"
+        },
+        "SessionSharingAcceptResponses": {
+            "type": "boolean"
+        },
+        "SessionSharingRevealCards": {
+            "type": "boolean"
+        },
+        "GetQAppSessionMetadataInput": {
             "type": "object",
             "properties": {
                 "instanceId": {
@@ -1742,11 +2550,27 @@
                 }
             }
         },
-        "DocumentScope": {
-            "enum": [
-                "APPLICATION",
-                "SESSION"
-            ]
+        "ListCategoriesOutput": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "$ref": "#/$defs/CategoriesList"
+                }
+            }
+        },
+        "CategoriesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Category"
+            }
+        },
+        "ListCategoriesInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
         },
         "ListLibraryItemsOutput": {
             "type": "object",
@@ -1893,6 +2717,71 @@
                 }
             }
         },
+        "ListQAppSessionDataOutput": {
+            "type": "object",
+            "properties": {
+                "sessionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "sessionArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sessionData": {
+                    "$ref": "#/$defs/QAppSessionDataList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "QAppSessionDataList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QAppSessionData"
+            }
+        },
+        "QAppSessionData": {
+            "type": "object",
+            "properties": {
+                "cardId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "value": {
+                    "$ref": "#/$defs/smithy.api#Document"
+                },
+                "user": {
+                    "$ref": "#/$defs/User"
+                },
+                "submissionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "timestamp": {
+                    "$ref": "#/$defs/QAppsTimestamp"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                }
+            }
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "ListQAppSessionDataInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -2017,6 +2906,9 @@
                 "initialValues": {
                     "$ref": "#/$defs/CardValueList"
                 },
+                "sessionId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
                 "tags": {
                     "$ref": "#/$defs/TagMap"
                 }
@@ -2036,8 +2928,29 @@
                 },
                 "value": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "submissionMutation": {
+                    "$ref": "#/$defs/SubmissionMutation"
                 }
             }
+        },
+        "SubmissionMutation": {
+            "type": "object",
+            "properties": {
+                "submissionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "mutationType": {
+                    "$ref": "#/$defs/SubmissionMutationKind"
+                }
+            }
+        },
+        "SubmissionMutationKind": {
+            "enum": [
+                "edit",
+                "delete",
+                "add"
+            ]
         },
         "StopQAppSessionInput": {
             "type": "object",
@@ -2231,6 +3144,54 @@
                 }
             }
         },
+        "UpdateQAppPermissionsOutput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "appId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "permissions": {
+                    "$ref": "#/$defs/PermissionsOutputList"
+                }
+            }
+        },
+        "UpdateQAppPermissionsInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "appId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "grantPermissions": {
+                    "$ref": "#/$defs/PermissionsInputList"
+                },
+                "revokePermissions": {
+                    "$ref": "#/$defs/PermissionsInputList"
+                }
+            }
+        },
+        "PermissionsInputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PermissionInput"
+            }
+        },
+        "PermissionInput": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/$defs/Action"
+                },
+                "principal": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "UpdateQAppSessionOutput": {
             "type": "object",
             "properties": {
@@ -2253,6 +3214,40 @@
                 },
                 "values": {
                     "$ref": "#/$defs/CardValueList"
+                }
+            }
+        },
+        "UpdateQAppSessionMetadataOutput": {
+            "type": "object",
+            "properties": {
+                "sessionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "sessionArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "sessionName": {
+                    "$ref": "#/$defs/SessionName"
+                },
+                "sharingConfiguration": {
+                    "$ref": "#/$defs/SessionSharingConfiguration"
+                }
+            }
+        },
+        "UpdateQAppSessionMetadataInput": {
+            "type": "object",
+            "properties": {
+                "instanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "sessionName": {
+                    "$ref": "#/$defs/SessionName"
+                },
+                "sharingConfiguration": {
+                    "$ref": "#/$defs/SessionSharingConfiguration"
                 }
             }
         }
