@@ -5,7 +5,7 @@ export default async function stop(this: State, name: string, container: Contain
 {
     await Promise.all(Object.values(this.processes).filter(p => p.name == name && p.process).map(cp =>
     {
-        return new Promise<unknown>((resolve) =>
+        return new Promise<void>((resolve) =>
         {
             if (cp.process && cp.running)
             {
@@ -20,22 +20,12 @@ export default async function stop(this: State, name: string, container: Contain
                         console.error(e);
                     }
                 }
-                const timeout = setTimeout(function ()
-                {
-                    cp.process.kill();
-                }, 5000)
-                cp.process.on('exit', (_code, signal) =>
-                {
-                    container.unregister(cp.name);
-                    delete this.processes[cp.name];
-                    clearTimeout(timeout);
-                    resolve(signal);
-                })
 
-                cp.process.kill(2);
+                cp.process.stop().then(() => resolve());
+
             }
             else
-                resolve(null)
+                resolve()
         })
     })).then(() =>
     {

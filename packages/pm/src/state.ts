@@ -1,8 +1,8 @@
 import { Container } from "@akala/commands";
-import { ChildProcess } from "child_process";
 import { Event, SerializableObject } from "@akala/core";
 import { SocketAdapter } from "@akala/json-rpc-ws";
 import { ProxyConfiguration } from "@akala/config";
+import { RuntimeInstance } from "./runtimes/shared.js";
 
 export default interface State
 {
@@ -26,7 +26,7 @@ export interface SidecarMetadata
     stateless: boolean;
     dependencies?: string[];
     commandable: boolean;
-    type?: 'nodejs';
+    type?: 'nodejs' | 'worker';
 }
 
 export interface SidecarConfiguration<T extends string | SerializableObject = SerializableObject>
@@ -42,7 +42,7 @@ export interface SidecarConfiguration<T extends string | SerializableObject = Se
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface RunningContainer<T extends string | SerializableObject = any> extends Container<unknown>, SidecarConfiguration<T>, SidecarMetadata
 {
-    process: ChildProcess;
+    process: RuntimeInstance;
     running?: boolean;
     stateless: boolean;
     ready?: Event<[void]>;

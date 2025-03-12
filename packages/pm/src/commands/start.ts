@@ -1,22 +1,22 @@
 import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
 import State, { RunningContainer, SidecarMetadata } from '../state.js';
-import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container.js';
 import { eachAsync, Event } from "@akala/core";
-import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { CliContext, unparseOptions } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
 import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
-import { IpcAdapter } from "../ipc-adapter.js";
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { RuntimeInstance } from "../runtimes/shared.js";
+import ChildProcess from "../runtimes/child_process.js";
+import Worker from "../runtimes/worker.js";
 
 //eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
 
-export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ configFile?: string, new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean, autostart?: boolean }>['options'], context?: Pick<CliContext<{}>, 'args'>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ configFile?: string, new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean, autostart?: boolean }>['options'], context?: Pick<CliContext<{}>, 'args'>): Promise<void | { execPath: string, args: string[], cwd: string, shell: boolean, windowsHide: boolean }>
 {
     let args: string[];
     if (options)
@@ -87,25 +87,17 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (options && options.verbose)
         args.push('-v')
 
-    let cp: ChildProcess;
     if (!this.isDaemon)
     {
-        if (options.keepAttached)
-            cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'] });
-        else
-            cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
-        cp.on('exit', function (...args: unknown[])
+        const cp = ChildProcess.build(args, { inheritStdio: true, name: options.name });
+        cp.on('exit', function ()
         {
             console.log(args);
         })
-        cp.on('message', function (message)
-        {
-            console.log(message);
-            // cp.disconnect();
-        });
+
         return new Promise<void>((resolve) =>
         {
-            cp.on('disconnect', function ()
+            cp.on('runningChanged', () =>
             {
                 if (!options.keepAttached)
                     cp.unref();
@@ -116,6 +108,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
     }
     else
     {
+        let cp: RuntimeInstance;
+
         if (!container && def.dependencies?.length)
         {
             var missingDeps = def.dependencies.filter(d => !this.config.containers[d] && !this.config.mapping[d]);
@@ -125,17 +119,22 @@ export default async function start(this: State, pm: pmContainer.container & Con
             await eachAsync(def.dependencies, async (dep) => { await pm.dispatch('start', dep, { name: options.name + '-' + dep, wait: true }) });
         }
 
-        if (def?.type && def.type !== 'nodejs')
-            throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
-        cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
-        cp.stderr?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stderr);
-        cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stdout);
+        switch (def?.type)
+        {
+            default:
+                throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
+            case 'worker':
+                cp = Worker.build(args, options);
+                break;
+            case 'nodejs':
+                cp = ChildProcess.build(args, options);
+                break;
+        }
 
         if (!container || !container.running)
         {
-            const socket = new IpcAdapter(cp);
             container = new Container(options.name, null) as RunningContainer;
-            const connection = Processors.JsonRpc.getConnection(socket, pm, (params) =>
+            const connection = Processors.JsonRpc.getConnection(cp.adapter, pm, (params) =>
             {
                 params.process = cp;
                 Object.defineProperty(params, 'connectionAsContainer', Object.assign({ value: container }));
@@ -206,6 +205,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
         }
         if (options.wait)
             await new Promise<void>(resolve => container.ready?.addListener(resolve));
-        return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
+        return { execPath: process.execPath, args: args, cwd: process.cwd(), shell: false, windowsHide: true };
     }
 }
