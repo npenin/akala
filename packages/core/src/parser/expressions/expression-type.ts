@@ -1,3 +1,6 @@
+/**
+ * Enum representing different types of expressions.
+ */
 export enum ExpressionType
 {
     BinaryExpression = 'binary',

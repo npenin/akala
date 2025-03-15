@@ -30,6 +30,11 @@ export class AsyncFormatter extends WatcherFormatter
     private promise: PromiseLike<unknown>;
     private value: unknown;
 
+    /**
+     * Formats the value.
+     * @param {unknown} value - The value to format.
+     * @returns {unknown} The formatted value.
+     */
     format(value: unknown)
     {
         if (!isPromiseLike(value))
@@ -50,6 +55,10 @@ export class AsyncFormatter extends WatcherFormatter
         return this.value;
     }
 
+    /**
+     * Creates an instance of AsyncFormatter.
+     * @param {Watcher} [watcher] - The watcher instance.
+     */
     constructor(watcher?: Watcher)
     {
         super(watcher);
@@ -64,6 +73,11 @@ export class EventFormatter<T extends unknown[]> extends WatcherFormatter
     private value: T;
     private sub?: Subscription;
 
+    /**
+     * Formats the value.
+     * @param {unknown} value - The value to format.
+     * @returns {T} The formatted value.
+     */
     format(value: unknown)
     {
         if (!(value instanceof Event))
@@ -86,6 +100,10 @@ export class EventFormatter<T extends unknown[]> extends WatcherFormatter
         return this.value;
     }
 
+    /**
+     * Creates an instance of EventFormatter.
+     * @param {Watcher} watcher - The watcher instance.
+     */
     constructor(watcher: Watcher)
     {
         super(watcher);
@@ -99,6 +117,11 @@ export default class Watch<T extends object> extends WatcherFormatter
 {
     private value: T;
 
+    /**
+     * Formats the value.
+     * @param {T} value - The value to format.
+     * @returns {T} The formatted value.
+     */
     format(value: T)
     {
         if (value != this.value)
@@ -120,6 +143,11 @@ export class BindingFormatter extends WatcherFormatter
     private sub: Subscription;
     private value: unknown;
 
+    /**
+     * Formats the value.
+     * @param {unknown} value - The value to format.
+     * @returns {unknown} The formatted value.
+     */
     format(value: unknown)
     {
         if (this.value != value)
@@ -147,6 +175,10 @@ export class BindingFormatter extends WatcherFormatter
         return this.binding.getValue();
     }
 
+    /**
+     * Creates an instance of BindingFormatter.
+     * @param {Watcher} watcher - The watcher instance.
+     */
     constructor(watcher: Watcher)
     {
         super(watcher);
@@ -258,6 +290,11 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
         return result;
     }
 
+    /**
+     * Evaluates the expression.
+     * @param {Expressions} expression - The expression to evaluate.
+     * @returns {{ watcher: WatchGetter<T, TValue>, setter?: Setter<T, TValue> }} The watcher and setter.
+     */
     public eval<TValue>(expression: Expressions): { watcher: WatchGetter<T, TValue>, setter?: Setter<T, TValue> }
     {
         this.target = new ParameterExpression<T>('target');
@@ -339,12 +376,22 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
 
     private getter: WatchGetter<unknown, ObservableObject<any> | boolean | string | number | symbol | bigint | Function | undefined | unknown>;
 
+    /**
+     * Visits a constant expression.
+     * @param {ConstantExpression<unknown>} arg0 - The constant expression.
+     * @returns {StrictExpressions} The visited expression.
+     */
     visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
     {
         this.getter = () => arg0.value;
         return arg0;
     }
 
+    /**
+     * Visits a format expression.
+     * @param {FormatExpression<TOutput>} expression - The format expression.
+     * @returns {FormatExpression<TOutput>} The visited expression.
+     */
     visitFormat<TOutput>(expression: FormatExpression<TOutput>): FormatExpression<TOutput>
     {
         const getter = this.getter;
@@ -355,6 +402,11 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
         return expression;
     }
 
+    /**
+     * Visits a member expression.
+     * @param {MemberExpression<T1, TMember, T1[TMember]>} arg0 - The member expression.
+     * @returns {StrictExpressions} The visited expression.
+     */
     public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): StrictExpressions
     {
         if (arg0.source)
@@ -371,6 +423,11 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
         return arg0;
     }
 
+    /**
+     * Visits a ternary expression.
+     * @param {TernaryExpression<T>} expression - The ternary expression.
+     * @returns {TernaryExpression<Expressions>} The visited expression.
+     */
     visitTernary<T extends Expressions = StrictExpressions>(expression: TernaryExpression<T>): TernaryExpression<Expressions>
     {
         const source = this.getter;
@@ -393,6 +450,11 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
         return expression;
     }
 
+    /**
+     * Visits a call expression.
+     * @param {CallExpression<T, TMethod>} arg0 - The call expression.
+     * @returns {StrictExpressions} The visited expression.
+     */
     visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): StrictExpressions
     {
         const getter = this.getter;
@@ -419,6 +481,11 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
         return arg0;
     }
 
+    /**
+     * Visits a new expression.
+     * @param {NewExpression<T>} expression - The new expression.
+     * @returns {StrictExpressions} The visited expression.
+     */
     public visitNew<T>(expression: NewExpression<T>): StrictExpressions
     {
         const source = this.getter;
@@ -466,6 +533,11 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
     }
 
 
+    /**
+     * Visits a binary expression.
+     * @param {BinaryExpression<T>} expression - The binary expression.
+     * @returns {BinaryExpression<Expressions>} The visited expression.
+     */
     visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>): BinaryExpression<Expressions>
     {
         const source = this.getter;
@@ -517,6 +589,11 @@ export class Binding<T> extends EventEmitter<{
     change: Event<[BindingChangedEvent<T>]>
 }> 
 {
+    /**
+     * Combines named bindings.
+     * @param {T} obj - The object with named bindings.
+     * @returns {Binding<UnboundObject<T>>} The combined binding.
+     */
     public static combineNamed<T extends { [K in keyof T]?: T[K] | Binding<T[K]> }>(obj: T): Binding<UnboundObject<T>>
     {
         const entries = Object.entries(obj);
@@ -525,6 +602,12 @@ export class Binding<T> extends EventEmitter<{
             return Object.fromEntries(entries.map((e, i) => [e[0], ev.value[i]])) as UnboundObject<T>;
         })
     }
+
+    /**
+     * Combines multiple bindings.
+     * @param {...(T[K] | Binding<T[K]>)[]} bindings - The bindings to combine.
+     * @returns {Binding<T>} The combined binding.
+     */
     public static combine<T extends unknown[]>(...bindings: { [K in keyof T]?: T[K] | Binding<T[K]> }): Binding<T>
     {
         const combinedBinding = new EmptyBinding<T>();
@@ -572,6 +655,12 @@ export class Binding<T> extends EventEmitter<{
         return combinedBinding;
     }
 
+    /**
+     * Checks if a target has a bound property.
+     * @param {T} target - The target object.
+     * @param {PropertyKey} property - The property key.
+     * @returns {boolean} True if the target has a bound property, false otherwise.
+     */
     static hasBoundProperty<T extends {}>(target: T, property: PropertyKey)
     {
         if (typeof target !== 'object')
@@ -581,6 +670,13 @@ export class Binding<T> extends EventEmitter<{
         return !!target[BindingsProperty][property];
     }
 
+    /**
+     * Defines a property on the target object.
+     * @param {object} target - The target object.
+     * @param {PropertyKey} property - The property key.
+     * @param {T} [value] - The initial value.
+     * @returns {Binding<T>} The defined binding.
+     */
     public static defineProperty<T = unknown>(target: object, property: PropertyKey, value?: T): Binding<T>
     {
         if (!(BindingsProperty in target))
@@ -624,8 +720,11 @@ export class Binding<T> extends EventEmitter<{
         return binding;
     }
 
-
-
+    /**
+     * Pipes the binding to another expression.
+     * @param {TKey | string | Expressions | ((ev: BindingChangedEvent<T>) => U)} expression - The expression to pipe to.
+     * @returns {Binding<U>} The piped binding.
+     */
     public pipe<const TKey extends keyof T>(expression: TKey): Binding<T[TKey]>
     public pipe<U>(expression: string | keyof T | Expressions | ((ev: BindingChangedEvent<T>) => U)): Binding<U>
     public pipe<U>(expression: string | keyof T | Expressions | ((ev: BindingChangedEvent<T>) => U)): Binding<U>
@@ -688,6 +787,11 @@ export class Binding<T> extends EventEmitter<{
         this.watcher[Symbol.dispose]();
     }
 
+    /**
+     * Creates an instance of Binding.
+     * @param {unknown} target - The target object.
+     * @param {Expressions} expression - The expression.
+     */
     constructor(public target: unknown, public readonly expression: Expressions)
     {
         super();
@@ -730,6 +834,13 @@ export class Binding<T> extends EventEmitter<{
             this._setter = () => { throw new ErrorWithStatus(HttpStatusCode.MethodNotAllowed, 'There is no expression, thus you cannot set the value') }
         }
     }
+
+    /**
+     * Simplifies the binding.
+     * @param {Binding<any>} target - The target binding.
+     * @param {Expressions} expression - The expression.
+     * @returns {Binding<T> | null} The simplified binding.
+     */
     static simplify<T>(target: Binding<any>, expression: Expressions): Binding<T> | null
     {
         return new Binding(target.target, target.expression === null ? expression : new ExpressionSimplifyer(target.expression).visit(expression))
@@ -737,6 +848,11 @@ export class Binding<T> extends EventEmitter<{
 
     private readonly attachWatcher: WatchGetter<unknown, T>;
 
+    /**
+     * Unwraps the element.
+     * @param {T} element - The element to unwrap.
+     * @returns {Partial<T>} The unwrapped element.
+     */
     public static unwrap<T>(element: T): Partial<T>
     {
         if (element instanceof Binding)
@@ -757,6 +873,12 @@ export class Binding<T> extends EventEmitter<{
 
     private _setter?: (target: unknown, value: T) => void
 
+    /**
+     * Registers a handler for the change event.
+     * @param {(ev: { value: T, oldValue: T }) => void} handler - The event handler.
+     * @param {boolean} [triggerOnRegister] - Whether to trigger the handler on registration.
+     * @returns {Subscription} The subscription.
+     */
     public onChanged(handler: (ev: { value: T, oldValue: T }) => void, triggerOnRegister?: boolean)
     {
         const sub = this.on('change', handler);
@@ -765,12 +887,20 @@ export class Binding<T> extends EventEmitter<{
         return sub;
     }
 
+    /**
+     * Sets the value.
+     * @param {T} value - The value to set.
+     */
     public setValue(value: T)
     {
         this._setter(this.target, value);
         // this.emit('change', { value, oldValue: this.getValue() });
     }
 
+    /**
+     * Gets the value.
+     * @returns {T} The value.
+     */
     public getValue(): T
     {
         if (!this.expression)
@@ -781,6 +911,10 @@ export class Binding<T> extends EventEmitter<{
 
 export class EmptyBinding<T> extends Binding<T>
 {
+    /**
+     * Creates an instance of EmptyBinding.
+     * @param {T} [initialValue] - The initial value.
+     */
     constructor(initialValue?: T)
     {
         super(initialValue, null);
@@ -788,11 +922,19 @@ export class EmptyBinding<T> extends Binding<T>
         this.setValue = EmptyBinding.prototype.setValue;
     }
 
+    /**
+     * Gets the value.
+     * @returns {T} The value.
+     */
     public getValue(): T
     {
         return this.target as T;
     }
 
+    /**
+     * Sets the value.
+     * @param {T} newValue - The value to set.
+     */
     public setValue(newValue: T): void
     {
         const oldValue = this.target as T;
@@ -803,8 +945,17 @@ export class EmptyBinding<T> extends Binding<T>
 }
 
 
+/**
+ * Observable object implementation.
+ * @param {Object} initialObject - The initial object.
+ */
 export class ObservableObject<T extends object> extends EventEmitter<ObservableType<T>>
 {
+    /**
+     * Unwraps the target object.
+     * @param {T} arg0 - The target object.
+     * @returns {T extends ObservableObject<infer X> ? X : T} The unwrapped object.
+     */
     static unwrap<T>(arg0: T): T extends ObservableObject<infer X> ? X : T
     {
         if (arg0 instanceof ObservableObject)
@@ -829,6 +980,10 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
     // }
     public readonly target: T & { [watcher]?: ObservableObject<T> };
 
+    /**
+     * Creates an instance of ObservableObject.
+     * @param {T & { [watcher]?: ObservableObject<T> } | ObservableObject<T>} target - The target object.
+     */
     constructor(target: T & { [watcher]?: ObservableObject<T> } | ObservableObject<T>)
     {
         super(Number.POSITIVE_INFINITY);
@@ -840,6 +995,12 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         Object.defineProperty(target, watcher, { value: this, enumerable: false, configurable: false })
     }
 
+    /**
+     * Watches all properties of the object.
+     * @param {T} obj - The object to watch.
+     * @param {Watcher} watcher - The watcher instance.
+     * @returns {Subscription} The subscription.
+     */
     public static watchAll<T extends object>(obj: T, watcher: Watcher): Subscription
     {
         if (Array.isArray(obj))
@@ -901,6 +1062,12 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         });
     }
 
+    /**
+     * Watches a property of the object.
+     * @param {Watcher} watcher - The watcher instance.
+     * @param {TKey} property - The property to watch.
+     * @returns {Subscription} The subscription.
+     */
     public watch<const TKey extends EventKeys<ObservableType<T>>>(watcher: Watcher, property: TKey)
     {
         const sub = this.on(property, (ev =>
@@ -913,11 +1080,22 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
 
     // private setters: { [key in keyof T]?: (target: T, value: T[key]) => void } = {};
 
+    /**
+     * Checks if an object is watched.
+     * @param {T} x - The object to check.
+     * @returns {boolean} True if the object is watched, false otherwise.
+     */
     public static isWatched<T>(x: T): x is IWatched<T & object> 
     {
         return typeof x == 'object' && (watcher in x);
     }
 
+    /**
+     * Sets the value of a property.
+     * @param {Binding<T> | T} target - The target object or binding.
+     * @param {Expressions | PropertyKey} expression - The expression or property key.
+     * @param {any} value - The value to set.
+     */
     public static setValue<T extends object, const TKey extends keyof T>(target: Binding<T>, expression: TKey, value: T[TKey])
     public static setValue<T extends object>(target: Binding<T>, expression: string, value: any)
     public static setValue<T extends object>(target: Binding<T>, expression: Expressions, value: any)
@@ -939,6 +1117,12 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
             throw new ErrorWithStatus(HttpStatusCode.MethodNotAllowed, 'This expression is not supported to apply reverse binding')
     }
 
+    /**
+     * Sets the value of a property.
+     * @param {TKey} property - The property key.
+     * @param {T[TKey]} value - The value to set.
+     * @returns {boolean} True if the value was set, false otherwise.
+     */
     public setValue<const TKey extends keyof T>(property: TKey, value: T[TKey])
     {
         const oldValue: T[TKey] = this.target[property];
@@ -951,11 +1135,22 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         return true;
     }
 
+    /**
+     * Gets the value of a property.
+     * @param {TKey} property - The property key.
+     * @returns {T[TKey]} The value of the property.
+     */
     public getValue<const TKey extends keyof T>(property: TKey): T[TKey]
     {
         return ObservableObject.getValue(this.target, property);
     }
 
+    /**
+     * Gets the value of a property.
+     * @param {Binding<T> | T} target - The target object or binding.
+     * @param {TKey} property - The property key.
+     * @returns {T[TKey]} The value of the property.
+     */
     public static getValue<T, const TKey extends keyof T>(target: Binding<T>, property: TKey): T[TKey]
     public static getValue<T, const TKey extends keyof T>(target: T, property: TKey): T[TKey]
     public static getValue<T, const TKey extends keyof T>(target: T, property: TKey): T[TKey]
@@ -976,6 +1171,11 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         return result;
     }
 
+    /**
+     * Gets the observable object for a property.
+     * @param {TKey} property - The property key.
+     * @returns {ObservableObject<T[TKey]> | null} The observable object or null.
+     */
     public getObservable<const TKey extends keyof T>(property: TKey): T[TKey] extends object ? ObservableObject<T[TKey]> : null
     {
         if (typeof this.target[property] == 'object')
@@ -983,6 +1183,12 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         return null;
     }
 
+    /**
+     * Gets the value of a property.
+     * @param {T} target - The target object.
+     * @param {keyof T} property - The property key.
+     * @returns {T[keyof T]} The value of the property.
+     */
     public static get<T>(target: T, property: keyof T)
     {
         return target[property];

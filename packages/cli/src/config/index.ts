@@ -64,7 +64,7 @@ const getConfigProxy = new Proxy(getConfigWithKey, getConfigGetter);
 export function init(): void
 {
 
-    akala.defaultInjector.register('$updateConfig', akala.chain(updateConfig, function (keys, config, key)
+    akala.defaultInjector.register('$updateConfig', akala.chain(updateConfig, function (keys, config, key: PropertyKey)
     {
         if (key)
         {
@@ -72,7 +72,7 @@ export function init(): void
         }
         return [config, keys.join('.')];
     }));
-    akala.defaultInjector.register('$getConfig', akala.chain(getConfig, function (keys, key)
+    akala.defaultInjector.register('$getConfig', akala.chain(getConfig, function (keys, key: PropertyKey)
     {
         if (key)
         {

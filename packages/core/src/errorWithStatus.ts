@@ -1,7 +1,17 @@
 import { HttpStatusCode } from "./http.js";
 
+/** 
+ * Error class that includes a status code.
+ * @class
+ * @property {number} statusCode - The status code associated with the error.
+ */
 export class ErrorWithStatus extends Error
 {
+    /** 
+     * Creates an instance of ErrorWithStatus.
+     * @param {HttpStatusCode | number} statusCode - The HTTP status code.
+     * @param {string} [message] - Optional error message. If omitted, a default message is generated based on the statusCode.
+     */
     constructor(public readonly statusCode: HttpStatusCode | number, message?: string)
     {
         super(message || getMessageFromStatusCode(statusCode));
@@ -10,6 +20,11 @@ export class ErrorWithStatus extends Error
 
 export default ErrorWithStatus;
 
+/** 
+ * Generates a default error message based on the provided HTTP status code.
+ * @param {HttpStatusCode} statusCode - The HTTP status code.
+ * @returns {string} - The default error message.
+ */
 export function getMessageFromStatusCode(statusCode: HttpStatusCode): string
 {
     switch (statusCode)

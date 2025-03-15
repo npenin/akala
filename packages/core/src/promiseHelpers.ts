@@ -3,11 +3,23 @@ import { Event, IEventSink } from "./event-emitter.js";
 export type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>
 export type RejectHandler<TResult> = (reason: unknown) => void | TResult | PromiseLike<TResult>;
 
+/**
+ * Checks if an object is a Promise-like instance
+ * @template T - The expected resolved value type
+ * @param {T | PromiseLike<T>} o - The object to check
+ * @returns {boolean} True if the object has a 'then' method, indicating it's Promise-like
+ */
 export function isPromiseLike<T>(o: T | PromiseLike<T>): o is PromiseLike<T>
 {
     return o && o['then'] && typeof (o['then']) == 'function';
 }
 
+/**
+ * Converts a Promise to an Event emitter that fires when the Promise resolves
+ * @template T - The type of the Promise resolution value
+ * @param {PromiseLike<T>} promise - The Promise to convert
+ * @returns {IEventSink<[T], void, unknown>} Event emitter that will emit the resolved value
+ */
 export function toEvent<T>(promise: PromiseLike<T>): IEventSink<[T], void, unknown>
 {
     const result = new Event<[T]>(Event.maxListeners, () => { });
@@ -17,6 +29,12 @@ export function toEvent<T>(promise: PromiseLike<T>): IEventSink<[T], void, unkno
     return result;
 }
 
+/**
+ * Converts an Event emitter to a Promise that resolves when the event fires
+ * @template T - The type of the event payload
+ * @param {IEventSink<[T], void, unknown>} event - The event emitter to convert
+ * @returns {PromiseLike<T>} Promise that resolves with the first event payload
+ */
 export function fromEvent<T>(event: IEventSink<[T], void, unknown>): PromiseLike<T>
 {
     const result = new Deferred<T>();
@@ -24,11 +42,21 @@ export function fromEvent<T>(event: IEventSink<[T], void, unknown>): PromiseLike
     return result;
 }
 
+/**
+ * A Deferred Promise pattern implementation allowing external resolution control
+ * @template T - The type of the resolved value
+ * @template TError - The type of the rejection reason (defaults to Error)
+ */
 export class Deferred<T, TError = Error> implements PromiseLike<T>
 {
     private _resolve?: (value?: T | PromiseLike<T> | undefined) => void;
     private _reject?: (reason?: TError) => void;
     promise: Promise<T>;
+    /**
+     * Resolves the deferred Promise with a value
+     * @param {T | PromiseLike<T> | undefined} _value - The resolution value
+     * @throws {Error} If called before Promise initialization
+     */
     resolve(_value?: T | PromiseLike<T> | undefined): void
     {
         if (typeof (this._resolve) == 'undefined')
@@ -36,6 +64,11 @@ export class Deferred<T, TError = Error> implements PromiseLike<T>
 
         this._resolve(_value);
     }
+    /**
+     * Rejects the deferred Promise with a reason
+     * @param {TError} _reason - The rejection reason
+     * @throws {Error} If called before Promise initialization
+     */
     reject(_reason?: TError): void
     {
         if (typeof (this._reject) == 'undefined')
@@ -75,6 +108,11 @@ export class Deferred<T, TError = Error> implements PromiseLike<T>
     }
 }
 
+/**
+ * Creates a Promise that resolves after a specified delay
+ * @param {number} delay - Delay duration in milliseconds
+ * @returns {Promise<void>} Promise that resolves after the delay
+ */
 export function delay(delay: number)
 {
     return new Promise((resolve) =>
@@ -83,6 +121,13 @@ export function delay(delay: number)
     })
 }
 
+/**
+ * Wraps a Promise with a timeout, rejecting if it doesn't resolve in time
+ * @template T - The type of the original Promise resolution
+ * @param {PromiseLike<T>} promise - The Promise to wrap
+ * @param {number} timeoutInMs - Timeout duration in milliseconds
+ * @returns {PromiseLike<T>} New Promise that either resolves with the original value or rejects with 'timeout'
+ */
 export function whenOrTimeout<T>(promise: PromiseLike<T>, timeoutInMs: number): PromiseLike<T>
 {
     return new Promise<T>((resolve, reject) =>
@@ -103,6 +148,10 @@ export function whenOrTimeout<T>(promise: PromiseLike<T>, timeoutInMs: number): 
     })
 }
 
+/** 
+ * Enum representing the possible states of a Promise
+ * @enum {number}
+ */
 export enum PromiseStatus
 {
     Pending = 0,

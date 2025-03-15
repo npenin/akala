@@ -3,7 +3,13 @@ import { Expression, Expressions, StrictExpressions } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 
-
+/**
+ * Represents a ternary expression.
+ * @param {Expressions} first - The first expression.
+ * @param {TernaryOperator} operator - The ternary operator.
+ * @param {Expressions} second - The second expression.
+ * @param {Expressions} third - The third expression.
+ */
 export class TernaryExpression<T extends Expressions = StrictExpressions> extends Expression
 {
     public get type(): ExpressionType.TernaryExpression { return ExpressionType.TernaryExpression; }

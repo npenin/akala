@@ -7,12 +7,20 @@ import { Injectable, InjectableAsyncWithTypedThis, InjectableWithTypedThis } fro
 
 const orchestratorLog = logger('akala:module:orchestrator');
 
-// process.hrtime = process.hrtime || require('browser-process-hrtime');
-
+/**
+ * Extended event class that supports async completion tracking
+ * @template T - Type of event arguments
+ * @extends AsyncEvent<[ExtendableEvent<T>]>
+ */
 export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
 {
     private markAsDone: (value?: T | PromiseLike<T>) => void;
     private _triggered: boolean;
+
+    /**
+     * Create an ExtendableEvent
+     * @param once - Whether the event should only trigger once
+     */
     constructor(private once: boolean)
     {
         super(Event.maxListeners, noop);
@@ -21,11 +29,20 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
 
     private promises: PromiseLike<unknown>[] = [];
 
+    /**
+     * Add a promise to wait for before marking event as complete
+     * @template T - Type of promise result
+     * @param p - Promise to wait for
+     */
     public waitUntil<T>(p: PromiseLike<T>): void
     {
         this.promises.push(p)
     }
 
+    /**
+     * Reset event state for reuse (if configured with once=false)
+     * @throws Error if reset during incomplete event or after single use
+     */
     public reset()
     {
         if (!this.done && this._triggered || this.done && this.once)
@@ -40,8 +57,13 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
         })
     }
 
+    /** Event arguments passed during triggering */
     public eventArgs: T;
 
+    /**
+     * Trigger the event with given arguments
+     * @param value - Arguments to pass to event handlers
+     */
     public async trigger(value: T)
     {
         if (!this._triggered)
@@ -56,6 +78,11 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
     }
 
 
+    /**
+     * Add event listener
+     * @param handler - Handler function to add
+     * @returns Self for chaining
+     */
     public addListener(handler: Listener<[this], void | Promise<void>>)
     {
         if (this._done || this._triggered)
@@ -68,6 +95,7 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
         }
     }
 
+    /** Whether the event has been triggered */
     public get triggered()
     {
         return this._triggered;
@@ -75,11 +103,13 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
 
     private _whenDone: Promise<T>;
 
+    /** Promise that resolves when event completes */
     public get whenDone(): Promise<T>
     {
         return this._whenDone;
     }
 
+    /** Complete all pending promises and mark event done */
     public async complete()
     {
         for (const p of this.promises)
@@ -90,12 +120,22 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
         this._done = true;
     }
 
+    /** Whether the event has completed */
     public get done() { return this._done; }
     private _done: boolean;
 }
 
+/** 
+ * Core module management class handling dependency injection and lifecycle events
+ * @extends SimpleInjector
+ */
 export class Module extends SimpleInjector
 {
+    /**
+     * Create a new Module
+     * @param name - Unique module name
+     * @param dep - Optional array of module dependencies
+     */
     constructor(public name: string, public dep?: Module[])
     {
         super(moduleInjector);
@@ -120,9 +160,15 @@ export class Module extends SimpleInjector
 
     private static o = new orchestrator();
 
+    /** Event triggered when module activates */
     public readonly activateEvent = new ExtendableEvent(true);
+    /** Event triggered when module is fully ready */
     public readonly readyEvent = new ExtendableEvent(true);
 
+    /**
+     * Add a module dependency
+     * @param m - Module to add as dependency
+     */
     public addDependency(m: Module)
     {
         if (this.dep.indexOf(m) != -1)
@@ -135,6 +181,10 @@ export class Module extends SimpleInjector
         Module.registerModule(this);
     }
 
+    /**
+     * Register a module with the orchestrator
+     * @param m - Module to register
+     */
     public static registerModule(m: Module)
     {
         if (typeof m.dep == 'undefined')
@@ -155,6 +205,13 @@ export class Module extends SimpleInjector
         moduleInjector.register(m.name, m);
     }
 
+    /**
+     * Register ready handler with dependency injection
+     * @template TArgs - Argument types
+     * @param toInject - Names of dependencies to inject
+     * @param f - Handler function
+     * @returns Self for chaining
+     */
     public ready<TArgs extends unknown[]>(toInject: string[], f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
     public ready<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this
     public ready<TArgs extends unknown[]>(toInject: string[], f?: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
@@ -165,6 +222,13 @@ export class Module extends SimpleInjector
         return this;
     }
 
+    /**
+     * Register async ready handler with dependency injection
+     * @template TArgs - Argument types
+     * @param toInject - Names of dependencies to inject
+     * @param f - Async handler function
+     * @returns Self for chaining
+     */
     public readyAsync<TArgs extends unknown[]>(toInject: string[], f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
     public readyAsync<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void, ExtendableEvent, TArgs>) => this
     public readyAsync<TArgs extends unknown[]>(toInject: string[], f?: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
@@ -175,6 +239,13 @@ export class Module extends SimpleInjector
         return this;
     }
 
+    /**
+     * Register activation handler with dependency injection
+     * @template TArgs - Argument types
+     * @param toInject - Names of dependencies to inject
+     * @param f - Handler function
+     * @returns Self for chaining
+     */
     public activate<TArgs extends unknown[]>(toInject: string[], f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
     public activate<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this
     public activate<TArgs extends unknown[]>(toInject: string[], f?: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
@@ -185,6 +256,13 @@ export class Module extends SimpleInjector
         return this;
     }
 
+    /**
+     * Register async activation handler with dependency injection
+     * @template TArgs - Argument types
+     * @param toInject - Names of dependencies to inject
+     * @param f - Async handler function
+     * @returns Self for chaining
+     */
     public activateAsync<TArgs extends unknown[]>(toInject: string[], f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
     public activateAsync<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void, ExtendableEvent, TArgs>) => this
     public activateAsync<TArgs extends unknown[]>(toInject: string[], f?: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
@@ -195,6 +273,11 @@ export class Module extends SimpleInjector
         return this;
     }
 
+    /**
+     * Create activation handler for class instantiation
+     * @param toInject - Names of dependencies to inject
+     * @returns Decorator function for class constructor
+     */
     public activateNew(...toInject: string[])
     {
         return <T>(ctor: new (...args: unknown[]) => T) =>
@@ -206,6 +289,11 @@ export class Module extends SimpleInjector
         }
     }
 
+    /**
+     * Create async activation handler for class instantiation
+     * @param toInject - Names of dependencies to inject
+     * @returns Decorator function for class constructor
+     */
     public activateNewAsync(...toInject: string[])
     {
         return function <T>(ctor: new (...args: unknown[]) => T)
@@ -217,6 +305,11 @@ export class Module extends SimpleInjector
         }
     }
 
+    /**
+     * Create ready handler for class instantiation
+     * @param toInject - Names of dependencies to inject
+     * @returns Decorator function for class constructor
+     */
     public readyNew(...toInject: string[])
     {
         return <T>(ctor: new (...args: unknown[]) => T) =>
@@ -228,6 +321,11 @@ export class Module extends SimpleInjector
         }
     }
 
+    /**
+     * Create async ready handler for class instantiation
+     * @param toInject - Names of dependencies to inject
+     * @returns Decorator function for class constructor
+     */
     public readyNewAsync(...toInject: string[])
     {
         return function <T>(ctor: new (...args: unknown[]) => T)
@@ -239,6 +337,13 @@ export class Module extends SimpleInjector
         }
     }
 
+    /**
+     * Start the module lifecycle
+     * @template TArgs - Argument types
+     * @param toInject - Names of dependencies to inject
+     * @param f - Optional handler function
+     * @returns Promise that resolves when module stops
+     */
     public start<TArgs extends unknown[]>(toInject?: string[], f?: Injectable<unknown, TArgs>)
     {
         return new Promise<void>((resolve, reject) =>
@@ -262,4 +367,3 @@ if (!moduleInjector)
     moduleInjector = new SimpleInjector();
     defaultInjector.register('$modules', moduleInjector);
 }
-

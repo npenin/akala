@@ -5,6 +5,15 @@ import { escapeRegExp } from './reflect.js';
 // type EvalFunction<T> = (value: unknown) => T;
 type InterpolateFn<T> = ((value: unknown) => T) & { expressions: string[] };
 
+/**
+ * Handles string interpolation with customizable delimiters
+ * @param startSymbol - Opening delimiter for expressions (default: '{{')
+ * @param endSymbol - Closing delimiter for expressions (default: '}}')
+ * @example
+ * const interpolator = new Interpolate('${', '}');
+ * const template = interpolator.build('Hello ${name}!');
+ * template({ name: 'World' }); // Returns 'Hello World!'
+ */
 export class Interpolate
 {
     constructor(public readonly startSymbol = '{{', public readonly endSymbol = '}}')
@@ -22,6 +31,15 @@ export class Interpolate
     private escapedStartRegexp: RegExp;
     private escapedEndRegexp: RegExp;
 
+    /**
+     * Recursively processes objects/arrays/values to create an interpolation function
+     * @template T - Type of the input object
+     * @param obj - Object to interpolate (can be nested)
+     * @param mustHaveExpression - Require at least one interpolation expression
+     * @param evaluator - Custom expression evaluation function
+     * @param allOrNothing - Return undefined if any expression evaluates to undefined
+     * @returns Interpolation function with expressions metadata
+     */
     public buildObject<T>(obj: T, mustHaveExpression?: boolean, evaluator?: (expression: string) => ((target: unknown) => any), allOrNothing?: boolean): InterpolateFn<T>
     {
         switch (typeof obj)
@@ -48,6 +66,15 @@ export class Interpolate
 
     public static Evaluator = (exp: string) => new EvaluatorAsFunction().eval(new Parser().parse(exp));
 
+    /**
+     * Creates an interpolation function from a template string
+     * @template T - Template string type
+     * @param text - String containing interpolation expressions
+     * @param mustHaveExpression - Require at least one interpolation expression
+     * @param evaluator - Custom expression evaluation function
+     * @param allOrNothing - Return undefined if any expression evaluates to undefined
+     * @returns Interpolation function with expressions metadata
+     */
     public build<T extends string>(text: T, mustHaveExpression?: boolean, evaluator?: (expression: string) => ((target: unknown) => any), allOrNothing?: boolean): InterpolateFn<T>
     {
         const startSymbolLength = this.startSymbol.length,

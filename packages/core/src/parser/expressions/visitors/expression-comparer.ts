@@ -14,6 +14,12 @@ import { UnaryExpression } from "../unary-expression.js";
 import { ExpressionVisitor } from "./expression-visitor.js";
 
 
+/**
+ * Compares two expressions.
+ * @param {any} expr1 - The first expression.
+ * @param {any} expr2 - The second expression.
+ * @returns {boolean} True if the expressions are equal, false otherwise.
+ */
 export class ExpressionComparer extends ExpressionVisitor
 {
     constructor(private source: Expressions)

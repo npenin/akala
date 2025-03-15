@@ -1,10 +1,24 @@
-export type Tasks = Record<string, Task>
+/** Map of tasks where keys are task names */
+export type Tasks = Record<string, Task>;
 
+/** 
+ * Task definition for sequencify operations 
+ * @property dep - Array of task dependencies
+ */
 export interface Task
 {
     dep: string[]
 }
 
+/**
+ * Recursively processes tasks to build execution sequence
+ * @param tasks - Map of all tasks
+ * @param names - Names of tasks to process
+ * @param results - Accumulator for final execution order
+ * @param missing - Accumulator for missing tasks
+ * @param recursive - Accumulator for recursive dependencies
+ * @param nest - Current dependency chain being processed
+ */
 function sequence(tasks: Tasks, names: string[], results: string[], missing: string[], recursive: string[][], nest: string[])
 {
     names.forEach(function (name)
@@ -32,8 +46,21 @@ function sequence(tasks: Tasks, names: string[], results: string[], missing: str
     });
 }
 
-// tasks: object with keys as task names
-// names: array of task names
+/**
+ * Creates an execution sequence for tasks with dependencies
+ * @param tasks - Map of tasks where keys are task names
+ * @param names - Array of task names to sequence
+ * @returns Object containing:
+ * - sequence: Ordered execution plan
+ * - missingTasks: Tasks not found in the tasks map
+ * - recursiveDependencies: Detected circular dependencies
+ * @example
+ * const tasks = {
+ *   build: { dep: ['lint'] },
+ *   lint: { dep: [] }
+ * };
+ * sequencify(tasks, ['build']); // Returns { sequence: ['lint', 'build'] }
+ */
 export default function sequencify(tasks: Tasks, names: string[])
 {
     var results: string[] = []; // the final sequence

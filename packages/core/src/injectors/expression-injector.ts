@@ -6,9 +6,15 @@ import { MemberExpression } from '../parser/expressions/member-expression.js';
 import { ExpressionsWithLength } from '../parser/parser.js';
 import { Injector } from './shared.js';
 
-
+/**
+ * Evaluates expressions using an injector.
+ */
 export class InjectorEvaluator extends ExpressionVisitor
 {
+    /**
+     * Creates an instance of InjectorEvaluator.
+     * @param {Injector} injector - The injector to use for evaluation.
+     */
     constructor(private injector: Injector)
     {
         super();
@@ -16,6 +22,11 @@ export class InjectorEvaluator extends ExpressionVisitor
 
     private result: unknown;
 
+    /**
+     * Evaluates an expression.
+     * @param {ExpressionsWithLength} expression - The expression to evaluate.
+     * @returns {T} The result of the evaluation.
+     */
     public eval<T>(expression: ExpressionsWithLength): T
     {
         // console.log(expression);
@@ -25,12 +36,22 @@ export class InjectorEvaluator extends ExpressionVisitor
         return this.result as T;
     }
 
+    /**
+     * Visits a constant expression.
+     * @param {ConstantExpression<unknown>} arg0 - The constant expression to visit.
+     * @returns {StrictExpressions} The visited expression.
+     */
     visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
     {
         this.result = arg0.value;
         return arg0;
     }
 
+    /**
+     * Visits a member expression.
+     * @param {MemberExpression<T, TMember, T[TMember]>} arg0 - The member expression to visit.
+     * @returns {TypedExpression<T[TMember]>} The visited expression.
+     */
     visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): TypedExpression<T[TMember]>
     {
         if (arg0.source)

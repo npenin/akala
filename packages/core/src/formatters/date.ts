@@ -21,6 +21,11 @@ const formats = {
     s: Date.prototype.getUTCSeconds
 }
 
+/**
+ * Parses and formats a date according to the specified format.
+ * @param {string} format - The format string.
+ * @returns {object} An object with format and parse functions.
+ */
 export function formatParser(format: string)
 {
     if (!format)
@@ -154,34 +159,61 @@ export function formatParser(format: string)
     }
 }
 
+/**
+ * Formats a date according to the specified format.
+ * @param {Date} a - The date to format.
+ * @param {string} format - The format string.
+ * @returns {string} The formatted date string.
+ */
 function date(a: Date, format: string): string
 {
     return formatParser(format).format(a);
 }
 
+/**
+ * Parses a date string according to the specified format.
+ * @param {string} s - The date string to parse.
+ * @param {string} format - The format string.
+ * @returns {Date} The parsed date.
+ */
 date['reverse'] = function <T>(s: string, format: string): Date
 {
     return formatParser(format).parse(s);
 }
 
+/**
+ * DateFormatter class for formatting and parsing dates.
+ */
 export default class DateFormatter implements Formatter<string>, ReversibleFormatter<string, Date>
 {
     dateFormat: ReturnType<typeof formatParser>;
 
+    /**
+     * Creates an instance of DateFormatter.
+     * @param {string} dateFormat - The date format string.
+     */
     constructor(dateFormat: string)
     {
         this.dateFormat = formatParser(dateFormat);
     }
 
+    /**
+     * Parses a date string according to the specified format.
+     * @param {string} value - The date string to parse.
+     * @returns {Date} The parsed date.
+     */
     unformat(value: string): Date
     {
         return this.dateFormat.parse(value);
     }
 
+    /**
+     * Formats a date according to the specified format.
+     * @param {Date} value - The date to format.
+     * @returns {string} The formatted date string.
+     */
     format(value: Date): string
     {
         return this.dateFormat.format(value);
     }
-
-
 }

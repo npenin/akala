@@ -13,6 +13,10 @@ interface ClientState
 
 const caseConverters = { camel: toCamelCase, kebab: toKebabCase, pascal: toPascalCase, snake: toSnakeCase };
 
+/**
+ * Akala client module.
+ * @module akala/client
+ */
 export default function (_, program: NamespaceMiddleware)
 {
     const sdk = program.command('sdk client');

@@ -1,4 +1,6 @@
-
+/**
+ * Enum representing binary operators.
+ */
 export enum BinaryOperator
 {
     Equal = '==',
