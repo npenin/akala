@@ -5,6 +5,11 @@ import { MiddlewareAsync } from "../middlewares/shared.js";
 import { UriTemplate } from '../uri-template/index.js';
 import { UrlTemplate } from '../index.js';
 
+/**
+ * Asynchronous route handler.
+ * @param {string} path - The route path.
+ * @param {Function} handler - The route handler function.
+ */
 export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends MiddlewareCompositeAsync<T>
 {
     routePath: UriTemplate;

@@ -1,7 +1,21 @@
 import { defaultInjector } from "./injectors/simple-injector.js";
 
+/**
+ * Decorator factory for registering a service with dependency injection
+ * @param name - Unique service name for registration
+ * @param toInject - Array of dependency names to inject into the service constructor
+ * @returns Class decorator that registers the service with the default injector
+ * @example
+ * @service('myService', 'dep1', 'dep2')
+ * class MyService {
+ *   constructor(dep1, dep2) {...}
+ * }
+ */
 export function service(name: string, ...toInject: string[])
 {
+    /** 
+     * @param target - The class constructor to be registered as a service
+     */
     return function (target: new (...args: unknown[]) => unknown)
     {
         let instance = null;

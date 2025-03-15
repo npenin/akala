@@ -1,5 +1,20 @@
 
-export function polymorph(...types: ('string' | 'number' | 'boolean' | 'function' | 'object' | 'symbol')[])
+declare let a: unknown;
+const b = typeof a;
+type Types = typeof b;
+
+/**
+ * Creates a type-based polymorphic function wrapper
+ * @function polymorph
+ * @param {...string} types - Ordered list of expected argument types
+ * @returns {Function} Decorator function that wraps the original function with type checking
+ * @example
+ * const polyFunc = polymorph('boolean', 'number', 'number')((a, b, c) => a ? (b??0) * (c??0): (b??0) + (c??0));
+ * polyFunc(10); // 10
+ * polyFunc(10,10); // "20"
+ * polyFunc(true, 10, 10);   // 100
+ */
+export function polymorph(...types: readonly Types[])
 {
     types.reduce((previous, current, i) =>
     {
@@ -27,7 +42,23 @@ export function polymorph(...types: ('string' | 'number' | 'boolean' | 'function
     };
 }
 
-export function Polymorph(...types: ('string' | 'number' | 'boolean' | 'function' | 'object' | 'symbol')[])
+/**
+ * Decorator factory for creating polymorphic methods
+ * @function Polymorph
+ * @param {...string} types - Ordered list of expected argument types
+ * @returns {MethodDecorator} Decorator that applies polymorphic type handling to a method
+ * @example
+ * class Calculator {
+ *   @Polymorph('string', 'number', 'number')
+ *   operate(mult, b, c) { return mult ? (b??0) * (c??0): (b??0) + (c??0); }
+ * }
+ * 
+ * const calc = new Calculator();
+ * calc.operate(10); // 10
+ * calc.operate(10,10); // "20"
+ * calc.operate(true, 10, 10);   // 100
+ */
+export function Polymorph(...types: Types[])
 {
     const readyToPolymorph = polymorph(...types);
 

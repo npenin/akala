@@ -17,6 +17,11 @@ export type Resolvable<T = object> = string | symbol | InjectMap<T> | (string | 
 
 export const injectorLog = logger('akala:core:injector');
 
+/**
+ * Converts a constructor to a function.
+ * @param {new (...args: T) => TResult} ctor - The constructor to convert.
+ * @returns {(...parameters: T) => TResult} The converted function.
+ */
 export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args: T) => TResult): (...parameters: T) => TResult 
 {
     return (...parameters: T) =>
@@ -28,9 +33,14 @@ export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args:
     }
 }
 
-
 export abstract class Injector
 {
+    /**
+     * Applies a collected map to resolved values.
+     * @param {InjectMap<T>} param - The parameter map.
+     * @param {{ [k: string | symbol]: any }} resolved - The resolved values.
+     * @returns {T} The applied map.
+     */
     static applyCollectedMap<T>(param: InjectMap<T>, resolved: { [k: string | symbol]: any }): T
     {
         return map(param, (value, key) =>
@@ -40,6 +50,12 @@ export abstract class Injector
             return resolved[value as keyof typeof resolved];
         });
     }
+
+    /**
+     * Collects a map of parameters.
+     * @param {InjectMap} param - The parameter map.
+     * @returns {(string | symbol)[]} The collected map.
+     */
     static collectMap(param: InjectMap): (string | symbol)[]
     {
         let result: (string | symbol)[] = [];
@@ -52,6 +68,13 @@ export abstract class Injector
         })
         return result;
     }
+
+    /**
+     * Merges arrays of resolved arguments and other arguments.
+     * @param {InjectedParameter<unknown>[]} resolvedArgs - The resolved arguments.
+     * @param {...unknown[]} otherArgs - The other arguments.
+     * @returns {unknown[]} The merged array.
+     */
     public static mergeArrays(resolvedArgs: InjectedParameter<unknown>[], ...otherArgs: unknown[])
     {
         const args = [];
@@ -67,6 +90,11 @@ export abstract class Injector
         return args.concat(otherArgs.slice(unknownArgIndex));
     }
 
+    /**
+     * Gets the arguments to inject.
+     * @param {(Resolvable)[]} toInject - The resolvable parameters to inject.
+     * @returns {InjectedParameter<unknown>[]} The injected parameters.
+     */
     protected getArguments(toInject: (Resolvable)[]): InjectedParameter<unknown>[]
     {
         return toInject.map((p, i) => ({ index: i, value: this.resolve(p) }));
@@ -76,9 +104,20 @@ export abstract class Injector
 
     // abstract keys(): (keyof TypeMap)[];
 
+    /**
+     * Resolves a parameter asynchronously.
+     * @param {Resolvable} name - The name of the parameter to resolve.
+     * @returns {PromiseLike<T>} The resolved parameter.
+     */
     abstract onResolve<T = unknown>(name: Resolvable): PromiseLike<T>
     abstract onResolve<T = unknown>(name: Resolvable, handler: (value: T) => void): void;
 
+    /**
+     * Injects a function or property.
+     * @param {Injectable<T, TArgs> | Resolvable} a - The function or resolvable parameter.
+     * @param {...Resolvable[]} b - Additional resolvable parameters.
+     * @returns {Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T, TArgs>>) => void)} The injected function or property.
+     */
     public inject<T, TArgs extends unknown[]>(a: Injectable<T, TArgs>): Injected<T>
     public inject<T, TArgs extends unknown[]>(...a: (Resolvable)[]): (b: TypedPropertyDescriptor<Injectable<T, TArgs>>) => void
     public inject<T, TArgs extends unknown[]>(a: Injectable<T, TArgs> | Resolvable, ...b: (Resolvable)[]): Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T, TArgs>>) => void)
@@ -101,6 +140,12 @@ export abstract class Injector
         }
     }
 
+    /**
+     * Injects an asynchronous function or property.
+     * @param {Injectable<T, TArgs> | Resolvable} a - The function or resolvable parameter.
+     * @param {...Resolvable[]} b - Additional resolvable parameters.
+     * @returns {Injected<T> | ((b: TypedPropertyDescriptor<InjectableAsync<U, TArgs>>) => void)} The injected function or property.
+     */
     public injectAsync<T, TArgs extends unknown[]>(a: Injectable<T, TArgs>): Injected<T>
     public injectAsync<T, TArgs extends unknown[]>(...a: (Resolvable)[]): Injectable<T, TArgs>
     public injectAsync<T, TArgs extends unknown[]>(a: Injectable<T, TArgs> | Resolvable, ...b: (Resolvable)[])
@@ -121,25 +166,56 @@ export abstract class Injector
             }
         }
     }
+
+    /**
+     * Injects a new instance of a constructor.
+     * @param {InjectableConstructor<T, TArgs>} ctor - The constructor to inject.
+     * @returns {Injected<T>} The injected instance.
+     */
     public injectNew<T, TArgs extends unknown[]>(ctor: InjectableConstructor<T, TArgs>)
     {
         return this.inject(ctorToFunction(ctor));
     }
 
+    /**
+     * Resolves a parameter.
+     * @param {Resolvable} param - The parameter to resolve.
+     * @returns {T} The resolved parameter.
+     */
     abstract resolve<T>(param: Resolvable): T;
 
+    /**
+     * Resolves a parameter asynchronously.
+     * @param {Resolvable} name - The name of the parameter to resolve.
+     * @returns {PromiseLike<T>} The resolved parameter.
+     */
     public resolveAsync<T>(name: Resolvable): PromiseLike<T>
     {
         return this.onResolve(name);
     }
 
+    /**
+     * Inspects the injector.
+     */
     abstract inspect(): void
 
+    /**
+     * Injects a new instance of a constructor with specified parameters.
+     * @param {Resolvable[]} toInject - The parameters to inject.
+     * @param {InjectableConstructor<T, TArgs>} ctor - The constructor to inject.
+     * @returns {Injected<T>} The injected instance.
+     */
     public injectNewWithName<T, TArgs extends unknown[]>(toInject: Resolvable[], ctor: InjectableConstructor<T, TArgs>): Injected<T>
     {
         return this.injectWithName(toInject, ctorToFunction(ctor));
     }
 
+    /**
+     * Injects an asynchronous function with specified parameters.
+     * @param {Resolvable[]} toInject - The parameters to inject.
+     * @param {InjectableAsync<T, TArgs> | Injectable<T, TArgs>} a - The function to inject.
+     * @returns {Promise<T>} The injected function.
+     */
     public async injectWithNameAsync<T, TArgs extends unknown[]>(toInject: (Resolvable)[], a: InjectableAsync<T, TArgs> | Injectable<T, TArgs>): Promise<T>
     {
         if (!toInject || toInject.length == 0)
@@ -179,6 +255,12 @@ export abstract class Injector
             throw new Error('the number of arguments does not match the number of injected parameters');
     }
 
+    /**
+     * Injects a function with specified parameters.
+     * @param {Resolvable[]} toInject - The parameters to inject.
+     * @param {Injectable<T, TArgs>} a - The function to inject.
+     * @returns {Injected<T>} The injected function.
+     */
     public injectWithName<T, TArgs extends unknown[]>(toInject: Resolvable[], a: Injectable<T, TArgs>): Injected<T>
     {
         if (toInject && toInject.length > 0)
@@ -196,6 +278,11 @@ export abstract class Injector
         }
     }
 
+    /**
+     * Executes a function with specified parameters.
+     * @param {...Resolvable[]} toInject - The parameters to inject.
+     * @returns {(f: Injectable<T, TArgs>) => T} The executed function.
+     */
     exec<T, TArgs extends unknown[]>(...toInject: (Resolvable)[])
     {
         return (f: Injectable<T, TArgs>) =>
@@ -212,8 +299,19 @@ export abstract class LocalInjector extends Injector
         super();
     }
 
+    /**
+     * Unregisters a parameter.
+     * @param {string | symbol} name - The name of the parameter to unregister.
+     */
     abstract unregister(name: string | symbol): void;
 
+    /**
+     * Registers a parameter with a value.
+     * @param {string | symbol} name - The name of the parameter to register.
+     * @param {T} value - The value to register.
+     * @param {boolean} [override] - Whether to override the existing value.
+     * @returns {T} The registered value.
+     */
     public register<T>(name: string | symbol, value: T, override?: boolean): T
     {
         if (typeof (value) != 'undefined' && value !== null)
@@ -221,6 +319,13 @@ export abstract class LocalInjector extends Injector
         return value;
     }
 
+    /**
+     * Registers a factory function.
+     * @param {string} name - The name of the factory.
+     * @param {(() => unknown)} value - The factory function.
+     * @param {boolean} [override] - Whether to override the existing value.
+     * @returns {(() => unknown)} The registered factory function.
+     */
     public registerFactory(name: string, value: (() => unknown), override?: boolean): (() => unknown)
     {
         this.register(name + 'Factory', value, override);
@@ -233,8 +338,12 @@ export abstract class LocalInjector extends Injector
         return value;
     }
 
-
-    // public factory(name: keyof { [key in keyof TypeMap]: TypeMap[key] extends (() => unknown) ? TypeMap[key] : never }, override?: boolean)
+    /**
+     * Creates a factory function.
+     * @param {string} name - The name of the factory.
+     * @param {boolean} [override] - Whether to override the existing value.
+     * @returns {(fact: (() => unknown)) => void} The factory function.
+     */
     public factory(name: string, override?: boolean): (fact: (() => unknown)) => void
     {
         return (fact: (() => unknown)) =>
@@ -243,6 +352,11 @@ export abstract class LocalInjector extends Injector
         }
     }
 
+    /**
+     * Registers a service.
+     * @param {string | symbol} name - The name of the service.
+     * @param {...Resolvable[]} toInject - The parameters to inject.
+     */
     public service(name: string | symbol, ...toInject: Resolvable[])
     public service(name: string | symbol, override?: boolean, ...toInject: Resolvable[])
     public service(name: string | symbol, override?: boolean | Resolvable, ...toInject: Resolvable[])
@@ -271,6 +385,11 @@ export abstract class LocalInjector extends Injector
         }
     }
 
-
+    /**
+     * Registers a descriptor.
+     * @param {string | symbol} name - The name of the descriptor.
+     * @param {PropertyDescriptor} value - The descriptor value.
+     * @param {boolean} [override] - Whether to override the existing value.
+     */
     abstract registerDescriptor(name: string | symbol, value: PropertyDescriptor, override?: boolean): void
 }

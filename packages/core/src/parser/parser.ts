@@ -23,6 +23,11 @@ export interface ParsedAny
  */
 export type ExpressionsWithLength = (TypedExpression<unknown> | Expressions) & ParsedAny;
 
+/**
+ * Parses a binary operator from a string.
+ * @param {string} op - The operator string.
+ * @returns {BinaryOperator} The parsed binary operator.
+ */
 function parseBinaryOperator(op: string): BinaryOperator
 {
     if (op in BinaryOperator)
@@ -30,6 +35,11 @@ function parseBinaryOperator(op: string): BinaryOperator
     return BinaryOperator.Unknown;
 }
 
+/**
+ * Parses a ternary operator from a string.
+ * @param {string} op - The operator string.
+ * @returns {TernaryOperator} The parsed ternary operator.
+ */
 function parseTernaryOperator(op: string): TernaryOperator
 {
     switch (op)
@@ -38,6 +48,12 @@ function parseTernaryOperator(op: string): TernaryOperator
         default: return TernaryOperator.Unknown;
     }
 }
+
+/**
+ * Gets the length of an operator.
+ * @param {BinaryOperator | TernaryOperator} operator - The operator.
+ * @returns {number} The length of the operator.
+ */
 function operatorLength(operator: BinaryOperator | TernaryOperator)
 {
     switch (operator)
@@ -76,6 +92,10 @@ function operatorLength(operator: BinaryOperator | TernaryOperator)
     }
 }
 
+/**
+ * Represents a format expression.
+ * @extends Expression
+ */
 export class FormatExpression<TOutput> extends Expression implements ParsedAny
 {
     constructor(public readonly lhs: ExpressionsWithLength | (TypedExpression<unknown> & ParsedAny), public readonly formatter: new (...args: unknown[]) => Formatter<TOutput>, public readonly settings: Expressions)
@@ -97,6 +117,10 @@ export class FormatExpression<TOutput> extends Expression implements ParsedAny
 
 }
 
+/**
+ * Represents a parsed binary expression.
+ * @extends BinaryExpression
+ */
 export class ParsedBinary extends BinaryExpression<ExpressionsWithLength> implements ParsedAny
 {
     constructor(operator: BinaryOperator, left: ExpressionsWithLength, public right: ExpressionsWithLength)
@@ -107,6 +131,11 @@ export class ParsedBinary extends BinaryExpression<ExpressionsWithLength> implem
 
     public $$length: number;
 
+    /**
+     * Applies precedence to a parsed binary expression.
+     * @param {ParsedBinary} operation - The parsed binary expression.
+     * @returns {ParsedBinary} The parsed binary expression with applied precedence.
+     */
     public static applyPrecedence(operation: ParsedBinary)
     {
         if (operation.operator != BinaryOperator.Plus && operation.operator != BinaryOperator.Minus)
@@ -145,6 +174,10 @@ export class ParsedBinary extends BinaryExpression<ExpressionsWithLength> implem
     }
 }
 
+/**
+ * Represents a parsed ternary expression.
+ * @extends TernaryExpression
+ */
 export class ParsedTernary extends TernaryExpression<ExpressionsWithLength> implements ParsedAny
 {
     constructor(operator: TernaryOperator, first: ExpressionsWithLength, public second: ExpressionsWithLength, public third: ExpressionsWithLength)
@@ -161,6 +194,10 @@ export class ParsedTernary extends TernaryExpression<ExpressionsWithLength> impl
     }
 }
 
+/**
+ * Represents a parsed object.
+ * @extends NewExpression
+ */
 export class ParsedObject<T extends object = object> extends NewExpression<T> implements ParsedAny
 {
 
@@ -169,6 +206,11 @@ export class ParsedObject<T extends object = object> extends NewExpression<T> im
         super(...init);
     }
 }
+
+/**
+ * Represents a parsed array.
+ * @extends NewExpression
+ */
 export class ParsedArray extends NewExpression<unknown[]> implements ParsedAny
 {
 
@@ -179,6 +221,10 @@ export class ParsedArray extends NewExpression<unknown[]> implements ParsedAny
     }
 }
 
+/**
+ * Represents a parsed string.
+ * @extends ConstantExpression
+ */
 export class ParsedString extends ConstantExpression<string> implements ParsedAny
 {
     constructor(value: string)
@@ -195,6 +241,10 @@ export class ParsedString extends ConstantExpression<string> implements ParsedAn
     }
 }
 
+/**
+ * Represents a parsed number.
+ * @extends ConstantExpression
+ */
 export class ParsedNumber extends ConstantExpression<number> implements ParsedAny
 {
     constructor(value: string)
@@ -206,6 +256,10 @@ export class ParsedNumber extends ConstantExpression<number> implements ParsedAn
     public $$length: number;
 }
 
+/**
+ * Represents a parsed boolean.
+ * @extends ConstantExpression
+ */
 export class ParsedBoolean extends ConstantExpression<boolean> implements ParsedAny
 {
     constructor(value: string | boolean)
@@ -218,6 +272,10 @@ export class ParsedBoolean extends ConstantExpression<boolean> implements Parsed
     public $$length: number;
 }
 
+/**
+ * Represents a parsed call expression.
+ * @extends CallExpression
+ */
 export class ParsedCall extends CallExpression<any, any> implements ParsedAny
 {
     constructor(argsLength: number, source: TypedExpression<any> & ParsedAny, method: any, args: (StrictExpressions & ParsedAny)[])
@@ -231,6 +289,9 @@ export class ParsedCall extends CallExpression<any, any> implements ParsedAny
     public $$length: number;
 }
 
+/**
+ * Represents a parser.
+ */
 export class Parser
 {
     public static parameterLess: Parser = new Parser();
@@ -249,12 +310,26 @@ export class Parser
         }
     }
 
+    /**
+     * Parses an expression.
+     * @param {string} expression - The expression to parse.
+     * @param {boolean} [parseFormatter=true] - Whether to parse formatters.
+     * @param {() => void} [reset] - The reset function.
+     * @returns {ExpressionsWithLength} The parsed expression.
+     */
     public parse(expression: string, parseFormatter?: boolean, reset?: () => void): ExpressionsWithLength
     {
         expression = expression.trim();
         return this.parseAny(expression, (typeof parseFormatter !== 'boolean') || parseFormatter, reset);
     }
 
+    /**
+     * Parses any expression.
+     * @param {string} expression - The expression to parse.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @param {() => void} [reset] - The reset function.
+     * @returns {ExpressionsWithLength} The parsed expression.
+     */
     public parseAny(expression: string, parseFormatter: boolean, reset?: () => void): ExpressionsWithLength
     {
         switch (expression[0])
@@ -283,6 +358,12 @@ export class Parser
         }
     }
 
+    /**
+     * Parses a number expression.
+     * @param {string} expression - The expression to parse.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @returns {ExpressionsWithLength} The parsed number expression.
+     */
     public parseNumber(expression: string, parseFormatter: boolean)
     {
         const result = new ParsedNumber(/^[0-9.]+/.exec(expression)[0]);
@@ -290,6 +371,11 @@ export class Parser
         return this.tryParseOperator(expression.substring(result.$$length), result, parseFormatter);
     }
 
+    /**
+     * Parses a boolean expression.
+     * @param {string} expression - The expression to parse.
+     * @returns {ParsedBoolean} The parsed boolean expression.
+     */
     public parseBoolean(expression): ParsedBoolean
     {
         let formatter: Formatter<unknown> = identity.instance;
@@ -318,6 +404,13 @@ export class Parser
         return null;
     }
 
+    /**
+     * Parses an evaluation expression.
+     * @param {string} expression - The expression to parse.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @param {() => void} [reset] - The reset function.
+     * @returns {ExpressionsWithLength} The parsed evaluation expression.
+     */
     public parseEval(expression: string, parseFormatter: boolean, reset?: () => void)
     {
         const b = this.parseBoolean(expression);
@@ -327,6 +420,13 @@ export class Parser
         return this.parseFunction(expression, parseFormatter, reset);
     }
 
+    /**
+     * Parses a function expression.
+     * @param {string} expression - The expression to parse.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @param {() => void} [reset] - The reset function.
+     * @returns {ParsedBinary} The parsed function expression.
+     */
     public parseFunction(expression: string, parseFormatter: boolean, reset?: () => void): ParsedBinary
     {
         let length = 0;
@@ -375,6 +475,13 @@ export class Parser
         return this.tryParseOperator(expression.substring(itemLength), result, parseFormatter, reset);
     }
 
+    /**
+     * Parses a formatter expression.
+     * @param {string} expression - The expression to parse.
+     * @param {ExpressionsWithLength} lhs - The left-hand side expression.
+     * @param {() => void} reset - The reset function.
+     * @returns {ExpressionsWithLength} The parsed formatter expression.
+     */
     public parseFormatter(expression: string, lhs: ExpressionsWithLength, reset: () => void): ExpressionsWithLength
     {
         const item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
@@ -397,6 +504,14 @@ export class Parser
         return this.tryParseOperator(expression, result, true, reset);
     }
 
+    /**
+     * Tries to parse an operator expression.
+     * @param {string} expression - The expression to parse.
+     * @param {ExpressionsWithLength} lhs - The left-hand side expression.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @param {() => void} [reset] - The reset function.
+     * @returns {ExpressionsWithLength} The parsed operator expression.
+     */
     public tryParseOperator(expression: string, lhs: ExpressionsWithLength, parseFormatter: boolean, reset?: () => void)
     {
         const operator = /^ *([<>=!+\-/*&|\?\.#\[\(]+) */.exec(expression);
@@ -480,6 +595,14 @@ export class Parser
         else
             return lhs;
     }
+
+    /**
+     * Parses a function call expression.
+     * @param {string} expression - The expression to parse.
+     * @param {ExpressionsWithLength} lhs - The left-hand side expression.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @returns {ExpressionsWithLength} The parsed function call expression.
+     */
     parseFunctionCall(expression: string, lhs: ExpressionsWithLength, parseFormatter: boolean)
     {
         const results: (StrictExpressions & ParsedAny)[] = [];
@@ -496,6 +619,13 @@ export class Parser
         return this.tryParseOperator(expression.substring(length), new ParsedCall(length, lhs as ExpressionsWithLength & TypedExpression<any>, null, results), parseFormatter);
     }
 
+    /**
+     * Parses an array expression.
+     * @param {string} expression - The expression to parse.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @param {() => void} [reset] - The reset function.
+     * @returns {ExpressionsWithLength} The parsed array expression.
+     */
     public parseArray(expression: string, parseFormatter: boolean, reset?: () => void)
     {
         const results: ExpressionsWithLength[] & ParsedAny = [];
@@ -513,6 +643,13 @@ export class Parser
         return this.tryParseOperator(expression.substring(length), new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()), false))), true);
     }
 
+    /**
+     * Parses a string expression.
+     * @param {string} expression - The expression to parse.
+     * @param {string} start - The starting character of the string.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @returns {ExpressionsWithLength} The parsed string expression.
+     */
     public parseString(expression: string, start: string, parseFormatter: boolean)
     {
         const evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)*)" + start).exec(expression);
@@ -522,6 +659,13 @@ export class Parser
         return this.tryParseOperator(expression.substring(evaluatedRegex[0].length), parsedString, parseFormatter);
     }
 
+    /**
+     * Operates on two values using a binary operator.
+     * @param {BinaryOperator} operator - The binary operator.
+     * @param {unknown} [left] - The left-hand side value.
+     * @param {unknown} [right] - The right-hand side value.
+     * @returns {unknown} The result of the operation.
+     */
     public static operate(operator: BinaryOperator, left?: unknown, right?: unknown)
     {
         // if (arguments.length == 1)
@@ -568,6 +712,13 @@ export class Parser
         }
     }
 
+    /**
+     * Parses a CSV expression.
+     * @param {string} expression - The expression to parse.
+     * @param {(expression: string) => ExpressionsWithLength} parseItem - The function to parse each item.
+     * @param {string} end - The ending character of the CSV.
+     * @returns {number} The length of the parsed CSV expression.
+     */
     public parseCSV(expression: string, parseItem: (expression: string) => ExpressionsWithLength, end: string): number
     {
         expression = expression.substring(1);
@@ -596,6 +747,12 @@ export class Parser
         return length;
     }
 
+    /**
+     * Parses an object expression.
+     * @param {string} expression - The expression to parse.
+     * @param {boolean} parseFormatter - Whether to parse formatters.
+     * @returns {ExpressionsWithLength} The parsed object expression.
+     */
     public parseObject(expression: string, parseFormatter: boolean)
     {
         const parsedObject: { key: string, value: ExpressionsWithLength }[] & ParsedAny = [];

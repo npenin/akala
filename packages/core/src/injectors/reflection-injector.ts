@@ -13,6 +13,11 @@ export interface InjectableOjbect
     [injectSymbol]: ((i: SimpleInjector) => void)[];
 }
 
+/**
+ * Injects a dependency into a class property or constructor parameter.
+ * @param {string} [name] - The name of the dependency to inject.
+ * @returns {Function} A decorator function.
+ */
 export function inject(name?: string)
 {
     return function (target: object | (new (...args: unknown[]) => unknown), propertyKey: string, parameterIndex?: number)
@@ -49,6 +54,12 @@ export function inject(name?: string)
     }
 }
 
+/**
+ * Applies the injector to an object and its prototype chain.
+ * @param {SimpleInjector} injector - The injector to apply.
+ * @param {object} obj - The object to apply the injector to.
+ * @param {object} [prototype] - The prototype of the object.
+ */
 export function applyInjector(injector: SimpleInjector, obj: object, prototype?: object)
 {
     const injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, prototype || obj);
@@ -107,6 +118,12 @@ export function applyInjector(injector: SimpleInjector, obj: object, prototype?:
     }
 }
 
+/**
+ * Makes a class injectable.
+ * @param {TClass} ctor - The constructor of the class to make injectable.
+ * @param {SimpleInjector} [injector] - The injector to use.
+ * @returns {TClass} The injectable class.
+ */
 export function injectable<TInstance, TClass extends { new(...args: unknown[]): TInstance }>(ctor: TClass, injector?: SimpleInjector): TClass
 {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -152,6 +169,11 @@ export type InjectableClass<T> = T & {
     new(injector: SimpleInjector): T;
 };
 
+/**
+ * Creates a class injector decorator.
+ * @param {SimpleInjector} injector - The injector to use.
+ * @returns {Function} A class injector decorator.
+ */
 export function useInjector(injector: SimpleInjector)
 {
     return function classInjectorDecorator<TClass extends { new(...args: unknown[]): object }>(ctor: TClass): TClass
@@ -160,14 +182,27 @@ export function useInjector(injector: SimpleInjector)
     }
 }
 
+/**
+ * Extends a class with an injector.
+ * @param {SimpleInjector} injector - The injector to use.
+ * @param {TClass} constructor - The constructor of the class to extend.
+ * @returns {TClass} The extended class.
+ */
 export function extendInject<TClass extends { new(...args: unknown[]): object }>(injector: SimpleInjector, constructor: TClass)
 {
     return useInjector(injector)<TClass>(constructor);
 }
 
-
+/**
+ * A reflection-based injector.
+ * @extends SimpleInjector
+ */
 export class ReflectionInjector extends SimpleInjector
 {
+    /**
+     * Creates an instance of ReflectionInjector.
+     * @param {SimpleInjector} [parent] - The parent injector.
+     */
     constructor(protected parent?: SimpleInjector)
     {
         super(parent);

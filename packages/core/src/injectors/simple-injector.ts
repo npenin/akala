@@ -3,9 +3,15 @@ import { Event, EventEmitter } from '../event-emitter.js';
 import "reflect-metadata";
 import { InjectMap, Injector, LocalInjector, Resolvable, injectorLog } from './shared.js';
 
-
+/**
+ * SimpleInjector class that extends LocalInjector.
+ */
 export class SimpleInjector extends LocalInjector
 {
+    /**
+     * Constructor for SimpleInjector.
+     * @param {Injector | null} parent - The parent injector.
+     */
     constructor(parent?: Injector | null)
     {
         super(parent || defaultInjector);
@@ -15,16 +21,28 @@ export class SimpleInjector extends LocalInjector
 
     private notifier: EventEmitter<{ [key: string | symbol]: Event<[PropertyDescriptor]> }>;
 
+    /**
+     * Sets the injectables.
+     * @param {{ [key: string]: unknown }} value - The injectables to set.
+     */
     public setInjectables(value: { [key: string]: unknown })
     {
         this.injectables = value;
     }
 
+    /**
+     * Returns the keys of the injectables.
+     * @returns {string[]} The keys of the injectables.
+     */
     public keys()
     {
         return Object.keys(this.injectables);
     }
 
+    /**
+     * Merges another SimpleInjector into this one.
+     * @param {SimpleInjector} i - The SimpleInjector to merge.
+     */
     public merge(i: SimpleInjector)
     {
         Object.getOwnPropertyNames(i.injectables).forEach((property) =>
@@ -34,6 +52,11 @@ export class SimpleInjector extends LocalInjector
         })
     }
 
+    /**
+     * Notifies listeners of a change.
+     * @param {string} name - The name of the property that changed.
+     * @param {PropertyDescriptor} [value] - The new value of the property.
+     */
     protected notify(name: string, value?: PropertyDescriptor)
     {
         if (this.notifier == null)
@@ -46,10 +69,19 @@ export class SimpleInjector extends LocalInjector
             this.parent.notify(name, value);
     }
 
+    /**
+     * Registers a handler to be called when a value is resolved.
+     * @param {string} name - The name of the value to resolve.
+     * @returns {PromiseLike<T>} A promise that resolves to the value.
+     */
     public onResolve<T = unknown>(name: string): PromiseLike<T>
+    /**
+     * Registers a handler to be called when a value is resolved.
+     * @param {string} name - The name of the value to resolve.
+     * @param {(value: T) => void} handler - The handler to call when the value is resolved.
+     */
     public onResolve<T = unknown>(name: string, handler: (value: T) => void): void
     public onResolve<T = unknown>(name: string, handler?: (value: T) => void)
-    // public onResolve<T = unknown>(name: string, handler?: (value: T) => void)
     {
         if (!handler)
             return new Promise((resolve) =>
@@ -75,9 +107,12 @@ export class SimpleInjector extends LocalInjector
             this.parent.onResolve(name, handler);
     }
 
+    /**
+     * Resolves a value.
+     * @param {Resolvable} param - The parameter to resolve.
+     * @returns {T} The resolved value.
+     */
     resolve<T>(param: Resolvable): T
-    // resolve<const TKey extends Exclude<string | number | symbol, keyof TypeMap>>(param: TKey): T
-    // resolve<const TKey extends string | number | symbol = keyof TypeMap>(param: TKey): TKey extends keyof TypeMap ? TypeMap[TKey] : T
     {
         injectorLog.silly('resolving %O', param);
 
@@ -135,6 +170,9 @@ export class SimpleInjector extends LocalInjector
 
     private inspecting = false;
 
+    /**
+     * Inspects the injectables.
+     */
     public inspect()
     {
         if (this.inspecting)
@@ -146,9 +184,12 @@ export class SimpleInjector extends LocalInjector
 
     private browsingForJSON = false;
 
+    /**
+     * Converts the injectables to JSON.
+     * @returns {object} The injectables as JSON.
+     */
     public toJSON()
     {
-        // console.log(args);
         const wasBrowsingForJSON = this.browsingForJSON;
         this.browsingForJSON = true;
         if (!wasBrowsingForJSON)
@@ -159,6 +200,10 @@ export class SimpleInjector extends LocalInjector
 
     protected injectables: {};
 
+    /**
+     * Unregisters an injectable.
+     * @param {string} name - The name of the injectable to unregister.
+     */
     public unregister(name: string)
     {
         const registration = Object.getOwnPropertyDescriptor(this.injectables, name);
@@ -166,6 +211,12 @@ export class SimpleInjector extends LocalInjector
             delete this.injectables[name];
     }
 
+    /**
+     * Registers a descriptor for an injectable.
+     * @param {string | symbol} name - The name of the injectable.
+     * @param {PropertyDescriptor} value - The descriptor of the injectable.
+     * @param {boolean} [override] - Whether to override an existing injectable.
+     */
     public registerDescriptor(name: string | symbol, value: PropertyDescriptor, override?: boolean)
     {
         if (this.injectables == null)

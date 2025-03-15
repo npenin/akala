@@ -7,8 +7,15 @@ import { defaultInjector } from './simple-injector.js';
 export type NestedKeys<TypeMap extends object, TKey> = TKey extends keyof TypeMap ? Exclude<TKey, number> : TKey extends `${infer A}.${infer B}` ? A extends keyof TypeMap ? TypeMap[A] extends Record<string, unknown> ? NestedKeys<TypeMap[A], B> : never : never : never;
 export type NestedPath<TypeMap extends object, TKey> = TKey extends keyof TypeMap ? TypeMap[TKey] : TKey extends `${infer A}.${infer B}` ? A extends keyof TypeMap ? TypeMap[A] extends Record<string, unknown> ? NestedPath<TypeMap[A], B> : never : never : never;
 
+/**
+ * TypedInjector class description.
+ */
 export class TypedInjector<TypeMap extends object = Record<string, unknown>> extends LocalInjector
 {
+    /**
+     * Constructor description.
+     * @param {Injector | null} parent - Description of the parent parameter.
+     */
     constructor(parent?: Injector | null)
     {
         if (typeof parent === 'undefined')
@@ -20,16 +27,29 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
 
     private notifier = new EventEmitter<{ [key in keyof TypeMap]: IEvent<[PropertyDescriptor], void, unknown> }>();
 
+    /**
+     * setInjectables function description.
+     * @param {TypeMap} value - Description of the value parameter.
+     */
     public setInjectables(value: TypeMap)
     {
         this.injectables = value;
     }
 
+    /**
+     * keys function description.
+     * @returns {Array<keyof TypeMap>} Description of the return value.
+     */
     public keys()
     {
         return Object.keys(this.injectables) as (keyof TypeMap)[];
     }
 
+    /**
+     * notify function description.
+     * @param {keyof TypeMap} name - Description of the name parameter.
+     * @param {PropertyDescriptor} [value] - Description of the value parameter.
+     */
     protected notify<TKey extends keyof TypeMap>(name: TKey, value?: PropertyDescriptor)
     {
         if (typeof value == 'undefined')
@@ -40,7 +60,17 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
             this.parent.notify(name, value);
     }
 
+    /**
+     * onResolve function description.
+     * @param {NestedKeys<TypeMap, TKey>} name - Description of the name parameter.
+     * @returns {PromiseLike<NestedPath<TypeMap, TKey>>} Description of the return value.
+     */
     public onResolve<const TKey extends keyof TypeMap>(name: NestedKeys<TypeMap, TKey>): PromiseLike<NestedPath<TypeMap, TKey>>
+    /**
+     * onResolve function description.
+     * @param {NestedKeys<TypeMap, TKey>} name - Description of the name parameter.
+     * @param {(value: NestedPath<TypeMap, TKey>) => void} handler - Description of the handler parameter.
+     */
     public onResolve<const TKey extends keyof TypeMap>(name: NestedKeys<TypeMap, TKey>, handler: (value: NestedPath<TypeMap, TKey>) => void): void
     public onResolve<const TKey extends keyof TypeMap>(name: NestedKeys<TypeMap, TKey>, handler?: (value: NestedPath<TypeMap, TKey>) => void): void | PromiseLike<NestedPath<TypeMap, TKey>>
     // public onResolve<T = unknown>(name: string, handler?: (value: T) => void)
@@ -69,6 +99,11 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
             this.parent.onResolve(name, handler as any);
     }
 
+    /**
+     * resolve function description.
+     * @param {NestedKeys<TypeMap, string | symbol>} param - Description of the param parameter.
+     * @returns {NestedPath<TypeMap, TKey> & T} Description of the return value.
+     */
     resolve<T, const TKey extends NestedKeys<TypeMap, string | symbol>>(param: TKey): NestedPath<TypeMap, TKey> & T
     // resolve<const TKey extends Exclude<string | number | symbol, keyof TypeMap>>(param: TKey): T
     // resolve<const TKey extends string | number | symbol = keyof TypeMap>(param: TKey): TKey extends keyof TypeMap ? TypeMap[TKey] : T
@@ -118,6 +153,9 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
 
     private inspecting = false;
 
+    /**
+     * inspect function description.
+     */
     public inspect()
     {
         if (this.inspecting)
@@ -129,6 +167,10 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
 
     private browsingForJSON = false;
 
+    /**
+     * toJSON function description.
+     * @returns {TypeMap | undefined} Description of the return value.
+     */
     public toJSON()
     {
         // console.log(args);
@@ -142,6 +184,10 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
 
     protected injectables: Partial<TypeMap> = {};
 
+    /**
+     * unregister function description.
+     * @param {string} name - Description of the name parameter.
+     */
     public unregister(name: string)
     {
         const registration = Object.getOwnPropertyDescriptor(this.injectables, name);
@@ -149,6 +195,12 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
             delete this.injectables[name];
     }
 
+    /**
+     * registerDescriptor function description.
+     * @param {NestedKeys<TypeMap, TKey>} name - Description of the name parameter.
+     * @param {PropertyDescriptor} value - Description of the value parameter.
+     * @param {boolean} [override] - Description of the override parameter.
+     */
     public registerDescriptor<const TKey>(name: NestedKeys<TypeMap, TKey>, value: PropertyDescriptor, override?: boolean)
     {
         if (typeof name == 'string')

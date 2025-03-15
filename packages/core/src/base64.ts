@@ -3,6 +3,11 @@
 ///
 
 // Array of bytes to Base64 string decoding
+/** 
+ * Converts a Base64 character code to its 6-bit integer value.
+ * @param nChr The character code of the Base64 character (0-255).
+ * @returns The 6-bit value (0-63) of the Base64 character.
+ */
 function b64ToUint6(nChr: number): number
 {
     return nChr > 64 && nChr < 91
@@ -18,6 +23,12 @@ function b64ToUint6(nChr: number): number
                         : 0;
 }
 
+/** 
+ * Decodes a Base64 string into a Uint8Array.
+ * @param sBase64 The Base64 encoded string.
+ * @param nBlocksSize Optional size for line breaks in the output.
+ * @returns The decoded byte array.
+ */
 export function base64DecToArr(sBase64: string, nBlocksSize?: number): Uint8Array
 {
     const sB64Enc = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
@@ -52,6 +63,11 @@ export function base64DecToArr(sBase64: string, nBlocksSize?: number): Uint8Arra
 }
 
 /* Base64 string to array encoding */
+/** 
+ * Converts a 6-bit integer to its corresponding Base64 character code.
+ * @param {number} nUint6 The 6-bit value (0-63) to convert.
+ * @returns The character code of the Base64 character.
+ */
 function uint6ToB64(nUint6)
 {
     return nUint6 < 26
@@ -67,10 +83,20 @@ function uint6ToB64(nUint6)
                         : 65;
 }
 
+/** 
+ * Encodes an ArrayBuffer/Uint8Array to Base64URL format.
+ * @param aBytes The byte array to encode.
+ * @returns The Base64URL encoded string.
+ */
 export function base64UrlEncArr(aBytes: ArrayBuffer | Uint8Array): string
 {
     return base64EncArr(aBytes).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
+/** 
+ * Decodes a Base64URL string into an ArrayBuffer/Uint8Array.
+ * @param s The Base64URL encoded string.
+ * @returns The decoded byte array.
+ */
 export function base64UrlDecToArr(s: string): ArrayBuffer | Uint8Array
 {
     s = s.replace(/-/g, '+').replace(/_/g, '/');
@@ -88,6 +114,11 @@ export function base64UrlDecToArr(s: string): ArrayBuffer | Uint8Array
     return base64DecToArr(s.replace(/-/g, '+').replace(/_/g, '/'));
 }
 
+/** 
+ * Extracts the binary content from a PEM-formatted private key.
+ * @param pem The PEM string containing the private key.
+ * @returns The decoded binary content of the private key.
+ */
 export function extractPrivateKey(pem: string)
 {
     const pemHeader = "-----BEGIN PRIVATE KEY-----";
@@ -97,6 +128,11 @@ export function extractPrivateKey(pem: string)
         pem.length - pemFooter.length - 1,
     ));
 }
+/** 
+ * Extracts the binary content from a PEM-formatted public key.
+ * @param pem The PEM string containing the public key.
+ * @returns The decoded binary content of the public key.
+ */
 export function extractPublicKey(pem: string)
 {
     const pemHeader = "-----BEGIN PUBLIC KEY-----";
@@ -107,6 +143,12 @@ export function extractPublicKey(pem: string)
     ));
 }
 
+/** 
+ * Encodes an ArrayBuffer/Uint8Array to Base64 string.
+ * @param aBytes The byte array to encode.
+ * @param nBlocksSize Optional size for line breaks in the output.
+ * @returns The Base64 encoded string.
+ */
 export function base64EncArr(aBytes: ArrayBuffer | Uint8Array, nBlocksSize?: number): string
 {
     let nMod3 = 2;
@@ -144,6 +186,11 @@ export function base64EncArr(aBytes: ArrayBuffer | Uint8Array, nBlocksSize?: num
 }
 
 /* UTF-8 array to JS string and vice versa */
+/** 
+ * Converts a UTF-8 encoded byte array to a JavaScript string.
+ * @param aBytes The UTF-8 encoded byte array.
+ * @returns The decoded string.
+ */
 export function UTF8ArrToStr(aBytes: ArrayBuffer | Uint8Array): string
 {
     let sView = "";
@@ -189,6 +236,11 @@ export function UTF8ArrToStr(aBytes: ArrayBuffer | Uint8Array): string
     return sView;
 }
 
+/** 
+ * Converts a JavaScript string to a UTF-8 encoded ArrayBuffer.
+ * @param sDOMStr The input string to encode.
+ * @returns The UTF-8 encoded ArrayBuffer.
+ */
 export function strToUTF8Arr(sDOMStr: string): ArrayBuffer 
 {
     let nChr;

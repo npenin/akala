@@ -1,6 +1,9 @@
 import { EmptyBinding } from '@akala/core';
 
-
+/**
+ * Client bindings.
+ * @param {any} client - The client instance.
+ */
 export class ClientBindings
 {
     public static input(input: HTMLInputElement)

@@ -5,6 +5,11 @@ import { NewExpression } from "../new-expression.js";
 import { ExpressionVisitor } from "./expression-visitor.js";
 import { ExpressionComparer } from "./expression-comparer.js";
 
+/**
+ * Simplifies an expression.
+ * @param {any} expression - The expression to simplify.
+ * @returns {any} The simplified expression.
+ */
 export class ExpressionSimplifyer extends ExpressionVisitor
 {
     constructor(private source: Expressions)

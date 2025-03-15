@@ -2,7 +2,11 @@ import { each } from '../each.js';
 import { process, AnySyncMiddleware, Middleware, MiddlewareResult, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
 import { ExtendableCompositeMiddleware } from './composite-sync.js';
 
-
+/**
+ * MiddlewareCompositeWithPriority class.
+ * @class
+ * @param {string} [name] - Optional name for the middleware composite.
+ */
 export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> implements Middleware<T, TSpecialNextParam>, ExtendableCompositeMiddleware<T>
 {
     public readonly name?: string;
@@ -14,28 +18,56 @@ export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextPa
 
     private readonly stack: (readonly [number, AnySyncMiddleware<T, TSpecialNextParam>])[] = [];
 
+    /**
+     * Adds middleware with a specified priority.
+     * @param {number} priority - The priority of the middleware.
+     * @param {...AnySyncMiddleware<T, TSpecialNextParam>} middlewares - The middlewares to add.
+     * @returns {this} The instance of the middleware composite.
+     */
     public useMiddleware(priority: number, ...middlewares: AnySyncMiddleware<T, TSpecialNextParam>[]): this
     {
         this.stack.push(...middlewares.map(m => [priority, m] as const));
         return this;
     }
 
+    /**
+     * Adds standard middleware with a specified priority.
+     * @param {number} priority - The priority of the middleware.
+     * @param {...Function} middlewares - The middlewares to add.
+     * @returns {this} The instance of the middleware composite.
+     */
     public use(priority: number, ...middlewares: ((...args: T) => unknown)[]): this
     {
         return this.useMiddleware(priority, ...middlewares.map(m => convertToMiddleware<T, TSpecialNextParam>(m)));
     }
 
+    /**
+     * Adds error middleware with a specified priority.
+     * @param {number} priority - The priority of the middleware.
+     * @param {...Function} middlewares - The middlewares to add.
+     * @returns {this} The instance of the middleware composite.
+     */
     public useError(priority: number, ...middlewares: ((error: Error | OptionsResponse, ...args: T) => unknown)[]): this
     {
         return this.useMiddleware(priority, ...middlewares.map(m => convertToErrorMiddleware<T, TSpecialNextParam>(m)));
     }
 
+    /**
+     * Processes the middleware stack.
+     * @param {...T} req - The request parameters.
+     * @returns {X} The result of the middleware processing.
+     */
     public process<X = unknown>(...req: T): X
     {
         return process<X, T, TSpecialNextParam>(this, ...req);
     }
 
-
+    /**
+     * Handles errors in the middleware stack.
+     * @param {Error | OptionsResponse} error - The error to handle.
+     * @param {...T} req - The request parameters.
+     * @returns {MiddlewareResult<TSpecialNextParam>} The result of the error handling.
+     */
     public handleError(error: Error | OptionsResponse, ...req: T): MiddlewareResult<TSpecialNextParam>
     {
         let failed: boolean = !!error;
@@ -78,6 +110,11 @@ export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextPa
         }
     }
 
+    /**
+     * Handles the middleware stack.
+     * @param {...T} req - The request parameters.
+     * @returns {MiddlewareResult<TSpecialNextParam>} The result of the middleware handling.
+     */
     public handle(...req: T): MiddlewareResult<TSpecialNextParam>
     {
         let error: Error | OptionsResponse = undefined;

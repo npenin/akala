@@ -5,6 +5,11 @@ import { ExpressionType } from './expression-type.js';
 import { MemberExpression } from './member-expression.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 
+/**
+ * Represents a new expression.
+ * @param {Function} constructor - The constructor function.
+ * @param {Array} args - The arguments for the constructor.
+ */
 export class NewExpression<T> extends Expression
 {
     public get type(): ExpressionType.NewExpression { return ExpressionType.NewExpression; }
