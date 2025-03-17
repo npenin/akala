@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "reportId": {}
                     }
                 }
             }
@@ -72,9 +70,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "reportId": {}
                     }
                 }
             }
@@ -107,9 +103,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "sourceS3Location": {}
                     }
                 }
             }
@@ -142,9 +136,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -177,9 +170,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "reportId": {},
+                        "reportDescription": {},
+                        "reportFrequency": {},
+                        "format": {},
+                        "destinationS3Location": {}
                     }
                 }
             }
@@ -216,9 +211,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "reportId": {},
+                        "reportDescription": {},
+                        "reportFrequency": {},
+                        "format": {},
+                        "destinationS3Location": {}
                     }
                 }
             }
@@ -270,7 +267,7 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteReportDefinitionResult": {
+        "DeleteReportDefinitionRequest": {
             "type": "object",
             "properties": {
                 "reportId": {
@@ -281,7 +278,15 @@
         "ReportId": {
             "type": "string"
         },
-        "DeleteReportDefinitionRequest": {
+        "DeleteReportDefinitionResult": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
+                }
+            }
+        },
+        "GetReportDefinitionRequest": {
             "type": "object",
             "properties": {
                 "reportId": {
@@ -352,25 +357,6 @@
             "type": "string",
             "format": "date-time"
         },
-        "GetReportDefinitionRequest": {
-            "type": "object",
-            "properties": {
-                "reportId": {
-                    "$ref": "#/$defs/ReportId"
-                }
-            }
-        },
-        "ImportApplicationUsageResult": {
-            "type": "object",
-            "properties": {
-                "importId": {
-                    "$ref": "#/$defs/ImportId"
-                }
-            }
-        },
-        "ImportId": {
-            "type": "string"
-        },
         "ImportApplicationUsageRequest": {
             "type": "object",
             "properties": {
@@ -403,6 +389,35 @@
                 "EU_SOUTH_1",
                 "AF_SOUTH_1"
             ]
+        },
+        "ImportApplicationUsageResult": {
+            "type": "object",
+            "properties": {
+                "importId": {
+                    "$ref": "#/$defs/ImportId"
+                }
+            }
+        },
+        "ImportId": {
+            "type": "string"
+        },
+        "ListReportDefinitionsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "Integer": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListReportDefinitionsResult": {
             "type": "object",
@@ -447,32 +462,6 @@
                 }
             }
         },
-        "Token": {
-            "type": "string"
-        },
-        "ListReportDefinitionsRequest": {
-            "type": "object",
-            "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/Token"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/Integer"
-                }
-            }
-        },
-        "Integer": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "PutReportDefinitionResult": {
-            "type": "object",
-            "properties": {
-                "reportId": {
-                    "$ref": "#/$defs/ReportId"
-                }
-            }
-        },
         "PutReportDefinitionRequest": {
             "type": "object",
             "properties": {
@@ -493,7 +482,7 @@
                 }
             }
         },
-        "UpdateReportDefinitionResult": {
+        "PutReportDefinitionResult": {
             "type": "object",
             "properties": {
                 "reportId": {
@@ -518,6 +507,14 @@
                 },
                 "destinationS3Location": {
                     "$ref": "#/$defs/S3Location"
+                }
+            }
+        },
+        "UpdateReportDefinitionResult": {
+            "type": "object",
+            "properties": {
+                "reportId": {
+                    "$ref": "#/$defs/ReportId"
                 }
             }
         }

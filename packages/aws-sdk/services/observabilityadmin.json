@@ -91,9 +91,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceIdentifierPrefix": {},
+                        "ResourceTypes": {},
+                        "TelemetryConfigurationState": {},
+                        "ResourceTags": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -126,9 +129,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "AccountIdentifiers": {},
+                        "ResourceIdentifierPrefix": {},
+                        "ResourceTypes": {},
+                        "TelemetryConfigurationState": {},
+                        "ResourceTags": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -340,6 +347,74 @@
                 }
             }
         },
+        "ListResourceTelemetryInput": {
+            "type": "object",
+            "properties": {
+                "ResourceIdentifierPrefix": {
+                    "$ref": "#/$defs/ResourceIdentifierPrefix"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypes"
+                },
+                "TelemetryConfigurationState": {
+                    "$ref": "#/$defs/TelemetryConfigurationState"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/TagMapInput"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListResourceTelemetryMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ResourceIdentifierPrefix": {
+            "type": "string"
+        },
+        "ResourceTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceType"
+            }
+        },
+        "ResourceType": {
+            "enum": [
+                "AWS_EC2_INSTANCE",
+                "AWS_EC2_VPC",
+                "AWS_LAMDBA_FUNCTION"
+            ]
+        },
+        "TelemetryConfigurationState": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TelemetryState"
+            }
+        },
+        "TelemetryState": {
+            "enum": [
+                "ENABLED",
+                "DISABLED",
+                "NOT_APPLICABLE"
+            ]
+        },
+        "TagMapInput": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "ListResourceTelemetryMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
+        },
         "ListResourceTelemetryOutput": {
             "type": "object",
             "properties": {
@@ -383,26 +458,6 @@
         "AccountIdentifier": {
             "type": "string"
         },
-        "TelemetryConfigurationState": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TelemetryState"
-            }
-        },
-        "TelemetryState": {
-            "enum": [
-                "ENABLED",
-                "DISABLED",
-                "NOT_APPLICABLE"
-            ]
-        },
-        "ResourceType": {
-            "enum": [
-                "AWS_EC2_INSTANCE",
-                "AWS_EC2_VPC",
-                "AWS_LAMDBA_FUNCTION"
-            ]
-        },
         "ResourceIdentifier": {
             "type": "string"
         },
@@ -410,65 +465,6 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/smithy.api#String"
-            }
-        },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListResourceTelemetryInput": {
-            "type": "object",
-            "properties": {
-                "ResourceIdentifierPrefix": {
-                    "$ref": "#/$defs/ResourceIdentifierPrefix"
-                },
-                "ResourceTypes": {
-                    "$ref": "#/$defs/ResourceTypes"
-                },
-                "TelemetryConfigurationState": {
-                    "$ref": "#/$defs/TelemetryConfigurationState"
-                },
-                "ResourceTags": {
-                    "$ref": "#/$defs/TagMapInput"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/ListResourceTelemetryMaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ResourceIdentifierPrefix": {
-            "type": "string"
-        },
-        "ResourceTypes": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ResourceType"
-            }
-        },
-        "TagMapInput": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
-        },
-        "TagValue": {
-            "type": "string"
-        },
-        "ListResourceTelemetryMaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ListResourceTelemetryForOrganizationOutput": {
-            "type": "object",
-            "properties": {
-                "TelemetryConfigurations": {
-                    "$ref": "#/$defs/TelemetryConfigurations"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
             }
         },
         "ListResourceTelemetryForOrganizationInput": {
@@ -506,6 +502,17 @@
         "ListResourceTelemetryForOrganizationMaxResults": {
             "type": "integer",
             "format": "int32"
+        },
+        "ListResourceTelemetryForOrganizationOutput": {
+            "type": "object",
+            "properties": {
+                "TelemetryConfigurations": {
+                    "$ref": "#/$defs/TelemetryConfigurations"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
         }
     },
     "aws": {

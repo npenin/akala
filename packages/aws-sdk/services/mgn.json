@@ -28,10 +28,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -63,9 +60,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -102,8 +98,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -140,8 +135,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -178,8 +173,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -231,13 +226,31 @@
             "type": "string",
             "format": "binary"
         },
+        "InitializeServiceRequest": {
+            "type": "object",
+            "properties": {}
+        },
         "InitializeServiceResponse": {
             "type": "object",
             "properties": {}
         },
-        "InitializeServiceRequest": {
+        "ListManagedAccountsRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "MaxResultsType": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PaginationToken": {
+            "type": "string"
         },
         "ListManagedAccountsResponse": {
             "type": "object",
@@ -267,23 +280,16 @@
         "AccountID": {
             "type": "string"
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "ListManagedAccountsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResultsType"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
                 }
             }
         },
-        "MaxResultsType": {
-            "type": "integer",
-            "format": "int32"
+        "ARN": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -300,17 +306,6 @@
             }
         },
         "TagValue": {
-            "type": "string"
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/ARN"
-                }
-            }
-        },
-        "ARN": {
             "type": "string"
         },
         "TagResourceRequest": {

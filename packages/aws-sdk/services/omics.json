@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "s3AccessPointArn": {}
                     }
                 }
             }
@@ -72,9 +70,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "s3AccessPointArn": {}
                     }
                 }
             }
@@ -111,9 +107,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "s3AccessPointArn": {},
+                        "s3AccessPolicy": {}
                     }
                 }
             }
@@ -165,10 +160,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteS3AccessPolicyResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "DeleteS3AccessPolicyRequest": {
             "type": "object",
             "properties": {
@@ -179,6 +170,18 @@
         },
         "S3AccessPointArn": {
             "type": "string"
+        },
+        "DeleteS3AccessPolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetS3AccessPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "s3AccessPointArn": {
+                    "$ref": "#/$defs/S3AccessPointArn"
+                }
+            }
         },
         "GetS3AccessPolicyResponse": {
             "type": "object",
@@ -212,11 +215,14 @@
         "S3AccessPolicy": {
             "type": "string"
         },
-        "GetS3AccessPolicyRequest": {
+        "PutS3AccessPolicyRequest": {
             "type": "object",
             "properties": {
                 "s3AccessPointArn": {
                     "$ref": "#/$defs/S3AccessPointArn"
+                },
+                "s3AccessPolicy": {
+                    "$ref": "#/$defs/S3AccessPolicy"
                 }
             }
         },
@@ -231,17 +237,6 @@
                 },
                 "storeType": {
                     "$ref": "#/$defs/StoreType"
-                }
-            }
-        },
-        "PutS3AccessPolicyRequest": {
-            "type": "object",
-            "properties": {
-                "s3AccessPointArn": {
-                    "$ref": "#/$defs/S3AccessPointArn"
-                },
-                "s3AccessPolicy": {
-                    "$ref": "#/$defs/S3AccessPolicy"
                 }
             }
         }

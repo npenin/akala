@@ -377,9 +377,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConnectorId": {},
+                        "TransferId": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -1613,6 +1614,29 @@
                 }
             }
         },
+        "ListFileTransferResultsRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectorId": {
+                    "$ref": "#/$defs/ConnectorId"
+                },
+                "TransferId": {
+                    "$ref": "#/$defs/TransferId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ConnectorId": {
+            "type": "string"
+        },
+        "TransferId": {
+            "type": "string"
+        },
         "ListFileTransferResultsResponse": {
             "type": "object",
             "properties": {
@@ -1662,29 +1686,6 @@
             "type": "string"
         },
         "Message": {
-            "type": "string"
-        },
-        "ListFileTransferResultsRequest": {
-            "type": "object",
-            "properties": {
-                "ConnectorId": {
-                    "$ref": "#/$defs/ConnectorId"
-                },
-                "TransferId": {
-                    "$ref": "#/$defs/TransferId"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                }
-            }
-        },
-        "ConnectorId": {
-            "type": "string"
-        },
-        "TransferId": {
             "type": "string"
         },
         "ListHostKeysResponse": {

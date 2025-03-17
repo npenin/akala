@@ -29,9 +29,20 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "cursor": {},
+                        "expr": {},
+                        "facet": {},
+                        "filterQuery": {},
+                        "highlight": {},
+                        "partial": {},
+                        "query": {},
+                        "queryOptions": {},
+                        "queryParser": {},
+                        "return": {},
+                        "size": {},
+                        "sort": {},
+                        "start": {},
+                        "stats": {}
                     }
                 }
             }
@@ -64,9 +75,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "query": {},
+                        "suggester": {},
+                        "size": {}
                     }
                 }
             }
@@ -99,9 +110,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "documents": {},
+                        "contentType": {}
                     }
                 }
             }
@@ -152,6 +162,102 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "SearchRequest": {
+            "type": "object",
+            "properties": {
+                "cursor": {
+                    "$ref": "#/$defs/Cursor"
+                },
+                "expr": {
+                    "$ref": "#/$defs/Expr"
+                },
+                "facet": {
+                    "$ref": "#/$defs/Facet"
+                },
+                "filterQuery": {
+                    "$ref": "#/$defs/FilterQuery"
+                },
+                "highlight": {
+                    "$ref": "#/$defs/Highlight"
+                },
+                "partial": {
+                    "$ref": "#/$defs/Partial"
+                },
+                "query": {
+                    "$ref": "#/$defs/Query"
+                },
+                "queryOptions": {
+                    "$ref": "#/$defs/QueryOptions"
+                },
+                "queryParser": {
+                    "$ref": "#/$defs/QueryParser"
+                },
+                "return": {
+                    "$ref": "#/$defs/Return"
+                },
+                "size": {
+                    "$ref": "#/$defs/Size"
+                },
+                "sort": {
+                    "$ref": "#/$defs/Sort"
+                },
+                "start": {
+                    "$ref": "#/$defs/Start"
+                },
+                "stats": {
+                    "$ref": "#/$defs/Stat"
+                }
+            }
+        },
+        "Cursor": {
+            "type": "string"
+        },
+        "Expr": {
+            "type": "string"
+        },
+        "Facet": {
+            "type": "string"
+        },
+        "FilterQuery": {
+            "type": "string"
+        },
+        "Highlight": {
+            "type": "string"
+        },
+        "Partial": {
+            "type": "boolean"
+        },
+        "Query": {
+            "type": "string"
+        },
+        "QueryOptions": {
+            "type": "string"
+        },
+        "QueryParser": {
+            "enum": [
+                "simple",
+                "structured",
+                "lucene",
+                "dismax"
+            ]
+        },
+        "Return": {
+            "type": "string"
+        },
+        "Size": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Sort": {
+            "type": "string"
+        },
+        "Start": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "Stat": {
+            "type": "string"
         },
         "SearchResponse": {
             "type": "object",
@@ -322,101 +428,26 @@
             "type": "number",
             "format": "double"
         },
-        "SearchRequest": {
+        "SuggestRequest": {
             "type": "object",
             "properties": {
-                "cursor": {
-                    "$ref": "#/$defs/Cursor"
-                },
-                "expr": {
-                    "$ref": "#/$defs/Expr"
-                },
-                "facet": {
-                    "$ref": "#/$defs/Facet"
-                },
-                "filterQuery": {
-                    "$ref": "#/$defs/FilterQuery"
-                },
-                "highlight": {
-                    "$ref": "#/$defs/Highlight"
-                },
-                "partial": {
-                    "$ref": "#/$defs/Partial"
-                },
                 "query": {
                     "$ref": "#/$defs/Query"
                 },
-                "queryOptions": {
-                    "$ref": "#/$defs/QueryOptions"
-                },
-                "queryParser": {
-                    "$ref": "#/$defs/QueryParser"
-                },
-                "return": {
-                    "$ref": "#/$defs/Return"
+                "suggester": {
+                    "$ref": "#/$defs/Suggester"
                 },
                 "size": {
-                    "$ref": "#/$defs/Size"
-                },
-                "sort": {
-                    "$ref": "#/$defs/Sort"
-                },
-                "start": {
-                    "$ref": "#/$defs/Start"
-                },
-                "stats": {
-                    "$ref": "#/$defs/Stat"
+                    "$ref": "#/$defs/SuggestionsSize"
                 }
             }
         },
-        "Cursor": {
+        "Suggester": {
             "type": "string"
         },
-        "Expr": {
-            "type": "string"
-        },
-        "Facet": {
-            "type": "string"
-        },
-        "FilterQuery": {
-            "type": "string"
-        },
-        "Highlight": {
-            "type": "string"
-        },
-        "Partial": {
-            "type": "boolean"
-        },
-        "Query": {
-            "type": "string"
-        },
-        "QueryOptions": {
-            "type": "string"
-        },
-        "QueryParser": {
-            "enum": [
-                "simple",
-                "structured",
-                "lucene",
-                "dismax"
-            ]
-        },
-        "Return": {
-            "type": "string"
-        },
-        "Size": {
+        "SuggestionsSize": {
             "type": "integer",
             "format": "int64"
-        },
-        "Sort": {
-            "type": "string"
-        },
-        "Start": {
-            "type": "integer",
-            "format": "int64"
-        },
-        "Stat": {
-            "type": "string"
         },
         "SuggestResponse": {
             "type": "object",
@@ -474,26 +505,26 @@
                 }
             }
         },
-        "SuggestRequest": {
+        "UploadDocumentsRequest": {
             "type": "object",
             "properties": {
-                "query": {
-                    "$ref": "#/$defs/Query"
+                "documents": {
+                    "$ref": "#/$defs/Blob"
                 },
-                "suggester": {
-                    "$ref": "#/$defs/Suggester"
-                },
-                "size": {
-                    "$ref": "#/$defs/SuggestionsSize"
+                "contentType": {
+                    "$ref": "#/$defs/ContentType"
                 }
             }
         },
-        "Suggester": {
-            "type": "string"
+        "Blob": {
+            "type": "string",
+            "format": "binary"
         },
-        "SuggestionsSize": {
-            "type": "integer",
-            "format": "int64"
+        "ContentType": {
+            "enum": [
+                "application_json",
+                "application_xml"
+            ]
         },
         "UploadDocumentsResponse": {
             "type": "object",
@@ -533,27 +564,6 @@
                     "$ref": "#/$defs/String"
                 }
             }
-        },
-        "UploadDocumentsRequest": {
-            "type": "object",
-            "properties": {
-                "documents": {
-                    "$ref": "#/$defs/Blob"
-                },
-                "contentType": {
-                    "$ref": "#/$defs/ContentType"
-                }
-            }
-        },
-        "Blob": {
-            "type": "string",
-            "format": "binary"
-        },
-        "ContentType": {
-            "enum": [
-                "application_json",
-                "application_xml"
-            ]
         }
     },
     "aws": {

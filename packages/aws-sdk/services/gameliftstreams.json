@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "LocationConfigurations": {}
                     }
                 }
             }
@@ -72,9 +71,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "ApplicationIdentifiers": {}
                     }
                 }
             }
@@ -113,9 +111,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ClientToken": {},
+                        "Identifier": {},
+                        "StreamSessionIdentifier": {},
+                        "SignalRequest": {}
                     }
                 }
             }
@@ -152,9 +151,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "ApplicationIdentifiers": {}
                     }
                 }
             }
@@ -193,9 +191,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "StreamSessionIdentifier": {},
+                        "OutputUri": {}
                     }
                 }
             }
@@ -234,9 +232,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "StreamSessionIdentifier": {}
                     }
                 }
             }
@@ -273,9 +270,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Status": {},
+                        "ExportFilesStatus": {},
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "Identifier": {}
                     }
                 }
             }
@@ -308,9 +307,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Status": {},
+                        "ExportFilesStatus": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -347,9 +347,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -386,9 +384,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "Locations": {}
                     }
                 }
             }
@@ -425,9 +422,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ClientToken": {},
+                        "Description": {},
+                        "Identifier": {},
+                        "Protocol": {},
+                        "SignalRequest": {},
+                        "ApplicationIdentifier": {},
+                        "UserId": {},
+                        "Locations": {},
+                        "ConnectionTimeoutSeconds": {},
+                        "SessionLengthSeconds": {},
+                        "AdditionalLaunchArgs": {},
+                        "AdditionalEnvironmentVariables": {}
                     }
                 }
             }
@@ -464,9 +470,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -505,9 +510,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "StreamSessionIdentifier": {}
                     }
                 }
             }
@@ -544,9 +548,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -598,6 +601,51 @@
             "type": "string",
             "format": "binary"
         },
+        "AddStreamGroupLocationsInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "LocationConfigurations": {
+                    "$ref": "#/$defs/LocationConfigurations"
+                }
+            }
+        },
+        "Identifier": {
+            "type": "string"
+        },
+        "LocationConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationConfiguration"
+            }
+        },
+        "LocationConfiguration": {
+            "type": "object",
+            "properties": {
+                "LocationName": {
+                    "$ref": "#/$defs/LocationName"
+                },
+                "AlwaysOnCapacity": {
+                    "$ref": "#/$defs/AlwaysOnCapacity"
+                },
+                "OnDemandCapacity": {
+                    "$ref": "#/$defs/OnDemandCapacity"
+                }
+            }
+        },
+        "LocationName": {
+            "type": "string"
+        },
+        "AlwaysOnCapacity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OnDemandCapacity": {
+            "type": "integer",
+            "format": "int32"
+        },
         "AddStreamGroupLocationsOutput": {
             "type": "object",
             "properties": {
@@ -608,9 +656,6 @@
                     "$ref": "#/$defs/LocationStates"
                 }
             }
-        },
-        "Identifier": {
-            "type": "string"
         },
         "LocationStates": {
             "type": "array",
@@ -644,9 +689,6 @@
                 }
             }
         },
-        "LocationName": {
-            "type": "string"
-        },
         "StreamGroupLocationStatus": {
             "enum": [
                 "ACTIVATING",
@@ -655,47 +697,25 @@
                 "REMOVING"
             ]
         },
-        "AlwaysOnCapacity": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "OnDemandCapacity": {
-            "type": "integer",
-            "format": "int32"
-        },
         "CapacityValue": {
             "type": "integer",
             "format": "int32"
         },
-        "AddStreamGroupLocationsInput": {
+        "AssociateApplicationsInput": {
             "type": "object",
             "properties": {
                 "Identifier": {
                     "$ref": "#/$defs/Identifier"
                 },
-                "LocationConfigurations": {
-                    "$ref": "#/$defs/LocationConfigurations"
+                "ApplicationIdentifiers": {
+                    "$ref": "#/$defs/Identifiers"
                 }
             }
         },
-        "LocationConfigurations": {
+        "Identifiers": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/LocationConfiguration"
-            }
-        },
-        "LocationConfiguration": {
-            "type": "object",
-            "properties": {
-                "LocationName": {
-                    "$ref": "#/$defs/LocationName"
-                },
-                "AlwaysOnCapacity": {
-                    "$ref": "#/$defs/AlwaysOnCapacity"
-                },
-                "OnDemandCapacity": {
-                    "$ref": "#/$defs/OnDemandCapacity"
-                }
+                "$ref": "#/$defs/Identifier"
             }
         },
         "AssociateApplicationsOutput": {
@@ -717,34 +737,6 @@
             "items": {
                 "$ref": "#/$defs/Arn"
             }
-        },
-        "AssociateApplicationsInput": {
-            "type": "object",
-            "properties": {
-                "Identifier": {
-                    "$ref": "#/$defs/Identifier"
-                },
-                "ApplicationIdentifiers": {
-                    "$ref": "#/$defs/Identifiers"
-                }
-            }
-        },
-        "Identifiers": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Identifier"
-            }
-        },
-        "CreateStreamSessionConnectionOutput": {
-            "type": "object",
-            "properties": {
-                "SignalResponse": {
-                    "$ref": "#/$defs/SignalResponse"
-                }
-            }
-        },
-        "SignalResponse": {
-            "type": "string"
         },
         "CreateStreamSessionConnectionInput": {
             "type": "object",
@@ -769,16 +761,16 @@
         "SignalRequest": {
             "type": "string"
         },
-        "DisassociateApplicationsOutput": {
+        "CreateStreamSessionConnectionOutput": {
             "type": "object",
             "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "ApplicationArns": {
-                    "$ref": "#/$defs/ArnList"
+                "SignalResponse": {
+                    "$ref": "#/$defs/SignalResponse"
                 }
             }
+        },
+        "SignalResponse": {
+            "type": "string"
         },
         "DisassociateApplicationsInput": {
             "type": "object",
@@ -791,9 +783,16 @@
                 }
             }
         },
-        "ExportStreamSessionFilesOutput": {
+        "DisassociateApplicationsOutput": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ApplicationArns": {
+                    "$ref": "#/$defs/ArnList"
+                }
+            }
         },
         "ExportStreamSessionFilesInput": {
             "type": "object",
@@ -811,6 +810,21 @@
         },
         "OutputUri": {
             "type": "string"
+        },
+        "ExportStreamSessionFilesOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetStreamSessionInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "StreamSessionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                }
+            }
         },
         "GetStreamSessionOutput": {
             "type": "object",
@@ -961,16 +975,32 @@
         "ExportFilesReason": {
             "type": "string"
         },
-        "GetStreamSessionInput": {
+        "ListStreamSessionsInput": {
             "type": "object",
             "properties": {
-                "Identifier": {
-                    "$ref": "#/$defs/Identifier"
+                "Status": {
+                    "$ref": "#/$defs/StreamSessionStatus"
                 },
-                "StreamSessionIdentifier": {
+                "ExportFilesStatus": {
+                    "$ref": "#/$defs/ExportFilesStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Identifier": {
                     "$ref": "#/$defs/Identifier"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListStreamSessionsOutput": {
             "type": "object",
@@ -1021,44 +1051,6 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListStreamSessionsInput": {
-            "type": "object",
-            "properties": {
-                "Status": {
-                    "$ref": "#/$defs/StreamSessionStatus"
-                },
-                "ExportFilesStatus": {
-                    "$ref": "#/$defs/ExportFilesStatus"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "Identifier": {
-                    "$ref": "#/$defs/Identifier"
-                }
-            }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ListStreamSessionsByAccountOutput": {
-            "type": "object",
-            "properties": {
-                "Items": {
-                    "$ref": "#/$defs/StreamSessionSummaryList"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
         "ListStreamSessionsByAccountInput": {
             "type": "object",
             "properties": {
@@ -1073,6 +1065,25 @@
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListStreamSessionsByAccountOutput": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/StreamSessionSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -1093,14 +1104,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
         "RemoveStreamGroupLocationsInput": {
             "type": "object",
             "properties": {
@@ -1116,6 +1119,53 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "StartStreamSessionInput": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "SignalRequest": {
+                    "$ref": "#/$defs/SignalRequest"
+                },
+                "ApplicationIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "Locations": {
+                    "$ref": "#/$defs/LocationList"
+                },
+                "ConnectionTimeoutSeconds": {
+                    "$ref": "#/$defs/ConnectionTimeoutSeconds"
+                },
+                "SessionLengthSeconds": {
+                    "$ref": "#/$defs/SessionLengthSeconds"
+                },
+                "AdditionalLaunchArgs": {
+                    "$ref": "#/$defs/GameLaunchArgList"
+                },
+                "AdditionalEnvironmentVariables": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                }
+            }
+        },
+        "LocationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationName"
             }
         },
         "StartStreamSessionOutput": {
@@ -1183,57 +1233,6 @@
                 }
             }
         },
-        "StartStreamSessionInput": {
-            "type": "object",
-            "properties": {
-                "ClientToken": {
-                    "$ref": "#/$defs/ClientToken"
-                },
-                "Description": {
-                    "$ref": "#/$defs/Description"
-                },
-                "Identifier": {
-                    "$ref": "#/$defs/Identifier"
-                },
-                "Protocol": {
-                    "$ref": "#/$defs/Protocol"
-                },
-                "SignalRequest": {
-                    "$ref": "#/$defs/SignalRequest"
-                },
-                "ApplicationIdentifier": {
-                    "$ref": "#/$defs/Identifier"
-                },
-                "UserId": {
-                    "$ref": "#/$defs/UserId"
-                },
-                "Locations": {
-                    "$ref": "#/$defs/LocationList"
-                },
-                "ConnectionTimeoutSeconds": {
-                    "$ref": "#/$defs/ConnectionTimeoutSeconds"
-                },
-                "SessionLengthSeconds": {
-                    "$ref": "#/$defs/SessionLengthSeconds"
-                },
-                "AdditionalLaunchArgs": {
-                    "$ref": "#/$defs/GameLaunchArgList"
-                },
-                "AdditionalEnvironmentVariables": {
-                    "$ref": "#/$defs/EnvironmentVariables"
-                }
-            }
-        },
-        "LocationList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/LocationName"
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -1245,6 +1244,10 @@
                 }
             }
         },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
         "TerminateStreamSessionInput": {
             "type": "object",
             "properties": {
@@ -1255,10 +1258,6 @@
                     "$ref": "#/$defs/Identifier"
                 }
             }
-        },
-        "UntagResourceResponse": {
-            "type": "object",
-            "properties": {}
         },
         "UntagResourceRequest": {
             "type": "object",
@@ -1279,6 +1278,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

@@ -32,9 +32,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyIdentifier": {},
+                        "CipherText": {},
+                        "DecryptionAttributes": {},
+                        "WrappedKey": {}
                     }
                 }
             }
@@ -71,9 +72,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyIdentifier": {},
+                        "PlainText": {},
+                        "EncryptionAttributes": {},
+                        "WrappedKey": {}
                     }
                 }
             }
@@ -106,9 +108,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyIdentifier": {},
+                        "PrimaryAccountNumber": {},
+                        "GenerationAttributes": {},
+                        "ValidationDataLength": {}
                     }
                 }
             }
@@ -141,9 +144,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyIdentifier": {},
+                        "MessageData": {},
+                        "GenerationAttributes": {},
+                        "MacLength": {}
                     }
                 }
             }
@@ -176,9 +180,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NewPinPekIdentifier": {},
+                        "NewEncryptedPinBlock": {},
+                        "PinBlockFormat": {},
+                        "SecureMessagingIntegrityKeyIdentifier": {},
+                        "SecureMessagingConfidentialityKeyIdentifier": {},
+                        "MessageData": {},
+                        "DerivationMethodAttributes": {}
                     }
                 }
             }
@@ -211,9 +219,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "GenerationKeyIdentifier": {},
+                        "EncryptionKeyIdentifier": {},
+                        "GenerationAttributes": {},
+                        "PinDataLength": {},
+                        "PrimaryAccountNumber": {},
+                        "PinBlockFormat": {},
+                        "EncryptionWrappedKey": {}
                     }
                 }
             }
@@ -250,9 +262,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "IncomingKeyIdentifier": {},
+                        "OutgoingKeyIdentifier": {},
+                        "CipherText": {},
+                        "IncomingEncryptionAttributes": {},
+                        "OutgoingEncryptionAttributes": {},
+                        "IncomingWrappedKey": {},
+                        "OutgoingWrappedKey": {}
                     }
                 }
             }
@@ -285,9 +301,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "IncomingKeyIdentifier": {},
+                        "OutgoingKeyIdentifier": {},
+                        "IncomingTranslationAttributes": {},
+                        "OutgoingTranslationAttributes": {},
+                        "EncryptedPinBlock": {},
+                        "IncomingDukptAttributes": {},
+                        "OutgoingDukptAttributes": {},
+                        "IncomingWrappedKey": {},
+                        "OutgoingWrappedKey": {}
                     }
                 }
             }
@@ -320,9 +342,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyIdentifier": {},
+                        "TransactionData": {},
+                        "AuthRequestCryptogram": {},
+                        "MajorKeyDerivationMode": {},
+                        "SessionKeyDerivationAttributes": {},
+                        "AuthResponseAttributes": {}
                     }
                 }
             }
@@ -355,9 +380,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyIdentifier": {},
+                        "PrimaryAccountNumber": {},
+                        "VerificationAttributes": {},
+                        "ValidationData": {}
                     }
                 }
             }
@@ -390,9 +416,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyIdentifier": {},
+                        "MessageData": {},
+                        "Mac": {},
+                        "VerificationAttributes": {},
+                        "MacLength": {}
                     }
                 }
             }
@@ -425,9 +453,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "VerificationKeyIdentifier": {},
+                        "EncryptionKeyIdentifier": {},
+                        "VerificationAttributes": {},
+                        "EncryptedPinBlock": {},
+                        "PrimaryAccountNumber": {},
+                        "PinBlockFormat": {},
+                        "PinDataLength": {},
+                        "DukptAttributes": {},
+                        "EncryptionWrappedKey": {}
                     }
                 }
             }
@@ -478,29 +512,6 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
-        },
-        "DecryptDataOutput": {
-            "type": "object",
-            "properties": {
-                "KeyArn": {
-                    "$ref": "#/$defs/KeyArn"
-                },
-                "KeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
-                },
-                "PlainText": {
-                    "$ref": "#/$defs/PlainTextOutputType"
-                }
-            }
-        },
-        "KeyArn": {
-            "type": "string"
-        },
-        "KeyCheckValue": {
-            "type": "string"
-        },
-        "PlainTextOutputType": {
-            "type": "string"
         },
         "DecryptDataInput": {
             "type": "object",
@@ -755,7 +766,7 @@
         "KeyCheckValueAlgorithm": {
             "type": "string"
         },
-        "EncryptDataOutput": {
+        "DecryptDataOutput": {
             "type": "object",
             "properties": {
                 "KeyArn": {
@@ -764,10 +775,19 @@
                 "KeyCheckValue": {
                     "$ref": "#/$defs/KeyCheckValue"
                 },
-                "CipherText": {
-                    "$ref": "#/$defs/CipherTextType"
+                "PlainText": {
+                    "$ref": "#/$defs/PlainTextOutputType"
                 }
             }
+        },
+        "KeyArn": {
+            "type": "string"
+        },
+        "KeyCheckValue": {
+            "type": "string"
+        },
+        "PlainTextOutputType": {
+            "type": "string"
         },
         "EncryptDataInput": {
             "type": "object",
@@ -789,7 +809,7 @@
         "PlainTextType": {
             "type": "string"
         },
-        "GenerateCardValidationDataOutput": {
+        "EncryptDataOutput": {
             "type": "object",
             "properties": {
                 "KeyArn": {
@@ -798,13 +818,10 @@
                 "KeyCheckValue": {
                     "$ref": "#/$defs/KeyCheckValue"
                 },
-                "ValidationData": {
-                    "$ref": "#/$defs/ValidationDataType"
+                "CipherText": {
+                    "$ref": "#/$defs/CipherTextType"
                 }
             }
-        },
-        "ValidationDataType": {
-            "type": "string"
         },
         "GenerateCardValidationDataInput": {
             "type": "object",
@@ -954,7 +971,7 @@
             "type": "integer",
             "format": "int32"
         },
-        "GenerateMacOutput": {
+        "GenerateCardValidationDataOutput": {
             "type": "object",
             "properties": {
                 "KeyArn": {
@@ -963,12 +980,12 @@
                 "KeyCheckValue": {
                     "$ref": "#/$defs/KeyCheckValue"
                 },
-                "Mac": {
-                    "$ref": "#/$defs/MacOutputType"
+                "ValidationData": {
+                    "$ref": "#/$defs/ValidationDataType"
                 }
             }
         },
-        "MacOutputType": {
+        "ValidationDataType": {
             "type": "string"
         },
         "GenerateMacInput": {
@@ -1092,60 +1109,22 @@
             "type": "integer",
             "format": "int32"
         },
-        "GenerateMacEmvPinChangeOutput": {
+        "GenerateMacOutput": {
             "type": "object",
             "properties": {
-                "NewPinPekArn": {
+                "KeyArn": {
                     "$ref": "#/$defs/KeyArn"
                 },
-                "SecureMessagingIntegrityKeyArn": {
-                    "$ref": "#/$defs/KeyArn"
-                },
-                "SecureMessagingConfidentialityKeyArn": {
-                    "$ref": "#/$defs/KeyArn"
+                "KeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
                 },
                 "Mac": {
-                    "$ref": "#/$defs/PinChangeMacOutputType"
-                },
-                "EncryptedPinBlock": {
-                    "$ref": "#/$defs/EncryptedPinBlockType"
-                },
-                "NewPinPekKeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
-                },
-                "SecureMessagingIntegrityKeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
-                },
-                "SecureMessagingConfidentialityKeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
-                },
-                "VisaAmexDerivationOutputs": {
-                    "$ref": "#/$defs/VisaAmexDerivationOutputs"
+                    "$ref": "#/$defs/MacOutputType"
                 }
             }
         },
-        "PinChangeMacOutputType": {
+        "MacOutputType": {
             "type": "string"
-        },
-        "EncryptedPinBlockType": {
-            "type": "string"
-        },
-        "VisaAmexDerivationOutputs": {
-            "type": "object",
-            "properties": {
-                "AuthorizationRequestKeyArn": {
-                    "$ref": "#/$defs/KeyArn"
-                },
-                "AuthorizationRequestKeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
-                },
-                "CurrentPinPekArn": {
-                    "$ref": "#/$defs/KeyArn"
-                },
-                "CurrentPinPekKeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
-                }
-            }
         },
         "GenerateMacEmvPinChangeInput": {
             "type": "object",
@@ -1335,45 +1314,60 @@
                 }
             }
         },
-        "GeneratePinDataOutput": {
+        "GenerateMacEmvPinChangeOutput": {
             "type": "object",
             "properties": {
-                "GenerationKeyArn": {
+                "NewPinPekArn": {
                     "$ref": "#/$defs/KeyArn"
                 },
-                "GenerationKeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
-                },
-                "EncryptionKeyArn": {
+                "SecureMessagingIntegrityKeyArn": {
                     "$ref": "#/$defs/KeyArn"
                 },
-                "EncryptionKeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
+                "SecureMessagingConfidentialityKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "Mac": {
+                    "$ref": "#/$defs/PinChangeMacOutputType"
                 },
                 "EncryptedPinBlock": {
                     "$ref": "#/$defs/EncryptedPinBlockType"
                 },
-                "PinData": {
-                    "$ref": "#/$defs/PinData"
+                "NewPinPekKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "SecureMessagingIntegrityKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "SecureMessagingConfidentialityKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "VisaAmexDerivationOutputs": {
+                    "$ref": "#/$defs/VisaAmexDerivationOutputs"
                 }
             }
         },
-        "PinData": {
+        "PinChangeMacOutputType": {
+            "type": "string"
+        },
+        "EncryptedPinBlockType": {
+            "type": "string"
+        },
+        "VisaAmexDerivationOutputs": {
             "type": "object",
             "properties": {
-                "PinOffset": {
-                    "$ref": "#/$defs/PinOffsetType"
+                "AuthorizationRequestKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
                 },
-                "VerificationValue": {
-                    "$ref": "#/$defs/VerificationValueType"
+                "AuthorizationRequestKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "CurrentPinPekArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "CurrentPinPekKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
                 }
             }
-        },
-        "PinOffsetType": {
-            "type": "string"
-        },
-        "VerificationValueType": {
-            "type": "string"
         },
         "GeneratePinDataInput": {
             "type": "object",
@@ -1518,6 +1512,9 @@
                 }
             }
         },
+        "PinOffsetType": {
+            "type": "string"
+        },
         "IntegerRangeBetween4And12": {
             "type": "integer",
             "format": "int32"
@@ -1529,19 +1526,42 @@
                 "ISO_FORMAT_4"
             ]
         },
-        "ReEncryptDataOutput": {
+        "GeneratePinDataOutput": {
             "type": "object",
             "properties": {
-                "KeyArn": {
+                "GenerationKeyArn": {
                     "$ref": "#/$defs/KeyArn"
                 },
-                "KeyCheckValue": {
+                "GenerationKeyCheckValue": {
                     "$ref": "#/$defs/KeyCheckValue"
                 },
-                "CipherText": {
-                    "$ref": "#/$defs/CipherTextType"
+                "EncryptionKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "EncryptionKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "EncryptedPinBlock": {
+                    "$ref": "#/$defs/EncryptedPinBlockType"
+                },
+                "PinData": {
+                    "$ref": "#/$defs/PinData"
                 }
             }
+        },
+        "PinData": {
+            "type": "object",
+            "properties": {
+                "PinOffset": {
+                    "$ref": "#/$defs/PinOffsetType"
+                },
+                "VerificationValue": {
+                    "$ref": "#/$defs/VerificationValueType"
+                }
+            }
+        },
+        "VerificationValueType": {
+            "type": "string"
         },
         "ReEncryptDataInput": {
             "type": "object",
@@ -1580,17 +1600,17 @@
                 }
             }
         },
-        "TranslatePinDataOutput": {
+        "ReEncryptDataOutput": {
             "type": "object",
             "properties": {
-                "PinBlock": {
-                    "$ref": "#/$defs/EncryptedPinBlockType"
-                },
                 "KeyArn": {
                     "$ref": "#/$defs/KeyArn"
                 },
                 "KeyCheckValue": {
                     "$ref": "#/$defs/KeyCheckValue"
+                },
+                "CipherText": {
+                    "$ref": "#/$defs/CipherTextType"
                 }
             }
         },
@@ -1672,22 +1692,19 @@
                 }
             }
         },
-        "VerifyAuthRequestCryptogramOutput": {
+        "TranslatePinDataOutput": {
             "type": "object",
             "properties": {
+                "PinBlock": {
+                    "$ref": "#/$defs/EncryptedPinBlockType"
+                },
                 "KeyArn": {
                     "$ref": "#/$defs/KeyArn"
                 },
                 "KeyCheckValue": {
                     "$ref": "#/$defs/KeyCheckValue"
-                },
-                "AuthResponseValue": {
-                    "$ref": "#/$defs/AuthResponseValueType"
                 }
             }
-        },
-        "AuthResponseValueType": {
-            "type": "string"
         },
         "VerifyAuthRequestCryptogramInput": {
             "type": "object",
@@ -1841,7 +1858,7 @@
         "ProprietaryAuthenticationDataType": {
             "type": "string"
         },
-        "VerifyCardValidationDataOutput": {
+        "VerifyAuthRequestCryptogramOutput": {
             "type": "object",
             "properties": {
                 "KeyArn": {
@@ -1849,8 +1866,14 @@
                 },
                 "KeyCheckValue": {
                     "$ref": "#/$defs/KeyCheckValue"
+                },
+                "AuthResponseValue": {
+                    "$ref": "#/$defs/AuthResponseValueType"
                 }
             }
+        },
+        "AuthResponseValueType": {
+            "type": "string"
         },
         "VerifyCardValidationDataInput": {
             "type": "object",
@@ -1912,7 +1935,7 @@
                 }
             }
         },
-        "VerifyMacOutput": {
+        "VerifyCardValidationDataOutput": {
             "type": "object",
             "properties": {
                 "KeyArn": {
@@ -1946,19 +1969,13 @@
         "MacType": {
             "type": "string"
         },
-        "VerifyPinDataOutput": {
+        "VerifyMacOutput": {
             "type": "object",
             "properties": {
-                "VerificationKeyArn": {
+                "KeyArn": {
                     "$ref": "#/$defs/KeyArn"
                 },
-                "VerificationKeyCheckValue": {
-                    "$ref": "#/$defs/KeyCheckValue"
-                },
-                "EncryptionKeyArn": {
-                    "$ref": "#/$defs/KeyArn"
-                },
-                "EncryptionKeyCheckValue": {
+                "KeyCheckValue": {
                     "$ref": "#/$defs/KeyCheckValue"
                 }
             }
@@ -2042,6 +2059,23 @@
                 },
                 "DukptDerivationType": {
                     "$ref": "#/$defs/DukptDerivationType"
+                }
+            }
+        },
+        "VerifyPinDataOutput": {
+            "type": "object",
+            "properties": {
+                "VerificationKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "VerificationKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
+                },
+                "EncryptionKeyArn": {
+                    "$ref": "#/$defs/KeyArn"
+                },
+                "EncryptionKeyCheckValue": {
+                    "$ref": "#/$defs/KeyCheckValue"
                 }
             }
         }

@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "messageId": {}
                     }
                 }
             }
@@ -72,9 +70,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "messageId": {},
+                        "content": {}
                     }
                 }
             }
@@ -126,18 +123,6 @@
             "type": "string",
             "format": "binary"
         },
-        "GetRawMessageContentResponse": {
-            "type": "object",
-            "properties": {
-                "messageContent": {
-                    "$ref": "#/$defs/messageContentBlob"
-                }
-            }
-        },
-        "messageContentBlob": {
-            "type": "string",
-            "format": "binary"
-        },
         "GetRawMessageContentRequest": {
             "type": "object",
             "properties": {
@@ -149,9 +134,17 @@
         "messageIdType": {
             "type": "string"
         },
-        "PutRawMessageContentResponse": {
+        "GetRawMessageContentResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "messageContent": {
+                    "$ref": "#/$defs/messageContentBlob"
+                }
+            }
+        },
+        "messageContentBlob": {
+            "type": "string",
+            "format": "binary"
         },
         "PutRawMessageContentRequest": {
             "type": "object",
@@ -194,6 +187,10 @@
         },
         "s3VersionType": {
             "type": "string"
+        },
+        "PutRawMessageContentResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -68,9 +66,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineId": {},
+                        "Input": {},
+                        "Inputs": {},
+                        "Output": {},
+                        "Outputs": {},
+                        "OutputKeyPrefix": {},
+                        "Playlists": {},
+                        "UserMetadata": {}
                     }
                 }
             }
@@ -103,9 +106,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "InputBucket": {},
+                        "OutputBucket": {},
+                        "Role": {},
+                        "AwsKmsKeyArn": {},
+                        "Notifications": {},
+                        "ContentConfig": {},
+                        "ThumbnailConfig": {}
                     }
                 }
             }
@@ -138,9 +146,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Description": {},
+                        "Container": {},
+                        "Video": {},
+                        "Audio": {},
+                        "Thumbnails": {}
                     }
                 }
             }
@@ -177,9 +188,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -216,9 +225,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -255,9 +262,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineId": {},
+                        "Ascending": {},
+                        "PageToken": {}
                     }
                 }
             }
@@ -294,9 +301,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Status": {},
+                        "Ascending": {},
+                        "PageToken": {}
                     }
                 }
             }
@@ -329,9 +336,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Ascending": {},
+                        "PageToken": {}
                     }
                 }
             }
@@ -364,9 +370,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Ascending": {},
+                        "PageToken": {}
                     }
                 }
             }
@@ -403,9 +408,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -442,9 +445,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -481,9 +482,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -516,9 +515,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Role": {},
+                        "InputBucket": {},
+                        "OutputBucket": {},
+                        "Topics": {}
                     }
                 }
             }
@@ -555,9 +555,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "Name": {},
+                        "InputBucket": {},
+                        "Role": {},
+                        "AwsKmsKeyArn": {},
+                        "Notifications": {},
+                        "ContentConfig": {},
+                        "ThumbnailConfig": {}
                     }
                 }
             }
@@ -594,9 +599,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "Notifications": {}
                     }
                 }
             }
@@ -633,9 +637,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "Status": {}
                     }
                 }
             }
@@ -687,10 +690,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CancelJobResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "CancelJobRequest": {
             "type": "object",
             "properties": {
@@ -702,23 +701,13 @@
         "Id": {
             "type": "string"
         },
-        "CreateJobResponse": {
+        "CancelJobResponse": {
             "type": "object",
-            "properties": {
-                "Job": {
-                    "$ref": "#/$defs/Job"
-                }
-            }
+            "properties": {}
         },
-        "Job": {
+        "CreateJobRequest": {
             "type": "object",
             "properties": {
-                "Id": {
-                    "$ref": "#/$defs/Id"
-                },
-                "Arn": {
-                    "$ref": "#/$defs/String"
-                },
                 "PipelineId": {
                     "$ref": "#/$defs/Id"
                 },
@@ -729,30 +718,21 @@
                     "$ref": "#/$defs/JobInputs"
                 },
                 "Output": {
-                    "$ref": "#/$defs/JobOutput"
+                    "$ref": "#/$defs/CreateJobOutput"
                 },
                 "Outputs": {
-                    "$ref": "#/$defs/JobOutputs"
+                    "$ref": "#/$defs/CreateJobOutputs"
                 },
                 "OutputKeyPrefix": {
                     "$ref": "#/$defs/Key"
                 },
                 "Playlists": {
-                    "$ref": "#/$defs/Playlists"
-                },
-                "Status": {
-                    "$ref": "#/$defs/JobStatus"
+                    "$ref": "#/$defs/CreateJobPlaylists"
                 },
                 "UserMetadata": {
                     "$ref": "#/$defs/UserMetadata"
-                },
-                "Timing": {
-                    "$ref": "#/$defs/Timing"
                 }
             }
-        },
-        "String": {
-            "type": "string"
         },
         "JobInput": {
             "type": "object",
@@ -933,12 +913,9 @@
                 "$ref": "#/$defs/JobInput"
             }
         },
-        "JobOutput": {
+        "CreateJobOutput": {
             "type": "object",
             "properties": {
-                "Id": {
-                    "$ref": "#/$defs/String"
-                },
                 "Key": {
                     "$ref": "#/$defs/Key"
                 },
@@ -957,30 +934,6 @@
                 "SegmentDuration": {
                     "$ref": "#/$defs/FloatString"
                 },
-                "Status": {
-                    "$ref": "#/$defs/JobStatus"
-                },
-                "StatusDetail": {
-                    "$ref": "#/$defs/Description"
-                },
-                "Duration": {
-                    "$ref": "#/$defs/NullableLong"
-                },
-                "Width": {
-                    "$ref": "#/$defs/NullableInteger"
-                },
-                "Height": {
-                    "$ref": "#/$defs/NullableInteger"
-                },
-                "FrameRate": {
-                    "$ref": "#/$defs/FloatString"
-                },
-                "FileSize": {
-                    "$ref": "#/$defs/NullableLong"
-                },
-                "DurationMillis": {
-                    "$ref": "#/$defs/NullableLong"
-                },
                 "Watermarks": {
                     "$ref": "#/$defs/JobWatermarks"
                 },
@@ -995,9 +948,6 @@
                 },
                 "Encryption": {
                     "$ref": "#/$defs/Encryption"
-                },
-                "AppliedColorSpaceConversion": {
-                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -1005,12 +955,6 @@
             "type": "string"
         },
         "Rotate": {
-            "type": "string"
-        },
-        "JobStatus": {
-            "type": "string"
-        },
-        "Description": {
             "type": "string"
         },
         "JobWatermarks": {
@@ -1151,19 +1095,19 @@
         "CaptionFormatPattern": {
             "type": "string"
         },
-        "JobOutputs": {
+        "CreateJobOutputs": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/JobOutput"
+                "$ref": "#/$defs/CreateJobOutput"
             }
         },
-        "Playlists": {
+        "CreateJobPlaylists": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/Playlist"
+                "$ref": "#/$defs/CreateJobPlaylist"
             }
         },
-        "Playlist": {
+        "CreateJobPlaylist": {
             "type": "object",
             "properties": {
                 "Name": {
@@ -1180,12 +1124,6 @@
                 },
                 "PlayReadyDrm": {
                     "$ref": "#/$defs/PlayReadyDrm"
-                },
-                "Status": {
-                    "$ref": "#/$defs/JobStatus"
-                },
-                "StatusDetail": {
-                    "$ref": "#/$defs/Description"
                 }
             }
         },
@@ -1274,23 +1212,26 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "Timing": {
+        "String": {
+            "type": "string"
+        },
+        "CreateJobResponse": {
             "type": "object",
             "properties": {
-                "SubmitTimeMillis": {
-                    "$ref": "#/$defs/NullableLong"
-                },
-                "StartTimeMillis": {
-                    "$ref": "#/$defs/NullableLong"
-                },
-                "FinishTimeMillis": {
-                    "$ref": "#/$defs/NullableLong"
+                "Job": {
+                    "$ref": "#/$defs/Job"
                 }
             }
         },
-        "CreateJobRequest": {
+        "Job": {
             "type": "object",
             "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
                 "PipelineId": {
                     "$ref": "#/$defs/Id"
                 },
@@ -1301,25 +1242,34 @@
                     "$ref": "#/$defs/JobInputs"
                 },
                 "Output": {
-                    "$ref": "#/$defs/CreateJobOutput"
+                    "$ref": "#/$defs/JobOutput"
                 },
                 "Outputs": {
-                    "$ref": "#/$defs/CreateJobOutputs"
+                    "$ref": "#/$defs/JobOutputs"
                 },
                 "OutputKeyPrefix": {
                     "$ref": "#/$defs/Key"
                 },
                 "Playlists": {
-                    "$ref": "#/$defs/CreateJobPlaylists"
+                    "$ref": "#/$defs/Playlists"
+                },
+                "Status": {
+                    "$ref": "#/$defs/JobStatus"
                 },
                 "UserMetadata": {
                     "$ref": "#/$defs/UserMetadata"
+                },
+                "Timing": {
+                    "$ref": "#/$defs/Timing"
                 }
             }
         },
-        "CreateJobOutput": {
+        "JobOutput": {
             "type": "object",
             "properties": {
+                "Id": {
+                    "$ref": "#/$defs/String"
+                },
                 "Key": {
                     "$ref": "#/$defs/Key"
                 },
@@ -1338,6 +1288,30 @@
                 "SegmentDuration": {
                     "$ref": "#/$defs/FloatString"
                 },
+                "Status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "StatusDetail": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "Width": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "Height": {
+                    "$ref": "#/$defs/NullableInteger"
+                },
+                "FrameRate": {
+                    "$ref": "#/$defs/FloatString"
+                },
+                "FileSize": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "DurationMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                },
                 "Watermarks": {
                     "$ref": "#/$defs/JobWatermarks"
                 },
@@ -1352,22 +1326,31 @@
                 },
                 "Encryption": {
                     "$ref": "#/$defs/Encryption"
+                },
+                "AppliedColorSpaceConversion": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
-        "CreateJobOutputs": {
+        "JobStatus": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "JobOutputs": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/CreateJobOutput"
+                "$ref": "#/$defs/JobOutput"
             }
         },
-        "CreateJobPlaylists": {
+        "Playlists": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/CreateJobPlaylist"
+                "$ref": "#/$defs/Playlist"
             }
         },
-        "CreateJobPlaylist": {
+        "Playlist": {
             "type": "object",
             "properties": {
                 "Name": {
@@ -1384,34 +1367,34 @@
                 },
                 "PlayReadyDrm": {
                     "$ref": "#/$defs/PlayReadyDrm"
-                }
-            }
-        },
-        "CreatePipelineResponse": {
-            "type": "object",
-            "properties": {
-                "Pipeline": {
-                    "$ref": "#/$defs/Pipeline"
-                },
-                "Warnings": {
-                    "$ref": "#/$defs/Warnings"
-                }
-            }
-        },
-        "Pipeline": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/Id"
-                },
-                "Arn": {
-                    "$ref": "#/$defs/String"
-                },
-                "Name": {
-                    "$ref": "#/$defs/Name"
                 },
                 "Status": {
-                    "$ref": "#/$defs/PipelineStatus"
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "StatusDetail": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "Timing": {
+            "type": "object",
+            "properties": {
+                "SubmitTimeMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "StartTimeMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                },
+                "FinishTimeMillis": {
+                    "$ref": "#/$defs/NullableLong"
+                }
+            }
+        },
+        "CreatePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
                 },
                 "InputBucket": {
                     "$ref": "#/$defs/BucketName"
@@ -1435,9 +1418,6 @@
                     "$ref": "#/$defs/PipelineOutputConfig"
                 }
             }
-        },
-        "PipelineStatus": {
-            "type": "string"
         },
         "BucketName": {
             "type": "string"
@@ -1520,28 +1500,31 @@
         "AccessControl": {
             "type": "string"
         },
-        "Warnings": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Warning"
-            }
-        },
-        "Warning": {
+        "CreatePipelineResponse": {
             "type": "object",
             "properties": {
-                "Code": {
-                    "$ref": "#/$defs/String"
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
                 },
-                "Message": {
-                    "$ref": "#/$defs/String"
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
                 }
             }
         },
-        "CreatePipelineRequest": {
+        "Pipeline": {
             "type": "object",
             "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
                 "Name": {
                     "$ref": "#/$defs/Name"
+                },
+                "Status": {
+                    "$ref": "#/$defs/PipelineStatus"
                 },
                 "InputBucket": {
                     "$ref": "#/$defs/BucketName"
@@ -1566,26 +1549,29 @@
                 }
             }
         },
-        "CreatePresetResponse": {
+        "PipelineStatus": {
+            "type": "string"
+        },
+        "Warnings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Warning"
+            }
+        },
+        "Warning": {
             "type": "object",
             "properties": {
-                "Preset": {
-                    "$ref": "#/$defs/Preset"
+                "Code": {
+                    "$ref": "#/$defs/String"
                 },
-                "Warning": {
+                "Message": {
                     "$ref": "#/$defs/String"
                 }
             }
         },
-        "Preset": {
+        "CreatePresetRequest": {
             "type": "object",
             "properties": {
-                "Id": {
-                    "$ref": "#/$defs/Id"
-                },
-                "Arn": {
-                    "$ref": "#/$defs/String"
-                },
                 "Name": {
                     "$ref": "#/$defs/Name"
                 },
@@ -1595,88 +1581,18 @@
                 "Container": {
                     "$ref": "#/$defs/PresetContainer"
                 },
-                "Audio": {
-                    "$ref": "#/$defs/AudioParameters"
-                },
                 "Video": {
                     "$ref": "#/$defs/VideoParameters"
                 },
+                "Audio": {
+                    "$ref": "#/$defs/AudioParameters"
+                },
                 "Thumbnails": {
                     "$ref": "#/$defs/Thumbnails"
-                },
-                "Type": {
-                    "$ref": "#/$defs/PresetType"
                 }
             }
         },
         "PresetContainer": {
-            "type": "string"
-        },
-        "AudioParameters": {
-            "type": "object",
-            "properties": {
-                "Codec": {
-                    "$ref": "#/$defs/AudioCodec"
-                },
-                "SampleRate": {
-                    "$ref": "#/$defs/AudioSampleRate"
-                },
-                "BitRate": {
-                    "$ref": "#/$defs/AudioBitRate"
-                },
-                "Channels": {
-                    "$ref": "#/$defs/AudioChannels"
-                },
-                "AudioPackingMode": {
-                    "$ref": "#/$defs/AudioPackingMode"
-                },
-                "CodecOptions": {
-                    "$ref": "#/$defs/AudioCodecOptions"
-                }
-            }
-        },
-        "AudioCodec": {
-            "type": "string"
-        },
-        "AudioSampleRate": {
-            "type": "string"
-        },
-        "AudioBitRate": {
-            "type": "string"
-        },
-        "AudioChannels": {
-            "type": "string"
-        },
-        "AudioPackingMode": {
-            "type": "string"
-        },
-        "AudioCodecOptions": {
-            "type": "object",
-            "properties": {
-                "Profile": {
-                    "$ref": "#/$defs/AudioCodecProfile"
-                },
-                "BitDepth": {
-                    "$ref": "#/$defs/AudioBitDepth"
-                },
-                "BitOrder": {
-                    "$ref": "#/$defs/AudioBitOrder"
-                },
-                "Signed": {
-                    "$ref": "#/$defs/AudioSigned"
-                }
-            }
-        },
-        "AudioCodecProfile": {
-            "type": "string"
-        },
-        "AudioBitDepth": {
-            "type": "string"
-        },
-        "AudioBitOrder": {
-            "type": "string"
-        },
-        "AudioSigned": {
             "type": "string"
         },
         "VideoParameters": {
@@ -1812,6 +1728,73 @@
         "Target": {
             "type": "string"
         },
+        "AudioParameters": {
+            "type": "object",
+            "properties": {
+                "Codec": {
+                    "$ref": "#/$defs/AudioCodec"
+                },
+                "SampleRate": {
+                    "$ref": "#/$defs/AudioSampleRate"
+                },
+                "BitRate": {
+                    "$ref": "#/$defs/AudioBitRate"
+                },
+                "Channels": {
+                    "$ref": "#/$defs/AudioChannels"
+                },
+                "AudioPackingMode": {
+                    "$ref": "#/$defs/AudioPackingMode"
+                },
+                "CodecOptions": {
+                    "$ref": "#/$defs/AudioCodecOptions"
+                }
+            }
+        },
+        "AudioCodec": {
+            "type": "string"
+        },
+        "AudioSampleRate": {
+            "type": "string"
+        },
+        "AudioBitRate": {
+            "type": "string"
+        },
+        "AudioChannels": {
+            "type": "string"
+        },
+        "AudioPackingMode": {
+            "type": "string"
+        },
+        "AudioCodecOptions": {
+            "type": "object",
+            "properties": {
+                "Profile": {
+                    "$ref": "#/$defs/AudioCodecProfile"
+                },
+                "BitDepth": {
+                    "$ref": "#/$defs/AudioBitDepth"
+                },
+                "BitOrder": {
+                    "$ref": "#/$defs/AudioBitOrder"
+                },
+                "Signed": {
+                    "$ref": "#/$defs/AudioSigned"
+                }
+            }
+        },
+        "AudioCodecProfile": {
+            "type": "string"
+        },
+        "AudioBitDepth": {
+            "type": "string"
+        },
+        "AudioBitOrder": {
+            "type": "string"
+        },
+        "AudioSigned": {
+            "type": "string"
+        },
         "Thumbnails": {
             "type": "object",
             "properties": {
@@ -1847,12 +1830,26 @@
         "ThumbnailResolution": {
             "type": "string"
         },
-        "PresetType": {
-            "type": "string"
-        },
-        "CreatePresetRequest": {
+        "CreatePresetResponse": {
             "type": "object",
             "properties": {
+                "Preset": {
+                    "$ref": "#/$defs/Preset"
+                },
+                "Warning": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Preset": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/String"
+                },
                 "Name": {
                     "$ref": "#/$defs/Name"
                 },
@@ -1862,20 +1859,22 @@
                 "Container": {
                     "$ref": "#/$defs/PresetContainer"
                 },
-                "Video": {
-                    "$ref": "#/$defs/VideoParameters"
-                },
                 "Audio": {
                     "$ref": "#/$defs/AudioParameters"
                 },
+                "Video": {
+                    "$ref": "#/$defs/VideoParameters"
+                },
                 "Thumbnails": {
                     "$ref": "#/$defs/Thumbnails"
+                },
+                "Type": {
+                    "$ref": "#/$defs/PresetType"
                 }
             }
         },
-        "DeletePipelineResponse": {
-            "type": "object",
-            "properties": {}
+        "PresetType": {
+            "type": "string"
         },
         "DeletePipelineRequest": {
             "type": "object",
@@ -1885,7 +1884,7 @@
                 }
             }
         },
-        "DeletePresetResponse": {
+        "DeletePipelineResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1897,22 +1896,9 @@
                 }
             }
         },
-        "ListJobsByPipelineResponse": {
+        "DeletePresetResponse": {
             "type": "object",
-            "properties": {
-                "Jobs": {
-                    "$ref": "#/$defs/Jobs"
-                },
-                "NextPageToken": {
-                    "$ref": "#/$defs/Id"
-                }
-            }
-        },
-        "Jobs": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Job"
-            }
+            "properties": {}
         },
         "ListJobsByPipelineRequest": {
             "type": "object",
@@ -1931,6 +1917,37 @@
         "Ascending": {
             "type": "string"
         },
+        "ListJobsByPipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Jobs": {
+                    "$ref": "#/$defs/Jobs"
+                },
+                "NextPageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "Jobs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Job"
+            }
+        },
+        "ListJobsByStatusRequest": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "Ascending": {
+                    "$ref": "#/$defs/Ascending"
+                },
+                "PageToken": {
+                    "$ref": "#/$defs/Id"
+                }
+            }
+        },
         "ListJobsByStatusResponse": {
             "type": "object",
             "properties": {
@@ -1942,12 +1959,9 @@
                 }
             }
         },
-        "ListJobsByStatusRequest": {
+        "ListPipelinesRequest": {
             "type": "object",
             "properties": {
-                "Status": {
-                    "$ref": "#/$defs/JobStatus"
-                },
                 "Ascending": {
                     "$ref": "#/$defs/Ascending"
                 },
@@ -1973,7 +1987,7 @@
                 "$ref": "#/$defs/Pipeline"
             }
         },
-        "ListPipelinesRequest": {
+        "ListPresetsRequest": {
             "type": "object",
             "properties": {
                 "Ascending": {
@@ -2001,13 +2015,10 @@
                 "$ref": "#/$defs/Preset"
             }
         },
-        "ListPresetsRequest": {
+        "ReadJobRequest": {
             "type": "object",
             "properties": {
-                "Ascending": {
-                    "$ref": "#/$defs/Ascending"
-                },
-                "PageToken": {
+                "Id": {
                     "$ref": "#/$defs/Id"
                 }
             }
@@ -2020,7 +2031,7 @@
                 }
             }
         },
-        "ReadJobRequest": {
+        "ReadPipelineRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -2039,7 +2050,7 @@
                 }
             }
         },
-        "ReadPipelineRequest": {
+        "ReadPresetRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -2053,34 +2064,6 @@
                 "Preset": {
                     "$ref": "#/$defs/Preset"
                 }
-            }
-        },
-        "ReadPresetRequest": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/Id"
-                }
-            }
-        },
-        "TestRoleResponse": {
-            "type": "object",
-            "properties": {
-                "Success": {
-                    "$ref": "#/$defs/Success"
-                },
-                "Messages": {
-                    "$ref": "#/$defs/ExceptionMessages"
-                }
-            }
-        },
-        "Success": {
-            "type": "string"
-        },
-        "ExceptionMessages": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/String"
             }
         },
         "TestRoleRequest": {
@@ -2106,15 +2089,24 @@
                 "$ref": "#/$defs/SnsTopic"
             }
         },
-        "UpdatePipelineResponse": {
+        "TestRoleResponse": {
             "type": "object",
             "properties": {
-                "Pipeline": {
-                    "$ref": "#/$defs/Pipeline"
+                "Success": {
+                    "$ref": "#/$defs/Success"
                 },
-                "Warnings": {
-                    "$ref": "#/$defs/Warnings"
+                "Messages": {
+                    "$ref": "#/$defs/ExceptionMessages"
                 }
+            }
+        },
+        "Success": {
+            "type": "string"
+        },
+        "ExceptionMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
             }
         },
         "UpdatePipelineRequest": {
@@ -2146,11 +2138,14 @@
                 }
             }
         },
-        "UpdatePipelineNotificationsResponse": {
+        "UpdatePipelineResponse": {
             "type": "object",
             "properties": {
                 "Pipeline": {
                     "$ref": "#/$defs/Pipeline"
+                },
+                "Warnings": {
+                    "$ref": "#/$defs/Warnings"
                 }
             }
         },
@@ -2165,7 +2160,7 @@
                 }
             }
         },
-        "UpdatePipelineStatusResponse": {
+        "UpdatePipelineNotificationsResponse": {
             "type": "object",
             "properties": {
                 "Pipeline": {
@@ -2181,6 +2176,14 @@
                 },
                 "Status": {
                     "$ref": "#/$defs/PipelineStatus"
+                }
+            }
+        },
+        "UpdatePipelineStatusResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
                 }
             }
         }

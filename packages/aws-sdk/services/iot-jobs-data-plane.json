@@ -35,9 +35,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "jobId": {},
+                        "thingName": {},
+                        "includeJobDocument": {},
+                        "executionNumber": {}
                     }
                 }
             }
@@ -74,9 +75,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "thingName": {}
                     }
                 }
             }
@@ -109,9 +108,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "targetArn": {},
+                        "commandArn": {},
+                        "parameters": {},
+                        "executionTimeoutSeconds": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -148,9 +149,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "thingName": {},
+                        "statusDetails": {},
+                        "stepTimeoutInMinutes": {}
                     }
                 }
             }
@@ -189,9 +190,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "jobId": {},
+                        "thingName": {},
+                        "status": {},
+                        "statusDetails": {},
+                        "stepTimeoutInMinutes": {},
+                        "expectedVersion": {},
+                        "includeJobExecutionState": {},
+                        "includeJobDocument": {},
+                        "executionNumber": {}
                     }
                 }
             }
@@ -243,6 +250,36 @@
             "type": "string",
             "format": "binary"
         },
+        "DescribeJobExecutionRequest": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/DescribeJobExecutionJobId"
+                },
+                "thingName": {
+                    "$ref": "#/$defs/ThingName"
+                },
+                "includeJobDocument": {
+                    "$ref": "#/$defs/IncludeJobDocument"
+                },
+                "executionNumber": {
+                    "$ref": "#/$defs/ExecutionNumber"
+                }
+            }
+        },
+        "DescribeJobExecutionJobId": {
+            "type": "string"
+        },
+        "ThingName": {
+            "type": "string"
+        },
+        "IncludeJobDocument": {
+            "type": "boolean"
+        },
+        "ExecutionNumber": {
+            "type": "integer",
+            "format": "int64"
+        },
         "DescribeJobExecutionResponse": {
             "type": "object",
             "properties": {
@@ -292,9 +329,6 @@
         "JobId": {
             "type": "string"
         },
-        "ThingName": {
-            "type": "string"
-        },
         "JobExecutionStatus": {
             "enum": [
                 "QUEUED",
@@ -336,35 +370,16 @@
             "type": "integer",
             "format": "int64"
         },
-        "ExecutionNumber": {
-            "type": "integer",
-            "format": "int64"
-        },
         "JobDocument": {
             "type": "string"
         },
-        "DescribeJobExecutionRequest": {
+        "GetPendingJobExecutionsRequest": {
             "type": "object",
             "properties": {
-                "jobId": {
-                    "$ref": "#/$defs/DescribeJobExecutionJobId"
-                },
                 "thingName": {
                     "$ref": "#/$defs/ThingName"
-                },
-                "includeJobDocument": {
-                    "$ref": "#/$defs/IncludeJobDocument"
-                },
-                "executionNumber": {
-                    "$ref": "#/$defs/ExecutionNumber"
                 }
             }
-        },
-        "DescribeJobExecutionJobId": {
-            "type": "string"
-        },
-        "IncludeJobDocument": {
-            "type": "boolean"
         },
         "GetPendingJobExecutionsResponse": {
             "type": "object",
@@ -405,25 +420,6 @@
                     "$ref": "#/$defs/ExecutionNumber"
                 }
             }
-        },
-        "GetPendingJobExecutionsRequest": {
-            "type": "object",
-            "properties": {
-                "thingName": {
-                    "$ref": "#/$defs/ThingName"
-                }
-            }
-        },
-        "StartCommandExecutionResponse": {
-            "type": "object",
-            "properties": {
-                "executionId": {
-                    "$ref": "#/$defs/CommandExecutionId"
-                }
-            }
-        },
-        "CommandExecutionId": {
-            "type": "string"
         },
         "StartCommandExecutionRequest": {
             "type": "object",
@@ -515,13 +511,16 @@
         "ClientRequestTokenV2": {
             "type": "string"
         },
-        "StartNextPendingJobExecutionResponse": {
+        "StartCommandExecutionResponse": {
             "type": "object",
             "properties": {
-                "execution": {
-                    "$ref": "#/$defs/JobExecution"
+                "executionId": {
+                    "$ref": "#/$defs/CommandExecutionId"
                 }
             }
+        },
+        "CommandExecutionId": {
+            "type": "string"
         },
         "StartNextPendingJobExecutionRequest": {
             "type": "object",
@@ -541,28 +540,11 @@
             "type": "integer",
             "format": "int64"
         },
-        "UpdateJobExecutionResponse": {
+        "StartNextPendingJobExecutionResponse": {
             "type": "object",
             "properties": {
-                "executionState": {
-                    "$ref": "#/$defs/JobExecutionState"
-                },
-                "jobDocument": {
-                    "$ref": "#/$defs/JobDocument"
-                }
-            }
-        },
-        "JobExecutionState": {
-            "type": "object",
-            "properties": {
-                "status": {
-                    "$ref": "#/$defs/JobExecutionStatus"
-                },
-                "statusDetails": {
-                    "$ref": "#/$defs/DetailsMap"
-                },
-                "versionNumber": {
-                    "$ref": "#/$defs/VersionNumber"
+                "execution": {
+                    "$ref": "#/$defs/JobExecution"
                 }
             }
         },
@@ -604,6 +586,31 @@
         },
         "IncludeExecutionState": {
             "type": "boolean"
+        },
+        "UpdateJobExecutionResponse": {
+            "type": "object",
+            "properties": {
+                "executionState": {
+                    "$ref": "#/$defs/JobExecutionState"
+                },
+                "jobDocument": {
+                    "$ref": "#/$defs/JobDocument"
+                }
+            }
+        },
+        "JobExecutionState": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/JobExecutionStatus"
+                },
+                "statusDetails": {
+                    "$ref": "#/$defs/DetailsMap"
+                },
+                "versionNumber": {
+                    "$ref": "#/$defs/VersionNumber"
+                }
+            }
         }
     },
     "aws": {

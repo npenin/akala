@@ -29,9 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostId": {},
+                        "SubnetId": {},
+                        "SecurityGroupId": {},
+                        "AccessType": {},
+                        "CustomerOwnedIpv4Pool": {}
                     }
                 }
             }
@@ -64,9 +66,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EndpointId": {},
+                        "OutpostId": {}
                     }
                 }
             }
@@ -99,9 +100,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -134,9 +134,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -169,9 +168,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "OutpostId": {}
                     }
                 }
             }
@@ -223,17 +222,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateEndpointResult": {
-            "type": "object",
-            "properties": {
-                "EndpointArn": {
-                    "$ref": "#/$defs/EndpointArn"
-                }
-            }
-        },
-        "EndpointArn": {
-            "type": "string"
-        },
         "CreateEndpointRequest": {
             "type": "object",
             "properties": {
@@ -272,6 +260,17 @@
         "CustomerOwnedIpv4Pool": {
             "type": "string"
         },
+        "CreateEndpointResult": {
+            "type": "object",
+            "properties": {
+                "EndpointArn": {
+                    "$ref": "#/$defs/EndpointArn"
+                }
+            }
+        },
+        "EndpointArn": {
+            "type": "string"
+        },
         "DeleteEndpointRequest": {
             "type": "object",
             "properties": {
@@ -285,6 +284,24 @@
         },
         "EndpointId": {
             "type": "string"
+        },
+        "ListEndpointsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListEndpointsResult": {
             "type": "object",
@@ -397,10 +414,7 @@
         "Message": {
             "type": "string"
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListEndpointsRequest": {
+        "ListOutpostsWithS3Request": {
             "type": "object",
             "properties": {
                 "NextToken": {
@@ -410,10 +424,6 @@
                     "$ref": "#/$defs/MaxResults"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListOutpostsWithS3Result": {
             "type": "object",
@@ -465,28 +475,6 @@
             "type": "integer",
             "format": "int64"
         },
-        "ListOutpostsWithS3Request": {
-            "type": "object",
-            "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                }
-            }
-        },
-        "ListSharedEndpointsResult": {
-            "type": "object",
-            "properties": {
-                "Endpoints": {
-                    "$ref": "#/$defs/Endpoints"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
         "ListSharedEndpointsRequest": {
             "type": "object",
             "properties": {
@@ -498,6 +486,17 @@
                 },
                 "OutpostId": {
                     "$ref": "#/$defs/OutpostId"
+                }
+            }
+        },
+        "ListSharedEndpointsResult": {
+            "type": "object",
+            "properties": {
+                "Endpoints": {
+                    "$ref": "#/$defs/Endpoints"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
         }

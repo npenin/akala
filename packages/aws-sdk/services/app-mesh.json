@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "nextToken": {},
+                        "limit": {}
                     }
                 }
             }
@@ -64,9 +64,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -99,9 +98,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -153,6 +151,27 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "limit": {
+                    "$ref": "#/$defs/TagsLimit"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "TagsLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ListTagsForResourceOutput": {
             "type": "object",
             "properties": {
@@ -187,31 +206,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceInput": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "limit": {
-                    "$ref": "#/$defs/TagsLimit"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "TagsLimit": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "TagResourceOutput": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceInput": {
             "type": "object",
             "properties": {
@@ -223,7 +217,7 @@
                 }
             }
         },
-        "UntagResourceOutput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {}
         },
@@ -243,6 +237,10 @@
             "items": {
                 "$ref": "#/$defs/TagKey"
             }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

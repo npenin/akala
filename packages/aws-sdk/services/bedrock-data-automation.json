@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "blueprintArn": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -68,9 +67,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceARN": {}
                     }
                 }
             }
@@ -103,9 +100,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceARN": {},
+                        "tags": {}
                     }
                 }
             }
@@ -138,9 +134,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceARN": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -192,6 +187,23 @@
             "type": "string",
             "format": "binary"
         },
+        "CreateBlueprintVersionRequest": {
+            "type": "object",
+            "properties": {
+                "blueprintArn": {
+                    "$ref": "#/$defs/BlueprintArn"
+                },
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                }
+            }
+        },
+        "BlueprintArn": {
+            "type": "string"
+        },
+        "ClientToken": {
+            "type": "string"
+        },
         "CreateBlueprintVersionResponse": {
             "type": "object",
             "properties": {
@@ -235,9 +247,6 @@
                 }
             }
         },
-        "BlueprintArn": {
-            "type": "string"
-        },
         "BlueprintSchema": {
             "type": "string"
         },
@@ -275,18 +284,15 @@
         "EncryptionContextValue": {
             "type": "string"
         },
-        "CreateBlueprintVersionRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "blueprintArn": {
-                    "$ref": "#/$defs/BlueprintArn"
-                },
-                "clientToken": {
-                    "$ref": "#/$defs/ClientToken"
+                "resourceARN": {
+                    "$ref": "#/$defs/TaggableResourceArn"
                 }
             }
         },
-        "ClientToken": {
+        "TaggableResourceArn": {
             "type": "string"
         },
         "ListTagsForResourceResponse": {
@@ -320,21 +326,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceARN": {
-                    "$ref": "#/$defs/TaggableResourceArn"
-                }
-            }
-        },
-        "TaggableResourceArn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -346,7 +337,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -366,6 +357,10 @@
             "items": {
                 "$ref": "#/$defs/TagKey"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamName": {},
+                        "StreamARN": {},
+                        "StartSelector": {}
                     }
                 }
             }
@@ -80,24 +80,6 @@
         },
         "smithy.api#Document": {},
         "smithy.api#Blob": {
-            "type": "string",
-            "format": "binary"
-        },
-        "GetMediaOutput": {
-            "type": "object",
-            "properties": {
-                "ContentType": {
-                    "$ref": "#/$defs/ContentType"
-                },
-                "Payload": {
-                    "$ref": "#/$defs/Payload"
-                }
-            }
-        },
-        "ContentType": {
-            "type": "string"
-        },
-        "Payload": {
             "type": "string",
             "format": "binary"
         },
@@ -157,6 +139,24 @@
         },
         "ContinuationToken": {
             "type": "string"
+        },
+        "GetMediaOutput": {
+            "type": "object",
+            "properties": {
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "Payload": {
+                    "$ref": "#/$defs/Payload"
+                }
+            }
+        },
+        "ContentType": {
+            "type": "string"
+        },
+        "Payload": {
+            "type": "string",
+            "format": "binary"
         }
     },
     "aws": {

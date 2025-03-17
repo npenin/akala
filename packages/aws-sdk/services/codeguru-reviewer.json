@@ -29,9 +29,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Repository": {},
+                        "ClientRequestToken": {},
+                        "Tags": {},
+                        "KMSKeyDetails": {}
                     }
                 }
             }
@@ -64,9 +65,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "RepositoryAssociationArn": {},
+                        "Type": {},
+                        "ClientRequestToken": {}
                     }
                 }
             }
@@ -103,9 +105,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CodeReviewArn": {}
                     }
                 }
             }
@@ -142,9 +142,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CodeReviewArn": {},
+                        "RecommendationId": {},
+                        "UserId": {}
                     }
                 }
             }
@@ -181,9 +181,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "AssociationArn": {}
                     }
                 }
             }
@@ -220,9 +218,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "AssociationArn": {}
                     }
                 }
             }
@@ -255,9 +251,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProviderTypes": {},
+                        "States": {},
+                        "RepositoryNames": {},
+                        "Type": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -294,9 +293,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "CodeReviewArn": {},
+                        "UserIds": {},
+                        "RecommendationIds": {}
                     }
                 }
             }
@@ -333,9 +334,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "CodeReviewArn": {}
                     }
                 }
             }
@@ -368,9 +369,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProviderTypes": {},
+                        "States": {},
+                        "Names": {},
+                        "Owners": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -407,9 +411,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -442,9 +444,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CodeReviewArn": {},
+                        "RecommendationId": {},
+                        "Reactions": {}
                     }
                 }
             }
@@ -481,9 +483,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -520,9 +521,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -573,6 +573,117 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "AssociateRepositoryRequest": {
+            "type": "object",
+            "properties": {
+                "Repository": {
+                    "$ref": "#/$defs/Repository"
+                },
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "KMSKeyDetails": {
+                    "$ref": "#/$defs/KMSKeyDetails"
+                }
+            }
+        },
+        "Repository": {
+            "type": "object",
+            "properties": {
+                "CodeCommit": {
+                    "$ref": "#/$defs/CodeCommitRepository"
+                },
+                "Bitbucket": {
+                    "$ref": "#/$defs/ThirdPartySourceRepository"
+                },
+                "GitHubEnterpriseServer": {
+                    "$ref": "#/$defs/ThirdPartySourceRepository"
+                },
+                "S3Bucket": {
+                    "$ref": "#/$defs/S3Repository"
+                }
+            }
+        },
+        "CodeCommitRepository": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                }
+            }
+        },
+        "Name": {
+            "type": "string"
+        },
+        "ThirdPartySourceRepository": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "ConnectionArn": {
+                    "$ref": "#/$defs/ConnectionArn"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/Owner"
+                }
+            }
+        },
+        "ConnectionArn": {
+            "type": "string"
+        },
+        "Owner": {
+            "type": "string"
+        },
+        "S3Repository": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "BucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "ClientRequestToken": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "KMSKeyDetails": {
+            "type": "object",
+            "properties": {
+                "KMSKeyId": {
+                    "$ref": "#/$defs/KMSKeyId"
+                },
+                "EncryptionOption": {
+                    "$ref": "#/$defs/EncryptionOption"
+                }
+            }
+        },
+        "KMSKeyId": {
+            "type": "string"
+        },
+        "EncryptionOption": {
+            "enum": [
+                "AoCmk",
+                "CmCmk"
+            ]
         },
         "AssociateRepositoryResponse": {
             "type": "object",
@@ -632,15 +743,6 @@
         "Arn": {
             "type": "string"
         },
-        "ConnectionArn": {
-            "type": "string"
-        },
-        "Name": {
-            "type": "string"
-        },
-        "Owner": {
-            "type": "string"
-        },
         "ProviderType": {
             "enum": [
                 "CODE_COMMIT",
@@ -666,26 +768,6 @@
             "type": "string",
             "format": "date-time"
         },
-        "KMSKeyDetails": {
-            "type": "object",
-            "properties": {
-                "KMSKeyId": {
-                    "$ref": "#/$defs/KMSKeyId"
-                },
-                "EncryptionOption": {
-                    "$ref": "#/$defs/EncryptionOption"
-                }
-            }
-        },
-        "KMSKeyId": {
-            "type": "string"
-        },
-        "EncryptionOption": {
-            "enum": [
-                "AoCmk",
-                "CmCmk"
-            ]
-        },
         "S3RepositoryDetails": {
             "type": "object",
             "properties": {
@@ -696,9 +778,6 @@
                     "$ref": "#/$defs/CodeArtifacts"
                 }
             }
-        },
-        "S3BucketName": {
-            "type": "string"
         },
         "CodeArtifacts": {
             "type": "object",
@@ -717,84 +796,179 @@
         "BuildArtifactsObjectKey": {
             "type": "string"
         },
-        "TagMap": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
-        },
-        "TagValue": {
-            "type": "string"
-        },
-        "AssociateRepositoryRequest": {
+        "CreateCodeReviewRequest": {
             "type": "object",
             "properties": {
-                "Repository": {
-                    "$ref": "#/$defs/Repository"
+                "Name": {
+                    "$ref": "#/$defs/CodeReviewName"
+                },
+                "RepositoryAssociationArn": {
+                    "$ref": "#/$defs/AssociationArn"
+                },
+                "Type": {
+                    "$ref": "#/$defs/CodeReviewType"
                 },
                 "ClientRequestToken": {
                     "$ref": "#/$defs/ClientRequestToken"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagMap"
-                },
-                "KMSKeyDetails": {
-                    "$ref": "#/$defs/KMSKeyDetails"
                 }
             }
         },
-        "Repository": {
-            "type": "object",
-            "properties": {
-                "CodeCommit": {
-                    "$ref": "#/$defs/CodeCommitRepository"
-                },
-                "Bitbucket": {
-                    "$ref": "#/$defs/ThirdPartySourceRepository"
-                },
-                "GitHubEnterpriseServer": {
-                    "$ref": "#/$defs/ThirdPartySourceRepository"
-                },
-                "S3Bucket": {
-                    "$ref": "#/$defs/S3Repository"
-                }
-            }
-        },
-        "CodeCommitRepository": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/Name"
-                }
-            }
-        },
-        "ThirdPartySourceRepository": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/Name"
-                },
-                "ConnectionArn": {
-                    "$ref": "#/$defs/ConnectionArn"
-                },
-                "Owner": {
-                    "$ref": "#/$defs/Owner"
-                }
-            }
-        },
-        "S3Repository": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/Name"
-                },
-                "BucketName": {
-                    "$ref": "#/$defs/S3BucketName"
-                }
-            }
-        },
-        "ClientRequestToken": {
+        "CodeReviewName": {
             "type": "string"
+        },
+        "AssociationArn": {
+            "type": "string"
+        },
+        "CodeReviewType": {
+            "type": "object",
+            "properties": {
+                "RepositoryAnalysis": {
+                    "$ref": "#/$defs/RepositoryAnalysis"
+                },
+                "AnalysisTypes": {
+                    "$ref": "#/$defs/AnalysisTypes"
+                }
+            }
+        },
+        "RepositoryAnalysis": {
+            "type": "object",
+            "properties": {
+                "RepositoryHead": {
+                    "$ref": "#/$defs/RepositoryHeadSourceCodeType"
+                },
+                "SourceCodeType": {
+                    "$ref": "#/$defs/SourceCodeType"
+                }
+            }
+        },
+        "RepositoryHeadSourceCodeType": {
+            "type": "object",
+            "properties": {
+                "BranchName": {
+                    "$ref": "#/$defs/BranchName"
+                }
+            }
+        },
+        "BranchName": {
+            "type": "string"
+        },
+        "SourceCodeType": {
+            "type": "object",
+            "properties": {
+                "CommitDiff": {
+                    "$ref": "#/$defs/CommitDiffSourceCodeType"
+                },
+                "RepositoryHead": {
+                    "$ref": "#/$defs/RepositoryHeadSourceCodeType"
+                },
+                "BranchDiff": {
+                    "$ref": "#/$defs/BranchDiffSourceCodeType"
+                },
+                "S3BucketRepository": {
+                    "$ref": "#/$defs/S3BucketRepository"
+                },
+                "RequestMetadata": {
+                    "$ref": "#/$defs/RequestMetadata"
+                }
+            }
+        },
+        "CommitDiffSourceCodeType": {
+            "type": "object",
+            "properties": {
+                "SourceCommit": {
+                    "$ref": "#/$defs/CommitId"
+                },
+                "DestinationCommit": {
+                    "$ref": "#/$defs/CommitId"
+                },
+                "MergeBaseCommit": {
+                    "$ref": "#/$defs/CommitId"
+                }
+            }
+        },
+        "CommitId": {
+            "type": "string"
+        },
+        "BranchDiffSourceCodeType": {
+            "type": "object",
+            "properties": {
+                "SourceBranchName": {
+                    "$ref": "#/$defs/BranchName"
+                },
+                "DestinationBranchName": {
+                    "$ref": "#/$defs/BranchName"
+                }
+            }
+        },
+        "S3BucketRepository": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Details": {
+                    "$ref": "#/$defs/S3RepositoryDetails"
+                }
+            }
+        },
+        "RequestMetadata": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "Requester": {
+                    "$ref": "#/$defs/Requester"
+                },
+                "EventInfo": {
+                    "$ref": "#/$defs/EventInfo"
+                },
+                "VendorName": {
+                    "$ref": "#/$defs/VendorName"
+                }
+            }
+        },
+        "RequestId": {
+            "type": "string"
+        },
+        "Requester": {
+            "type": "string"
+        },
+        "EventInfo": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EventName"
+                },
+                "State": {
+                    "$ref": "#/$defs/EventState"
+                }
+            }
+        },
+        "EventName": {
+            "type": "string"
+        },
+        "EventState": {
+            "type": "string"
+        },
+        "VendorName": {
+            "enum": [
+                "GITHUB",
+                "GITLAB",
+                "NATIVE_S3"
+            ]
+        },
+        "AnalysisTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnalysisType"
+            }
+        },
+        "AnalysisType": {
+            "enum": [
+                "SECURITY",
+                "CODE_QUALITY"
+            ]
         },
         "CreateCodeReviewResponse": {
             "type": "object",
@@ -874,126 +1048,6 @@
         "PullRequestId": {
             "type": "string"
         },
-        "SourceCodeType": {
-            "type": "object",
-            "properties": {
-                "CommitDiff": {
-                    "$ref": "#/$defs/CommitDiffSourceCodeType"
-                },
-                "RepositoryHead": {
-                    "$ref": "#/$defs/RepositoryHeadSourceCodeType"
-                },
-                "BranchDiff": {
-                    "$ref": "#/$defs/BranchDiffSourceCodeType"
-                },
-                "S3BucketRepository": {
-                    "$ref": "#/$defs/S3BucketRepository"
-                },
-                "RequestMetadata": {
-                    "$ref": "#/$defs/RequestMetadata"
-                }
-            }
-        },
-        "CommitDiffSourceCodeType": {
-            "type": "object",
-            "properties": {
-                "SourceCommit": {
-                    "$ref": "#/$defs/CommitId"
-                },
-                "DestinationCommit": {
-                    "$ref": "#/$defs/CommitId"
-                },
-                "MergeBaseCommit": {
-                    "$ref": "#/$defs/CommitId"
-                }
-            }
-        },
-        "CommitId": {
-            "type": "string"
-        },
-        "RepositoryHeadSourceCodeType": {
-            "type": "object",
-            "properties": {
-                "BranchName": {
-                    "$ref": "#/$defs/BranchName"
-                }
-            }
-        },
-        "BranchName": {
-            "type": "string"
-        },
-        "BranchDiffSourceCodeType": {
-            "type": "object",
-            "properties": {
-                "SourceBranchName": {
-                    "$ref": "#/$defs/BranchName"
-                },
-                "DestinationBranchName": {
-                    "$ref": "#/$defs/BranchName"
-                }
-            }
-        },
-        "S3BucketRepository": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/Name"
-                },
-                "Details": {
-                    "$ref": "#/$defs/S3RepositoryDetails"
-                }
-            }
-        },
-        "RequestMetadata": {
-            "type": "object",
-            "properties": {
-                "RequestId": {
-                    "$ref": "#/$defs/RequestId"
-                },
-                "Requester": {
-                    "$ref": "#/$defs/Requester"
-                },
-                "EventInfo": {
-                    "$ref": "#/$defs/EventInfo"
-                },
-                "VendorName": {
-                    "$ref": "#/$defs/VendorName"
-                }
-            }
-        },
-        "RequestId": {
-            "type": "string"
-        },
-        "Requester": {
-            "type": "string"
-        },
-        "EventInfo": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/EventName"
-                },
-                "State": {
-                    "$ref": "#/$defs/EventState"
-                }
-            }
-        },
-        "EventName": {
-            "type": "string"
-        },
-        "EventState": {
-            "type": "string"
-        },
-        "VendorName": {
-            "enum": [
-                "GITHUB",
-                "GITLAB",
-                "NATIVE_S3"
-            ]
-        },
-        "AssociationArn": {
-            "type": "string"
-        },
         "Metrics": {
             "type": "object",
             "properties": {
@@ -1016,18 +1070,6 @@
             "type": "integer",
             "format": "int64"
         },
-        "AnalysisTypes": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AnalysisType"
-            }
-        },
-        "AnalysisType": {
-            "enum": [
-                "SECURITY",
-                "CODE_QUALITY"
-            ]
-        },
         "ConfigFileState": {
             "enum": [
                 "PRESENT",
@@ -1035,45 +1077,11 @@
                 "PRESENT_WITH_ERRORS"
             ]
         },
-        "CreateCodeReviewRequest": {
+        "DescribeCodeReviewRequest": {
             "type": "object",
             "properties": {
-                "Name": {
-                    "$ref": "#/$defs/CodeReviewName"
-                },
-                "RepositoryAssociationArn": {
-                    "$ref": "#/$defs/AssociationArn"
-                },
-                "Type": {
-                    "$ref": "#/$defs/CodeReviewType"
-                },
-                "ClientRequestToken": {
-                    "$ref": "#/$defs/ClientRequestToken"
-                }
-            }
-        },
-        "CodeReviewName": {
-            "type": "string"
-        },
-        "CodeReviewType": {
-            "type": "object",
-            "properties": {
-                "RepositoryAnalysis": {
-                    "$ref": "#/$defs/RepositoryAnalysis"
-                },
-                "AnalysisTypes": {
-                    "$ref": "#/$defs/AnalysisTypes"
-                }
-            }
-        },
-        "RepositoryAnalysis": {
-            "type": "object",
-            "properties": {
-                "RepositoryHead": {
-                    "$ref": "#/$defs/RepositoryHeadSourceCodeType"
-                },
-                "SourceCodeType": {
-                    "$ref": "#/$defs/SourceCodeType"
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -1085,13 +1093,25 @@
                 }
             }
         },
-        "DescribeCodeReviewRequest": {
+        "DescribeRecommendationFeedbackRequest": {
             "type": "object",
             "properties": {
                 "CodeReviewArn": {
                     "$ref": "#/$defs/Arn"
+                },
+                "RecommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
                 }
             }
+        },
+        "RecommendationId": {
+            "type": "string"
+        },
+        "UserId": {
+            "type": "string"
         },
         "DescribeRecommendationFeedbackResponse": {
             "type": "object",
@@ -1124,9 +1144,6 @@
                 }
             }
         },
-        "RecommendationId": {
-            "type": "string"
-        },
         "Reactions": {
             "type": "array",
             "items": {
@@ -1139,20 +1156,11 @@
                 "THUMBS_DOWN"
             ]
         },
-        "UserId": {
-            "type": "string"
-        },
-        "DescribeRecommendationFeedbackRequest": {
+        "DescribeRepositoryAssociationRequest": {
             "type": "object",
             "properties": {
-                "CodeReviewArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "RecommendationId": {
-                    "$ref": "#/$defs/RecommendationId"
-                },
-                "UserId": {
-                    "$ref": "#/$defs/UserId"
+                "AssociationArn": {
+                    "$ref": "#/$defs/AssociationArn"
                 }
             }
         },
@@ -1167,7 +1175,7 @@
                 }
             }
         },
-        "DescribeRepositoryAssociationRequest": {
+        "DisassociateRepositoryRequest": {
             "type": "object",
             "properties": {
                 "AssociationArn": {
@@ -1186,13 +1194,53 @@
                 }
             }
         },
-        "DisassociateRepositoryRequest": {
+        "ListCodeReviewsRequest": {
             "type": "object",
             "properties": {
-                "AssociationArn": {
-                    "$ref": "#/$defs/AssociationArn"
+                "ProviderTypes": {
+                    "$ref": "#/$defs/ProviderTypes"
+                },
+                "States": {
+                    "$ref": "#/$defs/JobStates"
+                },
+                "RepositoryNames": {
+                    "$ref": "#/$defs/RepositoryNames"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListCodeReviewsMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
+        },
+        "ProviderTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProviderType"
+            }
+        },
+        "JobStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobState"
+            }
+        },
+        "RepositoryNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Name"
+            }
+        },
+        "ListCodeReviewsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListCodeReviewsResponse": {
             "type": "object",
@@ -1266,85 +1314,6 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListCodeReviewsRequest": {
-            "type": "object",
-            "properties": {
-                "ProviderTypes": {
-                    "$ref": "#/$defs/ProviderTypes"
-                },
-                "States": {
-                    "$ref": "#/$defs/JobStates"
-                },
-                "RepositoryNames": {
-                    "$ref": "#/$defs/RepositoryNames"
-                },
-                "Type": {
-                    "$ref": "#/$defs/Type"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/ListCodeReviewsMaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ProviderTypes": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ProviderType"
-            }
-        },
-        "JobStates": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/JobState"
-            }
-        },
-        "RepositoryNames": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Name"
-            }
-        },
-        "ListCodeReviewsMaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ListRecommendationFeedbackResponse": {
-            "type": "object",
-            "properties": {
-                "RecommendationFeedbackSummaries": {
-                    "$ref": "#/$defs/RecommendationFeedbackSummaries"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "RecommendationFeedbackSummaries": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/RecommendationFeedbackSummary"
-            }
-        },
-        "RecommendationFeedbackSummary": {
-            "type": "object",
-            "properties": {
-                "RecommendationId": {
-                    "$ref": "#/$defs/RecommendationId"
-                },
-                "Reactions": {
-                    "$ref": "#/$defs/Reactions"
-                },
-                "UserId": {
-                    "$ref": "#/$defs/UserId"
-                }
-            }
-        },
         "ListRecommendationFeedbackRequest": {
             "type": "object",
             "properties": {
@@ -1380,6 +1349,55 @@
             "items": {
                 "$ref": "#/$defs/RecommendationId"
             }
+        },
+        "ListRecommendationFeedbackResponse": {
+            "type": "object",
+            "properties": {
+                "RecommendationFeedbackSummaries": {
+                    "$ref": "#/$defs/RecommendationFeedbackSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RecommendationFeedbackSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationFeedbackSummary"
+            }
+        },
+        "RecommendationFeedbackSummary": {
+            "type": "object",
+            "properties": {
+                "RecommendationId": {
+                    "$ref": "#/$defs/RecommendationId"
+                },
+                "Reactions": {
+                    "$ref": "#/$defs/Reactions"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                }
+            }
+        },
+        "ListRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListRecommendationsMaxResults"
+                },
+                "CodeReviewArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListRecommendationsMaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListRecommendationsResponse": {
             "type": "object",
@@ -1502,23 +1520,46 @@
                 "CRITICAL"
             ]
         },
-        "ListRecommendationsRequest": {
+        "ListRepositoryAssociationsRequest": {
             "type": "object",
             "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "ProviderTypes": {
+                    "$ref": "#/$defs/ProviderTypes"
+                },
+                "States": {
+                    "$ref": "#/$defs/RepositoryAssociationStates"
+                },
+                "Names": {
+                    "$ref": "#/$defs/Names"
+                },
+                "Owners": {
+                    "$ref": "#/$defs/Owners"
                 },
                 "MaxResults": {
-                    "$ref": "#/$defs/ListRecommendationsMaxResults"
+                    "$ref": "#/$defs/MaxResults"
                 },
-                "CodeReviewArn": {
-                    "$ref": "#/$defs/Arn"
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
         },
-        "ListRecommendationsMaxResults": {
-            "type": "integer",
-            "format": "int32"
+        "RepositoryAssociationStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RepositoryAssociationState"
+            }
+        },
+        "Names": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Name"
+            }
+        },
+        "Owners": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Owner"
+            }
         },
         "ListRepositoryAssociationsResponse": {
             "type": "object",
@@ -1566,45 +1607,12 @@
                 }
             }
         },
-        "ListRepositoryAssociationsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "ProviderTypes": {
-                    "$ref": "#/$defs/ProviderTypes"
-                },
-                "States": {
-                    "$ref": "#/$defs/RepositoryAssociationStates"
-                },
-                "Names": {
-                    "$ref": "#/$defs/Names"
-                },
-                "Owners": {
-                    "$ref": "#/$defs/Owners"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "resourceArn": {
+                    "$ref": "#/$defs/AssociationArn"
                 }
-            }
-        },
-        "RepositoryAssociationStates": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/RepositoryAssociationState"
-            }
-        },
-        "Names": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Name"
-            }
-        },
-        "Owners": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Owner"
             }
         },
         "ListTagsForResourceResponse": {
@@ -1614,18 +1622,6 @@
                     "$ref": "#/$defs/TagMap"
                 }
             }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/AssociationArn"
-                }
-            }
-        },
-        "PutRecommendationFeedbackResponse": {
-            "type": "object",
-            "properties": {}
         },
         "PutRecommendationFeedbackRequest": {
             "type": "object",
@@ -1641,7 +1637,7 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "PutRecommendationFeedbackResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1656,7 +1652,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1679,6 +1675,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

@@ -33,9 +33,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SnapshotId": {},
+                        "ChangedBlocksCount": {},
+                        "Checksum": {},
+                        "ChecksumAlgorithm": {},
+                        "ChecksumAggregationMethod": {}
                     }
                 }
             }
@@ -74,9 +76,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SnapshotId": {},
+                        "BlockIndex": {},
+                        "BlockToken": {}
                     }
                 }
             }
@@ -113,9 +115,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FirstSnapshotId": {},
+                        "SecondSnapshotId": {},
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "StartingBlockIndex": {}
                     }
                 }
             }
@@ -152,9 +156,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SnapshotId": {},
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "StartingBlockIndex": {}
                     }
                 }
             }
@@ -193,9 +198,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SnapshotId": {},
+                        "BlockIndex": {},
+                        "BlockData": {},
+                        "DataLength": {},
+                        "Progress": {},
+                        "Checksum": {},
+                        "ChecksumAlgorithm": {}
                     }
                 }
             }
@@ -228,9 +237,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "VolumeSize": {},
+                        "ParentSnapshotId": {},
+                        "Tags": {},
+                        "Description": {},
+                        "ClientToken": {},
+                        "Encrypted": {},
+                        "KmsKeyArn": {},
+                        "Timeout": {}
                     }
                 }
             }
@@ -282,21 +296,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CompleteSnapshotResponse": {
-            "type": "object",
-            "properties": {
-                "Status": {
-                    "$ref": "#/$defs/Status"
-                }
-            }
-        },
-        "Status": {
-            "enum": [
-                "COMPLETED",
-                "PENDING",
-                "ERROR"
-            ]
-        },
         "CompleteSnapshotRequest": {
             "type": "object",
             "properties": {
@@ -337,6 +336,42 @@
                 "CHECKSUM_AGGREGATION_LINEAR"
             ]
         },
+        "CompleteSnapshotResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "Status": {
+            "enum": [
+                "COMPLETED",
+                "PENDING",
+                "ERROR"
+            ]
+        },
+        "GetSnapshotBlockRequest": {
+            "type": "object",
+            "properties": {
+                "SnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "BlockIndex": {
+                    "$ref": "#/$defs/BlockIndex"
+                },
+                "BlockToken": {
+                    "$ref": "#/$defs/BlockToken"
+                }
+            }
+        },
+        "BlockIndex": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BlockToken": {
+            "type": "string"
+        },
         "GetSnapshotBlockResponse": {
             "type": "object",
             "properties": {
@@ -362,26 +397,32 @@
             "type": "string",
             "format": "binary"
         },
-        "GetSnapshotBlockRequest": {
+        "ListChangedBlocksRequest": {
             "type": "object",
             "properties": {
-                "SnapshotId": {
+                "FirstSnapshotId": {
                     "$ref": "#/$defs/SnapshotId"
                 },
-                "BlockIndex": {
-                    "$ref": "#/$defs/BlockIndex"
+                "SecondSnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
                 },
-                "BlockToken": {
-                    "$ref": "#/$defs/BlockToken"
+                "NextToken": {
+                    "$ref": "#/$defs/PageToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "StartingBlockIndex": {
+                    "$ref": "#/$defs/BlockIndex"
                 }
             }
         },
-        "BlockIndex": {
+        "PageToken": {
+            "type": "string"
+        },
+        "MaxResults": {
             "type": "integer",
             "format": "int32"
-        },
-        "BlockToken": {
-            "type": "string"
         },
         "ListChangedBlocksResponse": {
             "type": "object",
@@ -435,16 +476,10 @@
             "type": "integer",
             "format": "int32"
         },
-        "PageToken": {
-            "type": "string"
-        },
-        "ListChangedBlocksRequest": {
+        "ListSnapshotBlocksRequest": {
             "type": "object",
             "properties": {
-                "FirstSnapshotId": {
-                    "$ref": "#/$defs/SnapshotId"
-                },
-                "SecondSnapshotId": {
+                "SnapshotId": {
                     "$ref": "#/$defs/SnapshotId"
                 },
                 "NextToken": {
@@ -457,10 +492,6 @@
                     "$ref": "#/$defs/BlockIndex"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListSnapshotBlocksResponse": {
             "type": "object",
@@ -499,34 +530,6 @@
                 }
             }
         },
-        "ListSnapshotBlocksRequest": {
-            "type": "object",
-            "properties": {
-                "SnapshotId": {
-                    "$ref": "#/$defs/SnapshotId"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/PageToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "StartingBlockIndex": {
-                    "$ref": "#/$defs/BlockIndex"
-                }
-            }
-        },
-        "PutSnapshotBlockResponse": {
-            "type": "object",
-            "properties": {
-                "Checksum": {
-                    "$ref": "#/$defs/Checksum"
-                },
-                "ChecksumAlgorithm": {
-                    "$ref": "#/$defs/ChecksumAlgorithm"
-                }
-            }
-        },
         "PutSnapshotBlockRequest": {
             "type": "object",
             "properties": {
@@ -554,6 +557,85 @@
             }
         },
         "Progress": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PutSnapshotBlockResponse": {
+            "type": "object",
+            "properties": {
+                "Checksum": {
+                    "$ref": "#/$defs/Checksum"
+                },
+                "ChecksumAlgorithm": {
+                    "$ref": "#/$defs/ChecksumAlgorithm"
+                }
+            }
+        },
+        "StartSnapshotRequest": {
+            "type": "object",
+            "properties": {
+                "VolumeSize": {
+                    "$ref": "#/$defs/VolumeSize"
+                },
+                "ParentSnapshotId": {
+                    "$ref": "#/$defs/SnapshotId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/IdempotencyToken"
+                },
+                "Encrypted": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "Timeout": {
+                    "$ref": "#/$defs/Timeout"
+                }
+            }
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "IdempotencyToken": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "Timeout": {
             "type": "integer",
             "format": "int32"
         },
@@ -595,36 +677,7 @@
                 }
             }
         },
-        "Description": {
-            "type": "string"
-        },
         "OwnerId": {
-            "type": "string"
-        },
-        "Tags": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Tag"
-            }
-        },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "$ref": "#/$defs/TagKey"
-                },
-                "Value": {
-                    "$ref": "#/$defs/TagValue"
-                }
-            }
-        },
-        "TagKey": {
-            "type": "string"
-        },
-        "TagValue": {
-            "type": "string"
-        },
-        "KmsKeyArn": {
             "type": "string"
         },
         "SSEType": {
@@ -633,45 +686,6 @@
                 "SSE_KMS",
                 "NONE"
             ]
-        },
-        "StartSnapshotRequest": {
-            "type": "object",
-            "properties": {
-                "VolumeSize": {
-                    "$ref": "#/$defs/VolumeSize"
-                },
-                "ParentSnapshotId": {
-                    "$ref": "#/$defs/SnapshotId"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                },
-                "Description": {
-                    "$ref": "#/$defs/Description"
-                },
-                "ClientToken": {
-                    "$ref": "#/$defs/IdempotencyToken"
-                },
-                "Encrypted": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "KmsKeyArn": {
-                    "$ref": "#/$defs/KmsKeyArn"
-                },
-                "Timeout": {
-                    "$ref": "#/$defs/Timeout"
-                }
-            }
-        },
-        "IdempotencyToken": {
-            "type": "string"
-        },
-        "Boolean": {
-            "type": "boolean"
-        },
-        "Timeout": {
-            "type": "integer",
-            "format": "int32"
         }
     },
     "aws": {

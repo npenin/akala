@@ -29,9 +29,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileId": {},
+                        "ResourceId": {},
+                        "Name": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -64,9 +65,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileId": {},
+                        "ResourceArn": {},
+                        "Name": {},
+                        "ResourceProperties": {}
                     }
                 }
             }
@@ -99,9 +101,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "ClientToken": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -138,9 +140,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileId": {}
                     }
                 }
             }
@@ -179,9 +179,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileId": {},
+                        "ResourceId": {}
                     }
                 }
             }
@@ -220,9 +219,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileId": {},
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -259,9 +257,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileId": {}
                     }
                 }
             }
@@ -298,9 +294,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileAssociationId": {}
                     }
                 }
             }
@@ -337,9 +331,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileResourceAssociationId": {}
                     }
                 }
             }
@@ -372,9 +364,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceId": {},
+                        "ProfileId": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -411,9 +404,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileId": {},
+                        "ResourceType": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -446,9 +440,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -485,9 +478,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -524,9 +515,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -563,9 +553,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -602,9 +591,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ProfileResourceAssociationId": {},
+                        "Name": {},
+                        "ResourceProperties": {}
                     }
                 }
             }
@@ -656,6 +645,52 @@
             "type": "string",
             "format": "binary"
         },
+        "AssociateProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Name": {
+                    "$ref": "#/$defs/Name"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
         "AssociateProfileResponse": {
             "type": "object",
             "properties": {
@@ -696,12 +731,6 @@
                 }
             }
         },
-        "ResourceId": {
-            "type": "string"
-        },
-        "Name": {
-            "type": "string"
-        },
         "AccountId": {
             "type": "string"
         },
@@ -722,44 +751,27 @@
             "type": "string",
             "format": "date-time"
         },
-        "AssociateProfileRequest": {
+        "AssociateResourceToProfileRequest": {
             "type": "object",
             "properties": {
                 "ProfileId": {
                     "$ref": "#/$defs/ResourceId"
                 },
-                "ResourceId": {
-                    "$ref": "#/$defs/ResourceId"
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
                 },
                 "Name": {
                     "$ref": "#/$defs/Name"
                 },
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
+                "ResourceProperties": {
+                    "$ref": "#/$defs/ResourceProperties"
                 }
             }
         },
-        "TagList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Tag"
-            }
-        },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "$ref": "#/$defs/TagKey"
-                },
-                "Value": {
-                    "$ref": "#/$defs/TagValue"
-                }
-            }
-        },
-        "TagKey": {
+        "Arn": {
             "type": "string"
         },
-        "TagValue": {
+        "ResourceProperties": {
             "type": "string"
         },
         "AssociateResourceToProfileResponse": {
@@ -808,28 +820,22 @@
                 }
             }
         },
-        "Arn": {
-            "type": "string"
-        },
-        "ResourceProperties": {
-            "type": "string"
-        },
-        "AssociateResourceToProfileRequest": {
+        "CreateProfileRequest": {
             "type": "object",
             "properties": {
-                "ProfileId": {
-                    "$ref": "#/$defs/ResourceId"
-                },
-                "ResourceArn": {
-                    "$ref": "#/$defs/Arn"
-                },
                 "Name": {
                     "$ref": "#/$defs/Name"
                 },
-                "ResourceProperties": {
-                    "$ref": "#/$defs/ResourceProperties"
+                "ClientToken": {
+                    "$ref": "#/$defs/CreatorRequestId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
+        },
+        "CreatorRequestId": {
+            "type": "string"
         },
         "CreateProfileResponse": {
             "type": "object",
@@ -881,31 +887,6 @@
                 "SHARED_BY_ME"
             ]
         },
-        "CreatorRequestId": {
-            "type": "string"
-        },
-        "CreateProfileRequest": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/Name"
-                },
-                "ClientToken": {
-                    "$ref": "#/$defs/CreatorRequestId"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
-        "DeleteProfileResponse": {
-            "type": "object",
-            "properties": {
-                "Profile": {
-                    "$ref": "#/$defs/Profile"
-                }
-            }
-        },
         "DeleteProfileRequest": {
             "type": "object",
             "properties": {
@@ -914,11 +895,11 @@
                 }
             }
         },
-        "DisassociateProfileResponse": {
+        "DeleteProfileResponse": {
             "type": "object",
             "properties": {
-                "ProfileAssociation": {
-                    "$ref": "#/$defs/ProfileAssociation"
+                "Profile": {
+                    "$ref": "#/$defs/Profile"
                 }
             }
         },
@@ -933,11 +914,11 @@
                 }
             }
         },
-        "DisassociateResourceFromProfileResponse": {
+        "DisassociateProfileResponse": {
             "type": "object",
             "properties": {
-                "ProfileResourceAssociation": {
-                    "$ref": "#/$defs/ProfileResourceAssociation"
+                "ProfileAssociation": {
+                    "$ref": "#/$defs/ProfileAssociation"
                 }
             }
         },
@@ -952,6 +933,22 @@
                 }
             }
         },
+        "DisassociateResourceFromProfileResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociation": {
+                    "$ref": "#/$defs/ProfileResourceAssociation"
+                }
+            }
+        },
+        "GetProfileRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
         "GetProfileResponse": {
             "type": "object",
             "properties": {
@@ -960,10 +957,10 @@
                 }
             }
         },
-        "GetProfileRequest": {
+        "GetProfileAssociationRequest": {
             "type": "object",
             "properties": {
-                "ProfileId": {
+                "ProfileAssociationId": {
                     "$ref": "#/$defs/ResourceId"
                 }
             }
@@ -976,10 +973,10 @@
                 }
             }
         },
-        "GetProfileAssociationRequest": {
+        "GetProfileResourceAssociationRequest": {
             "type": "object",
             "properties": {
-                "ProfileAssociationId": {
+                "ProfileResourceAssociationId": {
                     "$ref": "#/$defs/ResourceId"
                 }
             }
@@ -991,34 +988,6 @@
                     "$ref": "#/$defs/ProfileResourceAssociation"
                 }
             }
-        },
-        "GetProfileResourceAssociationRequest": {
-            "type": "object",
-            "properties": {
-                "ProfileResourceAssociationId": {
-                    "$ref": "#/$defs/ResourceId"
-                }
-            }
-        },
-        "ListProfileAssociationsResponse": {
-            "type": "object",
-            "properties": {
-                "ProfileAssociations": {
-                    "$ref": "#/$defs/ProfileAssociations"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ProfileAssociations": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ProfileAssociation"
-            }
-        },
-        "NextToken": {
-            "type": "string"
         },
         "ListProfileAssociationsRequest": {
             "type": "object",
@@ -1041,6 +1010,43 @@
             "type": "integer",
             "format": "int32"
         },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListProfileAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileAssociations": {
+                    "$ref": "#/$defs/ProfileAssociations"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ProfileAssociations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ProfileAssociation"
+            }
+        },
+        "ListProfileResourceAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "ProfileId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
         "ListProfileResourceAssociationsResponse": {
             "type": "object",
             "properties": {
@@ -1058,15 +1064,9 @@
                 "$ref": "#/$defs/ProfileResourceAssociation"
             }
         },
-        "ListProfileResourceAssociationsRequest": {
+        "ListProfilesRequest": {
             "type": "object",
             "properties": {
-                "ProfileId": {
-                    "$ref": "#/$defs/ResourceId"
-                },
-                "ResourceType": {
-                    "$ref": "#/$defs/String"
-                },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
                 },
@@ -1109,14 +1109,11 @@
                 }
             }
         },
-        "ListProfilesRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -1134,18 +1131,6 @@
                 "$ref": "#/$defs/TagValue"
             }
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -1157,7 +1142,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1178,13 +1163,9 @@
                 "$ref": "#/$defs/TagKey"
             }
         },
-        "UpdateProfileResourceAssociationResponse": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "ProfileResourceAssociation": {
-                    "$ref": "#/$defs/ProfileResourceAssociation"
-                }
-            }
+            "properties": {}
         },
         "UpdateProfileResourceAssociationRequest": {
             "type": "object",
@@ -1197,6 +1178,14 @@
                 },
                 "ResourceProperties": {
                     "$ref": "#/$defs/ResourceProperties"
+                }
+            }
+        },
+        "UpdateProfileResourceAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "ProfileResourceAssociation": {
+                    "$ref": "#/$defs/ProfileResourceAssociation"
                 }
             }
         }

@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PercentEnabled": {},
+                        "PlaybackConfigurationName": {},
+                        "EnabledLoggingStrategies": {}
                     }
                 }
             }
@@ -64,8 +64,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -102,8 +103,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -140,8 +140,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -178,8 +178,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -231,7 +231,7 @@
             "type": "string",
             "format": "binary"
         },
-        "ConfigureLogsForPlaybackConfigurationResponse": {
+        "ConfigureLogsForPlaybackConfigurationRequest": {
             "type": "object",
             "properties": {
                 "PercentEnabled": {
@@ -264,7 +264,7 @@
                 "LEGACY_CLOUDWATCH"
             ]
         },
-        "ConfigureLogsForPlaybackConfigurationRequest": {
+        "ConfigureLogsForPlaybackConfigurationResponse": {
             "type": "object",
             "properties": {
                 "PercentEnabled": {
@@ -277,6 +277,24 @@
                     "$ref": "#/$defs/__listOfLoggingStrategies"
                 }
             }
+        },
+        "ListAlertsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListAlertsResponse": {
             "type": "object",
@@ -335,23 +353,13 @@
                 "INFO"
             ]
         },
-        "ListAlertsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/__string"
-                },
                 "ResourceArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -365,14 +373,6 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/__string"
-            }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/__string"
-                }
             }
         },
         "TagResourceRequest": {

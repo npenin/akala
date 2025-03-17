@@ -33,8 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -71,8 +70,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -109,8 +108,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -162,6 +161,17 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -176,21 +186,6 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -202,7 +197,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -222,6 +217,10 @@
             "items": {
                 "$ref": "#/$defs/smithy.api#String"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

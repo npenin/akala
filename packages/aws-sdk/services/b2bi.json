@@ -28,9 +28,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "outputSampleLocation": {},
+                        "mappingType": {},
+                        "templateDetails": {}
                     }
                 }
             }
@@ -63,9 +63,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "inputFileContent": {},
+                        "outputFileContent": {},
+                        "mappingType": {}
                     }
                 }
             }
@@ -102,9 +102,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "transformerJobId": {},
+                        "transformerId": {}
                     }
                 }
             }
@@ -141,9 +140,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {}
                     }
                 }
             }
@@ -176,9 +173,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "inputFile": {},
+                        "outputLocation": {},
+                        "transformerId": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -215,9 +213,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -250,9 +247,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "source": {},
+                        "target": {}
                     }
                 }
             }
@@ -285,9 +281,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "inputFileContent": {},
+                        "mappingTemplate": {},
+                        "fileFormat": {}
                     }
                 }
             }
@@ -320,9 +316,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "inputFile": {},
+                        "fileFormat": {},
+                        "ediType": {}
                     }
                 }
             }
@@ -359,9 +355,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -412,14 +407,6 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
-        },
-        "CreateStarterMappingTemplateResponse": {
-            "type": "object",
-            "properties": {
-                "mappingTemplate": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
         },
         "CreateStarterMappingTemplateRequest": {
             "type": "object",
@@ -833,14 +820,11 @@
                 "VERSION_5010_HIPAA"
             ]
         },
-        "GenerateMappingResponse": {
+        "CreateStarterMappingTemplateResponse": {
             "type": "object",
             "properties": {
                 "mappingTemplate": {
                     "$ref": "#/$defs/smithy.api#String"
-                },
-                "mappingAccuracy": {
-                    "$ref": "#/$defs/smithy.api#Float"
                 }
             }
         },
@@ -862,6 +846,34 @@
             "type": "string"
         },
         "GenerateMappingOutputFileContent": {
+            "type": "string"
+        },
+        "GenerateMappingResponse": {
+            "type": "object",
+            "properties": {
+                "mappingTemplate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "mappingAccuracy": {
+                    "$ref": "#/$defs/smithy.api#Float"
+                }
+            }
+        },
+        "GetTransformerJobRequest": {
+            "type": "object",
+            "properties": {
+                "transformerJobId": {
+                    "$ref": "#/$defs/TransformerJobId"
+                },
+                "transformerId": {
+                    "$ref": "#/$defs/TransformerId"
+                }
+            }
+        },
+        "TransformerJobId": {
+            "type": "string"
+        },
+        "TransformerId": {
             "type": "string"
         },
         "GetTransformerJobResponse": {
@@ -891,21 +903,15 @@
                 "$ref": "#/$defs/S3Location"
             }
         },
-        "GetTransformerJobRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "transformerJobId": {
-                    "$ref": "#/$defs/TransformerJobId"
-                },
-                "transformerId": {
-                    "$ref": "#/$defs/TransformerId"
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
                 }
             }
         },
-        "TransformerJobId": {
-            "type": "string"
-        },
-        "TransformerId": {
+        "AmazonResourceName": {
             "type": "string"
         },
         "ListTagsForResourceResponse": {
@@ -939,25 +945,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceARN": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                }
-            }
-        },
-        "AmazonResourceName": {
-            "type": "string"
-        },
-        "StartTransformerJobResponse": {
-            "type": "object",
-            "properties": {
-                "transformerJobId": {
-                    "$ref": "#/$defs/TransformerJobId"
-                }
-            }
-        },
         "StartTransformerJobRequest": {
             "type": "object",
             "properties": {
@@ -975,6 +962,14 @@
                 }
             }
         },
+        "StartTransformerJobResponse": {
+            "type": "object",
+            "properties": {
+                "transformerJobId": {
+                    "$ref": "#/$defs/TransformerJobId"
+                }
+            }
+        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -984,23 +979,6 @@
                 "Tags": {
                     "$ref": "#/$defs/TagList"
                 }
-            }
-        },
-        "TestConversionResponse": {
-            "type": "object",
-            "properties": {
-                "convertedFileContent": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "validationMessages": {
-                    "$ref": "#/$defs/ValidationMessages"
-                }
-            }
-        },
-        "ValidationMessages": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/smithy.api#String"
             }
         },
         "TestConversionRequest": {
@@ -1074,12 +1052,21 @@
                 }
             }
         },
-        "TestMappingResponse": {
+        "TestConversionResponse": {
             "type": "object",
             "properties": {
-                "mappedFileContent": {
+                "convertedFileContent": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "validationMessages": {
+                    "$ref": "#/$defs/ValidationMessages"
                 }
+            }
+        },
+        "ValidationMessages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
             }
         },
         "TestMappingRequest": {
@@ -1109,10 +1096,10 @@
                 "NOT_USED"
             ]
         },
-        "TestParsingResponse": {
+        "TestMappingResponse": {
             "type": "object",
             "properties": {
-                "parsedFileContent": {
+                "mappedFileContent": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
@@ -1136,6 +1123,14 @@
             "properties": {
                 "x12Details": {
                     "$ref": "#/$defs/X12Details"
+                }
+            }
+        },
+        "TestParsingResponse": {
+            "type": "object",
+            "properties": {
+                "parsedFileContent": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },

@@ -29,9 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "campaignArn": {},
+                        "userId": {},
+                        "numResults": {},
+                        "filterArn": {},
+                        "filterValues": {}
                     }
                 }
             }
@@ -64,9 +66,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "campaignArn": {},
+                        "inputList": {},
+                        "userId": {},
+                        "context": {},
+                        "filterArn": {},
+                        "filterValues": {},
+                        "metadataColumns": {}
                     }
                 }
             }
@@ -99,9 +105,16 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "campaignArn": {},
+                        "itemId": {},
+                        "userId": {},
+                        "numResults": {},
+                        "context": {},
+                        "filterArn": {},
+                        "filterValues": {},
+                        "recommenderArn": {},
+                        "promotions": {},
+                        "metadataColumns": {}
                     }
                 }
             }
@@ -153,44 +166,6 @@
             "type": "string",
             "format": "binary"
         },
-        "GetActionRecommendationsResponse": {
-            "type": "object",
-            "properties": {
-                "actionList": {
-                    "$ref": "#/$defs/ActionList"
-                },
-                "recommendationId": {
-                    "$ref": "#/$defs/RecommendationID"
-                }
-            }
-        },
-        "ActionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/PredictedAction"
-            }
-        },
-        "PredictedAction": {
-            "type": "object",
-            "properties": {
-                "actionId": {
-                    "$ref": "#/$defs/ActionID"
-                },
-                "score": {
-                    "$ref": "#/$defs/Score"
-                }
-            }
-        },
-        "ActionID": {
-            "type": "string"
-        },
-        "Score": {
-            "type": "number",
-            "format": "double"
-        },
-        "RecommendationID": {
-            "type": "string"
-        },
         "GetActionRecommendationsRequest": {
             "type": "object",
             "properties": {
@@ -230,6 +205,103 @@
         "FilterAttributeValue": {
             "type": "string"
         },
+        "GetActionRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "actionList": {
+                    "$ref": "#/$defs/ActionList"
+                },
+                "recommendationId": {
+                    "$ref": "#/$defs/RecommendationID"
+                }
+            }
+        },
+        "ActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictedAction"
+            }
+        },
+        "PredictedAction": {
+            "type": "object",
+            "properties": {
+                "actionId": {
+                    "$ref": "#/$defs/ActionID"
+                },
+                "score": {
+                    "$ref": "#/$defs/Score"
+                }
+            }
+        },
+        "ActionID": {
+            "type": "string"
+        },
+        "Score": {
+            "type": "number",
+            "format": "double"
+        },
+        "RecommendationID": {
+            "type": "string"
+        },
+        "GetPersonalizedRankingRequest": {
+            "type": "object",
+            "properties": {
+                "campaignArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "inputList": {
+                    "$ref": "#/$defs/InputList"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserID"
+                },
+                "context": {
+                    "$ref": "#/$defs/Context"
+                },
+                "filterArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "filterValues": {
+                    "$ref": "#/$defs/FilterValues"
+                },
+                "metadataColumns": {
+                    "$ref": "#/$defs/MetadataColumns"
+                }
+            }
+        },
+        "InputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ItemID"
+            }
+        },
+        "ItemID": {
+            "type": "string"
+        },
+        "Context": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttributeValue"
+            }
+        },
+        "AttributeValue": {
+            "type": "string"
+        },
+        "MetadataColumns": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ColumnNamesList"
+            }
+        },
+        "ColumnNamesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColumnName"
+            }
+        },
+        "ColumnName": {
+            "type": "string"
+        },
         "GetPersonalizedRankingResponse": {
             "type": "object",
             "properties": {
@@ -267,9 +339,6 @@
                 }
             }
         },
-        "ItemID": {
-            "type": "string"
-        },
         "Name": {
             "type": "string"
         },
@@ -290,73 +359,6 @@
         },
         "Reason": {
             "type": "string"
-        },
-        "GetPersonalizedRankingRequest": {
-            "type": "object",
-            "properties": {
-                "campaignArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "inputList": {
-                    "$ref": "#/$defs/InputList"
-                },
-                "userId": {
-                    "$ref": "#/$defs/UserID"
-                },
-                "context": {
-                    "$ref": "#/$defs/Context"
-                },
-                "filterArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "filterValues": {
-                    "$ref": "#/$defs/FilterValues"
-                },
-                "metadataColumns": {
-                    "$ref": "#/$defs/MetadataColumns"
-                }
-            }
-        },
-        "InputList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ItemID"
-            }
-        },
-        "Context": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/AttributeValue"
-            }
-        },
-        "AttributeValue": {
-            "type": "string"
-        },
-        "MetadataColumns": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/ColumnNamesList"
-            }
-        },
-        "ColumnNamesList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ColumnName"
-            }
-        },
-        "ColumnName": {
-            "type": "string"
-        },
-        "GetRecommendationsResponse": {
-            "type": "object",
-            "properties": {
-                "itemList": {
-                    "$ref": "#/$defs/ItemList"
-                },
-                "recommendationId": {
-                    "$ref": "#/$defs/RecommendationID"
-                }
-            }
         },
         "GetRecommendationsRequest": {
             "type": "object",
@@ -419,6 +421,17 @@
         "PercentPromotedItems": {
             "type": "integer",
             "format": "int32"
+        },
+        "GetRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "itemList": {
+                    "$ref": "#/$defs/ItemList"
+                },
+                "recommendationId": {
+                    "$ref": "#/$defs/RecommendationID"
+                }
+            }
         }
     },
     "aws": {

@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "HumanLoopName": {}
                     }
                 }
             }
@@ -72,9 +70,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "HumanLoopName": {}
                     }
                 }
             }
@@ -107,9 +103,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CreationTimeAfter": {},
+                        "CreationTimeBefore": {},
+                        "FlowDefinitionArn": {},
+                        "SortOrder": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -142,9 +141,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "HumanLoopName": {},
+                        "FlowDefinitionArn": {},
+                        "HumanLoopInput": {},
+                        "DataAttributes": {}
                     }
                 }
             }
@@ -177,9 +177,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "HumanLoopName": {}
                     }
                 }
             }
@@ -231,10 +229,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteHumanLoopResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "DeleteHumanLoopRequest": {
             "type": "object",
             "properties": {
@@ -245,6 +239,18 @@
         },
         "HumanLoopName": {
             "type": "string"
+        },
+        "DeleteHumanLoopResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeHumanLoopRequest": {
+            "type": "object",
+            "properties": {
+                "HumanLoopName": {
+                    "$ref": "#/$defs/HumanLoopName"
+                }
+            }
         },
         "DescribeHumanLoopResponse": {
             "type": "object",
@@ -305,13 +311,41 @@
                 }
             }
         },
-        "DescribeHumanLoopRequest": {
+        "ListHumanLoopsRequest": {
             "type": "object",
             "properties": {
-                "HumanLoopName": {
-                    "$ref": "#/$defs/HumanLoopName"
+                "CreationTimeAfter": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "CreationTimeBefore": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FlowDefinitionArn": {
+                    "$ref": "#/$defs/FlowDefinitionArn"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 }
             }
+        },
+        "SortOrder": {
+            "enum": [
+                "ASCENDING",
+                "DESCENDING"
+            ]
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListHumanLoopsResponse": {
             "type": "object",
@@ -352,50 +386,6 @@
         },
         "FailureReason": {
             "type": "string"
-        },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListHumanLoopsRequest": {
-            "type": "object",
-            "properties": {
-                "CreationTimeAfter": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "CreationTimeBefore": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "FlowDefinitionArn": {
-                    "$ref": "#/$defs/FlowDefinitionArn"
-                },
-                "SortOrder": {
-                    "$ref": "#/$defs/SortOrder"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                }
-            }
-        },
-        "SortOrder": {
-            "enum": [
-                "ASCENDING",
-                "DESCENDING"
-            ]
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "StartHumanLoopResponse": {
-            "type": "object",
-            "properties": {
-                "HumanLoopArn": {
-                    "$ref": "#/$defs/HumanLoopArn"
-                }
-            }
         },
         "StartHumanLoopRequest": {
             "type": "object",
@@ -445,9 +435,13 @@
                 "FREE_OF_ADULT_CONTENT"
             ]
         },
-        "StopHumanLoopResponse": {
+        "StartHumanLoopResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "HumanLoopArn": {
+                    "$ref": "#/$defs/HumanLoopArn"
+                }
+            }
         },
         "StopHumanLoopRequest": {
             "type": "object",
@@ -456,6 +450,10 @@
                     "$ref": "#/$defs/HumanLoopName"
                 }
             }
+        },
+        "StopHumanLoopResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

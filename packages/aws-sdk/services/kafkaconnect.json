@@ -29,9 +29,19 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "capacity": {},
+                        "connectorConfiguration": {},
+                        "connectorDescription": {},
+                        "connectorName": {},
+                        "kafkaCluster": {},
+                        "kafkaClusterClientAuthentication": {},
+                        "kafkaClusterEncryptionInTransit": {},
+                        "kafkaConnectVersion": {},
+                        "logDelivery": {},
+                        "plugins": {},
+                        "serviceExecutionRoleArn": {},
+                        "workerConfiguration": {},
+                        "tags": {}
                     }
                 }
             }
@@ -64,9 +74,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "contentType": {},
+                        "description": {},
+                        "location": {},
+                        "name": {},
+                        "tags": {}
                     }
                 }
             }
@@ -99,9 +111,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "description": {},
+                        "name": {},
+                        "propertiesFileContent": {},
+                        "tags": {}
                     }
                 }
             }
@@ -138,9 +151,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "connectorArn": {},
+                        "currentVersion": {}
                     }
                 }
             }
@@ -177,9 +189,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "customPluginArn": {}
                     }
                 }
             }
@@ -216,9 +226,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "workerConfigurationArn": {}
                     }
                 }
             }
@@ -255,9 +263,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "connectorArn": {}
                     }
                 }
             }
@@ -294,9 +300,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "connectorOperationArn": {}
                     }
                 }
             }
@@ -333,9 +337,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "customPluginArn": {}
                     }
                 }
             }
@@ -372,9 +374,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "workerConfigurationArn": {}
                     }
                 }
             }
@@ -411,9 +411,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "connectorArn": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -446,9 +446,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "connectorNamePrefix": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -481,9 +481,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "maxResults": {},
+                        "nextToken": {},
+                        "namePrefix": {}
                     }
                 }
             }
@@ -520,9 +520,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -555,9 +553,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "maxResults": {},
+                        "nextToken": {},
+                        "namePrefix": {}
                     }
                 }
             }
@@ -594,9 +592,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -633,9 +630,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -672,9 +668,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "capacity": {},
+                        "connectorConfiguration": {},
+                        "connectorArn": {},
+                        "currentVersion": {}
                     }
                 }
             }
@@ -725,26 +722,6 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
-        },
-        "CreateConnectorResponse": {
-            "type": "object",
-            "properties": {
-                "connectorArn": {
-                    "$ref": "#/$defs/__string"
-                },
-                "connectorName": {
-                    "$ref": "#/$defs/__string"
-                },
-                "connectorState": {
-                    "$ref": "#/$defs/ConnectorState"
-                }
-            }
-        },
-        "__string": {
-            "type": "string"
-        },
-        "ConnectorState": {
-            "type": "string"
         },
         "CreateConnectorRequest": {
             "type": "object",
@@ -865,6 +842,9 @@
             "additionalProperties": {
                 "$ref": "#/$defs/__string"
             }
+        },
+        "__string": {
+            "type": "string"
         },
         "__stringMax1024": {
             "type": "string"
@@ -1040,29 +1020,22 @@
         "TagValue": {
             "type": "string"
         },
-        "CreateCustomPluginResponse": {
+        "CreateConnectorResponse": {
             "type": "object",
             "properties": {
-                "customPluginArn": {
+                "connectorArn": {
                     "$ref": "#/$defs/__string"
                 },
-                "customPluginState": {
-                    "$ref": "#/$defs/CustomPluginState"
-                },
-                "name": {
+                "connectorName": {
                     "$ref": "#/$defs/__string"
                 },
-                "revision": {
-                    "$ref": "#/$defs/__long"
+                "connectorState": {
+                    "$ref": "#/$defs/ConnectorState"
                 }
             }
         },
-        "CustomPluginState": {
+        "ConnectorState": {
             "type": "string"
-        },
-        "__long": {
-            "type": "integer",
-            "format": "int64"
         },
         "CreateCustomPluginRequest": {
             "type": "object",
@@ -1109,6 +1082,50 @@
                 }
             }
         },
+        "CreateCustomPluginResponse": {
+            "type": "object",
+            "properties": {
+                "customPluginArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "customPluginState": {
+                    "$ref": "#/$defs/CustomPluginState"
+                },
+                "name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "revision": {
+                    "$ref": "#/$defs/__long"
+                }
+            }
+        },
+        "CustomPluginState": {
+            "type": "string"
+        },
+        "__long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "CreateWorkerConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/__stringMax1024"
+                },
+                "name": {
+                    "$ref": "#/$defs/__stringMin1Max128"
+                },
+                "propertiesFileContent": {
+                    "$ref": "#/$defs/__sensitiveString"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "__sensitiveString": {
+            "type": "string"
+        },
         "CreateWorkerConfigurationResponse": {
             "type": "object",
             "properties": {
@@ -1150,25 +1167,16 @@
         "WorkerConfigurationState": {
             "type": "string"
         },
-        "CreateWorkerConfigurationRequest": {
+        "DeleteConnectorRequest": {
             "type": "object",
             "properties": {
-                "description": {
-                    "$ref": "#/$defs/__stringMax1024"
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
                 },
-                "name": {
-                    "$ref": "#/$defs/__stringMin1Max128"
-                },
-                "propertiesFileContent": {
-                    "$ref": "#/$defs/__sensitiveString"
-                },
-                "tags": {
-                    "$ref": "#/$defs/Tags"
+                "currentVersion": {
+                    "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "__sensitiveString": {
-            "type": "string"
         },
         "DeleteConnectorResponse": {
             "type": "object",
@@ -1181,13 +1189,10 @@
                 }
             }
         },
-        "DeleteConnectorRequest": {
+        "DeleteCustomPluginRequest": {
             "type": "object",
             "properties": {
-                "connectorArn": {
-                    "$ref": "#/$defs/__string"
-                },
-                "currentVersion": {
+                "customPluginArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1203,10 +1208,10 @@
                 }
             }
         },
-        "DeleteCustomPluginRequest": {
+        "DeleteWorkerConfigurationRequest": {
             "type": "object",
             "properties": {
-                "customPluginArn": {
+                "workerConfigurationArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1222,10 +1227,10 @@
                 }
             }
         },
-        "DeleteWorkerConfigurationRequest": {
+        "DescribeConnectorRequest": {
             "type": "object",
             "properties": {
-                "workerConfigurationArn": {
+                "connectorArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1495,10 +1500,10 @@
                 }
             }
         },
-        "DescribeConnectorRequest": {
+        "DescribeConnectorOperationRequest": {
             "type": "object",
             "properties": {
-                "connectorArn": {
+                "connectorOperationArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1581,10 +1586,10 @@
                 }
             }
         },
-        "DescribeConnectorOperationRequest": {
+        "DescribeCustomPluginRequest": {
             "type": "object",
             "properties": {
-                "connectorOperationArn": {
+                "customPluginArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1671,10 +1676,10 @@
                 }
             }
         },
-        "DescribeCustomPluginRequest": {
+        "DescribeWorkerConfigurationRequest": {
             "type": "object",
             "properties": {
-                "customPluginArn": {
+                "workerConfigurationArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1719,13 +1724,23 @@
                 }
             }
         },
-        "DescribeWorkerConfigurationRequest": {
+        "ListConnectorOperationsRequest": {
             "type": "object",
             "properties": {
-                "workerConfigurationArn": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
                     "$ref": "#/$defs/__string"
                 }
             }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListConnectorOperationsResponse": {
             "type": "object",
@@ -1764,10 +1779,10 @@
                 }
             }
         },
-        "ListConnectorOperationsRequest": {
+        "ListConnectorsRequest": {
             "type": "object",
             "properties": {
-                "connectorArn": {
+                "connectorNamePrefix": {
                     "$ref": "#/$defs/__string"
                 },
                 "maxResults": {
@@ -1777,10 +1792,6 @@
                     "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListConnectorsResponse": {
             "type": "object",
@@ -1849,16 +1860,16 @@
                 }
             }
         },
-        "ListConnectorsRequest": {
+        "ListCustomPluginsRequest": {
             "type": "object",
             "properties": {
-                "connectorNamePrefix": {
-                    "$ref": "#/$defs/__string"
-                },
                 "maxResults": {
                     "$ref": "#/$defs/MaxResults"
                 },
                 "nextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "namePrefix": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1903,16 +1914,10 @@
                 }
             }
         },
-        "ListCustomPluginsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/__string"
-                },
-                "namePrefix": {
+                "resourceArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1925,10 +1930,16 @@
                 }
             }
         },
-        "ListTagsForResourceRequest": {
+        "ListWorkerConfigurationsRequest": {
             "type": "object",
             "properties": {
-                "resourceArn": {
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "namePrefix": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1973,24 +1984,6 @@
                 }
             }
         },
-        "ListWorkerConfigurationsRequest": {
-            "type": "object",
-            "properties": {
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/__string"
-                },
-                "namePrefix": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -2002,7 +1995,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -2026,19 +2019,9 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateConnectorResponse": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "connectorArn": {
-                    "$ref": "#/$defs/__string"
-                },
-                "connectorState": {
-                    "$ref": "#/$defs/ConnectorState"
-                },
-                "connectorOperationArn": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
+            "properties": {}
         },
         "UpdateConnectorRequest": {
             "type": "object",
@@ -2119,6 +2102,20 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/__string"
+            }
+        },
+        "UpdateConnectorResponse": {
+            "type": "object",
+            "properties": {
+                "connectorArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "connectorState": {
+                    "$ref": "#/$defs/ConnectorState"
+                },
+                "connectorOperationArn": {
+                    "$ref": "#/$defs/__string"
+                }
             }
         }
     },

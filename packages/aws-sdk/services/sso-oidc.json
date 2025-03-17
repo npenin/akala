@@ -29,9 +29,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "clientId": {},
+                        "clientSecret": {},
+                        "grantType": {},
+                        "deviceCode": {},
+                        "code": {},
+                        "refreshToken": {},
+                        "scope": {},
+                        "redirectUri": {},
+                        "codeVerifier": {}
                     }
                 }
             }
@@ -64,9 +70,17 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "clientId": {},
+                        "grantType": {},
+                        "code": {},
+                        "refreshToken": {},
+                        "assertion": {},
+                        "scope": {},
+                        "redirectUri": {},
+                        "subjectToken": {},
+                        "subjectTokenType": {},
+                        "requestedTokenType": {},
+                        "codeVerifier": {}
                     }
                 }
             }
@@ -99,9 +113,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "clientName": {},
+                        "clientType": {},
+                        "scopes": {},
+                        "redirectUris": {},
+                        "grantTypes": {},
+                        "issuerUrl": {},
+                        "entitledApplicationArn": {}
                     }
                 }
             }
@@ -134,9 +152,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "clientId": {},
+                        "clientSecret": {},
+                        "startUrl": {}
                     }
                 }
             }
@@ -188,42 +206,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateTokenResponse": {
-            "type": "object",
-            "properties": {
-                "accessToken": {
-                    "$ref": "#/$defs/AccessToken"
-                },
-                "tokenType": {
-                    "$ref": "#/$defs/TokenType"
-                },
-                "expiresIn": {
-                    "$ref": "#/$defs/ExpirationInSeconds"
-                },
-                "refreshToken": {
-                    "$ref": "#/$defs/RefreshToken"
-                },
-                "idToken": {
-                    "$ref": "#/$defs/IdToken"
-                }
-            }
-        },
-        "AccessToken": {
-            "type": "string"
-        },
-        "TokenType": {
-            "type": "string"
-        },
-        "ExpirationInSeconds": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "RefreshToken": {
-            "type": "string"
-        },
-        "IdToken": {
-            "type": "string"
-        },
         "CreateTokenRequest": {
             "type": "object",
             "properties": {
@@ -271,6 +253,9 @@
         "AuthCode": {
             "type": "string"
         },
+        "RefreshToken": {
+            "type": "string"
+        },
         "Scopes": {
             "type": "array",
             "items": {
@@ -286,7 +271,7 @@
         "CodeVerifier": {
             "type": "string"
         },
-        "CreateTokenWithIAMResponse": {
+        "CreateTokenResponse": {
             "type": "object",
             "properties": {
                 "accessToken": {
@@ -303,16 +288,20 @@
                 },
                 "idToken": {
                     "$ref": "#/$defs/IdToken"
-                },
-                "issuedTokenType": {
-                    "$ref": "#/$defs/TokenTypeURI"
-                },
-                "scope": {
-                    "$ref": "#/$defs/Scopes"
                 }
             }
         },
-        "TokenTypeURI": {
+        "AccessToken": {
+            "type": "string"
+        },
+        "TokenType": {
+            "type": "string"
+        },
+        "ExpirationInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "IdToken": {
             "type": "string"
         },
         "CreateTokenWithIAMRequest": {
@@ -359,32 +348,34 @@
         "SubjectToken": {
             "type": "string"
         },
-        "RegisterClientResponse": {
+        "TokenTypeURI": {
+            "type": "string"
+        },
+        "CreateTokenWithIAMResponse": {
             "type": "object",
             "properties": {
-                "clientId": {
-                    "$ref": "#/$defs/ClientId"
+                "accessToken": {
+                    "$ref": "#/$defs/AccessToken"
                 },
-                "clientSecret": {
-                    "$ref": "#/$defs/ClientSecret"
+                "tokenType": {
+                    "$ref": "#/$defs/TokenType"
                 },
-                "clientIdIssuedAt": {
-                    "$ref": "#/$defs/LongTimeStampType"
+                "expiresIn": {
+                    "$ref": "#/$defs/ExpirationInSeconds"
                 },
-                "clientSecretExpiresAt": {
-                    "$ref": "#/$defs/LongTimeStampType"
+                "refreshToken": {
+                    "$ref": "#/$defs/RefreshToken"
                 },
-                "authorizationEndpoint": {
-                    "$ref": "#/$defs/URI"
+                "idToken": {
+                    "$ref": "#/$defs/IdToken"
                 },
-                "tokenEndpoint": {
-                    "$ref": "#/$defs/URI"
+                "issuedTokenType": {
+                    "$ref": "#/$defs/TokenTypeURI"
+                },
+                "scope": {
+                    "$ref": "#/$defs/Scopes"
                 }
             }
-        },
-        "LongTimeStampType": {
-            "type": "integer",
-            "format": "int64"
         },
         "RegisterClientRequest": {
             "type": "object",
@@ -433,6 +424,47 @@
         "ArnType": {
             "type": "string"
         },
+        "RegisterClientResponse": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "clientSecret": {
+                    "$ref": "#/$defs/ClientSecret"
+                },
+                "clientIdIssuedAt": {
+                    "$ref": "#/$defs/LongTimeStampType"
+                },
+                "clientSecretExpiresAt": {
+                    "$ref": "#/$defs/LongTimeStampType"
+                },
+                "authorizationEndpoint": {
+                    "$ref": "#/$defs/URI"
+                },
+                "tokenEndpoint": {
+                    "$ref": "#/$defs/URI"
+                }
+            }
+        },
+        "LongTimeStampType": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "StartDeviceAuthorizationRequest": {
+            "type": "object",
+            "properties": {
+                "clientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "clientSecret": {
+                    "$ref": "#/$defs/ClientSecret"
+                },
+                "startUrl": {
+                    "$ref": "#/$defs/URI"
+                }
+            }
+        },
         "StartDeviceAuthorizationResponse": {
             "type": "object",
             "properties": {
@@ -462,20 +494,6 @@
         "IntervalInSeconds": {
             "type": "integer",
             "format": "int32"
-        },
-        "StartDeviceAuthorizationRequest": {
-            "type": "object",
-            "properties": {
-                "clientId": {
-                    "$ref": "#/$defs/ClientId"
-                },
-                "clientSecret": {
-                    "$ref": "#/$defs/ClientSecret"
-                },
-                "startUrl": {
-                    "$ref": "#/$defs/URI"
-                }
-            }
         }
     },
     "aws": {

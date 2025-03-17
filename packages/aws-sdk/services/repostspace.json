@@ -33,9 +33,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "accessorIds": {},
+                        "role": {}
                     }
                 }
             }
@@ -72,9 +72,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "accessorIds": {},
+                        "role": {}
                     }
                 }
             }
@@ -107,9 +107,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "name": {},
+                        "subdomain": {},
+                        "tier": {},
+                        "description": {},
+                        "userKMSKey": {},
+                        "tags": {},
+                        "roleArn": {}
                     }
                 }
             }
@@ -146,9 +150,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {}
                     }
                 }
             }
@@ -187,9 +189,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "adminId": {}
                     }
                 }
             }
@@ -226,9 +227,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {}
                     }
                 }
             }
@@ -261,9 +260,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -300,9 +298,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -341,9 +337,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "adminId": {}
                     }
                 }
             }
@@ -380,9 +375,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "accessorIds": {},
+                        "title": {},
+                        "body": {}
                     }
                 }
             }
@@ -419,9 +415,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -458,9 +453,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -497,9 +491,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "description": {},
+                        "tier": {},
+                        "roleArn": {}
                     }
                 }
             }
@@ -551,6 +546,40 @@
             "type": "string",
             "format": "binary"
         },
+        "BatchAddRoleInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "accessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "role": {
+                    "$ref": "#/$defs/Role"
+                }
+            }
+        },
+        "SpaceId": {
+            "type": "string"
+        },
+        "AccessorIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessorId"
+            }
+        },
+        "AccessorId": {
+            "type": "string"
+        },
+        "Role": {
+            "enum": [
+                "EXPERT",
+                "MODERATOR",
+                "ADMINISTRATOR",
+                "SUPPORTREQUESTOR"
+            ]
+        },
         "BatchAddRoleOutput": {
             "type": "object",
             "properties": {
@@ -561,15 +590,6 @@
                     "$ref": "#/$defs/BatchErrorList"
                 }
             }
-        },
-        "AccessorIdList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AccessorId"
-            }
-        },
-        "AccessorId": {
-            "type": "string"
         },
         "BatchErrorList": {
             "type": "array",
@@ -598,42 +618,6 @@
         "ErrorMessage": {
             "type": "string"
         },
-        "BatchAddRoleInput": {
-            "type": "object",
-            "properties": {
-                "spaceId": {
-                    "$ref": "#/$defs/SpaceId"
-                },
-                "accessorIds": {
-                    "$ref": "#/$defs/AccessorIdList"
-                },
-                "role": {
-                    "$ref": "#/$defs/Role"
-                }
-            }
-        },
-        "SpaceId": {
-            "type": "string"
-        },
-        "Role": {
-            "enum": [
-                "EXPERT",
-                "MODERATOR",
-                "ADMINISTRATOR",
-                "SUPPORTREQUESTOR"
-            ]
-        },
-        "BatchRemoveRoleOutput": {
-            "type": "object",
-            "properties": {
-                "removedAccessorIds": {
-                    "$ref": "#/$defs/AccessorIdList"
-                },
-                "errors": {
-                    "$ref": "#/$defs/BatchErrorList"
-                }
-            }
-        },
         "BatchRemoveRoleInput": {
             "type": "object",
             "properties": {
@@ -648,11 +632,14 @@
                 }
             }
         },
-        "CreateSpaceOutput": {
+        "BatchRemoveRoleOutput": {
             "type": "object",
             "properties": {
-                "spaceId": {
-                    "$ref": "#/$defs/SpaceId"
+                "removedAccessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchErrorList"
                 }
             }
         },
@@ -712,6 +699,14 @@
         "Arn": {
             "type": "string"
         },
+        "CreateSpaceOutput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                }
+            }
+        },
         "DeleteSpaceInput": {
             "type": "object",
             "properties": {
@@ -733,6 +728,14 @@
         },
         "AdminId": {
             "type": "string"
+        },
+        "GetSpaceInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                }
+            }
         },
         "GetSpaceOutput": {
             "type": "object",
@@ -860,13 +863,20 @@
             "type": "integer",
             "format": "int64"
         },
-        "GetSpaceInput": {
+        "ListSpacesInput": {
             "type": "object",
             "properties": {
-                "spaceId": {
-                    "$ref": "#/$defs/SpaceId"
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListSpacesLimit"
                 }
             }
+        },
+        "ListSpacesLimit": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListSpacesOutput": {
             "type": "object",
@@ -938,34 +948,19 @@
                 }
             }
         },
-        "ListSpacesInput": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/ListSpacesLimit"
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
-        },
-        "ListSpacesLimit": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
                 "tags": {
                     "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -1003,10 +998,6 @@
         "InviteBody": {
             "type": "string"
         },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -1018,7 +1009,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1041,6 +1032,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         },
         "UpdateSpaceInput": {
             "type": "object",

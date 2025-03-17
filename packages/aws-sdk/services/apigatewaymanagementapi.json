@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConnectionId": {}
                     }
                 }
             }
@@ -72,9 +70,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConnectionId": {}
                     }
                 }
             }
@@ -111,9 +107,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Data": {},
+                        "ConnectionId": {}
                     }
                 }
             }
@@ -176,6 +171,14 @@
         "__string": {
             "type": "string"
         },
+        "GetConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectionId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
         "GetConnectionResponse": {
             "type": "object",
             "properties": {
@@ -201,14 +204,6 @@
                     "$ref": "#/$defs/__string"
                 },
                 "UserAgent": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "GetConnectionRequest": {
-            "type": "object",
-            "properties": {
-                "ConnectionId": {
                     "$ref": "#/$defs/__string"
                 }
             }

@@ -33,8 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -71,8 +70,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -109,8 +108,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -162,6 +161,14 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "ListTagsForResourceOutput": {
             "type": "object",
             "properties": {
@@ -174,14 +181,6 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/smithy.api#String"
-            }
-        },
-        "ListTagsForResourceInput": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
             }
         },
         "TagResourceInput": {

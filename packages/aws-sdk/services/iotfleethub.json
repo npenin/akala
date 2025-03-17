@@ -29,9 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "applicationName": {},
+                        "applicationDescription": {},
+                        "clientToken": {},
+                        "roleArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -68,9 +70,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "applicationId": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -107,9 +108,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "applicationId": {}
                     }
                 }
             }
@@ -142,9 +141,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {}
                     }
                 }
             }
@@ -181,9 +178,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -220,9 +215,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -259,9 +253,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -298,9 +291,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "applicationId": {},
+                        "applicationName": {},
+                        "applicationDescription": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -352,23 +346,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateApplicationResponse": {
-            "type": "object",
-            "properties": {
-                "applicationId": {
-                    "$ref": "#/$defs/Id"
-                },
-                "applicationArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Id": {
-            "type": "string"
-        },
-        "Arn": {
-            "type": "string"
-        },
         "CreateApplicationRequest": {
             "type": "object",
             "properties": {
@@ -398,6 +375,9 @@
         "ClientRequestToken": {
             "type": "string"
         },
+        "Arn": {
+            "type": "string"
+        },
         "TagMap": {
             "type": "object",
             "additionalProperties": {
@@ -407,9 +387,19 @@
         "TagValue": {
             "type": "string"
         },
-        "DeleteApplicationResponse": {
+        "CreateApplicationResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "applicationArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Id": {
+            "type": "string"
         },
         "DeleteApplicationRequest": {
             "type": "object",
@@ -419,6 +409,18 @@
                 },
                 "clientToken": {
                     "$ref": "#/$defs/ClientRequestToken"
+                }
+            }
+        },
+        "DeleteApplicationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "applicationId": {
+                    "$ref": "#/$defs/Id"
                 }
             }
         },
@@ -485,13 +487,16 @@
         "ErrorMessage": {
             "type": "string"
         },
-        "DescribeApplicationRequest": {
+        "ListApplicationsRequest": {
             "type": "object",
             "properties": {
-                "applicationId": {
-                    "$ref": "#/$defs/Id"
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListApplicationsResponse": {
             "type": "object",
@@ -536,25 +541,6 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListApplicationsRequest": {
-            "type": "object",
-            "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "tags": {
-                    "$ref": "#/$defs/TagMap"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -566,9 +552,13 @@
         "ResourceArn": {
             "type": "string"
         },
-        "TagResourceResponse": {
+        "ListTagsForResourceResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -581,7 +571,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -605,7 +595,7 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateApplicationResponse": {
+        "UntagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -625,6 +615,10 @@
                     "$ref": "#/$defs/ClientRequestToken"
                 }
             }
+        },
+        "UpdateApplicationResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

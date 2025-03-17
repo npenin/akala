@@ -29,9 +29,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChannelARN": {},
+                        "ClientId": {},
+                        "Service": {},
+                        "Username": {}
                     }
                 }
             }
@@ -64,9 +65,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChannelARN": {},
+                        "SenderClientId": {},
+                        "MessagePayload": {}
                     }
                 }
             }
@@ -118,6 +119,37 @@
             "type": "string",
             "format": "binary"
         },
+        "GetIceServerConfigRequest": {
+            "type": "object",
+            "properties": {
+                "ChannelARN": {
+                    "$ref": "#/$defs/ResourceARN"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/ClientId"
+                },
+                "Service": {
+                    "$ref": "#/$defs/Service"
+                },
+                "Username": {
+                    "$ref": "#/$defs/Username"
+                }
+            }
+        },
+        "ResourceARN": {
+            "type": "string"
+        },
+        "ClientId": {
+            "type": "string"
+        },
+        "Service": {
+            "enum": [
+                "TURN"
+            ]
+        },
+        "Username": {
+            "type": "string"
+        },
         "GetIceServerConfigResponse": {
             "type": "object",
             "properties": {
@@ -158,54 +190,12 @@
         "Uri": {
             "type": "string"
         },
-        "Username": {
-            "type": "string"
-        },
         "Password": {
             "type": "string"
         },
         "Ttl": {
             "type": "integer",
             "format": "int32"
-        },
-        "GetIceServerConfigRequest": {
-            "type": "object",
-            "properties": {
-                "ChannelARN": {
-                    "$ref": "#/$defs/ResourceARN"
-                },
-                "ClientId": {
-                    "$ref": "#/$defs/ClientId"
-                },
-                "Service": {
-                    "$ref": "#/$defs/Service"
-                },
-                "Username": {
-                    "$ref": "#/$defs/Username"
-                }
-            }
-        },
-        "ResourceARN": {
-            "type": "string"
-        },
-        "ClientId": {
-            "type": "string"
-        },
-        "Service": {
-            "enum": [
-                "TURN"
-            ]
-        },
-        "SendAlexaOfferToMasterResponse": {
-            "type": "object",
-            "properties": {
-                "Answer": {
-                    "$ref": "#/$defs/Answer"
-                }
-            }
-        },
-        "Answer": {
-            "type": "string"
         },
         "SendAlexaOfferToMasterRequest": {
             "type": "object",
@@ -222,6 +212,17 @@
             }
         },
         "MessagePayload": {
+            "type": "string"
+        },
+        "SendAlexaOfferToMasterResponse": {
+            "type": "object",
+            "properties": {
+                "Answer": {
+                    "$ref": "#/$defs/Answer"
+                }
+            }
+        },
+        "Answer": {
             "type": "string"
         }
     },

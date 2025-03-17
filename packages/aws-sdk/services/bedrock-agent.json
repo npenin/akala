@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "definition": {}
                     }
                 }
             }
@@ -83,445 +81,6 @@
             "type": "string",
             "format": "binary"
         },
-        "ValidateFlowDefinitionResponse": {
-            "type": "object",
-            "properties": {
-                "validations": {
-                    "$ref": "#/$defs/FlowValidations"
-                }
-            }
-        },
-        "FlowValidations": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/FlowValidation"
-            }
-        },
-        "FlowValidation": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/NonBlankString"
-                },
-                "severity": {
-                    "$ref": "#/$defs/FlowValidationSeverity"
-                },
-                "details": {
-                    "$ref": "#/$defs/FlowValidationDetails"
-                },
-                "type": {
-                    "$ref": "#/$defs/FlowValidationType"
-                }
-            }
-        },
-        "NonBlankString": {
-            "type": "string"
-        },
-        "FlowValidationSeverity": {
-            "enum": [
-                "WARNING",
-                "ERROR"
-            ]
-        },
-        "FlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "cyclicConnection": {
-                    "$ref": "#/$defs/CyclicConnectionFlowValidationDetails"
-                },
-                "duplicateConnections": {
-                    "$ref": "#/$defs/DuplicateConnectionsFlowValidationDetails"
-                },
-                "duplicateConditionExpression": {
-                    "$ref": "#/$defs/DuplicateConditionExpressionFlowValidationDetails"
-                },
-                "unreachableNode": {
-                    "$ref": "#/$defs/UnreachableNodeFlowValidationDetails"
-                },
-                "unknownConnectionSource": {
-                    "$ref": "#/$defs/UnknownConnectionSourceFlowValidationDetails"
-                },
-                "unknownConnectionSourceOutput": {
-                    "$ref": "#/$defs/UnknownConnectionSourceOutputFlowValidationDetails"
-                },
-                "unknownConnectionTarget": {
-                    "$ref": "#/$defs/UnknownConnectionTargetFlowValidationDetails"
-                },
-                "unknownConnectionTargetInput": {
-                    "$ref": "#/$defs/UnknownConnectionTargetInputFlowValidationDetails"
-                },
-                "unknownConnectionCondition": {
-                    "$ref": "#/$defs/UnknownConnectionConditionFlowValidationDetails"
-                },
-                "malformedConditionExpression": {
-                    "$ref": "#/$defs/MalformedConditionExpressionFlowValidationDetails"
-                },
-                "malformedNodeInputExpression": {
-                    "$ref": "#/$defs/MalformedNodeInputExpressionFlowValidationDetails"
-                },
-                "mismatchedNodeInputType": {
-                    "$ref": "#/$defs/MismatchedNodeInputTypeFlowValidationDetails"
-                },
-                "mismatchedNodeOutputType": {
-                    "$ref": "#/$defs/MismatchedNodeOutputTypeFlowValidationDetails"
-                },
-                "incompatibleConnectionDataType": {
-                    "$ref": "#/$defs/IncompatibleConnectionDataTypeFlowValidationDetails"
-                },
-                "missingConnectionConfiguration": {
-                    "$ref": "#/$defs/MissingConnectionConfigurationFlowValidationDetails"
-                },
-                "missingDefaultCondition": {
-                    "$ref": "#/$defs/MissingDefaultConditionFlowValidationDetails"
-                },
-                "missingEndingNodes": {
-                    "$ref": "#/$defs/MissingEndingNodesFlowValidationDetails"
-                },
-                "missingNodeConfiguration": {
-                    "$ref": "#/$defs/MissingNodeConfigurationFlowValidationDetails"
-                },
-                "missingNodeInput": {
-                    "$ref": "#/$defs/MissingNodeInputFlowValidationDetails"
-                },
-                "missingNodeOutput": {
-                    "$ref": "#/$defs/MissingNodeOutputFlowValidationDetails"
-                },
-                "missingStartingNodes": {
-                    "$ref": "#/$defs/MissingStartingNodesFlowValidationDetails"
-                },
-                "multipleNodeInputConnections": {
-                    "$ref": "#/$defs/MultipleNodeInputConnectionsFlowValidationDetails"
-                },
-                "unfulfilledNodeInput": {
-                    "$ref": "#/$defs/UnfulfilledNodeInputFlowValidationDetails"
-                },
-                "unsatisfiedConnectionConditions": {
-                    "$ref": "#/$defs/UnsatisfiedConnectionConditionsFlowValidationDetails"
-                },
-                "unspecified": {
-                    "$ref": "#/$defs/UnspecifiedFlowValidationDetails"
-                },
-                "unknownNodeInput": {
-                    "$ref": "#/$defs/UnknownNodeInputFlowValidationDetails"
-                },
-                "unknownNodeOutput": {
-                    "$ref": "#/$defs/UnknownNodeOutputFlowValidationDetails"
-                }
-            }
-        },
-        "CyclicConnectionFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "FlowConnectionName": {
-            "type": "string"
-        },
-        "DuplicateConnectionsFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "source": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "target": {
-                    "$ref": "#/$defs/FlowNodeName"
-                }
-            }
-        },
-        "FlowNodeName": {
-            "type": "string"
-        },
-        "DuplicateConditionExpressionFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "expression": {
-                    "$ref": "#/$defs/FlowConditionExpression"
-                }
-            }
-        },
-        "FlowConditionExpression": {
-            "type": "string"
-        },
-        "UnreachableNodeFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                }
-            }
-        },
-        "UnknownConnectionSourceFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "UnknownConnectionSourceOutputFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "UnknownConnectionTargetFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "UnknownConnectionTargetInputFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "UnknownConnectionConditionFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "MalformedConditionExpressionFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "condition": {
-                    "$ref": "#/$defs/FlowConditionName"
-                },
-                "cause": {
-                    "$ref": "#/$defs/ErrorMessage"
-                }
-            }
-        },
-        "FlowConditionName": {
-            "type": "string"
-        },
-        "ErrorMessage": {
-            "type": "string"
-        },
-        "MalformedNodeInputExpressionFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "input": {
-                    "$ref": "#/$defs/FlowNodeInputName"
-                },
-                "cause": {
-                    "$ref": "#/$defs/ErrorMessage"
-                }
-            }
-        },
-        "FlowNodeInputName": {
-            "type": "string"
-        },
-        "MismatchedNodeInputTypeFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "input": {
-                    "$ref": "#/$defs/FlowNodeInputName"
-                },
-                "expectedType": {
-                    "$ref": "#/$defs/FlowNodeIODataType"
-                }
-            }
-        },
-        "FlowNodeIODataType": {
-            "enum": [
-                "STRING",
-                "NUMBER",
-                "BOOLEAN",
-                "OBJECT",
-                "ARRAY"
-            ]
-        },
-        "MismatchedNodeOutputTypeFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "output": {
-                    "$ref": "#/$defs/FlowNodeOutputName"
-                },
-                "expectedType": {
-                    "$ref": "#/$defs/FlowNodeIODataType"
-                }
-            }
-        },
-        "FlowNodeOutputName": {
-            "type": "string"
-        },
-        "IncompatibleConnectionDataTypeFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "MissingConnectionConfigurationFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "MissingDefaultConditionFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                }
-            }
-        },
-        "MissingEndingNodesFlowValidationDetails": {
-            "type": "object",
-            "properties": {}
-        },
-        "MissingNodeConfigurationFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                }
-            }
-        },
-        "MissingNodeInputFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "input": {
-                    "$ref": "#/$defs/FlowNodeInputName"
-                }
-            }
-        },
-        "MissingNodeOutputFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "output": {
-                    "$ref": "#/$defs/FlowNodeOutputName"
-                }
-            }
-        },
-        "MissingStartingNodesFlowValidationDetails": {
-            "type": "object",
-            "properties": {}
-        },
-        "MultipleNodeInputConnectionsFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "input": {
-                    "$ref": "#/$defs/FlowNodeInputName"
-                }
-            }
-        },
-        "UnfulfilledNodeInputFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "input": {
-                    "$ref": "#/$defs/FlowNodeInputName"
-                }
-            }
-        },
-        "UnsatisfiedConnectionConditionsFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "connection": {
-                    "$ref": "#/$defs/FlowConnectionName"
-                }
-            }
-        },
-        "UnspecifiedFlowValidationDetails": {
-            "type": "object",
-            "properties": {}
-        },
-        "UnknownNodeInputFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "input": {
-                    "$ref": "#/$defs/FlowNodeInputName"
-                }
-            }
-        },
-        "UnknownNodeOutputFlowValidationDetails": {
-            "type": "object",
-            "properties": {
-                "node": {
-                    "$ref": "#/$defs/FlowNodeName"
-                },
-                "output": {
-                    "$ref": "#/$defs/FlowNodeOutputName"
-                }
-            }
-        },
-        "FlowValidationType": {
-            "enum": [
-                "CYCLIC_CONNECTION",
-                "DUPLICATE_CONNECTIONS",
-                "DUPLICATE_CONDITION_EXPRESSION",
-                "UNREACHABLE_NODE",
-                "UNKNOWN_CONNECTION_SOURCE",
-                "UNKNOWN_CONNECTION_SOURCE_OUTPUT",
-                "UNKNOWN_CONNECTION_TARGET",
-                "UNKNOWN_CONNECTION_TARGET_INPUT",
-                "UNKNOWN_CONNECTION_CONDITION",
-                "MALFORMED_CONDITION_EXPRESSION",
-                "MALFORMED_NODE_INPUT_EXPRESSION",
-                "MISMATCHED_NODE_INPUT_TYPE",
-                "MISMATCHED_NODE_OUTPUT_TYPE",
-                "INCOMPATIBLE_CONNECTION_DATA_TYPE",
-                "MISSING_CONNECTION_CONFIGURATION",
-                "MISSING_DEFAULT_CONDITION",
-                "MISSING_ENDING_NODES",
-                "MISSING_NODE_CONFIGURATION",
-                "MISSING_NODE_INPUT",
-                "MISSING_NODE_OUTPUT",
-                "MISSING_STARTING_NODES",
-                "MULTIPLE_NODE_INPUT_CONNECTIONS",
-                "UNFULFILLED_NODE_INPUT",
-                "UNSATISFIED_CONNECTION_CONDITIONS",
-                "UNSPECIFIED",
-                "UNKNOWN_NODE_INPUT",
-                "UNKNOWN_NODE_OUTPUT"
-            ]
-        },
         "ValidateFlowDefinitionRequest": {
             "type": "object",
             "properties": {
@@ -566,6 +125,9 @@
                     "$ref": "#/$defs/FlowNodeOutputs"
                 }
             }
+        },
+        "FlowNodeName": {
+            "type": "string"
         },
         "FlowNodeType": {
             "enum": [
@@ -693,6 +255,12 @@
                     "$ref": "#/$defs/FlowConditionExpression"
                 }
             }
+        },
+        "FlowConditionName": {
+            "type": "string"
+        },
+        "FlowConditionExpression": {
+            "type": "string"
         },
         "LexFlowNodeConfiguration": {
             "type": "object",
@@ -1135,6 +703,18 @@
                 }
             }
         },
+        "FlowNodeInputName": {
+            "type": "string"
+        },
+        "FlowNodeIODataType": {
+            "enum": [
+                "STRING",
+                "NUMBER",
+                "BOOLEAN",
+                "OBJECT",
+                "ARRAY"
+            ]
+        },
         "FlowNodeInputExpression": {
             "type": "string"
         },
@@ -1154,6 +734,9 @@
                     "$ref": "#/$defs/FlowNodeIODataType"
                 }
             }
+        },
+        "FlowNodeOutputName": {
+            "type": "string"
         },
         "FlowConnections": {
             "type": "array",
@@ -1187,6 +770,9 @@
                 "CONDITIONAL"
             ]
         },
+        "FlowConnectionName": {
+            "type": "string"
+        },
         "FlowConnectionConfiguration": {
             "type": "object",
             "properties": {
@@ -1216,6 +802,418 @@
                     "$ref": "#/$defs/FlowConditionName"
                 }
             }
+        },
+        "ValidateFlowDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "validations": {
+                    "$ref": "#/$defs/FlowValidations"
+                }
+            }
+        },
+        "FlowValidations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FlowValidation"
+            }
+        },
+        "FlowValidation": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/NonBlankString"
+                },
+                "severity": {
+                    "$ref": "#/$defs/FlowValidationSeverity"
+                },
+                "details": {
+                    "$ref": "#/$defs/FlowValidationDetails"
+                },
+                "type": {
+                    "$ref": "#/$defs/FlowValidationType"
+                }
+            }
+        },
+        "NonBlankString": {
+            "type": "string"
+        },
+        "FlowValidationSeverity": {
+            "enum": [
+                "WARNING",
+                "ERROR"
+            ]
+        },
+        "FlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "cyclicConnection": {
+                    "$ref": "#/$defs/CyclicConnectionFlowValidationDetails"
+                },
+                "duplicateConnections": {
+                    "$ref": "#/$defs/DuplicateConnectionsFlowValidationDetails"
+                },
+                "duplicateConditionExpression": {
+                    "$ref": "#/$defs/DuplicateConditionExpressionFlowValidationDetails"
+                },
+                "unreachableNode": {
+                    "$ref": "#/$defs/UnreachableNodeFlowValidationDetails"
+                },
+                "unknownConnectionSource": {
+                    "$ref": "#/$defs/UnknownConnectionSourceFlowValidationDetails"
+                },
+                "unknownConnectionSourceOutput": {
+                    "$ref": "#/$defs/UnknownConnectionSourceOutputFlowValidationDetails"
+                },
+                "unknownConnectionTarget": {
+                    "$ref": "#/$defs/UnknownConnectionTargetFlowValidationDetails"
+                },
+                "unknownConnectionTargetInput": {
+                    "$ref": "#/$defs/UnknownConnectionTargetInputFlowValidationDetails"
+                },
+                "unknownConnectionCondition": {
+                    "$ref": "#/$defs/UnknownConnectionConditionFlowValidationDetails"
+                },
+                "malformedConditionExpression": {
+                    "$ref": "#/$defs/MalformedConditionExpressionFlowValidationDetails"
+                },
+                "malformedNodeInputExpression": {
+                    "$ref": "#/$defs/MalformedNodeInputExpressionFlowValidationDetails"
+                },
+                "mismatchedNodeInputType": {
+                    "$ref": "#/$defs/MismatchedNodeInputTypeFlowValidationDetails"
+                },
+                "mismatchedNodeOutputType": {
+                    "$ref": "#/$defs/MismatchedNodeOutputTypeFlowValidationDetails"
+                },
+                "incompatibleConnectionDataType": {
+                    "$ref": "#/$defs/IncompatibleConnectionDataTypeFlowValidationDetails"
+                },
+                "missingConnectionConfiguration": {
+                    "$ref": "#/$defs/MissingConnectionConfigurationFlowValidationDetails"
+                },
+                "missingDefaultCondition": {
+                    "$ref": "#/$defs/MissingDefaultConditionFlowValidationDetails"
+                },
+                "missingEndingNodes": {
+                    "$ref": "#/$defs/MissingEndingNodesFlowValidationDetails"
+                },
+                "missingNodeConfiguration": {
+                    "$ref": "#/$defs/MissingNodeConfigurationFlowValidationDetails"
+                },
+                "missingNodeInput": {
+                    "$ref": "#/$defs/MissingNodeInputFlowValidationDetails"
+                },
+                "missingNodeOutput": {
+                    "$ref": "#/$defs/MissingNodeOutputFlowValidationDetails"
+                },
+                "missingStartingNodes": {
+                    "$ref": "#/$defs/MissingStartingNodesFlowValidationDetails"
+                },
+                "multipleNodeInputConnections": {
+                    "$ref": "#/$defs/MultipleNodeInputConnectionsFlowValidationDetails"
+                },
+                "unfulfilledNodeInput": {
+                    "$ref": "#/$defs/UnfulfilledNodeInputFlowValidationDetails"
+                },
+                "unsatisfiedConnectionConditions": {
+                    "$ref": "#/$defs/UnsatisfiedConnectionConditionsFlowValidationDetails"
+                },
+                "unspecified": {
+                    "$ref": "#/$defs/UnspecifiedFlowValidationDetails"
+                },
+                "unknownNodeInput": {
+                    "$ref": "#/$defs/UnknownNodeInputFlowValidationDetails"
+                },
+                "unknownNodeOutput": {
+                    "$ref": "#/$defs/UnknownNodeOutputFlowValidationDetails"
+                }
+            }
+        },
+        "CyclicConnectionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "DuplicateConnectionsFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "target": {
+                    "$ref": "#/$defs/FlowNodeName"
+                }
+            }
+        },
+        "DuplicateConditionExpressionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "expression": {
+                    "$ref": "#/$defs/FlowConditionExpression"
+                }
+            }
+        },
+        "UnreachableNodeFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                }
+            }
+        },
+        "UnknownConnectionSourceFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnknownConnectionSourceOutputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnknownConnectionTargetFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnknownConnectionTargetInputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnknownConnectionConditionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "MalformedConditionExpressionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "condition": {
+                    "$ref": "#/$defs/FlowConditionName"
+                },
+                "cause": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "MalformedNodeInputExpressionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                },
+                "cause": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "MismatchedNodeInputTypeFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                },
+                "expectedType": {
+                    "$ref": "#/$defs/FlowNodeIODataType"
+                }
+            }
+        },
+        "MismatchedNodeOutputTypeFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "output": {
+                    "$ref": "#/$defs/FlowNodeOutputName"
+                },
+                "expectedType": {
+                    "$ref": "#/$defs/FlowNodeIODataType"
+                }
+            }
+        },
+        "IncompatibleConnectionDataTypeFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "MissingConnectionConfigurationFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "MissingDefaultConditionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                }
+            }
+        },
+        "MissingEndingNodesFlowValidationDetails": {
+            "type": "object",
+            "properties": {}
+        },
+        "MissingNodeConfigurationFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                }
+            }
+        },
+        "MissingNodeInputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "MissingNodeOutputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "output": {
+                    "$ref": "#/$defs/FlowNodeOutputName"
+                }
+            }
+        },
+        "MissingStartingNodesFlowValidationDetails": {
+            "type": "object",
+            "properties": {}
+        },
+        "MultipleNodeInputConnectionsFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "UnfulfilledNodeInputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "UnsatisfiedConnectionConditionsFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnspecifiedFlowValidationDetails": {
+            "type": "object",
+            "properties": {}
+        },
+        "UnknownNodeInputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "UnknownNodeOutputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "output": {
+                    "$ref": "#/$defs/FlowNodeOutputName"
+                }
+            }
+        },
+        "FlowValidationType": {
+            "enum": [
+                "CYCLIC_CONNECTION",
+                "DUPLICATE_CONNECTIONS",
+                "DUPLICATE_CONDITION_EXPRESSION",
+                "UNREACHABLE_NODE",
+                "UNKNOWN_CONNECTION_SOURCE",
+                "UNKNOWN_CONNECTION_SOURCE_OUTPUT",
+                "UNKNOWN_CONNECTION_TARGET",
+                "UNKNOWN_CONNECTION_TARGET_INPUT",
+                "UNKNOWN_CONNECTION_CONDITION",
+                "MALFORMED_CONDITION_EXPRESSION",
+                "MALFORMED_NODE_INPUT_EXPRESSION",
+                "MISMATCHED_NODE_INPUT_TYPE",
+                "MISMATCHED_NODE_OUTPUT_TYPE",
+                "INCOMPATIBLE_CONNECTION_DATA_TYPE",
+                "MISSING_CONNECTION_CONFIGURATION",
+                "MISSING_DEFAULT_CONDITION",
+                "MISSING_ENDING_NODES",
+                "MISSING_NODE_CONFIGURATION",
+                "MISSING_NODE_INPUT",
+                "MISSING_NODE_OUTPUT",
+                "MISSING_STARTING_NODES",
+                "MULTIPLE_NODE_INPUT_CONNECTIONS",
+                "UNFULFILLED_NODE_INPUT",
+                "UNSATISFIED_CONNECTION_CONDITIONS",
+                "UNSPECIFIED",
+                "UNKNOWN_NODE_INPUT",
+                "UNKNOWN_NODE_OUTPUT"
+            ]
         }
     },
     "aws": {

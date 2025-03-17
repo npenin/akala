@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SessionId": {}
                     }
                 }
             }
@@ -68,9 +66,20 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LanguageCode": {},
+                        "MediaSampleRateHertz": {},
+                        "MediaEncoding": {},
+                        "VocabularyName": {},
+                        "SessionId": {},
+                        "AudioStream": {},
+                        "VocabularyFilterName": {},
+                        "VocabularyFilterMethod": {},
+                        "LanguageModelName": {},
+                        "EnablePartialResultsStabilization": {},
+                        "PartialResultsStability": {},
+                        "ContentIdentificationType": {},
+                        "ContentRedactionType": {},
+                        "PiiEntityTypes": {}
                     }
                 }
             }
@@ -103,9 +112,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SessionId": {},
+                        "LanguageCode": {},
+                        "MediaSampleRateHertz": {},
+                        "MediaEncoding": {},
+                        "InputStream": {}
                     }
                 }
             }
@@ -138,9 +149,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LanguageCode": {},
+                        "MediaSampleRateHertz": {},
+                        "MediaEncoding": {},
+                        "VocabularyName": {},
+                        "Specialty": {},
+                        "Type": {},
+                        "ShowSpeakerLabel": {},
+                        "SessionId": {},
+                        "AudioStream": {},
+                        "EnableChannelIdentification": {},
+                        "NumberOfChannels": {},
+                        "ContentIdentificationType": {}
                     }
                 }
             }
@@ -173,9 +193,29 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LanguageCode": {},
+                        "MediaSampleRateHertz": {},
+                        "MediaEncoding": {},
+                        "VocabularyName": {},
+                        "SessionId": {},
+                        "AudioStream": {},
+                        "VocabularyFilterName": {},
+                        "VocabularyFilterMethod": {},
+                        "ShowSpeakerLabel": {},
+                        "EnableChannelIdentification": {},
+                        "NumberOfChannels": {},
+                        "EnablePartialResultsStabilization": {},
+                        "PartialResultsStability": {},
+                        "ContentIdentificationType": {},
+                        "ContentRedactionType": {},
+                        "PiiEntityTypes": {},
+                        "LanguageModelName": {},
+                        "IdentifyLanguage": {},
+                        "LanguageOptions": {},
+                        "PreferredLanguage": {},
+                        "IdentifyMultipleLanguages": {},
+                        "VocabularyNames": {},
+                        "VocabularyFilterNames": {}
                     }
                 }
             }
@@ -226,6 +266,17 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "GetMedicalScribeStreamRequest": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                }
+            }
+        },
+        "SessionId": {
+            "type": "string"
         },
         "GetMedicalScribeStreamResponse": {
             "type": "object",
@@ -284,9 +335,6 @@
                     "$ref": "#/$defs/MedicalScribePostStreamAnalyticsResult"
                 }
             }
-        },
-        "SessionId": {
-            "type": "string"
         },
         "DateTime": {
             "type": "string",
@@ -448,13 +496,193 @@
         "String": {
             "type": "string"
         },
-        "GetMedicalScribeStreamRequest": {
+        "StartCallAnalyticsStreamTranscriptionRequest": {
             "type": "object",
             "properties": {
+                "LanguageCode": {
+                    "$ref": "#/$defs/CallAnalyticsLanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
                 "SessionId": {
                     "$ref": "#/$defs/SessionId"
+                },
+                "AudioStream": {
+                    "$ref": "#/$defs/AudioStream"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/VocabularyFilterMethod"
+                },
+                "LanguageModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "EnablePartialResultsStabilization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PartialResultsStability": {
+                    "$ref": "#/$defs/PartialResultsStability"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/ContentIdentificationType"
+                },
+                "ContentRedactionType": {
+                    "$ref": "#/$defs/ContentRedactionType"
+                },
+                "PiiEntityTypes": {
+                    "$ref": "#/$defs/PiiEntityTypes"
                 }
             }
+        },
+        "CallAnalyticsLanguageCode": {
+            "enum": [
+                "EN_US",
+                "EN_GB",
+                "ES_US",
+                "FR_CA",
+                "FR_FR",
+                "EN_AU",
+                "IT_IT",
+                "DE_DE",
+                "PT_BR"
+            ]
+        },
+        "MediaSampleRateHertz": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MediaEncoding": {
+            "enum": [
+                "PCM",
+                "OGG_OPUS",
+                "FLAC"
+            ]
+        },
+        "AudioStream": {
+            "type": "object",
+            "properties": {
+                "AudioEvent": {
+                    "$ref": "#/$defs/AudioEvent"
+                },
+                "ConfigurationEvent": {
+                    "$ref": "#/$defs/ConfigurationEvent"
+                }
+            }
+        },
+        "AudioEvent": {
+            "type": "object",
+            "properties": {
+                "AudioChunk": {
+                    "$ref": "#/$defs/AudioChunk"
+                }
+            }
+        },
+        "AudioChunk": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ConfigurationEvent": {
+            "type": "object",
+            "properties": {
+                "ChannelDefinitions": {
+                    "$ref": "#/$defs/ChannelDefinitions"
+                },
+                "PostCallAnalyticsSettings": {
+                    "$ref": "#/$defs/PostCallAnalyticsSettings"
+                }
+            }
+        },
+        "ChannelDefinitions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelDefinition"
+            }
+        },
+        "ChannelDefinition": {
+            "type": "object",
+            "properties": {
+                "ChannelId": {
+                    "$ref": "#/$defs/ChannelId"
+                },
+                "ParticipantRole": {
+                    "$ref": "#/$defs/ParticipantRole"
+                }
+            }
+        },
+        "ChannelId": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ParticipantRole": {
+            "enum": [
+                "AGENT",
+                "CUSTOMER"
+            ]
+        },
+        "PostCallAnalyticsSettings": {
+            "type": "object",
+            "properties": {
+                "OutputLocation": {
+                    "$ref": "#/$defs/String"
+                },
+                "DataAccessRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "ContentRedactionOutput": {
+                    "$ref": "#/$defs/ContentRedactionOutput"
+                },
+                "OutputEncryptionKMSKeyId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ContentRedactionOutput": {
+            "enum": [
+                "REDACTED",
+                "REDACTED_AND_UNREDACTED"
+            ]
+        },
+        "VocabularyFilterMethod": {
+            "enum": [
+                "REMOVE",
+                "MASK",
+                "TAG"
+            ]
+        },
+        "ModelName": {
+            "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "PartialResultsStability": {
+            "enum": [
+                "HIGH",
+                "MEDIUM",
+                "LOW"
+            ]
+        },
+        "ContentIdentificationType": {
+            "enum": [
+                "PII"
+            ]
+        },
+        "ContentRedactionType": {
+            "enum": [
+                "PII"
+            ]
+        },
+        "PiiEntityTypes": {
+            "type": "string"
         },
         "StartCallAnalyticsStreamTranscriptionResponse": {
             "type": "object",
@@ -508,30 +736,6 @@
         },
         "RequestId": {
             "type": "string"
-        },
-        "CallAnalyticsLanguageCode": {
-            "enum": [
-                "EN_US",
-                "EN_GB",
-                "ES_US",
-                "FR_CA",
-                "FR_FR",
-                "EN_AU",
-                "IT_IT",
-                "DE_DE",
-                "PT_BR"
-            ]
-        },
-        "MediaSampleRateHertz": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "MediaEncoding": {
-            "enum": [
-                "PCM",
-                "OGG_OPUS",
-                "FLAC"
-            ]
         },
         "CallAnalyticsTranscriptResultStream": {
             "type": "object",
@@ -593,15 +797,6 @@
                     "$ref": "#/$defs/IssuesDetected"
                 }
             }
-        },
-        "Boolean": {
-            "type": "boolean"
-        },
-        "ParticipantRole": {
-            "enum": [
-                "AGENT",
-                "CUSTOMER"
-            ]
         },
         "Long": {
             "type": "integer",
@@ -806,95 +1001,41 @@
                 }
             }
         },
-        "VocabularyFilterMethod": {
-            "enum": [
-                "REMOVE",
-                "MASK",
-                "TAG"
-            ]
-        },
-        "ModelName": {
-            "type": "string"
-        },
-        "PartialResultsStability": {
-            "enum": [
-                "HIGH",
-                "MEDIUM",
-                "LOW"
-            ]
-        },
-        "ContentIdentificationType": {
-            "enum": [
-                "PII"
-            ]
-        },
-        "ContentRedactionType": {
-            "enum": [
-                "PII"
-            ]
-        },
-        "PiiEntityTypes": {
-            "type": "string"
-        },
-        "StartCallAnalyticsStreamTranscriptionRequest": {
+        "StartMedicalScribeStreamRequest": {
             "type": "object",
             "properties": {
-                "LanguageCode": {
-                    "$ref": "#/$defs/CallAnalyticsLanguageCode"
-                },
-                "MediaSampleRateHertz": {
-                    "$ref": "#/$defs/MediaSampleRateHertz"
-                },
-                "MediaEncoding": {
-                    "$ref": "#/$defs/MediaEncoding"
-                },
-                "VocabularyName": {
-                    "$ref": "#/$defs/VocabularyName"
-                },
                 "SessionId": {
                     "$ref": "#/$defs/SessionId"
                 },
-                "AudioStream": {
-                    "$ref": "#/$defs/AudioStream"
+                "LanguageCode": {
+                    "$ref": "#/$defs/MedicalScribeLanguageCode"
                 },
-                "VocabularyFilterName": {
-                    "$ref": "#/$defs/VocabularyFilterName"
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MedicalScribeMediaSampleRateHertz"
                 },
-                "VocabularyFilterMethod": {
-                    "$ref": "#/$defs/VocabularyFilterMethod"
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MedicalScribeMediaEncoding"
                 },
-                "LanguageModelName": {
-                    "$ref": "#/$defs/ModelName"
-                },
-                "EnablePartialResultsStabilization": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "PartialResultsStability": {
-                    "$ref": "#/$defs/PartialResultsStability"
-                },
-                "ContentIdentificationType": {
-                    "$ref": "#/$defs/ContentIdentificationType"
-                },
-                "ContentRedactionType": {
-                    "$ref": "#/$defs/ContentRedactionType"
-                },
-                "PiiEntityTypes": {
-                    "$ref": "#/$defs/PiiEntityTypes"
+                "InputStream": {
+                    "$ref": "#/$defs/MedicalScribeInputStream"
                 }
             }
         },
-        "AudioStream": {
+        "MedicalScribeInputStream": {
             "type": "object",
             "properties": {
                 "AudioEvent": {
-                    "$ref": "#/$defs/AudioEvent"
+                    "$ref": "#/$defs/MedicalScribeAudioEvent"
+                },
+                "SessionControlEvent": {
+                    "$ref": "#/$defs/MedicalScribeSessionControlEvent"
                 },
                 "ConfigurationEvent": {
-                    "$ref": "#/$defs/ConfigurationEvent"
+                    "$ref": "#/$defs/MedicalScribeConfigurationEvent"
                 }
             }
         },
-        "AudioEvent": {
+        "MedicalScribeAudioEvent": {
             "type": "object",
             "properties": {
                 "AudioChunk": {
@@ -902,64 +1043,44 @@
                 }
             }
         },
-        "AudioChunk": {
-            "type": "string",
-            "format": "binary"
-        },
-        "ConfigurationEvent": {
+        "MedicalScribeSessionControlEvent": {
             "type": "object",
             "properties": {
-                "ChannelDefinitions": {
-                    "$ref": "#/$defs/ChannelDefinitions"
-                },
-                "PostCallAnalyticsSettings": {
-                    "$ref": "#/$defs/PostCallAnalyticsSettings"
+                "Type": {
+                    "$ref": "#/$defs/MedicalScribeSessionControlEventType"
                 }
             }
         },
-        "ChannelDefinitions": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ChannelDefinition"
-            }
-        },
-        "ChannelDefinition": {
-            "type": "object",
-            "properties": {
-                "ChannelId": {
-                    "$ref": "#/$defs/ChannelId"
-                },
-                "ParticipantRole": {
-                    "$ref": "#/$defs/ParticipantRole"
-                }
-            }
-        },
-        "ChannelId": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "PostCallAnalyticsSettings": {
-            "type": "object",
-            "properties": {
-                "OutputLocation": {
-                    "$ref": "#/$defs/String"
-                },
-                "DataAccessRoleArn": {
-                    "$ref": "#/$defs/String"
-                },
-                "ContentRedactionOutput": {
-                    "$ref": "#/$defs/ContentRedactionOutput"
-                },
-                "OutputEncryptionKMSKeyId": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "ContentRedactionOutput": {
+        "MedicalScribeSessionControlEventType": {
             "enum": [
-                "REDACTED",
-                "REDACTED_AND_UNREDACTED"
+                "END_OF_SESSION"
             ]
+        },
+        "MedicalScribeConfigurationEvent": {
+            "type": "object",
+            "properties": {
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/MedicalScribeVocabularyFilterMethod"
+                },
+                "ResourceAccessRoleArn": {
+                    "$ref": "#/$defs/IamRoleArn"
+                },
+                "ChannelDefinitions": {
+                    "$ref": "#/$defs/MedicalScribeChannelDefinitions"
+                },
+                "EncryptionSettings": {
+                    "$ref": "#/$defs/MedicalScribeEncryptionSettings"
+                },
+                "PostStreamAnalyticsSettings": {
+                    "$ref": "#/$defs/MedicalScribePostStreamAnalyticsSettings"
+                }
+            }
         },
         "StartMedicalScribeStreamResponse": {
             "type": "object",
@@ -1083,93 +1204,9 @@
         "NullableBoolean": {
             "type": "boolean"
         },
-        "StartMedicalScribeStreamRequest": {
+        "StartMedicalStreamTranscriptionRequest": {
             "type": "object",
             "properties": {
-                "SessionId": {
-                    "$ref": "#/$defs/SessionId"
-                },
-                "LanguageCode": {
-                    "$ref": "#/$defs/MedicalScribeLanguageCode"
-                },
-                "MediaSampleRateHertz": {
-                    "$ref": "#/$defs/MedicalScribeMediaSampleRateHertz"
-                },
-                "MediaEncoding": {
-                    "$ref": "#/$defs/MedicalScribeMediaEncoding"
-                },
-                "InputStream": {
-                    "$ref": "#/$defs/MedicalScribeInputStream"
-                }
-            }
-        },
-        "MedicalScribeInputStream": {
-            "type": "object",
-            "properties": {
-                "AudioEvent": {
-                    "$ref": "#/$defs/MedicalScribeAudioEvent"
-                },
-                "SessionControlEvent": {
-                    "$ref": "#/$defs/MedicalScribeSessionControlEvent"
-                },
-                "ConfigurationEvent": {
-                    "$ref": "#/$defs/MedicalScribeConfigurationEvent"
-                }
-            }
-        },
-        "MedicalScribeAudioEvent": {
-            "type": "object",
-            "properties": {
-                "AudioChunk": {
-                    "$ref": "#/$defs/AudioChunk"
-                }
-            }
-        },
-        "MedicalScribeSessionControlEvent": {
-            "type": "object",
-            "properties": {
-                "Type": {
-                    "$ref": "#/$defs/MedicalScribeSessionControlEventType"
-                }
-            }
-        },
-        "MedicalScribeSessionControlEventType": {
-            "enum": [
-                "END_OF_SESSION"
-            ]
-        },
-        "MedicalScribeConfigurationEvent": {
-            "type": "object",
-            "properties": {
-                "VocabularyName": {
-                    "$ref": "#/$defs/VocabularyName"
-                },
-                "VocabularyFilterName": {
-                    "$ref": "#/$defs/VocabularyFilterName"
-                },
-                "VocabularyFilterMethod": {
-                    "$ref": "#/$defs/MedicalScribeVocabularyFilterMethod"
-                },
-                "ResourceAccessRoleArn": {
-                    "$ref": "#/$defs/IamRoleArn"
-                },
-                "ChannelDefinitions": {
-                    "$ref": "#/$defs/MedicalScribeChannelDefinitions"
-                },
-                "EncryptionSettings": {
-                    "$ref": "#/$defs/MedicalScribeEncryptionSettings"
-                },
-                "PostStreamAnalyticsSettings": {
-                    "$ref": "#/$defs/MedicalScribePostStreamAnalyticsSettings"
-                }
-            }
-        },
-        "StartMedicalStreamTranscriptionResponse": {
-            "type": "object",
-            "properties": {
-                "RequestId": {
-                    "$ref": "#/$defs/RequestId"
-                },
                 "LanguageCode": {
                     "$ref": "#/$defs/LanguageCode"
                 },
@@ -1194,8 +1231,8 @@
                 "SessionId": {
                     "$ref": "#/$defs/SessionId"
                 },
-                "TranscriptResultStream": {
-                    "$ref": "#/$defs/MedicalTranscriptResultStream"
+                "AudioStream": {
+                    "$ref": "#/$defs/AudioStream"
                 },
                 "EnableChannelIdentification": {
                     "$ref": "#/$defs/Boolean"
@@ -1281,6 +1318,59 @@
                 "CONVERSATION",
                 "DICTATION"
             ]
+        },
+        "NumberOfChannels": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MedicalContentIdentificationType": {
+            "enum": [
+                "PHI"
+            ]
+        },
+        "StartMedicalStreamTranscriptionResponse": {
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "$ref": "#/$defs/RequestId"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "MediaSampleRateHertz": {
+                    "$ref": "#/$defs/MediaSampleRateHertz"
+                },
+                "MediaEncoding": {
+                    "$ref": "#/$defs/MediaEncoding"
+                },
+                "VocabularyName": {
+                    "$ref": "#/$defs/VocabularyName"
+                },
+                "Specialty": {
+                    "$ref": "#/$defs/Specialty"
+                },
+                "Type": {
+                    "$ref": "#/$defs/Type"
+                },
+                "ShowSpeakerLabel": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "TranscriptResultStream": {
+                    "$ref": "#/$defs/MedicalTranscriptResultStream"
+                },
+                "EnableChannelIdentification": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "NumberOfChannels": {
+                    "$ref": "#/$defs/NumberOfChannels"
+                },
+                "ContentIdentificationType": {
+                    "$ref": "#/$defs/MedicalContentIdentificationType"
+                }
+            }
         },
         "MedicalTranscriptResultStream": {
             "type": "object",
@@ -1425,16 +1515,7 @@
                 }
             }
         },
-        "NumberOfChannels": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "MedicalContentIdentificationType": {
-            "enum": [
-                "PHI"
-            ]
-        },
-        "StartMedicalStreamTranscriptionRequest": {
+        "StartStreamTranscriptionRequest": {
             "type": "object",
             "properties": {
                 "LanguageCode": {
@@ -1449,20 +1530,20 @@
                 "VocabularyName": {
                     "$ref": "#/$defs/VocabularyName"
                 },
-                "Specialty": {
-                    "$ref": "#/$defs/Specialty"
-                },
-                "Type": {
-                    "$ref": "#/$defs/Type"
-                },
-                "ShowSpeakerLabel": {
-                    "$ref": "#/$defs/Boolean"
-                },
                 "SessionId": {
                     "$ref": "#/$defs/SessionId"
                 },
                 "AudioStream": {
                     "$ref": "#/$defs/AudioStream"
+                },
+                "VocabularyFilterName": {
+                    "$ref": "#/$defs/VocabularyFilterName"
+                },
+                "VocabularyFilterMethod": {
+                    "$ref": "#/$defs/VocabularyFilterMethod"
+                },
+                "ShowSpeakerLabel": {
+                    "$ref": "#/$defs/Boolean"
                 },
                 "EnableChannelIdentification": {
                     "$ref": "#/$defs/Boolean"
@@ -1470,10 +1551,52 @@
                 "NumberOfChannels": {
                     "$ref": "#/$defs/NumberOfChannels"
                 },
+                "EnablePartialResultsStabilization": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "PartialResultsStability": {
+                    "$ref": "#/$defs/PartialResultsStability"
+                },
                 "ContentIdentificationType": {
-                    "$ref": "#/$defs/MedicalContentIdentificationType"
+                    "$ref": "#/$defs/ContentIdentificationType"
+                },
+                "ContentRedactionType": {
+                    "$ref": "#/$defs/ContentRedactionType"
+                },
+                "PiiEntityTypes": {
+                    "$ref": "#/$defs/PiiEntityTypes"
+                },
+                "LanguageModelName": {
+                    "$ref": "#/$defs/ModelName"
+                },
+                "IdentifyLanguage": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "LanguageOptions": {
+                    "$ref": "#/$defs/LanguageOptions"
+                },
+                "PreferredLanguage": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "IdentifyMultipleLanguages": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "VocabularyNames": {
+                    "$ref": "#/$defs/VocabularyNames"
+                },
+                "VocabularyFilterNames": {
+                    "$ref": "#/$defs/VocabularyFilterNames"
                 }
             }
+        },
+        "LanguageOptions": {
+            "type": "string"
+        },
+        "VocabularyNames": {
+            "type": "string"
+        },
+        "VocabularyFilterNames": {
+            "type": "string"
         },
         "StartStreamTranscriptionResponse": {
             "type": "object",
@@ -1724,89 +1847,6 @@
                 },
                 "Score": {
                     "$ref": "#/$defs/Double"
-                }
-            }
-        },
-        "LanguageOptions": {
-            "type": "string"
-        },
-        "VocabularyNames": {
-            "type": "string"
-        },
-        "VocabularyFilterNames": {
-            "type": "string"
-        },
-        "StartStreamTranscriptionRequest": {
-            "type": "object",
-            "properties": {
-                "LanguageCode": {
-                    "$ref": "#/$defs/LanguageCode"
-                },
-                "MediaSampleRateHertz": {
-                    "$ref": "#/$defs/MediaSampleRateHertz"
-                },
-                "MediaEncoding": {
-                    "$ref": "#/$defs/MediaEncoding"
-                },
-                "VocabularyName": {
-                    "$ref": "#/$defs/VocabularyName"
-                },
-                "SessionId": {
-                    "$ref": "#/$defs/SessionId"
-                },
-                "AudioStream": {
-                    "$ref": "#/$defs/AudioStream"
-                },
-                "VocabularyFilterName": {
-                    "$ref": "#/$defs/VocabularyFilterName"
-                },
-                "VocabularyFilterMethod": {
-                    "$ref": "#/$defs/VocabularyFilterMethod"
-                },
-                "ShowSpeakerLabel": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "EnableChannelIdentification": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "NumberOfChannels": {
-                    "$ref": "#/$defs/NumberOfChannels"
-                },
-                "EnablePartialResultsStabilization": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "PartialResultsStability": {
-                    "$ref": "#/$defs/PartialResultsStability"
-                },
-                "ContentIdentificationType": {
-                    "$ref": "#/$defs/ContentIdentificationType"
-                },
-                "ContentRedactionType": {
-                    "$ref": "#/$defs/ContentRedactionType"
-                },
-                "PiiEntityTypes": {
-                    "$ref": "#/$defs/PiiEntityTypes"
-                },
-                "LanguageModelName": {
-                    "$ref": "#/$defs/ModelName"
-                },
-                "IdentifyLanguage": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "LanguageOptions": {
-                    "$ref": "#/$defs/LanguageOptions"
-                },
-                "PreferredLanguage": {
-                    "$ref": "#/$defs/LanguageCode"
-                },
-                "IdentifyMultipleLanguages": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "VocabularyNames": {
-                    "$ref": "#/$defs/VocabularyNames"
-                },
-                "VocabularyFilterNames": {
-                    "$ref": "#/$defs/VocabularyFilterNames"
                 }
             }
         }

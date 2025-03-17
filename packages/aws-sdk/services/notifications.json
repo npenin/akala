@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "managedNotificationConfigurationArn": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -68,9 +68,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "arn": {}
                     }
                 }
             }
@@ -107,9 +105,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "arn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -146,9 +143,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "arn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -200,6 +196,26 @@
             "type": "string",
             "format": "binary"
         },
+        "ListManagedNotificationChannelAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "managedNotificationConfigurationArn": {
+                    "$ref": "#/$defs/ManagedNotificationConfigurationOsArn"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ManagedNotificationConfigurationOsArn": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
         "ListManagedNotificationChannelAssociationsResponse": {
             "type": "object",
             "properties": {
@@ -210,9 +226,6 @@
                     "$ref": "#/$defs/ManagedNotificationChannelAssociations"
                 }
             }
-        },
-        "NextToken": {
-            "type": "string"
         },
         "ManagedNotificationChannelAssociations": {
             "type": "array",
@@ -240,21 +253,15 @@
         "ChannelAssociationOverrideOption": {
             "type": "string"
         },
-        "ListManagedNotificationChannelAssociationsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "managedNotificationConfigurationArn": {
-                    "$ref": "#/$defs/ManagedNotificationConfigurationOsArn"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "arn": {
+                    "$ref": "#/$defs/NotificationConfigurationArn"
                 }
             }
         },
-        "ManagedNotificationConfigurationOsArn": {
+        "NotificationConfigurationArn": {
             "type": "string"
         },
         "ListTagsForResourceResponse": {
@@ -274,21 +281,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "arn": {
-                    "$ref": "#/$defs/NotificationConfigurationArn"
-                }
-            }
-        },
-        "NotificationConfigurationArn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -300,7 +292,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -323,6 +315,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

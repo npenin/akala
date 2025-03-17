@@ -33,8 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -71,8 +70,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -105,8 +104,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "pattern": {},
+                        "payload": {}
                     }
                 }
             }
@@ -143,8 +142,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -196,6 +195,17 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -213,21 +223,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -239,13 +234,9 @@
                 }
             }
         },
-        "TestSegmentPatternResponse": {
+        "TagResourceResponse": {
             "type": "object",
-            "properties": {
-                "match": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
-                }
-            }
+            "properties": {}
         },
         "TestSegmentPatternRequest": {
             "type": "object",
@@ -264,9 +255,13 @@
         "JsonValue": {
             "type": "string"
         },
-        "UntagResourceResponse": {
+        "TestSegmentPatternResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "match": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
         },
         "UntagResourceRequest": {
             "type": "object",
@@ -287,6 +282,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

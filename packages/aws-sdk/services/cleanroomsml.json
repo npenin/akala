@@ -33,9 +33,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {}
                     }
                 }
             }
@@ -72,9 +72,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {}
                     }
                 }
             }
@@ -113,9 +113,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {},
+                        "trainedModelArn": {}
                     }
                 }
             }
@@ -152,9 +153,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {},
+                        "trainedModelArn": {}
                     }
                 }
             }
@@ -191,9 +193,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {}
                     }
                 }
             }
@@ -230,9 +232,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -269,9 +269,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -308,9 +307,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -362,6 +360,30 @@
             "type": "string",
             "format": "binary"
         },
+        "ListCollaborationConfiguredModelAlgorithmAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UUID": {
+            "type": "string"
+        },
         "ListCollaborationConfiguredModelAlgorithmAssociationsResponse": {
             "type": "object",
             "properties": {
@@ -372,9 +394,6 @@
                     "$ref": "#/$defs/CollaborationConfiguredModelAlgorithmAssociationList"
                 }
             }
-        },
-        "NextToken": {
-            "type": "string"
         },
         "CollaborationConfiguredModelAlgorithmAssociationList": {
             "type": "array",
@@ -423,16 +442,13 @@
         "ResourceDescription": {
             "type": "string"
         },
-        "UUID": {
-            "type": "string"
-        },
         "ConfiguredModelAlgorithmArn": {
             "type": "string"
         },
         "AccountId": {
             "type": "string"
         },
-        "ListCollaborationConfiguredModelAlgorithmAssociationsRequest": {
+        "ListCollaborationMLInputChannelsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -445,10 +461,6 @@
                     "$ref": "#/$defs/UUID"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListCollaborationMLInputChannelsResponse": {
             "type": "object",
@@ -523,7 +535,7 @@
                 "INACTIVE"
             ]
         },
-        "ListCollaborationMLInputChannelsRequest": {
+        "ListCollaborationTrainedModelExportJobsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -534,8 +546,14 @@
                 },
                 "collaborationIdentifier": {
                     "$ref": "#/$defs/UUID"
+                },
+                "trainedModelArn": {
+                    "$ref": "#/$defs/TrainedModelArn"
                 }
             }
+        },
+        "TrainedModelArn": {
+            "type": "string"
         },
         "ListCollaborationTrainedModelExportJobsResponse": {
             "type": "object",
@@ -633,10 +651,7 @@
                 }
             }
         },
-        "TrainedModelArn": {
-            "type": "string"
-        },
-        "ListCollaborationTrainedModelExportJobsRequest": {
+        "ListCollaborationTrainedModelInferenceJobsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -775,7 +790,7 @@
                 "PUBLISH_FAILED"
             ]
         },
-        "ListCollaborationTrainedModelInferenceJobsRequest": {
+        "ListCollaborationTrainedModelsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -786,9 +801,6 @@
                 },
                 "collaborationIdentifier": {
                     "$ref": "#/$defs/UUID"
-                },
-                "trainedModelArn": {
-                    "$ref": "#/$defs/TrainedModelArn"
                 }
             }
         },
@@ -859,19 +871,16 @@
                 "CANCEL_FAILED"
             ]
         },
-        "ListCollaborationTrainedModelsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "collaborationIdentifier": {
-                    "$ref": "#/$defs/UUID"
+                "resourceArn": {
+                    "$ref": "#/$defs/TaggableArn"
                 }
             }
+        },
+        "TaggableArn": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -890,21 +899,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/TaggableArn"
-                }
-            }
-        },
-        "TaggableArn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -916,7 +910,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -939,6 +933,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "acknowledgeActionRequests": {}
                     }
                 }
             }
@@ -64,9 +62,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "detectors": {}
                     }
                 }
             }
@@ -99,9 +95,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "disableActionRequests": {}
                     }
                 }
             }
@@ -134,9 +128,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "enableActionRequests": {}
                     }
                 }
             }
@@ -169,9 +161,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "messages": {}
                     }
                 }
             }
@@ -204,9 +194,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resetActionRequests": {}
                     }
                 }
             }
@@ -239,9 +227,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "snoozeActionRequests": {}
                     }
                 }
             }
@@ -274,9 +260,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "detectors": {}
                     }
                 }
             }
@@ -313,9 +297,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "alarmModelName": {},
+                        "keyValue": {}
                     }
                 }
             }
@@ -352,9 +335,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "detectorModelName": {},
+                        "keyValue": {}
                     }
                 }
             }
@@ -391,9 +373,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "alarmModelName": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -430,9 +412,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "detectorModelName": {},
+                        "stateName": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -484,49 +467,6 @@
             "type": "string",
             "format": "binary"
         },
-        "BatchAcknowledgeAlarmResponse": {
-            "type": "object",
-            "properties": {
-                "errorEntries": {
-                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
-                }
-            }
-        },
-        "BatchAlarmActionErrorEntries": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BatchAlarmActionErrorEntry"
-            }
-        },
-        "BatchAlarmActionErrorEntry": {
-            "type": "object",
-            "properties": {
-                "requestId": {
-                    "$ref": "#/$defs/RequestId"
-                },
-                "errorCode": {
-                    "$ref": "#/$defs/ErrorCode"
-                },
-                "errorMessage": {
-                    "$ref": "#/$defs/ErrorMessage"
-                }
-            }
-        },
-        "RequestId": {
-            "type": "string"
-        },
-        "ErrorCode": {
-            "enum": [
-                "ResourceNotFoundException",
-                "InvalidRequestException",
-                "InternalFailureException",
-                "ServiceUnavailableException",
-                "ThrottlingException"
-            ]
-        },
-        "ErrorMessage": {
-            "type": "string"
-        },
         "BatchAcknowledgeAlarmRequest": {
             "type": "object",
             "properties": {
@@ -558,6 +498,9 @@
                 }
             }
         },
+        "RequestId": {
+            "type": "string"
+        },
         "AlarmModelName": {
             "type": "string"
         },
@@ -567,25 +510,25 @@
         "Note": {
             "type": "string"
         },
-        "BatchDeleteDetectorResponse": {
+        "BatchAcknowledgeAlarmResponse": {
             "type": "object",
             "properties": {
-                "batchDeleteDetectorErrorEntries": {
-                    "$ref": "#/$defs/BatchDeleteDetectorErrorEntries"
+                "errorEntries": {
+                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
                 }
             }
         },
-        "BatchDeleteDetectorErrorEntries": {
+        "BatchAlarmActionErrorEntries": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/BatchDeleteDetectorErrorEntry"
+                "$ref": "#/$defs/BatchAlarmActionErrorEntry"
             }
         },
-        "BatchDeleteDetectorErrorEntry": {
+        "BatchAlarmActionErrorEntry": {
             "type": "object",
             "properties": {
-                "messageId": {
-                    "$ref": "#/$defs/MessageId"
+                "requestId": {
+                    "$ref": "#/$defs/RequestId"
                 },
                 "errorCode": {
                     "$ref": "#/$defs/ErrorCode"
@@ -595,7 +538,16 @@
                 }
             }
         },
-        "MessageId": {
+        "ErrorCode": {
+            "enum": [
+                "ResourceNotFoundException",
+                "InvalidRequestException",
+                "InternalFailureException",
+                "ServiceUnavailableException",
+                "ThrottlingException"
+            ]
+        },
+        "ErrorMessage": {
             "type": "string"
         },
         "BatchDeleteDetectorRequest": {
@@ -626,14 +578,37 @@
                 }
             }
         },
+        "MessageId": {
+            "type": "string"
+        },
         "DetectorModelName": {
             "type": "string"
         },
-        "BatchDisableAlarmResponse": {
+        "BatchDeleteDetectorResponse": {
             "type": "object",
             "properties": {
-                "errorEntries": {
-                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
+                "batchDeleteDetectorErrorEntries": {
+                    "$ref": "#/$defs/BatchDeleteDetectorErrorEntries"
+                }
+            }
+        },
+        "BatchDeleteDetectorErrorEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchDeleteDetectorErrorEntry"
+            }
+        },
+        "BatchDeleteDetectorErrorEntry": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
                 }
             }
         },
@@ -668,7 +643,7 @@
                 }
             }
         },
-        "BatchEnableAlarmResponse": {
+        "BatchDisableAlarmResponse": {
             "type": "object",
             "properties": {
                 "errorEntries": {
@@ -707,31 +682,11 @@
                 }
             }
         },
-        "BatchPutMessageResponse": {
+        "BatchEnableAlarmResponse": {
             "type": "object",
             "properties": {
-                "BatchPutMessageErrorEntries": {
-                    "$ref": "#/$defs/BatchPutMessageErrorEntries"
-                }
-            }
-        },
-        "BatchPutMessageErrorEntries": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BatchPutMessageErrorEntry"
-            }
-        },
-        "BatchPutMessageErrorEntry": {
-            "type": "object",
-            "properties": {
-                "messageId": {
-                    "$ref": "#/$defs/MessageId"
-                },
-                "errorCode": {
-                    "$ref": "#/$defs/ErrorCode"
-                },
-                "errorMessage": {
-                    "$ref": "#/$defs/ErrorMessage"
+                "errorEntries": {
+                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
                 }
             }
         },
@@ -785,11 +740,31 @@
             "type": "integer",
             "format": "int64"
         },
-        "BatchResetAlarmResponse": {
+        "BatchPutMessageResponse": {
             "type": "object",
             "properties": {
-                "errorEntries": {
-                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
+                "BatchPutMessageErrorEntries": {
+                    "$ref": "#/$defs/BatchPutMessageErrorEntries"
+                }
+            }
+        },
+        "BatchPutMessageErrorEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchPutMessageErrorEntry"
+            }
+        },
+        "BatchPutMessageErrorEntry": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
                 }
             }
         },
@@ -824,7 +799,7 @@
                 }
             }
         },
-        "BatchSnoozeAlarmResponse": {
+        "BatchResetAlarmResponse": {
             "type": "object",
             "properties": {
                 "errorEntries": {
@@ -870,31 +845,11 @@
             "type": "integer",
             "format": "int32"
         },
-        "BatchUpdateDetectorResponse": {
+        "BatchSnoozeAlarmResponse": {
             "type": "object",
             "properties": {
-                "batchUpdateDetectorErrorEntries": {
-                    "$ref": "#/$defs/BatchUpdateDetectorErrorEntries"
-                }
-            }
-        },
-        "BatchUpdateDetectorErrorEntries": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BatchUpdateDetectorErrorEntry"
-            }
-        },
-        "BatchUpdateDetectorErrorEntry": {
-            "type": "object",
-            "properties": {
-                "messageId": {
-                    "$ref": "#/$defs/MessageId"
-                },
-                "errorCode": {
-                    "$ref": "#/$defs/ErrorCode"
-                },
-                "errorMessage": {
-                    "$ref": "#/$defs/ErrorMessage"
+                "errorEntries": {
+                    "$ref": "#/$defs/BatchAlarmActionErrorEntries"
                 }
             }
         },
@@ -992,6 +947,45 @@
         "Seconds": {
             "type": "integer",
             "format": "int32"
+        },
+        "BatchUpdateDetectorResponse": {
+            "type": "object",
+            "properties": {
+                "batchUpdateDetectorErrorEntries": {
+                    "$ref": "#/$defs/BatchUpdateDetectorErrorEntries"
+                }
+            }
+        },
+        "BatchUpdateDetectorErrorEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchUpdateDetectorErrorEntry"
+            }
+        },
+        "BatchUpdateDetectorErrorEntry": {
+            "type": "object",
+            "properties": {
+                "messageId": {
+                    "$ref": "#/$defs/MessageId"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "DescribeAlarmRequest": {
+            "type": "object",
+            "properties": {
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
+                },
+                "keyValue": {
+                    "$ref": "#/$defs/KeyValue"
+                }
+            }
         },
         "DescribeAlarmResponse": {
             "type": "object",
@@ -1207,11 +1201,11 @@
             "type": "string",
             "format": "date-time"
         },
-        "DescribeAlarmRequest": {
+        "DescribeDetectorRequest": {
             "type": "object",
             "properties": {
-                "alarmModelName": {
-                    "$ref": "#/$defs/AlarmModelName"
+                "detectorModelName": {
+                    "$ref": "#/$defs/DetectorModelName"
                 },
                 "keyValue": {
                     "$ref": "#/$defs/KeyValue"
@@ -1300,16 +1294,26 @@
                 }
             }
         },
-        "DescribeDetectorRequest": {
+        "ListAlarmsRequest": {
             "type": "object",
             "properties": {
-                "detectorModelName": {
-                    "$ref": "#/$defs/DetectorModelName"
+                "alarmModelName": {
+                    "$ref": "#/$defs/AlarmModelName"
                 },
-                "keyValue": {
-                    "$ref": "#/$defs/KeyValue"
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListAlarmsResponse": {
             "type": "object",
@@ -1351,14 +1355,14 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListAlarmsRequest": {
+        "ListDetectorsRequest": {
             "type": "object",
             "properties": {
-                "alarmModelName": {
-                    "$ref": "#/$defs/AlarmModelName"
+                "detectorModelName": {
+                    "$ref": "#/$defs/DetectorModelName"
+                },
+                "stateName": {
+                    "$ref": "#/$defs/StateName"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/NextToken"
@@ -1367,10 +1371,6 @@
                     "$ref": "#/$defs/MaxResults"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListDetectorsResponse": {
             "type": "object",
@@ -1417,23 +1417,6 @@
             "properties": {
                 "stateName": {
                     "$ref": "#/$defs/StateName"
-                }
-            }
-        },
-        "ListDetectorsRequest": {
-            "type": "object",
-            "properties": {
-                "detectorModelName": {
-                    "$ref": "#/$defs/DetectorModelName"
-                },
-                "stateName": {
-                    "$ref": "#/$defs/StateName"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
                 }
             }
         }

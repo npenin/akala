@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SubscriptionProviderArn": {}
                     }
                 }
             }
@@ -64,9 +62,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SubscriptionProviderArn": {}
                     }
                 }
             }
@@ -98,10 +94,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -133,9 +126,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Filters": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -168,9 +161,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Filters": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -203,9 +196,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SubscriptionProviderSources": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -242,9 +235,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -277,9 +268,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SubscriptionProviderSource": {},
+                        "SecretArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -316,9 +307,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -355,9 +345,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -390,8 +379,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "LinuxSubscriptionsDiscovery": {},
+                        "LinuxSubscriptionsDiscoverySettings": {},
+                        "AllowUpdate": {}
                     }
                 }
             }
@@ -443,10 +433,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DeregisterSubscriptionProviderResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "DeregisterSubscriptionProviderRequest": {
             "type": "object",
             "properties": {
@@ -457,6 +443,18 @@
         },
         "SubscriptionProviderArn": {
             "type": "string"
+        },
+        "DeregisterSubscriptionProviderResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetRegisteredSubscriptionProviderRequest": {
+            "type": "object",
+            "properties": {
+                "SubscriptionProviderArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
+                }
+            }
         },
         "GetRegisteredSubscriptionProviderResponse": {
             "type": "object",
@@ -490,13 +488,9 @@
         "SubscriptionProviderStatus": {
             "type": "string"
         },
-        "GetRegisteredSubscriptionProviderRequest": {
+        "GetServiceSettingsRequest": {
             "type": "object",
-            "properties": {
-                "SubscriptionProviderArn": {
-                    "$ref": "#/$defs/SubscriptionProviderArn"
-                }
-            }
+            "properties": {}
         },
         "GetServiceSettingsResponse": {
             "type": "object",
@@ -550,9 +544,46 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "GetServiceSettingsRequest": {
+        "ListLinuxSubscriptionInstancesRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "FilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Filter"
+            }
+        },
+        "Filter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Values": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "Operator": {
+                    "$ref": "#/$defs/Operator"
+                }
+            }
+        },
+        "Operator": {
+            "type": "string"
+        },
+        "BoxInteger": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListLinuxSubscriptionInstancesResponse": {
             "type": "object",
@@ -627,7 +658,7 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "ListLinuxSubscriptionInstancesRequest": {
+        "ListLinuxSubscriptionsRequest": {
             "type": "object",
             "properties": {
                 "Filters": {
@@ -640,33 +671,6 @@
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
-        },
-        "FilterList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Filter"
-            }
-        },
-        "Filter": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "Values": {
-                    "$ref": "#/$defs/StringList"
-                },
-                "Operator": {
-                    "$ref": "#/$defs/Operator"
-                }
-            }
-        },
-        "Operator": {
-            "type": "string"
-        },
-        "BoxInteger": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListLinuxSubscriptionsResponse": {
             "type": "object",
@@ -703,11 +707,11 @@
             "type": "integer",
             "format": "int64"
         },
-        "ListLinuxSubscriptionsRequest": {
+        "ListRegisteredSubscriptionProvidersRequest": {
             "type": "object",
             "properties": {
-                "Filters": {
-                    "$ref": "#/$defs/FilterList"
+                "SubscriptionProviderSources": {
+                    "$ref": "#/$defs/SubscriptionProviderSourceList"
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/BoxInteger"
@@ -715,6 +719,12 @@
                 "NextToken": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
+            }
+        },
+        "SubscriptionProviderSourceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubscriptionProviderSource"
             }
         },
         "ListRegisteredSubscriptionProvidersResponse": {
@@ -757,24 +767,12 @@
                 }
             }
         },
-        "ListRegisteredSubscriptionProvidersRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "SubscriptionProviderSources": {
-                    "$ref": "#/$defs/SubscriptionProviderSourceList"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/BoxInteger"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "resourceArn": {
+                    "$ref": "#/$defs/SubscriptionProviderArn"
                 }
-            }
-        },
-        "SubscriptionProviderSourceList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SubscriptionProviderSource"
             }
         },
         "ListTagsForResourceResponse": {
@@ -791,11 +789,17 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "ListTagsForResourceRequest": {
+        "RegisterSubscriptionProviderRequest": {
             "type": "object",
             "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/SubscriptionProviderArn"
+                "SubscriptionProviderSource": {
+                    "$ref": "#/$defs/SubscriptionProviderSource"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/SecretArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -813,24 +817,6 @@
                 }
             }
         },
-        "RegisterSubscriptionProviderRequest": {
-            "type": "object",
-            "properties": {
-                "SubscriptionProviderSource": {
-                    "$ref": "#/$defs/SubscriptionProviderSource"
-                },
-                "SecretArn": {
-                    "$ref": "#/$defs/SecretArn"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -842,7 +828,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -863,6 +849,24 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateServiceSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "LinuxSubscriptionsDiscovery": {
+                    "$ref": "#/$defs/LinuxSubscriptionsDiscovery"
+                },
+                "LinuxSubscriptionsDiscoverySettings": {
+                    "$ref": "#/$defs/LinuxSubscriptionsDiscoverySettings"
+                },
+                "AllowUpdate": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
         "UpdateServiceSettingsResponse": {
             "type": "object",
             "properties": {
@@ -880,20 +884,6 @@
                 },
                 "HomeRegions": {
                     "$ref": "#/$defs/StringList"
-                }
-            }
-        },
-        "UpdateServiceSettingsRequest": {
-            "type": "object",
-            "properties": {
-                "LinuxSubscriptionsDiscovery": {
-                    "$ref": "#/$defs/LinuxSubscriptionsDiscovery"
-                },
-                "LinuxSubscriptionsDiscoverySettings": {
-                    "$ref": "#/$defs/LinuxSubscriptionsDiscoverySettings"
-                },
-                "AllowUpdate": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
                 }
             }
         }

@@ -29,9 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Username": {},
+                        "InstanceId": {},
+                        "IdentityProvider": {},
+                        "Domain": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -64,9 +66,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "IdentityProviderArn": {},
+                        "LicenseServerSettings": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -99,9 +101,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LicenseServerEndpointArn": {},
+                        "ServerType": {}
                     }
                 }
             }
@@ -134,9 +135,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "IdentityProvider": {},
+                        "Product": {},
+                        "IdentityProviderArn": {}
                     }
                 }
             }
@@ -169,9 +170,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Username": {},
+                        "InstanceId": {},
+                        "IdentityProvider": {},
+                        "InstanceUserArn": {},
+                        "Domain": {}
                     }
                 }
             }
@@ -204,9 +207,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "Filters": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -239,9 +242,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "Filters": {}
                     }
                 }
             }
@@ -274,9 +277,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "Filters": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -309,9 +312,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Product": {},
+                        "IdentityProvider": {},
+                        "MaxResults": {},
+                        "Filters": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -348,9 +353,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -383,9 +386,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "InstanceId": {},
+                        "IdentityProvider": {},
+                        "MaxResults": {},
+                        "Filters": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -418,9 +423,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "IdentityProvider": {},
+                        "Product": {},
+                        "Settings": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -453,9 +459,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Username": {},
+                        "IdentityProvider": {},
+                        "Product": {},
+                        "Domain": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -488,9 +496,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Username": {},
+                        "IdentityProvider": {},
+                        "Product": {},
+                        "ProductUserArn": {},
+                        "Domain": {}
                     }
                 }
             }
@@ -527,9 +537,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -566,9 +575,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -601,9 +609,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "IdentityProvider": {},
+                        "Product": {},
+                        "IdentityProviderArn": {},
+                        "UpdateSettings": {}
                     }
                 }
             }
@@ -655,15 +664,7 @@
             "type": "string",
             "format": "binary"
         },
-        "AssociateUserResponse": {
-            "type": "object",
-            "properties": {
-                "InstanceUserSummary": {
-                    "$ref": "#/$defs/InstanceUserSummary"
-                }
-            }
-        },
-        "InstanceUserSummary": {
+        "AssociateUserRequest": {
             "type": "object",
             "properties": {
                 "Username": {
@@ -675,23 +676,11 @@
                 "IdentityProvider": {
                     "$ref": "#/$defs/IdentityProvider"
                 },
-                "Status": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "InstanceUserArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "StatusMessage": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
                 "Domain": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
-                "AssociationDate": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "DisassociationDate": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -782,10 +771,21 @@
         "ActiveDirectoryType": {
             "type": "string"
         },
-        "Arn": {
-            "type": "string"
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
         },
-        "AssociateUserRequest": {
+        "AssociateUserResponse": {
+            "type": "object",
+            "properties": {
+                "InstanceUserSummary": {
+                    "$ref": "#/$defs/InstanceUserSummary"
+                }
+            }
+        },
+        "InstanceUserSummary": {
             "type": "object",
             "properties": {
                 "Username": {
@@ -797,30 +797,28 @@
                 "IdentityProvider": {
                     "$ref": "#/$defs/IdentityProvider"
                 },
+                "Status": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "InstanceUserArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
                 "Domain": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "Tags": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/smithy.api#String"
-            }
-        },
-        "CreateLicenseServerEndpointResponse": {
-            "type": "object",
-            "properties": {
-                "IdentityProviderArn": {
-                    "$ref": "#/$defs/Arn"
+                "AssociationDate": {
+                    "$ref": "#/$defs/smithy.api#String"
                 },
-                "LicenseServerEndpointArn": {
-                    "$ref": "#/$defs/Arn"
+                "DisassociationDate": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
+        },
+        "Arn": {
+            "type": "string"
         },
         "CreateLicenseServerEndpointRequest": {
             "type": "object",
@@ -863,6 +861,28 @@
             "properties": {
                 "RdsSalCredentialsProvider": {
                     "$ref": "#/$defs/CredentialsProvider"
+                }
+            }
+        },
+        "CreateLicenseServerEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "LicenseServerEndpointArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "DeleteLicenseServerEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "LicenseServerEndpointArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ServerType": {
+                    "$ref": "#/$defs/ServerType"
                 }
             }
         },
@@ -943,14 +963,17 @@
         "LicenseServerHealthStatus": {
             "type": "string"
         },
-        "DeleteLicenseServerEndpointRequest": {
+        "DeregisterIdentityProviderRequest": {
             "type": "object",
             "properties": {
-                "LicenseServerEndpointArn": {
-                    "$ref": "#/$defs/Arn"
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
                 },
-                "ServerType": {
-                    "$ref": "#/$defs/ServerType"
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProviderArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -999,28 +1022,6 @@
         "SecurityGroup": {
             "type": "string"
         },
-        "DeregisterIdentityProviderRequest": {
-            "type": "object",
-            "properties": {
-                "IdentityProvider": {
-                    "$ref": "#/$defs/IdentityProvider"
-                },
-                "Product": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "IdentityProviderArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "DisassociateUserResponse": {
-            "type": "object",
-            "properties": {
-                "InstanceUserSummary": {
-                    "$ref": "#/$defs/InstanceUserSummary"
-                }
-            }
-        },
         "DisassociateUserRequest": {
             "type": "object",
             "properties": {
@@ -1041,21 +1042,12 @@
                 }
             }
         },
-        "ListIdentityProvidersResponse": {
+        "DisassociateUserResponse": {
             "type": "object",
             "properties": {
-                "IdentityProviderSummaries": {
-                    "$ref": "#/$defs/IdentityProviderSummaryList"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "InstanceUserSummary": {
+                    "$ref": "#/$defs/InstanceUserSummary"
                 }
-            }
-        },
-        "IdentityProviderSummaryList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/IdentityProviderSummary"
             }
         },
         "ListIdentityProvidersRequest": {
@@ -1093,6 +1085,37 @@
                 },
                 "Value": {
                     "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListIdentityProvidersResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderSummaries": {
+                    "$ref": "#/$defs/IdentityProviderSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "IdentityProviderSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdentityProviderSummary"
+            }
+        },
+        "ListInstancesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/BoxInteger"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
                 }
             }
         },
@@ -1139,17 +1162,17 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "ListInstancesRequest": {
+        "ListLicenseServerEndpointsRequest": {
             "type": "object",
             "properties": {
                 "MaxResults": {
                     "$ref": "#/$defs/BoxInteger"
                 },
-                "NextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
                 "Filters": {
                     "$ref": "#/$defs/FilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
@@ -1170,9 +1193,15 @@
                 "$ref": "#/$defs/LicenseServerEndpoint"
             }
         },
-        "ListLicenseServerEndpointsRequest": {
+        "ListProductSubscriptionsRequest": {
             "type": "object",
             "properties": {
+                "Product": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IdentityProvider": {
+                    "$ref": "#/$defs/IdentityProvider"
+                },
                 "MaxResults": {
                     "$ref": "#/$defs/BoxInteger"
                 },
@@ -1233,34 +1262,6 @@
                 }
             }
         },
-        "ListProductSubscriptionsRequest": {
-            "type": "object",
-            "properties": {
-                "Product": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "IdentityProvider": {
-                    "$ref": "#/$defs/IdentityProvider"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/BoxInteger"
-                },
-                "Filters": {
-                    "$ref": "#/$defs/FilterList"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -1272,21 +1273,12 @@
         "ResourceArn": {
             "type": "string"
         },
-        "ListUserAssociationsResponse": {
+        "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
-                "InstanceUserSummaries": {
-                    "$ref": "#/$defs/InstanceUserSummaryList"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
-            }
-        },
-        "InstanceUserSummaryList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/InstanceUserSummary"
             }
         },
         "ListUserAssociationsRequest": {
@@ -1309,12 +1301,21 @@
                 }
             }
         },
-        "RegisterIdentityProviderResponse": {
+        "ListUserAssociationsResponse": {
             "type": "object",
             "properties": {
-                "IdentityProviderSummary": {
-                    "$ref": "#/$defs/IdentityProviderSummary"
+                "InstanceUserSummaries": {
+                    "$ref": "#/$defs/InstanceUserSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
+            }
+        },
+        "InstanceUserSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceUserSummary"
             }
         },
         "RegisterIdentityProviderRequest": {
@@ -1334,11 +1335,11 @@
                 }
             }
         },
-        "StartProductSubscriptionResponse": {
+        "RegisterIdentityProviderResponse": {
             "type": "object",
             "properties": {
-                "ProductUserSummary": {
-                    "$ref": "#/$defs/ProductUserSummary"
+                "IdentityProviderSummary": {
+                    "$ref": "#/$defs/IdentityProviderSummary"
                 }
             }
         },
@@ -1362,7 +1363,7 @@
                 }
             }
         },
-        "StopProductSubscriptionResponse": {
+        "StartProductSubscriptionResponse": {
             "type": "object",
             "properties": {
                 "ProductUserSummary": {
@@ -1390,9 +1391,13 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "StopProductSubscriptionResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "ProductUserSummary": {
+                    "$ref": "#/$defs/ProductUserSummary"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1405,7 +1410,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1426,13 +1431,9 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "UpdateIdentityProviderSettingsResponse": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "IdentityProviderSummary": {
-                    "$ref": "#/$defs/IdentityProviderSummary"
-                }
-            }
+            "properties": {}
         },
         "UpdateIdentityProviderSettingsRequest": {
             "type": "object",
@@ -1462,6 +1463,14 @@
                 },
                 "SecurityGroupId": {
                     "$ref": "#/$defs/SecurityGroup"
+                }
+            }
+        },
+        "UpdateIdentityProviderSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "IdentityProviderSummary": {
+                    "$ref": "#/$defs/IdentityProviderSummary"
                 }
             }
         }

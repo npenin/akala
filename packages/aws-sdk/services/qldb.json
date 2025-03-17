@@ -35,9 +35,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LedgerName": {},
+                        "StreamId": {}
                     }
                 }
             }
@@ -70,9 +69,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Tags": {},
+                        "PermissionsMode": {},
+                        "DeletionProtection": {},
+                        "KmsKey": {}
                     }
                 }
             }
@@ -109,9 +110,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {}
                     }
                 }
             }
@@ -150,9 +149,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LedgerName": {},
+                        "StreamId": {}
                     }
                 }
             }
@@ -191,9 +189,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "ExportId": {}
                     }
                 }
             }
@@ -230,9 +227,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {}
                     }
                 }
             }
@@ -269,9 +264,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "InclusiveStartTime": {},
+                        "ExclusiveEndTime": {},
+                        "S3ExportConfiguration": {},
+                        "RoleArn": {},
+                        "OutputFormat": {}
                     }
                 }
             }
@@ -308,9 +306,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "BlockAddress": {},
+                        "DigestTipAddress": {}
                     }
                 }
             }
@@ -347,9 +345,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {}
                     }
                 }
             }
@@ -386,9 +382,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "BlockAddress": {},
+                        "DocumentId": {},
+                        "DigestTipAddress": {}
                     }
                 }
             }
@@ -425,9 +422,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LedgerName": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -460,9 +457,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -499,9 +495,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -534,9 +530,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -573,9 +568,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -612,9 +605,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LedgerName": {},
+                        "RoleArn": {},
+                        "Tags": {},
+                        "InclusiveStartTime": {},
+                        "ExclusiveEndTime": {},
+                        "KinesisConfiguration": {},
+                        "StreamName": {}
                     }
                 }
             }
@@ -651,9 +648,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -690,9 +686,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -729,9 +724,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "DeletionProtection": {},
+                        "KmsKey": {}
                     }
                 }
             }
@@ -768,9 +763,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "PermissionsMode": {}
                     }
                 }
             }
@@ -822,17 +816,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CancelJournalKinesisStreamResponse": {
-            "type": "object",
-            "properties": {
-                "StreamId": {
-                    "$ref": "#/$defs/UniqueId"
-                }
-            }
-        },
-        "UniqueId": {
-            "type": "string"
-        },
         "CancelJournalKinesisStreamRequest": {
             "type": "object",
             "properties": {
@@ -845,6 +828,58 @@
             }
         },
         "LedgerName": {
+            "type": "string"
+        },
+        "UniqueId": {
+            "type": "string"
+        },
+        "CancelJournalKinesisStreamResponse": {
+            "type": "object",
+            "properties": {
+                "StreamId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
+        },
+        "CreateLedgerRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "PermissionsMode": {
+                    "$ref": "#/$defs/PermissionsMode"
+                },
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtection"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/KmsKey"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "PermissionsMode": {
+            "enum": [
+                "ALLOW_ALL",
+                "STANDARD"
+            ]
+        },
+        "DeletionProtection": {
+            "type": "boolean"
+        },
+        "KmsKey": {
             "type": "string"
         },
         "CreateLedgerResponse": {
@@ -888,52 +923,22 @@
             "type": "string",
             "format": "date-time"
         },
-        "PermissionsMode": {
-            "enum": [
-                "ALLOW_ALL",
-                "STANDARD"
-            ]
-        },
-        "DeletionProtection": {
-            "type": "boolean"
-        },
-        "CreateLedgerRequest": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/LedgerName"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                },
-                "PermissionsMode": {
-                    "$ref": "#/$defs/PermissionsMode"
-                },
-                "DeletionProtection": {
-                    "$ref": "#/$defs/DeletionProtection"
-                },
-                "KmsKey": {
-                    "$ref": "#/$defs/KmsKey"
-                }
-            }
-        },
-        "Tags": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
-        },
-        "TagValue": {
-            "type": "string"
-        },
-        "KmsKey": {
-            "type": "string"
-        },
         "DeleteLedgerRequest": {
             "type": "object",
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/LedgerName"
+                }
+            }
+        },
+        "DescribeJournalKinesisStreamRequest": {
+            "type": "object",
+            "properties": {
+                "LedgerName": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "StreamId": {
+                    "$ref": "#/$defs/UniqueId"
                 }
             }
         },
@@ -1015,13 +1020,13 @@
         "StreamName": {
             "type": "string"
         },
-        "DescribeJournalKinesisStreamRequest": {
+        "DescribeJournalS3ExportRequest": {
             "type": "object",
             "properties": {
-                "LedgerName": {
+                "Name": {
                     "$ref": "#/$defs/LedgerName"
                 },
-                "StreamId": {
+                "ExportId": {
                     "$ref": "#/$defs/UniqueId"
                 }
             }
@@ -1118,14 +1123,11 @@
                 "JSON"
             ]
         },
-        "DescribeJournalS3ExportRequest": {
+        "DescribeLedgerRequest": {
             "type": "object",
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/LedgerName"
-                },
-                "ExportId": {
-                    "$ref": "#/$defs/UniqueId"
                 }
             }
         },
@@ -1176,22 +1178,6 @@
                 "KMS_KEY_INACCESSIBLE"
             ]
         },
-        "DescribeLedgerRequest": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/LedgerName"
-                }
-            }
-        },
-        "ExportJournalToS3Response": {
-            "type": "object",
-            "properties": {
-                "ExportId": {
-                    "$ref": "#/$defs/UniqueId"
-                }
-            }
-        },
         "ExportJournalToS3Request": {
             "type": "object",
             "properties": {
@@ -1215,13 +1201,24 @@
                 }
             }
         },
-        "GetBlockResponse": {
+        "ExportJournalToS3Response": {
             "type": "object",
             "properties": {
-                "Block": {
+                "ExportId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
+        },
+        "GetBlockRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "BlockAddress": {
                     "$ref": "#/$defs/ValueHolder"
                 },
-                "Proof": {
+                "DigestTipAddress": {
                     "$ref": "#/$defs/ValueHolder"
                 }
             }
@@ -1237,17 +1234,22 @@
         "IonText": {
             "type": "string"
         },
-        "GetBlockRequest": {
+        "GetBlockResponse": {
+            "type": "object",
+            "properties": {
+                "Block": {
+                    "$ref": "#/$defs/ValueHolder"
+                },
+                "Proof": {
+                    "$ref": "#/$defs/ValueHolder"
+                }
+            }
+        },
+        "GetDigestRequest": {
             "type": "object",
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/LedgerName"
-                },
-                "BlockAddress": {
-                    "$ref": "#/$defs/ValueHolder"
-                },
-                "DigestTipAddress": {
-                    "$ref": "#/$defs/ValueHolder"
                 }
             }
         },
@@ -1266,25 +1268,6 @@
             "type": "string",
             "format": "binary"
         },
-        "GetDigestRequest": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/LedgerName"
-                }
-            }
-        },
-        "GetRevisionResponse": {
-            "type": "object",
-            "properties": {
-                "Proof": {
-                    "$ref": "#/$defs/ValueHolder"
-                },
-                "Revision": {
-                    "$ref": "#/$defs/ValueHolder"
-                }
-            }
-        },
         "GetRevisionRequest": {
             "type": "object",
             "properties": {
@@ -1302,25 +1285,16 @@
                 }
             }
         },
-        "ListJournalKinesisStreamsForLedgerResponse": {
+        "GetRevisionResponse": {
             "type": "object",
             "properties": {
-                "Streams": {
-                    "$ref": "#/$defs/JournalKinesisStreamDescriptionList"
+                "Proof": {
+                    "$ref": "#/$defs/ValueHolder"
                 },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "Revision": {
+                    "$ref": "#/$defs/ValueHolder"
                 }
             }
-        },
-        "JournalKinesisStreamDescriptionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/JournalKinesisStreamDescription"
-            }
-        },
-        "NextToken": {
-            "type": "string"
         },
         "ListJournalKinesisStreamsForLedgerRequest": {
             "type": "object",
@@ -1340,6 +1314,37 @@
             "type": "integer",
             "format": "int32"
         },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListJournalKinesisStreamsForLedgerResponse": {
+            "type": "object",
+            "properties": {
+                "Streams": {
+                    "$ref": "#/$defs/JournalKinesisStreamDescriptionList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "JournalKinesisStreamDescriptionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JournalKinesisStreamDescription"
+            }
+        },
+        "ListJournalS3ExportsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
         "ListJournalS3ExportsResponse": {
             "type": "object",
             "properties": {
@@ -1357,9 +1362,12 @@
                 "$ref": "#/$defs/JournalS3ExportDescription"
             }
         },
-        "ListJournalS3ExportsRequest": {
+        "ListJournalS3ExportsForLedgerRequest": {
             "type": "object",
             "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
                 },
@@ -1379,12 +1387,9 @@
                 }
             }
         },
-        "ListJournalS3ExportsForLedgerRequest": {
+        "ListLedgersRequest": {
             "type": "object",
             "properties": {
-                "Name": {
-                    "$ref": "#/$defs/LedgerName"
-                },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
                 },
@@ -1424,25 +1429,6 @@
                 }
             }
         },
-        "ListLedgersRequest": {
-            "type": "object",
-            "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -1451,11 +1437,11 @@
                 }
             }
         },
-        "StreamJournalToKinesisResponse": {
+        "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
-                "StreamId": {
-                    "$ref": "#/$defs/UniqueId"
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -1485,9 +1471,13 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "StreamJournalToKinesisResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "StreamId": {
+                    "$ref": "#/$defs/UniqueId"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1500,7 +1490,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1523,6 +1513,24 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLedgerRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/LedgerName"
+                },
+                "DeletionProtection": {
+                    "$ref": "#/$defs/DeletionProtection"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/KmsKey"
+                }
+            }
         },
         "UpdateLedgerResponse": {
             "type": "object",
@@ -1547,17 +1555,14 @@
                 }
             }
         },
-        "UpdateLedgerRequest": {
+        "UpdateLedgerPermissionsModeRequest": {
             "type": "object",
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/LedgerName"
                 },
-                "DeletionProtection": {
-                    "$ref": "#/$defs/DeletionProtection"
-                },
-                "KmsKey": {
-                    "$ref": "#/$defs/KmsKey"
+                "PermissionsMode": {
+                    "$ref": "#/$defs/PermissionsMode"
                 }
             }
         },
@@ -1569,17 +1574,6 @@
                 },
                 "Arn": {
                     "$ref": "#/$defs/Arn"
-                },
-                "PermissionsMode": {
-                    "$ref": "#/$defs/PermissionsMode"
-                }
-            }
-        },
-        "UpdateLedgerPermissionsModeRequest": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/LedgerName"
                 },
                 "PermissionsMode": {
                     "$ref": "#/$defs/PermissionsMode"

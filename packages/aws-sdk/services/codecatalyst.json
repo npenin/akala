@@ -28,9 +28,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {},
+                        "userName": {}
                     }
                 }
             }
@@ -113,6 +112,17 @@
             "type": "string",
             "format": "binary"
         },
+        "GetUserDetailsRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "userName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "GetUserDetailsResponse": {
             "type": "object",
             "properties": {
@@ -141,17 +151,6 @@
                 },
                 "verified": {
                     "$ref": "#/$defs/smithy.api#Boolean"
-                }
-            }
-        },
-        "GetUserDetailsRequest": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "userName": {
-                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },

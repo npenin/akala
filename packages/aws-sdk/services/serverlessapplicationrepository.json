@@ -29,9 +29,21 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Author": {},
+                        "Description": {},
+                        "HomePageUrl": {},
+                        "Labels": {},
+                        "LicenseBody": {},
+                        "LicenseUrl": {},
+                        "Name": {},
+                        "ReadmeBody": {},
+                        "ReadmeUrl": {},
+                        "SemanticVersion": {},
+                        "SourceCodeArchiveUrl": {},
+                        "SourceCodeUrl": {},
+                        "SpdxLicenseId": {},
+                        "TemplateBody": {},
+                        "TemplateUrl": {}
                     }
                 }
             }
@@ -70,9 +82,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "SemanticVersion": {},
+                        "SourceCodeArchiveUrl": {},
+                        "SourceCodeUrl": {},
+                        "TemplateBody": {},
+                        "TemplateUrl": {}
                     }
                 }
             }
@@ -109,9 +124,19 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "Capabilities": {},
+                        "ChangeSetName": {},
+                        "ClientToken": {},
+                        "Description": {},
+                        "NotificationArns": {},
+                        "ParameterOverrides": {},
+                        "ResourceTypes": {},
+                        "RollbackConfiguration": {},
+                        "SemanticVersion": {},
+                        "StackName": {},
+                        "Tags": {},
+                        "TemplateId": {}
                     }
                 }
             }
@@ -148,9 +173,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "SemanticVersion": {}
                     }
                 }
             }
@@ -187,9 +211,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {}
                     }
                 }
             }
@@ -226,9 +248,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "SemanticVersion": {}
                     }
                 }
             }
@@ -265,9 +286,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {}
                     }
                 }
             }
@@ -306,9 +325,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "TemplateId": {}
                     }
                 }
             }
@@ -345,9 +363,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "MaxItems": {},
+                        "NextToken": {},
+                        "SemanticVersion": {}
                     }
                 }
             }
@@ -380,9 +399,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxItems": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -419,9 +437,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "MaxItems": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -458,9 +476,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "Statements": {}
                     }
                 }
             }
@@ -497,9 +514,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "OrganizationId": {}
                     }
                 }
             }
@@ -536,9 +552,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "Author": {},
+                        "Description": {},
+                        "HomePageUrl": {},
+                        "Labels": {},
+                        "ReadmeBody": {},
+                        "ReadmeUrl": {}
                     }
                 }
             }
@@ -590,6 +610,65 @@
             "type": "string",
             "format": "binary"
         },
+        "CreateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "Author": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HomePageUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "LicenseBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "LicenseUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeArchiveUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceCodeUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SpdxLicenseId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateUrl": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "__listOf__string": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/__string"
+            }
+        },
         "CreateApplicationResponse": {
             "type": "object",
             "properties": {
@@ -634,17 +713,8 @@
                 }
             }
         },
-        "__string": {
-            "type": "string"
-        },
         "__boolean": {
             "type": "boolean"
-        },
-        "__listOf__string": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/__string"
-            }
         },
         "Version": {
             "type": "object",
@@ -746,34 +816,10 @@
                 "CAPABILITY_RESOURCE_POLICY"
             ]
         },
-        "CreateApplicationRequest": {
+        "CreateApplicationVersionRequest": {
             "type": "object",
             "properties": {
-                "Author": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Description": {
-                    "$ref": "#/$defs/__string"
-                },
-                "HomePageUrl": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Labels": {
-                    "$ref": "#/$defs/__listOf__string"
-                },
-                "LicenseBody": {
-                    "$ref": "#/$defs/__string"
-                },
-                "LicenseUrl": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Name": {
-                    "$ref": "#/$defs/__string"
-                },
-                "ReadmeBody": {
-                    "$ref": "#/$defs/__string"
-                },
-                "ReadmeUrl": {
+                "ApplicationId": {
                     "$ref": "#/$defs/__string"
                 },
                 "SemanticVersion": {
@@ -783,9 +829,6 @@
                     "$ref": "#/$defs/__string"
                 },
                 "SourceCodeUrl": {
-                    "$ref": "#/$defs/__string"
-                },
-                "SpdxLicenseId": {
                     "$ref": "#/$defs/__string"
                 },
                 "TemplateBody": {
@@ -824,46 +867,6 @@
                     "$ref": "#/$defs/__string"
                 },
                 "TemplateUrl": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "CreateApplicationVersionRequest": {
-            "type": "object",
-            "properties": {
-                "ApplicationId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "SemanticVersion": {
-                    "$ref": "#/$defs/__string"
-                },
-                "SourceCodeArchiveUrl": {
-                    "$ref": "#/$defs/__string"
-                },
-                "SourceCodeUrl": {
-                    "$ref": "#/$defs/__string"
-                },
-                "TemplateBody": {
-                    "$ref": "#/$defs/__string"
-                },
-                "TemplateUrl": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "CreateCloudFormationChangeSetResponse": {
-            "type": "object",
-            "properties": {
-                "ApplicationId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "ChangeSetId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "SemanticVersion": {
-                    "$ref": "#/$defs/__string"
-                },
-                "StackId": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -974,6 +977,34 @@
                 }
             }
         },
+        "CreateCloudFormationChangeSetResponse": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ChangeSetId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                },
+                "StackId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "CreateCloudFormationTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
         "CreateCloudFormationTemplateResponse": {
             "type": "object",
             "properties": {
@@ -1007,21 +1038,21 @@
                 "EXPIRED"
             ]
         },
-        "CreateCloudFormationTemplateRequest": {
+        "DeleteApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "GetApplicationRequest": {
             "type": "object",
             "properties": {
                 "ApplicationId": {
                     "$ref": "#/$defs/__string"
                 },
                 "SemanticVersion": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "DeleteApplicationRequest": {
-            "type": "object",
-            "properties": {
-                "ApplicationId": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1070,13 +1101,10 @@
                 }
             }
         },
-        "GetApplicationRequest": {
+        "GetApplicationPolicyRequest": {
             "type": "object",
             "properties": {
                 "ApplicationId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "SemanticVersion": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1112,10 +1140,13 @@
                 }
             }
         },
-        "GetApplicationPolicyRequest": {
+        "GetCloudFormationTemplateRequest": {
             "type": "object",
             "properties": {
                 "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "TemplateId": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1146,16 +1177,26 @@
                 }
             }
         },
-        "GetCloudFormationTemplateRequest": {
+        "ListApplicationDependenciesRequest": {
             "type": "object",
             "properties": {
                 "ApplicationId": {
                     "$ref": "#/$defs/__string"
                 },
-                "TemplateId": {
+                "MaxItems": {
+                    "$ref": "#/$defs/MaxItems"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SemanticVersion": {
                     "$ref": "#/$defs/__string"
                 }
             }
+        },
+        "MaxItems": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListApplicationDependenciesResponse": {
             "type": "object",
@@ -1185,26 +1226,16 @@
                 }
             }
         },
-        "ListApplicationDependenciesRequest": {
+        "ListApplicationsRequest": {
             "type": "object",
             "properties": {
-                "ApplicationId": {
-                    "$ref": "#/$defs/__string"
-                },
                 "MaxItems": {
                     "$ref": "#/$defs/MaxItems"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/__string"
-                },
-                "SemanticVersion": {
-                    "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "MaxItems": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListApplicationsResponse": {
             "type": "object",
@@ -1252,9 +1283,12 @@
                 }
             }
         },
-        "ListApplicationsRequest": {
+        "ListApplicationVersionsRequest": {
             "type": "object",
             "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
                 "MaxItems": {
                     "$ref": "#/$defs/MaxItems"
                 },
@@ -1297,34 +1331,20 @@
                 }
             }
         },
-        "ListApplicationVersionsRequest": {
-            "type": "object",
-            "properties": {
-                "ApplicationId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "MaxItems": {
-                    "$ref": "#/$defs/MaxItems"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "PutApplicationPolicyResponse": {
-            "type": "object",
-            "properties": {
-                "Statements": {
-                    "$ref": "#/$defs/__listOfApplicationPolicyStatement"
-                }
-            }
-        },
         "PutApplicationPolicyRequest": {
             "type": "object",
             "properties": {
                 "ApplicationId": {
                     "$ref": "#/$defs/__string"
                 },
+                "Statements": {
+                    "$ref": "#/$defs/__listOfApplicationPolicyStatement"
+                }
+            }
+        },
+        "PutApplicationPolicyResponse": {
+            "type": "object",
+            "properties": {
                 "Statements": {
                     "$ref": "#/$defs/__listOfApplicationPolicyStatement"
                 }
@@ -1337,6 +1357,32 @@
                     "$ref": "#/$defs/__string"
                 },
                 "OrganizationId": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "UpdateApplicationRequest": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Author": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "HomePageUrl": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Labels": {
+                    "$ref": "#/$defs/__listOf__string"
+                },
+                "ReadmeBody": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ReadmeUrl": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1382,32 +1428,6 @@
                 },
                 "Version": {
                     "$ref": "#/$defs/Version"
-                }
-            }
-        },
-        "UpdateApplicationRequest": {
-            "type": "object",
-            "properties": {
-                "ApplicationId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Author": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Description": {
-                    "$ref": "#/$defs/__string"
-                },
-                "HomePageUrl": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Labels": {
-                    "$ref": "#/$defs/__listOf__string"
-                },
-                "ReadmeBody": {
-                    "$ref": "#/$defs/__string"
-                },
-                "ReadmeUrl": {
-                    "$ref": "#/$defs/__string"
                 }
             }
         }

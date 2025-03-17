@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {}
                     }
                 }
             }
@@ -68,9 +66,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Engine": {},
+                        "LanguageCode": {},
+                        "IncludeAdditionalLanguageCodes": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -107,9 +106,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {}
                     }
                 }
             }
@@ -146,9 +143,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TaskId": {}
                     }
                 }
             }
@@ -181,9 +176,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {}
                     }
                 }
             }
@@ -216,9 +209,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "Status": {}
                     }
                 }
             }
@@ -255,9 +248,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Content": {}
                     }
                 }
             }
@@ -290,9 +282,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Engine": {},
+                        "LanguageCode": {},
+                        "LexiconNames": {},
+                        "OutputFormat": {},
+                        "OutputS3BucketName": {},
+                        "OutputS3KeyPrefix": {},
+                        "SampleRate": {},
+                        "SnsTopicArn": {},
+                        "SpeechMarkTypes": {},
+                        "Text": {},
+                        "TextType": {},
+                        "VoiceId": {}
                     }
                 }
             }
@@ -325,9 +326,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Engine": {},
+                        "LanguageCode": {},
+                        "LexiconNames": {},
+                        "OutputFormat": {},
+                        "SampleRate": {},
+                        "SpeechMarkTypes": {},
+                        "Text": {},
+                        "TextType": {},
+                        "VoiceId": {}
                     }
                 }
             }
@@ -379,10 +386,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteLexiconOutput": {
-            "type": "object",
-            "properties": {}
-        },
         "DeleteLexiconInput": {
             "type": "object",
             "properties": {
@@ -392,6 +395,87 @@
             }
         },
         "LexiconName": {
+            "type": "string"
+        },
+        "DeleteLexiconOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeVoicesInput": {
+            "type": "object",
+            "properties": {
+                "Engine": {
+                    "$ref": "#/$defs/Engine"
+                },
+                "LanguageCode": {
+                    "$ref": "#/$defs/LanguageCode"
+                },
+                "IncludeAdditionalLanguageCodes": {
+                    "$ref": "#/$defs/IncludeAdditionalLanguageCodes"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Engine": {
+            "enum": [
+                "STANDARD",
+                "NEURAL",
+                "LONG_FORM",
+                "GENERATIVE"
+            ]
+        },
+        "LanguageCode": {
+            "enum": [
+                "arb",
+                "cmn_CN",
+                "cy_GB",
+                "da_DK",
+                "de_DE",
+                "en_AU",
+                "en_GB",
+                "en_GB_WLS",
+                "en_IN",
+                "en_US",
+                "es_ES",
+                "es_MX",
+                "es_US",
+                "fr_CA",
+                "fr_FR",
+                "is_IS",
+                "it_IT",
+                "ja_JP",
+                "hi_IN",
+                "ko_KR",
+                "nb_NO",
+                "nl_NL",
+                "pl_PL",
+                "pt_BR",
+                "pt_PT",
+                "ro_RO",
+                "ru_RU",
+                "sv_SE",
+                "tr_TR",
+                "en_NZ",
+                "en_ZA",
+                "ca_ES",
+                "de_AT",
+                "yue_CN",
+                "ar_AE",
+                "fi_FI",
+                "en_IE",
+                "nl_BE",
+                "fr_BE",
+                "cs_CZ",
+                "de_CH",
+                "en_SG"
+            ]
+        },
+        "IncludeAdditionalLanguageCodes": {
+            "type": "boolean"
+        },
+        "NextToken": {
             "type": "string"
         },
         "DescribeVoicesOutput": {
@@ -546,52 +630,6 @@
                 "Jasmine"
             ]
         },
-        "LanguageCode": {
-            "enum": [
-                "arb",
-                "cmn_CN",
-                "cy_GB",
-                "da_DK",
-                "de_DE",
-                "en_AU",
-                "en_GB",
-                "en_GB_WLS",
-                "en_IN",
-                "en_US",
-                "es_ES",
-                "es_MX",
-                "es_US",
-                "fr_CA",
-                "fr_FR",
-                "is_IS",
-                "it_IT",
-                "ja_JP",
-                "hi_IN",
-                "ko_KR",
-                "nb_NO",
-                "nl_NL",
-                "pl_PL",
-                "pt_BR",
-                "pt_PT",
-                "ro_RO",
-                "ru_RU",
-                "sv_SE",
-                "tr_TR",
-                "en_NZ",
-                "en_ZA",
-                "ca_ES",
-                "de_AT",
-                "yue_CN",
-                "ar_AE",
-                "fi_FI",
-                "en_IE",
-                "nl_BE",
-                "fr_BE",
-                "cs_CZ",
-                "de_CH",
-                "en_SG"
-            ]
-        },
         "LanguageName": {
             "type": "string"
         },
@@ -610,36 +648,13 @@
                 "$ref": "#/$defs/Engine"
             }
         },
-        "Engine": {
-            "enum": [
-                "STANDARD",
-                "NEURAL",
-                "LONG_FORM",
-                "GENERATIVE"
-            ]
-        },
-        "NextToken": {
-            "type": "string"
-        },
-        "DescribeVoicesInput": {
+        "GetLexiconInput": {
             "type": "object",
             "properties": {
-                "Engine": {
-                    "$ref": "#/$defs/Engine"
-                },
-                "LanguageCode": {
-                    "$ref": "#/$defs/LanguageCode"
-                },
-                "IncludeAdditionalLanguageCodes": {
-                    "$ref": "#/$defs/IncludeAdditionalLanguageCodes"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "Name": {
+                    "$ref": "#/$defs/LexiconName"
                 }
             }
-        },
-        "IncludeAdditionalLanguageCodes": {
-            "type": "boolean"
         },
         "GetLexiconOutput": {
             "type": "object",
@@ -707,13 +722,16 @@
             "type": "integer",
             "format": "int32"
         },
-        "GetLexiconInput": {
+        "GetSpeechSynthesisTaskInput": {
             "type": "object",
             "properties": {
-                "Name": {
-                    "$ref": "#/$defs/LexiconName"
+                "TaskId": {
+                    "$ref": "#/$defs/TaskId"
                 }
             }
+        },
+        "TaskId": {
+            "type": "string"
         },
         "GetSpeechSynthesisTaskOutput": {
             "type": "object",
@@ -772,9 +790,6 @@
                     "$ref": "#/$defs/LanguageCode"
                 }
             }
-        },
-        "TaskId": {
-            "type": "string"
         },
         "TaskStatus": {
             "enum": [
@@ -838,11 +853,11 @@
                 "TEXT"
             ]
         },
-        "GetSpeechSynthesisTaskInput": {
+        "ListLexiconsInput": {
             "type": "object",
             "properties": {
-                "TaskId": {
-                    "$ref": "#/$defs/TaskId"
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
         },
@@ -874,31 +889,6 @@
                 }
             }
         },
-        "ListLexiconsInput": {
-            "type": "object",
-            "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ListSpeechSynthesisTasksOutput": {
-            "type": "object",
-            "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "SynthesisTasks": {
-                    "$ref": "#/$defs/SynthesisTasks"
-                }
-            }
-        },
-        "SynthesisTasks": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SynthesisTask"
-            }
-        },
         "ListSpeechSynthesisTasksInput": {
             "type": "object",
             "properties": {
@@ -917,9 +907,22 @@
             "type": "integer",
             "format": "int32"
         },
-        "PutLexiconOutput": {
+        "ListSpeechSynthesisTasksOutput": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "SynthesisTasks": {
+                    "$ref": "#/$defs/SynthesisTasks"
+                }
+            }
+        },
+        "SynthesisTasks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SynthesisTask"
+            }
         },
         "PutLexiconInput": {
             "type": "object",
@@ -932,13 +935,9 @@
                 }
             }
         },
-        "StartSpeechSynthesisTaskOutput": {
+        "PutLexiconOutput": {
             "type": "object",
-            "properties": {
-                "SynthesisTask": {
-                    "$ref": "#/$defs/SynthesisTask"
-                }
-            }
+            "properties": {}
         },
         "StartSpeechSynthesisTaskInput": {
             "type": "object",
@@ -990,26 +989,13 @@
         "Text": {
             "type": "string"
         },
-        "SynthesizeSpeechOutput": {
+        "StartSpeechSynthesisTaskOutput": {
             "type": "object",
             "properties": {
-                "AudioStream": {
-                    "$ref": "#/$defs/AudioStream"
-                },
-                "ContentType": {
-                    "$ref": "#/$defs/ContentType"
-                },
-                "RequestCharacters": {
-                    "$ref": "#/$defs/RequestCharacters"
+                "SynthesisTask": {
+                    "$ref": "#/$defs/SynthesisTask"
                 }
             }
-        },
-        "AudioStream": {
-            "type": "string",
-            "format": "binary"
-        },
-        "ContentType": {
-            "type": "string"
         },
         "SynthesizeSpeechInput": {
             "type": "object",
@@ -1042,6 +1028,27 @@
                     "$ref": "#/$defs/VoiceId"
                 }
             }
+        },
+        "SynthesizeSpeechOutput": {
+            "type": "object",
+            "properties": {
+                "AudioStream": {
+                    "$ref": "#/$defs/AudioStream"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "RequestCharacters": {
+                    "$ref": "#/$defs/RequestCharacters"
+                }
+            }
+        },
+        "AudioStream": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ContentType": {
+            "type": "string"
         }
     },
     "aws": {

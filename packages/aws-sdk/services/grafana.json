@@ -33,8 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -67,9 +66,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "maxResults": {},
+                        "nextToken": {},
+                        "workspaceId": {}
                     }
                 }
             }
@@ -106,8 +105,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -144,8 +143,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -197,6 +196,14 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -214,37 +221,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "ListVersionsResponse": {
-            "type": "object",
-            "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "grafanaVersions": {
-                    "$ref": "#/$defs/GrafanaVersionList"
-                }
-            }
-        },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "GrafanaVersionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/GrafanaVersion"
-            }
-        },
-        "GrafanaVersion": {
-            "type": "string"
-        },
         "ListVersionsRequest": {
             "type": "object",
             "properties": {
@@ -259,12 +235,31 @@
                 }
             }
         },
+        "PaginationToken": {
+            "type": "string"
+        },
         "WorkspaceId": {
             "type": "string"
         },
-        "TagResourceResponse": {
+        "ListVersionsResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "grafanaVersions": {
+                    "$ref": "#/$defs/GrafanaVersionList"
+                }
+            }
+        },
+        "GrafanaVersionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GrafanaVersion"
+            }
+        },
+        "GrafanaVersion": {
+            "type": "string"
         },
         "TagResourceRequest": {
             "type": "object",
@@ -277,7 +272,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -300,6 +295,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

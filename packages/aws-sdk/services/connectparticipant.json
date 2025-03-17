@@ -29,9 +29,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SessionId": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -64,9 +63,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "AttachmentIds": {},
+                        "ClientToken": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -99,9 +98,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Type": {},
+                        "ParticipantToken": {},
+                        "ConnectParticipant": {}
                     }
                 }
             }
@@ -138,9 +137,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ViewToken": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -173,9 +171,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ClientToken": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -208,9 +205,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "AttachmentId": {},
+                        "ConnectionToken": {},
+                        "UrlExpiryInSeconds": {}
                     }
                 }
             }
@@ -243,9 +240,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SessionId": {},
+                        "RedirectUri": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -278,9 +275,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactId": {},
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "ScanDirection": {},
+                        "SortOrder": {},
+                        "StartPosition": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -313,9 +314,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContentType": {},
+                        "Content": {},
+                        "ClientToken": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -348,9 +350,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContentType": {},
+                        "Content": {},
+                        "ClientToken": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -383,9 +386,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContentType": {},
+                        "AttachmentSizeInBytes": {},
+                        "AttachmentName": {},
+                        "ClientToken": {},
+                        "ConnectionToken": {}
                     }
                 }
             }
@@ -437,10 +442,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CancelParticipantAuthenticationResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "CancelParticipantAuthenticationRequest": {
             "type": "object",
             "properties": {
@@ -458,7 +459,7 @@
         "ParticipantToken": {
             "type": "string"
         },
-        "CompleteAttachmentUploadResponse": {
+        "CancelParticipantAuthenticationResponse": {
             "type": "object",
             "properties": {}
         },
@@ -487,6 +488,39 @@
         },
         "NonEmptyClientToken": {
             "type": "string"
+        },
+        "CompleteAttachmentUploadResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateParticipantConnectionRequest": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/ConnectionTypeList"
+                },
+                "ParticipantToken": {
+                    "$ref": "#/$defs/ParticipantToken"
+                },
+                "ConnectParticipant": {
+                    "$ref": "#/$defs/Bool"
+                }
+            }
+        },
+        "ConnectionTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectionType"
+            }
+        },
+        "ConnectionType": {
+            "enum": [
+                "WEBSOCKET",
+                "CONNECTION_CREDENTIALS"
+            ]
+        },
+        "Bool": {
+            "type": "boolean"
         },
         "CreateParticipantConnectionResponse": {
             "type": "object",
@@ -527,34 +561,19 @@
                 }
             }
         },
-        "CreateParticipantConnectionRequest": {
+        "DescribeViewRequest": {
             "type": "object",
             "properties": {
-                "Type": {
-                    "$ref": "#/$defs/ConnectionTypeList"
+                "ViewToken": {
+                    "$ref": "#/$defs/ViewToken"
                 },
-                "ParticipantToken": {
+                "ConnectionToken": {
                     "$ref": "#/$defs/ParticipantToken"
-                },
-                "ConnectParticipant": {
-                    "$ref": "#/$defs/Bool"
                 }
             }
         },
-        "ConnectionTypeList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ConnectionType"
-            }
-        },
-        "ConnectionType": {
-            "enum": [
-                "WEBSOCKET",
-                "CONNECTION_CREDENTIALS"
-            ]
-        },
-        "Bool": {
-            "type": "boolean"
+        "ViewToken": {
+            "type": "string"
         },
         "DescribeViewResponse": {
             "type": "object",
@@ -626,24 +645,6 @@
         "ViewAction": {
             "type": "string"
         },
-        "DescribeViewRequest": {
-            "type": "object",
-            "properties": {
-                "ViewToken": {
-                    "$ref": "#/$defs/ViewToken"
-                },
-                "ConnectionToken": {
-                    "$ref": "#/$defs/ParticipantToken"
-                }
-            }
-        },
-        "ViewToken": {
-            "type": "string"
-        },
-        "DisconnectParticipantResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "DisconnectParticipantRequest": {
             "type": "object",
             "properties": {
@@ -657,6 +658,28 @@
         },
         "ClientToken": {
             "type": "string"
+        },
+        "DisconnectParticipantResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetAttachmentRequest": {
+            "type": "object",
+            "properties": {
+                "AttachmentId": {
+                    "$ref": "#/$defs/ArtifactId"
+                },
+                "ConnectionToken": {
+                    "$ref": "#/$defs/ParticipantToken"
+                },
+                "UrlExpiryInSeconds": {
+                    "$ref": "#/$defs/URLExpiryInSeconds"
+                }
+            }
+        },
+        "URLExpiryInSeconds": {
+            "type": "integer",
+            "format": "int32"
         },
         "GetAttachmentResponse": {
             "type": "object",
@@ -679,35 +702,6 @@
             "type": "integer",
             "format": "int64"
         },
-        "GetAttachmentRequest": {
-            "type": "object",
-            "properties": {
-                "AttachmentId": {
-                    "$ref": "#/$defs/ArtifactId"
-                },
-                "ConnectionToken": {
-                    "$ref": "#/$defs/ParticipantToken"
-                },
-                "UrlExpiryInSeconds": {
-                    "$ref": "#/$defs/URLExpiryInSeconds"
-                }
-            }
-        },
-        "URLExpiryInSeconds": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "GetAuthenticationUrlResponse": {
-            "type": "object",
-            "properties": {
-                "AuthenticationUrl": {
-                    "$ref": "#/$defs/AuthenticationUrl"
-                }
-            }
-        },
-        "AuthenticationUrl": {
-            "type": "string"
-        },
         "GetAuthenticationUrlRequest": {
             "type": "object",
             "properties": {
@@ -725,6 +719,89 @@
         "RedirectURI": {
             "type": "string"
         },
+        "GetAuthenticationUrlResponse": {
+            "type": "object",
+            "properties": {
+                "AuthenticationUrl": {
+                    "$ref": "#/$defs/AuthenticationUrl"
+                }
+            }
+        },
+        "AuthenticationUrl": {
+            "type": "string"
+        },
+        "GetTranscriptRequest": {
+            "type": "object",
+            "properties": {
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ScanDirection": {
+                    "$ref": "#/$defs/ScanDirection"
+                },
+                "SortOrder": {
+                    "$ref": "#/$defs/SortKey"
+                },
+                "StartPosition": {
+                    "$ref": "#/$defs/StartPosition"
+                },
+                "ConnectionToken": {
+                    "$ref": "#/$defs/ParticipantToken"
+                }
+            }
+        },
+        "ContactId": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ScanDirection": {
+            "enum": [
+                "FORWARD",
+                "BACKWARD"
+            ]
+        },
+        "SortKey": {
+            "enum": [
+                "DESCENDING",
+                "ASCENDING"
+            ]
+        },
+        "StartPosition": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ChatItemId"
+                },
+                "AbsoluteTime": {
+                    "$ref": "#/$defs/Instant"
+                },
+                "MostRecent": {
+                    "$ref": "#/$defs/MostRecent"
+                }
+            }
+        },
+        "ChatItemId": {
+            "type": "string"
+        },
+        "Instant": {
+            "type": "string"
+        },
+        "MostRecent": {
+            "type": "integer",
+            "format": "int32"
+        },
         "GetTranscriptResponse": {
             "type": "object",
             "properties": {
@@ -738,9 +815,6 @@
                     "$ref": "#/$defs/NextToken"
                 }
             }
-        },
-        "ContactId": {
-            "type": "string"
         },
         "Transcript": {
             "type": "array",
@@ -789,16 +863,10 @@
                 }
             }
         },
-        "Instant": {
-            "type": "string"
-        },
         "ChatContent": {
             "type": "string"
         },
         "ChatContentType": {
-            "type": "string"
-        },
-        "ChatItemId": {
             "type": "string"
         },
         "ChatItemType": {
@@ -899,68 +967,22 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "GetTranscriptRequest": {
+        "SendEventRequest": {
             "type": "object",
             "properties": {
-                "ContactId": {
-                    "$ref": "#/$defs/ContactId"
+                "ContentType": {
+                    "$ref": "#/$defs/ChatContentType"
                 },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "Content": {
+                    "$ref": "#/$defs/ChatContent"
                 },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "ScanDirection": {
-                    "$ref": "#/$defs/ScanDirection"
-                },
-                "SortOrder": {
-                    "$ref": "#/$defs/SortKey"
-                },
-                "StartPosition": {
-                    "$ref": "#/$defs/StartPosition"
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 },
                 "ConnectionToken": {
                     "$ref": "#/$defs/ParticipantToken"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ScanDirection": {
-            "enum": [
-                "FORWARD",
-                "BACKWARD"
-            ]
-        },
-        "SortKey": {
-            "enum": [
-                "DESCENDING",
-                "ASCENDING"
-            ]
-        },
-        "StartPosition": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/ChatItemId"
-                },
-                "AbsoluteTime": {
-                    "$ref": "#/$defs/Instant"
-                },
-                "MostRecent": {
-                    "$ref": "#/$defs/MostRecent"
-                }
-            }
-        },
-        "MostRecent": {
-            "type": "integer",
-            "format": "int32"
         },
         "SendEventResponse": {
             "type": "object",
@@ -973,7 +995,7 @@
                 }
             }
         },
-        "SendEventRequest": {
+        "SendMessageRequest": {
             "type": "object",
             "properties": {
                 "ContentType": {
@@ -1001,17 +1023,20 @@
                 }
             }
         },
-        "SendMessageRequest": {
+        "StartAttachmentUploadRequest": {
             "type": "object",
             "properties": {
                 "ContentType": {
-                    "$ref": "#/$defs/ChatContentType"
+                    "$ref": "#/$defs/ContentType"
                 },
-                "Content": {
-                    "$ref": "#/$defs/ChatContent"
+                "AttachmentSizeInBytes": {
+                    "$ref": "#/$defs/AttachmentSizeInBytes"
+                },
+                "AttachmentName": {
+                    "$ref": "#/$defs/AttachmentName"
                 },
                 "ClientToken": {
-                    "$ref": "#/$defs/ClientToken"
+                    "$ref": "#/$defs/NonEmptyClientToken"
                 },
                 "ConnectionToken": {
                     "$ref": "#/$defs/ParticipantToken"
@@ -1054,26 +1079,6 @@
         },
         "UploadMetadataSignedHeadersValue": {
             "type": "string"
-        },
-        "StartAttachmentUploadRequest": {
-            "type": "object",
-            "properties": {
-                "ContentType": {
-                    "$ref": "#/$defs/ContentType"
-                },
-                "AttachmentSizeInBytes": {
-                    "$ref": "#/$defs/AttachmentSizeInBytes"
-                },
-                "AttachmentName": {
-                    "$ref": "#/$defs/AttachmentName"
-                },
-                "ClientToken": {
-                    "$ref": "#/$defs/NonEmptyClientToken"
-                },
-                "ConnectionToken": {
-                    "$ref": "#/$defs/ParticipantToken"
-                }
-            }
         }
     },
     "aws": {

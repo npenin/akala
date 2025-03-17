@@ -29,9 +29,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineName": {},
+                        "MinUnits": {},
+                        "MaxUnits": {},
+                        "PipelineConfigurationBody": {},
+                        "LogPublishingOptions": {},
+                        "VpcOptions": {},
+                        "BufferOptions": {},
+                        "EncryptionAtRestOptions": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -68,9 +74,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineName": {}
                     }
                 }
             }
@@ -107,9 +111,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineName": {}
                     }
                 }
             }
@@ -146,9 +148,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "BlueprintName": {},
+                        "Format": {}
                     }
                 }
             }
@@ -185,9 +186,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineName": {}
                     }
                 }
             }
@@ -219,11 +218,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -255,9 +250,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -290,9 +284,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {}
                     }
                 }
             }
@@ -329,9 +321,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineName": {}
                     }
                 }
             }
@@ -368,9 +358,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineName": {}
                     }
                 }
             }
@@ -403,9 +391,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -438,9 +425,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -477,9 +463,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineName": {},
+                        "MinUnits": {},
+                        "MaxUnits": {},
+                        "PipelineConfigurationBody": {},
+                        "LogPublishingOptions": {},
+                        "BufferOptions": {},
+                        "EncryptionAtRestOptions": {}
                     }
                 }
             }
@@ -512,9 +502,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PipelineConfigurationBody": {}
                     }
                 }
             }
@@ -565,6 +553,170 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "CreatePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
+                },
+                "MinUnits": {
+                    "$ref": "#/$defs/PipelineUnits"
+                },
+                "MaxUnits": {
+                    "$ref": "#/$defs/PipelineUnits"
+                },
+                "PipelineConfigurationBody": {
+                    "$ref": "#/$defs/PipelineConfigurationBody"
+                },
+                "LogPublishingOptions": {
+                    "$ref": "#/$defs/LogPublishingOptions"
+                },
+                "VpcOptions": {
+                    "$ref": "#/$defs/VpcOptions"
+                },
+                "BufferOptions": {
+                    "$ref": "#/$defs/BufferOptions"
+                },
+                "EncryptionAtRestOptions": {
+                    "$ref": "#/$defs/EncryptionAtRestOptions"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PipelineName": {
+            "type": "string"
+        },
+        "PipelineUnits": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PipelineConfigurationBody": {
+            "type": "string"
+        },
+        "LogPublishingOptions": {
+            "type": "object",
+            "properties": {
+                "IsLoggingEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CloudWatchLogDestination": {
+                    "$ref": "#/$defs/CloudWatchLogDestination"
+                }
+            }
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CloudWatchLogDestination": {
+            "type": "object",
+            "properties": {
+                "LogGroup": {
+                    "$ref": "#/$defs/LogGroup"
+                }
+            }
+        },
+        "LogGroup": {
+            "type": "string"
+        },
+        "VpcOptions": {
+            "type": "object",
+            "properties": {
+                "SubnetIds": {
+                    "$ref": "#/$defs/SubnetIds"
+                },
+                "SecurityGroupIds": {
+                    "$ref": "#/$defs/SecurityGroupIds"
+                },
+                "VpcAttachmentOptions": {
+                    "$ref": "#/$defs/VpcAttachmentOptions"
+                },
+                "VpcEndpointManagement": {
+                    "$ref": "#/$defs/VpcEndpointManagement"
+                }
+            }
+        },
+        "SubnetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SubnetId"
+            }
+        },
+        "SubnetId": {
+            "type": "string"
+        },
+        "SecurityGroupIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SecurityGroupId"
+            }
+        },
+        "SecurityGroupId": {
+            "type": "string"
+        },
+        "VpcAttachmentOptions": {
+            "type": "object",
+            "properties": {
+                "AttachToVpc": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "CidrBlock": {
+                    "$ref": "#/$defs/CidrBlock"
+                }
+            }
+        },
+        "CidrBlock": {
+            "type": "string"
+        },
+        "VpcEndpointManagement": {
+            "enum": [
+                "CUSTOMER",
+                "SERVICE"
+            ]
+        },
+        "BufferOptions": {
+            "type": "object",
+            "properties": {
+                "PersistentBufferEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "EncryptionAtRestOptions": {
+            "type": "object",
+            "properties": {
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
         },
         "CreatePipelineResponse": {
             "type": "object",
@@ -672,31 +824,6 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "LogPublishingOptions": {
-            "type": "object",
-            "properties": {
-                "IsLoggingEnabled": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "CloudWatchLogDestination": {
-                    "$ref": "#/$defs/CloudWatchLogDestination"
-                }
-            }
-        },
-        "Boolean": {
-            "type": "boolean"
-        },
-        "CloudWatchLogDestination": {
-            "type": "object",
-            "properties": {
-                "LogGroup": {
-                    "$ref": "#/$defs/LogGroup"
-                }
-            }
-        },
-        "LogGroup": {
-            "type": "string"
-        },
         "VpcEndpointsList": {
             "type": "array",
             "items": {
@@ -716,80 +843,6 @@
                     "$ref": "#/$defs/VpcOptions"
                 }
             }
-        },
-        "VpcOptions": {
-            "type": "object",
-            "properties": {
-                "SubnetIds": {
-                    "$ref": "#/$defs/SubnetIds"
-                },
-                "SecurityGroupIds": {
-                    "$ref": "#/$defs/SecurityGroupIds"
-                },
-                "VpcAttachmentOptions": {
-                    "$ref": "#/$defs/VpcAttachmentOptions"
-                },
-                "VpcEndpointManagement": {
-                    "$ref": "#/$defs/VpcEndpointManagement"
-                }
-            }
-        },
-        "SubnetIds": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SubnetId"
-            }
-        },
-        "SubnetId": {
-            "type": "string"
-        },
-        "SecurityGroupIds": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SecurityGroupId"
-            }
-        },
-        "SecurityGroupId": {
-            "type": "string"
-        },
-        "VpcAttachmentOptions": {
-            "type": "object",
-            "properties": {
-                "AttachToVpc": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "CidrBlock": {
-                    "$ref": "#/$defs/CidrBlock"
-                }
-            }
-        },
-        "CidrBlock": {
-            "type": "string"
-        },
-        "VpcEndpointManagement": {
-            "enum": [
-                "CUSTOMER",
-                "SERVICE"
-            ]
-        },
-        "BufferOptions": {
-            "type": "object",
-            "properties": {
-                "PersistentBufferEnabled": {
-                    "$ref": "#/$defs/Boolean"
-                }
-            }
-        },
-        "EncryptionAtRestOptions": {
-            "type": "object",
-            "properties": {
-                "KmsKeyArn": {
-                    "$ref": "#/$defs/KmsKeyArn"
-                }
-            }
-        },
-        "KmsKeyArn": {
-            "type": "string"
         },
         "ServiceVpcEndpointsList": {
             "type": "array",
@@ -830,76 +883,19 @@
                 }
             }
         },
-        "TagList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Tag"
-            }
-        },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "$ref": "#/$defs/TagKey"
-                },
-                "Value": {
-                    "$ref": "#/$defs/TagValue"
-                }
-            }
-        },
-        "TagKey": {
-            "type": "string"
-        },
-        "TagValue": {
-            "type": "string"
-        },
-        "CreatePipelineRequest": {
+        "DeletePipelineRequest": {
             "type": "object",
             "properties": {
                 "PipelineName": {
                     "$ref": "#/$defs/PipelineName"
-                },
-                "MinUnits": {
-                    "$ref": "#/$defs/PipelineUnits"
-                },
-                "MaxUnits": {
-                    "$ref": "#/$defs/PipelineUnits"
-                },
-                "PipelineConfigurationBody": {
-                    "$ref": "#/$defs/PipelineConfigurationBody"
-                },
-                "LogPublishingOptions": {
-                    "$ref": "#/$defs/LogPublishingOptions"
-                },
-                "VpcOptions": {
-                    "$ref": "#/$defs/VpcOptions"
-                },
-                "BufferOptions": {
-                    "$ref": "#/$defs/BufferOptions"
-                },
-                "EncryptionAtRestOptions": {
-                    "$ref": "#/$defs/EncryptionAtRestOptions"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
                 }
             }
-        },
-        "PipelineName": {
-            "type": "string"
-        },
-        "PipelineUnits": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "PipelineConfigurationBody": {
-            "type": "string"
         },
         "DeletePipelineResponse": {
             "type": "object",
             "properties": {}
         },
-        "DeletePipelineRequest": {
+        "GetPipelineRequest": {
             "type": "object",
             "properties": {
                 "PipelineName": {
@@ -915,13 +911,19 @@
                 }
             }
         },
-        "GetPipelineRequest": {
+        "GetPipelineBlueprintRequest": {
             "type": "object",
             "properties": {
-                "PipelineName": {
-                    "$ref": "#/$defs/PipelineName"
+                "BlueprintName": {
+                    "$ref": "#/$defs/String"
+                },
+                "Format": {
+                    "$ref": "#/$defs/BlueprintFormat"
                 }
             }
+        },
+        "BlueprintFormat": {
+            "type": "string"
         },
         "GetPipelineBlueprintResponse": {
             "type": "object",
@@ -957,19 +959,13 @@
                 }
             }
         },
-        "GetPipelineBlueprintRequest": {
+        "GetPipelineChangeProgressRequest": {
             "type": "object",
             "properties": {
-                "BlueprintName": {
-                    "$ref": "#/$defs/String"
-                },
-                "Format": {
-                    "$ref": "#/$defs/BlueprintFormat"
+                "PipelineName": {
+                    "$ref": "#/$defs/PipelineName"
                 }
             }
-        },
-        "BlueprintFormat": {
-            "type": "string"
         },
         "GetPipelineChangeProgressResponse": {
             "type": "object",
@@ -1041,13 +1037,9 @@
                 "FAILED"
             ]
         },
-        "GetPipelineChangeProgressRequest": {
+        "ListPipelineBlueprintsRequest": {
             "type": "object",
-            "properties": {
-                "PipelineName": {
-                    "$ref": "#/$defs/PipelineName"
-                }
-            }
+            "properties": {}
         },
         "ListPipelineBlueprintsResponse": {
             "type": "object",
@@ -1083,9 +1075,23 @@
                 }
             }
         },
-        "ListPipelineBlueprintsRequest": {
+        "ListPipelinesRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListPipelinesResponse": {
             "type": "object",
@@ -1097,9 +1103,6 @@
                     "$ref": "#/$defs/PipelineSummaryList"
                 }
             }
-        },
-        "NextToken": {
-            "type": "string"
         },
         "PipelineSummaryList": {
             "type": "array",
@@ -1145,29 +1148,6 @@
         "PipelineArn": {
             "type": "string"
         },
-        "ListPipelinesRequest": {
-            "type": "object",
-            "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -1176,11 +1156,11 @@
                 }
             }
         },
-        "StartPipelineResponse": {
+        "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
-                "Pipeline": {
-                    "$ref": "#/$defs/Pipeline"
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
         },
@@ -1192,7 +1172,7 @@
                 }
             }
         },
-        "StopPipelineResponse": {
+        "StartPipelineResponse": {
             "type": "object",
             "properties": {
                 "Pipeline": {
@@ -1208,9 +1188,13 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "StopPipelineResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1223,7 +1207,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1244,13 +1228,9 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "UpdatePipelineResponse": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "Pipeline": {
-                    "$ref": "#/$defs/Pipeline"
-                }
-            }
+            "properties": {}
         },
         "UpdatePipelineRequest": {
             "type": "object",
@@ -1278,6 +1258,22 @@
                 }
             }
         },
+        "UpdatePipelineResponse": {
+            "type": "object",
+            "properties": {
+                "Pipeline": {
+                    "$ref": "#/$defs/Pipeline"
+                }
+            }
+        },
+        "ValidatePipelineRequest": {
+            "type": "object",
+            "properties": {
+                "PipelineConfigurationBody": {
+                    "$ref": "#/$defs/PipelineConfigurationBody"
+                }
+            }
+        },
         "ValidatePipelineResponse": {
             "type": "object",
             "properties": {
@@ -1300,14 +1296,6 @@
             "properties": {
                 "Message": {
                     "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "ValidatePipelineRequest": {
-            "type": "object",
-            "properties": {
-                "PipelineConfigurationBody": {
-                    "$ref": "#/$defs/PipelineConfigurationBody"
                 }
             }
         }

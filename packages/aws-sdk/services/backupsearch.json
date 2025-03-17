@@ -33,9 +33,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SearchJobIdentifier": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -72,9 +72,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SearchJobIdentifier": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -111,9 +111,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -150,9 +148,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -189,9 +186,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -242,6 +238,23 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "ListSearchJobBackupsInput": {
+            "type": "object",
+            "properties": {
+                "SearchJobIdentifier": {
+                    "$ref": "#/$defs/GenericId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "GenericId": {
+            "type": "string"
         },
         "ListSearchJobBackupsOutput": {
             "type": "object",
@@ -301,7 +314,7 @@
                 "EBS"
             ]
         },
-        "ListSearchJobBackupsInput": {
+        "ListSearchJobResultsInput": {
             "type": "object",
             "properties": {
                 "SearchJobIdentifier": {
@@ -314,9 +327,6 @@
                     "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
-        },
-        "GenericId": {
-            "type": "string"
         },
         "ListSearchJobResultsOutput": {
             "type": "object",
@@ -410,17 +420,11 @@
         "FilePath": {
             "type": "string"
         },
-        "ListSearchJobResultsInput": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "SearchJobIdentifier": {
-                    "$ref": "#/$defs/GenericId"
-                },
-                "NextToken": {
+                "ResourceArn": {
                     "$ref": "#/$defs/smithy.api#String"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
         },
@@ -438,18 +442,6 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -461,7 +453,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -481,6 +473,10 @@
             "items": {
                 "$ref": "#/$defs/smithy.api#String"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

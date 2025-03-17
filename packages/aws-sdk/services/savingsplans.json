@@ -29,9 +29,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "savingsPlanOfferingId": {},
+                        "commitment": {},
+                        "upfrontPaymentAmount": {},
+                        "purchaseTime": {},
+                        "clientToken": {},
+                        "tags": {}
                     }
                 }
             }
@@ -64,9 +67,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "savingsPlanId": {}
                     }
                 }
             }
@@ -99,9 +100,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "savingsPlanId": {},
+                        "filters": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -134,9 +136,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "savingsPlanArns": {},
+                        "savingsPlanIds": {},
+                        "nextToken": {},
+                        "maxResults": {},
+                        "states": {},
+                        "filters": {}
                     }
                 }
             }
@@ -169,9 +174,16 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "savingsPlanOfferingIds": {},
+                        "savingsPlanPaymentOptions": {},
+                        "savingsPlanTypes": {},
+                        "products": {},
+                        "serviceCodes": {},
+                        "usageTypes": {},
+                        "operations": {},
+                        "filters": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -204,9 +216,19 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "offeringIds": {},
+                        "paymentOptions": {},
+                        "productType": {},
+                        "planTypes": {},
+                        "durations": {},
+                        "currencies": {},
+                        "descriptions": {},
+                        "serviceCodes": {},
+                        "usageTypes": {},
+                        "operations": {},
+                        "filters": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -239,9 +261,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -274,9 +294,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "savingsPlanId": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -309,9 +328,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -344,9 +362,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -398,17 +415,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateSavingsPlanResponse": {
-            "type": "object",
-            "properties": {
-                "savingsPlanId": {
-                    "$ref": "#/$defs/SavingsPlanId"
-                }
-            }
-        },
-        "SavingsPlanId": {
-            "type": "string"
-        },
         "CreateSavingsPlanRequest": {
             "type": "object",
             "properties": {
@@ -454,9 +460,16 @@
         "TagValue": {
             "type": "string"
         },
-        "DeleteQueuedSavingsPlanResponse": {
+        "CreateSavingsPlanResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "savingsPlanId": {
+                    "$ref": "#/$defs/SavingsPlanId"
+                }
+            }
+        },
+        "SavingsPlanId": {
+            "type": "string"
         },
         "DeleteQueuedSavingsPlanRequest": {
             "type": "object",
@@ -465,6 +478,72 @@
                     "$ref": "#/$defs/SavingsPlanId"
                 }
             }
+        },
+        "DeleteQueuedSavingsPlanResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeSavingsPlanRatesRequest": {
+            "type": "object",
+            "properties": {
+                "savingsPlanId": {
+                    "$ref": "#/$defs/SavingsPlanId"
+                },
+                "filters": {
+                    "$ref": "#/$defs/SavingsPlanRateFilterList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "SavingsPlanRateFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanRateFilter"
+            }
+        },
+        "SavingsPlanRateFilter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SavingsPlanRateFilterName"
+                },
+                "values": {
+                    "$ref": "#/$defs/ListOfStrings"
+                }
+            }
+        },
+        "SavingsPlanRateFilterName": {
+            "enum": [
+                "REGION",
+                "INSTANCE_TYPE",
+                "PRODUCT_DESCRIPTION",
+                "TENANCY",
+                "PRODUCT_TYPE",
+                "SERVICE_CODE",
+                "USAGE_TYPE",
+                "OPERATION"
+            ]
+        },
+        "ListOfStrings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "String": {
+            "type": "string"
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "DescribeSavingsPlanRatesResponse": {
             "type": "object",
@@ -580,67 +659,91 @@
         "JsonSafeFilterValueString": {
             "type": "string"
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "DescribeSavingsPlanRatesRequest": {
+        "DescribeSavingsPlansRequest": {
             "type": "object",
             "properties": {
-                "savingsPlanId": {
-                    "$ref": "#/$defs/SavingsPlanId"
+                "savingsPlanArns": {
+                    "$ref": "#/$defs/SavingsPlanArnList"
                 },
-                "filters": {
-                    "$ref": "#/$defs/SavingsPlanRateFilterList"
+                "savingsPlanIds": {
+                    "$ref": "#/$defs/SavingsPlanIdList"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 },
                 "maxResults": {
                     "$ref": "#/$defs/MaxResults"
+                },
+                "states": {
+                    "$ref": "#/$defs/SavingsPlanStateList"
+                },
+                "filters": {
+                    "$ref": "#/$defs/SavingsPlanFilterList"
                 }
             }
         },
-        "SavingsPlanRateFilterList": {
+        "SavingsPlanArnList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/SavingsPlanRateFilter"
+                "$ref": "#/$defs/SavingsPlanArn"
             }
         },
-        "SavingsPlanRateFilter": {
+        "SavingsPlanArn": {
+            "type": "string"
+        },
+        "SavingsPlanIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanId"
+            }
+        },
+        "SavingsPlanStateList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanState"
+            }
+        },
+        "SavingsPlanState": {
+            "enum": [
+                "PAYMENT_PENDING",
+                "PAYMENT_FAILED",
+                "ACTIVE",
+                "RETIRED",
+                "QUEUED",
+                "QUEUED_DELETED",
+                "PENDING_RETURN",
+                "RETURNED"
+            ]
+        },
+        "SavingsPlanFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanFilter"
+            }
+        },
+        "SavingsPlanFilter": {
             "type": "object",
             "properties": {
                 "name": {
-                    "$ref": "#/$defs/SavingsPlanRateFilterName"
+                    "$ref": "#/$defs/SavingsPlansFilterName"
                 },
                 "values": {
                     "$ref": "#/$defs/ListOfStrings"
                 }
             }
         },
-        "SavingsPlanRateFilterName": {
+        "SavingsPlansFilterName": {
             "enum": [
                 "REGION",
-                "INSTANCE_TYPE",
-                "PRODUCT_DESCRIPTION",
-                "TENANCY",
-                "PRODUCT_TYPE",
-                "SERVICE_CODE",
-                "USAGE_TYPE",
-                "OPERATION"
+                "EC2_INSTANCE_FAMILY",
+                "COMMITMENT",
+                "UPFRONT",
+                "TERM",
+                "SAVINGS_PLAN_TYPE",
+                "PAYMENT_OPTION",
+                "START",
+                "END"
             ]
-        },
-        "ListOfStrings": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/String"
-            }
-        },
-        "String": {
-            "type": "string"
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "DescribeSavingsPlansResponse": {
             "type": "object",
@@ -721,21 +824,6 @@
                 }
             }
         },
-        "SavingsPlanArn": {
-            "type": "string"
-        },
-        "SavingsPlanState": {
-            "enum": [
-                "PAYMENT_PENDING",
-                "PAYMENT_FAILED",
-                "ACTIVE",
-                "RETIRED",
-                "QUEUED",
-                "QUEUED_DELETED",
-                "PENDING_RETURN",
-                "RETURNED"
-            ]
-        },
         "Region": {
             "type": "string"
         },
@@ -766,76 +854,116 @@
             "type": "integer",
             "format": "int64"
         },
-        "DescribeSavingsPlansRequest": {
+        "DescribeSavingsPlansOfferingRatesRequest": {
             "type": "object",
             "properties": {
-                "savingsPlanArns": {
-                    "$ref": "#/$defs/SavingsPlanArnList"
+                "savingsPlanOfferingIds": {
+                    "$ref": "#/$defs/UUIDs"
                 },
-                "savingsPlanIds": {
-                    "$ref": "#/$defs/SavingsPlanIdList"
+                "savingsPlanPaymentOptions": {
+                    "$ref": "#/$defs/SavingsPlanPaymentOptionList"
+                },
+                "savingsPlanTypes": {
+                    "$ref": "#/$defs/SavingsPlanTypeList"
+                },
+                "products": {
+                    "$ref": "#/$defs/SavingsPlanProductTypeList"
+                },
+                "serviceCodes": {
+                    "$ref": "#/$defs/SavingsPlanRateServiceCodeList"
+                },
+                "usageTypes": {
+                    "$ref": "#/$defs/SavingsPlanRateUsageTypeList"
+                },
+                "operations": {
+                    "$ref": "#/$defs/SavingsPlanRateOperationList"
+                },
+                "filters": {
+                    "$ref": "#/$defs/SavingsPlanOfferingRateFiltersList"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 },
                 "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "states": {
-                    "$ref": "#/$defs/SavingsPlanStateList"
-                },
-                "filters": {
-                    "$ref": "#/$defs/SavingsPlanFilterList"
+                    "$ref": "#/$defs/PageSize"
                 }
             }
         },
-        "SavingsPlanArnList": {
+        "UUIDs": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/SavingsPlanArn"
+                "$ref": "#/$defs/UUID"
             }
         },
-        "SavingsPlanIdList": {
+        "UUID": {
+            "type": "string"
+        },
+        "SavingsPlanPaymentOptionList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/SavingsPlanId"
+                "$ref": "#/$defs/SavingsPlanPaymentOption"
             }
         },
-        "SavingsPlanStateList": {
+        "SavingsPlanTypeList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/SavingsPlanState"
+                "$ref": "#/$defs/SavingsPlanType"
             }
         },
-        "SavingsPlanFilterList": {
+        "SavingsPlanRateServiceCodeList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/SavingsPlanFilter"
+                "$ref": "#/$defs/SavingsPlanRateServiceCode"
             }
         },
-        "SavingsPlanFilter": {
+        "SavingsPlanRateUsageTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanRateUsageType"
+            }
+        },
+        "SavingsPlanRateOperationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanRateOperation"
+            }
+        },
+        "SavingsPlanOfferingRateFiltersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanOfferingRateFilterElement"
+            }
+        },
+        "SavingsPlanOfferingRateFilterElement": {
             "type": "object",
             "properties": {
                 "name": {
-                    "$ref": "#/$defs/SavingsPlansFilterName"
+                    "$ref": "#/$defs/SavingsPlanRateFilterAttribute"
                 },
                 "values": {
-                    "$ref": "#/$defs/ListOfStrings"
+                    "$ref": "#/$defs/FilterValuesList"
                 }
             }
         },
-        "SavingsPlansFilterName": {
+        "SavingsPlanRateFilterAttribute": {
             "enum": [
                 "REGION",
-                "EC2_INSTANCE_FAMILY",
-                "COMMITMENT",
-                "UPFRONT",
-                "TERM",
-                "SAVINGS_PLAN_TYPE",
-                "PAYMENT_OPTION",
-                "START",
-                "END"
+                "INSTANCE_FAMILY",
+                "INSTANCE_TYPE",
+                "PRODUCT_DESCRIPTION",
+                "TENANCY",
+                "PRODUCT_ID"
             ]
+        },
+        "FilterValuesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JsonSafeFilterValueString"
+            }
+        },
+        "PageSize": {
+            "type": "integer",
+            "format": "int32"
         },
         "DescribeSavingsPlansOfferingRatesResponse": {
             "type": "object",
@@ -906,9 +1034,6 @@
                 }
             }
         },
-        "UUID": {
-            "type": "string"
-        },
         "SavingsPlansDuration": {
             "type": "integer",
             "format": "int64"
@@ -935,201 +1060,6 @@
                     "$ref": "#/$defs/JsonSafeFilterValueString"
                 }
             }
-        },
-        "DescribeSavingsPlansOfferingRatesRequest": {
-            "type": "object",
-            "properties": {
-                "savingsPlanOfferingIds": {
-                    "$ref": "#/$defs/UUIDs"
-                },
-                "savingsPlanPaymentOptions": {
-                    "$ref": "#/$defs/SavingsPlanPaymentOptionList"
-                },
-                "savingsPlanTypes": {
-                    "$ref": "#/$defs/SavingsPlanTypeList"
-                },
-                "products": {
-                    "$ref": "#/$defs/SavingsPlanProductTypeList"
-                },
-                "serviceCodes": {
-                    "$ref": "#/$defs/SavingsPlanRateServiceCodeList"
-                },
-                "usageTypes": {
-                    "$ref": "#/$defs/SavingsPlanRateUsageTypeList"
-                },
-                "operations": {
-                    "$ref": "#/$defs/SavingsPlanRateOperationList"
-                },
-                "filters": {
-                    "$ref": "#/$defs/SavingsPlanOfferingRateFiltersList"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/PageSize"
-                }
-            }
-        },
-        "UUIDs": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/UUID"
-            }
-        },
-        "SavingsPlanPaymentOptionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SavingsPlanPaymentOption"
-            }
-        },
-        "SavingsPlanTypeList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SavingsPlanType"
-            }
-        },
-        "SavingsPlanRateServiceCodeList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SavingsPlanRateServiceCode"
-            }
-        },
-        "SavingsPlanRateUsageTypeList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SavingsPlanRateUsageType"
-            }
-        },
-        "SavingsPlanRateOperationList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SavingsPlanRateOperation"
-            }
-        },
-        "SavingsPlanOfferingRateFiltersList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SavingsPlanOfferingRateFilterElement"
-            }
-        },
-        "SavingsPlanOfferingRateFilterElement": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/SavingsPlanRateFilterAttribute"
-                },
-                "values": {
-                    "$ref": "#/$defs/FilterValuesList"
-                }
-            }
-        },
-        "SavingsPlanRateFilterAttribute": {
-            "enum": [
-                "REGION",
-                "INSTANCE_FAMILY",
-                "INSTANCE_TYPE",
-                "PRODUCT_DESCRIPTION",
-                "TENANCY",
-                "PRODUCT_ID"
-            ]
-        },
-        "FilterValuesList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/JsonSafeFilterValueString"
-            }
-        },
-        "PageSize": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "DescribeSavingsPlansOfferingsResponse": {
-            "type": "object",
-            "properties": {
-                "searchResults": {
-                    "$ref": "#/$defs/SavingsPlanOfferingsList"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                }
-            }
-        },
-        "SavingsPlanOfferingsList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SavingsPlanOffering"
-            }
-        },
-        "SavingsPlanOffering": {
-            "type": "object",
-            "properties": {
-                "offeringId": {
-                    "$ref": "#/$defs/UUID"
-                },
-                "productTypes": {
-                    "$ref": "#/$defs/SavingsPlanProductTypeList"
-                },
-                "planType": {
-                    "$ref": "#/$defs/SavingsPlanType"
-                },
-                "description": {
-                    "$ref": "#/$defs/SavingsPlanDescription"
-                },
-                "paymentOption": {
-                    "$ref": "#/$defs/SavingsPlanPaymentOption"
-                },
-                "durationSeconds": {
-                    "$ref": "#/$defs/SavingsPlansDuration"
-                },
-                "currency": {
-                    "$ref": "#/$defs/CurrencyCode"
-                },
-                "serviceCode": {
-                    "$ref": "#/$defs/SavingsPlanServiceCode"
-                },
-                "usageType": {
-                    "$ref": "#/$defs/SavingsPlanUsageType"
-                },
-                "operation": {
-                    "$ref": "#/$defs/SavingsPlanOperation"
-                },
-                "properties": {
-                    "$ref": "#/$defs/SavingsPlanOfferingPropertyList"
-                }
-            }
-        },
-        "SavingsPlanServiceCode": {
-            "type": "string"
-        },
-        "SavingsPlanUsageType": {
-            "type": "string"
-        },
-        "SavingsPlanOperation": {
-            "type": "string"
-        },
-        "SavingsPlanOfferingPropertyList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SavingsPlanOfferingProperty"
-            }
-        },
-        "SavingsPlanOfferingProperty": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/SavingsPlanOfferingPropertyKey"
-                },
-                "value": {
-                    "$ref": "#/$defs/JsonSafeFilterValueString"
-                }
-            }
-        },
-        "SavingsPlanOfferingPropertyKey": {
-            "enum": [
-                "REGION",
-                "INSTANCE_FAMILY"
-            ]
         },
         "DescribeSavingsPlansOfferingsRequest": {
             "type": "object",
@@ -1199,17 +1129,26 @@
                 "$ref": "#/$defs/SavingsPlanServiceCode"
             }
         },
+        "SavingsPlanServiceCode": {
+            "type": "string"
+        },
         "SavingsPlanUsageTypeList": {
             "type": "array",
             "items": {
                 "$ref": "#/$defs/SavingsPlanUsageType"
             }
         },
+        "SavingsPlanUsageType": {
+            "type": "string"
+        },
         "SavingsPlanOperationList": {
             "type": "array",
             "items": {
                 "$ref": "#/$defs/SavingsPlanOperation"
             }
+        },
+        "SavingsPlanOperation": {
+            "type": "string"
         },
         "SavingsPlanOfferingFiltersList": {
             "type": "array",
@@ -1234,13 +1173,83 @@
                 "instanceFamily"
             ]
         },
-        "ListTagsForResourceResponse": {
+        "DescribeSavingsPlansOfferingsResponse": {
             "type": "object",
             "properties": {
-                "tags": {
-                    "$ref": "#/$defs/TagMap"
+                "searchResults": {
+                    "$ref": "#/$defs/SavingsPlanOfferingsList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
                 }
             }
+        },
+        "SavingsPlanOfferingsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanOffering"
+            }
+        },
+        "SavingsPlanOffering": {
+            "type": "object",
+            "properties": {
+                "offeringId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "productTypes": {
+                    "$ref": "#/$defs/SavingsPlanProductTypeList"
+                },
+                "planType": {
+                    "$ref": "#/$defs/SavingsPlanType"
+                },
+                "description": {
+                    "$ref": "#/$defs/SavingsPlanDescription"
+                },
+                "paymentOption": {
+                    "$ref": "#/$defs/SavingsPlanPaymentOption"
+                },
+                "durationSeconds": {
+                    "$ref": "#/$defs/SavingsPlansDuration"
+                },
+                "currency": {
+                    "$ref": "#/$defs/CurrencyCode"
+                },
+                "serviceCode": {
+                    "$ref": "#/$defs/SavingsPlanServiceCode"
+                },
+                "usageType": {
+                    "$ref": "#/$defs/SavingsPlanUsageType"
+                },
+                "operation": {
+                    "$ref": "#/$defs/SavingsPlanOperation"
+                },
+                "properties": {
+                    "$ref": "#/$defs/SavingsPlanOfferingPropertyList"
+                }
+            }
+        },
+        "SavingsPlanOfferingPropertyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SavingsPlanOfferingProperty"
+            }
+        },
+        "SavingsPlanOfferingProperty": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/SavingsPlanOfferingPropertyKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/JsonSafeFilterValueString"
+                }
+            }
+        },
+        "SavingsPlanOfferingPropertyKey": {
+            "enum": [
+                "REGION",
+                "INSTANCE_FAMILY"
+            ]
         },
         "ListTagsForResourceRequest": {
             "type": "object",
@@ -1250,11 +1259,11 @@
                 }
             }
         },
-        "ReturnSavingsPlanResponse": {
+        "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
-                "savingsPlanId": {
-                    "$ref": "#/$defs/SavingsPlanId"
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
                 }
             }
         },
@@ -1269,9 +1278,13 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "ReturnSavingsPlanResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "savingsPlanId": {
+                    "$ref": "#/$defs/SavingsPlanId"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1284,7 +1297,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1307,6 +1320,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

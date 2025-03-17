@@ -29,8 +29,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "sourceServerArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -63,9 +63,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceId": {},
+                        "actionId": {}
                     }
                 }
             }
@@ -97,10 +96,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -132,8 +128,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "stagingAccountID": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -166,9 +163,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceId": {},
+                        "filters": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -201,8 +199,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -239,8 +237,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -273,9 +270,17 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceId": {},
+                        "actionCode": {},
+                        "order": {},
+                        "actionId": {},
+                        "optional": {},
+                        "active": {},
+                        "name": {},
+                        "actionVersion": {},
+                        "category": {},
+                        "parameters": {},
+                        "description": {}
                     }
                 }
             }
@@ -312,8 +317,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -350,8 +355,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -402,6 +407,29 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "CreateExtendedSourceServerRequest": {
+            "type": "object",
+            "properties": {
+                "sourceServerArn": {
+                    "$ref": "#/$defs/SourceServerARN"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "SourceServerARN": {
+            "type": "string"
+        },
+        "TagsMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
         },
         "CreateExtendedSourceServerResponse": {
             "type": "object",
@@ -462,15 +490,6 @@
             "type": "string"
         },
         "ARN": {
-            "type": "string"
-        },
-        "TagsMap": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
-        },
-        "TagValue": {
             "type": "string"
         },
         "RecoveryInstanceID": {
@@ -839,29 +858,11 @@
         "ReplicationDirection": {
             "type": "string"
         },
-        "SourceServerARN": {
-            "type": "string"
-        },
         "SourceNetworkID": {
             "type": "string"
         },
         "AgentVersion": {
             "type": "string"
-        },
-        "CreateExtendedSourceServerRequest": {
-            "type": "object",
-            "properties": {
-                "sourceServerArn": {
-                    "$ref": "#/$defs/SourceServerARN"
-                },
-                "tags": {
-                    "$ref": "#/$defs/TagsMap"
-                }
-            }
-        },
-        "DeleteLaunchActionResponse": {
-            "type": "object",
-            "properties": {}
         },
         "DeleteLaunchActionRequest": {
             "type": "object",
@@ -880,13 +881,38 @@
         "LaunchActionId": {
             "type": "string"
         },
-        "InitializeServiceResponse": {
+        "DeleteLaunchActionResponse": {
             "type": "object",
             "properties": {}
         },
         "InitializeServiceRequest": {
             "type": "object",
             "properties": {}
+        },
+        "InitializeServiceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "ListExtensibleSourceServersRequest": {
+            "type": "object",
+            "properties": {
+                "stagingAccountID": {
+                    "$ref": "#/$defs/AccountID"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultsReplicatingSourceServers"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "MaxResultsReplicatingSourceServers": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PaginationToken": {
+            "type": "string"
         },
         "ListExtensibleSourceServersResponse": {
             "type": "object",
@@ -919,24 +945,38 @@
                 }
             }
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "ListExtensibleSourceServersRequest": {
+        "ListLaunchActionsRequest": {
             "type": "object",
             "properties": {
-                "stagingAccountID": {
-                    "$ref": "#/$defs/AccountID"
+                "resourceId": {
+                    "$ref": "#/$defs/LaunchActionResourceId"
+                },
+                "filters": {
+                    "$ref": "#/$defs/LaunchActionsRequestFilters"
                 },
                 "maxResults": {
-                    "$ref": "#/$defs/MaxResultsReplicatingSourceServers"
+                    "$ref": "#/$defs/MaxResultsType"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 }
             }
         },
-        "MaxResultsReplicatingSourceServers": {
+        "LaunchActionsRequestFilters": {
+            "type": "object",
+            "properties": {
+                "actionIds": {
+                    "$ref": "#/$defs/LaunchActionIds"
+                }
+            }
+        },
+        "LaunchActionIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LaunchActionId"
+            }
+        },
+        "MaxResultsType": {
             "type": "integer",
             "format": "int32"
         },
@@ -1040,40 +1080,16 @@
         "LaunchActionCategory": {
             "type": "string"
         },
-        "ListLaunchActionsRequest": {
+        "ListStagingAccountsRequest": {
             "type": "object",
             "properties": {
-                "resourceId": {
-                    "$ref": "#/$defs/LaunchActionResourceId"
-                },
-                "filters": {
-                    "$ref": "#/$defs/LaunchActionsRequestFilters"
-                },
                 "maxResults": {
-                    "$ref": "#/$defs/MaxResultsType"
+                    "$ref": "#/$defs/smithy.api#Integer"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 }
             }
-        },
-        "LaunchActionsRequestFilters": {
-            "type": "object",
-            "properties": {
-                "actionIds": {
-                    "$ref": "#/$defs/LaunchActionIds"
-                }
-            }
-        },
-        "LaunchActionIds": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/LaunchActionId"
-            }
-        },
-        "MaxResultsType": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListStagingAccountsResponse": {
             "type": "object",
@@ -1100,14 +1116,11 @@
                 }
             }
         },
-        "ListStagingAccountsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "maxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
                 }
             }
         },
@@ -1119,11 +1132,41 @@
                 }
             }
         },
-        "ListTagsForResourceRequest": {
+        "PutLaunchActionRequest": {
             "type": "object",
             "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/ARN"
+                "resourceId": {
+                    "$ref": "#/$defs/LaunchActionResourceId"
+                },
+                "actionCode": {
+                    "$ref": "#/$defs/SsmDocumentName"
+                },
+                "order": {
+                    "$ref": "#/$defs/LaunchActionOrder"
+                },
+                "actionId": {
+                    "$ref": "#/$defs/LaunchActionId"
+                },
+                "optional": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "active": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "name": {
+                    "$ref": "#/$defs/LaunchActionName"
+                },
+                "actionVersion": {
+                    "$ref": "#/$defs/LaunchActionVersion"
+                },
+                "category": {
+                    "$ref": "#/$defs/LaunchActionCategory"
+                },
+                "parameters": {
+                    "$ref": "#/$defs/LaunchActionParameters"
+                },
+                "description": {
+                    "$ref": "#/$defs/LaunchActionDescription"
                 }
             }
         },
@@ -1165,44 +1208,6 @@
                 },
                 "category": {
                     "$ref": "#/$defs/LaunchActionCategory"
-                }
-            }
-        },
-        "PutLaunchActionRequest": {
-            "type": "object",
-            "properties": {
-                "resourceId": {
-                    "$ref": "#/$defs/LaunchActionResourceId"
-                },
-                "actionCode": {
-                    "$ref": "#/$defs/SsmDocumentName"
-                },
-                "order": {
-                    "$ref": "#/$defs/LaunchActionOrder"
-                },
-                "actionId": {
-                    "$ref": "#/$defs/LaunchActionId"
-                },
-                "optional": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
-                },
-                "active": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
-                },
-                "name": {
-                    "$ref": "#/$defs/LaunchActionName"
-                },
-                "actionVersion": {
-                    "$ref": "#/$defs/LaunchActionVersion"
-                },
-                "category": {
-                    "$ref": "#/$defs/LaunchActionCategory"
-                },
-                "parameters": {
-                    "$ref": "#/$defs/LaunchActionParameters"
-                },
-                "description": {
-                    "$ref": "#/$defs/LaunchActionDescription"
                 }
             }
         },

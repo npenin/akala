@@ -29,9 +29,17 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "name": {},
+                        "desktopArn": {},
+                        "desktopEndpoint": {},
+                        "softwareSetUpdateSchedule": {},
+                        "maintenanceWindow": {},
+                        "softwareSetUpdateMode": {},
+                        "desiredSoftwareSetId": {},
+                        "kmsKeyArn": {},
+                        "clientToken": {},
+                        "tags": {},
+                        "deviceCreationTags": {}
                     }
                 }
             }
@@ -68,9 +76,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -107,9 +114,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -146,9 +152,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {},
+                        "targetDeviceStatus": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -185,9 +191,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {}
                     }
                 }
             }
@@ -224,9 +228,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {}
                     }
                 }
             }
@@ -263,9 +265,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {}
                     }
                 }
             }
@@ -298,9 +298,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -333,9 +332,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -368,9 +366,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -407,9 +404,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -446,9 +441,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -485,9 +479,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -524,9 +517,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {},
+                        "name": {},
+                        "desiredSoftwareSetId": {},
+                        "softwareSetUpdateSchedule": {}
                     }
                 }
             }
@@ -563,9 +557,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {},
+                        "name": {},
+                        "desktopArn": {},
+                        "desktopEndpoint": {},
+                        "softwareSetUpdateSchedule": {},
+                        "maintenanceWindow": {},
+                        "softwareSetUpdateMode": {},
+                        "desiredSoftwareSetId": {},
+                        "deviceCreationTags": {}
                     }
                 }
             }
@@ -602,9 +602,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "id": {},
+                        "validationStatus": {}
                     }
                 }
             }
@@ -656,20 +655,9 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateEnvironmentResponse": {
+        "CreateEnvironmentRequest": {
             "type": "object",
             "properties": {
-                "environment": {
-                    "$ref": "#/$defs/EnvironmentSummary"
-                }
-            }
-        },
-        "EnvironmentSummary": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "$ref": "#/$defs/EnvironmentId"
-                },
                 "name": {
                     "$ref": "#/$defs/EnvironmentName"
                 },
@@ -678,12 +666,6 @@
                 },
                 "desktopEndpoint": {
                     "$ref": "#/$defs/DesktopEndpoint"
-                },
-                "desktopType": {
-                    "$ref": "#/$defs/DesktopType"
-                },
-                "activationCode": {
-                    "$ref": "#/$defs/ActivationCode"
                 },
                 "softwareSetUpdateSchedule": {
                     "$ref": "#/$defs/SoftwareSetUpdateSchedule"
@@ -697,22 +679,19 @@
                 "desiredSoftwareSetId": {
                     "$ref": "#/$defs/SoftwareSetId"
                 },
-                "pendingSoftwareSetId": {
-                    "$ref": "#/$defs/SoftwareSetId"
+                "kmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
                 },
-                "createdAt": {
-                    "$ref": "#/$defs/Timestamp"
+                "clientToken": {
+                    "$ref": "#/$defs/ClientToken"
                 },
-                "updatedAt": {
-                    "$ref": "#/$defs/Timestamp"
+                "tags": {
+                    "$ref": "#/$defs/TagsMap"
                 },
-                "arn": {
-                    "$ref": "#/$defs/Arn"
+                "deviceCreationTags": {
+                    "$ref": "#/$defs/DeviceCreationTagsMap"
                 }
             }
-        },
-        "EnvironmentId": {
-            "type": "string"
         },
         "EnvironmentName": {
             "type": "string"
@@ -721,16 +700,6 @@
             "type": "string"
         },
         "DesktopEndpoint": {
-            "type": "string"
-        },
-        "DesktopType": {
-            "enum": [
-                "WORKSPACES",
-                "APPSTREAM",
-                "WORKSPACES_WEB"
-            ]
-        },
-        "ActivationCode": {
             "type": "string"
         },
         "SoftwareSetUpdateSchedule": {
@@ -811,48 +780,6 @@
         "SoftwareSetId": {
             "type": "string"
         },
-        "Timestamp": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "CreateEnvironmentRequest": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/EnvironmentName"
-                },
-                "desktopArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "desktopEndpoint": {
-                    "$ref": "#/$defs/DesktopEndpoint"
-                },
-                "softwareSetUpdateSchedule": {
-                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
-                },
-                "maintenanceWindow": {
-                    "$ref": "#/$defs/MaintenanceWindow"
-                },
-                "softwareSetUpdateMode": {
-                    "$ref": "#/$defs/SoftwareSetUpdateMode"
-                },
-                "desiredSoftwareSetId": {
-                    "$ref": "#/$defs/SoftwareSetId"
-                },
-                "kmsKeyArn": {
-                    "$ref": "#/$defs/KmsKeyArn"
-                },
-                "clientToken": {
-                    "$ref": "#/$defs/ClientToken"
-                },
-                "tags": {
-                    "$ref": "#/$defs/TagsMap"
-                },
-                "deviceCreationTags": {
-                    "$ref": "#/$defs/DeviceCreationTagsMap"
-                }
-            }
-        },
         "KmsKeyArn": {
             "type": "string"
         },
@@ -874,9 +801,77 @@
         "DeviceCreationTagValue": {
             "type": "string"
         },
-        "DeleteDeviceResponse": {
+        "CreateEnvironmentResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentSummary"
+                }
+            }
+        },
+        "EnvironmentSummary": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/EnvironmentId"
+                },
+                "name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                },
+                "desktopArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "desktopEndpoint": {
+                    "$ref": "#/$defs/DesktopEndpoint"
+                },
+                "desktopType": {
+                    "$ref": "#/$defs/DesktopType"
+                },
+                "activationCode": {
+                    "$ref": "#/$defs/ActivationCode"
+                },
+                "softwareSetUpdateSchedule": {
+                    "$ref": "#/$defs/SoftwareSetUpdateSchedule"
+                },
+                "maintenanceWindow": {
+                    "$ref": "#/$defs/MaintenanceWindow"
+                },
+                "softwareSetUpdateMode": {
+                    "$ref": "#/$defs/SoftwareSetUpdateMode"
+                },
+                "desiredSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "pendingSoftwareSetId": {
+                    "$ref": "#/$defs/SoftwareSetId"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "arn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "EnvironmentId": {
+            "type": "string"
+        },
+        "DesktopType": {
+            "enum": [
+                "WORKSPACES",
+                "APPSTREAM",
+                "WORKSPACES_WEB"
+            ]
+        },
+        "ActivationCode": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
         },
         "DeleteDeviceRequest": {
             "type": "object",
@@ -892,7 +887,7 @@
         "DeviceId": {
             "type": "string"
         },
-        "DeleteEnvironmentResponse": {
+        "DeleteDeviceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -907,7 +902,7 @@
                 }
             }
         },
-        "DeregisterDeviceResponse": {
+        "DeleteEnvironmentResponse": {
             "type": "object",
             "properties": {}
         },
@@ -930,6 +925,18 @@
                 "DEREGISTERED",
                 "ARCHIVED"
             ]
+        },
+        "DeregisterDeviceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetDeviceRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/DeviceId"
+                }
+            }
         },
         "GetDeviceResponse": {
             "type": "object",
@@ -1032,11 +1039,11 @@
                 "UP_TO_DATE"
             ]
         },
-        "GetDeviceRequest": {
+        "GetEnvironmentRequest": {
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/$defs/DeviceId"
+                    "$ref": "#/$defs/EnvironmentId"
                 }
             }
         },
@@ -1120,11 +1127,11 @@
                 "NOT_COMPLIANT"
             ]
         },
-        "GetEnvironmentRequest": {
+        "GetSoftwareSetRequest": {
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/$defs/EnvironmentId"
+                    "$ref": "#/$defs/SoftwareSetId"
                 }
             }
         },
@@ -1188,13 +1195,23 @@
                 }
             }
         },
-        "GetSoftwareSetRequest": {
+        "ListDevicesRequest": {
             "type": "object",
             "properties": {
-                "id": {
-                    "$ref": "#/$defs/SoftwareSetId"
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 }
             }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListDevicesResponse": {
             "type": "object",
@@ -1263,10 +1280,7 @@
                 }
             }
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "ListDevicesRequest": {
+        "ListEnvironmentsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -1276,10 +1290,6 @@
                     "$ref": "#/$defs/MaxResults"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListEnvironmentsResponse": {
             "type": "object",
@@ -1298,7 +1308,7 @@
                 "$ref": "#/$defs/EnvironmentSummary"
             }
         },
-        "ListEnvironmentsRequest": {
+        "ListSoftwareSetsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -1349,14 +1359,11 @@
                 }
             }
         },
-        "ListSoftwareSetsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
@@ -1367,18 +1374,6 @@
                     "$ref": "#/$defs/TagsMap"
                 }
             }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1391,7 +1386,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1412,13 +1407,9 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "UpdateDeviceResponse": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "device": {
-                    "$ref": "#/$defs/DeviceSummary"
-                }
-            }
+            "properties": {}
         },
         "UpdateDeviceRequest": {
             "type": "object",
@@ -1437,11 +1428,11 @@
                 }
             }
         },
-        "UpdateEnvironmentResponse": {
+        "UpdateDeviceResponse": {
             "type": "object",
             "properties": {
-                "environment": {
-                    "$ref": "#/$defs/EnvironmentSummary"
+                "device": {
+                    "$ref": "#/$defs/DeviceSummary"
                 }
             }
         },
@@ -1480,9 +1471,13 @@
         "SoftwareSetIdOrEmptyString": {
             "type": "string"
         },
-        "UpdateSoftwareSetResponse": {
+        "UpdateEnvironmentResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "environment": {
+                    "$ref": "#/$defs/EnvironmentSummary"
+                }
+            }
         },
         "UpdateSoftwareSetRequest": {
             "type": "object",
@@ -1494,6 +1489,10 @@
                     "$ref": "#/$defs/SoftwareSetValidationStatus"
                 }
             }
+        },
+        "UpdateSoftwareSetResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

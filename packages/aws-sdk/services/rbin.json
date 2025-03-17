@@ -29,9 +29,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "RetentionPeriod": {},
+                        "Description": {},
+                        "Tags": {},
+                        "ResourceType": {},
+                        "ResourceTags": {},
+                        "LockConfiguration": {},
+                        "ExcludeResourceTags": {}
                     }
                 }
             }
@@ -68,9 +72,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {}
                     }
                 }
             }
@@ -107,9 +109,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {}
                     }
                 }
             }
@@ -142,9 +142,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "ResourceType": {},
+                        "ResourceTags": {},
+                        "LockState": {},
+                        "ExcludeResourceTags": {}
                     }
                 }
             }
@@ -181,9 +184,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -220,9 +221,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "LockConfiguration": {}
                     }
                 }
             }
@@ -259,9 +259,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -298,9 +297,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {}
                     }
                 }
             }
@@ -337,9 +334,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -376,9 +372,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "RetentionPeriod": {},
+                        "Description": {},
+                        "ResourceType": {},
+                        "ResourceTags": {},
+                        "ExcludeResourceTags": {}
                     }
                 }
             }
@@ -430,12 +429,9 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateRuleResponse": {
+        "CreateRuleRequest": {
             "type": "object",
             "properties": {
-                "Identifier": {
-                    "$ref": "#/$defs/RuleIdentifier"
-                },
                 "RetentionPeriod": {
                     "$ref": "#/$defs/RetentionPeriod"
                 },
@@ -451,25 +447,13 @@
                 "ResourceTags": {
                     "$ref": "#/$defs/ResourceTags"
                 },
-                "Status": {
-                    "$ref": "#/$defs/RuleStatus"
-                },
                 "LockConfiguration": {
                     "$ref": "#/$defs/LockConfiguration"
-                },
-                "LockState": {
-                    "$ref": "#/$defs/LockState"
-                },
-                "RuleArn": {
-                    "$ref": "#/$defs/RuleArn"
                 },
                 "ExcludeResourceTags": {
                     "$ref": "#/$defs/ExcludeResourceTags"
                 }
             }
-        },
-        "RuleIdentifier": {
-            "type": "string"
         },
         "RetentionPeriod": {
             "type": "object",
@@ -546,12 +530,6 @@
         "ResourceTagValue": {
             "type": "string"
         },
-        "RuleStatus": {
-            "enum": [
-                "PENDING",
-                "AVAILABLE"
-            ]
-        },
         "LockConfiguration": {
             "type": "object",
             "properties": {
@@ -580,25 +558,18 @@
                 "DAYS"
             ]
         },
-        "LockState": {
-            "enum": [
-                "LOCKED",
-                "PENDING_UNLOCK",
-                "UNLOCKED"
-            ]
-        },
-        "RuleArn": {
-            "type": "string"
-        },
         "ExcludeResourceTags": {
             "type": "array",
             "items": {
                 "$ref": "#/$defs/ResourceTag"
             }
         },
-        "CreateRuleRequest": {
+        "CreateRuleResponse": {
             "type": "object",
             "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
                 "RetentionPeriod": {
                     "$ref": "#/$defs/RetentionPeriod"
                 },
@@ -614,11 +585,47 @@
                 "ResourceTags": {
                     "$ref": "#/$defs/ResourceTags"
                 },
+                "Status": {
+                    "$ref": "#/$defs/RuleStatus"
+                },
                 "LockConfiguration": {
                     "$ref": "#/$defs/LockConfiguration"
                 },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                },
+                "RuleArn": {
+                    "$ref": "#/$defs/RuleArn"
+                },
                 "ExcludeResourceTags": {
                     "$ref": "#/$defs/ExcludeResourceTags"
+                }
+            }
+        },
+        "RuleIdentifier": {
+            "type": "string"
+        },
+        "RuleStatus": {
+            "enum": [
+                "PENDING",
+                "AVAILABLE"
+            ]
+        },
+        "LockState": {
+            "enum": [
+                "LOCKED",
+                "PENDING_UNLOCK",
+                "UNLOCKED"
+            ]
+        },
+        "RuleArn": {
+            "type": "string"
+        },
+        "DeleteRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
                 }
             }
         },
@@ -626,7 +633,7 @@
             "type": "object",
             "properties": {}
         },
-        "DeleteRuleRequest": {
+        "GetRuleRequest": {
             "type": "object",
             "properties": {
                 "Identifier": {
@@ -676,13 +683,35 @@
             "type": "string",
             "format": "date-time"
         },
-        "GetRuleRequest": {
+        "ListRulesRequest": {
             "type": "object",
             "properties": {
-                "Identifier": {
-                    "$ref": "#/$defs/RuleIdentifier"
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "LockState": {
+                    "$ref": "#/$defs/LockState"
+                },
+                "ExcludeResourceTags": {
+                    "$ref": "#/$defs/ExcludeResourceTags"
                 }
             }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListRulesResponse": {
             "type": "object",
@@ -721,35 +750,13 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListRulesRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "ResourceType": {
-                    "$ref": "#/$defs/ResourceType"
-                },
-                "ResourceTags": {
-                    "$ref": "#/$defs/ResourceTags"
-                },
-                "LockState": {
-                    "$ref": "#/$defs/LockState"
-                },
-                "ExcludeResourceTags": {
-                    "$ref": "#/$defs/ExcludeResourceTags"
+                "ResourceArn": {
+                    "$ref": "#/$defs/RuleArn"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -759,11 +766,14 @@
                 }
             }
         },
-        "ListTagsForResourceRequest": {
+        "LockRuleRequest": {
             "type": "object",
             "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/RuleArn"
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "LockConfiguration": {
+                    "$ref": "#/$defs/LockConfiguration"
                 }
             }
         },
@@ -802,21 +812,6 @@
                 }
             }
         },
-        "LockRuleRequest": {
-            "type": "object",
-            "properties": {
-                "Identifier": {
-                    "$ref": "#/$defs/RuleIdentifier"
-                },
-                "LockConfiguration": {
-                    "$ref": "#/$defs/LockConfiguration"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -825,6 +820,18 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UnlockRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
                 }
             }
         },
@@ -866,18 +873,6 @@
                 }
             }
         },
-        "UnlockRuleRequest": {
-            "type": "object",
-            "properties": {
-                "Identifier": {
-                    "$ref": "#/$defs/RuleIdentifier"
-                }
-            }
-        },
-        "UntagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "UntagResourceRequest": {
             "type": "object",
             "properties": {
@@ -893,6 +888,33 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/TagKey"
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
+                },
+                "RetentionPeriod": {
+                    "$ref": "#/$defs/RetentionPeriod"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "ResourceTags": {
+                    "$ref": "#/$defs/ResourceTags"
+                },
+                "ExcludeResourceTags": {
+                    "$ref": "#/$defs/ExcludeResourceTags"
+                }
             }
         },
         "UpdateRuleResponse": {
@@ -924,29 +946,6 @@
                 },
                 "RuleArn": {
                     "$ref": "#/$defs/RuleArn"
-                },
-                "ExcludeResourceTags": {
-                    "$ref": "#/$defs/ExcludeResourceTags"
-                }
-            }
-        },
-        "UpdateRuleRequest": {
-            "type": "object",
-            "properties": {
-                "Identifier": {
-                    "$ref": "#/$defs/RuleIdentifier"
-                },
-                "RetentionPeriod": {
-                    "$ref": "#/$defs/RetentionPeriod"
-                },
-                "Description": {
-                    "$ref": "#/$defs/Description"
-                },
-                "ResourceType": {
-                    "$ref": "#/$defs/ResourceType"
-                },
-                "ResourceTags": {
-                    "$ref": "#/$defs/ResourceTags"
                 },
                 "ExcludeResourceTags": {
                     "$ref": "#/$defs/ExcludeResourceTags"

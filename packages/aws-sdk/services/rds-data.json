@@ -29,9 +29,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "secretArn": {},
+                        "sql": {},
+                        "database": {},
+                        "schema": {},
+                        "parameterSets": {},
+                        "transactionId": {}
                     }
                 }
             }
@@ -64,9 +68,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "secretArn": {},
+                        "database": {},
+                        "schema": {}
                     }
                 }
             }
@@ -99,9 +104,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "secretArn": {},
+                        "transactionId": {}
                     }
                 }
             }
@@ -134,9 +139,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "dbClusterOrInstanceArn": {},
+                        "awsSecretStoreArn": {},
+                        "sqlStatements": {},
+                        "database": {},
+                        "schema": {}
                     }
                 }
             }
@@ -169,9 +176,17 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "secretArn": {},
+                        "sql": {},
+                        "database": {},
+                        "schema": {},
+                        "parameters": {},
+                        "transactionId": {},
+                        "includeResultMetadata": {},
+                        "continueAfterTimeout": {},
+                        "resultSetOptions": {},
+                        "formatRecordsAs": {}
                     }
                 }
             }
@@ -204,9 +219,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "secretArn": {},
+                        "transactionId": {}
                     }
                 }
             }
@@ -258,33 +273,69 @@
             "type": "string",
             "format": "binary"
         },
-        "BatchExecuteStatementResponse": {
+        "BatchExecuteStatementRequest": {
             "type": "object",
             "properties": {
-                "updateResults": {
-                    "$ref": "#/$defs/UpdateResults"
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "secretArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "sql": {
+                    "$ref": "#/$defs/SqlStatement"
+                },
+                "database": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "schema": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "parameterSets": {
+                    "$ref": "#/$defs/SqlParameterSets"
+                },
+                "transactionId": {
+                    "$ref": "#/$defs/Id"
                 }
             }
         },
-        "UpdateResults": {
+        "Arn": {
+            "type": "string"
+        },
+        "SqlStatement": {
+            "type": "string"
+        },
+        "DbName": {
+            "type": "string"
+        },
+        "SqlParameterSets": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/UpdateResult"
+                "$ref": "#/$defs/SqlParametersList"
             }
         },
-        "UpdateResult": {
+        "SqlParametersList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SqlParameter"
+            }
+        },
+        "SqlParameter": {
             "type": "object",
             "properties": {
-                "generatedFields": {
-                    "$ref": "#/$defs/FieldList"
+                "name": {
+                    "$ref": "#/$defs/ParameterName"
+                },
+                "value": {
+                    "$ref": "#/$defs/Field"
+                },
+                "typeHint": {
+                    "$ref": "#/$defs/TypeHint"
                 }
             }
         },
-        "FieldList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Field"
-            }
+        "ParameterName": {
+            "type": "string"
         },
         "Field": {
             "type": "object",
@@ -380,82 +431,38 @@
                 "$ref": "#/$defs/ArrayValue"
             }
         },
-        "BatchExecuteStatementRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "secretArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "sql": {
-                    "$ref": "#/$defs/SqlStatement"
-                },
-                "database": {
-                    "$ref": "#/$defs/DbName"
-                },
-                "schema": {
-                    "$ref": "#/$defs/DbName"
-                },
-                "parameterSets": {
-                    "$ref": "#/$defs/SqlParameterSets"
-                },
-                "transactionId": {
-                    "$ref": "#/$defs/Id"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "SqlStatement": {
-            "type": "string"
-        },
-        "DbName": {
-            "type": "string"
-        },
-        "SqlParameterSets": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SqlParametersList"
-            }
-        },
-        "SqlParametersList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SqlParameter"
-            }
-        },
-        "SqlParameter": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/ParameterName"
-                },
-                "value": {
-                    "$ref": "#/$defs/Field"
-                },
-                "typeHint": {
-                    "$ref": "#/$defs/TypeHint"
-                }
-            }
-        },
-        "ParameterName": {
-            "type": "string"
-        },
         "TypeHint": {
             "type": "string"
         },
         "Id": {
             "type": "string"
         },
-        "BeginTransactionResponse": {
+        "BatchExecuteStatementResponse": {
             "type": "object",
             "properties": {
-                "transactionId": {
-                    "$ref": "#/$defs/Id"
+                "updateResults": {
+                    "$ref": "#/$defs/UpdateResults"
                 }
+            }
+        },
+        "UpdateResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateResult"
+            }
+        },
+        "UpdateResult": {
+            "type": "object",
+            "properties": {
+                "generatedFields": {
+                    "$ref": "#/$defs/FieldList"
+                }
+            }
+        },
+        "FieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Field"
             }
         },
         "BeginTransactionRequest": {
@@ -475,16 +482,13 @@
                 }
             }
         },
-        "CommitTransactionResponse": {
+        "BeginTransactionResponse": {
             "type": "object",
             "properties": {
-                "transactionStatus": {
-                    "$ref": "#/$defs/TransactionStatus"
+                "transactionId": {
+                    "$ref": "#/$defs/Id"
                 }
             }
-        },
-        "TransactionStatus": {
-            "type": "string"
         },
         "CommitTransactionRequest": {
             "type": "object",
@@ -497,6 +501,37 @@
                 },
                 "transactionId": {
                     "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "CommitTransactionResponse": {
+            "type": "object",
+            "properties": {
+                "transactionStatus": {
+                    "$ref": "#/$defs/TransactionStatus"
+                }
+            }
+        },
+        "TransactionStatus": {
+            "type": "string"
+        },
+        "ExecuteSqlRequest": {
+            "type": "object",
+            "properties": {
+                "dbClusterOrInstanceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "awsSecretStoreArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "sqlStatements": {
+                    "$ref": "#/$defs/SqlStatement"
+                },
+                "database": {
+                    "$ref": "#/$defs/DbName"
+                },
+                "schema": {
+                    "$ref": "#/$defs/DbName"
                 }
             }
         },
@@ -692,55 +727,6 @@
             "type": "integer",
             "format": "int64"
         },
-        "ExecuteSqlRequest": {
-            "type": "object",
-            "properties": {
-                "dbClusterOrInstanceArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "awsSecretStoreArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "sqlStatements": {
-                    "$ref": "#/$defs/SqlStatement"
-                },
-                "database": {
-                    "$ref": "#/$defs/DbName"
-                },
-                "schema": {
-                    "$ref": "#/$defs/DbName"
-                }
-            }
-        },
-        "ExecuteStatementResponse": {
-            "type": "object",
-            "properties": {
-                "records": {
-                    "$ref": "#/$defs/SqlRecords"
-                },
-                "columnMetadata": {
-                    "$ref": "#/$defs/Metadata"
-                },
-                "numberOfRecordsUpdated": {
-                    "$ref": "#/$defs/RecordsUpdated"
-                },
-                "generatedFields": {
-                    "$ref": "#/$defs/FieldList"
-                },
-                "formattedRecords": {
-                    "$ref": "#/$defs/FormattedSqlRecords"
-                }
-            }
-        },
-        "SqlRecords": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/FieldList"
-            }
-        },
-        "FormattedSqlRecords": {
-            "type": "string"
-        },
         "ExecuteStatementRequest": {
             "type": "object",
             "properties": {
@@ -799,13 +785,34 @@
         "RecordsFormatType": {
             "type": "string"
         },
-        "RollbackTransactionResponse": {
+        "ExecuteStatementResponse": {
             "type": "object",
             "properties": {
-                "transactionStatus": {
-                    "$ref": "#/$defs/TransactionStatus"
+                "records": {
+                    "$ref": "#/$defs/SqlRecords"
+                },
+                "columnMetadata": {
+                    "$ref": "#/$defs/Metadata"
+                },
+                "numberOfRecordsUpdated": {
+                    "$ref": "#/$defs/RecordsUpdated"
+                },
+                "generatedFields": {
+                    "$ref": "#/$defs/FieldList"
+                },
+                "formattedRecords": {
+                    "$ref": "#/$defs/FormattedSqlRecords"
                 }
             }
+        },
+        "SqlRecords": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldList"
+            }
+        },
+        "FormattedSqlRecords": {
+            "type": "string"
         },
         "RollbackTransactionRequest": {
             "type": "object",
@@ -818,6 +825,14 @@
                 },
                 "transactionId": {
                     "$ref": "#/$defs/Id"
+                }
+            }
+        },
+        "RollbackTransactionResponse": {
+            "type": "object",
+            "properties": {
+                "transactionStatus": {
+                    "$ref": "#/$defs/TransactionStatus"
                 }
             }
         }

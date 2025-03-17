@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -72,9 +70,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -111,9 +108,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -165,6 +161,17 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
         "ListTagsForResourceOutput": {
             "type": "object",
             "properties": {
@@ -180,17 +187,6 @@
             }
         },
         "TagValue": {
-            "type": "string"
-        },
-        "ListTagsForResourceInput": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
             "type": "string"
         },
         "TagResourceInput": {

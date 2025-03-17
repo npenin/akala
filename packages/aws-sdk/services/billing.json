@@ -145,9 +145,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "activeTimeRange": {},
+                        "arns": {},
+                        "billingViewTypes": {},
+                        "ownerAccountId": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -565,46 +568,6 @@
                 }
             }
         },
-        "ListBillingViewsResponse": {
-            "type": "object",
-            "properties": {
-                "billingViews": {
-                    "$ref": "#/$defs/BillingViewList"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PageToken"
-                }
-            }
-        },
-        "BillingViewList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BillingViewListElement"
-            }
-        },
-        "BillingViewListElement": {
-            "type": "object",
-            "properties": {
-                "arn": {
-                    "$ref": "#/$defs/BillingViewArn"
-                },
-                "name": {
-                    "$ref": "#/$defs/BillingViewName"
-                },
-                "description": {
-                    "$ref": "#/$defs/BillingViewDescription"
-                },
-                "ownerAccountId": {
-                    "$ref": "#/$defs/AccountId"
-                },
-                "billingViewType": {
-                    "$ref": "#/$defs/BillingViewType"
-                }
-            }
-        },
-        "PageToken": {
-            "type": "string"
-        },
         "ListBillingViewsRequest": {
             "type": "object",
             "properties": {
@@ -654,6 +617,46 @@
         "BillingViewsMaxResults": {
             "type": "integer",
             "format": "int32"
+        },
+        "PageToken": {
+            "type": "string"
+        },
+        "ListBillingViewsResponse": {
+            "type": "object",
+            "properties": {
+                "billingViews": {
+                    "$ref": "#/$defs/BillingViewList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PageToken"
+                }
+            }
+        },
+        "BillingViewList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BillingViewListElement"
+            }
+        },
+        "BillingViewListElement": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/BillingViewArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/BillingViewName"
+                },
+                "description": {
+                    "$ref": "#/$defs/BillingViewDescription"
+                },
+                "ownerAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "billingViewType": {
+                    "$ref": "#/$defs/BillingViewType"
+                }
+            }
         },
         "ListSourceViewsForBillingViewResponse": {
             "type": "object",

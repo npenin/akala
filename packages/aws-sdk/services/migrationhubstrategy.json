@@ -32,8 +32,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "applicationComponentId": {}
                     }
                 }
             }
@@ -70,8 +69,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "applicationComponentId": {}
                     }
                 }
             }
@@ -108,8 +106,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "id": {}
                     }
                 }
             }
@@ -146,8 +143,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "id": {}
                     }
                 }
             }
@@ -179,10 +175,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -213,10 +206,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -247,10 +237,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -286,8 +273,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "id": {}
                     }
                 }
             }
@@ -324,8 +310,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "serverId": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -362,8 +349,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "serverId": {}
                     }
                 }
             }
@@ -396,9 +382,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "sort": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -431,8 +417,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "applicationComponentCriteria": {},
+                        "filterValue": {},
+                        "sort": {},
+                        "groupIdFilter": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -465,8 +455,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -499,8 +489,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -533,8 +523,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "serverCriteria": {},
+                        "filterValue": {},
+                        "sort": {},
+                        "groupIdFilter": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -567,8 +561,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "prioritizeBusinessGoals": {},
+                        "applicationPreferences": {},
+                        "databasePreferences": {},
+                        "applicationMode": {}
                     }
                 }
             }
@@ -601,8 +597,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "s3bucketForAnalysisData": {},
+                        "s3bucketForReportData": {},
+                        "assessmentTargets": {},
+                        "assessmentDataSourceType": {}
                     }
                 }
             }
@@ -635,8 +633,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "name": {},
+                        "S3Bucket": {},
+                        "s3key": {},
+                        "dataSourceType": {},
+                        "groupId": {},
+                        "s3bucketForReportData": {}
                     }
                 }
             }
@@ -669,8 +671,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "outputFormat": {},
+                        "groupIdFilter": {}
                     }
                 }
             }
@@ -703,8 +705,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "assessmentId": {}
                     }
                 }
             }
@@ -737,8 +738,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "applicationComponentId": {},
+                        "inclusionStatus": {},
+                        "strategyOption": {},
+                        "sourceCodeList": {},
+                        "secretsManagerKey": {},
+                        "configureOnly": {},
+                        "appType": {}
                     }
                 }
             }
@@ -771,8 +777,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "serverId": {},
+                        "strategyOption": {}
                     }
                 }
             }
@@ -823,6 +829,17 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "GetApplicationComponentDetailsRequest": {
+            "type": "object",
+            "properties": {
+                "applicationComponentId": {
+                    "$ref": "#/$defs/ApplicationComponentId"
+                }
+            }
+        },
+        "ApplicationComponentId": {
+            "type": "string"
         },
         "GetApplicationComponentDetailsResponse": {
             "type": "object",
@@ -1187,16 +1204,13 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "GetApplicationComponentDetailsRequest": {
+        "GetApplicationComponentStrategiesRequest": {
             "type": "object",
             "properties": {
                 "applicationComponentId": {
                     "$ref": "#/$defs/ApplicationComponentId"
                 }
             }
-        },
-        "ApplicationComponentId": {
-            "type": "string"
         },
         "GetApplicationComponentStrategiesResponse": {
             "type": "object",
@@ -1229,13 +1243,16 @@
         "StrategyRecommendation": {
             "type": "string"
         },
-        "GetApplicationComponentStrategiesRequest": {
+        "GetAssessmentRequest": {
             "type": "object",
             "properties": {
-                "applicationComponentId": {
-                    "$ref": "#/$defs/ApplicationComponentId"
+                "id": {
+                    "$ref": "#/$defs/AsyncTaskId"
                 }
             }
+        },
+        "AsyncTaskId": {
+            "type": "string"
         },
         "GetAssessmentResponse": {
             "type": "object",
@@ -1250,9 +1267,6 @@
                     "$ref": "#/$defs/AssessmentTargets"
                 }
             }
-        },
-        "AsyncTaskId": {
-            "type": "string"
         },
         "DataCollectionDetails": {
             "type": "object",
@@ -1318,11 +1332,11 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "GetAssessmentRequest": {
+        "GetImportFileTaskRequest": {
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/$defs/AsyncTaskId"
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -1373,13 +1387,9 @@
         "importS3Key": {
             "type": "string"
         },
-        "GetImportFileTaskRequest": {
+        "GetLatestAssessmentIdRequest": {
             "type": "object",
-            "properties": {
-                "id": {
-                    "$ref": "#/$defs/String"
-                }
-            }
+            "properties": {}
         },
         "GetLatestAssessmentIdResponse": {
             "type": "object",
@@ -1389,7 +1399,7 @@
                 }
             }
         },
-        "GetLatestAssessmentIdRequest": {
+        "GetPortfolioPreferencesRequest": {
             "type": "object",
             "properties": {}
         },
@@ -1594,7 +1604,7 @@
         "ApplicationMode": {
             "type": "string"
         },
-        "GetPortfolioPreferencesRequest": {
+        "GetPortfolioSummaryRequest": {
             "type": "object",
             "properties": {}
         },
@@ -1735,9 +1745,16 @@
         "RunTimeAssessmentStatus": {
             "type": "string"
         },
-        "GetPortfolioSummaryRequest": {
+        "GetRecommendationReportDetailsRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/RecommendationTaskId"
+                }
+            }
+        },
+        "RecommendationTaskId": {
+            "type": "string"
         },
         "GetRecommendationReportDetailsResponse": {
             "type": "object",
@@ -1749,9 +1766,6 @@
                     "$ref": "#/$defs/RecommendationReportDetails"
                 }
             }
-        },
-        "RecommendationTaskId": {
-            "type": "string"
         },
         "RecommendationReportDetails": {
             "type": "object",
@@ -1792,13 +1806,26 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "GetRecommendationReportDetailsRequest": {
+        "GetServerDetailsRequest": {
             "type": "object",
             "properties": {
-                "id": {
-                    "$ref": "#/$defs/RecommendationTaskId"
+                "serverId": {
+                    "$ref": "#/$defs/ServerId"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResult"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResult": {
+            "type": "integer",
+            "format": "int32"
         },
         "GetServerDetailsResponse": {
             "type": "object",
@@ -1941,26 +1968,13 @@
         "ServerErrorCategory": {
             "type": "string"
         },
-        "GetServerDetailsRequest": {
+        "GetServerStrategiesRequest": {
             "type": "object",
             "properties": {
                 "serverId": {
                     "$ref": "#/$defs/ServerId"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResult"
                 }
             }
-        },
-        "NextToken": {
-            "type": "string"
-        },
-        "MaxResult": {
-            "type": "integer",
-            "format": "int32"
         },
         "GetServerStrategiesResponse": {
             "type": "object",
@@ -1993,13 +2007,22 @@
                 }
             }
         },
-        "GetServerStrategiesRequest": {
+        "ListAnalyzableServersRequest": {
             "type": "object",
             "properties": {
-                "serverId": {
-                    "$ref": "#/$defs/ServerId"
+                "sort": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResult"
                 }
             }
+        },
+        "SortOrder": {
+            "type": "string"
         },
         "ListAnalyzableServersResponse": {
             "type": "object",
@@ -2033,40 +2056,6 @@
                 "vmId": {
                     "$ref": "#/$defs/String"
                 }
-            }
-        },
-        "ListAnalyzableServersRequest": {
-            "type": "object",
-            "properties": {
-                "sort": {
-                    "$ref": "#/$defs/SortOrder"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResult"
-                }
-            }
-        },
-        "SortOrder": {
-            "type": "string"
-        },
-        "ListApplicationComponentsResponse": {
-            "type": "object",
-            "properties": {
-                "applicationComponentInfos": {
-                    "$ref": "#/$defs/ApplicationComponentDetails"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ApplicationComponentDetails": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ApplicationComponentDetail"
             }
         },
         "ListApplicationComponentsRequest": {
@@ -2114,6 +2103,34 @@
         },
         "GroupName": {
             "type": "string"
+        },
+        "ListApplicationComponentsResponse": {
+            "type": "object",
+            "properties": {
+                "applicationComponentInfos": {
+                    "$ref": "#/$defs/ApplicationComponentDetails"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApplicationComponentDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationComponentDetail"
+            }
+        },
+        "ListCollectorsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResult"
+                }
+            }
         },
         "ListCollectorsResponse": {
             "type": "object",
@@ -2272,14 +2289,14 @@
                 }
             }
         },
-        "ListCollectorsRequest": {
+        "ListImportFileTaskRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
-                    "$ref": "#/$defs/NextToken"
+                    "$ref": "#/$defs/String"
                 },
                 "maxResults": {
-                    "$ref": "#/$defs/MaxResult"
+                    "$ref": "#/$defs/Integer"
                 }
             }
         },
@@ -2338,34 +2355,6 @@
                 }
             }
         },
-        "ListImportFileTaskRequest": {
-            "type": "object",
-            "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/String"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/Integer"
-                }
-            }
-        },
-        "ListServersResponse": {
-            "type": "object",
-            "properties": {
-                "serverInfos": {
-                    "$ref": "#/$defs/ServerDetails"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ServerDetails": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ServerDetail"
-            }
-        },
         "ListServersRequest": {
             "type": "object",
             "properties": {
@@ -2392,9 +2381,22 @@
         "ServerCriteria": {
             "type": "string"
         },
-        "PutPortfolioPreferencesResponse": {
+        "ListServersResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "serverInfos": {
+                    "$ref": "#/$defs/ServerDetails"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServerDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServerDetail"
+            }
         },
         "PutPortfolioPreferencesRequest": {
             "type": "object",
@@ -2413,13 +2415,9 @@
                 }
             }
         },
-        "StartAssessmentResponse": {
+        "PutPortfolioPreferencesResponse": {
             "type": "object",
-            "properties": {
-                "assessmentId": {
-                    "$ref": "#/$defs/AsyncTaskId"
-                }
-            }
+            "properties": {}
         },
         "StartAssessmentRequest": {
             "type": "object",
@@ -2441,11 +2439,11 @@
         "AssessmentDataSourceType": {
             "type": "string"
         },
-        "StartImportFileTaskResponse": {
+        "StartAssessmentResponse": {
             "type": "object",
             "properties": {
-                "id": {
-                    "$ref": "#/$defs/String"
+                "assessmentId": {
+                    "$ref": "#/$defs/AsyncTaskId"
                 }
             }
         },
@@ -2475,11 +2473,11 @@
         "DataSourceType": {
             "type": "string"
         },
-        "StartRecommendationReportGenerationResponse": {
+        "StartImportFileTaskResponse": {
             "type": "object",
             "properties": {
                 "id": {
-                    "$ref": "#/$defs/RecommendationTaskId"
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -2497,9 +2495,13 @@
         "OutputFormat": {
             "type": "string"
         },
-        "StopAssessmentResponse": {
+        "StartRecommendationReportGenerationResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/RecommendationTaskId"
+                }
+            }
         },
         "StopAssessmentRequest": {
             "type": "object",
@@ -2509,7 +2511,7 @@
                 }
             }
         },
-        "UpdateApplicationComponentConfigResponse": {
+        "StopAssessmentResponse": {
             "type": "object",
             "properties": {}
         },
@@ -2594,7 +2596,7 @@
         "SecretsManagerKey": {
             "type": "string"
         },
-        "UpdateServerConfigResponse": {
+        "UpdateApplicationComponentConfigResponse": {
             "type": "object",
             "properties": {}
         },
@@ -2608,6 +2610,10 @@
                     "$ref": "#/$defs/StrategyOption"
                 }
             }
+        },
+        "UpdateServerConfigResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {
