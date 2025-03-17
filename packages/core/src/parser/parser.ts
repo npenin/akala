@@ -18,11 +18,13 @@ export interface ParsedAny
     $$length?: number;
 }
 
+/** @deprecated */
 export type ParsedOneOf = ParsedObject | ParsedArray | ParsedString | ParsedBoolean | ParsedNumber | ParsedBinary;
 
 export type ExpressionsWithLength = (TypedExpression<unknown> | Expressions) & ParsedAny;
 
 /**
+ * @deprecated Please use ObservableObject.setValue instead which more versatile
  * Gets the setter function for a given expression and root object.
  * @param {string} expression - The expression to evaluate.
  * @param {T} root - The root object.
