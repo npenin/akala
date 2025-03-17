@@ -18,50 +18,16 @@ export interface ParsedAny
     $$length?: number;
 }
 
-export type ParsedOneOf = ParsedObject | ParsedArray | ParsedString | ParsedBoolean | ParsedNumber | ParsedBinary;
-
+/**
+ * Represents a parsed expression with length.
+ */
 export type ExpressionsWithLength = (TypedExpression<unknown> | Expressions) & ParsedAny;
-
-export function getSetter<T = unknown>(expression: string, root: T): { expression: string, target: T, set: (value: unknown) => void } | null
-{
-    let target = root;
-    const parts = expression.split('.');
-
-    while (parts.length > 1 && typeof (target) != 'undefined')
-    {
-        target = this.eval(parts[0], target);
-        parts.shift();
-    }
-    if (typeof (target) == 'undefined')
-        return null;
-
-    return { expression: parts[0], target: target, set: function (value) { target[parts[0]] = value } };
-}
 
 function parseBinaryOperator(op: string): BinaryOperator
 {
-    switch (op)
-    {
-        case '==': return BinaryOperator.Equal;
-        case '===': return BinaryOperator.StrictEqual;
-        case '!=': return BinaryOperator.NotEqual;
-        case '!==': return BinaryOperator.StrictNotEqual;
-        case '<': return BinaryOperator.LessThan;
-        case '<=': return BinaryOperator.LessThanOrEqual;
-        case '>': return BinaryOperator.GreaterThan;
-        case '>=': return BinaryOperator.GreaterThanOrEqual;
-        case '&&': return BinaryOperator.And;
-        case '||': return BinaryOperator.Or;
-        case '-': return BinaryOperator.Minus;
-        case '+': return BinaryOperator.Plus;
-        case '%': return BinaryOperator.Modulo;
-        case '/': return BinaryOperator.Div;
-        case '*': return BinaryOperator.Times;
-        case '^': return BinaryOperator.Pow;
-        case '.': return BinaryOperator.Dot;
-        case '?.': return BinaryOperator.QuestionDot;
-        default: return BinaryOperator.Unknown;
-    }
+    if (op in BinaryOperator)
+        return BinaryOperator[op];
+    return BinaryOperator.Unknown;
 }
 
 function parseTernaryOperator(op: string): TernaryOperator
