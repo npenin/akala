@@ -3,16 +3,67 @@ import { logger } from "../logger.js";
 import { isPromiseLike } from "../promiseHelpers.js";
 import { getParamNames } from "../reflect.js";
 
+/**
+ * Type representing a function that returns an injected value.
+ * @template T - The type of the injected value.
+ * @param instance - Optional instance context for the injected value.
+ * @returns The injected value of type T.
+ */
 export type Injected<T> = (instance?: unknown) => T;
+
+/**
+ * Type representing an injectable function.
+ * @template T - The return type of the function.
+ * @template TArgs - The argument types of the function.
+ */
 export type Injectable<T, TArgs extends unknown[]> = (...args: TArgs) => T;
+
+/**
+ * Type representing an injectable constructor.
+ * @template T - The instance type created by the constructor.
+ * @template TArgs - The argument types passed to the constructor.
+ */
 export type InjectableConstructor<T, TArgs extends unknown[]> = new (...args: TArgs) => T;
+
+/**
+ * Type representing an injectable function with a typed 'this' context.
+ * @template T - The return type of the function.
+ * @template U - The type of the 'this' context.
+ * @template TArgs - The argument types of the function.
+ */
 export type InjectableWithTypedThis<T, U, TArgs extends unknown[]> = (this: U, ...args: TArgs) => T;
+
+/**
+ * Type representing an injectable asynchronous function.
+ * @template T - The resolved type of the promise.
+ * @template TArgs - The argument types of the function.
+ */
 export type InjectableAsync<T, TArgs extends unknown[]> = (...args: TArgs) => PromiseLike<T>;
+
+/**
+ * Type representing an injectable asynchronous function with a typed 'this' context.
+ * @template T - The resolved type of the promise.
+ * @template U - The type of the 'this' context.
+ * @template TArgs - The argument types of the function.
+ */
 export type InjectableAsyncWithTypedThis<T, U, TArgs extends unknown[]> = (this: U, ...args: TArgs) => PromiseLike<T>;
+
+/**
+ * Type representing a parameter with its index in the argument list.
+ * @template T - The type of the parameter value.
+ */
 export type InjectedParameter<T> = { index: number, value: T };
 
+/**
+ * Type representing a parameter map for dependency injection.
+ * @template T - The type of the object being mapped.
+ */
 export type InjectMap<T = object> = T extends object ? { [key in keyof T]: Resolvable<T[key]> } : never;
 
+/**
+ * Type representing a resolvable parameter value.
+ * @template T - The type of the resolved value.
+ */
 export type Resolvable<T = object> = string | symbol | InjectMap<T> | (string | symbol)[];
 
 export const injectorLog = logger('akala:core:injector');
@@ -21,6 +72,13 @@ export const injectorLog = logger('akala:core:injector');
  * Converts a constructor to a function.
  * @param {new (...args: T) => TResult} ctor - The constructor to convert.
  * @returns {(...parameters: T) => TResult} The converted function.
+ */
+/**
+ * Converts a constructor to a function that creates new instances.
+ * @template T - The parameter types of the constructor.
+ * @template TResult - The instance type created by the constructor.
+ * @param ctor - The constructor to convert.
+ * @returns A function that creates new instances of the constructor.
  */
 export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args: T) => TResult): (...parameters: T) => TResult 
 {
@@ -109,7 +167,18 @@ export abstract class Injector
      * @param {Resolvable} name - The name of the parameter to resolve.
      * @returns {PromiseLike<T>} The resolved parameter.
      */
-    abstract onResolve<T = unknown>(name: Resolvable): PromiseLike<T>
+    /**
+     * Resolves a parameter asynchronously and returns a promise.
+     * @param name - The name of the parameter to resolve.
+     * @returns A promise resolving to the resolved value.
+     */
+    abstract onResolve<T = unknown>(name: Resolvable): PromiseLike<T>;
+
+    /**
+     * Resolves a parameter asynchronously and invokes a handler with the result.
+     * @param name - The name of the parameter to resolve.
+     * @param handler - Callback to execute with the resolved value.
+     */
     abstract onResolve<T = unknown>(name: Resolvable, handler: (value: T) => void): void;
 
     /**

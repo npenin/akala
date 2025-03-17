@@ -1,24 +1,25 @@
 import { Formatter, ReversibleFormatter } from "./common.js";
 
 /**
- * Class representing a JSON formatter.
+ * A formatter that converts values to and from JSON strings. Useful for serializing/deserializing data structures.
  */
 export default class Json implements Formatter<string>, ReversibleFormatter<string, unknown>
 {
     /**
-     * Formats a value as a JSON string.
-     * @param {unknown} value - The value to format.
-     * @returns {string} The formatted JSON string.
+     * Converts a value to a JSON string using default serialization.
+     * @template T - The type of the input value.
+     * @param {T} value - The value to serialize.
+     * @returns {string} JSON string representation of the value.
      */
-    format(value: unknown): string
+    format<T>(value: T): string
     {
         return JSON.stringify(value);
     }
 
     /**
-     * Parses a JSON string to a value.
-     * @param {string} value - The JSON string to parse.
-     * @returns {T} The parsed value.
+     * Parses a JSON string into its original data structure.
+     * @param {string} value - The JSON string to deserialize.
+     * @returns {T} The parsed object/array value.
      */
     unformat<T>(value: string): T
     {

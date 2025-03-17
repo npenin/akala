@@ -1,16 +1,18 @@
 import { Formatter } from "./common.js";
 
 /**
- * Negate class that implements the Formatter interface for boolean values.
+ * A formatter that negates boolean values.
+ * Converts any input to a boolean and returns its inverse.
  */
 export default class Negate implements Formatter<boolean>
 {
     static readonly instance = new Negate();
 
     /**
-     * Negates the given value.
-     * @param {T} value - The value to be negated.
-     * @returns {boolean} The negated value.
+     * Converts the input to a boolean and returns its negation.
+     * @template T - The type of the input value.
+     * @param {T} value - The value to invert (non-booleans are coerced to boolean).
+     * @returns {boolean} The logical inverse of the input's boolean value.
      */
     format<T>(value: T): boolean
     {

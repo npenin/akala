@@ -2,18 +2,22 @@ import { Middleware } from '../middlewares/shared.js';
 import { Injector } from './shared.js';
 import { process } from '../middlewares/shared.js';
 
-/**
- * MiddlewareInjector class that extends Injector.
+/** 
+ * An injector that processes dependency resolution through middleware pipelines.
+ * This class extends Injector to allow middleware-based handling of dependency requests.
  */
 export class MiddlewareInjector extends Injector
 {
     public static inspect = Symbol('inspect');
 
     /**
-     * Handles the resolution of a dependency.
-     * @param {string | symbol} name - The name of the dependency.
-     * @param {function} [handler] - Optional handler function to process the resolved value.
-     * @returns {PromiseLike<T> | void} - A promise that resolves to the dependency value or void if a handler is provided.
+     * Registers or retrieves a dependency resolution through middleware.
+     * 
+     * @template T - The type of the resolved dependency.
+     * @param {string | symbol} name - The identifier of the dependency to resolve.
+     * @param {((value: T) => void)} [handler] - Optional callback to handle the resolved value synchronously.
+     * @returns {PromiseLike<T> | void} Returns a promise resolving the dependency value when no handler is provided, 
+     * or executes the handler immediately when provided.
      */
     onResolve<T = unknown>(name: string | symbol): PromiseLike<T>;
     onResolve<T = unknown>(name: string | symbol, handler: (value: T) => void): void;
@@ -21,34 +25,44 @@ export class MiddlewareInjector extends Injector
     {
         if (handler)
         {
-            this.onResolve(name).then(handler)
+            this.onResolve(name).then(handler);
             return;
         }
-        return process<PromiseLike<T>>(this.middleware, name, true)
+        return process<PromiseLike<T>>(this.middleware, name, true);
     }
 
     /**
-     * Inspects the middleware.
+     * Initiates an inspection of the dependency resolution pipeline using registered middleware.
+     * Triggers inspection middleware to analyze current state and dependencies.
      */
     inspect(): void
     {
-        process(this.middleware, MiddlewareInjector.inspect)
+        process(this.middleware, MiddlewareInjector.inspect);
     }
 
+    /**
+     * Creates an instance of MiddlewareInjector.
+     */
     constructor()
     {
         super();
     }
-
+    /**
+     * Middleware pipeline handling dependency resolution operations.
+     * This chain of middleware processes dependency requests, allowing for interception, modification, or delegation of resolution logic.
+    * @type {Middleware<[param: string | symbol, sync?: boolean]>}
+    */
     public middleware: Middleware<[param: string | symbol, sync?: boolean]>;
 
     /**
-     * Resolves a dependency.
-     * @param {string} param - The name of the dependency.
-     * @returns {T} - The resolved dependency.
+     * Resolves a dependency by executing the middleware chain.
+     * 
+     * @template T - The expected type of the resolved dependency.
+     * @param {string | symbol} param - The identifier of the dependency to resolve.
+     * @returns {T} The resolved dependency value after processing through all middleware.
      */
-    public resolve<T = unknown>(param: string): T
+    public resolve<T = unknown>(param: string | symbol): T
     {
-        return process<T>(this.middleware, param, true)
+        return process<T>(this.middleware, param, true);
     }
 }

@@ -1,6 +1,3 @@
-// export type Formatter<TResult> = (value: unknown) => TResult;
-// export type ReversibleFormatter<TResult, TOrigin> = Injected<TResult & { reverse: (value: TResult) => TOrigin }>;
-
 /**
  * Interface for a formatter.
  */

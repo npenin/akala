@@ -6,13 +6,34 @@ import { isPromiseLike } from "../promiseHelpers.js";
 export type MiddlewarePromise<T extends string | void = SpecialNextParam> = Promise<MiddlewareResult<T>>;
 export type MiddlewareResult<T extends string | void = SpecialNextParam> = Error | T | OptionsResponse;
 
+/**
+ * Defines a middleware interface that handles context and returns a result.
+ * @template T - The context parameters the middleware handles.
+ * @template TSpecialNextParam - The special next parameter type.
+ */
 export interface Middleware<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> 
 {
+    /**
+     * Handles the provided context and returns a middleware result.
+     * @param ...context - The context parameters to process.
+     * @returns The result of the middleware processing.
+     */
     handle(...context: T): MiddlewareResult<TSpecialNextParam>;
 }
 
+/**
+ * Defines an error middleware interface to handle errors in the context.
+ * @template T - The context parameters the middleware handles.
+ * @template U - The special next parameter type.
+ */
 export interface ErrorMiddleware<T extends unknown[], U extends string | void = SpecialNextParam> 
 {
+    /**
+     * Handles an error and the provided context.
+     * @param error - The error or options response to handle.
+     * @param ...context - The context parameters associated with the error.
+     * @returns The result of error handling.
+     */
     handleError(error: Error | OptionsResponse, ...context: T): MiddlewareResult<U>;
 }
 
@@ -44,9 +65,11 @@ export type MiddlewareSuccess<T = unknown> = { success: T | Promise<T> };
 export type SpecialNextParam = 'break' | void;
 
 /**
- * Converts a function to a middleware.
- * @param {Function} fn - The function to convert.
- * @returns {Function} The middleware function.
+ * Converts a function into a middleware handler.
+ * @template T - The function's argument types.
+ * @template U - The special next parameter type.
+ * @param fn - The function to convert into a middleware.
+ * @returns A middleware handler function.
  */
 export function toMiddleware<T extends unknown[], U extends string | void>(fn: (...args: T) => unknown): Middleware<T, U>['handle']
 export function toMiddleware<T extends unknown[], U extends string | void>(fn: (...args: T) => Promise<unknown>): MiddlewareAsync<T, U>['handle']
@@ -71,9 +94,11 @@ export function toMiddleware<T extends unknown[], U extends string | void>(fn: (
 }
 
 /**
- * Converts a function to a middleware.
- * @param {Function} fn - The function to convert.
- * @returns {Object} The middleware object.
+ * Converts a function into a middleware object.
+ * @template T - The function's argument types.
+ * @template TSpecialNextParam - The special next parameter type.
+ * @param fn - The function to convert into a middleware.
+ * @returns A middleware object with appropriate handling methods.
  */
 export function convertToMiddleware<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam>(fn: (...args: T) => Promise<unknown>): MiddlewareAsync<T, TSpecialNextParam>
 export function convertToMiddleware<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam, TReturnType = unknown>(fn: (...args: T) => TReturnType): Middleware<T, TSpecialNextParam>
@@ -86,9 +111,11 @@ export function convertToMiddleware<T extends unknown[], TSpecialNextParam exten
 }
 
 /**
- * Converts a function to an error middleware.
- * @param {Function} fn - The function to convert.
- * @returns {Object} The error middleware object.
+ * Converts a function into an error middleware object.
+ * @template T - The context argument types.
+ * @template TSpecialNextParam - The special next parameter type.
+ * @param fn - The function to convert into an error middleware.
+ * @returns An error middleware object with error handling capabilities.
  */
 export function convertToErrorMiddleware<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam>(fn: (error: Exclude<MiddlewareResult<TSpecialNextParam>, TSpecialNextParam>, ...args: T) => Promise<unknown>): ErrorMiddlewareAsync<T, TSpecialNextParam>
 export function convertToErrorMiddleware<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam>(fn: (error: Exclude<MiddlewareResult<TSpecialNextParam>, TSpecialNextParam>, ...args: T) => unknown): ErrorMiddleware<T, TSpecialNextParam>
@@ -100,9 +127,10 @@ export function convertToErrorMiddleware<T extends unknown[], TSpecialNextParam 
 }
 
 /**
- * Checks if the given object is a middleware error.
- * @param {Object} x - The object to check.
- * @returns {boolean} True if the object is a middleware error, false otherwise.
+ * Checks if a value represents a middleware error.
+ * @template TSpecialNextParam - The special next parameter type.
+ * @param x - The value to check.
+ * @returns True if the value is a middleware error, false otherwise.
  */
 export function isMiddlewareError<TSpecialNextParam extends SpecialNextParam = SpecialNextParam>(x: MiddlewareError<MiddlewareResult<TSpecialNextParam>> | MiddlewareSuccess<unknown>): x is MiddlewareError<MiddlewareResult<TSpecialNextParam>>
 {
@@ -110,9 +138,11 @@ export function isMiddlewareError<TSpecialNextParam extends SpecialNextParam = S
 }
 
 /**
- * Checks if the given middleware is an error middleware.
- * @param {Object} middleware - The middleware to check.
- * @returns {boolean} True if the middleware is an error middleware, false otherwise.
+ * Checks if a middleware is an error middleware.
+ * @template T - The context argument types.
+ * @template TSpecialNextParam - The special next parameter type.
+ * @param middleware - The middleware to check.
+ * @returns True if the middleware handles errors, false otherwise.
  */
 export function isErrorMiddleware<T extends unknown[], TSpecialNextParam extends string | void>(middleware: AnyMiddleware<T, TSpecialNextParam>): middleware is ErrorMiddleware<T, TSpecialNextParam> | ErrorMiddlewareAsync<T, TSpecialNextParam>
 {
@@ -120,9 +150,11 @@ export function isErrorMiddleware<T extends unknown[], TSpecialNextParam extends
 }
 
 /**
- * Checks if the given middleware is a standard middleware.
- * @param {Object} middleware - The middleware to check.
- * @returns {boolean} True if the middleware is a standard middleware, false otherwise.
+ * Checks if a middleware is a standard (non-error) middleware.
+ * @template T - The context argument types.
+ * @template TSpecialNextParam - The special next parameter type.
+ * @param middleware - The middleware to check.
+ * @returns True if the middleware is standard, false otherwise.
  */
 export function isStandardMiddleware<T extends unknown[], TSpecialNextParam extends string | void>(middleware: AnyMiddleware<T, TSpecialNextParam>): middleware is Middleware<T, TSpecialNextParam> | MiddlewareAsync<T, TSpecialNextParam>
 {
@@ -130,10 +162,13 @@ export function isStandardMiddleware<T extends unknown[], TSpecialNextParam exte
 }
 
 /**
- * Processes the middleware.
- * @param {Object} middleware - The middleware to process.
- * @param {...*} req - The request parameters.
- * @returns {*} The result of the middleware processing.
+ * Processes a middleware with the provided context.
+ * @template X - The expected result type.
+ * @template T - The context parameters.
+ * @template TSpecialNextParam - The special next parameter type.
+ * @param middleware - The middleware to process.
+ * @param ...req - The context parameters for processing.
+ * @returns The processed result.
  */
 export function process<X = unknown, T extends unknown[] = unknown[], TSpecialNextParam extends string | void = SpecialNextParam>(middleware: Middleware<T, TSpecialNextParam>, ...req: T): X
 {
@@ -144,7 +179,7 @@ export function process<X = unknown, T extends unknown[] = unknown[], TSpecialNe
     }
     catch (result)
     {
-        return result;
+        return result as X;
     }
     throw error;
 }
