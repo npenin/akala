@@ -2,10 +2,10 @@ import { each } from '../each.js';
 import { process, AnySyncMiddleware, Middleware, MiddlewareResult, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
 import { ExtendableCompositeMiddleware } from './composite-sync.js';
 
-/**
- * MiddlewareCompositeWithPriority class.
- * @class
- * @param {string} [name] - Optional name for the middleware composite.
+/** 
+ * A composite middleware class with priority for synchronous operations.
+ * @template T - The type of the arguments.
+ * @template TSpecialNextParam - The type of the special next parameter.
  */
 export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> implements Middleware<T, TSpecialNextParam>, ExtendableCompositeMiddleware<T>
 {

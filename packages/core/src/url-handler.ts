@@ -12,17 +12,23 @@ type MiddlewareError = 'break' | 'loop' | void;
  */
 export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult = object> implements MiddlewareAsync<T>
 {
-    /** Composite middleware for protocol handling */
+    /**
+     * Composite middleware stack for protocol-specific processing
+     */
     protocol: MiddlewareCompositeAsync<T, MiddlewareError>;
 
-    /** Composite middleware for host handling */
+    /**
+     * Composite middleware stack for host-specific processing
+     */
     host: MiddlewareCompositeAsync<T>;
 
-    /** Router for path-based routing */
+    /** 
+     * Router for path-based routing 
+     */
     router: Router<[Routable, ...T]>;
 
     /**
-     * Creates a new UrlHandler instance
+     * Creates a new URL handler instance
      */
     constructor()
     {
@@ -33,7 +39,9 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult
 
     /**
      * warning ! the second parameter needs to be not null as we will assign properties to it. 
-     * @returns 
+     * Processes the URL through protocol, host, and path routing middleware
+     * @param context - Middleware context parameters
+     * @returns Promise resolving to the final TResult object
      */
     /**
      * Processes the URL through protocol, host, and path routing middleware
@@ -46,10 +54,10 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult
     }
 
     /**
-     * Registers a protocol handler middleware
-     * @param protocol - The protocol to handle (e.g., 'http', 'https')
-     * @param action - Async handler function for the protocol
-     * @returns The created Protocol middleware instance
+     * Adds a protocol handler middleware
+     * @param protocol Protocol to handle (colon will be automatically stripped if present)
+     * @param action Async handler function for protocol processing
+     * @returns Registered protocol middleware instance
      */
     public useProtocol(protocol: string, action: (...args: T) => Promise<TResult>)
     {
@@ -59,10 +67,10 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult
     }
 
     /**
-     * Registers a host handler middleware
-     * @param host - The host name to handle
-     * @param action - Async handler function for the host
-     * @returns The created Host middleware instance
+     * Adds a host handler middleware
+     * @param host Hostname to match
+     * @param action Async handler function for host processing
+     * @returns Registered host middleware instance
      */
     public useHost(host: string, action: (...args: T) => Promise<TResult>)
     {
@@ -74,7 +82,7 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult
     /**
      * Handles the URL processing pipeline
      * @param context - Middleware context parameters
-     * @returns Promise that resolves when handling completes or rejects with an error
+     * @returns Promise that resolves when handling fails or rejects with the final result
      */
     public async handle(...context: T): MiddlewarePromise
     {
@@ -145,13 +153,13 @@ export namespace UrlHandler
                 return super.handle(...context).then(error => error, () => 
                 {
                     context[0].protocol = context[0].protocol.substring(this.protocol.length + 2);
-                    return 'loop'
+                    return 'loop';
                 });
             }
             return;
         }
-
     }
+
     /**
      * Middleware for handling specific hosts
      * @template T - Middleware context type extending [URL, ...unknown[]]
@@ -179,6 +187,5 @@ export namespace UrlHandler
             }
             return;
         }
-
     }
 }

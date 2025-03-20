@@ -218,7 +218,7 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
             }
         }
         injectorLog.debug('registering ' + name.toString());
-        if (!override && typeof (this.injectables[name as keyof TypeMap]) != 'undefined')
+        if (!override && typeof (this.injectables[name as keyof TypeMap]) !== 'undefined')
             throw new Error('There is already a registered item for ' + name.toString());
         if (typeof (this.injectables[name as keyof TypeMap]) !== 'undefined')
             this.unregister(name.toString());

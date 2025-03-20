@@ -18,10 +18,33 @@ export interface ParsedAny
     $$length?: number;
 }
 
-/**
- * Represents a parsed expression with length.
- */
+/** @deprecated */
+export type ParsedOneOf = ParsedObject | ParsedArray | ParsedString | ParsedBoolean | ParsedNumber | ParsedBinary;
+
 export type ExpressionsWithLength = (TypedExpression<unknown> | Expressions) & ParsedAny;
+
+/**
+ * @deprecated Please use ObservableObject.setValue instead which more versatile
+ * Gets the setter function for a given expression and root object.
+ * @param {string} expression - The expression to evaluate.
+ * @param {T} root - The root object.
+ * @returns {{ expression: string, target: T, set: (value: unknown) => void } | null} The setter function or null if not found.
+ */
+export function getSetter<T = unknown>(expression: string, root: T): { expression: string, target: T, set: (value: unknown) => void } | null
+{
+    let target = root;
+    const parts = expression.split('.');
+
+    while (parts.length > 1 && typeof (target) != 'undefined')
+    {
+        target = this.eval(parts[0], target);
+        parts.shift();
+    }
+    if (typeof (target) == 'undefined')
+        return null;
+
+    return { expression: parts[0], target: target, set: function (value) { target[parts[0]] = value } };
+}
 
 /**
  * Parses a binary operator from a string.

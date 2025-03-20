@@ -12,6 +12,10 @@ import { ExpressionComparer } from "./expression-comparer.js";
  */
 export class ExpressionSimplifyer extends ExpressionVisitor
 {
+    /**
+     * Creates a new instance with the provided source expression.
+     * @param source - The original expression to simplify
+     */
     constructor(private source: Expressions)
     {
         super();

@@ -7,13 +7,14 @@ import { ExpressionsWithLength } from '../parser/parser.js';
 import { Injector } from './shared.js';
 
 /**
- * Evaluates expressions using an injector.
+ * Evaluates expressions by resolving dependencies through an injector.
+ * This class extends ExpressionVisitor to traverse and resolve expressions recursively.
  */
 export class InjectorEvaluator extends ExpressionVisitor
 {
     /**
-     * Creates an instance of InjectorEvaluator.
-     * @param {Injector} injector - The injector to use for evaluation.
+     * Initializes the evaluator with a dependency injector.
+     * @param injector - The injector instance used to resolve dependencies during expression evaluation.
      */
     constructor(private injector: Injector)
     {
@@ -23,9 +24,10 @@ export class InjectorEvaluator extends ExpressionVisitor
     private result: unknown;
 
     /**
-     * Evaluates an expression.
-     * @param {ExpressionsWithLength} expression - The expression to evaluate.
-     * @returns {T} The result of the evaluation.
+     * Evaluates the provided expression and returns the computed result.
+     * @template T - The expected return type of the expression evaluation.
+     * @param expression - The expression tree to evaluate.
+     * @returns The resolved value after traversing and computing the expression.
      */
     public eval<T>(expression: ExpressionsWithLength): T
     {
@@ -37,43 +39,46 @@ export class InjectorEvaluator extends ExpressionVisitor
     }
 
     /**
-     * Visits a constant expression.
-     * @param {ConstantExpression<unknown>} arg0 - The constant expression to visit.
-     * @returns {StrictExpressions} The visited expression.
+     * Handles constant expressions by setting the result to their fixed value.
+     * @param expression - The constant expression containing the static value.
+     * @returns The same constant expression after processing.
      */
-    visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
+    visitConstant(expression: ConstantExpression<unknown>): StrictExpressions
     {
-        this.result = arg0.value;
-        return arg0;
+        this.result = expression.value;
+        return expression;
     }
 
     /**
-     * Visits a member expression.
-     * @param {MemberExpression<T, TMember, T[TMember]>} arg0 - The member expression to visit.
-     * @returns {TypedExpression<T[TMember]>} The visited expression.
+     * Resolves member access expressions (e.g., object.property).
+     * Evaluates the source expression and retrieves the member value via dependency injection if applicable.
+     * @template T - The type of the source object.
+     * @template TMember - The key type of the member being accessed.
+     * @param expression - The member expression representing property access.
+     * @returns The processed member expression with updated resolution context.
      */
-    visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): TypedExpression<T[TMember]>
+    visitMember<T, TMember extends keyof T>(expression: MemberExpression<T, TMember, T[TMember]>): TypedExpression<T[TMember]>
     {
-        if (arg0.source)
-            this.visit(arg0.source);
+        if (expression.source)
+            this.visit(expression.source);
 
         let source = this.result;
 
-        this.visit(arg0.member);
+        this.visit(expression.member);
         const key = this.result as string | symbol;
 
         if (source instanceof Injector)
         {
             this.result = source.resolve(key);
-            return arg0;
+            return expression;
         }
         if (isPromiseLike(source))
         {
             this.result = source.then((result) => { return result[key] });
-            return arg0;
+            return expression;
         }
 
         this.result = source && source[key];
-        return arg0;
+        return expression;
     }
 }

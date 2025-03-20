@@ -74,10 +74,14 @@ export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends 
     }
 
     /**
-     * Handles errors using the error middlewares in the stack.
-     * @param {MiddlewareResult<TSpecialNextParam>} error - The error to be handled.
-     * @param {...T} req - The request parameters.
-     * @returns {MiddlewareResult<TSpecialNextParam>} The result of the error handling.
+     * Handles errors by processing them through registered error-handling middlewares in the stack.
+     * 
+     * This method iterates over each error middleware, allowing them to attempt resolving the error.
+     * Middlewares can return a modified error, propagate it further, or halt processing with 'break'.
+     * 
+     * @param {MiddlewareResult<TSpecialNextParam>} error - The initial error object to handle
+     * @param {...T} req - The original request parameters associated with the error
+     * @returns {MiddlewareResult<TSpecialNextParam>} The final resolved error or successful result after processing
      */
     public handleError(error: MiddlewareResult<TSpecialNextParam>, ...req: T): MiddlewareResult<TSpecialNextParam>
     {
@@ -121,9 +125,16 @@ export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends 
     }
 
     /**
-     * Handles the request using the middlewares in the stack.
-     * @param {...T} req - The request parameters.
-     * @returns {MiddlewareResult<TSpecialNextParam>} The result of the handling.
+     * Processes the request through all registered middlewares in the stack.
+     * 
+     * This method iterates over each middleware in the stack, applying standard middlewares first until an error occurs.
+     * Once an error is detected, subsequent error-handling middlewares take over to resolve or propagate the error.
+     * 
+     * @param {...T} req - The request parameters passed to the middleware stack
+     * @returns {MiddlewareResult<TSpecialNextParam>} The final result from the middleware processing, which may include:
+     *   - An Error instance if an unhandled error occurred
+     *   - A special 'next' parameter indicating continuation behavior
+     *   - Custom response objects based on middleware logic
      */
     public handle(...req: T): MiddlewareResult<TSpecialNextParam>
     {
@@ -186,5 +197,3 @@ export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends 
         }
     }
 }
-
-

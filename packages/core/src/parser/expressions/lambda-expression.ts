@@ -9,22 +9,26 @@ import type { ExpressionVisitor } from './visitors/expression-visitor.js';
  */
 export class TypedLambdaExpression<T extends (...args: unknown[]) => unknown> extends Expression
 {
+    /** @override */
     public get type(): ExpressionType.LambdaExpression { return ExpressionType.LambdaExpression; }
+
+    /** All parameters defined for this lambda expression */
     public readonly parameters: Parameters<T>;
+
     /**
-     * Creates an instance of TypedLambdaExpression.
-     * @param {Expressions} body - The body of the lambda expression.
-     * @param {...Parameters<T>} parameters - The parameters of the lambda expression.
+     * Initialize a new typed lambda expression instance
+     * @param {Expressions} body - Expression representing the lambda's execution logic
+     * @param {Parameters<T>} parameters - List of parameter definitions for this lambda
      */
     constructor(public readonly body: Expressions, ...parameters: Parameters<T>)
     {
         super();
         this.parameters = parameters;
     }
+
     /**
-     * Accepts a visitor.
-     * @param {ExpressionVisitor} visitor - The visitor to accept.
-     * @returns {any} The result of the visitor's visit.
+     * Accepts an expression visitor as part of the visitor pattern
+     * @param visitor - Visitor instance implementing the lambda visitation logic
      */
     public accept(visitor: ExpressionVisitor)
     {
@@ -32,9 +36,9 @@ export class TypedLambdaExpression<T extends (...args: unknown[]) => unknown> ex
     }
 }
 
-/**
- * Represents the parameters of a lambda function.
- * @template T - The type of the lambda function.
+/** 
+ * Infers parameter types from a function type and creates corresponding ParameterExpression instances.
+ * @template T - The function type from which parameters are inferred.
  */
 export type Parameters<T> =
     T extends (a: infer T1) => unknown ? [ParameterExpression<T1>] :
@@ -58,25 +62,25 @@ export type Parameters<T> =
 export class LambdaExpression extends TypedLambdaExpression<(...args: unknown[]) => unknown>
 {
     /**
-     * Creates a typed lambda expression.
-     * @template T - The type of the lambda function.
+     * Creates a strongly-typed lambda expression instance.
+     * @template T - The function type representing the lambda's signature.
      * @template U - The return type of the lambda function.
-     * @param {TypedExpression<U>} body - The body of the lambda expression.
-     * @param {Parameters<T>} parameters - The parameters of the lambda expression.
-     * @returns {TypedLambdaExpression<T>} The created typed lambda expression.
+     * @param {TypedExpression<U>} body - The expression representing the lambda's body.
+     * @param {Parameters<T>} parameters - Array of parameter expressions matching the function's signature.
+     * @returns {TypedLambdaExpression<T>} A new typed lambda expression instance.
      */
     static typed<T extends (...args: unknown[]) => U, U>(body: TypedExpression<U>, parameters: Parameters<T>): TypedLambdaExpression<T>
     {
         return new TypedLambdaExpression<T>(body, ...parameters);
     }
+
     /**
-     * Creates an instance of LambdaExpression.
-     * @param {Expressions} body - The body of the lambda expression.
-     * @param {...Parameters<(...args: unknown[]) => unknown>} parameters - The parameters of the lambda expression.
+     * Creates a new LambdaExpression instance.
+     * @param {Expressions} body - The expression tree representing the lambda's execution logic.
+     * @param {...Parameters<(...args: unknown[]) => unknown>} parameters - List of parameter expressions defining the lambda's input.
      */
     constructor(public readonly body: Expressions, ...parameters: Parameters<(...args: unknown[]) => unknown>)
     {
         super(body, ...parameters);
     }
 }
-

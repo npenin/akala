@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareRoute, OptionsResponse, RouterAsync, Routable, RouteBuilderArguments, RouterOptions, MiddlewareResult } from '@akala/core';
+import { Middleware, MiddlewareRoute, OptionsResponse, RouterAsync, Routable, RouteBuilderArguments, RouterOptions, MiddlewareResult, SpecialNextParam } from '@akala/core';
 
 export class RouterRequest 
 {
@@ -32,7 +32,7 @@ export function router(name?: string): Router
 
 export type simpleRequest = { method: string, url: string };
 
-export class MethodMiddleware<T extends simpleRequest & Routable, U extends unknown[]> extends MiddlewareRoute<[T, ...U]> implements Middleware<[T, ...U]>
+export class MethodMiddleware<T extends simpleRequest & Routable, U extends unknown[], TSpecialNextParam extends SpecialNextParam = SpecialNextParam> extends MiddlewareRoute<[T, ...U], TSpecialNextParam> implements Middleware<[T, ...U], TSpecialNextParam>
 {
     constructor(private method: string, ...args: RouteBuilderArguments)
     {
@@ -41,14 +41,14 @@ export class MethodMiddleware<T extends simpleRequest & Routable, U extends unkn
 
     public isApplicable = (req: simpleRequest): boolean => req.method == this.method;
 
-    public handle(req: simpleRequest | T, ...args: U): MiddlewareResult
+    public handle(req: simpleRequest | T, ...args: U): MiddlewareResult<TSpecialNextParam>
     {
         const routableRequest: T = req as T;
         if (!isRoutable(req))
             routableRequest.path = req.url
         return super.handle(routableRequest, ...args);
     }
-    public handleError(error: Error | OptionsResponse, req: simpleRequest | T, ...args: U): MiddlewareResult
+    public handleError(error: Error | OptionsResponse, req: simpleRequest | T, ...args: U): MiddlewareResult<TSpecialNextParam>
     {
         const routableRequest: T = req as T;
         if (!isRoutable(req))

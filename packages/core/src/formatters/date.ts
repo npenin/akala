@@ -22,68 +22,76 @@ const formats = {
 }
 
 /**
- * Parses and formats a date according to the specified format.
- * @param {string} format - The format string.
- * @returns {object} An object with format and parse functions.
+ * Parses and formats dates according to the specified format string.
+ * 
+ * @param format - The date format string (e.g., 'yyyy-MM-dd').
+ * @returns An object with format and parse functions for date conversion.
  */
 export function formatParser(format: string)
 {
     if (!format)
-        format = 'yyyy-MM-dd'
+        format = 'yyyy-MM-dd';
     return {
-        format: function (value: Date)
+        /**
+         * Formats a Date object into a string using the configured format.
+         * 
+         * @param value - The Date to format.
+         * @returns Formatted date string.
+         */
+        format(value: Date): string
         {
             let result = '';
             let offset = 0;
             let currentFormat: string;
             for (let i = offset; i < format.length; i++)
             {
-                if (i == offset)
+                if (i === offset)
                     currentFormat = format[i];
 
-                if (currentFormat == format[i])
+                if (currentFormat === format[i])
                     continue;
+
+                if (currentFormat in formats)
+                {
+                    let tmp = formats[currentFormat].call(value);
+                    switch (i - offset)
+                    {
+                        case 1:
+                            if (currentFormat === 'y')
+                                tmp %= 100;
+                            result += tmp;
+                            break;
+                        case 2:
+                            if (currentFormat === 'y')
+                                tmp %= 100;
+                            result += tmp.toString().padStart(2, '0');
+                            break;
+                        case 4:
+                            if (currentFormat !== 'y')
+                                throw new Error(`Unsupported format ${format.substring(0, i)}`);
+                            result += tmp;
+                            break;
+                        default:
+                            throw new Error(`Unsupported format ${format.substring(0, i)}`);
+                    }
+                }
                 else
                 {
-                    if (currentFormat in formats)
-                    {
-                        let tmp = formats[currentFormat].call(value);
-                        switch (i - offset)
-                        {
-                            case 1:
-                                if (currentFormat == 'y')
-                                    tmp = tmp % 100;
-                                result += tmp;
-                                break;
-                            case 2:
-                                if (currentFormat == 'y')
-                                    tmp = tmp % 100;
-                                if (tmp < 10)
-                                    result += '0' + tmp;
-                                else
-                                    result += tmp;
-                                break;
-                            case 4:
-                                if (currentFormat == 'y')
-                                    result += tmp;
-                                else
-                                    throw new Error(`Unsupported format ${format.substring(0, i)}`);
-                                break;
-                            case 3:
-                            default:
-                                throw new Error(`Unsupported format ${format.substring(0, i)}`);
-                        }
-                    }
-                    else
-                    {
-                        result += format.substr(offset, i);
-                    }
-                    offset = i + 1;
+                    result += format.substring(offset, i);
                 }
+                offset = i + 1;
             }
             return result;
         },
-        parse: function (value: string)
+
+        /**
+         * Parses a date string into a Date object using the configured format.
+         * 
+         * @param value - The date string to parse.
+         * @returns Parsed Date object.
+         * @throws {Error} If the input doesn't match the format.
+         */
+        parse(value: string): Date
         {
             const result = new Date(0, 0, 0, 0, 0, 0, 0);
             let formatOffset = 0;
@@ -91,106 +99,84 @@ export function formatParser(format: string)
             let currentFormat: string;
             for (let i = formatOffset; i <= format.length; i++)
             {
-                if (i == formatOffset)
+                if (i === formatOffset)
                     currentFormat = format[i];
 
-                if (currentFormat == format[i] && currentFormat in formats)
+                if (currentFormat === format[i] && currentFormat in formats)
                     continue;
-                else
+
+                if (currentFormat in formats)
                 {
-                    if (currentFormat in formats)
+                    let tmp: number;
+                    if (i == format.length)
+                        tmp = Number(value.substring(valueOffset));
+                    else
                     {
-                        let tmp: number;
-                        if (i == format.length)
-                            tmp = Number(value.substring(valueOffset));
-                        else
-                        {
-                            tmp = Number(value.substring(valueOffset, value.indexOf(format[i], valueOffset)));
-                            valueOffset = value.indexOf(format[i], valueOffset) + 1;
-                        }
-                        if (isNaN(tmp))
-                            throw new Error(`${value} (${value.substring(valueOffset, i)}) does not match ${format}`);
-                        if (currentFormat == 'M')
-                            tmp--;
-
-                        switch (i - formatOffset)
-                        {
-                            case 1:
-                            case 2:
-                            case 4:
-                                if (currentFormat == 'y' && tmp < 100)
-                                    if (tmp < 75)
-                                        tmp = tmp + 2000;
-                                    else
-                                        tmp = tmp + 1900;
-
-                                switch (currentFormat)
-                                {
-                                    case 'h':
-                                        result.setUTCHours(tmp);
-                                        break;
-                                    case 'm':
-                                        result.setUTCMinutes(tmp);
-                                        break;
-                                    case 'y':
-                                        result.setUTCFullYear(tmp);
-                                        break;
-                                    case 'M':
-                                        result.setUTCMonth(tmp);
-                                        break;
-                                    case 'd':
-                                        result.setUTCDate(tmp);
-                                        break;
-                                    case 's':
-                                        result.setUTCSeconds(tmp);
-                                        break;
-                                }
-                                break;
-                            case 3:
-                            default:
-                                throw new Error(`Unsupported format ${format.substring(0, i)}`);
-                        }
+                        tmp = Number(value.substring(valueOffset, value.indexOf(format[i], valueOffset)));
+                        valueOffset = value.indexOf(format[i], valueOffset) + 1;
                     }
-                    formatOffset = i + 1;
+                    if (isNaN(tmp))
+                        throw new Error(`Invalid date value: ${value} (${value.substring(valueOffset, i)}) in format ${format}`);
+
+                    if (currentFormat === 'M')
+                        tmp--;
+
+                    switch (i - formatOffset)
+                    {
+                        case 1:
+                        case 2:
+                        case 4:
+                            if (currentFormat === 'y' && tmp < 100)
+                                if (tmp < 75)
+                                    tmp = tmp + 2000;
+                                else
+                                    tmp = tmp + 1900;
+
+                            switch (currentFormat)
+                            {
+                                case 'h':
+                                    result.setUTCHours(tmp);
+                                    break;
+                                case 'm':
+                                    result.setUTCMinutes(tmp);
+                                    break;
+                                case 'y':
+                                    result.setUTCFullYear(tmp);
+                                    break;
+                                case 'M':
+                                    result.setUTCMonth(tmp);
+                                    break;
+                                case 'd':
+                                    result.setUTCDate(tmp);
+                                    break;
+                                case 's':
+                                    result.setUTCSeconds(tmp);
+                                    break;
+                            }
+                            break;
+                        case 3:
+                        default:
+                            throw new Error(`Unsupported format ${format.substring(0, i)}`);
+                    }
                 }
+                formatOffset = i + 1;
             }
             return result;
         }
-    }
+    };
 }
 
 /**
- * Formats a date according to the specified format.
- * @param {Date} a - The date to format.
- * @param {string} format - The format string.
- * @returns {string} The formatted date string.
- */
-function date(a: Date, format: string): string
-{
-    return formatParser(format).format(a);
-}
-
-/**
- * Parses a date string according to the specified format.
- * @param {string} s - The date string to parse.
- * @param {string} format - The format string.
- * @returns {Date} The parsed date.
- */
-date['reverse'] = function <T>(s: string, format: string): Date
-{
-    return formatParser(format).parse(s);
-}
-
-/**
- * DateFormatter class for formatting and parsing dates.
+ * Formatter for converting dates to strings and vice versa.
  */
 export default class DateFormatter implements Formatter<string>, ReversibleFormatter<string, Date>
 {
-    dateFormat: ReturnType<typeof formatParser>;
+    public readonly dateFormat: ReturnType<typeof formatParser>;
 
     /**
-     * Creates an instance of DateFormatter.
-     * @param {string} dateFormat - The date format string.
+     * Creates a date formatter with the specified format.
+     * 
+     * @param dateFormat - The format string (e.g., 'yyyy-MM-dd').
      */
     constructor(dateFormat: string)
     {
@@ -198,7 +184,8 @@ export default class DateFormatter implements Formatter<string>, ReversibleForma
     }
 
     /**
-     * Parses a date string according to the specified format.
+     * Parses a formatted date string back into a Date object.
+     * 
      * @param {string} value - The date string to parse.
      * @returns {Date} The parsed date.
      */
@@ -208,9 +195,10 @@ export default class DateFormatter implements Formatter<string>, ReversibleForma
     }
 
     /**
-     * Formats a date according to the specified format.
-     * @param {Date} value - The date to format.
-     * @returns {string} The formatted date string.
+     * Converts a Date object to a formatted string.
+     * 
+     * @param {Date} value - The Date to format.
+     * @returns {string} Formatted date string.
      */
     format(value: Date): string
     {

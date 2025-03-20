@@ -3,14 +3,15 @@ import { Event, EventEmitter } from '../event-emitter.js';
 import "reflect-metadata";
 import { InjectMap, Injector, LocalInjector, Resolvable, injectorLog } from './shared.js';
 
-/**
- * SimpleInjector class that extends LocalInjector.
+/** 
+ * A simple dependency injection container that provides basic resolution capabilities.
+ * This class extends LocalInjector and manages injectables through a straightforward key-value store.
  */
 export class SimpleInjector extends LocalInjector
 {
     /**
-     * Constructor for SimpleInjector.
-     * @param {Injector | null} parent - The parent injector.
+     * Creates an instance of SimpleInjector.
+     * @param {Injector | null} [parent=null] - The parent injector to fallback to when resolving dependencies.
      */
     constructor(parent?: Injector | null)
     {
@@ -49,7 +50,7 @@ export class SimpleInjector extends LocalInjector
         {
             if (property != '$injector')
                 this.registerDescriptor(property, Object.getOwnPropertyDescriptor(i.injectables, property));
-        })
+        });
     }
 
     /**

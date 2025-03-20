@@ -8,15 +8,16 @@ export type ParameterInjection = ((i: SimpleInjector) => InjectedParameter<unkno
 export const injectSymbol = Symbol('inject');
 export const afterInjectSymbol = Symbol('after-inject');
 
-export interface InjectableOjbect
+export interface InjectableObject
 {
     [injectSymbol]: ((i: SimpleInjector) => void)[];
 }
 
 /**
- * Injects a dependency into a class property or constructor parameter.
- * @param {string} [name] - The name of the dependency to inject.
- * @returns {Function} A decorator function.
+ * Decorator to mark class properties or constructor parameters for dependency injection.
+ * 
+ * @param name - Optional dependency name. If omitted, uses the property name as the dependency key.
+ * @returns Decorator function to apply injection metadata.
  */
 export function inject(name?: string)
 {
@@ -55,10 +56,11 @@ export function inject(name?: string)
 }
 
 /**
- * Applies the injector to an object and its prototype chain.
- * @param {SimpleInjector} injector - The injector to apply.
- * @param {object} obj - The object to apply the injector to.
- * @param {object} [prototype] - The prototype of the object.
+ * Processes dependency injection metadata for an object and its prototype chain.
+ * 
+ * @param {SimpleInjector} injector - The injector to resolve dependencies.
+ * @param {object} obj - Target object to apply injections to.
+ * @param {object} [prototype] - Optional prototype to traverse (used internally).
  */
 export function applyInjector(injector: SimpleInjector, obj: object, prototype?: object)
 {
@@ -119,10 +121,13 @@ export function applyInjector(injector: SimpleInjector, obj: object, prototype?:
 }
 
 /**
- * Makes a class injectable.
- * @param {TClass} ctor - The constructor of the class to make injectable.
- * @param {SimpleInjector} [injector] - The injector to use.
- * @returns {TClass} The injectable class.
+ * Decorator to make a class injectable with dependency resolution.
+ * 
+ * @template TInstance - Type of the class instance.
+ * @template TClass - Type of the class constructor.
+ * @param {TClass} ctor - Class constructor to wrap.
+ * @param {SimpleInjector} injector - Optional injector instance (default uses constructor argument).
+ * @returns {TClass} Injectable class with dependency injection setup.
  */
 export function injectable<TInstance, TClass extends { new(...args: unknown[]): TInstance }>(ctor: TClass, injector?: SimpleInjector): TClass
 {
@@ -170,38 +175,43 @@ export type InjectableClass<T> = T & {
 };
 
 /**
- * Creates a class injector decorator.
- * @param {SimpleInjector} injector - The injector to use.
- * @returns {Function} A class injector decorator.
+ * Creates a class decorator to apply an injector to a class.
+ * 
+ * @param {SimpleInjector} injector - Injector instance to bind to the class.
+ * @returns {Function} Class decorator that configures the class for dependency injection.
  */
 export function useInjector(injector: SimpleInjector)
 {
     return function classInjectorDecorator<TClass extends { new(...args: unknown[]): object }>(ctor: TClass): TClass
     {
         return injectable(ctor, injector);
-    }
+    };
 }
 
 /**
- * Extends a class with an injector.
- * @param {SimpleInjector} injector - The injector to use.
- * @param {TClass} constructor - The constructor of the class to extend.
- * @returns {TClass} The extended class.
+ * Extends a class with an injector for dependency resolution.
+ * 
+ * @template TClass - Type of the class to extend.
+ * @param {SimpleInjector} injector - Injector instance to apply.
+ * @param {TClass} constructor - Class to extend.
+ * @returns {TClass} Extended class with injector configuration.
  */
-export function extendInject<TClass extends { new(...args: unknown[]): object }>(injector: SimpleInjector, constructor: TClass)
+export function extendInject<TClass extends { new(...args: unknown[]): object }>(injector: SimpleInjector, constructor: TClass): TClass
 {
     return useInjector(injector)<TClass>(constructor);
 }
 
 /**
- * A reflection-based injector.
+ * Reflection-based injector that resolves dependencies using metadata.
+ * 
  * @extends SimpleInjector
  */
 export class ReflectionInjector extends SimpleInjector
 {
     /**
-     * Creates an instance of ReflectionInjector.
-     * @param {SimpleInjector} [parent] - The parent injector.
+     * Creates a new ReflectionInjector instance.
+     * 
+     * @param {SimpleInjector} [parent] - Optional parent injector to delegate unresolved dependencies to.
      */
     constructor(protected parent?: SimpleInjector)
     {

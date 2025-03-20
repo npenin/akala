@@ -16,11 +16,16 @@ export class ReplayAsyncEvent<T extends unknown[], TReturnType> extends ReplayEv
      * @param {number} maxListeners - The maximum number of listeners.
      * @param {function} combineReturnTypes - A function to combine the return types.
      */
-    constructor(bufferLength: number, maxListeners: number, combineReturnTypes: Event<T, TReturnType>['combineReturnTypes'])
+    constructor(
+        bufferLength: number,
+        maxListeners: number,
+        combineReturnTypes: Event<T, TReturnType>['combineReturnTypes']
+    )
     {
-        super(bufferLength, maxListeners, (promises) => Promise.all(promises).then((returns) => combineReturnTypes(returns)));
+        super(bufferLength, maxListeners, (promises) =>
+            Promise.all(promises).then((returns) => combineReturnTypes(returns))
+        );
     }
-
 }
 
 /**
@@ -35,10 +40,8 @@ export class ValuedEvent<T extends unknown[], TReturnType, TOptions extends { on
      * Creates an instance of ValuedEvent.
      * @param {T} value - The value of the event.
      */
-    constructor(private value: T)
-    {
+    constructor(private value: T) { }
 
-    }
     hasListeners: boolean = false;
 
     maxListeners: number = Number.POSITIVE_INFINITY;
@@ -70,7 +73,6 @@ export class ValuedEvent<T extends unknown[], TReturnType, TOptions extends { on
     {
         this.value = null;
     }
-
 }
 
 /**

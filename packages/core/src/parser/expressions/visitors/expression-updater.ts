@@ -2,8 +2,17 @@ import { Expressions, StrictExpressions, StrictTypedExpression, TypedExpression 
 import { ExpressionVisitor } from "./expression-visitor.js";
 import { IVisitable } from "../visitable.js";
 
+/** 
+ * Replaces occurrences of a specific expression with another during traversal.
+ * This visitor updates an expression tree by substituting the original expression with the new one.
+ */
 export class ExpressionUpdater extends ExpressionVisitor
 {
+    /**
+     * Creates an instance of ExpressionUpdater.
+     * @param original - The expression to be replaced in the tree.
+     * @param newExp - The new expression that replaces the original.
+     */
     constructor(private original: Expressions, private newExp: Expressions)
     {
         super();
@@ -13,10 +22,9 @@ export class ExpressionUpdater extends ExpressionVisitor
     private rootCall = true;
 
     /**
-     * Updates an expression.
-     * @param {any} expression - The expression to update.
-     * @param {any} newValue - The new value for the expression.
-     * @returns {any} The updated expression.
+     * Performs the expression replacement during traversal.
+     * @param expression - The current expression being visited.
+     * @returns The updated expression after potential substitution.
      */
     public visit<T>(expression: StrictTypedExpression<T>): StrictTypedExpression<T>;
     public visit<T>(expression: TypedExpression<T>): TypedExpression<T>;

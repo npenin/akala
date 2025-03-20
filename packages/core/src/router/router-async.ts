@@ -7,29 +7,37 @@ import { Routable, RouteBuilderArguments } from './route.js';
 import { MiddlewareAsync } from '../middlewares/shared.js'
 import { UriTemplate } from '../uri-template/index.js';
 
-export type RouteBuilderAsync<T extends [Routable, ...unknown[]]> = (...args: RouteBuilderArguments) => MiddlewareRouteAsync<T>;
+export type RouteBuilderAsync<T extends [Routable, ...unknown[]], TSpecialNextParam extends SpecialNextParam = SpecialNextParam> = (...args: RouteBuilderArguments) => MiddlewareRouteAsync<T, TSpecialNextParam>;
 
 /**
- * Use routes asynchronously.
- * @param {Routes<T, Promise<unknown>>} routes - The routes to use.
- * @param {MiddlewareCompositeAsync<T> & { route: RouteBuilderAsync<T> }} [parent] - The parent middleware composite.
- * @returns {MiddlewareCompositeAsync<T>} The middleware composite.
+ * Dynamically applies asynchronous routes to a middleware composite.
+ * 
+ * This function recursively processes route definitions and attaches them to the parent middleware chain.
+ * 
+ * @template T - The context type containing the routable request and parameters.
+ * @template TSpecialNextParam - The type for special next parameters (defaults to {@link SpecialNextParam})
+ * @param {Routes<T, Promise<unknown>, TSpecialNextParam>} routes - Route definitions mapping URI templates to handler functions or nested route objects
+ * @param {MiddlewareCompositeAsync<T, TSpecialNextParam> & { route: RouteBuilderAsync<T, TSpecialNextParam> }} [parent] - Parent middleware container to attach routes to
+ * @returns {MiddlewareCompositeAsync<T, TSpecialNextParam>} Configured middleware composite with attached routes
  */
-export function useRoutesAsync<T extends [Routable, ...unknown[]]>(routes: Routes<T, Promise<unknown>>, parent?: MiddlewareCompositeAsync<T> & { route: RouteBuilderAsync<T> }): MiddlewareCompositeAsync<T>
+export function useRoutesAsync<T extends [Routable, ...unknown[]], TSpecialNextParam extends SpecialNextParam = SpecialNextParam>(
+    routes: Routes<T, Promise<unknown>, TSpecialNextParam>,
+    parent?: MiddlewareCompositeAsync<T, TSpecialNextParam> & { route: RouteBuilderAsync<T, TSpecialNextParam> }
+): MiddlewareCompositeAsync<T, TSpecialNextParam>
 {
     if (!parent)
-        parent = Object.assign(new MiddlewareCompositeAsync<T>('byroutes'), { route(...args: RouteBuilderArguments) { return new MiddlewareRouteAsync<T>(...args) } });
-    each(routes, (route: ((...args: T) => Promise<unknown>) | Routes<T, Promise<unknown>>, match) =>
+        parent = Object.assign(new MiddlewareCompositeAsync<T, TSpecialNextParam>('byroutes'), { route(...args: RouteBuilderArguments) { return new MiddlewareRouteAsync<T, TSpecialNextParam>(...args) } });
+    each(routes, (route: ((...args: T) => Promise<unknown>) | Routes<T, Promise<unknown>, TSpecialNextParam>, match) =>
     {
         if (typeof match == 'number')
             return;
-        const routed = new MiddlewareRouteAsync(match as string);
+        const routed = new MiddlewareRouteAsync<T, TSpecialNextParam>(match as string);
         if (typeof (route) == 'object')
         {
             useRoutesAsync(route, routed);
         }
         else
-            routed.useMiddleware(convertToMiddleware<T, SpecialNextParam>(route));
+            routed.useMiddleware(convertToMiddleware<T, TSpecialNextParam>(route));
 
         parent.useMiddleware(routed);
     });
@@ -37,83 +45,106 @@ export function useRoutesAsync<T extends [Routable, ...unknown[]]>(routes: Route
 }
 
 /**
- * Asynchronous router.
- * @template T
- * @extends {MiddlewareCompositeAsync<T>}
- * @implements {MiddlewareAsync<T>}
+ * Base class for defining asynchronous routing middleware chains.
+ * 
+ * Extends the middleware composite to provide route configuration capabilities for asynchronous handlers.
+ * 
+ * @template T - The context type containing the routable request and parameters
+ * @template TSpecialNextParam - The type for special next parameters (defaults to {@link SpecialNextParam})
+ * @extends {MiddlewareCompositeAsync<T, TSpecialNextParam>}
+ * @implements {MiddlewareAsync<T, TSpecialNextParam>}
  */
-export class RouterAsync<T extends [{ path: string, params?: Record<string, unknown> }, ...unknown[]]> extends MiddlewareCompositeAsync<T> implements MiddlewareAsync<T>
+export class RouterAsync<
+    T extends [{ path: string; params?: Record<string, unknown> }, ...unknown[]],
+    TSpecialNextParam extends SpecialNextParam = SpecialNextParam
+> extends MiddlewareCompositeAsync<T, TSpecialNextParam> implements MiddlewareAsync<T, TSpecialNextParam>
 {
     /**
-     * Creates an instance of RouterAsync.
-     * @param {RouterOptions} [options] - The router options.
+     * Creates a new RouterAsync instance with optional configuration.
+     * 
+     * @param {RouterOptions} [options] - Configuration options including middleware priority and name
      */
     constructor(options?: RouterOptions)
     {
-        super(options && options.name);
+        super(options?.name);
     }
 
     /**
-     * Creates a new route.
-     * @param {...RouteBuilderArguments} args - The route builder arguments.
-     * @returns {MiddlewareRouteAsync<T>} The middleware route.
+     * Creates a new route configuration chain for defining route handlers.
+     * 
+     * @function route
+     * @param {...RouteBuilderArguments} args - Route configuration parameters (path template, HTTP method, etc.)
+     * @returns {MiddlewareRouteAsync<T, TSpecialNextParam>} Newly created route configuration instance
      */
-    public route(...args: RouteBuilderArguments): MiddlewareRouteAsync<T>
+    public route(...args: RouteBuilderArguments): MiddlewareRouteAsync<T, TSpecialNextParam>
     {
-        return new MiddlewareRouteAsync<T>(...args);
+        return new MiddlewareRouteAsync<T, TSpecialNextParam>(...args);
     }
 
     /**
-     * Use routes.
-     * @param {Routes<T, Promise<unknown>>} routes - The routes to use.
-     * @returns {this} The router instance.
+     * Attaches a collection of route definitions to the router.
+     * 
+     * @param {Routes<T, Promise<unknown>, TSpecialNextParam>} routes - Route definitions to be applied
+     * @returns {this} Current router instance for method chaining
      */
-    public useRoutes(routes: Routes<T, Promise<unknown>>): this
+    public useRoutes(routes: Routes<T, Promise<unknown>, TSpecialNextParam>): this
     {
         useRoutesAsync(routes, this);
         return this;
     }
 
     /**
-     * Use middleware.
-     * @param {string | UriTemplate} route - The route or URI template.
-     * @param {...MiddlewareAsync<T>} middlewares - The middlewares to use.
-     * @returns {this} The router instance.
+     * Adds middleware to the router's chain either globally or for a specific route.
+     * 
+     * @function useMiddleware
+     * @param {string | UriTemplate | MiddlewareAsync<T, TSpecialNextParam>} routeOrMiddleware - 
+     *   Route definition (string/URI template) or middleware function
+     * @param {...MiddlewareAsync<T, TSpecialNextParam>} middlewares - Additional middleware functions
+     * @returns {this} Current router instance for method chaining
      */
-    public useMiddleware(route: string | UriTemplate, ...middlewares: MiddlewareAsync<T>[]): this
-    public useMiddleware(...middlewares: MiddlewareAsync<T>[]): this
-    public useMiddleware(route: string | UriTemplate | MiddlewareAsync<T>, ...middlewares: MiddlewareAsync<T>[]): this
+    public useMiddleware(...middlewares: MiddlewareAsync<T, TSpecialNextParam>[]): this;
+    public useMiddleware(
+        routeOrMiddleware: string | UriTemplate | MiddlewareAsync<T, TSpecialNextParam>,
+        ...middlewares: MiddlewareAsync<T, TSpecialNextParam>[]
+    ): this;
+    public useMiddleware(
+        routeOrMiddleware: string | UriTemplate | MiddlewareAsync<T, TSpecialNextParam>,
+        ...middlewares: MiddlewareAsync<T, TSpecialNextParam>[]
+    ): this
     {
-        if (typeof route === 'string' || Array.isArray(route))
+        if (typeof routeOrMiddleware === 'string' || Array.isArray(routeOrMiddleware))
         {
-            const routed = new MiddlewareRouteAsync<T>(route);
+            const routed = new MiddlewareRouteAsync<T, TSpecialNextParam>(routeOrMiddleware);
             routed.useMiddleware(...middlewares);
             super.useMiddleware(routed);
         }
         else
-            super.useMiddleware(route, ...middlewares);
+            super.useMiddleware(routeOrMiddleware, ...middlewares);
         return this;
     }
 
     /**
-     * Use middlewares.
-     * @param {string | UriTemplate} route - The route or URI template.
-     * @param {...((...args: T) => Promise<unknown>)} middlewares - The middlewares to use.
-     * @returns {this} The router instance.
+     * Registers route handlers or middleware functions.
+     * 
+     * @function use
+     * @param {(string | UriTemplate | ((...args: T) => Promise<unknown>))} routeOrHandler - 
+     *   Route definition (string/URI template) or handler function
+     * @param {...((...args: T) => Promise<unknown>)} handlers - Additional handler functions
+     * @returns {this} Current router instance for method chaining
      */
-    public use(route: string | UriTemplate, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(route: string | UriTemplate | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(routeOrHandler: string | UriTemplate, ...handlers: ((...args: T) => Promise<unknown>)[]): this;
+    public use(...handlers: ((...args: T) => Promise<unknown>)[]): this;
+    public use(routeOrHandler: string | UriTemplate | ((...args: T) => Promise<unknown>), ...handlers: ((...args: T) => Promise<unknown>)[]): this
     {
-        if (typeof route === 'string' || Array.isArray(route))
+        if (typeof routeOrHandler === 'string' || Array.isArray(routeOrHandler))
         {
-            const routed = new MiddlewareRouteAsync<T>(route);
-            routed.use(...middlewares);
+            const routed = new MiddlewareRouteAsync<T, TSpecialNextParam>(routeOrHandler);
+            routed.use(...handlers);
             super.useMiddleware(routed);
             return this;
         }
         else
-            return super.use(route, ...middlewares);
+            return super.use(routeOrHandler, ...handlers);
     }
 }
 
