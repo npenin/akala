@@ -21,8 +21,11 @@ export default function (_, program: NamespaceMiddleware)
 {
     const sdk = program.command('sdk client');
 
+    /**
+     * Configures preferred casing for generated files
+     */
     sdk.
-        command<{ case: string }>('set-preferred-case <case>', 'helps you following the same structure for generated file by choosing your prefered casing between: camel, pascal, kebab and snake.').
+        command<{ case: string }>('set-preferred-case <case>', 'Set preferred casing for generated files (options: camel, pascal, kebab, snake)').
         state<ClientState>().
         action(context =>
         {
@@ -35,44 +38,53 @@ export default function (_, program: NamespaceMiddleware)
                     context.state.client.preferredCase = context.options.case;
                     break;
                 default:
-                    throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'The provided case is not supported, please use --help for usage.')
+                    throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'Unsupported case format. Use --help for valid options.');
             }
-        })
+        });
 
     const generators = program.command('sdk new');
 
-    generators.command<{ name: string, path?: string }>('page <name> [path]').state<Partial<ClientState>>().action(async context =>
-    {
-        const caseConverter: (s: string) => string = context.state?.client?.preferredCase in caseConverters ? caseConverters[context.state.client.preferredCase] : caseConverters.kebab;
-        const folder = context.options.path ? join(context.options.path, caseConverter(context.options.name)) : caseConverter(context.options.name);
-
-        const html = await generatePage(context.options.name, folder);
-        await FileGenerator.write(html.output, `<p>This is the content of your ${context.options.name} page</p>`);
-        await FileGenerator.close(html.output);
-    });
-
-    generators.command<{ name?: string }>('client [name]').state<Partial<ClientState>>().action(async context =>
-    {
-        const caseConverter: (s: string) => string = context.state?.client?.preferredCase in caseConverters ? caseConverters[context.state.client.preferredCase] : caseConverters.kebab;
-
-        const folder = context.currentWorkingDirectory;
-
-        await mkdir(folder, { recursive: true });
-
-        const packagejson = await FileGenerator.outputHelper(folder, 'package.json', true, exists => !exists);
-        if (!packagejson.exists)
+    /**
+     * Creates new client pages
+     */
+    generators.command<{ name: string, path?: string }>('page <name> [path]', 'Create new client page with specified name and optional path').
+        state<Partial<ClientState>>().
+        action(async context =>
         {
-            await FileGenerator.write(packagejson.output, JSON.stringify({
-                name: context.options.name
-            }));
-            await FileGenerator.close(packagejson.output);
-        }
+            const caseConverter: (s: string) => string = context.state?.client?.preferredCase in caseConverters ? caseConverters[context.state.client.preferredCase] : caseConverters.kebab;
+            const folder = context.options.path ? join(context.options.path, caseConverter(context.options.name)) : caseConverter(context.options.name);
 
+            const html = await generatePage(context.options.name, folder);
+            await FileGenerator.write(html.output, `<p>This is the content of your ${context.options.name} page</p>`);
+            await FileGenerator.close(html.output);
+        });
 
-        const postcssrc = await FileGenerator.outputHelper(folder, '.postcssrc.mjs', true, exists => !exists);
-        if (!postcssrc.exists)
+    /**
+     * Initializes new Akala client project
+     */
+    generators.command<{ name?: string }>('client [name]', 'Initialize new Akala client project').
+        state<Partial<ClientState>>().
+        action(async context =>
         {
-            await FileGenerator.write(postcssrc.output, `import akala from "@akala/web-ui/postcss";
+            const caseConverter: (s: string) => string = context.state?.client?.preferredCase in caseConverters ? caseConverters[context.state.client.preferredCase] : caseConverters.kebab;
+
+            const folder = context.currentWorkingDirectory;
+
+            await mkdir(folder, { recursive: true });
+
+            const packagejson = await FileGenerator.outputHelper(folder, 'package.json', true, exists => !exists);
+            if (!packagejson.exists)
+            {
+                await FileGenerator.write(packagejson.output, JSON.stringify({
+                    name: context.options.name
+                }));
+                await FileGenerator.close(packagejson.output);
+            }
+
+            const postcssrc = await FileGenerator.outputHelper(folder, '.postcssrc.mjs', true, exists => !exists);
+            if (!postcssrc.exists)
+            {
+                await FileGenerator.write(postcssrc.output, `import akala from "@akala/web-ui/postcss";
 import fullCompose from "@akala/web-ui/postcss-full-compose";
 import contrast from "@akala/web-ui/postcss-contrast";
 import customMedia from "postcss-custom-media";
@@ -87,18 +99,16 @@ const config = {
 }
 
 export default config;`);
-            await FileGenerator.close(postcssrc.output);
-        }
+                await FileGenerator.close(postcssrc.output);
+            }
 
+            const indexHtml = await FileGenerator.outputHelper(folder, 'index.html', true, (exists) =>
+            {
+                if (exists)
+                    throw new ErrorWithStatus(HttpStatusCode.Conflict, `An index.html file already exists in the folder \`${folder}\`. Make sure your target folder is empty.`);
+            });
 
-
-        const indexHtml = await FileGenerator.outputHelper(folder, 'index.html', true, (exists) =>
-        {
-            if (exists)
-                throw new ErrorWithStatus(HttpStatusCode.Conflict, `An index.html file already exists in the folder \`${folder}\`. Make sure your target folder is empty.`);
-        })
-
-        await FileGenerator.write(indexHtml.output, `<!doctype html>
+            await FileGenerator.write(indexHtml.output, `<!doctype html>
     <html lang="en">
     
     <head>
@@ -114,17 +124,15 @@ export default config;`);
     </body>
     
     </html>`);
+            await FileGenerator.close(indexHtml.output);
 
-        await FileGenerator.close(indexHtml.output);
+            const indexTs = await FileGenerator.outputHelper(folder, 'index.ts', true, (exists) =>
+            {
+                if (exists)
+                    throw new ErrorWithStatus(HttpStatusCode.Conflict, `An index.ts file already exists in the folder \`${folder}\`. Make sure your target folder is empty.`);
+            });
 
-
-        const indexTs = await FileGenerator.outputHelper(folder, 'index.ts', true, (exists) =>
-        {
-            if (exists)
-                throw new ErrorWithStatus(HttpStatusCode.Conflict, `An index.ts file already exists in the folder \`${folder}\`. Make sure your target folder is empty.`);
-        })
-
-        await FileGenerator.write(indexTs.output, `
+            await FileGenerator.write(indexTs.output, `
             /// <reference types="vite/client" />
 import './index.css'
 import { bootstrapModule, OutletService, outletDefinition } from '@akala/client'
@@ -139,92 +147,92 @@ bootstrapModule.activate(['services.$outlet'], async (outlet: OutletService) =>
 
 bootstrap('app')
 `);
+            await FileGenerator.close(indexTs.output);
 
+            const indexCss = await FileGenerator.outputHelper(folder, 'index.css', true, (exists) =>
+            {
+                if (exists)
+                    throw new ErrorWithStatus(HttpStatusCode.Conflict, `An index.css file already exists in the folder \`${folder}\`. Make sure your target folder is empty.`);
+            });
 
-        await FileGenerator.close(indexTs.output);
-
-        const indexCss = await FileGenerator.outputHelper(folder, 'index.css', true, (exists) =>
-        {
-            if (exists)
-                throw new ErrorWithStatus(HttpStatusCode.Conflict, `An index.css file already exists in the folder \`${folder}\`. Make sure your target folder is empty.`);
-        })
-
-        await FileGenerator.write(indexCss.output, `@import '@akala/web-ui/css/theme.css';
+            await FileGenerator.write(indexCss.output, `@import '@akala/web-ui/css/theme.css';
     @import-tokens '@akala/web-ui/default-theme.tokens.json';
     
     `);
-        await FileGenerator.close(indexCss.output);
+            await FileGenerator.close(indexCss.output);
 
-        const tsconfig = await FileGenerator.outputHelper(folder, 'tsconfig.json', true, (exists) =>
-        {
-            if (exists)
-                return false;
-        });
+            const tsconfig = await FileGenerator.outputHelper(folder, 'tsconfig.json', true, (exists) =>
+            {
+                if (exists)
+                    return false;
+            });
 
-        if (!tsconfig.exists)
-        {
-            await FileGenerator.write(tsconfig.output, JSON.stringify({
-                "compilerOptions": {
-                    "experimentalDecorators": true,
-                    "rootDir": ".",
-                    "outDir": "dist",
-                    "resolveJsonModule": true
-                },
-                "include": [
-                    "**/*.ts",
-                ]
-            }))
+            if (!tsconfig.exists)
+            {
+                await FileGenerator.write(tsconfig.output, JSON.stringify({
+                    "compilerOptions": {
+                        "experimentalDecorators": true,
+                        "rootDir": ".",
+                        "outDir": "dist",
+                        "resolveJsonModule": true
+                    },
+                    "include": [
+                        "**/*.ts",
+                    ]
+                }));
+                await FileGenerator.close(tsconfig.output);
+            }
 
-            await FileGenerator.close(tsconfig.output);
-        }
-
-        const page = await generatePage(caseConverter('Home'), join(folder, 'pages'), async ts =>
-        {
-            await FileGenerator.write(ts.output, `
+            const page = await generatePage(caseConverter('Home'), join(folder, 'pages'), async ts =>
+            {
+                await FileGenerator.write(ts.output, `
     public count: number = 0;
 
     public increment()
     {
         ObservableObject.setValue(this, 'count', this.count + 1);
     }
-        `)
-        });
-        await FileGenerator.write(page.output, `<h1>Welcome to your ${context.options.name} app</h1>        
+        `);
+            });
+            await FileGenerator.write(page.output, `<h1>Welcome to your ${context.options.name} app</h1>        
     <div class="card" data-context>
         <button id="counter" on on-click="controller.increment.bind(controller)" type="button">
             count is <span data-bind="{innerText:controller.count}"></span>
         </button>
     </div>
     `);
-        await FileGenerator.close(page.output);
+            await FileGenerator.close(page.output);
 
-        const pm: typeof yarn | typeof npm = await hasYarn() ? yarn : npm;
+            const pm: typeof yarn | typeof npm = await hasYarn() ? yarn : npm;
 
-        if (pm === yarn)
-            await FileGenerator.outputHelper(folder, 'yarn.lock', false).then((lockfile) =>
-            {
-                if (!lockfile.exists)
-                    FileGenerator.close(lockfile.output);
+            if (pm === yarn)
+                await FileGenerator.outputHelper(folder, 'yarn.lock', false).then((lockfile) =>
+                {
+                    if (!lockfile.exists)
+                        FileGenerator.close(lockfile.output);
+                }, () => { });
 
-            }, () => { });
-
-        await pm.install('vite', folder);
-        await pm.install('@akala/web-ui', folder);
-
-    })
-
+            await pm.install('vite', folder);
+            await pm.install('@akala/web-ui', folder);
+        });
 }
 
+/**
+ * Generates client page structure with template and TypeScript files
+ * @param name Page name
+ * @param folder Target directory path
+ * @param callback additionalTsContent Optional to add custom TS code
+ * @returns HTML file generator instance
+ */
 export async function generatePage(name: string, folder: string, additionalTsContent?: (ts: FileGenerator.Generator) => Promise<void>): Promise<FileGenerator.Generator>
 {
-
     await mkdir(folder, { recursive: true });
 
     const tsGenerator = await FileGenerator.outputHelper(folder, name + '.ts', true, (exists) =>
     {
         if (exists)
             throw new ErrorWithStatus(HttpStatusCode.Conflict, `The page ${name} already exists. Please remove it if you want a fresh one or specify a different path.`);
-    })
+    });
 
     await FileGenerator.write(tsGenerator.output, `import { Page, page, RootElement } from '@akala/client'
 import template from './${name}.html?raw'
@@ -237,22 +245,19 @@ export default class ${toPascalCase(name)} extends Page
     {
         super();
     }
-
 `);
 
     await additionalTsContent?.(tsGenerator).catch(e =>
-        FileGenerator.write(tsGenerator.output, `FileGeneration failed with error ${e}`)
+        FileGenerator.write(tsGenerator.output, `// FileGeneration failed with error: ${e}`)
     );
 
     await FileGenerator.write(tsGenerator.output, '}');
-
 
     const htmlGenerator = await FileGenerator.outputHelper(folder, name + '.html', true, (exists) =>
     {
         if (exists)
             throw new ErrorWithStatus(HttpStatusCode.Conflict, `The page ${name} already exists. Please remove it if you want a fresh one or specify a different path.`);
-    })
+    });
 
     return htmlGenerator;
-
 }

@@ -1,4 +1,12 @@
-import { Expressions, TypedExpression, IEnumerable, StrictExpressions, StrictTypedExpression, UnknownExpression } from '../expression.js';
+import
+{
+    Expressions,
+    TypedExpression,
+    IEnumerable,
+    StrictExpressions,
+    StrictTypedExpression,
+    UnknownExpression
+} from '../expression.js';
 import { ExpressionType } from '../expression-type.js';
 import { BinaryExpression } from '../binary-expression.js';
 import { UnaryExpression } from '../unary-expression.js';
@@ -13,14 +21,47 @@ import { IVisitable } from '../visitable.js';
 import { FormatExpression } from '../../parser.js';
 import { TernaryExpression } from '../ternary-expression.js';
 
-
+/** 
+ * Defines a comparison function between two values of type T.
+ * @template T - The type of values being compared
+ */
 export type EqualityComparer<T> = (a: T, b: T) => boolean;
 
+/** 
+ * Base class for implementing the Visitor pattern for expression tree processing.
+ */
 export class ExpressionVisitor
 {
-    public visit<T>(expression: StrictTypedExpression<T>): StrictTypedExpression<T>
-    public visit<T>(expression: TypedExpression<T>): TypedExpression<T>
-    public visit(expression: StrictExpressions): StrictExpressions
+    /**
+     * Visits an expression and returns the processed result.
+     * @template T - The type of the expression's output value
+     * @param {StrictTypedExpression<T>} expression - A strongly-typed expression
+     * @returns {StrictTypedExpression<T>} The processed expression
+     */
+    public visit<T>(expression: StrictTypedExpression<T>): StrictTypedExpression<T>;
+
+    /**
+     * Visits a typed expression and returns the processed result.
+     * @template T - The type of the expression's output
+     * @param {TypedExpression<T>} expression - A typed expression
+     * @returns {TypedExpression<T>} The processed expression
+     */
+    public visit<T>(expression: TypedExpression<T>): TypedExpression<T>;
+
+    /**
+     * Visits a strict expression and returns the processed result.
+     * @param {StrictExpressions} expression - A strict expression node
+     * @returns {StrictExpressions} The processed expression
+     */
+    public visit(expression: StrictExpressions): StrictExpressions;
+
+    /**
+     * Visits an expression implementing the IVisitable interface.
+     * @template T - The visitor type
+     * @template U - The return type
+     * @param {IVisitable<ExpressionVisitor, U>} expression - A visitable expression
+     * @returns {Expressions} The processed expression result
+     */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public visit(expression: IVisitable<ExpressionVisitor, any>): Expressions
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,6 +70,11 @@ export class ExpressionVisitor
         return expression.accept(this);
     }
 
+    /**
+     * Handles unknown expression types by attempting to visit them.
+     * @param {UnknownExpression} expression - An unknown expression type
+     * @returns {Expressions} The processed expression or throws an error
+     */
     visitUnknown(expression: UnknownExpression)
     {
         if (expression.accept)
@@ -36,174 +82,298 @@ export class ExpressionVisitor
         throw new Error("unsupported type");
     }
 
-
+    /**
+     * Processes a format expression by visiting its components.
+     * @template TOutput - The formatted output type
+     * @param {FormatExpression<TOutput>} expression - The format expression to process
+     * @returns {FormatExpression<TOutput>} The processed format expression
+     */
     visitFormat<TOutput>(expression: FormatExpression<TOutput>)
     {
         const source = this.visit(expression.lhs);
         if (expression.settings)
         {
-            const settings = this.visit(expression.settings)
-            if (source !== expression.lhs || settings != expression.settings)
+            const settings = this.visit(expression.settings);
+            if (source !== expression.lhs || settings !== expression.settings)
             {
                 return new FormatExpression<TOutput>(source, expression.formatter, settings);
             }
         }
         if (source !== expression.lhs)
-            return new FormatExpression<TOutput>(source, expression.formatter, null)
+            return new FormatExpression<TOutput>(source, expression.formatter, null);
         return expression;
     }
 
+    /**
+     * Processes a new expression by visiting its initialization members.
+     * @template T - The expression's value type
+     * @param {NewExpression<T>} expression - The new expression to process
+     * @returns {StrictExpressions} The processed new expression
+     */
     visitNew<T>(expression: NewExpression<T>): StrictExpressions
     {
-        //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        var members: MemberExpression<T, keyof T, T[keyof T]>[] = this.visitArray(expression.init as any) as any;
+        const members = this.visitArray(expression.init as any) as MemberExpression<T, keyof T, T[keyof T]>[];
         if (members !== expression.init)
-        {
             return new NewExpression<T>(...members);
+        return expression;
+    }
+
+    /**
+     * Processes an apply symbol expression by visiting its components.
+     * @template T - The source expression type
+     * @template U - The result type after applying the symbol
+     * @param {ApplySymbolExpression<T, U>} expression - The apply symbol expression to process
+     * @returns {StrictExpressions} The processed expression
+     */
+    visitApplySymbol<T, U>(expression: ApplySymbolExpression<T, U>): StrictExpressions
+    {
+        const source = this.visit(expression.source);
+        const arg = this.visit(expression.argument);
+        if (source !== expression.source || arg !== expression.argument)
+        {
+            if (!this.isTypedExpression(source))
+                throw new Error(`Source expression of type ${source?.['type']} cannot be treated as typed`);
+            return new ApplySymbolExpression<T, U>(source, expression.symbol, arg);
         }
         return expression;
     }
 
-    visitApplySymbol<T, U>(arg0: ApplySymbolExpression<T, U>): StrictExpressions
+    /**
+     * Processes a call expression by visiting its components.
+     * @template T - The source expression type
+     * @template TMethod - The method key type
+     * @param {CallExpression<T, TMethod>} expression - The call expression to process
+     * @returns {StrictExpressions} The processed expression
+     */
+    visitCall<T, TMethod extends keyof T>(expression: CallExpression<T, TMethod>): StrictExpressions
     {
-        var source = this.visit(arg0.source);
-        var arg = this.visit(arg0.argument);
-        if (source !== arg0.source || arg !== arg0.argument)
+        const source = this.visit(expression.source);
+        const args = this.visitArray(expression.arguments as StrictExpressions[]) as StrictExpressions[];
+        if (source !== expression.source || args !== expression.arguments)
         {
             if (!this.isTypedExpression(source))
-                throw new Error('source is of type ' + source['type'] + ' and cannot be considered as a typed expression');
-            return new ApplySymbolExpression<T, U>(source, arg0.symbol, arg);
+                throw new Error(`Source expression of type ${source?.['type']} cannot be treated as typed`);
+            return new CallExpression<T, TMethod>(source, expression.method, args);
         }
-        return arg0;
+        return expression;
     }
-    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): StrictExpressions
+
+    /**
+     * Processes a member expression by visiting its components.
+     * @template T - The source expression type
+     * @template TMember - The member key type
+     * @param {MemberExpression<T, TMember, T[TMember]>} expression - The member expression to process
+     * @returns {StrictExpressions} The processed expression
+     */
+    visitMember<T, TMember extends keyof T>(
+        expression: MemberExpression<T, TMember, T[TMember]>
+    ): StrictExpressions
     {
-        var source = this.visit(arg0.source);
-        var args = (this.visitArray(arg0.arguments as StrictExpressions[])) as StrictExpressions[];
-        if (source !== arg0.source || args !== arg0.arguments)
+        const source = expression.source ? this.visit(expression.source) : expression.source;
+        const member = this.visit(expression.member);
+        if (source !== expression.source || member !== expression.member)
         {
             if (!this.isTypedExpression(source))
-                throw new Error('source is of type ' + source['type'] + ' and cannot be considered as a typed expression');
-            return new CallExpression<T, TMethod>(source, arg0.method, args);
+                throw new Error(`Source expression of type ${source?.['type']} cannot be treated as typed`);
+            return new MemberExpression<T, TMember, T[TMember]>(
+                source as TypedExpression<T>,
+                member,
+                expression.optional
+            );
         }
-        return arg0;
+        return expression;
     }
-    visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): StrictExpressions
+
+    /**
+     * Checks if an expression is a typed expression.
+     * @param {Expressions} expression - The expression to check
+     * @returns {expression is TypedExpression<T>} Type predicate indicating if the expression is typed
+     */
+    isTypedExpression<T>(expression: Expressions): expression is TypedExpression<T>
     {
-        if (arg0.source)
-            var source = this.visit(arg0.source);
-        else
-            source = arg0.source;
-
-        const member = this.visit(arg0.member);
-
-        if (source !== arg0.source || arg0.member !== member)
-        {
-            if (!this.isTypedExpression(source))
-                throw new Error('source is of type ' + source['type'] + ' and cannot be considered as a typed expression');
-            return new MemberExpression<T, TMember, T[TMember]>(source, member, arg0.optional);
-
-        }
-        return arg0;
+        return expression != null && (
+            expression.type === ExpressionType.ConstantExpression ||
+            expression.type === ExpressionType.ParameterExpression ||
+            expression.type === ExpressionType.MemberExpression ||
+            expression.type === ExpressionType.ApplySymbolExpression ||
+            expression.type === ExpressionType.NewExpression ||
+            expression.type === ExpressionType.UnaryExpression ||
+            (expression.type === ExpressionType.TernaryExpression &&
+                this.isTypedExpression(expression.second) &&
+                this.isTypedExpression(expression.third))
+        );
     }
-    isTypedExpression<T>(source: Expressions): source is TypedExpression<T>
+
+    /**
+     * Processes a lambda expression by visiting its body and parameters.
+     * @template T - The lambda's function type
+     * @param {TypedLambdaExpression<T>} expression - The lambda expression to process
+     * @returns {StrictExpressions} The processed expression
+     */
+    visitLambda<T extends (...args: unknown[]) => unknown>(
+        expression: TypedLambdaExpression<T>
+    ): StrictExpressions
     {
-        return source && (
-            source.type == ExpressionType.ConstantExpression ||
-            source.type == ExpressionType.ParameterExpression ||
-            source.type == ExpressionType.MemberExpression ||
-            source.type == ExpressionType.ApplySymbolExpression ||
-            source.type == ExpressionType.NewExpression ||
-            source.type == ExpressionType.TernaryExpression && this.isTypedExpression(source.second) && this.isTypedExpression(source.third));
-    }
-    visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>): StrictExpressions
-    {
-        var parameters = this.visitArray(arg0.parameters as Expressions[]) as unknown as Parameters<T>;
-        var body = this.visit(arg0.body);
-        if (body !== arg0.body || parameters !== arg0.parameters)
-            return new TypedLambdaExpression<T>(body, ...arg0.parameters);
-        return arg0;
+        const parameters = this.visitArray(expression.parameters as Expressions[]) as unknown as Parameters<T>;
+        const body = this.visit(expression.body);
+        if (body !== expression.body || parameters !== expression.parameters)
+            return new TypedLambdaExpression<T>(body, ...parameters);
+        return expression;
     }
 
-    private static defaultComparer<T>(a: T, b: T)
+    /**
+     * Default equality comparer for items.
+     * @template T - The item type
+     * @param {T} a - First item
+     * @param {T} b - Second item
+     * @returns {boolean} True if items are strictly equal
+     */
+    private static defaultComparer<T>(a: T, b: T): boolean
     {
         return a === b;
     }
 
-    visitEnumerable<T, U extends T>(map: IEnumerable<T>, addToNew: (item: U, i: number) => void, visitSingle: (item: T, index: number) => U, compare?: EqualityComparer<T>): void
+    /**
+     * Visits items in an enumerable collection and applies transformation logic.
+     * @template T - The item type
+     * @template U - The transformed item type
+     * @param {IEnumerable<T>} source - Source collection
+     * @param {addToNew} addToNew - Callback to add transformed items
+     * @param {visitSingle} visitSingle - Transformation function per item
+     * @param {EqualityComparer<T>} compare - Optional comparison function
+     */
+    visitEnumerable<T, U extends T>(
+        source: IEnumerable<T>,
+        addToNew: (item: U, index: number) => void,
+        visitSingle: (item: T, index: number) => U,
+        compare?: EqualityComparer<T>
+    ): void
     {
-        if (!compare)
-            compare = ExpressionVisitor.defaultComparer;
-        var tmp: T[] = [];
-        let i = 0;
-        for (var set of map)
+        const comparator = compare ?? ExpressionVisitor.defaultComparer;
+        let temp: T[] = [];
+        let index = 0;
+        for (const item of source)
         {
-            var newSet = visitSingle.call(this, set, i)
-            if (!compare(newSet, set))
+            const transformed = visitSingle.call(this, item, index);
+            if (!comparator(transformed, item))
             {
-                if (tmp)
+                if (temp)
                 {
-                    tmp.forEach(addToNew);
-                    tmp = null;
+                    temp.forEach(addToNew);
+                    temp = null;
                 }
             }
-            if (!tmp)
-                addToNew(newSet, i);
+            if (temp)
+                temp.push(item);
             else
-                tmp.push(set);
-            i++;
+                addToNew(transformed, index);
+
+            index++;
         }
     }
 
-    visitArray<T extends IVisitable<ExpressionVisitor, U>, U extends T>(parameters: T[], preVisit?: (expression: T, index: number) => void): U[]
+    /**
+     * Visits an array of expressions and applies transformation logic.
+     * @template T - The input expression type
+     * @template U - The output expression type
+     * @param {T[]} expressions - Array of expressions to visit
+     * @param {preVisit} preVisit - Optional callback before visiting
+     * @returns {U[]} The transformed array of expressions
+     */
+    visitArray<T extends IVisitable<ExpressionVisitor, U>, U extends T>(
+        expressions: T[],
+        preVisit?: (expression: T, index: number) => void
+    ): U[]
     {
-        var result: U[] = null;
-        this.visitEnumerable<T, U>(parameters, function (set, i)
-        {
-            if (!result)
-                result = new Array<U>(parameters.length);
-            result[i] = set;
-        }, preVisit ? (e, i) =>
-        {
-            preVisit(e, i);
-            return this.visit(e) as unknown as U;
-        } : e => this.visit(e) as unknown as U);
-        return result || parameters as U[];
+        let result: U[] | null = null;
+        this.visitEnumerable<T, U>(
+            expressions,
+            (item, i) =>
+            {
+                if (!result)
+                {
+                    result = new Array<U>(expressions.length);
+                }
+                result[i] = item;
+            },
+            (e, i) =>
+            {
+                preVisit?.(e, i);
+                return this.visit(e) as unknown as U;
+            }
+        );
+        return result || (expressions as U[]);
     }
-    visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
-    {
-        return arg0;
-    }
-    visitParameter(arg0: ParameterExpression<unknown>): StrictExpressions 
-    {
-        return arg0;
-    }
-    visitUnary(arg0: UnaryExpression): Expressions 
-    {
-        var operand = this.visit(arg0.operand);
-        if (operand !== arg0.operand)
-            return new UnaryExpression(operand, arg0.operator);
-        return arg0;
-    }
-    visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>): BinaryExpression<Expressions>
-    {
-        var left = this.visit(expression.left);
-        var right = this.visit(expression.right);
 
-        if (left !== expression.left || right !== expression.right)
-            return new BinaryExpression<Expressions>(left, expression.operator, right);
+    /**
+     * Processes a constant expression (no changes required).
+     * @param {ConstantExpression<unknown>} expression - The constant expression
+     * @returns {StrictExpressions} The same expression
+     */
+    visitConstant(expression: ConstantExpression<unknown>): StrictExpressions
+    {
         return expression;
     }
 
-    visitTernary<T extends Expressions = StrictExpressions>(expression: TernaryExpression<T>): TernaryExpression<Expressions>
+    /**
+     * Processes a parameter expression (no changes required).
+     * @param {ParameterExpression<unknown>} expression - The parameter expression
+     * @returns {StrictExpressions} The same expression
+     */
+    visitParameter(expression: ParameterExpression<unknown>): StrictExpressions
+    {
+        return expression;
+    }
+
+    /**
+     * Processes a unary expression by visiting its operand.
+     * @param {UnaryExpression} expression - The unary expression to process
+     * @returns {Expressions} The processed unary expression
+     */
+    visitUnary(expression: UnaryExpression): Expressions
+    {
+        const operand = this.visit(expression.operand);
+        return operand !== expression.operand
+            ? new UnaryExpression(operand, expression.operator)
+            : expression;
+    }
+
+    /**
+     * Processes a binary expression by visiting its left/right operands.
+     * @template T - The expression's value type
+     * @param {BinaryExpression<T>} expression - The binary expression to process
+     * @returns {BinaryExpression<Expressions>} The processed binary expression
+     */
+    visitBinary<T extends Expressions = StrictExpressions>(
+        expression: BinaryExpression<T>
+    ): BinaryExpression<Expressions>
+    {
+        const left = this.visit(expression.left);
+        const right = this.visit(expression.right);
+        return left !== expression.left || right !== expression.right
+            ? new BinaryExpression<Expressions>(left, expression.operator, right)
+            : expression;
+    }
+
+    /**
+     * Processes a ternary expression by visiting its branches.
+     * @template T - The expression's value type
+     * @param {TernaryExpression<T>} expression - The ternary expression to process
+     * @returns {TernaryExpression<Expressions>} The processed ternary expression
+     */
+    visitTernary<T extends Expressions = StrictExpressions>(
+        expression: TernaryExpression<T>
+    ): TernaryExpression<Expressions>
     {
         const first = this.visit(expression.first);
         const second = this.visit(expression.second);
         const third = this.visit(expression.third);
-
-        if (first !== expression.first || second !== expression.second || third !== expression.third)
-            return new TernaryExpression<Expressions>(first, expression.operator, second, third);
-        return expression;
+        return (
+            first !== expression.first ||
+            second !== expression.second ||
+            third !== expression.third
+        )
+            ? new TernaryExpression<Expressions>(first, expression.operator, second, third)
+            : expression;
     }
-
 }

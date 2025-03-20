@@ -84,7 +84,7 @@ export function content<T extends Element>(el: T, ...children: (Node | Binding<N
     return el;
 }
 
-/**
+/** 
  * Appends children to an element.
  * @param {Element} el - The element to append children to.
  * @param {...Node} children - The children to append.

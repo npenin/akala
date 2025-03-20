@@ -1,8 +1,18 @@
+
 import { Container, Trigger } from '@akala/commands'
 
-export default new Trigger<[options?: Partial<{ element: HTMLElement, warnOnUnkownCommand?: boolean }>], void>('keybinding', (container, options) =>
+/** 
+ * Creates a keybinding trigger that maps keyboard shortcuts to commands.
+ * @param {Partial<{ element: HTMLElement, warnOnUnknownCommand?: boolean }>} [options] - Configuration options.
+ * @description Listens for keydown events and resolves command sequences from pressed keys.
+ */
+export default new Trigger<[options?: Partial<{ element: HTMLElement, warnOnUnknownCommand?: boolean }>], void>('keybinding', (container, options) =>
 {
     let chord = container;
+    /**
+     * Attach keydown event listener to specified element (or document)
+     * @param {HTMLElement} targetElement - Element to attach listener to
+     */
     (options?.element ?? document).addEventListener('keydown', (ev: KeyboardEvent) =>
     {
         let sequence = '';
@@ -14,30 +24,27 @@ export default new Trigger<[options?: Partial<{ element: HTMLElement, warnOnUnko
             sequence += 'Shift+';
         if (ev.altKey)
             sequence += 'Alt+';
-        if (ev.key == 'Alt' || ev.key == 'Shift' || ev.key == 'Ctrl' || ev.key == 'Meta')
+        if (['Alt', 'Shift', 'Ctrl', 'Meta'].includes(ev.key))
             return;
-        if (ev.key)
-            sequence += ev.key;
-        else
-            sequence += ev.code;
+
+        sequence += ev.key || ev.code;
 
         const cmd = container.resolve(sequence);
         if (chord !== container && !cmd)
         {
-            if (options?.warnOnUnkownCommand)
-                console.error('no command matches ' + chord.name + ', ' + sequence);
+            if (options?.warnOnUnknownCommand)
+                console.error(`No command matches ${chord.name}, ${sequence}`);
             return;
         }
         if (!cmd)
         {
-            if (options?.warnOnUnkownCommand)
-                console.error('no command matches ' + sequence);
+            if (options?.warnOnUnknownCommand)
+                console.error(`No command matches ${sequence}`);
             return;
         }
         if (cmd instanceof Container)
-        {
             chord = cmd;
-        }
-        container.dispatch(cmd, ev);
+        else
+            container.dispatch(cmd, ev);
     });
 })

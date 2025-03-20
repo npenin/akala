@@ -2,8 +2,7 @@ import { Event, EventEmitter } from '@akala/core';
 
 
 /**
- * Previous context, for capturing
- * page exit events.
+ * Previous context, for capturing page exit events.
  */
 
 // let prevContext;
@@ -38,7 +37,7 @@ let running: boolean;
 
 let hashbang = false;
 /**
- * Detect click event
+ * Detect click event type based on touch support
  */
 const clickEvent = ('undefined' !== typeof document) && document.ontouchstart ? 'touchstart' : 'click';
 
@@ -51,12 +50,18 @@ export interface StartOption
     hashbang?: boolean;
 }
 
-export class LocationService extends EventEmitter<{ changing: Event<[path: string]>, change: Event<[path: string, state?: any]> }>
+export class LocationService extends EventEmitter<{
+    changing: Event<[path: string]>;
+    change: Event<[path: string, state?: any]>;
+}>
 {
     private loaded = false;
     private onpopstateBound = this.onpopstate.bind(this);
     private onclickBound = this.onclick.bind(this);
 
+    /**
+     * Initializes the LocationService, binding necessary event listeners and checking document readiness.
+     */
     constructor()
     {
         super();
@@ -68,8 +73,7 @@ export class LocationService extends EventEmitter<{ changing: Event<[path: strin
         if (document.readyState === 'complete')
         {
             this.loaded = true;
-        }
-        else
+        } else
         {
             window.addEventListener('load', () =>
             {
@@ -78,61 +82,45 @@ export class LocationService extends EventEmitter<{ changing: Event<[path: strin
         }
     }
 
-    private onclick(e)
+    /**
+     * Event handler for click/touch events to intercept navigation and handle route changes.
+     * @param {MouseEvent | TouchEvent} e - The click/touch event object
+     */
+    private onclick(e: MouseEvent | TouchEvent)
     {
-
         if (1 !== this.which(e)) return;
 
         if (e.metaKey || e.ctrlKey || e.shiftKey) return;
         if (e.defaultPrevented) return;
 
+        let el = (e as any).path ? (e as any).path[0] : e.target as Node;
+        while (el && el.nodeName !== 'A') el = el.parentNode;
+        if (!el || el.nodeName !== 'A') return;
 
+        const aElement = el as HTMLAnchorElement;
 
-        // ensure link
-        // use shadow dom when available
-        let el = e.path ? e.path[0] : e.target;
-        while (el && 'A' !== el.nodeName) el = el.parentNode;
-        if (!el || 'A' !== el.nodeName) return;
+        if (aElement.hasAttribute('download') || aElement.getAttribute('rel') === 'external') return;
 
+        const link = aElement.getAttribute('href');
+        if (!hashbang && aElement.pathname === location.pathname && (aElement.hash || '#' === link)) return;
 
+        if (link && link.includes('mailto:')) return;
+        if (aElement.target) return;
 
-        // Ignore if tag has
-        // 1. "download" attribute
-        // 2. rel="external" attribute
-        if (el.hasAttribute('download') || el.getAttribute('rel') === 'external') return;
+        if (!this.sameOrigin(aElement.href)) return;
 
-        // ensure non-hash for the same path
-        const link = el.getAttribute('href');
-        if (!hashbang && el.pathname === location.pathname && (el.hash || '#' === link)) return;
+        let path = aElement.pathname + aElement.search + (aElement.hash || '');
 
-
-
-        // Check for mailto: in the href
-        if (link && link.indexOf('mailto:') > -1) return;
-
-        // check target
-        if (el.target) return;
-
-        // x-origin
-        if (!this.sameOrigin(el.href)) return;
-
-
-
-        // rebuild path
-        let path = el.pathname + el.search + (el.hash || '');
-
-        // strip leading "/[drive letter]:" on NW.js on Windows
         if (typeof process !== 'undefined' && path.match(/^\/[a-zA-Z]:\//))
         {
             path = path.replace(/^\/[a-zA-Z]:\//, '/');
         }
 
-        // same page
         const orig = path;
 
-        if (path.indexOf(base) === 0)
+        if (path.startsWith(base))
         {
-            path = path.substr(base.length);
+            path = path.slice(base.length);
         }
 
         if (hashbang) path = path.replace('#!', '');
@@ -144,29 +132,37 @@ export class LocationService extends EventEmitter<{ changing: Event<[path: strin
     }
 
     /**
-     * Event button.
+     * Determines the mouse button pressed in the event.
+     * @param {MouseEvent | TouchEvent} e - The event object
+     * @returns {number} Mouse button code (1 for left click)
      */
-
-    private which(e)
+    private which(e: MouseEvent | TouchEvent): number
     {
-        e = e || window.event;
-        return null === e.which ? e.button : e.which;
+        if (e instanceof MouseEvent)
+        {
+            return (e as MouseEvent).which || e.button;
+        } else
+        {
+            return 1;
+        }
     }
 
     /**
-     * Check if `href` is the same origin.
+     * Checks if the URL is from the same origin as the current page.
+     * @param {string} href - The URL to check
+     * @returns {boolean} True if same origin
      */
-
-    private sameOrigin(href)
+    private sameOrigin(href: string): boolean
     {
-        let origin = location.protocol + '//' + location.hostname;
-        if (location.port) origin += ':' + location.port;
-        return (href && (0 === href.indexOf(origin)));
+        const origin = `${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ''}`;
+        return href.startsWith(origin);
     }
 
-
-
-    private onpopstate(e)
+    /**
+     * Handles popstate events for browser history changes.
+     * @param {PopStateEvent} e - The popstate event
+     */
+    private onpopstate(e: PopStateEvent)
     {
         if (!this.loaded) return;
         if (e.state)
@@ -179,86 +175,88 @@ export class LocationService extends EventEmitter<{ changing: Event<[path: strin
         }
     }
 
+    /**
+     * Starts the location service with configuration options.
+     * @param {StartOption} options - Service configuration
+     */
     public start(options: StartOption)
     {
         options = options || {};
-        if (running)
-            return;
+        if (running) return;
         running = true;
-        if (false === options.dispatch)
-            dispatch = false;
-        // if (false === options.decodeURLComponents)
-        //     decodeURLComponents = false;
-        if (false !== options.popstate)
+        if (options.dispatch === false) dispatch = false;
+        if (options.hashbang === true) hashbang = true;
+
+        if (options.popstate !== false)
+        {
             window.addEventListener('popstate', this.onpopstateBound, false);
-        if (false !== options.click)
-            document.addEventListener(clickEvent, this.onclickBound, false);
-        if (true === options.hashbang)
-            hashbang = true;
-        if (!dispatch)
-            return;
-        const url = (hashbang && ~location.hash.indexOf('#/')) ? location.hash.substr(2) + location.search : location.pathname + location.search + location.hash;
+        }
+        if (options.click !== false)
+        {
+            document.addEventListener(clickEvent, this.onclickBound as EventListener, false);
+        }
+
+        if (!dispatch) return;
+
+        const url = hashbang && location.hash.includes('#/')
+            ? location.hash.slice(2) + location.search
+            : location.pathname + location.search + location.hash;
         this.replace(url, null, true, dispatch);
     }
 
     /**
- * Replace `path` with optional `state` object.
- *
- * @param {string} path
- * @param {Object=} state
- * @param {boolean=} init
- * @param {boolean=} dispatch
- * @return {!Context}
- * @api public
- */
+     * Pushes a new state into the browser's history.
+     * @param {string} path - Path to navigate to
+     */
     public set(path: string)
     {
-        if (hashbang && path[0] != '#')
+        if (hashbang && path[0] !== '#')
+        {
             location.assign('#' + path);
-        else
+        } else
+        {
             history.pushState(null, document.title, path);
+        }
     }
 
+    /**
+     * Refreshes the current route while preserving state.
+     */
     public refresh()
     {
         if (running)
             this.dispatch(this.current, false);
     }
 
-    public replace(path: string, state?: unknown, init?: boolean, dispatch?: boolean)
+    /**
+     * Replaces the current URL path in browser history.
+     * @param {string} path - New path
+     * @param {unknown} [state] - Optional state object
+     * @param {boolean} [init] - Initialization flag
+     * @param {boolean} [dispatch] - Dispatch flag
+     * @returns {string} Current path
+     */
+    public replace(path: string, state?: unknown, init?: boolean, dispatch?: boolean): string
     {
-        // var ctx = new Context(path, state);
         this.current = path;
-        // ctx.init = init;
-        // ctx.save(); // save before dispatching, which may redirect
-        if (false !== dispatch)
+        if (dispatch !== false)
             this.dispatch(path, false);
         return path;
     }
 
     /**
-     * Current path being processed
-     * @type {string}
+     * Current path being processed.
      */
     public current = '';
 
     /**
-     * Number of pages navigated to.
-     * @type {number}
-     *
-     *     page.len == 0;
-     *     page('/login');
-     *     page.len == 1;
+     * Number of pages navigated.
      */
-
     public len = 0;
 
     /**
-     * Unbind click and popstate event handlers.
-     *
-     * @api public
+     * Stops the service and unbinds event listeners.
      */
-
     public stop()
     {
         if (!running) return;
@@ -270,63 +268,51 @@ export class LocationService extends EventEmitter<{ changing: Event<[path: strin
     }
 
     /**
-     * Show `path` with optional `state` object.
-     *
-     * @param {string} path
-     * @param {Object=} state
-     * @param {boolean=} dispatch
-     * @param {boolean=} push
-     * @return {!Context}
-     * @api public
+     * Navigates to a new path with optional state.
+     * @param {string} path - Path to navigate to
+     * @param {unknown} [state] - Optional state object
+     * @param {boolean} [dispatch] - Trigger events flag
+     * @param {boolean} [push=true] - Push to history flag
+     * @returns {unknown} State object
      */
-
-    public show(path: string, state?: unknown, dispatch?: boolean, push = true)
+    public show(path: string, state?: unknown, dispatch?: boolean, push: boolean = true): unknown
     {
         this.current = path;
-        if (!dispatch)
-            this.dispatch(path, push);
-        // if (false !== ctx.handled && false !== push) ctx.pushState();
+        if (!dispatch) this.dispatch(path, push);
         return state;
     }
 
     /**
-     * Goes back in the history
-     * Back should always let the current route push state and then go back.
-     *
-     * @param {string} path - fallback path to go back if no more history exists, if undefined defaults to page.base
-     * @param {Object=} state
-     * @api public
+     * Navigates back in history with fallback path.
+     * @param {string} [path] - Fallback path if history is empty
+     * @param {unknown} [state] - State for fallback navigation
      */
-
-    public back(path: string, state: unknown)
+    public back(path?: string, state?: unknown)
     {
         if (this.len > 0)
         {
-            // this may need more testing to see if all browsers
-            // wait for the next tick to go back in history
             history.back();
             this.len--;
         } else if (path)
         {
-            setTimeout(function ()
-            {
-                this.show(path, state);
-            });
+            setTimeout(() => this.show(path, state));
         } else
         {
-            setTimeout(function ()
-            {
-                this.show(base, state);
-            });
+            setTimeout(() => this.show(base, state));
         }
     }
 
+    /**
+     * Dispatches route change events and updates browser state.
+     * @param {string} path - New path
+     * @param {any} [state] - Optional state object
+     */
     public dispatch(path: string, state?: any)
     {
         if (running)
-            this.emit('changing', path)
+            this.emit('changing', path);
         history.pushState(state || null, '', path);
         if (running)
-            this.emit('change', path, state)
+            this.emit('change', path, state);
     }
 }

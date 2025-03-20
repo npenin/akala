@@ -1,9 +1,21 @@
 import { ErrorWithStatus, HttpStatusCode } from "../index.js";
 
+/** 
+ * Level 2 operators used in URI templates (RFC 6570).
+ */
 export type OperatorL2 = '+' | '#';
+/** 
+ * Level 3 operators used in URI templates (RFC 6570).
+ */
 export type OperatorL3 = '.' | '/' | ';' | '?' | '&';
+/** 
+ * Reserved operators used in URI templates (RFC 6570).
+ */
 export type OperatorReserved = '=' | ',' | '!' | '@' | '|';
-export type Operators = OperatorL2 | OperatorL3 | OperatorReserved
+/** 
+ * Union type combining all URI template operators.
+ */
+export type Operators = OperatorL2 | OperatorL3 | OperatorReserved;
 
 const first = {
     '': '',
@@ -83,11 +95,18 @@ export const restricted = {
     '=': 3,
 }
 
+/** 
+ * Checks if a character code represents an ASCII alphabetic character (A-Z, a-z).
+ * 
+ * @param charcode - Unicode code point of the character
+ * @returns True if the character is ASCII A-Z or a-z
+ */
 function isAscii(charcode: number)
 {
     return charcode >= 0x41 && charcode <= 0x5a ||
         charcode >= 0x61 && charcode <= 0x7a;
 }
+
 function isDigit(charcode: number)
 {
     return charcode >= 0x30 && charcode <= 0x39;
@@ -807,7 +826,7 @@ export function tryParse(s: string): { template: UriTemplate, warnings: Error[] 
                         expansion = { ref: '' };
                         lastOffset = i;
                     }
-                    if (/[^a-z0-9_-\}\*\:%]/i.test(char))
+                    if (/[^a-z0-9_\-\}\*\:%]/i.test(char))
                         warnings.push(new Error(`an invalid character (${char}) war found`));
                 }
 

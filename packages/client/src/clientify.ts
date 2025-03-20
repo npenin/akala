@@ -1,29 +1,28 @@
 import { Module, eachAsync } from '@akala/core';
-import * as common from './common.js'
-import * as routing from './router.js'
-import { LocationService } from './locationService.js'
+import * as common from './common.js';
+import * as routing from './router.js';
+import { LocationService } from './locationService.js';
 export * from './template.js';
 export * from './outlet.js';
-// import './outlet.js';
 import { ScopeImpl } from './scope.js';
 
 export const loadScript = load;
 
-export * from './scope.js'
+export * from './scope.js';
 
-export const router = routing.router
-export { Router } from './router.js'
+export const router = routing.router;
+export { Router } from './router.js';
 export { LocationService };
 export const init = Module.prototype.activate;
 
-import './controlsv2/outlet.js'
-export * from './controlsv2/page.js'
-export * from './controlsv2/shared.js'
-export * from './controlsv2/each.js'
-export * from './controlsv2/eachAsTemplate.js'
+import './controlsv2/outlet.js';
+export * from './controlsv2/page.js';
+export * from './controlsv2/shared.js';
+export * from './controlsv2/each.js';
+export * from './controlsv2/eachAsTemplate.js';
 
-import HotKeyTrigger from './hotkeytrigger.js'
-export { HotKeyTrigger }
+import HotKeyTrigger from './hotkeytrigger.js';
+export { HotKeyTrigger };
 
 const mainRouter = routing.router('mainRouter');
 mainRouter.useMiddleware(common.serviceModule.register('$preRouter', routing.router('preRouter')));
@@ -40,9 +39,13 @@ export const run: typeof common.bootstrapModule.ready = common.bootstrapModule.r
 common.bootstrapModule.activate([], function ()
 {
     common.bootstrapModule.register('$rootScope', new ScopeImpl());
-
 });
 
+/**
+ * Asynchronously loads and executes multiple scripts in sequence.
+ * @param scripts Array of script URLs to load.
+ * @returns Promise resolving when all scripts are loaded.
+ */
 export function load(...scripts: string[]): Promise<unknown>
 {
     const firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
@@ -56,7 +59,7 @@ export function load(...scripts: string[]): Promise<unknown>
         }));
         scriptTag.src = script; // set the source of the script to your script
         return result;
-    })
+    });
 }
 
 common.serviceModule.ready(['$location'], function ($location: LocationService)
