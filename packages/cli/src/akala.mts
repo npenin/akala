@@ -1,4 +1,6 @@
-#!/usr/bin/env -S node --enable-source-maps
+#!/usr/bin/env node
+process.setSourceMapsEnabled(true);
+
 import { logger, LogLevels } from "@akala/core";
 import { cli } from "./cli.js";
 import program, { buildCliContextFromProcess, ErrorMessage } from "./index.js";
