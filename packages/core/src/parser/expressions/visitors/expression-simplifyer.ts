@@ -12,6 +12,10 @@ import { ExpressionComparer } from "./expression-comparer.js";
  */
 export class ExpressionSimplifyer extends ExpressionVisitor
 {
+    /**
+     * Creates a new instance with the provided source expression.
+     * @param source - The original expression to simplify
+     */
     constructor(private source: Expressions)
     {
         super();
@@ -23,6 +27,13 @@ export class ExpressionSimplifyer extends ExpressionVisitor
 
     private contexttualSource: Expressions;
 
+    /**
+     * Processes a member expression during simplification.
+     * @template T - The source type
+     * @template TMember - The member key type
+     * @param arg0 - The member expression to simplify
+     * @returns - The simplified member expression
+     */
     public visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): StrictExpressions
     {
         if (arg0.source == undefined)
@@ -41,6 +52,12 @@ export class ExpressionSimplifyer extends ExpressionVisitor
         return super.visitMember(arg0);
     }
 
+    /**
+     * Simplifies a new expression by processing its initialization members.
+     * @template T - The new expression's value type
+     * @param expression - The new expression to simplify
+     * @returns - The simplified new expression
+     */
     visitNew<T>(expression: NewExpression<T>): StrictExpressions
     {
         // var members: MemberExpression<any, any, any>[] = null;
