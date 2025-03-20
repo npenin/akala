@@ -20,7 +20,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextPa
 
     /**
      * Adds middleware with a specified priority.
-     * @param {number} priority - The priority of the middleware.
+     * @param {number} priority - The priority of the middleware (the lowest first).
      * @param {...AnySyncMiddleware<T, TSpecialNextParam>} middlewares - The middlewares to add.
      * @returns {this} The instance of the middleware composite.
      */
@@ -32,7 +32,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextPa
 
     /**
      * Adds standard middleware with a specified priority.
-     * @param {number} priority - The priority of the middleware.
+     * @param {number} priority - The priority of the middleware (the lowest first).
      * @param {...Function} middlewares - The middlewares to add.
      * @returns {this} The instance of the middleware composite.
      */
@@ -43,7 +43,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextPa
 
     /**
      * Adds error middleware with a specified priority.
-     * @param {number} priority - The priority of the middleware.
+     * @param {number} priority - The priority of the middleware (the lowest first).
      * @param {...Function} middlewares - The middlewares to add.
      * @returns {this} The instance of the middleware composite.
      */
