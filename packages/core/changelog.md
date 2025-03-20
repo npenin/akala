@@ -1,5 +1,17 @@
-# (2025-03-20)
+#  (2025-03-20)
 
-### Bug Fixes
 
-* improve Router next param support + documentation 207c326
+* chore : code cleanup eae1150
+
+
+### Features
+
+* EventEmitter is now a TeardownManager e19c5d8
+
+
+### BREAKING CHANGES
+
+* getSetter and ParsedOneOf are not accessible anylonger
+
+
+
