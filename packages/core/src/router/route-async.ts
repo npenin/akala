@@ -1,4 +1,4 @@
-import { MiddlewarePromise } from '../middlewares/shared.js';
+import { MiddlewarePromise, SpecialNextParam } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
 import { Routable, RouteBuilderArguments } from "./route.js";
 import { MiddlewareAsync } from "../middlewares/shared.js";
@@ -6,28 +6,62 @@ import { UriTemplate } from '../uri-template/index.js';
 import { UrlTemplate } from '../index.js';
 
 /**
- * Asynchronous route handler.
- * @param {string} path - The route path.
- * @param {Function} handler - The route handler function.
+ * Represents an asynchronous route handler for URI template matching in middleware chains.
+ * 
+ * This middleware class processes routes using URI templates and manages asynchronous middleware execution.
+ * 
+ * @template T - The context type containing the routable request and parameters.
+ * @template TSpecialNextParam - The type for special next parameters (defaults to {@link SpecialNextParam})
  */
-export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends MiddlewareCompositeAsync<T>
+export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]], TSpecialNextParam extends SpecialNextParam = SpecialNextParam> extends MiddlewareCompositeAsync<T, TSpecialNextParam>
 {
-    routePath: UriTemplate;
+    /**
+     * Creates an instance of MiddlewareRouteAsync with a route path or URI template.
+     * @template T - The context type containing the routable request and parameters.
+     * @template TSpecialNextParam - The type for special next parameters (defaults to SpecialNextParam)
+     * @param {string | UriTemplate} route - The route path or URI template defining the route.
+     */
     constructor(route: string | UriTemplate)
     {
         super(route.toString());
-
         this.routePath = Array.isArray(route) ? route : UrlTemplate.parse(route);
     }
 
-    route(...args: RouteBuilderArguments): MiddlewareRouteAsync<T>
+    /**
+     * Parsed URI template used for route matching
+     * 
+     * @type {UriTemplate}
+     */
+    routePath!: UriTemplate;
+
+    /**
+     * Creates a new route configuration chain with optional parameters.
+     * 
+     * @function route
+     * @param {...RouteBuilderArguments} args - Route configuration parameters (method, path, etc.)
+     * @returns {MiddlewareRouteAsync<T, TSpecialNextParam>} Newly created route instance
+     */
+    route(...args: RouteBuilderArguments): MiddlewareRouteAsync<T, TSpecialNextParam>
     {
-        return new MiddlewareRouteAsync<T>(...args);
+        return new MiddlewareRouteAsync<T, TSpecialNextParam>(...args);
     }
 
+    /**
+     * Optional predicate to determine route applicability
+     * 
+     * A function that checks if the route should handle the current request
+     * 
+     * @type {(x: T[0]) => boolean}
+     */
     isApplicable?: (x: T[0]) => boolean;
 
-    handle(...context: T): MiddlewarePromise
+    /**
+     * Executes the route's middleware chain asynchronously.
+     * 
+     * @param {...T} context - Execution context containing the routable request and parameters
+     * @returns {MiddlewarePromise<TSpecialNextParam>} Resolution promise indicating completion
+     */
+    async handle(...context: T): MiddlewarePromise<TSpecialNextParam>
     {
         const req = context[0] as Routable;
         const isMatch = UrlTemplate.match(req.path, this.routePath);
@@ -37,7 +71,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends Mi
             const oldPath = req.path;
             const c = oldPath[oldPath.length - isMatch.remainder.length];
             if (c && c !== '/')
-                return Promise.resolve();
+                return Promise.resolve(undefined);
             req.path = isMatch.remainder || '/';
 
             const oldParams = req.params;
@@ -45,42 +79,64 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends Mi
 
             try
             {
-                return super.handle(...(context as unknown as T))
+                return super.handle(...context);
             }
             finally
             {
                 req.params = oldParams;
                 req.path = oldPath;
-            };
+            }
         }
-        return Promise.resolve();
+        return Promise.resolve(undefined);
     }
 
-    public useMiddleware(route: string | UriTemplate, ...middlewares: MiddlewareAsync<T>[]): this
-    public useMiddleware(...middlewares: MiddlewareAsync<T>[]): this
-    public useMiddleware(route: string | UriTemplate | MiddlewareAsync<T>, ...middlewares: MiddlewareAsync<T>[]): this
+    /**
+     * Adds middleware to the route chain, supporting route definitions and middleware functions.
+     * 
+     * @function useMiddleware
+     * @param {string | UriTemplate | MiddlewareAsync<T, TSpecialNextParam>} routeOrMiddleware - 
+     *   Either a route definition (string/UriTemplate) or a middleware function
+     * @param {...MiddlewareAsync<T, TSpecialNextParam>} middlewares - Additional middleware functions
+     * @returns {this} Current middleware instance for method chaining
+     */
+    public useMiddleware(...middlewares: MiddlewareAsync<T, TSpecialNextParam>[]): this;
+    public useMiddleware(
+        routeOrMiddleware: string | UriTemplate | MiddlewareAsync<T, TSpecialNextParam>,
+        ...middlewares: MiddlewareAsync<T, TSpecialNextParam>[]
+    ): this;
+    public useMiddleware(routeOrMiddleware: string | UriTemplate | MiddlewareAsync<T, TSpecialNextParam>, ...middlewares: MiddlewareAsync<T, TSpecialNextParam>[]): this
     {
-        if (typeof route === 'string' || Array.isArray(route))
+        if (typeof routeOrMiddleware === 'string' || Array.isArray(routeOrMiddleware))
         {
-            const routed = new MiddlewareRouteAsync<T>(route);
+            const routed = new MiddlewareRouteAsync<T, TSpecialNextParam>(routeOrMiddleware);
             routed.useMiddleware(...middlewares);
             super.useMiddleware(routed);
         }
         else
-            super.useMiddleware(route, ...middlewares);
+            super.useMiddleware(routeOrMiddleware, ...middlewares);
         return this;
     }
 
-    public use(route: string | UriTemplate, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(route: string | UriTemplate | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    /**
+     * Registers route handlers or middleware functions.
+     * 
+     * @function use
+     * @param {(string | UriTemplate | ((...args: T) => Promise<unknown>))} routeOrHandler - 
+     *   Route definition (string/UriTemplate) or handler function
+     * @param {...((...args: T) => Promise<unknown>)} handlers - Additional handler functions
+     * @returns {this} Current middleware instance for method chaining
+     */
+    public use(routeOrHandler: string | UriTemplate, ...handlers: ((...args: T) => Promise<unknown>)[]): this;
+    public use(...handlers: ((...args: T) => Promise<unknown>)[]): this;
+    public use(routeOrHandler: string | UriTemplate | ((...args: T) => Promise<unknown>), ...handlers: ((...args: T) => Promise<unknown>)[]): this
     {
-        if (typeof route === 'string' || Array.isArray(route))
+        if (typeof routeOrHandler === 'string' || Array.isArray(routeOrHandler))
         {
-            const routed = new MiddlewareRouteAsync<T>(route);
-            routed.use(...middlewares);
+            const routed = new MiddlewareRouteAsync<T, TSpecialNextParam>(routeOrHandler);
+            routed.use(...handlers);
             return super.useMiddleware(routed);
         }
-        return super.use(route, ...middlewares);
+
+        return super.use(routeOrHandler, ...handlers);
     }
 }

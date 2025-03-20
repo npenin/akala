@@ -1,6 +1,6 @@
 import { UrlTemplate } from '../index.js';
 import { MiddlewareComposite } from '../middlewares/composite-sync.js';
-import { Middleware, MiddlewareResult } from '../middlewares/shared.js';
+import { Middleware, MiddlewareResult, SpecialNextParam } from '../middlewares/shared.js';
 import { UriTemplate } from '../uri-template/index.js';
 
 export interface Routable
@@ -10,10 +10,10 @@ export interface Routable
 }
 
 export type RouteBuilderArguments = [route: string | UriTemplate]
-export type RouteBuilder<T extends [Routable, ...unknown[]]> = (...args: RouteBuilderArguments) => MiddlewareRoute<T>;
+export type RouteBuilder<T extends [Routable, ...unknown[]], TSpecialNextParam extends SpecialNextParam = SpecialNextParam> = (...args: RouteBuilderArguments) => MiddlewareRoute<T, TSpecialNextParam>;
 
 
-export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends MiddlewareComposite<T>
+export class MiddlewareRoute<T extends [Routable, ...unknown[]], TSpecialNextParam extends SpecialNextParam = SpecialNextParam> extends MiddlewareComposite<T, TSpecialNextParam>
 {
     // delimiter: string;
     routePath: UriTemplate;
@@ -29,14 +29,14 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
         // this.match = match(route.toString(), options)
     }
 
-    route(...args: RouteBuilderArguments): MiddlewareRoute<T>
+    route(...args: RouteBuilderArguments): MiddlewareRoute<T, TSpecialNextParam>
     {
-        return new MiddlewareRoute<T>(...args);
+        return new MiddlewareRoute<T, TSpecialNextParam>(...args);
     }
 
     isApplicable?: (x: T[0]) => boolean;
 
-    handle(...context: T): MiddlewareResult
+    handle(...context: T): MiddlewareResult<TSpecialNextParam>
     {
         const req = context[0] as Routable;
         const isMatch = UrlTemplate.match(req.path, this.routePath);
@@ -65,13 +65,13 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
         return;
     }
 
-    public useMiddleware(route: string | UriTemplate, ...middlewares: Middleware<T>[]): this
-    public useMiddleware(...middlewares: Middleware<T>[]): this
-    public useMiddleware(route: string | UriTemplate | Middleware<T>, ...middlewares: Middleware<T>[]): this
+    public useMiddleware(route: string | UriTemplate, ...middlewares: Middleware<T, TSpecialNextParam>[]): this
+    public useMiddleware(...middlewares: Middleware<T, TSpecialNextParam>[]): this
+    public useMiddleware(route: string | UriTemplate | Middleware<T, TSpecialNextParam>, ...middlewares: Middleware<T, TSpecialNextParam>[]): this
     {
         if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRoute<T>(route);
+            const routed = new MiddlewareRoute<T, TSpecialNextParam>(route);
             routed.useMiddleware(...middlewares);
             super.useMiddleware(routed);
         }
@@ -86,7 +86,7 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
     {
         if (typeof route === 'string' || Array.isArray(route))
         {
-            const routed = new MiddlewareRoute<T>(route);
+            const routed = new MiddlewareRoute<T, TSpecialNextParam>(route);
             routed.use(...middlewares);
             return super.useMiddleware(routed);
         }
