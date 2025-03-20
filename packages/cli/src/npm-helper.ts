@@ -13,6 +13,10 @@ if (platform() == 'win32')
 
 export default
     {
+        async setup(path?: string, options?: { production?: boolean }): Promise<void>
+        {
+            await spawnAsync(npm, { shell: true }, 'i', '--prefix', path || process.cwd(), ...(options?.production ? ['--production'] : []));
+        },
         async install(packageName: string, path?: string): Promise<void>
         {
             await spawnAsync(npm, { shell: true }, 'i', packageName, '--prefix', path || process.cwd());
