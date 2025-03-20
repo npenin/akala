@@ -28,10 +28,14 @@ export async function outputHelper(outputFile: string | Writable | undefined, na
         else if (!force)
             throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
 
-        if (!force && await promisify(fs.exists)(outputFile))
-            throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
-        else
-            exists = false;
+        if (!force)
+            if (await promisify(fs.exists)(outputFile))
+                throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
+            else
+            {
+                console.log(force)
+                exists = false;
+            }
     }
 
     const outputFolder = path.dirname(outputFile);
