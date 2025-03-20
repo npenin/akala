@@ -1907,6 +1907,9 @@
                 "allowedPrefixesToDirectConnectGateway": {
                     "$ref": "#/$defs/RouteFilterPrefixList"
                 },
+                "associatedCoreNetwork": {
+                    "$ref": "#/$defs/AssociatedCoreNetwork"
+                },
                 "virtualGatewayId": {
                     "$ref": "#/$defs/VirtualGatewayId"
                 },
@@ -1983,6 +1986,26 @@
             }
         },
         "CIDR": {
+            "type": "string"
+        },
+        "AssociatedCoreNetwork": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/CoreNetworkIdentifier"
+                },
+                "ownerAccount": {
+                    "$ref": "#/$defs/OwnerAccount"
+                },
+                "attachmentId": {
+                    "$ref": "#/$defs/CoreNetworkAttachmentId"
+                }
+            }
+        },
+        "CoreNetworkIdentifier": {
+            "type": "string"
+        },
+        "CoreNetworkAttachmentId": {
             "type": "string"
         },
         "VirtualGatewayId": {

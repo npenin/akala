@@ -29,8 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ViewArns": {}
                     }
                 }
             }
@@ -160,6 +159,39 @@
             }
         },
         {
+            "name": "GetManagedView",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/GetManagedView"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetManagedViewOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetManagedViewInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ManagedViewArn": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListIndexesForMembers",
             "config": {
                 "http": {
@@ -187,9 +219,44 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "AccountIdList": {},
+                        "MaxResults": {},
+                        "NextToken": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListManagedViews",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/ListManagedViews"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListManagedViewsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListManagedViewsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "ServicePrincipal": {}
                     }
                 }
             }
@@ -222,9 +289,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Filters": {},
+                        "MaxResults": {},
+                        "ViewArn": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -257,8 +325,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -295,8 +363,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -329,8 +396,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "QueryString": {},
+                        "MaxResults": {},
+                        "ViewArn": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -367,8 +436,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -405,8 +474,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -457,6 +526,20 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "BatchGetViewInput": {
+            "type": "object",
+            "properties": {
+                "ViewArns": {
+                    "$ref": "#/$defs/ViewArnList"
+                }
+            }
+        },
+        "ViewArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
         },
         "BatchGetViewOutput": {
             "type": "object",
@@ -537,20 +620,6 @@
                 }
             }
         },
-        "BatchGetViewInput": {
-            "type": "object",
-            "properties": {
-                "ViewArns": {
-                    "$ref": "#/$defs/ViewArnList"
-                }
-            }
-        },
-        "ViewArnList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/smithy.api#String"
-            }
-        },
         "GetAccountLevelServiceConfigurationOutput": {
             "type": "object",
             "properties": {
@@ -628,6 +697,80 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
+        "GetManagedViewInput": {
+            "type": "object",
+            "properties": {
+                "ManagedViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetManagedViewOutput": {
+            "type": "object",
+            "properties": {
+                "ManagedView": {
+                    "$ref": "#/$defs/ManagedView"
+                }
+            }
+        },
+        "ManagedView": {
+            "type": "object",
+            "properties": {
+                "ManagedViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ManagedViewName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TrustedService": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Scope": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IncludedProperties": {
+                    "$ref": "#/$defs/IncludedPropertyList"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/SearchFilter"
+                },
+                "ResourcePolicy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Version": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListIndexesForMembersInput": {
+            "type": "object",
+            "properties": {
+                "AccountIdList": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "AccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "AccountId": {
+            "type": "string"
+        },
         "ListIndexesForMembersOutput": {
             "type": "object",
             "properties": {
@@ -662,28 +805,53 @@
                 }
             }
         },
-        "ListIndexesForMembersInput": {
+        "ListManagedViewsInput": {
             "type": "object",
             "properties": {
-                "AccountIdList": {
-                    "$ref": "#/$defs/AccountIdList"
-                },
                 "MaxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
-        "AccountIdList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AccountId"
+        "ListManagedViewsOutput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ManagedViews": {
+                    "$ref": "#/$defs/ManagedViewArnList"
+                }
             }
         },
-        "AccountId": {
-            "type": "string"
+        "ManagedViewArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "ListResourcesInput": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/SearchFilter"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
         },
         "ListResourcesOutput": {
             "type": "object",
@@ -751,20 +919,14 @@
                 }
             }
         },
-        "ListResourcesInput": {
+        "ListSupportedResourceTypesInput": {
             "type": "object",
             "properties": {
-                "Filters": {
-                    "$ref": "#/$defs/SearchFilter"
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "ViewArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
@@ -796,14 +958,11 @@
                 }
             }
         },
-        "ListSupportedResourceTypesInput": {
+        "ListTagsForResourceInput": {
             "type": "object",
             "properties": {
-                "NextToken": {
+                "resourceArn": {
                     "$ref": "#/$defs/smithy.api#String"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
         },
@@ -815,13 +974,25 @@
                 }
             }
         },
-        "ListTagsForResourceInput": {
+        "SearchInput": {
             "type": "object",
             "properties": {
-                "resourceArn": {
+                "QueryString": {
+                    "$ref": "#/$defs/QueryString"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "ViewArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "NextToken": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
+        },
+        "QueryString": {
+            "type": "string"
         },
         "SearchOutput": {
             "type": "object",
@@ -851,30 +1022,6 @@
                 }
             }
         },
-        "SearchInput": {
-            "type": "object",
-            "properties": {
-                "QueryString": {
-                    "$ref": "#/$defs/QueryString"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "ViewArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "QueryString": {
-            "type": "string"
-        },
-        "TagResourceOutput": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceInput": {
             "type": "object",
             "properties": {
@@ -886,7 +1033,7 @@
                 }
             }
         },
-        "UntagResourceOutput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {}
         },
@@ -906,6 +1053,10 @@
             "items": {
                 "$ref": "#/$defs/smithy.api#String"
             }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

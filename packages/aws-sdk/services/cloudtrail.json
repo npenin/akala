@@ -89,6 +89,35 @@
             }
         },
         {
+            "name": "CreateDashboard",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudTrail_20131101.CreateDashboard"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateDashboardResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateDashboardRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateEventDataStore",
             "config": {
                 "http": {
@@ -170,6 +199,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteDashboard",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudTrail_20131101.DeleteDashboard"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteDashboardResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteDashboardRequest"
                         }
                     }
                 }
@@ -408,6 +466,35 @@
             }
         },
         {
+            "name": "GenerateQuery",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudTrail_20131101.GenerateQuery"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GenerateQueryResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GenerateQueryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetChannel",
             "config": {
                 "http": {
@@ -431,6 +518,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetChannelRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetDashboard",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudTrail_20131101.GetDashboard"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetDashboardResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetDashboardRequest"
                         }
                     }
                 }
@@ -692,6 +808,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListChannelsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDashboards",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudTrail_20131101.ListDashboards"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDashboardsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDashboardsRequest"
                         }
                     }
                 }
@@ -1133,6 +1278,64 @@
             }
         },
         {
+            "name": "SearchSampleQueries",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudTrail_20131101.SearchSampleQueries"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/SearchSampleQueriesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/SearchSampleQueriesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartDashboardRefresh",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudTrail_20131101.StartDashboardRefresh"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartDashboardRefreshResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartDashboardRefreshRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "StartEventDataStoreIngestion",
             "config": {
                 "http": {
@@ -1365,6 +1568,35 @@
             }
         },
         {
+            "name": "UpdateDashboard",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudTrail_20131101.UpdateDashboard"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateDashboardResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateDashboardRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateEventDataStore",
             "config": {
                 "http": {
@@ -1518,6 +1750,9 @@
                 },
                 "QueryStatus": {
                     "$ref": "#/$defs/QueryStatus"
+                },
+                "EventDataStoreOwnerAccountId": {
+                    "$ref": "#/$defs/AccountId"
                 }
             }
         },
@@ -1534,6 +1769,9 @@
                 "TIMED_OUT"
             ]
         },
+        "AccountId": {
+            "type": "string"
+        },
         "CancelQueryRequest": {
             "type": "object",
             "properties": {
@@ -1542,6 +1780,9 @@
                 },
                 "QueryId": {
                     "$ref": "#/$defs/UUID"
+                },
+                "EventDataStoreOwnerAccountId": {
+                    "$ref": "#/$defs/AccountId"
                 }
             }
         },
@@ -1617,6 +1858,178 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagsList"
+                }
+            }
+        },
+        "CreateDashboardResponse": {
+            "type": "object",
+            "properties": {
+                "DashboardArn": {
+                    "$ref": "#/$defs/DashboardArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/DashboardName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/DashboardType"
+                },
+                "Widgets": {
+                    "$ref": "#/$defs/WidgetList"
+                },
+                "TagsList": {
+                    "$ref": "#/$defs/TagsList"
+                },
+                "RefreshSchedule": {
+                    "$ref": "#/$defs/RefreshSchedule"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                }
+            }
+        },
+        "DashboardArn": {
+            "type": "string"
+        },
+        "DashboardName": {
+            "type": "string"
+        },
+        "DashboardType": {
+            "enum": [
+                "MANAGED",
+                "CUSTOM"
+            ]
+        },
+        "WidgetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Widget"
+            }
+        },
+        "Widget": {
+            "type": "object",
+            "properties": {
+                "QueryAlias": {
+                    "$ref": "#/$defs/QueryAlias"
+                },
+                "QueryStatement": {
+                    "$ref": "#/$defs/QueryStatement"
+                },
+                "QueryParameters": {
+                    "$ref": "#/$defs/QueryParameters"
+                },
+                "ViewProperties": {
+                    "$ref": "#/$defs/ViewPropertiesMap"
+                }
+            }
+        },
+        "QueryAlias": {
+            "type": "string"
+        },
+        "QueryStatement": {
+            "type": "string"
+        },
+        "QueryParameters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueryParameter"
+            }
+        },
+        "QueryParameter": {
+            "type": "string"
+        },
+        "ViewPropertiesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ViewPropertiesValue"
+            }
+        },
+        "ViewPropertiesValue": {
+            "type": "string"
+        },
+        "RefreshSchedule": {
+            "type": "object",
+            "properties": {
+                "Frequency": {
+                    "$ref": "#/$defs/RefreshScheduleFrequency"
+                },
+                "Status": {
+                    "$ref": "#/$defs/RefreshScheduleStatus"
+                },
+                "TimeOfDay": {
+                    "$ref": "#/$defs/TimeOfDay"
+                }
+            }
+        },
+        "RefreshScheduleFrequency": {
+            "type": "object",
+            "properties": {
+                "Unit": {
+                    "$ref": "#/$defs/RefreshScheduleFrequencyUnit"
+                },
+                "Value": {
+                    "$ref": "#/$defs/RefreshScheduleFrequencyValue"
+                }
+            }
+        },
+        "RefreshScheduleFrequencyUnit": {
+            "enum": [
+                "HOURS",
+                "DAYS"
+            ]
+        },
+        "RefreshScheduleFrequencyValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RefreshScheduleStatus": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "TimeOfDay": {
+            "type": "string"
+        },
+        "TerminationProtectionEnabled": {
+            "type": "boolean"
+        },
+        "CreateDashboardRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/DashboardName"
+                },
+                "RefreshSchedule": {
+                    "$ref": "#/$defs/RefreshSchedule"
+                },
+                "TagsList": {
+                    "$ref": "#/$defs/TagsList"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "Widgets": {
+                    "$ref": "#/$defs/RequestWidgetList"
+                }
+            }
+        },
+        "RequestWidgetList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RequestWidget"
+            }
+        },
+        "RequestWidget": {
+            "type": "object",
+            "properties": {
+                "QueryStatement": {
+                    "$ref": "#/$defs/QueryStatement"
+                },
+                "QueryParameters": {
+                    "$ref": "#/$defs/QueryParameters"
+                },
+                "ViewProperties": {
+                    "$ref": "#/$defs/ViewPropertiesMap"
                 }
             }
         },
@@ -1747,9 +2160,6 @@
         "RetentionPeriod": {
             "type": "integer",
             "format": "int32"
-        },
-        "TerminationProtectionEnabled": {
-            "type": "boolean"
         },
         "Date": {
             "type": "string",
@@ -1896,6 +2306,18 @@
                 }
             }
         },
+        "DeleteDashboardResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteDashboardRequest": {
+            "type": "object",
+            "properties": {
+                "DashboardId": {
+                    "$ref": "#/$defs/DashboardArn"
+                }
+            }
+        },
         "DeleteEventDataStoreResponse": {
             "type": "object",
             "properties": {}
@@ -1947,9 +2369,6 @@
                 }
             }
         },
-        "AccountId": {
-            "type": "string"
-        },
         "DescribeQueryResponse": {
             "type": "object",
             "properties": {
@@ -1973,11 +2392,14 @@
                 },
                 "DeliveryStatus": {
                     "$ref": "#/$defs/DeliveryStatus"
+                },
+                "Prompt": {
+                    "$ref": "#/$defs/Prompt"
+                },
+                "EventDataStoreOwnerAccountId": {
+                    "$ref": "#/$defs/AccountId"
                 }
             }
-        },
-        "QueryStatement": {
-            "type": "string"
         },
         "QueryStatisticsForDescribeQuery": {
             "type": "object",
@@ -2026,6 +2448,9 @@
                 "UNKNOWN"
             ]
         },
+        "Prompt": {
+            "type": "string"
+        },
         "DescribeQueryRequest": {
             "type": "object",
             "properties": {
@@ -2037,10 +2462,16 @@
                 },
                 "QueryAlias": {
                     "$ref": "#/$defs/QueryAlias"
+                },
+                "RefreshId": {
+                    "$ref": "#/$defs/RefreshId"
+                },
+                "EventDataStoreOwnerAccountId": {
+                    "$ref": "#/$defs/AccountId"
                 }
             }
         },
-        "QueryAlias": {
+        "RefreshId": {
             "type": "string"
         },
         "DescribeTrailsResponse": {
@@ -2182,6 +2613,37 @@
                 }
             }
         },
+        "GenerateQueryResponse": {
+            "type": "object",
+            "properties": {
+                "QueryStatement": {
+                    "$ref": "#/$defs/QueryStatement"
+                },
+                "QueryAlias": {
+                    "$ref": "#/$defs/QueryAlias"
+                },
+                "EventDataStoreOwnerAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "GenerateQueryRequest": {
+            "type": "object",
+            "properties": {
+                "EventDataStores": {
+                    "$ref": "#/$defs/EventDataStoreList"
+                },
+                "Prompt": {
+                    "$ref": "#/$defs/Prompt"
+                }
+            }
+        },
+        "EventDataStoreList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EventDataStoreArn"
+            }
+        },
         "GetChannelResponse": {
             "type": "object",
             "properties": {
@@ -2241,6 +2703,58 @@
             "properties": {
                 "Channel": {
                     "$ref": "#/$defs/ChannelArn"
+                }
+            }
+        },
+        "GetDashboardResponse": {
+            "type": "object",
+            "properties": {
+                "DashboardArn": {
+                    "$ref": "#/$defs/DashboardArn"
+                },
+                "Type": {
+                    "$ref": "#/$defs/DashboardType"
+                },
+                "Status": {
+                    "$ref": "#/$defs/DashboardStatus"
+                },
+                "Widgets": {
+                    "$ref": "#/$defs/WidgetList"
+                },
+                "RefreshSchedule": {
+                    "$ref": "#/$defs/RefreshSchedule"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "LastRefreshId": {
+                    "$ref": "#/$defs/RefreshId"
+                },
+                "LastRefreshFailureReason": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                }
+            }
+        },
+        "DashboardStatus": {
+            "enum": [
+                "CREATING",
+                "CREATED",
+                "UPDATING",
+                "UPDATED",
+                "DELETING"
+            ]
+        },
+        "GetDashboardRequest": {
+            "type": "object",
+            "properties": {
+                "DashboardId": {
+                    "$ref": "#/$defs/DashboardArn"
                 }
             }
         },
@@ -2623,6 +3137,9 @@
                 },
                 "MaxQueryResults": {
                     "$ref": "#/$defs/MaxQueryResults"
+                },
+                "EventDataStoreOwnerAccountId": {
+                    "$ref": "#/$defs/AccountId"
                 }
             }
         },
@@ -2637,6 +3154,9 @@
                     "$ref": "#/$defs/ResourceArn"
                 },
                 "ResourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
+                },
+                "DelegatedAdminResourcePolicy": {
                     "$ref": "#/$defs/ResourcePolicy"
                 }
             }
@@ -2772,6 +3292,55 @@
             }
         },
         "ListChannelsMaxResultsCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListDashboardsResponse": {
+            "type": "object",
+            "properties": {
+                "Dashboards": {
+                    "$ref": "#/$defs/Dashboards"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "Dashboards": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DashboardDetail"
+            }
+        },
+        "DashboardDetail": {
+            "type": "object",
+            "properties": {
+                "DashboardArn": {
+                    "$ref": "#/$defs/DashboardArn"
+                },
+                "Type": {
+                    "$ref": "#/$defs/DashboardType"
+                }
+            }
+        },
+        "ListDashboardsRequest": {
+            "type": "object",
+            "properties": {
+                "NamePrefix": {
+                    "$ref": "#/$defs/DashboardName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/DashboardType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListDashboardsMaxResultsCount"
+                }
+            }
+        },
+        "ListDashboardsMaxResultsCount": {
             "type": "integer",
             "format": "int32"
         },
@@ -3462,6 +4031,9 @@
                 },
                 "ResourcePolicy": {
                     "$ref": "#/$defs/ResourcePolicy"
+                },
+                "DelegatedAdminResourcePolicy": {
+                    "$ref": "#/$defs/ResourcePolicy"
                 }
             }
         },
@@ -3552,6 +4124,102 @@
                 }
             }
         },
+        "SearchSampleQueriesResponse": {
+            "type": "object",
+            "properties": {
+                "SearchResults": {
+                    "$ref": "#/$defs/SearchSampleQueriesSearchResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "SearchSampleQueriesSearchResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchSampleQueriesSearchResult"
+            }
+        },
+        "SearchSampleQueriesSearchResult": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/SampleQueryName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/SampleQueryDescription"
+                },
+                "SQL": {
+                    "$ref": "#/$defs/SampleQuerySQL"
+                },
+                "Relevance": {
+                    "$ref": "#/$defs/SampleQueryRelevance"
+                }
+            }
+        },
+        "SampleQueryName": {
+            "type": "string"
+        },
+        "SampleQueryDescription": {
+            "type": "string"
+        },
+        "SampleQuerySQL": {
+            "type": "string"
+        },
+        "SampleQueryRelevance": {
+            "type": "number",
+            "format": "float"
+        },
+        "SearchSampleQueriesRequest": {
+            "type": "object",
+            "properties": {
+                "SearchPhrase": {
+                    "$ref": "#/$defs/SearchSampleQueriesSearchPhrase"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/SearchSampleQueriesMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "SearchSampleQueriesSearchPhrase": {
+            "type": "string"
+        },
+        "SearchSampleQueriesMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StartDashboardRefreshResponse": {
+            "type": "object",
+            "properties": {
+                "RefreshId": {
+                    "$ref": "#/$defs/RefreshId"
+                }
+            }
+        },
+        "StartDashboardRefreshRequest": {
+            "type": "object",
+            "properties": {
+                "DashboardId": {
+                    "$ref": "#/$defs/DashboardArn"
+                },
+                "QueryParameterValues": {
+                    "$ref": "#/$defs/QueryParameterValues"
+                }
+            }
+        },
+        "QueryParameterValues": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/QueryParameterValue"
+            }
+        },
+        "QueryParameterValue": {
+            "type": "string"
+        },
         "StartEventDataStoreIngestionResponse": {
             "type": "object",
             "properties": {}
@@ -3630,6 +4298,9 @@
             "properties": {
                 "QueryId": {
                     "$ref": "#/$defs/UUID"
+                },
+                "EventDataStoreOwnerAccountId": {
+                    "$ref": "#/$defs/AccountId"
                 }
             }
         },
@@ -3647,17 +4318,11 @@
                 },
                 "QueryParameters": {
                     "$ref": "#/$defs/QueryParameters"
+                },
+                "EventDataStoreOwnerAccountId": {
+                    "$ref": "#/$defs/AccountId"
                 }
             }
-        },
-        "QueryParameters": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/QueryParameter"
-            }
-        },
-        "QueryParameter": {
-            "type": "string"
         },
         "StopEventDataStoreIngestionResponse": {
             "type": "object",
@@ -3751,6 +4416,52 @@
                 },
                 "Name": {
                     "$ref": "#/$defs/ChannelName"
+                }
+            }
+        },
+        "UpdateDashboardResponse": {
+            "type": "object",
+            "properties": {
+                "DashboardArn": {
+                    "$ref": "#/$defs/DashboardArn"
+                },
+                "Name": {
+                    "$ref": "#/$defs/DashboardName"
+                },
+                "Type": {
+                    "$ref": "#/$defs/DashboardType"
+                },
+                "Widgets": {
+                    "$ref": "#/$defs/WidgetList"
+                },
+                "RefreshSchedule": {
+                    "$ref": "#/$defs/RefreshSchedule"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                },
+                "UpdatedTimestamp": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
+        },
+        "UpdateDashboardRequest": {
+            "type": "object",
+            "properties": {
+                "DashboardId": {
+                    "$ref": "#/$defs/DashboardArn"
+                },
+                "Widgets": {
+                    "$ref": "#/$defs/RequestWidgetList"
+                },
+                "RefreshSchedule": {
+                    "$ref": "#/$defs/RefreshSchedule"
+                },
+                "TerminationProtectionEnabled": {
+                    "$ref": "#/$defs/TerminationProtectionEnabled"
                 }
             }
         },

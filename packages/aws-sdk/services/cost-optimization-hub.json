@@ -396,7 +396,9 @@
                 "UPGRADE",
                 "PURCHASE_SAVINGS_PLANS",
                 "PURCHASE_RESERVED_INSTANCES",
-                "MIGRATE_TO_GRAVITON"
+                "MIGRATE_TO_GRAVITON",
+                "DELETE",
+                "SCALE_IN"
             ]
         },
         "ResourceDetails": {
@@ -662,8 +664,43 @@
             "properties": {
                 "instance": {
                     "$ref": "#/$defs/InstanceConfiguration"
+                },
+                "mixedInstances": {
+                    "$ref": "#/$defs/MixedInstanceConfigurationList"
+                },
+                "type": {
+                    "$ref": "#/$defs/Ec2AutoScalingGroupType"
+                },
+                "allocationStrategy": {
+                    "$ref": "#/$defs/AllocationStrategy"
                 }
             }
+        },
+        "MixedInstanceConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MixedInstanceConfiguration"
+            }
+        },
+        "MixedInstanceConfiguration": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Ec2AutoScalingGroupType": {
+            "enum": [
+                "SINGLE_INSTANCE_TYPE",
+                "MIXED_INSTANCE_TYPES"
+            ]
+        },
+        "AllocationStrategy": {
+            "enum": [
+                "PRIORITIZED",
+                "LOWEST_PRICE"
+            ]
         },
         "Ec2ReservedInstances": {
             "type": "object",

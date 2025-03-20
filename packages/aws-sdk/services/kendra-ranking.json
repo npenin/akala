@@ -29,9 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Description": {},
+                        "CapacityUnits": {},
+                        "Tags": {},
+                        "ClientToken": {}
                     }
                 }
             }
@@ -68,9 +70,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -107,9 +107,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -142,9 +140,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -210,9 +207,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "RescoreExecutionPlanId": {},
+                        "SearchQuery": {},
+                        "Documents": {}
                     }
                 }
             }
@@ -307,9 +304,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "Name": {},
+                        "Description": {},
+                        "CapacityUnits": {}
                     }
                 }
             }
@@ -360,23 +358,6 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
-        },
-        "CreateRescoreExecutionPlanResponse": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/RescoreExecutionPlanId"
-                },
-                "Arn": {
-                    "$ref": "#/$defs/RescoreExecutionPlanArn"
-                }
-            }
-        },
-        "RescoreExecutionPlanId": {
-            "type": "string"
-        },
-        "RescoreExecutionPlanArn": {
-            "type": "string"
         },
         "CreateRescoreExecutionPlanRequest": {
             "type": "object",
@@ -442,7 +423,32 @@
         "ClientTokenName": {
             "type": "string"
         },
+        "CreateRescoreExecutionPlanResponse": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/RescoreExecutionPlanArn"
+                }
+            }
+        },
+        "RescoreExecutionPlanId": {
+            "type": "string"
+        },
+        "RescoreExecutionPlanArn": {
+            "type": "string"
+        },
         "DeleteRescoreExecutionPlanRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                }
+            }
+        },
+        "DescribeRescoreExecutionPlanRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -498,13 +504,23 @@
         "ErrorMessage": {
             "type": "string"
         },
-        "DescribeRescoreExecutionPlanRequest": {
+        "ListRescoreExecutionPlansRequest": {
             "type": "object",
             "properties": {
-                "Id": {
-                    "$ref": "#/$defs/RescoreExecutionPlanId"
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResultsIntegerForListRescoreExecutionPlansRequest"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResultsIntegerForListRescoreExecutionPlansRequest": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListRescoreExecutionPlansResponse": {
             "type": "object",
@@ -543,24 +559,6 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListRescoreExecutionPlansRequest": {
-            "type": "object",
-            "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResultsIntegerForListRescoreExecutionPlansRequest"
-                }
-            }
-        },
-        "MaxResultsIntegerForListRescoreExecutionPlansRequest": {
-            "type": "integer",
-            "format": "int32"
-        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -579,44 +577,6 @@
         },
         "AmazonResourceName": {
             "type": "string"
-        },
-        "RescoreResult": {
-            "type": "object",
-            "properties": {
-                "RescoreId": {
-                    "$ref": "#/$defs/RescoreId"
-                },
-                "ResultItems": {
-                    "$ref": "#/$defs/RescoreResultItemList"
-                }
-            }
-        },
-        "RescoreId": {
-            "type": "string"
-        },
-        "RescoreResultItemList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/RescoreResultItem"
-            }
-        },
-        "RescoreResultItem": {
-            "type": "object",
-            "properties": {
-                "DocumentId": {
-                    "$ref": "#/$defs/DocumentId"
-                },
-                "Score": {
-                    "$ref": "#/$defs/Float"
-                }
-            }
-        },
-        "DocumentId": {
-            "type": "string"
-        },
-        "Float": {
-            "type": "number",
-            "format": "float"
         },
         "RescoreRequest": {
             "type": "object",
@@ -667,6 +627,9 @@
                 }
             }
         },
+        "DocumentId": {
+            "type": "string"
+        },
         "GroupId": {
             "type": "string"
         },
@@ -689,6 +652,41 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/Tokens"
+            }
+        },
+        "Float": {
+            "type": "number",
+            "format": "float"
+        },
+        "RescoreResult": {
+            "type": "object",
+            "properties": {
+                "RescoreId": {
+                    "$ref": "#/$defs/RescoreId"
+                },
+                "ResultItems": {
+                    "$ref": "#/$defs/RescoreResultItemList"
+                }
+            }
+        },
+        "RescoreId": {
+            "type": "string"
+        },
+        "RescoreResultItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RescoreResultItem"
+            }
+        },
+        "RescoreResultItem": {
+            "type": "object",
+            "properties": {
+                "DocumentId": {
+                    "$ref": "#/$defs/DocumentId"
+                },
+                "Score": {
+                    "$ref": "#/$defs/Float"
+                }
             }
         },
         "TagResourceResponse": {

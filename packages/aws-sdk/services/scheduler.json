@@ -33,8 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -71,8 +70,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -109,8 +108,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -162,6 +161,17 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/TagResourceArn"
+                }
+            }
+        },
+        "TagResourceArn": {
+            "type": "string"
+        },
         "ListTagsForResourceOutput": {
             "type": "object",
             "properties": {
@@ -193,21 +203,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceInput": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/TagResourceArn"
-                }
-            }
-        },
-        "TagResourceArn": {
-            "type": "string"
-        },
-        "TagResourceOutput": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceInput": {
             "type": "object",
             "properties": {
@@ -219,7 +214,7 @@
                 }
             }
         },
-        "UntagResourceOutput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {}
         },
@@ -239,6 +234,10 @@
             "items": {
                 "$ref": "#/$defs/TagKey"
             }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

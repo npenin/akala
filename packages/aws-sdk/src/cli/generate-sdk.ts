@@ -298,6 +298,8 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
                 const httpTrait = operation.traits['smithy.api#http'];
                 const route = parseRoute(httpTrait.uri);
 
+                const schemaDef = toSchema(urn, (operation as SmithyOperation)?.input, smithy, schemaCache);
+
                 return {
                     name: operationName,
                     config: {
@@ -313,11 +315,11 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
                         schema: {
                             resultSchema: toSchema(urn, (operation as SmithyOperation)?.output, smithy, schemaCache),
                             inject: [].concat(route.parameters.map(p => 'param.0.' + p.name), ['param.0']),
-                            $defs: { 'param.0': toSchema(urn, (operation as SmithyOperation)?.input, smithy, schemaCache) }
+                            $defs: { 'param.0': schemaDef }
                         },
                         cli: {
                             inject: ["options"],
-                            options: Object.fromEntries(Object.entries(resolve(smithy, (operation as SmithyOperation).input) || {}).map(e => [e[0], {}]))
+                            options: Object.fromEntries(Object.entries(schemaDef.$ref && schemaCache[schemaDef.$ref.substring('#/$defs/'.length)]?.properties || {}).map(e => [e[0], {}]))
                         }
                     }
                 }

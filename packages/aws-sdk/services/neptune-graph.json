@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "graphIdentifier": {},
+                        "queryId": {}
                     }
                 }
             }
@@ -68,9 +67,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "graphIdentifier": {},
+                        "queryString": {},
+                        "language": {},
+                        "parameters": {},
+                        "planCache": {},
+                        "explainMode": {},
+                        "queryTimeoutMilliseconds": {}
                     }
                 }
             }
@@ -103,9 +106,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "graphIdentifier": {},
+                        "mode": {}
                     }
                 }
             }
@@ -142,9 +144,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "graphIdentifier": {},
+                        "queryId": {}
                     }
                 }
             }
@@ -177,9 +178,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "graphIdentifier": {},
+                        "maxResults": {},
+                        "state": {}
                     }
                 }
             }
@@ -216,9 +217,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -255,9 +254,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -294,9 +292,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -362,18 +359,6 @@
         "GraphIdentifier": {
             "type": "string"
         },
-        "ExecuteQueryOutput": {
-            "type": "object",
-            "properties": {
-                "payload": {
-                    "$ref": "#/$defs/QueryResponseBlob"
-                }
-            }
-        },
-        "QueryResponseBlob": {
-            "type": "string",
-            "format": "binary"
-        },
         "ExecuteQueryInput": {
             "type": "object",
             "properties": {
@@ -422,6 +407,35 @@
             "enum": [
                 "STATIC",
                 "DETAILS"
+            ]
+        },
+        "ExecuteQueryOutput": {
+            "type": "object",
+            "properties": {
+                "payload": {
+                    "$ref": "#/$defs/QueryResponseBlob"
+                }
+            }
+        },
+        "QueryResponseBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetGraphSummaryInput": {
+            "type": "object",
+            "properties": {
+                "graphIdentifier": {
+                    "$ref": "#/$defs/GraphIdentifier"
+                },
+                "mode": {
+                    "$ref": "#/$defs/GraphSummaryMode"
+                }
+            }
+        },
+        "GraphSummaryMode": {
+            "enum": [
+                "BASIC",
+                "DETAILED"
             ]
         },
         "GetGraphSummaryOutput": {
@@ -564,22 +578,16 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "GetGraphSummaryInput": {
+        "GetQueryInput": {
             "type": "object",
             "properties": {
                 "graphIdentifier": {
                     "$ref": "#/$defs/GraphIdentifier"
                 },
-                "mode": {
-                    "$ref": "#/$defs/GraphSummaryMode"
+                "queryId": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
-        },
-        "GraphSummaryMode": {
-            "enum": [
-                "BASIC",
-                "DETAILED"
-            ]
         },
         "GetQueryOutput": {
             "type": "object",
@@ -608,16 +616,27 @@
                 "CANCELLING"
             ]
         },
-        "GetQueryInput": {
+        "ListQueriesInput": {
             "type": "object",
             "properties": {
                 "graphIdentifier": {
                     "$ref": "#/$defs/GraphIdentifier"
                 },
-                "queryId": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "state": {
+                    "$ref": "#/$defs/QueryStateInput"
                 }
             }
+        },
+        "QueryStateInput": {
+            "enum": [
+                "ALL",
+                "RUNNING",
+                "WAITING",
+                "CANCELLING"
+            ]
         },
         "ListQueriesOutput": {
             "type": "object",
@@ -653,27 +672,16 @@
                 }
             }
         },
-        "ListQueriesInput": {
+        "ListTagsForResourceInput": {
             "type": "object",
             "properties": {
-                "graphIdentifier": {
-                    "$ref": "#/$defs/GraphIdentifier"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "state": {
-                    "$ref": "#/$defs/QueryStateInput"
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
-        "QueryStateInput": {
-            "enum": [
-                "ALL",
-                "RUNNING",
-                "WAITING",
-                "CANCELLING"
-            ]
+        "Arn": {
+            "type": "string"
         },
         "ListTagsForResourceOutput": {
             "type": "object",
@@ -692,21 +700,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceInput": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "TagResourceOutput": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceInput": {
             "type": "object",
             "properties": {
@@ -718,7 +711,7 @@
                 }
             }
         },
-        "UntagResourceOutput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {}
         },
@@ -741,6 +734,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

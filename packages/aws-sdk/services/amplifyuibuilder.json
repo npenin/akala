@@ -33,8 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "provider": {},
+                        "request": {}
                     }
                 }
             }
@@ -73,8 +73,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "appId": {},
+                        "environmentName": {}
                     }
                 }
             }
@@ -111,9 +111,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -154,8 +152,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "appId": {},
+                        "environmentName": {},
+                        "featureName": {},
+                        "body": {}
                     }
                 }
             }
@@ -192,8 +192,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "provider": {},
+                        "refreshTokenBody": {}
                     }
                 }
             }
@@ -230,9 +230,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -269,9 +268,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -323,23 +321,6 @@
             "type": "string",
             "format": "binary"
         },
-        "ExchangeCodeForTokenResponse": {
-            "type": "object",
-            "properties": {
-                "accessToken": {
-                    "$ref": "#/$defs/SensitiveString"
-                },
-                "expiresIn": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "refreshToken": {
-                    "$ref": "#/$defs/SensitiveString"
-                }
-            }
-        },
-        "SensitiveString": {
-            "type": "string"
-        },
         "ExchangeCodeForTokenRequest": {
             "type": "object",
             "properties": {
@@ -368,6 +349,34 @@
                 }
             }
         },
+        "SensitiveString": {
+            "type": "string"
+        },
+        "ExchangeCodeForTokenResponse": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "$ref": "#/$defs/SensitiveString"
+                },
+                "expiresIn": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "refreshToken": {
+                    "$ref": "#/$defs/SensitiveString"
+                }
+            }
+        },
+        "GetMetadataRequest": {
+            "type": "object",
+            "properties": {
+                "appId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "environmentName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "GetMetadataResponse": {
             "type": "object",
             "properties": {
@@ -382,13 +391,10 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "GetMetadataRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "appId": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "environmentName": {
+                "resourceArn": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
@@ -409,14 +415,6 @@
         },
         "TagValue": {
             "type": "string"
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
         },
         "PutMetadataFlagRequest": {
             "type": "object",
@@ -443,17 +441,6 @@
                 }
             }
         },
-        "RefreshTokenResponse": {
-            "type": "object",
-            "properties": {
-                "accessToken": {
-                    "$ref": "#/$defs/SensitiveString"
-                },
-                "expiresIn": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                }
-            }
-        },
         "RefreshTokenRequest": {
             "type": "object",
             "properties": {
@@ -476,9 +463,16 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "RefreshTokenResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "accessToken": {
+                    "$ref": "#/$defs/SensitiveString"
+                },
+                "expiresIn": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -491,7 +485,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -514,6 +508,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

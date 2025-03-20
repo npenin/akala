@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "domainName": {},
+                        "apiId": {}
                     }
                 }
             }
@@ -72,9 +71,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "sourceApiIdentifier": {},
+                        "mergedApiIdentifier": {},
+                        "description": {},
+                        "sourceApiAssociationConfig": {}
                     }
                 }
             }
@@ -111,9 +111,46 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "mergedApiIdentifier": {},
+                        "sourceApiIdentifier": {},
+                        "description": {},
+                        "sourceApiAssociationConfig": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v2/apis"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateApiResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "name": {},
+                        "ownerContact": {},
+                        "tags": {},
+                        "eventConfig": {}
                     }
                 }
             }
@@ -150,9 +187,13 @@
                         "options"
                     ],
                     "options": {
+                        "apiId": {},
+                        "ttl": {},
+                        "transitEncryptionEnabled": {},
+                        "atRestEncryptionEnabled": {},
+                        "apiCachingBehavior": {},
                         "type": {},
-                        "members": {},
-                        "traits": {}
+                        "healthMetricsConfig": {}
                     }
                 }
             }
@@ -189,9 +230,51 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "description": {},
+                        "expires": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateChannelNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v2/apis/{apiId}/channelNamespaces"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateChannelNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateChannelNamespaceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "apiId": {},
+                        "name": {},
+                        "subscribeAuthModes": {},
+                        "publishAuthModes": {},
+                        "codeHandlers": {},
+                        "tags": {}
                     }
                 }
             }
@@ -228,9 +311,19 @@
                         "options"
                     ],
                     "options": {
+                        "apiId": {},
+                        "name": {},
+                        "description": {},
                         "type": {},
-                        "members": {},
-                        "traits": {}
+                        "serviceRoleArn": {},
+                        "dynamodbConfig": {},
+                        "lambdaConfig": {},
+                        "elasticsearchConfig": {},
+                        "openSearchServiceConfig": {},
+                        "httpConfig": {},
+                        "relationalDatabaseConfig": {},
+                        "eventBridgeConfig": {},
+                        "metricsConfig": {}
                     }
                 }
             }
@@ -263,9 +356,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "domainName": {},
+                        "certificateArn": {},
+                        "description": {}
                     }
                 }
             }
@@ -302,9 +395,17 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "name": {},
+                        "description": {},
+                        "dataSourceName": {},
+                        "requestMappingTemplate": {},
+                        "responseMappingTemplate": {},
+                        "functionVersion": {},
+                        "syncConfig": {},
+                        "maxBatchSize": {},
+                        "runtime": {},
+                        "code": {}
                     }
                 }
             }
@@ -337,9 +438,23 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "name": {},
+                        "logConfig": {},
+                        "authenticationType": {},
+                        "userPoolConfig": {},
+                        "openIDConnectConfig": {},
+                        "tags": {},
+                        "additionalAuthenticationProviders": {},
+                        "xrayEnabled": {},
+                        "lambdaAuthorizerConfig": {},
+                        "apiType": {},
+                        "mergedApiExecutionRoleArn": {},
+                        "visibility": {},
+                        "ownerContact": {},
+                        "introspectionConfig": {},
+                        "queryDepthLimit": {},
+                        "resolverCountLimit": {},
+                        "enhancedMetricsConfig": {}
                     }
                 }
             }
@@ -378,9 +493,20 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "typeName": {},
+                        "fieldName": {},
+                        "dataSourceName": {},
+                        "requestMappingTemplate": {},
+                        "responseMappingTemplate": {},
+                        "kind": {},
+                        "pipelineConfig": {},
+                        "syncConfig": {},
+                        "cachingConfig": {},
+                        "maxBatchSize": {},
+                        "runtime": {},
+                        "code": {},
+                        "metricsConfig": {}
                     }
                 }
             }
@@ -417,9 +543,46 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "definition": {},
+                        "format": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/v2/apis/{apiId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteApiResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "apiId": {}
                     }
                 }
             }
@@ -456,9 +619,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {}
                     }
                 }
             }
@@ -497,9 +658,48 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "id": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteChannelNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "name": "route.name",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/v2/apis/{apiId}/channelNamespaces/{name}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteChannelNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0.name",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteChannelNamespaceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "apiId": {},
+                        "name": {}
                     }
                 }
             }
@@ -538,9 +738,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "name": {}
                     }
                 }
             }
@@ -577,9 +776,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "domainName": {}
                     }
                 }
             }
@@ -618,9 +815,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "functionId": {}
                     }
                 }
             }
@@ -657,9 +853,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {}
                     }
                 }
             }
@@ -700,9 +894,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "typeName": {},
+                        "fieldName": {}
                     }
                 }
             }
@@ -741,9 +935,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "typeName": {}
                     }
                 }
             }
@@ -780,9 +973,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "domainName": {}
                     }
                 }
             }
@@ -821,9 +1012,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "sourceApiIdentifier": {},
+                        "associationId": {}
                     }
                 }
             }
@@ -862,9 +1052,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "mergedApiIdentifier": {},
+                        "associationId": {}
                     }
                 }
             }
@@ -897,9 +1086,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "runtime": {},
+                        "code": {},
+                        "context": {},
+                        "function": {}
                     }
                 }
             }
@@ -932,9 +1122,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "template": {},
+                        "context": {}
                     }
                 }
             }
@@ -971,9 +1160,44 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/apis/{apiId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetApiResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "apiId": {}
                     }
                 }
             }
@@ -1010,9 +1234,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "domainName": {}
                     }
                 }
             }
@@ -1049,9 +1271,47 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetChannelNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "name": "route.name",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/apis/{apiId}/channelNamespaces/{name}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetChannelNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0.name",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetChannelNamespaceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "apiId": {},
+                        "name": {}
                     }
                 }
             }
@@ -1090,9 +1350,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "name": {}
                     }
                 }
             }
@@ -1129,9 +1388,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "introspectionId": {},
+                        "includeModelsSDL": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1168,9 +1428,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "domainName": {}
                     }
                 }
             }
@@ -1209,9 +1467,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "functionId": {}
                     }
                 }
             }
@@ -1248,9 +1505,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {}
                     }
                 }
             }
@@ -1287,9 +1542,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {}
                     }
                 }
             }
@@ -1326,9 +1579,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "format": {},
+                        "includeDirectives": {}
                     }
                 }
             }
@@ -1369,9 +1622,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "typeName": {},
+                        "fieldName": {}
                     }
                 }
             }
@@ -1408,9 +1661,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {}
                     }
                 }
             }
@@ -1449,9 +1700,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "mergedApiIdentifier": {},
+                        "associationId": {}
                     }
                 }
             }
@@ -1490,9 +1740,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "typeName": {},
+                        "format": {}
                     }
                 }
             }
@@ -1529,9 +1779,82 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "nextToken": {},
+                        "maxResults": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListApis",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/v2/apis"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListApisResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListApisRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "nextToken": {},
+                        "maxResults": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListChannelNamespaces",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/apis/{apiId}/channelNamespaces"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListChannelNamespacesResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListChannelNamespacesRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "apiId": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1568,9 +1891,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1603,9 +1926,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1642,9 +1964,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1677,9 +1999,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "apiType": {},
+                        "owner": {}
                     }
                 }
             }
@@ -1718,9 +2041,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "typeName": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1759,9 +2083,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "functionId": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1798,9 +2123,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1837,9 +2162,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -1876,9 +2199,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "format": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1917,9 +2241,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "mergedApiIdentifier": {},
+                        "associationId": {},
+                        "format": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -1956,9 +2282,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "environmentVariables": {}
                     }
                 }
             }
@@ -1991,9 +2316,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "rdsDataApiConfig": {}
                     }
                 }
             }
@@ -2030,9 +2353,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "definition": {}
                     }
                 }
             }
@@ -2071,9 +2393,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "associationId": {},
+                        "mergedApiIdentifier": {}
                     }
                 }
             }
@@ -2110,9 +2431,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -2149,9 +2469,48 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v2/apis/{apiId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateApiResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "apiId": {},
+                        "name": {},
+                        "ownerContact": {},
+                        "eventConfig": {}
                     }
                 }
             }
@@ -2188,9 +2547,11 @@
                         "options"
                     ],
                     "options": {
+                        "apiId": {},
+                        "ttl": {},
+                        "apiCachingBehavior": {},
                         "type": {},
-                        "members": {},
-                        "traits": {}
+                        "healthMetricsConfig": {}
                     }
                 }
             }
@@ -2229,9 +2590,53 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "id": {},
+                        "description": {},
+                        "expires": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateChannelNamespace",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "apiId": "route.apiId",
+                            "name": "route.name",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/v2/apis/{apiId}/channelNamespaces/{name}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateChannelNamespaceResponse"
+                    },
+                    "inject": [
+                        "param.0.apiId",
+                        "param.0.name",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateChannelNamespaceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "apiId": {},
+                        "name": {},
+                        "subscribeAuthModes": {},
+                        "publishAuthModes": {},
+                        "codeHandlers": {}
                     }
                 }
             }
@@ -2270,9 +2675,19 @@
                         "options"
                     ],
                     "options": {
+                        "apiId": {},
+                        "name": {},
+                        "description": {},
                         "type": {},
-                        "members": {},
-                        "traits": {}
+                        "serviceRoleArn": {},
+                        "dynamodbConfig": {},
+                        "lambdaConfig": {},
+                        "elasticsearchConfig": {},
+                        "openSearchServiceConfig": {},
+                        "httpConfig": {},
+                        "relationalDatabaseConfig": {},
+                        "eventBridgeConfig": {},
+                        "metricsConfig": {}
                     }
                 }
             }
@@ -2309,9 +2724,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "domainName": {},
+                        "description": {}
                     }
                 }
             }
@@ -2350,9 +2764,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "name": {},
+                        "description": {},
+                        "functionId": {},
+                        "dataSourceName": {},
+                        "requestMappingTemplate": {},
+                        "responseMappingTemplate": {},
+                        "functionVersion": {},
+                        "syncConfig": {},
+                        "maxBatchSize": {},
+                        "runtime": {},
+                        "code": {}
                     }
                 }
             }
@@ -2389,9 +2812,21 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "name": {},
+                        "logConfig": {},
+                        "authenticationType": {},
+                        "userPoolConfig": {},
+                        "openIDConnectConfig": {},
+                        "additionalAuthenticationProviders": {},
+                        "xrayEnabled": {},
+                        "lambdaAuthorizerConfig": {},
+                        "mergedApiExecutionRoleArn": {},
+                        "ownerContact": {},
+                        "introspectionConfig": {},
+                        "queryDepthLimit": {},
+                        "resolverCountLimit": {},
+                        "enhancedMetricsConfig": {}
                     }
                 }
             }
@@ -2432,9 +2867,20 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "typeName": {},
+                        "fieldName": {},
+                        "dataSourceName": {},
+                        "requestMappingTemplate": {},
+                        "responseMappingTemplate": {},
+                        "kind": {},
+                        "pipelineConfig": {},
+                        "syncConfig": {},
+                        "cachingConfig": {},
+                        "maxBatchSize": {},
+                        "runtime": {},
+                        "code": {},
+                        "metricsConfig": {}
                     }
                 }
             }
@@ -2473,9 +2919,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "associationId": {},
+                        "mergedApiIdentifier": {},
+                        "description": {},
+                        "sourceApiAssociationConfig": {}
                     }
                 }
             }
@@ -2514,9 +2961,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "apiId": {},
+                        "typeName": {},
+                        "definition": {},
+                        "format": {}
                     }
                 }
             }
@@ -2568,6 +3016,23 @@
             "type": "string",
             "format": "binary"
         },
+        "AssociateApiRequest": {
+            "type": "object",
+            "properties": {
+                "domainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DomainName": {
+            "type": "string"
+        },
+        "String": {
+            "type": "string"
+        },
         "AssociateApiResponse": {
             "type": "object",
             "properties": {
@@ -2593,12 +3058,6 @@
                 }
             }
         },
-        "DomainName": {
-            "type": "string"
-        },
-        "String": {
-            "type": "string"
-        },
         "AssociationStatus": {
             "enum": [
                 "Processing",
@@ -2606,16 +3065,36 @@
                 "Success"
             ]
         },
-        "AssociateApiRequest": {
+        "AssociateMergedGraphqlApiRequest": {
             "type": "object",
             "properties": {
-                "domainName": {
-                    "$ref": "#/$defs/DomainName"
-                },
-                "apiId": {
+                "sourceApiIdentifier": {
                     "$ref": "#/$defs/String"
+                },
+                "mergedApiIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "description": {
+                    "$ref": "#/$defs/String"
+                },
+                "sourceApiAssociationConfig": {
+                    "$ref": "#/$defs/SourceApiAssociationConfig"
                 }
             }
+        },
+        "SourceApiAssociationConfig": {
+            "type": "object",
+            "properties": {
+                "mergeType": {
+                    "$ref": "#/$defs/MergeType"
+                }
+            }
+        },
+        "MergeType": {
+            "enum": [
+                "MANUAL_MERGE",
+                "AUTO_MERGE"
+            ]
         },
         "AssociateMergedGraphqlApiResponse": {
             "type": "object",
@@ -2663,20 +3142,6 @@
                 }
             }
         },
-        "SourceApiAssociationConfig": {
-            "type": "object",
-            "properties": {
-                "mergeType": {
-                    "$ref": "#/$defs/MergeType"
-                }
-            }
-        },
-        "MergeType": {
-            "enum": [
-                "MANUAL_MERGE",
-                "AUTO_MERGE"
-            ]
-        },
         "SourceApiAssociationStatus": {
             "enum": [
                 "MERGE_SCHEDULED",
@@ -2693,13 +3158,13 @@
             "type": "string",
             "format": "date-time"
         },
-        "AssociateMergedGraphqlApiRequest": {
+        "AssociateSourceGraphqlApiRequest": {
             "type": "object",
             "properties": {
-                "sourceApiIdentifier": {
+                "mergedApiIdentifier": {
                     "$ref": "#/$defs/String"
                 },
-                "mergedApiIdentifier": {
+                "sourceApiIdentifier": {
                     "$ref": "#/$defs/String"
                 },
                 "description": {
@@ -2718,22 +3183,290 @@
                 }
             }
         },
-        "AssociateSourceGraphqlApiRequest": {
+        "CreateApiRequest": {
             "type": "object",
             "properties": {
-                "mergedApiIdentifier": {
+                "name": {
+                    "$ref": "#/$defs/ApiName"
+                },
+                "ownerContact": {
                     "$ref": "#/$defs/String"
                 },
-                "sourceApiIdentifier": {
-                    "$ref": "#/$defs/String"
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
                 },
-                "description": {
-                    "$ref": "#/$defs/String"
-                },
-                "sourceApiAssociationConfig": {
-                    "$ref": "#/$defs/SourceApiAssociationConfig"
+                "eventConfig": {
+                    "$ref": "#/$defs/EventConfig"
                 }
             }
+        },
+        "ApiName": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "EventConfig": {
+            "type": "object",
+            "properties": {
+                "authProviders": {
+                    "$ref": "#/$defs/AuthProviders"
+                },
+                "connectionAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "defaultPublishAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "defaultSubscribeAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "logConfig": {
+                    "$ref": "#/$defs/EventLogConfig"
+                }
+            }
+        },
+        "AuthProviders": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthProvider"
+            }
+        },
+        "AuthProvider": {
+            "type": "object",
+            "properties": {
+                "authType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "cognitoConfig": {
+                    "$ref": "#/$defs/CognitoConfig"
+                },
+                "openIDConnectConfig": {
+                    "$ref": "#/$defs/OpenIDConnectConfig"
+                },
+                "lambdaAuthorizerConfig": {
+                    "$ref": "#/$defs/LambdaAuthorizerConfig"
+                }
+            }
+        },
+        "AuthenticationType": {
+            "enum": [
+                "API_KEY",
+                "AWS_IAM",
+                "AMAZON_COGNITO_USER_POOLS",
+                "OPENID_CONNECT",
+                "AWS_LAMBDA"
+            ]
+        },
+        "CognitoConfig": {
+            "type": "object",
+            "properties": {
+                "userPoolId": {
+                    "$ref": "#/$defs/String"
+                },
+                "awsRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "appIdClientRegex": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "OpenIDConnectConfig": {
+            "type": "object",
+            "properties": {
+                "issuer": {
+                    "$ref": "#/$defs/String"
+                },
+                "clientId": {
+                    "$ref": "#/$defs/String"
+                },
+                "iatTTL": {
+                    "$ref": "#/$defs/Long"
+                },
+                "authTTL": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "LambdaAuthorizerConfig": {
+            "type": "object",
+            "properties": {
+                "authorizerResultTtlInSeconds": {
+                    "$ref": "#/$defs/TTL"
+                },
+                "authorizerUri": {
+                    "$ref": "#/$defs/String"
+                },
+                "identityValidationExpression": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "TTL": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AuthModes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthMode"
+            }
+        },
+        "AuthMode": {
+            "type": "object",
+            "properties": {
+                "authType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                }
+            }
+        },
+        "EventLogConfig": {
+            "type": "object",
+            "properties": {
+                "logLevel": {
+                    "$ref": "#/$defs/EventLogLevel"
+                },
+                "cloudWatchLogsRoleArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "EventLogLevel": {
+            "enum": [
+                "NONE",
+                "ERROR",
+                "ALL",
+                "INFO",
+                "DEBUG"
+            ]
+        },
+        "CreateApiResponse": {
+            "type": "object",
+            "properties": {
+                "api": {
+                    "$ref": "#/$defs/Api"
+                }
+            }
+        },
+        "Api": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApiName"
+                },
+                "ownerContact": {
+                    "$ref": "#/$defs/OwnerContact"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "dns": {
+                    "$ref": "#/$defs/MapOfStringToString"
+                },
+                "apiArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "xrayEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "wafWebAclArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "eventConfig": {
+                    "$ref": "#/$defs/EventConfig"
+                }
+            }
+        },
+        "OwnerContact": {
+            "type": "string"
+        },
+        "MapOfStringToString": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/String"
+            }
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "Boolean": {
+            "type": "boolean"
+        },
+        "CreateApiCacheRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "ttl": {
+                    "$ref": "#/$defs/Long"
+                },
+                "transitEncryptionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "atRestEncryptionEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "apiCachingBehavior": {
+                    "$ref": "#/$defs/ApiCachingBehavior"
+                },
+                "type": {
+                    "$ref": "#/$defs/ApiCacheType"
+                },
+                "healthMetricsConfig": {
+                    "$ref": "#/$defs/CacheHealthMetricsConfig"
+                }
+            }
+        },
+        "ApiCachingBehavior": {
+            "enum": [
+                "FULL_REQUEST_CACHING",
+                "PER_RESOLVER_CACHING",
+                "OPERATION_LEVEL_CACHING"
+            ]
+        },
+        "ApiCacheType": {
+            "enum": [
+                "T2_SMALL",
+                "T2_MEDIUM",
+                "R4_LARGE",
+                "R4_XLARGE",
+                "R4_2XLARGE",
+                "R4_4XLARGE",
+                "R4_8XLARGE",
+                "SMALL",
+                "MEDIUM",
+                "LARGE",
+                "XLARGE",
+                "LARGE_2X",
+                "LARGE_4X",
+                "LARGE_8X",
+                "LARGE_12X"
+            ]
+        },
+        "CacheHealthMetricsConfig": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
         },
         "CreateApiCacheResponse": {
             "type": "object",
@@ -2769,38 +3502,6 @@
                 }
             }
         },
-        "Long": {
-            "type": "integer",
-            "format": "int64"
-        },
-        "ApiCachingBehavior": {
-            "enum": [
-                "FULL_REQUEST_CACHING",
-                "PER_RESOLVER_CACHING"
-            ]
-        },
-        "Boolean": {
-            "type": "boolean"
-        },
-        "ApiCacheType": {
-            "enum": [
-                "T2_SMALL",
-                "T2_MEDIUM",
-                "R4_LARGE",
-                "R4_XLARGE",
-                "R4_2XLARGE",
-                "R4_4XLARGE",
-                "R4_8XLARGE",
-                "SMALL",
-                "MEDIUM",
-                "LARGE",
-                "XLARGE",
-                "LARGE_2X",
-                "LARGE_4X",
-                "LARGE_8X",
-                "LARGE_12X"
-            ]
-        },
         "ApiCacheStatus": {
             "enum": [
                 "AVAILABLE",
@@ -2810,35 +3511,17 @@
                 "FAILED"
             ]
         },
-        "CacheHealthMetricsConfig": {
-            "enum": [
-                "ENABLED",
-                "DISABLED"
-            ]
-        },
-        "CreateApiCacheRequest": {
+        "CreateApiKeyRequest": {
             "type": "object",
             "properties": {
                 "apiId": {
                     "$ref": "#/$defs/String"
                 },
-                "ttl": {
+                "description": {
+                    "$ref": "#/$defs/String"
+                },
+                "expires": {
                     "$ref": "#/$defs/Long"
-                },
-                "transitEncryptionEnabled": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "atRestEncryptionEnabled": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "apiCachingBehavior": {
-                    "$ref": "#/$defs/ApiCachingBehavior"
-                },
-                "type": {
-                    "$ref": "#/$defs/ApiCacheType"
-                },
-                "healthMetricsConfig": {
-                    "$ref": "#/$defs/CacheHealthMetricsConfig"
                 }
             }
         },
@@ -2867,32 +3550,79 @@
                 }
             }
         },
-        "CreateApiKeyRequest": {
+        "CreateChannelNamespaceRequest": {
             "type": "object",
             "properties": {
                 "apiId": {
                     "$ref": "#/$defs/String"
                 },
-                "description": {
+                "name": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "subscribeAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "publishAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "codeHandlers": {
+                    "$ref": "#/$defs/Code"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "Namespace": {
+            "type": "string"
+        },
+        "Code": {
+            "type": "string"
+        },
+        "CreateChannelNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "channelNamespace": {
+                    "$ref": "#/$defs/ChannelNamespace"
+                }
+            }
+        },
+        "ChannelNamespace": {
+            "type": "object",
+            "properties": {
+                "apiId": {
                     "$ref": "#/$defs/String"
                 },
-                "expires": {
-                    "$ref": "#/$defs/Long"
+                "name": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "subscribeAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "publishAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "codeHandlers": {
+                    "$ref": "#/$defs/Code"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "channelNamespaceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "created": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "lastModified": {
+                    "$ref": "#/$defs/Timestamp"
                 }
             }
         },
-        "CreateDataSourceResponse": {
+        "CreateDataSourceRequest": {
             "type": "object",
             "properties": {
-                "dataSource": {
-                    "$ref": "#/$defs/DataSource"
-                }
-            }
-        },
-        "DataSource": {
-            "type": "object",
-            "properties": {
-                "dataSourceArn": {
+                "apiId": {
                     "$ref": "#/$defs/String"
                 },
                 "name": {
@@ -2945,7 +3675,8 @@
                 "HTTP",
                 "RELATIONAL_DATABASE",
                 "AMAZON_OPENSEARCH_SERVICE",
-                "AMAZON_EVENTBRIDGE"
+                "AMAZON_EVENTBRIDGE",
+                "AMAZON_BEDROCK_RUNTIME"
             ]
         },
         "DynamodbDataSourceConfig": {
@@ -3100,10 +3831,18 @@
                 "DISABLED"
             ]
         },
-        "CreateDataSourceRequest": {
+        "CreateDataSourceResponse": {
             "type": "object",
             "properties": {
-                "apiId": {
+                "dataSource": {
+                    "$ref": "#/$defs/DataSource"
+                }
+            }
+        },
+        "DataSource": {
+            "type": "object",
+            "properties": {
+                "dataSourceArn": {
                     "$ref": "#/$defs/String"
                 },
                 "name": {
@@ -3144,6 +3883,26 @@
                 }
             }
         },
+        "CreateDomainNameRequest": {
+            "type": "object",
+            "properties": {
+                "domainName": {
+                    "$ref": "#/$defs/DomainName"
+                },
+                "certificateArn": {
+                    "$ref": "#/$defs/CertificateArn"
+                },
+                "description": {
+                    "$ref": "#/$defs/Description"
+                }
+            }
+        },
+        "CertificateArn": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
         "CreateDomainNameResponse": {
             "type": "object",
             "properties": {
@@ -3172,41 +3931,10 @@
                 }
             }
         },
-        "Description": {
-            "type": "string"
-        },
-        "CertificateArn": {
-            "type": "string"
-        },
-        "CreateDomainNameRequest": {
+        "CreateFunctionRequest": {
             "type": "object",
             "properties": {
-                "domainName": {
-                    "$ref": "#/$defs/DomainName"
-                },
-                "certificateArn": {
-                    "$ref": "#/$defs/CertificateArn"
-                },
-                "description": {
-                    "$ref": "#/$defs/Description"
-                }
-            }
-        },
-        "CreateFunctionResponse": {
-            "type": "object",
-            "properties": {
-                "functionConfiguration": {
-                    "$ref": "#/$defs/FunctionConfiguration"
-                }
-            }
-        },
-        "FunctionConfiguration": {
-            "type": "object",
-            "properties": {
-                "functionId": {
-                    "$ref": "#/$defs/String"
-                },
-                "functionArn": {
+                "apiId": {
                     "$ref": "#/$defs/String"
                 },
                 "name": {
@@ -3300,13 +4028,21 @@
                 "APPSYNC_JS"
             ]
         },
-        "Code": {
-            "type": "string"
-        },
-        "CreateFunctionRequest": {
+        "CreateFunctionResponse": {
             "type": "object",
             "properties": {
-                "apiId": {
+                "functionConfiguration": {
+                    "$ref": "#/$defs/FunctionConfiguration"
+                }
+            }
+        },
+        "FunctionConfiguration": {
+            "type": "object",
+            "properties": {
+                "functionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "functionArn": {
                     "$ref": "#/$defs/String"
                 },
                 "name": {
@@ -3340,6 +4076,203 @@
                     "$ref": "#/$defs/Code"
                 }
             }
+        },
+        "CreateGraphqlApiRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/String"
+                },
+                "logConfig": {
+                    "$ref": "#/$defs/LogConfig"
+                },
+                "authenticationType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "userPoolConfig": {
+                    "$ref": "#/$defs/UserPoolConfig"
+                },
+                "openIDConnectConfig": {
+                    "$ref": "#/$defs/OpenIDConnectConfig"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "additionalAuthenticationProviders": {
+                    "$ref": "#/$defs/AdditionalAuthenticationProviders"
+                },
+                "xrayEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "lambdaAuthorizerConfig": {
+                    "$ref": "#/$defs/LambdaAuthorizerConfig"
+                },
+                "apiType": {
+                    "$ref": "#/$defs/GraphQLApiType"
+                },
+                "mergedApiExecutionRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "visibility": {
+                    "$ref": "#/$defs/GraphQLApiVisibility"
+                },
+                "ownerContact": {
+                    "$ref": "#/$defs/String"
+                },
+                "introspectionConfig": {
+                    "$ref": "#/$defs/GraphQLApiIntrospectionConfig"
+                },
+                "queryDepthLimit": {
+                    "$ref": "#/$defs/QueryDepthLimit"
+                },
+                "resolverCountLimit": {
+                    "$ref": "#/$defs/ResolverCountLimit"
+                },
+                "enhancedMetricsConfig": {
+                    "$ref": "#/$defs/EnhancedMetricsConfig"
+                }
+            }
+        },
+        "LogConfig": {
+            "type": "object",
+            "properties": {
+                "fieldLogLevel": {
+                    "$ref": "#/$defs/FieldLogLevel"
+                },
+                "cloudWatchLogsRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "excludeVerboseContent": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "FieldLogLevel": {
+            "enum": [
+                "NONE",
+                "ERROR",
+                "ALL",
+                "INFO",
+                "DEBUG"
+            ]
+        },
+        "UserPoolConfig": {
+            "type": "object",
+            "properties": {
+                "userPoolId": {
+                    "$ref": "#/$defs/String"
+                },
+                "awsRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "defaultAction": {
+                    "$ref": "#/$defs/DefaultAction"
+                },
+                "appIdClientRegex": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DefaultAction": {
+            "enum": [
+                "ALLOW",
+                "DENY"
+            ]
+        },
+        "AdditionalAuthenticationProviders": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AdditionalAuthenticationProvider"
+            }
+        },
+        "AdditionalAuthenticationProvider": {
+            "type": "object",
+            "properties": {
+                "authenticationType": {
+                    "$ref": "#/$defs/AuthenticationType"
+                },
+                "openIDConnectConfig": {
+                    "$ref": "#/$defs/OpenIDConnectConfig"
+                },
+                "userPoolConfig": {
+                    "$ref": "#/$defs/CognitoUserPoolConfig"
+                },
+                "lambdaAuthorizerConfig": {
+                    "$ref": "#/$defs/LambdaAuthorizerConfig"
+                }
+            }
+        },
+        "CognitoUserPoolConfig": {
+            "type": "object",
+            "properties": {
+                "userPoolId": {
+                    "$ref": "#/$defs/String"
+                },
+                "awsRegion": {
+                    "$ref": "#/$defs/String"
+                },
+                "appIdClientRegex": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GraphQLApiType": {
+            "enum": [
+                "GRAPHQL",
+                "MERGED"
+            ]
+        },
+        "GraphQLApiVisibility": {
+            "enum": [
+                "GLOBAL",
+                "PRIVATE"
+            ]
+        },
+        "GraphQLApiIntrospectionConfig": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
+        "QueryDepthLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ResolverCountLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "EnhancedMetricsConfig": {
+            "type": "object",
+            "properties": {
+                "resolverLevelMetricsBehavior": {
+                    "$ref": "#/$defs/ResolverLevelMetricsBehavior"
+                },
+                "dataSourceLevelMetricsBehavior": {
+                    "$ref": "#/$defs/DataSourceLevelMetricsBehavior"
+                },
+                "operationLevelMetricsConfig": {
+                    "$ref": "#/$defs/OperationLevelMetricsConfig"
+                }
+            }
+        },
+        "ResolverLevelMetricsBehavior": {
+            "enum": [
+                "FULL_REQUEST_RESOLVER_METRICS",
+                "PER_RESOLVER_METRICS"
+            ]
+        },
+        "DataSourceLevelMetricsBehavior": {
+            "enum": [
+                "FULL_REQUEST_DATA_SOURCE_METRICS",
+                "PER_DATA_SOURCE_METRICS"
+            ]
+        },
+        "OperationLevelMetricsConfig": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
         },
         "CreateGraphqlApiResponse": {
             "type": "object",
@@ -3423,273 +4356,12 @@
                 }
             }
         },
-        "AuthenticationType": {
-            "enum": [
-                "API_KEY",
-                "AWS_IAM",
-                "AMAZON_COGNITO_USER_POOLS",
-                "OPENID_CONNECT",
-                "AWS_LAMBDA"
-            ]
-        },
-        "LogConfig": {
+        "CreateResolverRequest": {
             "type": "object",
             "properties": {
-                "fieldLogLevel": {
-                    "$ref": "#/$defs/FieldLogLevel"
-                },
-                "cloudWatchLogsRoleArn": {
+                "apiId": {
                     "$ref": "#/$defs/String"
                 },
-                "excludeVerboseContent": {
-                    "$ref": "#/$defs/Boolean"
-                }
-            }
-        },
-        "FieldLogLevel": {
-            "enum": [
-                "NONE",
-                "ERROR",
-                "ALL",
-                "INFO",
-                "DEBUG"
-            ]
-        },
-        "UserPoolConfig": {
-            "type": "object",
-            "properties": {
-                "userPoolId": {
-                    "$ref": "#/$defs/String"
-                },
-                "awsRegion": {
-                    "$ref": "#/$defs/String"
-                },
-                "defaultAction": {
-                    "$ref": "#/$defs/DefaultAction"
-                },
-                "appIdClientRegex": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "DefaultAction": {
-            "enum": [
-                "ALLOW",
-                "DENY"
-            ]
-        },
-        "OpenIDConnectConfig": {
-            "type": "object",
-            "properties": {
-                "issuer": {
-                    "$ref": "#/$defs/String"
-                },
-                "clientId": {
-                    "$ref": "#/$defs/String"
-                },
-                "iatTTL": {
-                    "$ref": "#/$defs/Long"
-                },
-                "authTTL": {
-                    "$ref": "#/$defs/Long"
-                }
-            }
-        },
-        "MapOfStringToString": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/String"
-            }
-        },
-        "TagMap": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
-        },
-        "TagValue": {
-            "type": "string"
-        },
-        "AdditionalAuthenticationProviders": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AdditionalAuthenticationProvider"
-            }
-        },
-        "AdditionalAuthenticationProvider": {
-            "type": "object",
-            "properties": {
-                "authenticationType": {
-                    "$ref": "#/$defs/AuthenticationType"
-                },
-                "openIDConnectConfig": {
-                    "$ref": "#/$defs/OpenIDConnectConfig"
-                },
-                "userPoolConfig": {
-                    "$ref": "#/$defs/CognitoUserPoolConfig"
-                },
-                "lambdaAuthorizerConfig": {
-                    "$ref": "#/$defs/LambdaAuthorizerConfig"
-                }
-            }
-        },
-        "CognitoUserPoolConfig": {
-            "type": "object",
-            "properties": {
-                "userPoolId": {
-                    "$ref": "#/$defs/String"
-                },
-                "awsRegion": {
-                    "$ref": "#/$defs/String"
-                },
-                "appIdClientRegex": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "LambdaAuthorizerConfig": {
-            "type": "object",
-            "properties": {
-                "authorizerResultTtlInSeconds": {
-                    "$ref": "#/$defs/TTL"
-                },
-                "authorizerUri": {
-                    "$ref": "#/$defs/String"
-                },
-                "identityValidationExpression": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "TTL": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "GraphQLApiVisibility": {
-            "enum": [
-                "GLOBAL",
-                "PRIVATE"
-            ]
-        },
-        "GraphQLApiType": {
-            "enum": [
-                "GRAPHQL",
-                "MERGED"
-            ]
-        },
-        "GraphQLApiIntrospectionConfig": {
-            "enum": [
-                "ENABLED",
-                "DISABLED"
-            ]
-        },
-        "QueryDepthLimit": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ResolverCountLimit": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "EnhancedMetricsConfig": {
-            "type": "object",
-            "properties": {
-                "resolverLevelMetricsBehavior": {
-                    "$ref": "#/$defs/ResolverLevelMetricsBehavior"
-                },
-                "dataSourceLevelMetricsBehavior": {
-                    "$ref": "#/$defs/DataSourceLevelMetricsBehavior"
-                },
-                "operationLevelMetricsConfig": {
-                    "$ref": "#/$defs/OperationLevelMetricsConfig"
-                }
-            }
-        },
-        "ResolverLevelMetricsBehavior": {
-            "enum": [
-                "FULL_REQUEST_RESOLVER_METRICS",
-                "PER_RESOLVER_METRICS"
-            ]
-        },
-        "DataSourceLevelMetricsBehavior": {
-            "enum": [
-                "FULL_REQUEST_DATA_SOURCE_METRICS",
-                "PER_DATA_SOURCE_METRICS"
-            ]
-        },
-        "OperationLevelMetricsConfig": {
-            "enum": [
-                "ENABLED",
-                "DISABLED"
-            ]
-        },
-        "CreateGraphqlApiRequest": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/String"
-                },
-                "logConfig": {
-                    "$ref": "#/$defs/LogConfig"
-                },
-                "authenticationType": {
-                    "$ref": "#/$defs/AuthenticationType"
-                },
-                "userPoolConfig": {
-                    "$ref": "#/$defs/UserPoolConfig"
-                },
-                "openIDConnectConfig": {
-                    "$ref": "#/$defs/OpenIDConnectConfig"
-                },
-                "tags": {
-                    "$ref": "#/$defs/TagMap"
-                },
-                "additionalAuthenticationProviders": {
-                    "$ref": "#/$defs/AdditionalAuthenticationProviders"
-                },
-                "xrayEnabled": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "lambdaAuthorizerConfig": {
-                    "$ref": "#/$defs/LambdaAuthorizerConfig"
-                },
-                "visibility": {
-                    "$ref": "#/$defs/GraphQLApiVisibility"
-                },
-                "apiType": {
-                    "$ref": "#/$defs/GraphQLApiType"
-                },
-                "mergedApiExecutionRoleArn": {
-                    "$ref": "#/$defs/String"
-                },
-                "ownerContact": {
-                    "$ref": "#/$defs/String"
-                },
-                "introspectionConfig": {
-                    "$ref": "#/$defs/GraphQLApiIntrospectionConfig"
-                },
-                "queryDepthLimit": {
-                    "$ref": "#/$defs/QueryDepthLimit"
-                },
-                "resolverCountLimit": {
-                    "$ref": "#/$defs/ResolverCountLimit"
-                },
-                "enhancedMetricsConfig": {
-                    "$ref": "#/$defs/EnhancedMetricsConfig"
-                }
-            }
-        },
-        "CreateResolverResponse": {
-            "type": "object",
-            "properties": {
-                "resolver": {
-                    "$ref": "#/$defs/Resolver"
-                }
-            }
-        },
-        "Resolver": {
-            "type": "object",
-            "properties": {
                 "typeName": {
                     "$ref": "#/$defs/ResourceName"
                 },
@@ -3698,9 +4370,6 @@
                 },
                 "dataSourceName": {
                     "$ref": "#/$defs/ResourceName"
-                },
-                "resolverArn": {
-                    "$ref": "#/$defs/String"
                 },
                 "requestMappingTemplate": {
                     "$ref": "#/$defs/MappingTemplate"
@@ -3777,12 +4446,17 @@
                 "DISABLED"
             ]
         },
-        "CreateResolverRequest": {
+        "CreateResolverResponse": {
             "type": "object",
             "properties": {
-                "apiId": {
-                    "$ref": "#/$defs/String"
-                },
+                "resolver": {
+                    "$ref": "#/$defs/Resolver"
+                }
+            }
+        },
+        "Resolver": {
+            "type": "object",
+            "properties": {
                 "typeName": {
                     "$ref": "#/$defs/ResourceName"
                 },
@@ -3791,6 +4465,9 @@
                 },
                 "dataSourceName": {
                     "$ref": "#/$defs/ResourceName"
+                },
+                "resolverArn": {
+                    "$ref": "#/$defs/String"
                 },
                 "requestMappingTemplate": {
                     "$ref": "#/$defs/MappingTemplate"
@@ -3824,6 +4501,26 @@
                 }
             }
         },
+        "CreateTypeRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "definition": {
+                    "$ref": "#/$defs/String"
+                },
+                "format": {
+                    "$ref": "#/$defs/TypeDefinitionFormat"
+                }
+            }
+        },
+        "TypeDefinitionFormat": {
+            "enum": [
+                "SDL",
+                "JSON"
+            ]
+        },
         "CreateTypeResponse": {
             "type": "object",
             "properties": {
@@ -3852,27 +4549,15 @@
                 }
             }
         },
-        "TypeDefinitionFormat": {
-            "enum": [
-                "SDL",
-                "JSON"
-            ]
-        },
-        "CreateTypeRequest": {
+        "DeleteApiRequest": {
             "type": "object",
             "properties": {
                 "apiId": {
                     "$ref": "#/$defs/String"
-                },
-                "definition": {
-                    "$ref": "#/$defs/String"
-                },
-                "format": {
-                    "$ref": "#/$defs/TypeDefinitionFormat"
                 }
             }
         },
-        "DeleteApiCacheResponse": {
+        "DeleteApiResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3884,7 +4569,7 @@
                 }
             }
         },
-        "DeleteApiKeyResponse": {
+        "DeleteApiCacheResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3899,7 +4584,22 @@
                 }
             }
         },
-        "DeleteDataSourceResponse": {
+        "DeleteApiKeyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteChannelNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/Namespace"
+                }
+            }
+        },
+        "DeleteChannelNamespaceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3914,7 +4614,7 @@
                 }
             }
         },
-        "DeleteDomainNameResponse": {
+        "DeleteDataSourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3926,7 +4626,7 @@
                 }
             }
         },
-        "DeleteFunctionResponse": {
+        "DeleteDomainNameResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3941,7 +4641,7 @@
                 }
             }
         },
-        "DeleteGraphqlApiResponse": {
+        "DeleteFunctionResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3953,7 +4653,7 @@
                 }
             }
         },
-        "DeleteResolverResponse": {
+        "DeleteGraphqlApiResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3971,7 +4671,7 @@
                 }
             }
         },
-        "DeleteTypeResponse": {
+        "DeleteResolverResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3986,7 +4686,7 @@
                 }
             }
         },
-        "DisassociateApiResponse": {
+        "DeleteTypeResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3998,13 +4698,9 @@
                 }
             }
         },
-        "DisassociateMergedGraphqlApiResponse": {
+        "DisassociateApiResponse": {
             "type": "object",
-            "properties": {
-                "sourceApiAssociationStatus": {
-                    "$ref": "#/$defs/SourceApiAssociationStatus"
-                }
-            }
+            "properties": {}
         },
         "DisassociateMergedGraphqlApiRequest": {
             "type": "object",
@@ -4017,7 +4713,7 @@
                 }
             }
         },
-        "DisassociateSourceGraphqlApiResponse": {
+        "DisassociateMergedGraphqlApiResponse": {
             "type": "object",
             "properties": {
                 "sourceApiAssociationStatus": {
@@ -4036,6 +4732,34 @@
                 }
             }
         },
+        "DisassociateSourceGraphqlApiResponse": {
+            "type": "object",
+            "properties": {
+                "sourceApiAssociationStatus": {
+                    "$ref": "#/$defs/SourceApiAssociationStatus"
+                }
+            }
+        },
+        "EvaluateCodeRequest": {
+            "type": "object",
+            "properties": {
+                "runtime": {
+                    "$ref": "#/$defs/AppSyncRuntime"
+                },
+                "code": {
+                    "$ref": "#/$defs/Code"
+                },
+                "context": {
+                    "$ref": "#/$defs/Context"
+                },
+                "function": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "Context": {
+            "type": "string"
+        },
         "EvaluateCodeResponse": {
             "type": "object",
             "properties": {
@@ -4047,6 +4771,12 @@
                 },
                 "logs": {
                     "$ref": "#/$defs/Logs"
+                },
+                "stash": {
+                    "$ref": "#/$defs/Stash"
+                },
+                "outErrors": {
+                    "$ref": "#/$defs/OutErrors"
                 }
             }
         },
@@ -4119,47 +4849,11 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "EvaluateCodeRequest": {
-            "type": "object",
-            "properties": {
-                "runtime": {
-                    "$ref": "#/$defs/AppSyncRuntime"
-                },
-                "code": {
-                    "$ref": "#/$defs/Code"
-                },
-                "context": {
-                    "$ref": "#/$defs/Context"
-                },
-                "function": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "Context": {
+        "Stash": {
             "type": "string"
         },
-        "EvaluateMappingTemplateResponse": {
-            "type": "object",
-            "properties": {
-                "evaluationResult": {
-                    "$ref": "#/$defs/EvaluationResult"
-                },
-                "error": {
-                    "$ref": "#/$defs/ErrorDetail"
-                },
-                "logs": {
-                    "$ref": "#/$defs/Logs"
-                }
-            }
-        },
-        "ErrorDetail": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/ErrorMessage"
-                }
-            }
+        "OutErrors": {
+            "type": "string"
         },
         "EvaluateMappingTemplateRequest": {
             "type": "object",
@@ -4175,9 +4869,33 @@
         "Template": {
             "type": "string"
         },
-        "FlushApiCacheResponse": {
+        "EvaluateMappingTemplateResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "evaluationResult": {
+                    "$ref": "#/$defs/EvaluationResult"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorDetail"
+                },
+                "logs": {
+                    "$ref": "#/$defs/Logs"
+                },
+                "stash": {
+                    "$ref": "#/$defs/Stash"
+                },
+                "outErrors": {
+                    "$ref": "#/$defs/OutErrors"
+                }
+            }
+        },
+        "ErrorDetail": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
         },
         "FlushApiCacheRequest": {
             "type": "object",
@@ -4187,11 +4905,23 @@
                 }
             }
         },
-        "GetApiAssociationResponse": {
+        "FlushApiCacheResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetApiRequest": {
             "type": "object",
             "properties": {
-                "apiAssociation": {
-                    "$ref": "#/$defs/ApiAssociation"
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetApiResponse": {
+            "type": "object",
+            "properties": {
+                "api": {
+                    "$ref": "#/$defs/Api"
                 }
             }
         },
@@ -4203,11 +4933,11 @@
                 }
             }
         },
-        "GetApiCacheResponse": {
+        "GetApiAssociationResponse": {
             "type": "object",
             "properties": {
-                "apiCache": {
-                    "$ref": "#/$defs/ApiCache"
+                "apiAssociation": {
+                    "$ref": "#/$defs/ApiAssociation"
                 }
             }
         },
@@ -4219,11 +4949,30 @@
                 }
             }
         },
-        "GetDataSourceResponse": {
+        "GetApiCacheResponse": {
             "type": "object",
             "properties": {
-                "dataSource": {
-                    "$ref": "#/$defs/DataSource"
+                "apiCache": {
+                    "$ref": "#/$defs/ApiCache"
+                }
+            }
+        },
+        "GetChannelNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/Namespace"
+                }
+            }
+        },
+        "GetChannelNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "channelNamespace": {
+                    "$ref": "#/$defs/ChannelNamespace"
                 }
             }
         },
@@ -4237,6 +4986,38 @@
                     "$ref": "#/$defs/ResourceName"
                 }
             }
+        },
+        "GetDataSourceResponse": {
+            "type": "object",
+            "properties": {
+                "dataSource": {
+                    "$ref": "#/$defs/DataSource"
+                }
+            }
+        },
+        "GetDataSourceIntrospectionRequest": {
+            "type": "object",
+            "properties": {
+                "introspectionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "includeModelsSDL": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "GetDataSourceIntrospectionResponse": {
             "type": "object",
@@ -4365,38 +5146,6 @@
                 "$ref": "#/$defs/DataSourceIntrospectionModelIndex"
             }
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "GetDataSourceIntrospectionRequest": {
-            "type": "object",
-            "properties": {
-                "introspectionId": {
-                    "$ref": "#/$defs/String"
-                },
-                "includeModelsSDL": {
-                    "$ref": "#/$defs/Boolean"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                }
-            }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "GetDomainNameResponse": {
-            "type": "object",
-            "properties": {
-                "domainNameConfig": {
-                    "$ref": "#/$defs/DomainNameConfig"
-                }
-            }
-        },
         "GetDomainNameRequest": {
             "type": "object",
             "properties": {
@@ -4405,11 +5154,11 @@
                 }
             }
         },
-        "GetFunctionResponse": {
+        "GetDomainNameResponse": {
             "type": "object",
             "properties": {
-                "functionConfiguration": {
-                    "$ref": "#/$defs/FunctionConfiguration"
+                "domainNameConfig": {
+                    "$ref": "#/$defs/DomainNameConfig"
                 }
             }
         },
@@ -4424,6 +5173,22 @@
                 }
             }
         },
+        "GetFunctionResponse": {
+            "type": "object",
+            "properties": {
+                "functionConfiguration": {
+                    "$ref": "#/$defs/FunctionConfiguration"
+                }
+            }
+        },
+        "GetGraphqlApiRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
         "GetGraphqlApiResponse": {
             "type": "object",
             "properties": {
@@ -4432,7 +5197,7 @@
                 }
             }
         },
-        "GetGraphqlApiRequest": {
+        "GetGraphqlApiEnvironmentVariablesRequest": {
             "type": "object",
             "properties": {
                 "apiId": {
@@ -4457,26 +5222,6 @@
         "EnvironmentVariableValue": {
             "type": "string"
         },
-        "GetGraphqlApiEnvironmentVariablesRequest": {
-            "type": "object",
-            "properties": {
-                "apiId": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "GetIntrospectionSchemaResponse": {
-            "type": "object",
-            "properties": {
-                "schema": {
-                    "$ref": "#/$defs/Blob"
-                }
-            }
-        },
-        "Blob": {
-            "type": "string",
-            "format": "binary"
-        },
         "GetIntrospectionSchemaRequest": {
             "type": "object",
             "properties": {
@@ -4500,13 +5245,17 @@
         "BooleanValue": {
             "type": "boolean"
         },
-        "GetResolverResponse": {
+        "GetIntrospectionSchemaResponse": {
             "type": "object",
             "properties": {
-                "resolver": {
-                    "$ref": "#/$defs/Resolver"
+                "schema": {
+                    "$ref": "#/$defs/Blob"
                 }
             }
+        },
+        "Blob": {
+            "type": "string",
+            "format": "binary"
         },
         "GetResolverRequest": {
             "type": "object",
@@ -4519,6 +5268,22 @@
                 },
                 "fieldName": {
                     "$ref": "#/$defs/ResourceName"
+                }
+            }
+        },
+        "GetResolverResponse": {
+            "type": "object",
+            "properties": {
+                "resolver": {
+                    "$ref": "#/$defs/Resolver"
+                }
+            }
+        },
+        "GetSchemaCreationStatusRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -4543,22 +5308,6 @@
                 "NotApplicable"
             ]
         },
-        "GetSchemaCreationStatusRequest": {
-            "type": "object",
-            "properties": {
-                "apiId": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "GetSourceApiAssociationResponse": {
-            "type": "object",
-            "properties": {
-                "sourceApiAssociation": {
-                    "$ref": "#/$defs/SourceApiAssociation"
-                }
-            }
-        },
         "GetSourceApiAssociationRequest": {
             "type": "object",
             "properties": {
@@ -4570,11 +5319,11 @@
                 }
             }
         },
-        "GetTypeResponse": {
+        "GetSourceApiAssociationResponse": {
             "type": "object",
             "properties": {
-                "type": {
-                    "$ref": "#/$defs/Type"
+                "sourceApiAssociation": {
+                    "$ref": "#/$defs/SourceApiAssociation"
                 }
             }
         },
@@ -4589,6 +5338,28 @@
                 },
                 "format": {
                     "$ref": "#/$defs/TypeDefinitionFormat"
+                }
+            }
+        },
+        "GetTypeResponse": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/Type"
+                }
+            }
+        },
+        "ListApiKeysRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 }
             }
         },
@@ -4609,7 +5380,66 @@
                 "$ref": "#/$defs/ApiKey"
             }
         },
-        "ListApiKeysRequest": {
+        "ListApisRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListApisResponse": {
+            "type": "object",
+            "properties": {
+                "apis": {
+                    "$ref": "#/$defs/Apis"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "Apis": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Api"
+            }
+        },
+        "ListChannelNamespacesRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListChannelNamespacesResponse": {
+            "type": "object",
+            "properties": {
+                "channelNamespaces": {
+                    "$ref": "#/$defs/ChannelNamespaces"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "ChannelNamespaces": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChannelNamespace"
+            }
+        },
+        "ListDataSourcesRequest": {
             "type": "object",
             "properties": {
                 "apiId": {
@@ -4640,12 +5470,9 @@
                 "$ref": "#/$defs/DataSource"
             }
         },
-        "ListDataSourcesRequest": {
+        "ListDomainNamesRequest": {
             "type": "object",
             "properties": {
-                "apiId": {
-                    "$ref": "#/$defs/String"
-                },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 },
@@ -4671,9 +5498,12 @@
                 "$ref": "#/$defs/DomainNameConfig"
             }
         },
-        "ListDomainNamesRequest": {
+        "ListFunctionsRequest": {
             "type": "object",
             "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 },
@@ -4699,37 +5529,6 @@
                 "$ref": "#/$defs/FunctionConfiguration"
             }
         },
-        "ListFunctionsRequest": {
-            "type": "object",
-            "properties": {
-                "apiId": {
-                    "$ref": "#/$defs/String"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                }
-            }
-        },
-        "ListGraphqlApisResponse": {
-            "type": "object",
-            "properties": {
-                "graphqlApis": {
-                    "$ref": "#/$defs/GraphqlApis"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                }
-            }
-        },
-        "GraphqlApis": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/GraphqlApi"
-            }
-        },
         "ListGraphqlApisRequest": {
             "type": "object",
             "properties": {
@@ -4753,6 +5552,40 @@
                 "OTHER_ACCOUNTS"
             ]
         },
+        "ListGraphqlApisResponse": {
+            "type": "object",
+            "properties": {
+                "graphqlApis": {
+                    "$ref": "#/$defs/GraphqlApis"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "GraphqlApis": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GraphqlApi"
+            }
+        },
+        "ListResolversRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/String"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
         "ListResolversResponse": {
             "type": "object",
             "properties": {
@@ -4770,13 +5603,13 @@
                 "$ref": "#/$defs/Resolver"
             }
         },
-        "ListResolversRequest": {
+        "ListResolversByFunctionRequest": {
             "type": "object",
             "properties": {
                 "apiId": {
                     "$ref": "#/$defs/String"
                 },
-                "typeName": {
+                "functionId": {
                     "$ref": "#/$defs/String"
                 },
                 "nextToken": {
@@ -4798,13 +5631,10 @@
                 }
             }
         },
-        "ListResolversByFunctionRequest": {
+        "ListSourceApiAssociationsRequest": {
             "type": "object",
             "properties": {
                 "apiId": {
-                    "$ref": "#/$defs/String"
-                },
-                "functionId": {
                     "$ref": "#/$defs/String"
                 },
                 "nextToken": {
@@ -4858,28 +5688,6 @@
                 }
             }
         },
-        "ListSourceApiAssociationsRequest": {
-            "type": "object",
-            "properties": {
-                "apiId": {
-                    "$ref": "#/$defs/String"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                }
-            }
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "tags": {
-                    "$ref": "#/$defs/TagMap"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -4890,6 +5698,31 @@
         },
         "ResourceArn": {
             "type": "string"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListTypesRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "format": {
+                    "$ref": "#/$defs/TypeDefinitionFormat"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
         },
         "ListTypesResponse": {
             "type": "object",
@@ -4908,10 +5741,13 @@
                 "$ref": "#/$defs/Type"
             }
         },
-        "ListTypesRequest": {
+        "ListTypesByAssociationRequest": {
             "type": "object",
             "properties": {
-                "apiId": {
+                "mergedApiIdentifier": {
+                    "$ref": "#/$defs/String"
+                },
+                "associationId": {
                     "$ref": "#/$defs/String"
                 },
                 "format": {
@@ -4936,34 +5772,6 @@
                 }
             }
         },
-        "ListTypesByAssociationRequest": {
-            "type": "object",
-            "properties": {
-                "mergedApiIdentifier": {
-                    "$ref": "#/$defs/String"
-                },
-                "associationId": {
-                    "$ref": "#/$defs/String"
-                },
-                "format": {
-                    "$ref": "#/$defs/TypeDefinitionFormat"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                }
-            }
-        },
-        "PutGraphqlApiEnvironmentVariablesResponse": {
-            "type": "object",
-            "properties": {
-                "environmentVariables": {
-                    "$ref": "#/$defs/EnvironmentVariableMap"
-                }
-            }
-        },
         "PutGraphqlApiEnvironmentVariablesRequest": {
             "type": "object",
             "properties": {
@@ -4975,17 +5783,11 @@
                 }
             }
         },
-        "StartDataSourceIntrospectionResponse": {
+        "PutGraphqlApiEnvironmentVariablesResponse": {
             "type": "object",
             "properties": {
-                "introspectionId": {
-                    "$ref": "#/$defs/String"
-                },
-                "introspectionStatus": {
-                    "$ref": "#/$defs/DataSourceIntrospectionStatus"
-                },
-                "introspectionStatusDetail": {
-                    "$ref": "#/$defs/String"
+                "environmentVariables": {
+                    "$ref": "#/$defs/EnvironmentVariableMap"
                 }
             }
         },
@@ -5020,11 +5822,17 @@
         "RdsDataApiConfigDatabaseName": {
             "type": "string"
         },
-        "StartSchemaCreationResponse": {
+        "StartDataSourceIntrospectionResponse": {
             "type": "object",
             "properties": {
-                "status": {
-                    "$ref": "#/$defs/SchemaStatus"
+                "introspectionId": {
+                    "$ref": "#/$defs/String"
+                },
+                "introspectionStatus": {
+                    "$ref": "#/$defs/DataSourceIntrospectionStatus"
+                },
+                "introspectionStatusDetail": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -5039,11 +5847,11 @@
                 }
             }
         },
-        "StartSchemaMergeResponse": {
+        "StartSchemaCreationResponse": {
             "type": "object",
             "properties": {
-                "sourceApiAssociationStatus": {
-                    "$ref": "#/$defs/SourceApiAssociationStatus"
+                "status": {
+                    "$ref": "#/$defs/SchemaStatus"
                 }
             }
         },
@@ -5058,9 +5866,13 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "StartSchemaMergeResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "sourceApiAssociationStatus": {
+                    "$ref": "#/$defs/SourceApiAssociationStatus"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -5073,7 +5885,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -5097,11 +5909,32 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateApiCacheResponse": {
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateApiRequest": {
             "type": "object",
             "properties": {
-                "apiCache": {
-                    "$ref": "#/$defs/ApiCache"
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/ApiName"
+                },
+                "ownerContact": {
+                    "$ref": "#/$defs/String"
+                },
+                "eventConfig": {
+                    "$ref": "#/$defs/EventConfig"
+                }
+            }
+        },
+        "UpdateApiResponse": {
+            "type": "object",
+            "properties": {
+                "api": {
+                    "$ref": "#/$defs/Api"
                 }
             }
         },
@@ -5125,11 +5958,11 @@
                 }
             }
         },
-        "UpdateApiKeyResponse": {
+        "UpdateApiCacheResponse": {
             "type": "object",
             "properties": {
-                "apiKey": {
-                    "$ref": "#/$defs/ApiKey"
+                "apiCache": {
+                    "$ref": "#/$defs/ApiCache"
                 }
             }
         },
@@ -5150,11 +5983,39 @@
                 }
             }
         },
-        "UpdateDataSourceResponse": {
+        "UpdateApiKeyResponse": {
             "type": "object",
             "properties": {
-                "dataSource": {
-                    "$ref": "#/$defs/DataSource"
+                "apiKey": {
+                    "$ref": "#/$defs/ApiKey"
+                }
+            }
+        },
+        "UpdateChannelNamespaceRequest": {
+            "type": "object",
+            "properties": {
+                "apiId": {
+                    "$ref": "#/$defs/String"
+                },
+                "name": {
+                    "$ref": "#/$defs/Namespace"
+                },
+                "subscribeAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "publishAuthModes": {
+                    "$ref": "#/$defs/AuthModes"
+                },
+                "codeHandlers": {
+                    "$ref": "#/$defs/Code"
+                }
+            }
+        },
+        "UpdateChannelNamespaceResponse": {
+            "type": "object",
+            "properties": {
+                "channelNamespace": {
+                    "$ref": "#/$defs/ChannelNamespace"
                 }
             }
         },
@@ -5202,11 +6063,11 @@
                 }
             }
         },
-        "UpdateDomainNameResponse": {
+        "UpdateDataSourceResponse": {
             "type": "object",
             "properties": {
-                "domainNameConfig": {
-                    "$ref": "#/$defs/DomainNameConfig"
+                "dataSource": {
+                    "$ref": "#/$defs/DataSource"
                 }
             }
         },
@@ -5221,11 +6082,11 @@
                 }
             }
         },
-        "UpdateFunctionResponse": {
+        "UpdateDomainNameResponse": {
             "type": "object",
             "properties": {
-                "functionConfiguration": {
-                    "$ref": "#/$defs/FunctionConfiguration"
+                "domainNameConfig": {
+                    "$ref": "#/$defs/DomainNameConfig"
                 }
             }
         },
@@ -5270,11 +6131,11 @@
                 }
             }
         },
-        "UpdateGraphqlApiResponse": {
+        "UpdateFunctionResponse": {
             "type": "object",
             "properties": {
-                "graphqlApi": {
-                    "$ref": "#/$defs/GraphqlApi"
+                "functionConfiguration": {
+                    "$ref": "#/$defs/FunctionConfiguration"
                 }
             }
         },
@@ -5328,11 +6189,11 @@
                 }
             }
         },
-        "UpdateResolverResponse": {
+        "UpdateGraphqlApiResponse": {
             "type": "object",
             "properties": {
-                "resolver": {
-                    "$ref": "#/$defs/Resolver"
+                "graphqlApi": {
+                    "$ref": "#/$defs/GraphqlApi"
                 }
             }
         },
@@ -5383,11 +6244,11 @@
                 }
             }
         },
-        "UpdateSourceApiAssociationResponse": {
+        "UpdateResolverResponse": {
             "type": "object",
             "properties": {
-                "sourceApiAssociation": {
-                    "$ref": "#/$defs/SourceApiAssociation"
+                "resolver": {
+                    "$ref": "#/$defs/Resolver"
                 }
             }
         },
@@ -5408,11 +6269,11 @@
                 }
             }
         },
-        "UpdateTypeResponse": {
+        "UpdateSourceApiAssociationResponse": {
             "type": "object",
             "properties": {
-                "type": {
-                    "$ref": "#/$defs/Type"
+                "sourceApiAssociation": {
+                    "$ref": "#/$defs/SourceApiAssociation"
                 }
             }
         },
@@ -5430,6 +6291,14 @@
                 },
                 "format": {
                     "$ref": "#/$defs/TypeDefinitionFormat"
+                }
+            }
+        },
+        "UpdateTypeResponse": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/Type"
                 }
             }
         }

@@ -35,8 +35,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "serviceIdentifier": {},
+                        "listenerIdentifier": {},
+                        "rules": {}
                     }
                 }
             }
@@ -73,8 +74,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceIdentifier": {}
                     }
                 }
             }
@@ -111,8 +111,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -149,8 +148,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceIdentifier": {}
                     }
                 }
             }
@@ -187,8 +185,42 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListServiceNetworkVpcEndpointAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/servicenetworkvpcendpointassociations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServiceNetworkVpcEndpointAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServiceNetworkVpcEndpointAssociationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "serviceNetworkIdentifier": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -225,8 +257,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -263,8 +294,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceIdentifier": {},
+                        "policy": {}
                     }
                 }
             }
@@ -301,8 +332,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "policy": {}
                     }
                 }
             }
@@ -339,8 +370,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -377,8 +408,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -430,37 +461,37 @@
             "type": "string",
             "format": "binary"
         },
-        "BatchUpdateRuleResponse": {
+        "BatchUpdateRuleRequest": {
             "type": "object",
             "properties": {
-                "successful": {
-                    "$ref": "#/$defs/RuleUpdateSuccessList"
+                "serviceIdentifier": {
+                    "$ref": "#/$defs/ServiceIdentifier"
                 },
-                "unsuccessful": {
-                    "$ref": "#/$defs/RuleUpdateFailureList"
+                "listenerIdentifier": {
+                    "$ref": "#/$defs/ListenerIdentifier"
+                },
+                "rules": {
+                    "$ref": "#/$defs/RuleUpdateList"
                 }
             }
         },
-        "RuleUpdateSuccessList": {
+        "ServiceIdentifier": {
+            "type": "string"
+        },
+        "ListenerIdentifier": {
+            "type": "string"
+        },
+        "RuleUpdateList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/RuleUpdateSuccess"
+                "$ref": "#/$defs/RuleUpdate"
             }
         },
-        "RuleUpdateSuccess": {
+        "RuleUpdate": {
             "type": "object",
             "properties": {
-                "arn": {
-                    "$ref": "#/$defs/RuleArn"
-                },
-                "id": {
-                    "$ref": "#/$defs/RuleId"
-                },
-                "name": {
-                    "$ref": "#/$defs/RuleName"
-                },
-                "isDefault": {
-                    "$ref": "#/$defs/Boolean"
+                "ruleIdentifier": {
+                    "$ref": "#/$defs/RuleIdentifier"
                 },
                 "match": {
                     "$ref": "#/$defs/RuleMatch"
@@ -473,17 +504,8 @@
                 }
             }
         },
-        "RuleArn": {
+        "RuleIdentifier": {
             "type": "string"
-        },
-        "RuleId": {
-            "type": "string"
-        },
-        "RuleName": {
-            "type": "string"
-        },
-        "Boolean": {
-            "type": "boolean"
         },
         "RuleMatch": {
             "type": "object",
@@ -537,6 +559,9 @@
         },
         "PathMatchPrefix": {
             "type": "string"
+        },
+        "Boolean": {
+            "type": "boolean"
         },
         "HeaderMatchList": {
             "type": "array",
@@ -643,6 +668,58 @@
             "type": "integer",
             "format": "int32"
         },
+        "BatchUpdateRuleResponse": {
+            "type": "object",
+            "properties": {
+                "successful": {
+                    "$ref": "#/$defs/RuleUpdateSuccessList"
+                },
+                "unsuccessful": {
+                    "$ref": "#/$defs/RuleUpdateFailureList"
+                }
+            }
+        },
+        "RuleUpdateSuccessList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RuleUpdateSuccess"
+            }
+        },
+        "RuleUpdateSuccess": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RuleArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/RuleId"
+                },
+                "name": {
+                    "$ref": "#/$defs/RuleName"
+                },
+                "isDefault": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "match": {
+                    "$ref": "#/$defs/RuleMatch"
+                },
+                "priority": {
+                    "$ref": "#/$defs/RulePriority"
+                },
+                "action": {
+                    "$ref": "#/$defs/RuleAction"
+                }
+            }
+        },
+        "RuleArn": {
+            "type": "string"
+        },
+        "RuleId": {
+            "type": "string"
+        },
+        "RuleName": {
+            "type": "string"
+        },
         "RuleUpdateFailureList": {
             "type": "array",
             "items": {
@@ -663,61 +740,11 @@
                 }
             }
         },
-        "RuleIdentifier": {
-            "type": "string"
-        },
         "FailureCode": {
             "type": "string"
         },
         "FailureMessage": {
             "type": "string"
-        },
-        "BatchUpdateRuleRequest": {
-            "type": "object",
-            "properties": {
-                "serviceIdentifier": {
-                    "$ref": "#/$defs/ServiceIdentifier"
-                },
-                "listenerIdentifier": {
-                    "$ref": "#/$defs/ListenerIdentifier"
-                },
-                "rules": {
-                    "$ref": "#/$defs/RuleUpdateList"
-                }
-            }
-        },
-        "ServiceIdentifier": {
-            "type": "string"
-        },
-        "ListenerIdentifier": {
-            "type": "string"
-        },
-        "RuleUpdateList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/RuleUpdate"
-            }
-        },
-        "RuleUpdate": {
-            "type": "object",
-            "properties": {
-                "ruleIdentifier": {
-                    "$ref": "#/$defs/RuleIdentifier"
-                },
-                "match": {
-                    "$ref": "#/$defs/RuleMatch"
-                },
-                "priority": {
-                    "$ref": "#/$defs/RulePriority"
-                },
-                "action": {
-                    "$ref": "#/$defs/RuleAction"
-                }
-            }
-        },
-        "DeleteAuthPolicyResponse": {
-            "type": "object",
-            "properties": {}
         },
         "DeleteAuthPolicyRequest": {
             "type": "object",
@@ -730,7 +757,7 @@
         "ResourceIdentifier": {
             "type": "string"
         },
-        "DeleteResourcePolicyResponse": {
+        "DeleteAuthPolicyResponse": {
             "type": "object",
             "properties": {}
         },
@@ -744,6 +771,18 @@
         },
         "ResourceArn": {
             "type": "string"
+        },
+        "DeleteResourcePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetAuthPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "resourceIdentifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                }
+            }
         },
         "GetAuthPolicyResponse": {
             "type": "object",
@@ -772,11 +811,11 @@
             "type": "string",
             "format": "date-time"
         },
-        "GetAuthPolicyRequest": {
+        "GetResourcePolicyRequest": {
             "type": "object",
             "properties": {
-                "resourceIdentifier": {
-                    "$ref": "#/$defs/ResourceIdentifier"
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
                 }
             }
         },
@@ -791,13 +830,86 @@
         "PolicyString": {
             "type": "string"
         },
-        "GetResourcePolicyRequest": {
+        "ListServiceNetworkVpcEndpointAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "serviceNetworkIdentifier": {
+                    "$ref": "#/$defs/ServiceNetworkIdentifier"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceNetworkIdentifier": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "ListServiceNetworkVpcEndpointAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "$ref": "#/$defs/ServiceNetworkVpcEndpointAssociationList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ServiceNetworkVpcEndpointAssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceNetworkEndpointAssociation"
+            }
+        },
+        "ServiceNetworkEndpointAssociation": {
+            "type": "object",
+            "properties": {
+                "vpcEndpointId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "vpcId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "vpcEndpointOwnerId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "id": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "state": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "serviceNetworkArn": {
+                    "$ref": "#/$defs/ServiceNetworkArn"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ServiceNetworkArn": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
                 "resourceArn": {
-                    "$ref": "#/$defs/ResourceArn"
+                    "$ref": "#/$defs/Arn"
                 }
             }
+        },
+        "Arn": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -816,16 +928,16 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
+        "PutAuthPolicyRequest": {
             "type": "object",
             "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
+                "resourceIdentifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "policy": {
+                    "$ref": "#/$defs/AuthPolicyString"
                 }
             }
-        },
-        "Arn": {
-            "type": "string"
         },
         "PutAuthPolicyResponse": {
             "type": "object",
@@ -838,21 +950,6 @@
                 }
             }
         },
-        "PutAuthPolicyRequest": {
-            "type": "object",
-            "properties": {
-                "resourceIdentifier": {
-                    "$ref": "#/$defs/ResourceIdentifier"
-                },
-                "policy": {
-                    "$ref": "#/$defs/AuthPolicyString"
-                }
-            }
-        },
-        "PutResourcePolicyResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "PutResourcePolicyRequest": {
             "type": "object",
             "properties": {
@@ -864,7 +961,7 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "PutResourcePolicyResponse": {
             "type": "object",
             "properties": {}
         },
@@ -879,7 +976,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -902,6 +999,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

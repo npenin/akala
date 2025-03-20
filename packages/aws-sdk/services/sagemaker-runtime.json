@@ -33,9 +33,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EndpointName": {},
+                        "Body": {},
+                        "ContentType": {},
+                        "Accept": {},
+                        "CustomAttributes": {},
+                        "TargetModel": {},
+                        "TargetVariant": {},
+                        "TargetContainerHostname": {},
+                        "InferenceId": {},
+                        "EnableExplanations": {},
+                        "InferenceComponentName": {},
+                        "SessionId": {}
                     }
                 }
             }
@@ -72,9 +81,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EndpointName": {},
+                        "ContentType": {},
+                        "Accept": {},
+                        "CustomAttributes": {},
+                        "InferenceId": {},
+                        "InputLocation": {},
+                        "RequestTTLSeconds": {},
+                        "InvocationTimeoutSeconds": {}
                     }
                 }
             }
@@ -111,9 +125,16 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EndpointName": {},
+                        "Body": {},
+                        "ContentType": {},
+                        "Accept": {},
+                        "CustomAttributes": {},
+                        "TargetVariant": {},
+                        "TargetContainerHostname": {},
+                        "InferenceId": {},
+                        "InferenceComponentName": {},
+                        "SessionId": {}
                     }
                 }
             }
@@ -165,45 +186,6 @@
             "type": "string",
             "format": "binary"
         },
-        "InvokeEndpointOutput": {
-            "type": "object",
-            "properties": {
-                "Body": {
-                    "$ref": "#/$defs/BodyBlob"
-                },
-                "ContentType": {
-                    "$ref": "#/$defs/Header"
-                },
-                "InvokedProductionVariant": {
-                    "$ref": "#/$defs/Header"
-                },
-                "CustomAttributes": {
-                    "$ref": "#/$defs/CustomAttributesHeader"
-                },
-                "NewSessionId": {
-                    "$ref": "#/$defs/NewSessionResponseHeader"
-                },
-                "ClosedSessionId": {
-                    "$ref": "#/$defs/SessionIdHeader"
-                }
-            }
-        },
-        "BodyBlob": {
-            "type": "string",
-            "format": "binary"
-        },
-        "Header": {
-            "type": "string"
-        },
-        "CustomAttributesHeader": {
-            "type": "string"
-        },
-        "NewSessionResponseHeader": {
-            "type": "string"
-        },
-        "SessionIdHeader": {
-            "type": "string"
-        },
         "InvokeEndpointInput": {
             "type": "object",
             "properties": {
@@ -248,6 +230,16 @@
         "EndpointName": {
             "type": "string"
         },
+        "BodyBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "Header": {
+            "type": "string"
+        },
+        "CustomAttributesHeader": {
+            "type": "string"
+        },
         "TargetModelHeader": {
             "type": "string"
         },
@@ -269,19 +261,34 @@
         "SessionIdOrNewSessionConstantHeader": {
             "type": "string"
         },
-        "InvokeEndpointAsyncOutput": {
+        "InvokeEndpointOutput": {
             "type": "object",
             "properties": {
-                "InferenceId": {
+                "Body": {
+                    "$ref": "#/$defs/BodyBlob"
+                },
+                "ContentType": {
                     "$ref": "#/$defs/Header"
                 },
-                "OutputLocation": {
+                "InvokedProductionVariant": {
                     "$ref": "#/$defs/Header"
                 },
-                "FailureLocation": {
-                    "$ref": "#/$defs/Header"
+                "CustomAttributes": {
+                    "$ref": "#/$defs/CustomAttributesHeader"
+                },
+                "NewSessionId": {
+                    "$ref": "#/$defs/NewSessionResponseHeader"
+                },
+                "ClosedSessionId": {
+                    "$ref": "#/$defs/SessionIdHeader"
                 }
             }
+        },
+        "NewSessionResponseHeader": {
+            "type": "string"
+        },
+        "SessionIdHeader": {
+            "type": "string"
         },
         "InvokeEndpointAsyncInput": {
             "type": "object",
@@ -322,6 +329,55 @@
         "InvocationTimeoutSecondsHeader": {
             "type": "integer",
             "format": "int32"
+        },
+        "InvokeEndpointAsyncOutput": {
+            "type": "object",
+            "properties": {
+                "InferenceId": {
+                    "$ref": "#/$defs/Header"
+                },
+                "OutputLocation": {
+                    "$ref": "#/$defs/Header"
+                },
+                "FailureLocation": {
+                    "$ref": "#/$defs/Header"
+                }
+            }
+        },
+        "InvokeEndpointWithResponseStreamInput": {
+            "type": "object",
+            "properties": {
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                },
+                "Body": {
+                    "$ref": "#/$defs/BodyBlob"
+                },
+                "ContentType": {
+                    "$ref": "#/$defs/Header"
+                },
+                "Accept": {
+                    "$ref": "#/$defs/Header"
+                },
+                "CustomAttributes": {
+                    "$ref": "#/$defs/CustomAttributesHeader"
+                },
+                "TargetVariant": {
+                    "$ref": "#/$defs/TargetVariantHeader"
+                },
+                "TargetContainerHostname": {
+                    "$ref": "#/$defs/TargetContainerHostnameHeader"
+                },
+                "InferenceId": {
+                    "$ref": "#/$defs/InferenceId"
+                },
+                "InferenceComponentName": {
+                    "$ref": "#/$defs/InferenceComponentHeader"
+                },
+                "SessionId": {
+                    "$ref": "#/$defs/SessionIdHeader"
+                }
+            }
         },
         "InvokeEndpointWithResponseStreamOutput": {
             "type": "object",
@@ -388,41 +444,6 @@
             "properties": {
                 "Message": {
                     "$ref": "#/$defs/Message"
-                }
-            }
-        },
-        "InvokeEndpointWithResponseStreamInput": {
-            "type": "object",
-            "properties": {
-                "EndpointName": {
-                    "$ref": "#/$defs/EndpointName"
-                },
-                "Body": {
-                    "$ref": "#/$defs/BodyBlob"
-                },
-                "ContentType": {
-                    "$ref": "#/$defs/Header"
-                },
-                "Accept": {
-                    "$ref": "#/$defs/Header"
-                },
-                "CustomAttributes": {
-                    "$ref": "#/$defs/CustomAttributesHeader"
-                },
-                "TargetVariant": {
-                    "$ref": "#/$defs/TargetVariantHeader"
-                },
-                "TargetContainerHostname": {
-                    "$ref": "#/$defs/TargetContainerHostnameHeader"
-                },
-                "InferenceId": {
-                    "$ref": "#/$defs/InferenceId"
-                },
-                "InferenceComponentName": {
-                    "$ref": "#/$defs/InferenceComponentHeader"
-                },
-                "SessionId": {
-                    "$ref": "#/$defs/SessionIdHeader"
                 }
             }
         }

@@ -1,4 +1,4 @@
-import { base64 } from "@akala/core";
+import { base64, HttpOptions } from "@akala/core";
 // import crypto from 'crypto'
 
 const algo = { name: 'HMAC', hash: 'SHA-256' }
@@ -18,7 +18,7 @@ export function sign(accessKey: string, region: string, service: string)
         key = await crypto.subtle.importKey('raw', signingKey, algo, false, ['sign'])
         return key;
     }
-    return async function (url: URL | string, request: RequestInit)
+    return async function <T extends RequestInit | HttpOptions<unknown>>(url: URL | string, request: T)
     {
         if (request.body instanceof ReadableStream || request.body instanceof FormData)
             throw new Error('Not supported')
@@ -51,7 +51,7 @@ export function sign(accessKey: string, region: string, service: string)
             else if (request.headers instanceof Headers)
                 request.headers.get(name);
             else
-                return request.headers[name];
+                return request.headers[name].toString();
         }
 
         var now = new Date().toJSON();
@@ -64,7 +64,24 @@ export function sign(accessKey: string, region: string, service: string)
 
         const canonical_headers = signed_headers.map(x => x + ':' + getHeader(x)).join('\n');
         // const signedHeaders = await crypto.subtle.sign(algo, key, encoder.encode(canonical_headers))
-        const payloadHash = await crypto.subtle.digest('SHA256', typeof request.body == 'string' ? encoder.encode(request.body) : request.body instanceof Blob ? await request.body.arrayBuffer() : request.body instanceof URLSearchParams ? encoder.encode(request.body.toString()) : request.body)
+        let payload: BufferSource;
+        if (typeof request.body == 'string')
+            payload = encoder.encode(request.body);
+        else if (request.body instanceof Blob)
+            payload = await request.body.arrayBuffer();
+        else if (request.body instanceof ArrayBuffer)
+            payload = request.body;
+        else if (ArrayBuffer.isView(request.body))
+            payload = request.body;
+        else if (request.body instanceof URLSearchParams)
+            payload = encoder.encode(request.body.toString());
+        else
+        {
+            const body = request.body = JSON.stringify(request.body);
+            payload = encoder.encode(body);
+        }
+
+        const payloadHash = await crypto.subtle.digest('SHA256', payload)
         const canonical_request = request.method + "\n" + url.pathname + "\n" + url.search + "\n" + canonical_headers + "\n" + signed_headers.join(';') + "\n" + base64.base64EncArr(new Uint8Array(payloadHash));
 
         const algorithm = 'AWS4-HMAC-SHA256';

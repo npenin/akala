@@ -29,9 +29,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "controlIdentifier": {},
+                        "targetIdentifier": {}
                     }
                 }
             }
@@ -83,17 +82,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DisableControlOutput": {
-            "type": "object",
-            "properties": {
-                "operationIdentifier": {
-                    "$ref": "#/$defs/OperationIdentifier"
-                }
-            }
-        },
-        "OperationIdentifier": {
-            "type": "string"
-        },
         "DisableControlInput": {
             "type": "object",
             "properties": {
@@ -109,6 +97,17 @@
             "type": "string"
         },
         "TargetIdentifier": {
+            "type": "string"
+        },
+        "DisableControlOutput": {
+            "type": "object",
+            "properties": {
+                "operationIdentifier": {
+                    "$ref": "#/$defs/OperationIdentifier"
+                }
+            }
+        },
+        "OperationIdentifier": {
             "type": "string"
         }
     },

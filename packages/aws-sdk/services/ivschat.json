@@ -29,8 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "roomIdentifier": {},
+                        "userId": {},
+                        "capabilities": {},
+                        "sessionDurationInMinutes": {},
+                        "attributes": {}
                     }
                 }
             }
@@ -63,8 +66,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "name": {},
+                        "destinationConfiguration": {},
+                        "tags": {}
                     }
                 }
             }
@@ -97,8 +101,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "name": {},
+                        "maximumMessageRatePerSecond": {},
+                        "maximumMessageLength": {},
+                        "messageReviewHandler": {},
+                        "tags": {},
+                        "loggingConfigurationIdentifiers": {}
                     }
                 }
             }
@@ -131,8 +139,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "identifier": {}
                     }
                 }
             }
@@ -165,8 +172,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "roomIdentifier": {},
+                        "id": {},
+                        "reason": {}
                     }
                 }
             }
@@ -199,8 +207,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "identifier": {}
                     }
                 }
             }
@@ -233,8 +240,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "roomIdentifier": {},
+                        "userId": {},
+                        "reason": {}
                     }
                 }
             }
@@ -267,8 +275,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "identifier": {}
                     }
                 }
             }
@@ -301,8 +308,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "identifier": {}
                     }
                 }
             }
@@ -335,8 +341,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -369,8 +375,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "name": {},
+                        "nextToken": {},
+                        "maxResults": {},
+                        "messageReviewHandlerUri": {},
+                        "loggingConfigurationIdentifier": {}
                     }
                 }
             }
@@ -407,8 +416,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -441,8 +449,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "roomIdentifier": {},
+                        "eventName": {},
+                        "attributes": {}
                     }
                 }
             }
@@ -479,8 +488,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -517,8 +526,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -551,8 +560,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "identifier": {},
+                        "name": {},
+                        "destinationConfiguration": {}
                     }
                 }
             }
@@ -585,8 +595,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "identifier": {},
+                        "name": {},
+                        "maximumMessageRatePerSecond": {},
+                        "maximumMessageLength": {},
+                        "messageReviewHandler": {},
+                        "loggingConfigurationIdentifiers": {}
                     }
                 }
             }
@@ -638,27 +652,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateChatTokenResponse": {
-            "type": "object",
-            "properties": {
-                "token": {
-                    "$ref": "#/$defs/ChatToken"
-                },
-                "tokenExpirationTime": {
-                    "$ref": "#/$defs/Time"
-                },
-                "sessionExpirationTime": {
-                    "$ref": "#/$defs/Time"
-                }
-            }
-        },
-        "ChatToken": {
-            "type": "string"
-        },
-        "Time": {
-            "type": "string",
-            "format": "date-time"
-        },
         "CreateChatTokenRequest": {
             "type": "object",
             "properties": {
@@ -707,40 +700,40 @@
         "String": {
             "type": "string"
         },
-        "CreateLoggingConfigurationResponse": {
+        "CreateChatTokenResponse": {
             "type": "object",
             "properties": {
-                "arn": {
-                    "$ref": "#/$defs/LoggingConfigurationArn"
+                "token": {
+                    "$ref": "#/$defs/ChatToken"
                 },
-                "id": {
-                    "$ref": "#/$defs/LoggingConfigurationID"
-                },
-                "createTime": {
+                "tokenExpirationTime": {
                     "$ref": "#/$defs/Time"
                 },
-                "updateTime": {
+                "sessionExpirationTime": {
                     "$ref": "#/$defs/Time"
-                },
+                }
+            }
+        },
+        "ChatToken": {
+            "type": "string"
+        },
+        "Time": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "CreateLoggingConfigurationRequest": {
+            "type": "object",
+            "properties": {
                 "name": {
                     "$ref": "#/$defs/LoggingConfigurationName"
                 },
                 "destinationConfiguration": {
                     "$ref": "#/$defs/DestinationConfiguration"
                 },
-                "state": {
-                    "$ref": "#/$defs/CreateLoggingConfigurationState"
-                },
                 "tags": {
                     "$ref": "#/$defs/Tags"
                 }
             }
-        },
-        "LoggingConfigurationArn": {
-            "type": "string"
-        },
-        "LoggingConfigurationID": {
-            "type": "string"
         },
         "LoggingConfigurationName": {
             "type": "string"
@@ -792,9 +785,6 @@
         "DeliveryStreamName": {
             "type": "string"
         },
-        "CreateLoggingConfigurationState": {
-            "type": "string"
-        },
         "Tags": {
             "type": "object",
             "additionalProperties": {
@@ -804,19 +794,103 @@
         "TagValue": {
             "type": "string"
         },
-        "CreateLoggingConfigurationRequest": {
+        "CreateLoggingConfigurationResponse": {
             "type": "object",
             "properties": {
+                "arn": {
+                    "$ref": "#/$defs/LoggingConfigurationArn"
+                },
+                "id": {
+                    "$ref": "#/$defs/LoggingConfigurationID"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/Time"
+                },
                 "name": {
                     "$ref": "#/$defs/LoggingConfigurationName"
                 },
                 "destinationConfiguration": {
                     "$ref": "#/$defs/DestinationConfiguration"
                 },
+                "state": {
+                    "$ref": "#/$defs/CreateLoggingConfigurationState"
+                },
                 "tags": {
                     "$ref": "#/$defs/Tags"
                 }
             }
+        },
+        "LoggingConfigurationArn": {
+            "type": "string"
+        },
+        "LoggingConfigurationID": {
+            "type": "string"
+        },
+        "CreateLoggingConfigurationState": {
+            "type": "string"
+        },
+        "CreateRoomRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
+                "maximumMessageRatePerSecond": {
+                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
+                },
+                "maximumMessageLength": {
+                    "$ref": "#/$defs/RoomMaxMessageLength"
+                },
+                "messageReviewHandler": {
+                    "$ref": "#/$defs/MessageReviewHandler"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                },
+                "loggingConfigurationIdentifiers": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
+                }
+            }
+        },
+        "RoomName": {
+            "type": "string"
+        },
+        "RoomMaxMessageRatePerSecond": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RoomMaxMessageLength": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MessageReviewHandler": {
+            "type": "object",
+            "properties": {
+                "uri": {
+                    "$ref": "#/$defs/LambdaArn"
+                },
+                "fallbackResult": {
+                    "$ref": "#/$defs/FallbackResult"
+                }
+            }
+        },
+        "LambdaArn": {
+            "type": "string"
+        },
+        "FallbackResult": {
+            "type": "string"
+        },
+        "LoggingConfigurationIdentifierList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoggingConfigurationIdentifier"
+            }
+        },
+        "LoggingConfigurationIdentifier": {
+            "type": "string"
         },
         "CreateRoomResponse": {
             "type": "object",
@@ -859,66 +933,6 @@
         "RoomID": {
             "type": "string"
         },
-        "RoomName": {
-            "type": "string"
-        },
-        "RoomMaxMessageRatePerSecond": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "RoomMaxMessageLength": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "MessageReviewHandler": {
-            "type": "object",
-            "properties": {
-                "uri": {
-                    "$ref": "#/$defs/LambdaArn"
-                },
-                "fallbackResult": {
-                    "$ref": "#/$defs/FallbackResult"
-                }
-            }
-        },
-        "LambdaArn": {
-            "type": "string"
-        },
-        "FallbackResult": {
-            "type": "string"
-        },
-        "LoggingConfigurationIdentifierList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/LoggingConfigurationIdentifier"
-            }
-        },
-        "LoggingConfigurationIdentifier": {
-            "type": "string"
-        },
-        "CreateRoomRequest": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/RoomName"
-                },
-                "maximumMessageRatePerSecond": {
-                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
-                },
-                "maximumMessageLength": {
-                    "$ref": "#/$defs/RoomMaxMessageLength"
-                },
-                "messageReviewHandler": {
-                    "$ref": "#/$defs/MessageReviewHandler"
-                },
-                "tags": {
-                    "$ref": "#/$defs/Tags"
-                },
-                "loggingConfigurationIdentifiers": {
-                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
-                }
-            }
-        },
         "DeleteLoggingConfigurationRequest": {
             "type": "object",
             "properties": {
@@ -926,17 +940,6 @@
                     "$ref": "#/$defs/LoggingConfigurationIdentifier"
                 }
             }
-        },
-        "DeleteMessageResponse": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "$ref": "#/$defs/ID"
-                }
-            }
-        },
-        "ID": {
-            "type": "string"
         },
         "DeleteMessageRequest": {
             "type": "object",
@@ -958,6 +961,17 @@
         "Reason": {
             "type": "string"
         },
+        "DeleteMessageResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ID"
+                }
+            }
+        },
+        "ID": {
+            "type": "string"
+        },
         "DeleteRoomRequest": {
             "type": "object",
             "properties": {
@@ -965,10 +979,6 @@
                     "$ref": "#/$defs/RoomIdentifier"
                 }
             }
-        },
-        "DisconnectUserResponse": {
-            "type": "object",
-            "properties": {}
         },
         "DisconnectUserRequest": {
             "type": "object",
@@ -981,6 +991,18 @@
                 },
                 "reason": {
                     "$ref": "#/$defs/Reason"
+                }
+            }
+        },
+        "DisconnectUserResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetLoggingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
                 }
             }
         },
@@ -1016,11 +1038,11 @@
         "LoggingConfigurationState": {
             "type": "string"
         },
-        "GetLoggingConfigurationRequest": {
+        "GetRoomRequest": {
             "type": "object",
             "properties": {
                 "identifier": {
-                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
+                    "$ref": "#/$defs/RoomIdentifier"
                 }
             }
         },
@@ -1059,13 +1081,23 @@
                 }
             }
         },
-        "GetRoomRequest": {
+        "ListLoggingConfigurationsRequest": {
             "type": "object",
             "properties": {
-                "identifier": {
-                    "$ref": "#/$defs/RoomIdentifier"
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxLoggingConfigurationResults"
                 }
             }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "MaxLoggingConfigurationResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListLoggingConfigurationsResponse": {
             "type": "object",
@@ -1113,21 +1145,27 @@
                 }
             }
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "ListLoggingConfigurationsRequest": {
+        "ListRoomsRequest": {
             "type": "object",
             "properties": {
+                "name": {
+                    "$ref": "#/$defs/RoomName"
+                },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 },
                 "maxResults": {
-                    "$ref": "#/$defs/MaxLoggingConfigurationResults"
+                    "$ref": "#/$defs/MaxRoomResults"
+                },
+                "messageReviewHandlerUri": {
+                    "$ref": "#/$defs/LambdaArn"
+                },
+                "loggingConfigurationIdentifier": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
                 }
             }
         },
-        "MaxLoggingConfigurationResults": {
+        "MaxRoomResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -1177,38 +1215,6 @@
                 }
             }
         },
-        "ListRoomsRequest": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/RoomName"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxRoomResults"
-                },
-                "messageReviewHandlerUri": {
-                    "$ref": "#/$defs/LambdaArn"
-                },
-                "loggingConfigurationIdentifier": {
-                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
-                }
-            }
-        },
-        "MaxRoomResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -1220,11 +1226,11 @@
         "ResourceArn": {
             "type": "string"
         },
-        "SendEventResponse": {
+        "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
-                "id": {
-                    "$ref": "#/$defs/ID"
+                "tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -1251,9 +1257,13 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "TagResourceResponse": {
+        "SendEventResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/ID"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1266,7 +1276,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1289,6 +1299,24 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLoggingConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
+                },
+                "name": {
+                    "$ref": "#/$defs/LoggingConfigurationName"
+                },
+                "destinationConfiguration": {
+                    "$ref": "#/$defs/DestinationConfiguration"
+                }
+            }
         },
         "UpdateLoggingConfigurationResponse": {
             "type": "object",
@@ -1322,17 +1350,26 @@
         "UpdateLoggingConfigurationState": {
             "type": "string"
         },
-        "UpdateLoggingConfigurationRequest": {
+        "UpdateRoomRequest": {
             "type": "object",
             "properties": {
                 "identifier": {
-                    "$ref": "#/$defs/LoggingConfigurationIdentifier"
+                    "$ref": "#/$defs/RoomIdentifier"
                 },
                 "name": {
-                    "$ref": "#/$defs/LoggingConfigurationName"
+                    "$ref": "#/$defs/RoomName"
                 },
-                "destinationConfiguration": {
-                    "$ref": "#/$defs/DestinationConfiguration"
+                "maximumMessageRatePerSecond": {
+                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
+                },
+                "maximumMessageLength": {
+                    "$ref": "#/$defs/RoomMaxMessageLength"
+                },
+                "messageReviewHandler": {
+                    "$ref": "#/$defs/MessageReviewHandler"
+                },
+                "loggingConfigurationIdentifiers": {
+                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
                 }
             }
         },
@@ -1365,29 +1402,6 @@
                 },
                 "tags": {
                     "$ref": "#/$defs/Tags"
-                },
-                "loggingConfigurationIdentifiers": {
-                    "$ref": "#/$defs/LoggingConfigurationIdentifierList"
-                }
-            }
-        },
-        "UpdateRoomRequest": {
-            "type": "object",
-            "properties": {
-                "identifier": {
-                    "$ref": "#/$defs/RoomIdentifier"
-                },
-                "name": {
-                    "$ref": "#/$defs/RoomName"
-                },
-                "maximumMessageRatePerSecond": {
-                    "$ref": "#/$defs/RoomMaxMessageRatePerSecond"
-                },
-                "maximumMessageLength": {
-                    "$ref": "#/$defs/RoomMaxMessageLength"
-                },
-                "messageReviewHandler": {
-                    "$ref": "#/$defs/MessageReviewHandler"
                 },
                 "loggingConfigurationIdentifiers": {
                     "$ref": "#/$defs/LoggingConfigurationIdentifierList"

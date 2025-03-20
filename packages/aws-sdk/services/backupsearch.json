@@ -1,0 +1,635 @@
+{
+    "name": "backup-search",
+    "commands": [
+        {
+            "name": "ListSearchJobBackups",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "SearchJobIdentifier": "route.SearchJobIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/search-jobs/{SearchJobIdentifier}/backups"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSearchJobBackupsOutput"
+                    },
+                    "inject": [
+                        "param.0.SearchJobIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSearchJobBackupsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "SearchJobIdentifier": {},
+                        "NextToken": {},
+                        "MaxResults": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListSearchJobResults",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "SearchJobIdentifier": "route.SearchJobIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/search-jobs/{SearchJobIdentifier}/search-results"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListSearchJobResultsOutput"
+                    },
+                    "inject": [
+                        "param.0.SearchJobIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListSearchJobResultsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "SearchJobIdentifier": {},
+                        "NextToken": {},
+                        "MaxResults": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ResourceArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ResourceArn": {},
+                        "Tags": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ResourceArn": {},
+                        "TagKeys": {}
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ListSearchJobBackupsInput": {
+            "type": "object",
+            "properties": {
+                "SearchJobIdentifier": {
+                    "$ref": "#/$defs/GenericId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "GenericId": {
+            "type": "string"
+        },
+        "ListSearchJobBackupsOutput": {
+            "type": "object",
+            "properties": {
+                "Results": {
+                    "$ref": "#/$defs/SearchJobBackupsResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "SearchJobBackupsResults": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchJobBackupsResult"
+            }
+        },
+        "SearchJobBackupsResult": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/SearchJobState"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "BackupResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SourceResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "IndexCreationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "BackupCreationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "SearchJobState": {
+            "enum": [
+                "RUNNING",
+                "COMPLETED",
+                "STOPPING",
+                "STOPPED",
+                "FAILED"
+            ]
+        },
+        "ResourceType": {
+            "enum": [
+                "S3",
+                "EBS"
+            ]
+        },
+        "ListSearchJobResultsInput": {
+            "type": "object",
+            "properties": {
+                "SearchJobIdentifier": {
+                    "$ref": "#/$defs/GenericId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "ListSearchJobResultsOutput": {
+            "type": "object",
+            "properties": {
+                "Results": {
+                    "$ref": "#/$defs/Results"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "Results": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResultItem"
+            }
+        },
+        "ResultItem": {
+            "type": "object",
+            "properties": {
+                "S3ResultItem": {
+                    "$ref": "#/$defs/S3ResultItem"
+                },
+                "EBSResultItem": {
+                    "$ref": "#/$defs/EBSResultItem"
+                }
+            }
+        },
+        "S3ResultItem": {
+            "type": "object",
+            "properties": {
+                "BackupResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SourceResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "BackupVaultName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "ObjectKey": {
+                    "$ref": "#/$defs/ObjectKey"
+                },
+                "ObjectSize": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "VersionId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ObjectKey": {
+            "type": "string"
+        },
+        "EBSResultItem": {
+            "type": "object",
+            "properties": {
+                "BackupResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SourceResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "BackupVaultName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "FileSystemIdentifier": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "FilePath": {
+                    "$ref": "#/$defs/FilePath"
+                },
+                "FileSize": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "CreationTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
+        "FilePath": {
+            "type": "string"
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeys"
+                }
+            }
+        },
+        "TagKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        }
+    },
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                },
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                }
+            },
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
+                                },
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "isSet",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "aws.partition",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                }
+                                            ],
+                                            "assign": "PartitionResult"
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "endpoint": {
+                                                "url": "https://backup-search-fips.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {
+                                                    "authSchemes": [
+                                                        {
+                                                            "name": "sigv4",
+                                                            "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                        }
+                                                    ]
+                                                },
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "endpoint": {
+                                                "url": "https://backup-search.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {
+                                                    "authSchemes": [
+                                                        {
+                                                            "name": "sigv4",
+                                                            "signingRegion": "{PartitionResult#implicitGlobalRegion}"
+                                                        }
+                                                    ]
+                                                },
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                }
+                            ],
+                            "type": "tree"
+                        },
+                        {
+                            "conditions": [],
+                            "error": "Invalid Configuration: Missing Region",
+                            "type": "error"
+                        }
+                    ],
+                    "type": "tree"
+                }
+            ]
+        }
+    }
+}

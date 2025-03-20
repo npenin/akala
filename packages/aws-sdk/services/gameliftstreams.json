@@ -1,0 +1,1426 @@
+{
+    "name": "gameliftstreams",
+    "commands": [
+        {
+            "name": "AddStreamGroupLocations",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/streamgroups/{Identifier}/locations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AddStreamGroupLocationsOutput"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AddStreamGroupLocationsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Identifier": {},
+                        "LocationConfigurations": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "AssociateApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/streamgroups/{Identifier}/associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateApplicationsOutput"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateApplicationsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Identifier": {},
+                        "ApplicationIdentifiers": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateStreamSessionConnection",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "StreamSessionIdentifier": "route.StreamSessionIdentifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/connections"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateStreamSessionConnectionOutput"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0.StreamSessionIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateStreamSessionConnectionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ClientToken": {},
+                        "Identifier": {},
+                        "StreamSessionIdentifier": {},
+                        "SignalRequest": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateApplications",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/streamgroups/{Identifier}/disassociations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateApplicationsOutput"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateApplicationsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Identifier": {},
+                        "ApplicationIdentifiers": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ExportStreamSessionFiles",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "StreamSessionIdentifier": "route.StreamSessionIdentifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/exportfiles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExportStreamSessionFilesOutput"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0.StreamSessionIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExportStreamSessionFilesInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Identifier": {},
+                        "StreamSessionIdentifier": {},
+                        "OutputUri": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetStreamSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "StreamSessionIdentifier": "route.StreamSessionIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetStreamSessionOutput"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0.StreamSessionIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetStreamSessionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Identifier": {},
+                        "StreamSessionIdentifier": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStreamSessions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/streamgroups/{Identifier}/streamsessions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStreamSessionsOutput"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStreamSessionsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Status": {},
+                        "ExportFilesStatus": {},
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "Identifier": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStreamSessionsByAccount",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/streamsessions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStreamSessionsByAccountOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStreamSessionsByAccountInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Status": {},
+                        "ExportFilesStatus": {},
+                        "NextToken": {},
+                        "MaxResults": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTagsForResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTagsForResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ResourceArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "RemoveStreamGroupLocations",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/streamgroups/{Identifier}/locations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/RemoveStreamGroupLocationsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Identifier": {},
+                        "Locations": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartStreamSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/streamgroups/{Identifier}/streamsessions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartStreamSessionOutput"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartStreamSessionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ClientToken": {},
+                        "Description": {},
+                        "Identifier": {},
+                        "Protocol": {},
+                        "SignalRequest": {},
+                        "ApplicationIdentifier": {},
+                        "UserId": {},
+                        "Locations": {},
+                        "ConnectionTimeoutSeconds": {},
+                        "SessionLengthSeconds": {},
+                        "AdditionalLaunchArgs": {},
+                        "AdditionalEnvironmentVariables": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "TagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/TagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TagResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ResourceArn": {},
+                        "Tags": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "TerminateStreamSession",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Identifier": "route.Identifier",
+                            "StreamSessionIdentifier": "route.StreamSessionIdentifier",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.Identifier",
+                        "param.0.StreamSessionIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/TerminateStreamSessionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Identifier": {},
+                        "StreamSessionIdentifier": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UntagResource",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ResourceArn": "route.ResourceArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/tags/{ResourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UntagResourceResponse"
+                    },
+                    "inject": [
+                        "param.0.ResourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ResourceArn": {},
+                        "TagKeys": {}
+                    }
+                }
+            }
+        }
+    ],
+    "$defs": {
+        "smithy.api#Unit": {
+            "type": "object"
+        },
+        "smithy.api#String": {
+            "type": "string"
+        },
+        "smithy.api#Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "smithy.api#Boolean": {
+            "type": "boolean"
+        },
+        "smithy.api#PrimitiveBoolean": {
+            "type": "boolean"
+        },
+        "smithy.api#Integer": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveInteger": {
+            "type": "integer"
+        },
+        "smithy.api#Long": {
+            "type": "integer"
+        },
+        "smithy.api#PrimitiveLong": {
+            "type": "integer"
+        },
+        "smithy.api#Double": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveDouble": {
+            "type": "number"
+        },
+        "smithy.api#Float": {
+            "type": "number"
+        },
+        "smithy.api#PrimitiveFloat": {
+            "type": "number"
+        },
+        "smithy.api#Document": {},
+        "smithy.api#Blob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "AddStreamGroupLocationsInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "LocationConfigurations": {
+                    "$ref": "#/$defs/LocationConfigurations"
+                }
+            }
+        },
+        "Identifier": {
+            "type": "string"
+        },
+        "LocationConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationConfiguration"
+            }
+        },
+        "LocationConfiguration": {
+            "type": "object",
+            "properties": {
+                "LocationName": {
+                    "$ref": "#/$defs/LocationName"
+                },
+                "AlwaysOnCapacity": {
+                    "$ref": "#/$defs/AlwaysOnCapacity"
+                },
+                "OnDemandCapacity": {
+                    "$ref": "#/$defs/OnDemandCapacity"
+                }
+            }
+        },
+        "LocationName": {
+            "type": "string"
+        },
+        "AlwaysOnCapacity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OnDemandCapacity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AddStreamGroupLocationsOutput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Locations": {
+                    "$ref": "#/$defs/LocationStates"
+                }
+            }
+        },
+        "LocationStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationState"
+            }
+        },
+        "LocationState": {
+            "type": "object",
+            "properties": {
+                "LocationName": {
+                    "$ref": "#/$defs/LocationName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StreamGroupLocationStatus"
+                },
+                "AlwaysOnCapacity": {
+                    "$ref": "#/$defs/AlwaysOnCapacity"
+                },
+                "OnDemandCapacity": {
+                    "$ref": "#/$defs/OnDemandCapacity"
+                },
+                "RequestedCapacity": {
+                    "$ref": "#/$defs/CapacityValue"
+                },
+                "AllocatedCapacity": {
+                    "$ref": "#/$defs/CapacityValue"
+                },
+                "IdleCapacity": {
+                    "$ref": "#/$defs/CapacityValue"
+                }
+            }
+        },
+        "StreamGroupLocationStatus": {
+            "enum": [
+                "ACTIVATING",
+                "ACTIVE",
+                "ERROR",
+                "REMOVING"
+            ]
+        },
+        "CapacityValue": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "AssociateApplicationsInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ApplicationIdentifiers": {
+                    "$ref": "#/$defs/Identifiers"
+                }
+            }
+        },
+        "Identifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Identifier"
+            }
+        },
+        "AssociateApplicationsOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ApplicationArns": {
+                    "$ref": "#/$defs/ArnList"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "ArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "CreateStreamSessionConnectionInput": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "StreamSessionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "SignalRequest": {
+                    "$ref": "#/$defs/SignalRequest"
+                }
+            }
+        },
+        "ClientToken": {
+            "type": "string"
+        },
+        "SignalRequest": {
+            "type": "string"
+        },
+        "CreateStreamSessionConnectionOutput": {
+            "type": "object",
+            "properties": {
+                "SignalResponse": {
+                    "$ref": "#/$defs/SignalResponse"
+                }
+            }
+        },
+        "SignalResponse": {
+            "type": "string"
+        },
+        "DisassociateApplicationsInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "ApplicationIdentifiers": {
+                    "$ref": "#/$defs/Identifiers"
+                }
+            }
+        },
+        "DisassociateApplicationsOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ApplicationArns": {
+                    "$ref": "#/$defs/ArnList"
+                }
+            }
+        },
+        "ExportStreamSessionFilesInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "StreamSessionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "OutputUri": {
+                    "$ref": "#/$defs/OutputUri"
+                }
+            }
+        },
+        "OutputUri": {
+            "type": "string"
+        },
+        "ExportStreamSessionFilesOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetStreamSessionInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "StreamSessionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                }
+            }
+        },
+        "GetStreamSessionOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "StreamGroupId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StreamSessionStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/StreamSessionStatusReason"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "Location": {
+                    "$ref": "#/$defs/LocationName"
+                },
+                "SignalRequest": {
+                    "$ref": "#/$defs/SignalRequest"
+                },
+                "SignalResponse": {
+                    "$ref": "#/$defs/SignalResponse"
+                },
+                "ConnectionTimeoutSeconds": {
+                    "$ref": "#/$defs/ConnectionTimeoutSeconds"
+                },
+                "SessionLengthSeconds": {
+                    "$ref": "#/$defs/SessionLengthSeconds"
+                },
+                "AdditionalLaunchArgs": {
+                    "$ref": "#/$defs/GameLaunchArgList"
+                },
+                "AdditionalEnvironmentVariables": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "LogFileLocationUri": {
+                    "$ref": "#/$defs/FileLocationUri"
+                },
+                "WebSdkProtocolUrl": {
+                    "$ref": "#/$defs/WebSdkProtocolUrl"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ApplicationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExportFilesMetadata": {
+                    "$ref": "#/$defs/ExportFilesMetadata"
+                }
+            }
+        },
+        "Description": {
+            "type": "string"
+        },
+        "Id": {
+            "type": "string"
+        },
+        "UserId": {
+            "type": "string"
+        },
+        "StreamSessionStatus": {
+            "enum": [
+                "ACTIVATING",
+                "ACTIVE",
+                "CONNECTED",
+                "PENDING_CLIENT_RECONNECTION",
+                "RECONNECTING",
+                "TERMINATING",
+                "TERMINATED",
+                "ERROR"
+            ]
+        },
+        "StreamSessionStatusReason": {
+            "enum": [
+                "INTERNAL_ERROR",
+                "INVALID_SIGNAL_REQUEST",
+                "PLACEMENT_TIMEOUT",
+                "APP_LOG_S3_DESTINATION_ERROR"
+            ]
+        },
+        "Protocol": {
+            "enum": [
+                "WEBRTC"
+            ]
+        },
+        "ConnectionTimeoutSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SessionLengthSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GameLaunchArgList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "EnvironmentVariables": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "FileLocationUri": {
+            "type": "string"
+        },
+        "WebSdkProtocolUrl": {
+            "type": "string"
+        },
+        "ExportFilesMetadata": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/ExportFilesStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/ExportFilesReason"
+                },
+                "OutputUri": {
+                    "$ref": "#/$defs/OutputUri"
+                }
+            }
+        },
+        "ExportFilesStatus": {
+            "enum": [
+                "SUCCEEDED",
+                "FAILED",
+                "PENDING"
+            ]
+        },
+        "ExportFilesReason": {
+            "type": "string"
+        },
+        "ListStreamSessionsInput": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StreamSessionStatus"
+                },
+                "ExportFilesStatus": {
+                    "$ref": "#/$defs/ExportFilesStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListStreamSessionsOutput": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/StreamSessionSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "StreamSessionSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StreamSessionSummary"
+            }
+        },
+        "StreamSessionSummary": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StreamSessionStatus"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ApplicationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExportFilesMetadata": {
+                    "$ref": "#/$defs/ExportFilesMetadata"
+                },
+                "Location": {
+                    "$ref": "#/$defs/LocationName"
+                }
+            }
+        },
+        "ListStreamSessionsByAccountInput": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/StreamSessionStatus"
+                },
+                "ExportFilesStatus": {
+                    "$ref": "#/$defs/ExportFilesStatus"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListStreamSessionsByAccountOutput": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/StreamSessionSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "Tags": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "RemoveStreamGroupLocationsInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Locations": {
+                    "$ref": "#/$defs/LocationsList"
+                }
+            }
+        },
+        "LocationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "StartStreamSessionInput": {
+            "type": "object",
+            "properties": {
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "SignalRequest": {
+                    "$ref": "#/$defs/SignalRequest"
+                },
+                "ApplicationIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "Locations": {
+                    "$ref": "#/$defs/LocationList"
+                },
+                "ConnectionTimeoutSeconds": {
+                    "$ref": "#/$defs/ConnectionTimeoutSeconds"
+                },
+                "SessionLengthSeconds": {
+                    "$ref": "#/$defs/SessionLengthSeconds"
+                },
+                "AdditionalLaunchArgs": {
+                    "$ref": "#/$defs/GameLaunchArgList"
+                },
+                "AdditionalEnvironmentVariables": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                }
+            }
+        },
+        "LocationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LocationName"
+            }
+        },
+        "StartStreamSessionOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "StreamGroupId": {
+                    "$ref": "#/$defs/Id"
+                },
+                "UserId": {
+                    "$ref": "#/$defs/UserId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StreamSessionStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/StreamSessionStatusReason"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/Protocol"
+                },
+                "Location": {
+                    "$ref": "#/$defs/LocationName"
+                },
+                "SignalRequest": {
+                    "$ref": "#/$defs/SignalRequest"
+                },
+                "SignalResponse": {
+                    "$ref": "#/$defs/SignalResponse"
+                },
+                "ConnectionTimeoutSeconds": {
+                    "$ref": "#/$defs/ConnectionTimeoutSeconds"
+                },
+                "SessionLengthSeconds": {
+                    "$ref": "#/$defs/SessionLengthSeconds"
+                },
+                "AdditionalLaunchArgs": {
+                    "$ref": "#/$defs/GameLaunchArgList"
+                },
+                "AdditionalEnvironmentVariables": {
+                    "$ref": "#/$defs/EnvironmentVariables"
+                },
+                "LogFileLocationUri": {
+                    "$ref": "#/$defs/FileLocationUri"
+                },
+                "WebSdkProtocolUrl": {
+                    "$ref": "#/$defs/WebSdkProtocolUrl"
+                },
+                "LastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "ApplicationArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ExportFilesMetadata": {
+                    "$ref": "#/$defs/ExportFilesMetadata"
+                }
+            }
+        },
+        "TagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TerminateStreamSessionInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "StreamSessionIdentifier": {
+                    "$ref": "#/$defs/Identifier"
+                }
+            }
+        },
+        "UntagResourceRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "TagKeys": {
+                    "$ref": "#/$defs/TagKeyList"
+                }
+            }
+        },
+        "TagKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        }
+    },
+    "aws": {
+        "endpoint": {
+            "version": "1.0",
+            "parameters": {
+                "UseFIPS": {
+                    "builtIn": "AWS::UseFIPS",
+                    "required": true,
+                    "default": false,
+                    "documentation": "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
+                    "type": "Boolean"
+                },
+                "Endpoint": {
+                    "builtIn": "SDK::Endpoint",
+                    "required": false,
+                    "documentation": "Override the endpoint used to send this request",
+                    "type": "String"
+                },
+                "Region": {
+                    "builtIn": "AWS::Region",
+                    "required": false,
+                    "documentation": "The AWS region used to dispatch the request.",
+                    "type": "String"
+                }
+            },
+            "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Endpoint"
+                                }
+                            ]
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "booleanEquals",
+                                    "argv": [
+                                        {
+                                            "ref": "UseFIPS"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "error": "Invalid Configuration: FIPS and custom endpoint are not supported",
+                            "type": "error"
+                        },
+                        {
+                            "conditions": [],
+                            "endpoint": {
+                                "url": {
+                                    "ref": "Endpoint"
+                                },
+                                "properties": {},
+                                "headers": {}
+                            },
+                            "type": "endpoint"
+                        }
+                    ],
+                    "type": "tree"
+                },
+                {
+                    "conditions": [],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "isSet",
+                                    "argv": [
+                                        {
+                                            "ref": "Region"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "aws.partition",
+                                            "argv": [
+                                                {
+                                                    "ref": "Region"
+                                                }
+                                            ],
+                                            "assign": "PartitionResult"
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseFIPS"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "endpoint": {
+                                                "url": "https://gameliftstreams-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "endpoint": {
+                                                "url": "https://gameliftstreams.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                "properties": {},
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                }
+                            ],
+                            "type": "tree"
+                        },
+                        {
+                            "conditions": [],
+                            "error": "Invalid Configuration: Missing Region",
+                            "type": "error"
+                        }
+                    ],
+                    "type": "tree"
+                }
+            ]
+        }
+    }
+}

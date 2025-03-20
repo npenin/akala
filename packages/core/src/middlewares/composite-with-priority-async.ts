@@ -23,7 +23,7 @@ export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialN
 
     /**
      * Adds middleware to the stack with a specified priority.
-     * @param {number} priority - The priority of the middleware.
+     * @param {number} priority - The priority of the middleware (the lowest first).
      * @param {...AnyAsyncMiddleware<T, TSpecialNextParam>[]} middlewares - The middlewares to add.
      * @returns {this} The instance of the middleware composite.
      */
@@ -35,7 +35,7 @@ export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialN
 
     /**
      * Adds standard middleware to the stack with a specified priority.
-     * @param {number} priority - The priority of the middleware.
+     * @param {number} priority - The priority of the middleware (the lowest first).
      * @param {...((...args: T) => Promise<unknown>)[]} middlewares - The middlewares to add.
      * @returns {this} The instance of the middleware composite.
      */
@@ -46,7 +46,7 @@ export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialN
 
     /**
      * Adds error middleware to the stack with a specified priority.
-     * @param {number} priority - The priority of the middleware.
+     * @param {number} priority - The priority of the middleware (the lowest first).
      * @param {...((error: Error | OptionsResponse, ...args: T) => Promise<unknown>)[]} middlewares - The middlewares to add.
      * @returns {this} The instance of the middleware composite.
      */

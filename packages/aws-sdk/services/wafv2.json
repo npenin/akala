@@ -1815,6 +1815,12 @@
                 },
                 "JA3Fingerprint": {
                     "$ref": "#/$defs/JA3Fingerprint"
+                },
+                "JA4Fingerprint": {
+                    "$ref": "#/$defs/JA4Fingerprint"
+                },
+                "UriFragment": {
+                    "$ref": "#/$defs/UriFragment"
                 }
             }
         },
@@ -2022,6 +2028,22 @@
                 "MATCH",
                 "NO_MATCH"
             ]
+        },
+        "JA4Fingerprint": {
+            "type": "object",
+            "properties": {
+                "FallbackBehavior": {
+                    "$ref": "#/$defs/FallbackBehavior"
+                }
+            }
+        },
+        "UriFragment": {
+            "type": "object",
+            "properties": {
+                "FallbackBehavior": {
+                    "$ref": "#/$defs/FallbackBehavior"
+                }
+            }
         },
         "TextTransformations": {
             "type": "array",
@@ -2699,6 +2721,12 @@
                 },
                 "UriPath": {
                     "$ref": "#/$defs/RateLimitUriPath"
+                },
+                "JA3Fingerprint": {
+                    "$ref": "#/$defs/RateLimitJA3Fingerprint"
+                },
+                "JA4Fingerprint": {
+                    "$ref": "#/$defs/RateLimitJA4Fingerprint"
                 }
             }
         },
@@ -2771,6 +2799,22 @@
             "properties": {
                 "TextTransformations": {
                     "$ref": "#/$defs/TextTransformations"
+                }
+            }
+        },
+        "RateLimitJA3Fingerprint": {
+            "type": "object",
+            "properties": {
+                "FallbackBehavior": {
+                    "$ref": "#/$defs/FallbackBehavior"
+                }
+            }
+        },
+        "RateLimitJA4Fingerprint": {
+            "type": "object",
+            "properties": {
+                "FallbackBehavior": {
+                    "$ref": "#/$defs/FallbackBehavior"
                 }
             }
         },
@@ -3612,6 +3656,9 @@
                 "VisibilityConfig": {
                     "$ref": "#/$defs/VisibilityConfig"
                 },
+                "DataProtectionConfig": {
+                    "$ref": "#/$defs/DataProtectionConfig"
+                },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
                 },
@@ -3642,6 +3689,72 @@
                     "$ref": "#/$defs/AllowAction"
                 }
             }
+        },
+        "DataProtectionConfig": {
+            "type": "object",
+            "properties": {
+                "DataProtections": {
+                    "$ref": "#/$defs/DataProtections"
+                }
+            }
+        },
+        "DataProtections": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataProtection"
+            }
+        },
+        "DataProtection": {
+            "type": "object",
+            "properties": {
+                "Field": {
+                    "$ref": "#/$defs/FieldToProtect"
+                },
+                "Action": {
+                    "$ref": "#/$defs/DataProtectionAction"
+                },
+                "ExcludeRuleMatchDetails": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "ExcludeRateBasedDetails": {
+                    "$ref": "#/$defs/Boolean"
+                }
+            }
+        },
+        "FieldToProtect": {
+            "type": "object",
+            "properties": {
+                "FieldType": {
+                    "$ref": "#/$defs/FieldToProtectType"
+                },
+                "FieldKeys": {
+                    "$ref": "#/$defs/FieldToProtectKeys"
+                }
+            }
+        },
+        "FieldToProtectType": {
+            "enum": [
+                "SINGLE_HEADER",
+                "SINGLE_COOKIE",
+                "SINGLE_QUERY_ARGUMENT",
+                "QUERY_STRING",
+                "BODY"
+            ]
+        },
+        "FieldToProtectKeys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldToProtectKeyName"
+            }
+        },
+        "FieldToProtectKeyName": {
+            "type": "string"
+        },
+        "DataProtectionAction": {
+            "enum": [
+                "SUBSTITUTION",
+                "HASH"
+            ]
         },
         "TokenDomains": {
             "type": "array",
@@ -4799,6 +4912,9 @@
                 "VisibilityConfig": {
                     "$ref": "#/$defs/VisibilityConfig"
                 },
+                "DataProtectionConfig": {
+                    "$ref": "#/$defs/DataProtectionConfig"
+                },
                 "Capacity": {
                     "$ref": "#/$defs/ConsumedCapacity"
                 },
@@ -4828,6 +4944,9 @@
                 },
                 "AssociationConfig": {
                     "$ref": "#/$defs/AssociationConfig"
+                },
+                "RetrofittedByFirewallManager": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
         },
@@ -5669,6 +5788,9 @@
                 },
                 "VisibilityConfig": {
                     "$ref": "#/$defs/VisibilityConfig"
+                },
+                "DataProtectionConfig": {
+                    "$ref": "#/$defs/DataProtectionConfig"
                 },
                 "LockToken": {
                     "$ref": "#/$defs/LockToken"

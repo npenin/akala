@@ -2,6 +2,205 @@
     "name": "cleanrooms-ml",
     "commands": [
         {
+            "name": "ListCollaborationConfiguredModelAlgorithmAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "collaborationIdentifier": "route.collaborationIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/collaborations/{collaborationIdentifier}/configured-model-algorithm-associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCollaborationConfiguredModelAlgorithmAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0.collaborationIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCollaborationConfiguredModelAlgorithmAssociationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCollaborationMLInputChannels",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "collaborationIdentifier": "route.collaborationIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/collaborations/{collaborationIdentifier}/ml-input-channels"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCollaborationMLInputChannelsResponse"
+                    },
+                    "inject": [
+                        "param.0.collaborationIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCollaborationMLInputChannelsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCollaborationTrainedModelExportJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "collaborationIdentifier": "route.collaborationIdentifier",
+                            "trainedModelArn": "route.trainedModelArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/collaborations/{collaborationIdentifier}/trained-models/{trainedModelArn}/export-jobs"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCollaborationTrainedModelExportJobsResponse"
+                    },
+                    "inject": [
+                        "param.0.collaborationIdentifier",
+                        "param.0.trainedModelArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCollaborationTrainedModelExportJobsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {},
+                        "trainedModelArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCollaborationTrainedModelInferenceJobs",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "collaborationIdentifier": "route.collaborationIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/collaborations/{collaborationIdentifier}/trained-model-inference-jobs"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCollaborationTrainedModelInferenceJobsResponse"
+                    },
+                    "inject": [
+                        "param.0.collaborationIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCollaborationTrainedModelInferenceJobsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {},
+                        "trainedModelArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCollaborationTrainedModels",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "collaborationIdentifier": "route.collaborationIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/collaborations/{collaborationIdentifier}/trained-models"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCollaborationTrainedModelsResponse"
+                    },
+                    "inject": [
+                        "param.0.collaborationIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCollaborationTrainedModelsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "nextToken": {},
+                        "maxResults": {},
+                        "collaborationIdentifier": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "ListTagsForResource",
             "config": {
                 "http": {
@@ -33,9 +232,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -72,9 +269,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -111,9 +307,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -165,6 +360,528 @@
             "type": "string",
             "format": "binary"
         },
+        "ListCollaborationConfiguredModelAlgorithmAssociationsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "ListCollaborationConfiguredModelAlgorithmAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "collaborationConfiguredModelAlgorithmAssociations": {
+                    "$ref": "#/$defs/CollaborationConfiguredModelAlgorithmAssociationList"
+                }
+            }
+        },
+        "CollaborationConfiguredModelAlgorithmAssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CollaborationConfiguredModelAlgorithmAssociationSummary"
+            }
+        },
+        "CollaborationConfiguredModelAlgorithmAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "createTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "configuredModelAlgorithmAssociationArn": {
+                    "$ref": "#/$defs/ConfiguredModelAlgorithmAssociationArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "membershipIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "configuredModelAlgorithmArn": {
+                    "$ref": "#/$defs/ConfiguredModelAlgorithmArn"
+                },
+                "creatorAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "ConfiguredModelAlgorithmAssociationArn": {
+            "type": "string"
+        },
+        "NameString": {
+            "type": "string"
+        },
+        "ResourceDescription": {
+            "type": "string"
+        },
+        "ConfiguredModelAlgorithmArn": {
+            "type": "string"
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "ListCollaborationMLInputChannelsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "ListCollaborationMLInputChannelsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "collaborationMLInputChannelsList": {
+                    "$ref": "#/$defs/CollaborationMLInputChannelsList"
+                }
+            }
+        },
+        "CollaborationMLInputChannelsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CollaborationMLInputChannelSummary"
+            }
+        },
+        "CollaborationMLInputChannelSummary": {
+            "type": "object",
+            "properties": {
+                "createTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "membershipIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "configuredModelAlgorithmAssociations": {
+                    "$ref": "#/$defs/ConfiguredModelAlgorithmAssociationArnList"
+                },
+                "mlInputChannelArn": {
+                    "$ref": "#/$defs/MLInputChannelArn"
+                },
+                "status": {
+                    "$ref": "#/$defs/MLInputChannelStatus"
+                },
+                "creatorAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                }
+            }
+        },
+        "ConfiguredModelAlgorithmAssociationArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfiguredModelAlgorithmAssociationArn"
+            }
+        },
+        "MLInputChannelArn": {
+            "type": "string"
+        },
+        "MLInputChannelStatus": {
+            "enum": [
+                "CREATE_PENDING",
+                "CREATE_IN_PROGRESS",
+                "CREATE_FAILED",
+                "ACTIVE",
+                "DELETE_PENDING",
+                "DELETE_IN_PROGRESS",
+                "DELETE_FAILED",
+                "INACTIVE"
+            ]
+        },
+        "ListCollaborationTrainedModelExportJobsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "trainedModelArn": {
+                    "$ref": "#/$defs/TrainedModelArn"
+                }
+            }
+        },
+        "TrainedModelArn": {
+            "type": "string"
+        },
+        "ListCollaborationTrainedModelExportJobsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "collaborationTrainedModelExportJobs": {
+                    "$ref": "#/$defs/CollaborationTrainedModelExportJobList"
+                }
+            }
+        },
+        "CollaborationTrainedModelExportJobList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CollaborationTrainedModelExportJobSummary"
+            }
+        },
+        "CollaborationTrainedModelExportJobSummary": {
+            "type": "object",
+            "properties": {
+                "createTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "outputConfiguration": {
+                    "$ref": "#/$defs/TrainedModelExportOutputConfiguration"
+                },
+                "status": {
+                    "$ref": "#/$defs/TrainedModelExportJobStatus"
+                },
+                "statusDetails": {
+                    "$ref": "#/$defs/StatusDetails"
+                },
+                "description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "creatorAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "trainedModelArn": {
+                    "$ref": "#/$defs/TrainedModelArn"
+                },
+                "membershipIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "TrainedModelExportOutputConfiguration": {
+            "type": "object",
+            "properties": {
+                "members": {
+                    "$ref": "#/$defs/TrainedModelExportReceiverMembers"
+                }
+            }
+        },
+        "TrainedModelExportReceiverMembers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TrainedModelExportReceiverMember"
+            }
+        },
+        "TrainedModelExportReceiverMember": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "TrainedModelExportJobStatus": {
+            "enum": [
+                "CREATE_PENDING",
+                "CREATE_IN_PROGRESS",
+                "CREATE_FAILED",
+                "ACTIVE"
+            ]
+        },
+        "StatusDetails": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "ListCollaborationTrainedModelInferenceJobsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "trainedModelArn": {
+                    "$ref": "#/$defs/TrainedModelArn"
+                }
+            }
+        },
+        "ListCollaborationTrainedModelInferenceJobsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "collaborationTrainedModelInferenceJobs": {
+                    "$ref": "#/$defs/CollaborationTrainedModelInferenceJobList"
+                }
+            }
+        },
+        "CollaborationTrainedModelInferenceJobList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CollaborationTrainedModelInferenceJobSummary"
+            }
+        },
+        "CollaborationTrainedModelInferenceJobSummary": {
+            "type": "object",
+            "properties": {
+                "trainedModelInferenceJobArn": {
+                    "$ref": "#/$defs/TrainedModelInferenceJobArn"
+                },
+                "configuredModelAlgorithmAssociationArn": {
+                    "$ref": "#/$defs/ConfiguredModelAlgorithmAssociationArn"
+                },
+                "membershipIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "trainedModelArn": {
+                    "$ref": "#/$defs/TrainedModelArn"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "status": {
+                    "$ref": "#/$defs/TrainedModelInferenceJobStatus"
+                },
+                "outputConfiguration": {
+                    "$ref": "#/$defs/InferenceOutputConfiguration"
+                },
+                "name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "metricsStatus": {
+                    "$ref": "#/$defs/MetricsStatus"
+                },
+                "metricsStatusDetails": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "logsStatus": {
+                    "$ref": "#/$defs/LogsStatus"
+                },
+                "logsStatusDetails": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "createTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "creatorAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "TrainedModelInferenceJobArn": {
+            "type": "string"
+        },
+        "TrainedModelInferenceJobStatus": {
+            "enum": [
+                "CREATE_PENDING",
+                "CREATE_IN_PROGRESS",
+                "CREATE_FAILED",
+                "ACTIVE",
+                "CANCEL_PENDING",
+                "CANCEL_IN_PROGRESS",
+                "CANCEL_FAILED",
+                "INACTIVE"
+            ]
+        },
+        "InferenceOutputConfiguration": {
+            "type": "object",
+            "properties": {
+                "accept": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "members": {
+                    "$ref": "#/$defs/InferenceReceiverMembers"
+                }
+            }
+        },
+        "InferenceReceiverMembers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InferenceReceiverMember"
+            }
+        },
+        "InferenceReceiverMember": {
+            "type": "object",
+            "properties": {
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "MetricsStatus": {
+            "enum": [
+                "PUBLISH_SUCCEEDED",
+                "PUBLISH_FAILED"
+            ]
+        },
+        "LogsStatus": {
+            "enum": [
+                "PUBLISH_SUCCEEDED",
+                "PUBLISH_FAILED"
+            ]
+        },
+        "ListCollaborationTrainedModelsRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                }
+            }
+        },
+        "ListCollaborationTrainedModelsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "collaborationTrainedModels": {
+                    "$ref": "#/$defs/CollaborationTrainedModelList"
+                }
+            }
+        },
+        "CollaborationTrainedModelList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CollaborationTrainedModelSummary"
+            }
+        },
+        "CollaborationTrainedModelSummary": {
+            "type": "object",
+            "properties": {
+                "createTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "trainedModelArn": {
+                    "$ref": "#/$defs/TrainedModelArn"
+                },
+                "name": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "description": {
+                    "$ref": "#/$defs/ResourceDescription"
+                },
+                "membershipIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "collaborationIdentifier": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "status": {
+                    "$ref": "#/$defs/TrainedModelStatus"
+                },
+                "configuredModelAlgorithmAssociationArn": {
+                    "$ref": "#/$defs/ConfiguredModelAlgorithmAssociationArn"
+                },
+                "creatorAccountId": {
+                    "$ref": "#/$defs/AccountId"
+                }
+            }
+        },
+        "TrainedModelStatus": {
+            "enum": [
+                "CREATE_PENDING",
+                "CREATE_IN_PROGRESS",
+                "CREATE_FAILED",
+                "ACTIVE",
+                "DELETE_PENDING",
+                "DELETE_IN_PROGRESS",
+                "DELETE_FAILED",
+                "INACTIVE",
+                "CANCEL_PENDING",
+                "CANCEL_IN_PROGRESS",
+                "CANCEL_FAILED"
+            ]
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/TaggableArn"
+                }
+            }
+        },
+        "TaggableArn": {
+            "type": "string"
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -182,21 +899,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/TaggableArn"
-                }
-            }
-        },
-        "TaggableArn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -208,7 +910,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -231,6 +933,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

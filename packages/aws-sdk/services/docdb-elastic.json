@@ -2,6 +2,42 @@
     "name": "docdb-elastic",
     "commands": [
         {
+            "name": "ApplyPendingMaintenanceAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/pending-action"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ApplyPendingMaintenanceActionOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ApplyPendingMaintenanceActionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "resourceArn": {},
+                        "applyAction": {},
+                        "optInType": {},
+                        "applyOn": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CopyClusterSnapshot",
             "config": {
                 "http": {
@@ -33,9 +69,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "snapshotArn": {},
+                        "targetSnapshotName": {},
+                        "kmsKeyId": {},
+                        "copyTags": {},
+                        "tags": {}
                     }
                 }
             }
@@ -68,8 +106,21 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "clusterName": {},
+                        "authType": {},
+                        "adminUserName": {},
+                        "adminUserPassword": {},
+                        "shardCapacity": {},
+                        "shardCount": {},
+                        "vpcSecurityGroupIds": {},
+                        "subnetIds": {},
+                        "kmsKeyId": {},
+                        "clientToken": {},
+                        "preferredMaintenanceWindow": {},
+                        "tags": {},
+                        "backupRetentionPeriod": {},
+                        "preferredBackupWindow": {},
+                        "shardInstanceCount": {}
                     }
                 }
             }
@@ -102,8 +153,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "clusterArn": {},
+                        "snapshotName": {},
+                        "tags": {}
                     }
                 }
             }
@@ -140,8 +192,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "clusterArn": {}
                     }
                 }
             }
@@ -178,8 +229,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "snapshotArn": {}
                     }
                 }
             }
@@ -216,8 +266,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "clusterArn": {}
                     }
                 }
             }
@@ -254,8 +303,44 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "snapshotArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetPendingMaintenanceAction",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "resourceArn": "route.resourceArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/pending-action/{resourceArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPendingMaintenanceActionOutput"
+                    },
+                    "inject": [
+                        "param.0.resourceArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPendingMaintenanceActionInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "resourceArn": {}
                     }
                 }
             }
@@ -288,8 +373,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -322,8 +407,44 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "clusterArn": {},
+                        "nextToken": {},
+                        "maxResults": {},
+                        "snapshotType": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListPendingMaintenanceActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/pending-actions"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListPendingMaintenanceActionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListPendingMaintenanceActionsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -360,8 +481,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -398,8 +518,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "clusterName": {},
+                        "snapshotArn": {},
+                        "vpcSecurityGroupIds": {},
+                        "subnetIds": {},
+                        "kmsKeyId": {},
+                        "tags": {},
+                        "shardCapacity": {},
+                        "shardInstanceCount": {}
                     }
                 }
             }
@@ -436,9 +562,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "clusterArn": {}
                     }
                 }
             }
@@ -475,9 +599,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "clusterArn": {}
                     }
                 }
             }
@@ -514,8 +636,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -552,8 +674,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -590,8 +712,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "clusterArn": {},
+                        "authType": {},
+                        "shardCapacity": {},
+                        "shardCount": {},
+                        "vpcSecurityGroupIds": {},
+                        "subnetIds": {},
+                        "adminUserPassword": {},
+                        "clientToken": {},
+                        "preferredMaintenanceWindow": {},
+                        "backupRetentionPeriod": {},
+                        "preferredBackupWindow": {},
+                        "shardInstanceCount": {}
                     }
                 }
             }
@@ -642,6 +774,106 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "ApplyPendingMaintenanceActionInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/InputString"
+                },
+                "applyAction": {
+                    "$ref": "#/$defs/InputString"
+                },
+                "optInType": {
+                    "$ref": "#/$defs/OptInType"
+                },
+                "applyOn": {
+                    "$ref": "#/$defs/InputString"
+                }
+            }
+        },
+        "InputString": {
+            "type": "string"
+        },
+        "OptInType": {
+            "type": "string"
+        },
+        "ApplyPendingMaintenanceActionOutput": {
+            "type": "object",
+            "properties": {
+                "resourcePendingMaintenanceAction": {
+                    "$ref": "#/$defs/ResourcePendingMaintenanceAction"
+                }
+            }
+        },
+        "ResourcePendingMaintenanceAction": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "pendingMaintenanceActionDetails": {
+                    "$ref": "#/$defs/PendingMaintenanceActionDetailsList"
+                }
+            }
+        },
+        "PendingMaintenanceActionDetailsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PendingMaintenanceActionDetails"
+            }
+        },
+        "PendingMaintenanceActionDetails": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "autoAppliedAfterDate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "forcedApplyDate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "optInStatus": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "currentApplyDate": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "description": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "CopyClusterSnapshotInput": {
+            "type": "object",
+            "properties": {
+                "snapshotArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "targetSnapshotName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "copyTags": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
         },
         "CopyClusterSnapshotOutput": {
             "type": "object",
@@ -701,33 +933,60 @@
         "SnapshotType": {
             "type": "string"
         },
-        "CopyClusterSnapshotInput": {
+        "CreateClusterInput": {
             "type": "object",
             "properties": {
-                "snapshotArn": {
+                "clusterName": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
-                "targetSnapshotName": {
+                "authType": {
+                    "$ref": "#/$defs/Auth"
+                },
+                "adminUserName": {
                     "$ref": "#/$defs/smithy.api#String"
+                },
+                "adminUserPassword": {
+                    "$ref": "#/$defs/Password"
+                },
+                "shardCapacity": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "shardCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "vpcSecurityGroupIds": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "subnetIds": {
+                    "$ref": "#/$defs/StringList"
                 },
                 "kmsKeyId": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
-                "copyTags": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
+                "clientToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "preferredMaintenanceWindow": {
+                    "$ref": "#/$defs/smithy.api#String"
                 },
                 "tags": {
                     "$ref": "#/$defs/TagMap"
+                },
+                "backupRetentionPeriod": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "preferredBackupWindow": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "shardInstanceCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
         },
-        "TagMap": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
+        "Auth": {
+            "type": "string"
         },
-        "TagValue": {
+        "Password": {
             "type": "string"
         },
         "CreateClusterOutput": {
@@ -794,9 +1053,6 @@
                 }
             }
         },
-        "Auth": {
-            "type": "string"
-        },
         "ShardList": {
             "type": "array",
             "items": {
@@ -817,67 +1073,6 @@
                 }
             }
         },
-        "CreateClusterInput": {
-            "type": "object",
-            "properties": {
-                "clusterName": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "authType": {
-                    "$ref": "#/$defs/Auth"
-                },
-                "adminUserName": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "adminUserPassword": {
-                    "$ref": "#/$defs/Password"
-                },
-                "shardCapacity": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "shardCount": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "vpcSecurityGroupIds": {
-                    "$ref": "#/$defs/StringList"
-                },
-                "subnetIds": {
-                    "$ref": "#/$defs/StringList"
-                },
-                "kmsKeyId": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "clientToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "preferredMaintenanceWindow": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "tags": {
-                    "$ref": "#/$defs/TagMap"
-                },
-                "backupRetentionPeriod": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "preferredBackupWindow": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "shardInstanceCount": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                }
-            }
-        },
-        "Password": {
-            "type": "string"
-        },
-        "CreateClusterSnapshotOutput": {
-            "type": "object",
-            "properties": {
-                "snapshot": {
-                    "$ref": "#/$defs/ClusterSnapshot"
-                }
-            }
-        },
         "CreateClusterSnapshotInput": {
             "type": "object",
             "properties": {
@@ -892,6 +1087,22 @@
                 }
             }
         },
+        "CreateClusterSnapshotOutput": {
+            "type": "object",
+            "properties": {
+                "snapshot": {
+                    "$ref": "#/$defs/ClusterSnapshot"
+                }
+            }
+        },
+        "DeleteClusterInput": {
+            "type": "object",
+            "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "DeleteClusterOutput": {
             "type": "object",
             "properties": {
@@ -900,10 +1111,10 @@
                 }
             }
         },
-        "DeleteClusterInput": {
+        "DeleteClusterSnapshotInput": {
             "type": "object",
             "properties": {
-                "clusterArn": {
+                "snapshotArn": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
@@ -916,10 +1127,10 @@
                 }
             }
         },
-        "DeleteClusterSnapshotInput": {
+        "GetClusterInput": {
             "type": "object",
             "properties": {
-                "snapshotArn": {
+                "clusterArn": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
@@ -932,10 +1143,10 @@
                 }
             }
         },
-        "GetClusterInput": {
+        "GetClusterSnapshotInput": {
             "type": "object",
             "properties": {
-                "clusterArn": {
+                "snapshotArn": {
                     "$ref": "#/$defs/smithy.api#String"
                 }
             }
@@ -948,13 +1159,35 @@
                 }
             }
         },
-        "GetClusterSnapshotInput": {
+        "GetPendingMaintenanceActionInput": {
             "type": "object",
             "properties": {
-                "snapshotArn": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "resourceArn": {
+                    "$ref": "#/$defs/InputString"
                 }
             }
+        },
+        "GetPendingMaintenanceActionOutput": {
+            "type": "object",
+            "properties": {
+                "resourcePendingMaintenanceAction": {
+                    "$ref": "#/$defs/ResourcePendingMaintenanceAction"
+                }
+            }
+        },
+        "ListClustersInput": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
         },
         "ListClustersOutput": {
             "type": "object",
@@ -987,17 +1220,20 @@
                 }
             }
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "ListClustersInput": {
+        "ListClusterSnapshotsInput": {
             "type": "object",
             "properties": {
+                "clusterArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 },
                 "maxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "snapshotType": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
@@ -1038,29 +1274,32 @@
                 }
             }
         },
-        "ListClusterSnapshotsInput": {
+        "ListPendingMaintenanceActionsInput": {
             "type": "object",
             "properties": {
-                "clusterArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
                 "nextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 },
                 "maxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "snapshotType": {
-                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
-        "ListTagsForResourceResponse": {
+        "ListPendingMaintenanceActionsOutput": {
             "type": "object",
             "properties": {
-                "tags": {
-                    "$ref": "#/$defs/TagMap"
+                "resourcePendingMaintenanceActions": {
+                    "$ref": "#/$defs/ResourcePendingMaintenanceActionList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
                 }
+            }
+        },
+        "ResourcePendingMaintenanceActionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourcePendingMaintenanceAction"
             }
         },
         "ListTagsForResourceRequest": {
@@ -1074,11 +1313,11 @@
         "Arn": {
             "type": "string"
         },
-        "RestoreClusterFromSnapshotOutput": {
+        "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
-                "cluster": {
-                    "$ref": "#/$defs/Cluster"
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
                 }
             }
         },
@@ -1111,7 +1350,7 @@
                 }
             }
         },
-        "StartClusterOutput": {
+        "RestoreClusterFromSnapshotOutput": {
             "type": "object",
             "properties": {
                 "cluster": {
@@ -1127,7 +1366,7 @@
                 }
             }
         },
-        "StopClusterOutput": {
+        "StartClusterOutput": {
             "type": "object",
             "properties": {
                 "cluster": {
@@ -1143,9 +1382,13 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "StopClusterOutput": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1158,7 +1401,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1182,13 +1425,9 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateClusterOutput": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "cluster": {
-                    "$ref": "#/$defs/Cluster"
-                }
-            }
+            "properties": {}
         },
         "UpdateClusterInput": {
             "type": "object",
@@ -1228,6 +1467,14 @@
                 },
                 "shardInstanceCount": {
                     "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "UpdateClusterOutput": {
+            "type": "object",
+            "properties": {
+                "cluster": {
+                    "$ref": "#/$defs/Cluster"
                 }
             }
         }

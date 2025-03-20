@@ -5838,6 +5838,18 @@
                 },
                 "UpgradeTargetStorageConfig": {
                     "$ref": "#/$defs/BooleanOptional"
+                },
+                "TargetIops": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "TargetStorageType": {
+                    "$ref": "#/$defs/TargetStorageType"
+                },
+                "TargetAllocatedStorage": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "TargetStorageThroughput": {
+                    "$ref": "#/$defs/IntegerOptional"
                 }
             }
         },
@@ -5851,6 +5863,9 @@
             "type": "string"
         },
         "TargetDBInstanceClass": {
+            "type": "string"
+        },
+        "TargetStorageType": {
             "type": "string"
         },
         "DBEngineVersion": {
@@ -5957,6 +5972,9 @@
                 },
                 "SupportsIntegrations": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "ServerlessV2FeaturesSupport": {
+                    "$ref": "#/$defs/ServerlessV2FeaturesSupport"
                 }
             }
         },
@@ -6075,6 +6093,21 @@
             "items": {
                 "$ref": "#/$defs/String"
             }
+        },
+        "ServerlessV2FeaturesSupport": {
+            "type": "object",
+            "properties": {
+                "MinCapacity": {
+                    "$ref": "#/$defs/DoubleOptional"
+                },
+                "MaxCapacity": {
+                    "$ref": "#/$defs/DoubleOptional"
+                }
+            }
+        },
+        "DoubleOptional": {
+            "type": "number",
+            "format": "double"
         },
         "CreateCustomDBEngineVersionMessage": {
             "type": "object",
@@ -6340,6 +6373,9 @@
                 },
                 "MonitoringRoleArn": {
                     "$ref": "#/$defs/String"
+                },
+                "DatabaseInsightsMode": {
+                    "$ref": "#/$defs/DatabaseInsightsMode"
                 },
                 "PerformanceInsightsEnabled": {
                     "$ref": "#/$defs/BooleanOptional"
@@ -6639,6 +6675,12 @@
                 }
             }
         },
+        "DatabaseInsightsMode": {
+            "enum": [
+                "STANDARD",
+                "ADVANCED"
+            ]
+        },
         "ServerlessV2ScalingConfigurationInfo": {
             "type": "object",
             "properties": {
@@ -6647,12 +6689,11 @@
                 },
                 "MaxCapacity": {
                     "$ref": "#/$defs/DoubleOptional"
+                },
+                "SecondsUntilAutoPause": {
+                    "$ref": "#/$defs/IntegerOptional"
                 }
             }
-        },
-        "DoubleOptional": {
-            "type": "number",
-            "format": "double"
         },
         "MasterUserSecret": {
             "type": "object",
@@ -6835,6 +6876,9 @@
                 "MonitoringRoleArn": {
                     "$ref": "#/$defs/String"
                 },
+                "DatabaseInsightsMode": {
+                    "$ref": "#/$defs/DatabaseInsightsMode"
+                },
                 "EnablePerformanceInsights": {
                     "$ref": "#/$defs/BooleanOptional"
                 },
@@ -6913,6 +6957,9 @@
                 },
                 "MaxCapacity": {
                     "$ref": "#/$defs/DoubleOptional"
+                },
+                "SecondsUntilAutoPause": {
+                    "$ref": "#/$defs/IntegerOptional"
                 }
             }
         },
@@ -7187,6 +7234,9 @@
                 },
                 "IAMDatabaseAuthenticationEnabled": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "DatabaseInsightsMode": {
+                    "$ref": "#/$defs/DatabaseInsightsMode"
                 },
                 "PerformanceInsightsEnabled": {
                     "$ref": "#/$defs/BooleanOptional"
@@ -7694,6 +7744,9 @@
                 "EnableIAMDatabaseAuthentication": {
                     "$ref": "#/$defs/BooleanOptional"
                 },
+                "DatabaseInsightsMode": {
+                    "$ref": "#/$defs/DatabaseInsightsMode"
+                },
                 "EnablePerformanceInsights": {
                     "$ref": "#/$defs/BooleanOptional"
                 },
@@ -7832,6 +7885,9 @@
                 },
                 "EnableIAMDatabaseAuthentication": {
                     "$ref": "#/$defs/BooleanOptional"
+                },
+                "DatabaseInsightsMode": {
+                    "$ref": "#/$defs/DatabaseInsightsMode"
                 },
                 "EnablePerformanceInsights": {
                     "$ref": "#/$defs/BooleanOptional"
@@ -8047,6 +8103,7 @@
         "ClientPasswordAuthType": {
             "enum": [
                 "MYSQL_NATIVE_PASSWORD",
+                "MYSQL_CACHING_SHA2_PASSWORD",
                 "POSTGRES_SCRAM_SHA_256",
                 "POSTGRES_MD5",
                 "SQL_SERVER_AUTHENTICATION"
@@ -8433,6 +8490,9 @@
                 },
                 "GlobalClusterMembers": {
                     "$ref": "#/$defs/GlobalClusterMemberList"
+                },
+                "Endpoint": {
+                    "$ref": "#/$defs/String"
                 },
                 "FailoverState": {
                     "$ref": "#/$defs/FailoverState"
@@ -12455,6 +12515,9 @@
                 "MonitoringRoleArn": {
                     "$ref": "#/$defs/String"
                 },
+                "DatabaseInsightsMode": {
+                    "$ref": "#/$defs/DatabaseInsightsMode"
+                },
                 "EnablePerformanceInsights": {
                     "$ref": "#/$defs/BooleanOptional"
                 },
@@ -12698,6 +12761,9 @@
                 },
                 "EnableIAMDatabaseAuthentication": {
                     "$ref": "#/$defs/BooleanOptional"
+                },
+                "DatabaseInsightsMode": {
+                    "$ref": "#/$defs/DatabaseInsightsMode"
                 },
                 "EnablePerformanceInsights": {
                     "$ref": "#/$defs/BooleanOptional"
@@ -13646,6 +13712,21 @@
                 "RdsCustomClusterConfiguration": {
                     "$ref": "#/$defs/RdsCustomClusterConfiguration"
                 },
+                "MonitoringInterval": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "MonitoringRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "EnablePerformanceInsights": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "PerformanceInsightsKMSKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "PerformanceInsightsRetentionPeriod": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
                 "EngineLifecycleSupport": {
                     "$ref": "#/$defs/String"
                 }
@@ -13748,6 +13829,21 @@
                 },
                 "RdsCustomClusterConfiguration": {
                     "$ref": "#/$defs/RdsCustomClusterConfiguration"
+                },
+                "MonitoringInterval": {
+                    "$ref": "#/$defs/IntegerOptional"
+                },
+                "MonitoringRoleArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "EnablePerformanceInsights": {
+                    "$ref": "#/$defs/BooleanOptional"
+                },
+                "PerformanceInsightsKMSKeyId": {
+                    "$ref": "#/$defs/String"
+                },
+                "PerformanceInsightsRetentionPeriod": {
+                    "$ref": "#/$defs/IntegerOptional"
                 },
                 "EngineLifecycleSupport": {
                     "$ref": "#/$defs/String"
@@ -14011,6 +14107,9 @@
                 },
                 "S3IngestionRoleArn": {
                     "$ref": "#/$defs/String"
+                },
+                "DatabaseInsightsMode": {
+                    "$ref": "#/$defs/DatabaseInsightsMode"
                 },
                 "EnablePerformanceInsights": {
                     "$ref": "#/$defs/BooleanOptional"

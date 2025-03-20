@@ -29,9 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "LabelTemplate": {},
+                        "ResourceTypes": {},
+                        "SinkIdentifier": {},
+                        "Tags": {},
+                        "LinkConfiguration": {}
                     }
                 }
             }
@@ -64,9 +66,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -99,9 +100,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {}
                     }
                 }
             }
@@ -134,9 +133,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {}
                     }
                 }
             }
@@ -169,9 +166,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {}
                     }
                 }
             }
@@ -204,9 +199,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {}
                     }
                 }
             }
@@ -239,9 +232,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SinkIdentifier": {}
                     }
                 }
             }
@@ -274,9 +265,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "SinkIdentifier": {}
                     }
                 }
             }
@@ -309,9 +300,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -344,9 +334,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -383,9 +372,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -418,9 +405,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SinkIdentifier": {},
+                        "Policy": {}
                     }
                 }
             }
@@ -457,9 +443,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -496,9 +481,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -531,9 +515,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifier": {},
+                        "ResourceTypes": {},
+                        "LinkConfiguration": {}
                     }
                 }
             }
@@ -585,6 +569,91 @@
             "type": "string",
             "format": "binary"
         },
+        "CreateLinkInput": {
+            "type": "object",
+            "properties": {
+                "LabelTemplate": {
+                    "$ref": "#/$defs/LabelTemplate"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypesInput"
+                },
+                "SinkIdentifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMapInput"
+                },
+                "LinkConfiguration": {
+                    "$ref": "#/$defs/LinkConfiguration"
+                }
+            }
+        },
+        "LabelTemplate": {
+            "type": "string"
+        },
+        "ResourceTypesInput": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceType"
+            }
+        },
+        "ResourceType": {
+            "enum": [
+                "AWS_CLOUDWATCH_METRIC",
+                "AWS_LOGS_LOGGROUP",
+                "AWS_XRAY_TRACE",
+                "AWS_APPLICATIONINSIGHTS_APPLICATION",
+                "AWS_INTERNETMONITOR_MONITOR",
+                "AWS_APPLICATION_SIGNALS_SERVICE",
+                "AWS_APPLICATION_SIGNALS_SLO"
+            ]
+        },
+        "ResourceIdentifier": {
+            "type": "string"
+        },
+        "TagMapInput": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
+            }
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "LinkConfiguration": {
+            "type": "object",
+            "properties": {
+                "LogGroupConfiguration": {
+                    "$ref": "#/$defs/LogGroupConfiguration"
+                },
+                "MetricConfiguration": {
+                    "$ref": "#/$defs/MetricConfiguration"
+                }
+            }
+        },
+        "LogGroupConfiguration": {
+            "type": "object",
+            "properties": {
+                "Filter": {
+                    "$ref": "#/$defs/LogsFilter"
+                }
+            }
+        },
+        "LogsFilter": {
+            "type": "string"
+        },
+        "MetricConfiguration": {
+            "type": "object",
+            "properties": {
+                "Filter": {
+                    "$ref": "#/$defs/MetricsFilter"
+                }
+            }
+        },
+        "MetricsFilter": {
+            "type": "string"
+        },
         "CreateLinkOutput": {
             "type": "object",
             "properties": {
@@ -626,87 +695,18 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "LinkConfiguration": {
+        "CreateSinkInput": {
             "type": "object",
             "properties": {
-                "LogGroupConfiguration": {
-                    "$ref": "#/$defs/LogGroupConfiguration"
-                },
-                "MetricConfiguration": {
-                    "$ref": "#/$defs/MetricConfiguration"
-                }
-            }
-        },
-        "LogGroupConfiguration": {
-            "type": "object",
-            "properties": {
-                "Filter": {
-                    "$ref": "#/$defs/LogsFilter"
-                }
-            }
-        },
-        "LogsFilter": {
-            "type": "string"
-        },
-        "MetricConfiguration": {
-            "type": "object",
-            "properties": {
-                "Filter": {
-                    "$ref": "#/$defs/MetricsFilter"
-                }
-            }
-        },
-        "MetricsFilter": {
-            "type": "string"
-        },
-        "CreateLinkInput": {
-            "type": "object",
-            "properties": {
-                "LabelTemplate": {
-                    "$ref": "#/$defs/LabelTemplate"
-                },
-                "ResourceTypes": {
-                    "$ref": "#/$defs/ResourceTypesInput"
-                },
-                "SinkIdentifier": {
-                    "$ref": "#/$defs/ResourceIdentifier"
+                "Name": {
+                    "$ref": "#/$defs/SinkName"
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMapInput"
-                },
-                "LinkConfiguration": {
-                    "$ref": "#/$defs/LinkConfiguration"
                 }
             }
         },
-        "LabelTemplate": {
-            "type": "string"
-        },
-        "ResourceTypesInput": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ResourceType"
-            }
-        },
-        "ResourceType": {
-            "enum": [
-                "AWS_CLOUDWATCH_METRIC",
-                "AWS_LOGS_LOGGROUP",
-                "AWS_XRAY_TRACE",
-                "AWS_APPLICATIONINSIGHTS_APPLICATION",
-                "AWS_INTERNETMONITOR_MONITOR"
-            ]
-        },
-        "ResourceIdentifier": {
-            "type": "string"
-        },
-        "TagMapInput": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
-        },
-        "TagValue": {
+        "SinkName": {
             "type": "string"
         },
         "CreateSinkOutput": {
@@ -726,25 +726,19 @@
                 }
             }
         },
-        "CreateSinkInput": {
+        "DeleteLinkInput": {
             "type": "object",
             "properties": {
-                "Name": {
-                    "$ref": "#/$defs/SinkName"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagMapInput"
+                "Identifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
                 }
             }
-        },
-        "SinkName": {
-            "type": "string"
         },
         "DeleteLinkOutput": {
             "type": "object",
             "properties": {}
         },
-        "DeleteLinkInput": {
+        "DeleteSinkInput": {
             "type": "object",
             "properties": {
                 "Identifier": {
@@ -756,7 +750,7 @@
             "type": "object",
             "properties": {}
         },
-        "DeleteSinkInput": {
+        "GetLinkInput": {
             "type": "object",
             "properties": {
                 "Identifier": {
@@ -793,7 +787,7 @@
                 }
             }
         },
-        "GetLinkInput": {
+        "GetSinkInput": {
             "type": "object",
             "properties": {
                 "Identifier": {
@@ -818,10 +812,10 @@
                 }
             }
         },
-        "GetSinkInput": {
+        "GetSinkPolicyInput": {
             "type": "object",
             "properties": {
-                "Identifier": {
+                "SinkIdentifier": {
                     "$ref": "#/$defs/ResourceIdentifier"
                 }
             }
@@ -840,13 +834,26 @@
                 }
             }
         },
-        "GetSinkPolicyInput": {
+        "ListAttachedLinksInput": {
             "type": "object",
             "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/ListAttachedLinksMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
                 "SinkIdentifier": {
                     "$ref": "#/$defs/ResourceIdentifier"
                 }
             }
+        },
+        "ListAttachedLinksMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListAttachedLinksOutput": {
             "type": "object",
@@ -879,26 +886,20 @@
                 }
             }
         },
-        "ListAttachedLinksInput": {
+        "ListLinksInput": {
             "type": "object",
             "properties": {
                 "MaxResults": {
-                    "$ref": "#/$defs/ListAttachedLinksMaxResults"
+                    "$ref": "#/$defs/ListLinksMaxResults"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
-                },
-                "SinkIdentifier": {
-                    "$ref": "#/$defs/ResourceIdentifier"
                 }
             }
         },
-        "ListAttachedLinksMaxResults": {
+        "ListLinksMaxResults": {
             "type": "integer",
             "format": "int32"
-        },
-        "NextToken": {
-            "type": "string"
         },
         "ListLinksOutput": {
             "type": "object",
@@ -937,18 +938,18 @@
                 }
             }
         },
-        "ListLinksInput": {
+        "ListSinksInput": {
             "type": "object",
             "properties": {
                 "MaxResults": {
-                    "$ref": "#/$defs/ListLinksMaxResults"
+                    "$ref": "#/$defs/ListSinksMaxResults"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
                 }
             }
         },
-        "ListLinksMaxResults": {
+        "ListSinksMaxResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -983,29 +984,6 @@
                 }
             }
         },
-        "ListSinksInput": {
-            "type": "object",
-            "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/ListSinksMaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ListSinksMaxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ListTagsForResourceOutput": {
-            "type": "object",
-            "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/TagMapOutput"
-                }
-            }
-        },
         "ListTagsForResourceInput": {
             "type": "object",
             "properties": {
@@ -1017,17 +995,11 @@
         "Arn": {
             "type": "string"
         },
-        "PutSinkPolicyOutput": {
+        "ListTagsForResourceOutput": {
             "type": "object",
             "properties": {
-                "SinkArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "SinkId": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "Policy": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "Tags": {
+                    "$ref": "#/$defs/TagMapOutput"
                 }
             }
         },
@@ -1045,9 +1017,19 @@
         "SinkPolicy": {
             "type": "string"
         },
-        "TagResourceOutput": {
+        "PutSinkPolicyOutput": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "SinkArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SinkId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "Policy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
         },
         "TagResourceInput": {
             "type": "object",
@@ -1060,7 +1042,7 @@
                 }
             }
         },
-        "UntagResourceOutput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {}
         },
@@ -1083,6 +1065,24 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLinkInput": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypesInput"
+                },
+                "LinkConfiguration": {
+                    "$ref": "#/$defs/LinkConfiguration"
+                }
+            }
         },
         "UpdateLinkOutput": {
             "type": "object",
@@ -1107,20 +1107,6 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagMapOutput"
-                },
-                "LinkConfiguration": {
-                    "$ref": "#/$defs/LinkConfiguration"
-                }
-            }
-        },
-        "UpdateLinkInput": {
-            "type": "object",
-            "properties": {
-                "Identifier": {
-                    "$ref": "#/$defs/ResourceIdentifier"
-                },
-                "ResourceTypes": {
-                    "$ref": "#/$defs/ResourceTypesInput"
                 },
                 "LinkConfiguration": {
                     "$ref": "#/$defs/LinkConfiguration"

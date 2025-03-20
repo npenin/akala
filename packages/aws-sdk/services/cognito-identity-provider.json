@@ -843,6 +843,35 @@
             }
         },
         {
+            "name": "CompleteWebAuthnRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.CompleteWebAuthnRegistration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CompleteWebAuthnRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CompleteWebAuthnRegistrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ConfirmDevice",
             "config": {
                 "http": {
@@ -982,6 +1011,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateIdentityProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateManagedLoginBranding",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.CreateManagedLoginBranding"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateManagedLoginBrandingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateManagedLoginBrandingRequest"
                         }
                     }
                 }
@@ -1191,6 +1249,35 @@
             }
         },
         {
+            "name": "DeleteManagedLoginBranding",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.DeleteManagedLoginBranding"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteManagedLoginBrandingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteResourceServer",
             "config": {
                 "http": {
@@ -1365,6 +1452,35 @@
             }
         },
         {
+            "name": "DeleteWebAuthnCredential",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.DeleteWebAuthnCredential"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteWebAuthnCredentialResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteWebAuthnCredentialRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeIdentityProvider",
             "config": {
                 "http": {
@@ -1388,6 +1504,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeIdentityProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeManagedLoginBranding",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.DescribeManagedLoginBranding"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeManagedLoginBrandingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeManagedLoginBrandingRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeManagedLoginBrandingByClient",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.DescribeManagedLoginBrandingByClient"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeManagedLoginBrandingByClientResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeManagedLoginBrandingByClientRequest"
                         }
                     }
                 }
@@ -1887,6 +2061,35 @@
             }
         },
         {
+            "name": "GetUserAuthFactors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.GetUserAuthFactors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetUserAuthFactorsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetUserAuthFactorsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetUserPoolMfaConfig",
             "config": {
                 "http": {
@@ -2264,6 +2467,35 @@
             }
         },
         {
+            "name": "ListWebAuthnCredentials",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.ListWebAuthnCredentials"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListWebAuthnCredentialsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListWebAuthnCredentialsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ResendConfirmationCode",
             "config": {
                 "http": {
@@ -2583,6 +2815,35 @@
             }
         },
         {
+            "name": "StartWebAuthnRegistration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.StartWebAuthnRegistration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartWebAuthnRegistrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartWebAuthnRegistrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "StopUserImportJob",
             "config": {
                 "http": {
@@ -2780,6 +3041,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateIdentityProviderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateManagedLoginBranding",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSCognitoIdentityProviderService.UpdateManagedLoginBranding"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateManagedLoginBrandingResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateManagedLoginBrandingRequest"
                         }
                     }
                 }
@@ -3533,6 +3823,9 @@
                 },
                 "AuthenticationResult": {
                     "$ref": "#/$defs/AuthenticationResultType"
+                },
+                "AvailableChallenges": {
+                    "$ref": "#/$defs/AvailableChallengeListType"
                 }
             }
         },
@@ -3545,10 +3838,15 @@
                 "MFA_SETUP",
                 "PASSWORD_VERIFIER",
                 "CUSTOM_CHALLENGE",
+                "SELECT_CHALLENGE",
                 "DEVICE_SRP_AUTH",
                 "DEVICE_PASSWORD_VERIFIER",
                 "ADMIN_NO_SRP_AUTH",
-                "NEW_PASSWORD_REQUIRED"
+                "NEW_PASSWORD_REQUIRED",
+                "SMS_OTP",
+                "PASSWORD",
+                "WEB_AUTHN",
+                "PASSWORD_SRP"
             ]
         },
         "SessionType": {
@@ -3601,6 +3899,12 @@
                 }
             }
         },
+        "AvailableChallengeListType": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChallengeNameType"
+            }
+        },
         "AdminInitiateAuthRequest": {
             "type": "object",
             "properties": {
@@ -3624,6 +3928,9 @@
                 },
                 "ContextData": {
                     "$ref": "#/$defs/ContextDataType"
+                },
+                "Session": {
+                    "$ref": "#/$defs/SessionType"
                 }
             }
         },
@@ -3638,7 +3945,8 @@
                 "CUSTOM_AUTH",
                 "ADMIN_NO_SRP_AUTH",
                 "USER_PASSWORD_AUTH",
-                "ADMIN_USER_PASSWORD_AUTH"
+                "ADMIN_USER_PASSWORD_AUTH",
+                "USER_AUTH"
             ]
         },
         "AuthParametersType": {
@@ -4313,6 +4621,22 @@
                 }
             }
         },
+        "CompleteWebAuthnRegistrationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CompleteWebAuthnRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "$ref": "#/$defs/TokenModelType"
+                },
+                "Credential": {
+                    "$ref": "#/$defs/Document"
+                }
+            }
+        },
+        "Document": {},
         "ConfirmDeviceResponse": {
             "type": "object",
             "properties": {
@@ -4404,7 +4728,11 @@
         },
         "ConfirmSignUpResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Session": {
+                    "$ref": "#/$defs/SessionType"
+                }
+            }
         },
         "ConfirmSignUpRequest": {
             "type": "object",
@@ -4432,6 +4760,9 @@
                 },
                 "ClientMetadata": {
                     "$ref": "#/$defs/ClientMetadataType"
+                },
+                "Session": {
+                    "$ref": "#/$defs/SessionType"
                 }
             }
         },
@@ -4556,6 +4887,131 @@
         },
         "ProviderNameTypeV2": {
             "type": "string"
+        },
+        "CreateManagedLoginBrandingResponse": {
+            "type": "object",
+            "properties": {
+                "ManagedLoginBranding": {
+                    "$ref": "#/$defs/ManagedLoginBrandingType"
+                }
+            }
+        },
+        "ManagedLoginBrandingType": {
+            "type": "object",
+            "properties": {
+                "ManagedLoginBrandingId": {
+                    "$ref": "#/$defs/ManagedLoginBrandingIdType"
+                },
+                "UserPoolId": {
+                    "$ref": "#/$defs/UserPoolIdType"
+                },
+                "UseCognitoProvidedValues": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/Document"
+                },
+                "Assets": {
+                    "$ref": "#/$defs/AssetListType"
+                },
+                "CreationDate": {
+                    "$ref": "#/$defs/DateType"
+                },
+                "LastModifiedDate": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "ManagedLoginBrandingIdType": {
+            "type": "string"
+        },
+        "AssetListType": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetType"
+            }
+        },
+        "AssetType": {
+            "type": "object",
+            "properties": {
+                "Category": {
+                    "$ref": "#/$defs/AssetCategoryType"
+                },
+                "ColorMode": {
+                    "$ref": "#/$defs/ColorSchemeModeType"
+                },
+                "Extension": {
+                    "$ref": "#/$defs/AssetExtensionType"
+                },
+                "Bytes": {
+                    "$ref": "#/$defs/AssetBytesType"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdType"
+                }
+            }
+        },
+        "AssetCategoryType": {
+            "enum": [
+                "FAVICON_ICO",
+                "FAVICON_SVG",
+                "EMAIL_GRAPHIC",
+                "SMS_GRAPHIC",
+                "AUTH_APP_GRAPHIC",
+                "PASSWORD_GRAPHIC",
+                "PASSKEY_GRAPHIC",
+                "PAGE_HEADER_LOGO",
+                "PAGE_HEADER_BACKGROUND",
+                "PAGE_FOOTER_LOGO",
+                "PAGE_FOOTER_BACKGROUND",
+                "PAGE_BACKGROUND",
+                "FORM_BACKGROUND",
+                "FORM_LOGO",
+                "IDP_BUTTON_ICON"
+            ]
+        },
+        "ColorSchemeModeType": {
+            "enum": [
+                "LIGHT",
+                "DARK",
+                "DYNAMIC"
+            ]
+        },
+        "AssetExtensionType": {
+            "enum": [
+                "ICO",
+                "JPEG",
+                "PNG",
+                "SVG",
+                "WEBP"
+            ]
+        },
+        "AssetBytesType": {
+            "type": "string",
+            "format": "binary"
+        },
+        "ResourceIdType": {
+            "type": "string"
+        },
+        "CreateManagedLoginBrandingRequest": {
+            "type": "object",
+            "properties": {
+                "UserPoolId": {
+                    "$ref": "#/$defs/UserPoolIdType"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/ClientIdType"
+                },
+                "UseCognitoProvidedValues": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/Document"
+                },
+                "Assets": {
+                    "$ref": "#/$defs/AssetListType"
+                }
+            }
         },
         "CreateResourceServerResponse": {
             "type": "object",
@@ -4831,6 +5287,9 @@
                 },
                 "AccountRecoverySetting": {
                     "$ref": "#/$defs/AccountRecoverySettingType"
+                },
+                "UserPoolTier": {
+                    "$ref": "#/$defs/UserPoolTierType"
                 }
             }
         },
@@ -4842,6 +5301,9 @@
             "properties": {
                 "PasswordPolicy": {
                     "$ref": "#/$defs/PasswordPolicyType"
+                },
+                "SignInPolicy": {
+                    "$ref": "#/$defs/SignInPolicyType"
                 }
             }
         },
@@ -4882,6 +5344,28 @@
         "TemporaryPasswordValidityDaysType": {
             "type": "integer",
             "format": "int32"
+        },
+        "SignInPolicyType": {
+            "type": "object",
+            "properties": {
+                "AllowedFirstAuthFactors": {
+                    "$ref": "#/$defs/AllowedFirstAuthFactorsListType"
+                }
+            }
+        },
+        "AllowedFirstAuthFactorsListType": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthFactorType"
+            }
+        },
+        "AuthFactorType": {
+            "enum": [
+                "PASSWORD",
+                "EMAIL_OTP",
+                "SMS_OTP",
+                "WEB_AUTHN"
+            ]
         },
         "DeletionProtectionType": {
             "enum": [
@@ -4950,7 +5434,8 @@
         "PreTokenGenerationLambdaVersionType": {
             "enum": [
                 "V1_0",
-                "V2_0"
+                "V2_0",
+                "V3_0"
             ]
         },
         "CustomSMSLambdaVersionConfigType": {
@@ -5193,15 +5678,21 @@
             "type": "object",
             "properties": {
                 "SMSMessage": {
-                    "$ref": "#/$defs/SmsVerificationMessageType"
+                    "$ref": "#/$defs/SmsInviteMessageType"
                 },
                 "EmailMessage": {
-                    "$ref": "#/$defs/EmailVerificationMessageType"
+                    "$ref": "#/$defs/EmailInviteMessageType"
                 },
                 "EmailSubject": {
                     "$ref": "#/$defs/EmailVerificationSubjectType"
                 }
             }
+        },
+        "SmsInviteMessageType": {
+            "type": "string"
+        },
+        "EmailInviteMessageType": {
+            "type": "string"
         },
         "UserPoolAddOnsType": {
             "type": "object",
@@ -5279,6 +5770,13 @@
                 "ADMIN_ONLY"
             ]
         },
+        "UserPoolTierType": {
+            "enum": [
+                "LITE",
+                "ESSENTIALS",
+                "PLUS"
+            ]
+        },
         "CreateUserPoolRequest": {
             "type": "object",
             "properties": {
@@ -5350,6 +5848,9 @@
                 },
                 "AccountRecoverySetting": {
                     "$ref": "#/$defs/AccountRecoverySettingType"
+                },
+                "UserPoolTier": {
+                    "$ref": "#/$defs/UserPoolTierType"
                 }
             }
         },
@@ -5505,7 +6006,8 @@
                 "ALLOW_CUSTOM_AUTH",
                 "ALLOW_USER_PASSWORD_AUTH",
                 "ALLOW_USER_SRP_AUTH",
-                "ALLOW_REFRESH_TOKEN_AUTH"
+                "ALLOW_REFRESH_TOKEN_AUTH",
+                "ALLOW_USER_AUTH"
             ]
         },
         "SupportedIdentityProvidersListType": {
@@ -5661,10 +6163,17 @@
         "CreateUserPoolDomainResponse": {
             "type": "object",
             "properties": {
+                "ManagedLoginVersion": {
+                    "$ref": "#/$defs/WrappedIntegerType"
+                },
                 "CloudFrontDomain": {
                     "$ref": "#/$defs/DomainType"
                 }
             }
+        },
+        "WrappedIntegerType": {
+            "type": "integer",
+            "format": "int32"
         },
         "CreateUserPoolDomainRequest": {
             "type": "object",
@@ -5674,6 +6183,9 @@
                 },
                 "UserPoolId": {
                     "$ref": "#/$defs/UserPoolIdType"
+                },
+                "ManagedLoginVersion": {
+                    "$ref": "#/$defs/WrappedIntegerType"
                 },
                 "CustomDomainConfig": {
                     "$ref": "#/$defs/CustomDomainConfigType"
@@ -5707,6 +6219,17 @@
                 },
                 "ProviderName": {
                     "$ref": "#/$defs/ProviderNameType"
+                }
+            }
+        },
+        "DeleteManagedLoginBrandingRequest": {
+            "type": "object",
+            "properties": {
+                "ManagedLoginBrandingId": {
+                    "$ref": "#/$defs/ManagedLoginBrandingIdType"
+                },
+                "UserPoolId": {
+                    "$ref": "#/$defs/UserPoolIdType"
                 }
             }
         },
@@ -5778,6 +6301,21 @@
                 }
             }
         },
+        "DeleteWebAuthnCredentialResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteWebAuthnCredentialRequest": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "$ref": "#/$defs/TokenModelType"
+                },
+                "CredentialId": {
+                    "$ref": "#/$defs/StringType"
+                }
+            }
+        },
         "DescribeIdentityProviderResponse": {
             "type": "object",
             "properties": {
@@ -5794,6 +6332,50 @@
                 },
                 "ProviderName": {
                     "$ref": "#/$defs/ProviderNameType"
+                }
+            }
+        },
+        "DescribeManagedLoginBrandingResponse": {
+            "type": "object",
+            "properties": {
+                "ManagedLoginBranding": {
+                    "$ref": "#/$defs/ManagedLoginBrandingType"
+                }
+            }
+        },
+        "DescribeManagedLoginBrandingRequest": {
+            "type": "object",
+            "properties": {
+                "UserPoolId": {
+                    "$ref": "#/$defs/UserPoolIdType"
+                },
+                "ManagedLoginBrandingId": {
+                    "$ref": "#/$defs/ManagedLoginBrandingIdType"
+                },
+                "ReturnMergedResources": {
+                    "$ref": "#/$defs/BooleanType"
+                }
+            }
+        },
+        "DescribeManagedLoginBrandingByClientResponse": {
+            "type": "object",
+            "properties": {
+                "ManagedLoginBranding": {
+                    "$ref": "#/$defs/ManagedLoginBrandingType"
+                }
+            }
+        },
+        "DescribeManagedLoginBrandingByClientRequest": {
+            "type": "object",
+            "properties": {
+                "UserPoolId": {
+                    "$ref": "#/$defs/UserPoolIdType"
+                },
+                "ClientId": {
+                    "$ref": "#/$defs/ClientIdType"
+                },
+                "ReturnMergedResources": {
+                    "$ref": "#/$defs/BooleanType"
                 }
             }
         },
@@ -6097,6 +6679,9 @@
                 },
                 "CustomDomainConfig": {
                     "$ref": "#/$defs/CustomDomainConfigType"
+                },
+                "ManagedLoginVersion": {
+                    "$ref": "#/$defs/WrappedIntegerType"
                 }
             }
         },
@@ -6476,6 +7061,37 @@
                 }
             }
         },
+        "GetUserAuthFactorsResponse": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/UsernameType"
+                },
+                "PreferredMfaSetting": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "UserMFASettingList": {
+                    "$ref": "#/$defs/UserMFASettingListType"
+                },
+                "ConfiguredUserAuthFactors": {
+                    "$ref": "#/$defs/ConfiguredUserAuthFactorsListType"
+                }
+            }
+        },
+        "ConfiguredUserAuthFactorsListType": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthFactorType"
+            }
+        },
+        "GetUserAuthFactorsRequest": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "$ref": "#/$defs/TokenModelType"
+                }
+            }
+        },
         "GetUserPoolMfaConfigResponse": {
             "type": "object",
             "properties": {
@@ -6490,6 +7106,9 @@
                 },
                 "MfaConfiguration": {
                     "$ref": "#/$defs/UserPoolMfaType"
+                },
+                "WebAuthnConfiguration": {
+                    "$ref": "#/$defs/WebAuthnConfigurationType"
                 }
             }
         },
@@ -6529,6 +7148,26 @@
         "EmailMfaSubjectType": {
             "type": "string"
         },
+        "WebAuthnConfigurationType": {
+            "type": "object",
+            "properties": {
+                "RelyingPartyId": {
+                    "$ref": "#/$defs/RelyingPartyIdType"
+                },
+                "UserVerification": {
+                    "$ref": "#/$defs/UserVerificationType"
+                }
+            }
+        },
+        "RelyingPartyIdType": {
+            "type": "string"
+        },
+        "UserVerificationType": {
+            "enum": [
+                "REQUIRED",
+                "PREFERRED"
+            ]
+        },
         "GetUserPoolMfaConfigRequest": {
             "type": "object",
             "properties": {
@@ -6563,6 +7202,9 @@
                 },
                 "AuthenticationResult": {
                     "$ref": "#/$defs/AuthenticationResultType"
+                },
+                "AvailableChallenges": {
+                    "$ref": "#/$defs/AvailableChallengeListType"
                 }
             }
         },
@@ -6586,6 +7228,9 @@
                 },
                 "UserContextData": {
                     "$ref": "#/$defs/UserContextDataType"
+                },
+                "Session": {
+                    "$ref": "#/$defs/SessionType"
                 }
             }
         },
@@ -6954,6 +7599,76 @@
                 }
             }
         },
+        "ListWebAuthnCredentialsResponse": {
+            "type": "object",
+            "properties": {
+                "Credentials": {
+                    "$ref": "#/$defs/WebAuthnCredentialDescriptionListType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationKey"
+                }
+            }
+        },
+        "WebAuthnCredentialDescriptionListType": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WebAuthnCredentialDescription"
+            }
+        },
+        "WebAuthnCredentialDescription": {
+            "type": "object",
+            "properties": {
+                "CredentialId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "FriendlyCredentialName": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "RelyingPartyId": {
+                    "$ref": "#/$defs/StringType"
+                },
+                "AuthenticatorAttachment": {
+                    "$ref": "#/$defs/WebAuthnAuthenticatorAttachmentType"
+                },
+                "AuthenticatorTransports": {
+                    "$ref": "#/$defs/WebAuthnAuthenticatorTransportsList"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/DateType"
+                }
+            }
+        },
+        "WebAuthnAuthenticatorAttachmentType": {
+            "type": "string"
+        },
+        "WebAuthnAuthenticatorTransportsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/WebAuthnAuthenticatorTransportType"
+            }
+        },
+        "WebAuthnAuthenticatorTransportType": {
+            "type": "string"
+        },
+        "ListWebAuthnCredentialsRequest": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "$ref": "#/$defs/TokenModelType"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationKey"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/WebAuthnCredentialsQueryLimitType"
+                }
+            }
+        },
+        "WebAuthnCredentialsQueryLimitType": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ResendConfirmationCodeResponse": {
             "type": "object",
             "properties": {
@@ -7157,6 +7872,9 @@
                 },
                 "MfaConfiguration": {
                     "$ref": "#/$defs/UserPoolMfaType"
+                },
+                "WebAuthnConfiguration": {
+                    "$ref": "#/$defs/WebAuthnConfigurationType"
                 }
             }
         },
@@ -7177,6 +7895,9 @@
                 },
                 "MfaConfiguration": {
                     "$ref": "#/$defs/UserPoolMfaType"
+                },
+                "WebAuthnConfiguration": {
+                    "$ref": "#/$defs/WebAuthnConfigurationType"
                 }
             }
         },
@@ -7206,6 +7927,9 @@
                 },
                 "UserSub": {
                     "$ref": "#/$defs/StringType"
+                },
+                "Session": {
+                    "$ref": "#/$defs/SessionType"
                 }
             }
         },
@@ -7257,6 +7981,22 @@
                 },
                 "JobId": {
                     "$ref": "#/$defs/UserImportJobIdType"
+                }
+            }
+        },
+        "StartWebAuthnRegistrationResponse": {
+            "type": "object",
+            "properties": {
+                "CredentialCreationOptions": {
+                    "$ref": "#/$defs/Document"
+                }
+            }
+        },
+        "StartWebAuthnRegistrationRequest": {
+            "type": "object",
+            "properties": {
+                "AccessToken": {
+                    "$ref": "#/$defs/TokenModelType"
                 }
             }
         },
@@ -7416,6 +8156,34 @@
                 }
             }
         },
+        "UpdateManagedLoginBrandingResponse": {
+            "type": "object",
+            "properties": {
+                "ManagedLoginBranding": {
+                    "$ref": "#/$defs/ManagedLoginBrandingType"
+                }
+            }
+        },
+        "UpdateManagedLoginBrandingRequest": {
+            "type": "object",
+            "properties": {
+                "UserPoolId": {
+                    "$ref": "#/$defs/UserPoolIdType"
+                },
+                "ManagedLoginBrandingId": {
+                    "$ref": "#/$defs/ManagedLoginBrandingIdType"
+                },
+                "UseCognitoProvidedValues": {
+                    "$ref": "#/$defs/BooleanType"
+                },
+                "Settings": {
+                    "$ref": "#/$defs/Document"
+                },
+                "Assets": {
+                    "$ref": "#/$defs/AssetListType"
+                }
+            }
+        },
         "UpdateResourceServerResponse": {
             "type": "object",
             "properties": {
@@ -7532,6 +8300,12 @@
                 },
                 "AccountRecoverySetting": {
                     "$ref": "#/$defs/AccountRecoverySettingType"
+                },
+                "PoolName": {
+                    "$ref": "#/$defs/UserPoolNameType"
+                },
+                "UserPoolTier": {
+                    "$ref": "#/$defs/UserPoolTierType"
                 }
             }
         },
@@ -7617,6 +8391,9 @@
         "UpdateUserPoolDomainResponse": {
             "type": "object",
             "properties": {
+                "ManagedLoginVersion": {
+                    "$ref": "#/$defs/WrappedIntegerType"
+                },
                 "CloudFrontDomain": {
                     "$ref": "#/$defs/DomainType"
                 }
@@ -7630,6 +8407,9 @@
                 },
                 "UserPoolId": {
                     "$ref": "#/$defs/UserPoolIdType"
+                },
+                "ManagedLoginVersion": {
+                    "$ref": "#/$defs/WrappedIntegerType"
                 },
                 "CustomDomainConfig": {
                     "$ref": "#/$defs/CustomDomainConfigType"
@@ -7862,6 +8642,82 @@
                                             ],
                                             "rules": [
                                                 {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Region"
+                                                                },
+                                                                "us-east-1"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://cognito-idp-fips.us-east-1.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Region"
+                                                                },
+                                                                "us-east-2"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://cognito-idp-fips.us-east-2.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Region"
+                                                                },
+                                                                "us-west-1"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://cognito-idp-fips.us-west-1.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                {
+                                                                    "ref": "Region"
+                                                                },
+                                                                "us-west-2"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://cognito-idp-fips.us-west-2.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
                                                     "conditions": [],
                                                     "endpoint": {
                                                         "url": "https://cognito-idp-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
@@ -7965,6 +8821,31 @@
                                                 }
                                             ],
                                             "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                "aws",
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://cognito-idp.{Region}.amazonaws.com",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
                                                 {
                                                     "conditions": [],
                                                     "endpoint": {

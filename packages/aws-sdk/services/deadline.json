@@ -33,9 +33,48 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "queueId": {},
+                        "fleetId": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateQueueLimitAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateQueueLimitAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateQueueLimitAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "farmId": {},
+                        "queueId": {},
+                        "limitId": {}
                     }
                 }
             }
@@ -76,9 +115,52 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "queueId": {},
+                        "fleetId": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteQueueLimitAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "queueId": "route.queueId",
+                            "limitId": "route.limitId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteQueueLimitAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0.queueId",
+                        "param.0.limitId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteQueueLimitAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "farmId": {},
+                        "queueId": {},
+                        "limitId": {}
                     }
                 }
             }
@@ -119,9 +201,52 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "queueId": {},
+                        "fleetId": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetQueueLimitAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "queueId": "route.queueId",
+                            "limitId": "route.limitId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetQueueLimitAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0.queueId",
+                        "param.0.limitId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetQueueLimitAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "farmId": {},
+                        "queueId": {},
+                        "limitId": {}
                     }
                 }
             }
@@ -158,9 +283,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "aggregationId": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -193,9 +319,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -232,9 +357,52 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "queueId": {},
+                        "fleetId": {},
+                        "nextToken": {},
+                        "maxResults": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListQueueLimitAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListQueueLimitAssociationsResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListQueueLimitAssociationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "farmId": {},
+                        "queueId": {},
+                        "limitId": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -271,9 +439,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -310,9 +476,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "queueIds": {},
+                        "filterExpressions": {},
+                        "sortExpressions": {},
+                        "itemOffset": {},
+                        "pageSize": {}
                     }
                 }
             }
@@ -349,9 +518,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "queueIds": {},
+                        "jobId": {},
+                        "filterExpressions": {},
+                        "sortExpressions": {},
+                        "itemOffset": {},
+                        "pageSize": {}
                     }
                 }
             }
@@ -388,9 +561,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "queueIds": {},
+                        "jobId": {},
+                        "filterExpressions": {},
+                        "sortExpressions": {},
+                        "itemOffset": {},
+                        "pageSize": {}
                     }
                 }
             }
@@ -427,9 +604,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "fleetIds": {},
+                        "filterExpressions": {},
+                        "sortExpressions": {},
+                        "itemOffset": {},
+                        "pageSize": {}
                     }
                 }
             }
@@ -466,9 +646,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "resourceIds": {},
+                        "startTime": {},
+                        "endTime": {},
+                        "timezone": {},
+                        "period": {},
+                        "groupBy": {},
+                        "statistics": {}
                     }
                 }
             }
@@ -505,9 +690,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -544,9 +728,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -587,9 +770,54 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "farmId": {},
+                        "queueId": {},
+                        "fleetId": {},
+                        "status": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateQueueLimitAssociation",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "farmId": "route.farmId",
+                            "queueId": "route.queueId",
+                            "limitId": "route.limitId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/2023-10-12/farms/{farmId}/queue-limit-associations/{queueId}/{limitId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateQueueLimitAssociationResponse"
+                    },
+                    "inject": [
+                        "param.0.farmId",
+                        "param.0.queueId",
+                        "param.0.limitId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateQueueLimitAssociationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "farmId": {},
+                        "queueId": {},
+                        "limitId": {},
+                        "status": {}
                     }
                 }
             }
@@ -641,10 +869,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateQueueFleetAssociationResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "CreateQueueFleetAssociationRequest": {
             "type": "object",
             "properties": {
@@ -668,11 +892,68 @@
         "FleetId": {
             "type": "string"
         },
-        "DeleteQueueFleetAssociationResponse": {
+        "CreateQueueFleetAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateQueueLimitAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                }
+            }
+        },
+        "LimitId": {
+            "type": "string"
+        },
+        "CreateQueueLimitAssociationResponse": {
             "type": "object",
             "properties": {}
         },
         "DeleteQueueFleetAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                }
+            }
+        },
+        "DeleteQueueFleetAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteQueueLimitAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                }
+            }
+        },
+        "DeleteQueueLimitAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetQueueFleetAssociationRequest": {
             "type": "object",
             "properties": {
                 "farmId": {
@@ -734,7 +1015,7 @@
         "UpdatedBy": {
             "type": "string"
         },
-        "GetQueueFleetAssociationRequest": {
+        "GetQueueLimitAssociationRequest": {
             "type": "object",
             "properties": {
                 "farmId": {
@@ -743,10 +1024,71 @@
                 "queueId": {
                     "$ref": "#/$defs/QueueId"
                 },
-                "fleetId": {
-                    "$ref": "#/$defs/FleetId"
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
                 }
             }
+        },
+        "GetQueueLimitAssociationResponse": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedAt"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueueLimitAssociationStatus"
+                }
+            }
+        },
+        "QueueLimitAssociationStatus": {
+            "enum": [
+                "ACTIVE",
+                "STOP_LIMIT_USAGE_AND_COMPLETE_TASKS",
+                "STOP_LIMIT_USAGE_AND_CANCEL_TASKS",
+                "STOPPED"
+            ]
+        },
+        "GetSessionsStatisticsAggregationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "aggregationId": {
+                    "$ref": "#/$defs/AggregationId"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AggregationId": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "String": {
+            "type": "string"
         },
         "GetSessionsStatisticsAggregationResponse": {
             "type": "object",
@@ -865,9 +1207,6 @@
             "type": "string",
             "format": "date-time"
         },
-        "String": {
-            "type": "string"
-        },
         "SessionsStatisticsAggregationStatus": {
             "enum": [
                 "IN_PROGRESS",
@@ -876,29 +1215,16 @@
                 "COMPLETED"
             ]
         },
-        "GetSessionsStatisticsAggregationRequest": {
+        "ListAvailableMeteredProductsRequest": {
             "type": "object",
             "properties": {
-                "farmId": {
-                    "$ref": "#/$defs/FarmId"
-                },
-                "aggregationId": {
-                    "$ref": "#/$defs/AggregationId"
+                "nextToken": {
+                    "$ref": "#/$defs/String"
                 },
                 "maxResults": {
                     "$ref": "#/$defs/MaxResults"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/String"
                 }
             }
-        },
-        "AggregationId": {
-            "type": "string"
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListAvailableMeteredProductsResponse": {
             "type": "object",
@@ -944,9 +1270,18 @@
             "type": "integer",
             "format": "int32"
         },
-        "ListAvailableMeteredProductsRequest": {
+        "ListQueueFleetAssociationsRequest": {
             "type": "object",
             "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "fleetId": {
+                    "$ref": "#/$defs/FleetId"
+                },
                 "nextToken": {
                     "$ref": "#/$defs/String"
                 },
@@ -998,7 +1333,7 @@
                 }
             }
         },
-        "ListQueueFleetAssociationsRequest": {
+        "ListQueueLimitAssociationsRequest": {
             "type": "object",
             "properties": {
                 "farmId": {
@@ -1007,14 +1342,65 @@
                 "queueId": {
                     "$ref": "#/$defs/QueueId"
                 },
-                "fleetId": {
-                    "$ref": "#/$defs/FleetId"
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/String"
                 },
                 "maxResults": {
                     "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListQueueLimitAssociationsResponse": {
+            "type": "object",
+            "properties": {
+                "queueLimitAssociations": {
+                    "$ref": "#/$defs/QueueLimitAssociationSummaries"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "QueueLimitAssociationSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/QueueLimitAssociationSummary"
+            }
+        },
+        "QueueLimitAssociationSummary": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/UpdatedAt"
+                },
+                "updatedBy": {
+                    "$ref": "#/$defs/UpdatedBy"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                },
+                "status": {
+                    "$ref": "#/$defs/QueueLimitAssociationStatus"
+                }
+            }
+        },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -1031,198 +1417,6 @@
             "additionalProperties": {
                 "$ref": "#/$defs/String"
             }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "SearchJobsResponse": {
-            "type": "object",
-            "properties": {
-                "jobs": {
-                    "$ref": "#/$defs/JobSearchSummaries"
-                },
-                "nextItemOffset": {
-                    "$ref": "#/$defs/NextItemOffset"
-                },
-                "totalResults": {
-                    "$ref": "#/$defs/TotalResults"
-                }
-            }
-        },
-        "JobSearchSummaries": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/JobSearchSummary"
-            }
-        },
-        "JobSearchSummary": {
-            "type": "object",
-            "properties": {
-                "jobId": {
-                    "$ref": "#/$defs/JobId"
-                },
-                "queueId": {
-                    "$ref": "#/$defs/QueueId"
-                },
-                "name": {
-                    "$ref": "#/$defs/JobName"
-                },
-                "lifecycleStatus": {
-                    "$ref": "#/$defs/JobLifecycleStatus"
-                },
-                "lifecycleStatusMessage": {
-                    "$ref": "#/$defs/String"
-                },
-                "taskRunStatus": {
-                    "$ref": "#/$defs/TaskRunStatus"
-                },
-                "targetTaskRunStatus": {
-                    "$ref": "#/$defs/JobTargetTaskRunStatus"
-                },
-                "taskRunStatusCounts": {
-                    "$ref": "#/$defs/TaskRunStatusCounts"
-                },
-                "priority": {
-                    "$ref": "#/$defs/JobPriority"
-                },
-                "maxFailedTasksCount": {
-                    "$ref": "#/$defs/MaxFailedTasksCount"
-                },
-                "maxRetriesPerTask": {
-                    "$ref": "#/$defs/MaxRetriesPerTask"
-                },
-                "createdBy": {
-                    "$ref": "#/$defs/CreatedBy"
-                },
-                "createdAt": {
-                    "$ref": "#/$defs/CreatedAt"
-                },
-                "endedAt": {
-                    "$ref": "#/$defs/EndedAt"
-                },
-                "startedAt": {
-                    "$ref": "#/$defs/StartedAt"
-                },
-                "jobParameters": {
-                    "$ref": "#/$defs/JobParameters"
-                },
-                "sourceJobId": {
-                    "$ref": "#/$defs/JobId"
-                }
-            }
-        },
-        "JobLifecycleStatus": {
-            "enum": [
-                "CREATE_IN_PROGRESS",
-                "CREATE_FAILED",
-                "CREATE_COMPLETE",
-                "UPLOAD_IN_PROGRESS",
-                "UPLOAD_FAILED",
-                "UPDATE_IN_PROGRESS",
-                "UPDATE_FAILED",
-                "UPDATE_SUCCEEDED",
-                "ARCHIVED"
-            ]
-        },
-        "TaskRunStatus": {
-            "enum": [
-                "PENDING",
-                "READY",
-                "ASSIGNED",
-                "STARTING",
-                "SCHEDULED",
-                "INTERRUPTING",
-                "RUNNING",
-                "SUSPENDED",
-                "CANCELED",
-                "FAILED",
-                "SUCCEEDED",
-                "NOT_COMPATIBLE"
-            ]
-        },
-        "JobTargetTaskRunStatus": {
-            "enum": [
-                "READY",
-                "FAILED",
-                "SUCCEEDED",
-                "CANCELED",
-                "SUSPENDED",
-                "PENDING"
-            ]
-        },
-        "TaskRunStatusCounts": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/Integer"
-            }
-        },
-        "JobPriority": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "MaxFailedTasksCount": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "MaxRetriesPerTask": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "EndedAt": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "StartedAt": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "JobParameters": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/JobParameter"
-            }
-        },
-        "JobParameter": {
-            "type": "object",
-            "properties": {
-                "int": {
-                    "$ref": "#/$defs/IntString"
-                },
-                "float": {
-                    "$ref": "#/$defs/FloatString"
-                },
-                "string": {
-                    "$ref": "#/$defs/ParameterString"
-                },
-                "path": {
-                    "$ref": "#/$defs/PathString"
-                }
-            }
-        },
-        "IntString": {
-            "type": "string"
-        },
-        "FloatString": {
-            "type": "string"
-        },
-        "ParameterString": {
-            "type": "string"
-        },
-        "PathString": {
-            "type": "string"
-        },
-        "NextItemOffset": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "TotalResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "SearchJobsRequest": {
             "type": "object",
@@ -1421,6 +1615,223 @@
                 }
             }
         },
+        "SearchJobsResponse": {
+            "type": "object",
+            "properties": {
+                "jobs": {
+                    "$ref": "#/$defs/JobSearchSummaries"
+                },
+                "nextItemOffset": {
+                    "$ref": "#/$defs/NextItemOffset"
+                },
+                "totalResults": {
+                    "$ref": "#/$defs/TotalResults"
+                }
+            }
+        },
+        "JobSearchSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/JobSearchSummary"
+            }
+        },
+        "JobSearchSummary": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "name": {
+                    "$ref": "#/$defs/JobName"
+                },
+                "lifecycleStatus": {
+                    "$ref": "#/$defs/JobLifecycleStatus"
+                },
+                "lifecycleStatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskRunStatus": {
+                    "$ref": "#/$defs/TaskRunStatus"
+                },
+                "targetTaskRunStatus": {
+                    "$ref": "#/$defs/JobTargetTaskRunStatus"
+                },
+                "taskRunStatusCounts": {
+                    "$ref": "#/$defs/TaskRunStatusCounts"
+                },
+                "priority": {
+                    "$ref": "#/$defs/JobPriority"
+                },
+                "maxFailedTasksCount": {
+                    "$ref": "#/$defs/MaxFailedTasksCount"
+                },
+                "maxRetriesPerTask": {
+                    "$ref": "#/$defs/MaxRetriesPerTask"
+                },
+                "createdBy": {
+                    "$ref": "#/$defs/CreatedBy"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "endedAt": {
+                    "$ref": "#/$defs/EndedAt"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/StartedAt"
+                },
+                "jobParameters": {
+                    "$ref": "#/$defs/JobParameters"
+                },
+                "maxWorkerCount": {
+                    "$ref": "#/$defs/MaxWorkerCount"
+                },
+                "sourceJobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "JobLifecycleStatus": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "CREATE_FAILED",
+                "CREATE_COMPLETE",
+                "UPLOAD_IN_PROGRESS",
+                "UPLOAD_FAILED",
+                "UPDATE_IN_PROGRESS",
+                "UPDATE_FAILED",
+                "UPDATE_SUCCEEDED",
+                "ARCHIVED"
+            ]
+        },
+        "TaskRunStatus": {
+            "enum": [
+                "PENDING",
+                "READY",
+                "ASSIGNED",
+                "STARTING",
+                "SCHEDULED",
+                "INTERRUPTING",
+                "RUNNING",
+                "SUSPENDED",
+                "CANCELED",
+                "FAILED",
+                "SUCCEEDED",
+                "NOT_COMPATIBLE"
+            ]
+        },
+        "JobTargetTaskRunStatus": {
+            "enum": [
+                "READY",
+                "FAILED",
+                "SUCCEEDED",
+                "CANCELED",
+                "SUSPENDED",
+                "PENDING"
+            ]
+        },
+        "TaskRunStatusCounts": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Integer"
+            }
+        },
+        "JobPriority": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaxFailedTasksCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MaxRetriesPerTask": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "EndedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "StartedAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "JobParameters": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/JobParameter"
+            }
+        },
+        "JobParameter": {
+            "type": "object",
+            "properties": {
+                "int": {
+                    "$ref": "#/$defs/IntString"
+                },
+                "float": {
+                    "$ref": "#/$defs/FloatString"
+                },
+                "string": {
+                    "$ref": "#/$defs/ParameterString"
+                },
+                "path": {
+                    "$ref": "#/$defs/PathString"
+                }
+            }
+        },
+        "IntString": {
+            "type": "string"
+        },
+        "FloatString": {
+            "type": "string"
+        },
+        "ParameterString": {
+            "type": "string"
+        },
+        "PathString": {
+            "type": "string"
+        },
+        "MaxWorkerCount": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextItemOffset": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "TotalResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "SearchStepsRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueIds": {
+                    "$ref": "#/$defs/QueueIds"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "filterExpressions": {
+                    "$ref": "#/$defs/SearchGroupedFilterExpressions"
+                },
+                "sortExpressions": {
+                    "$ref": "#/$defs/SearchSortExpressions"
+                },
+                "itemOffset": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "pageSize": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
         "SearchStepsResponse": {
             "type": "object",
             "properties": {
@@ -1551,7 +1962,7 @@
         "CombinationExpression": {
             "type": "string"
         },
-        "SearchStepsRequest": {
+        "SearchTasksRequest": {
             "type": "object",
             "properties": {
                 "farmId": {
@@ -1672,17 +2083,14 @@
             "type": "integer",
             "format": "int32"
         },
-        "SearchTasksRequest": {
+        "SearchWorkersRequest": {
             "type": "object",
             "properties": {
                 "farmId": {
                     "$ref": "#/$defs/FarmId"
                 },
-                "queueIds": {
-                    "$ref": "#/$defs/QueueIds"
-                },
-                "jobId": {
-                    "$ref": "#/$defs/JobId"
+                "fleetIds": {
+                    "$ref": "#/$defs/FleetIds"
                 },
                 "filterExpressions": {
                     "$ref": "#/$defs/SearchGroupedFilterExpressions"
@@ -1696,6 +2104,12 @@
                 "pageSize": {
                     "$ref": "#/$defs/Integer"
                 }
+            }
+        },
+        "FleetIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FleetId"
             }
         },
         "SearchWorkersResponse": {
@@ -1811,43 +2225,6 @@
         "HostName": {
             "type": "string"
         },
-        "SearchWorkersRequest": {
-            "type": "object",
-            "properties": {
-                "farmId": {
-                    "$ref": "#/$defs/FarmId"
-                },
-                "fleetIds": {
-                    "$ref": "#/$defs/FleetIds"
-                },
-                "filterExpressions": {
-                    "$ref": "#/$defs/SearchGroupedFilterExpressions"
-                },
-                "sortExpressions": {
-                    "$ref": "#/$defs/SearchSortExpressions"
-                },
-                "itemOffset": {
-                    "$ref": "#/$defs/Integer"
-                },
-                "pageSize": {
-                    "$ref": "#/$defs/Integer"
-                }
-            }
-        },
-        "FleetIds": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/FleetId"
-            }
-        },
-        "StartSessionsStatisticsAggregationResponse": {
-            "type": "object",
-            "properties": {
-                "aggregationId": {
-                    "$ref": "#/$defs/AggregationId"
-                }
-            }
-        },
         "StartSessionsStatisticsAggregationRequest": {
             "type": "object",
             "properties": {
@@ -1930,9 +2307,13 @@
                 "AVG"
             ]
         },
-        "TagResourceResponse": {
+        "StartSessionsStatisticsAggregationResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "aggregationId": {
+                    "$ref": "#/$defs/AggregationId"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1945,7 +2326,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1966,7 +2347,7 @@
                 "$ref": "#/$defs/String"
             }
         },
-        "UpdateQueueFleetAssociationResponse": {
+        "UntagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1993,6 +2374,38 @@
                 "STOP_SCHEDULING_AND_COMPLETE_TASKS",
                 "STOP_SCHEDULING_AND_CANCEL_TASKS"
             ]
+        },
+        "UpdateQueueFleetAssociationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateQueueLimitAssociationRequest": {
+            "type": "object",
+            "properties": {
+                "farmId": {
+                    "$ref": "#/$defs/FarmId"
+                },
+                "queueId": {
+                    "$ref": "#/$defs/QueueId"
+                },
+                "limitId": {
+                    "$ref": "#/$defs/LimitId"
+                },
+                "status": {
+                    "$ref": "#/$defs/UpdateQueueLimitAssociationStatus"
+                }
+            }
+        },
+        "UpdateQueueLimitAssociationStatus": {
+            "enum": [
+                "ACTIVE",
+                "STOP_LIMIT_USAGE_AND_COMPLETE_TASKS",
+                "STOP_LIMIT_USAGE_AND_CANCEL_TASKS"
+            ]
+        },
+        "UpdateQueueLimitAssociationResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

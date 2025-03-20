@@ -60,6 +60,35 @@
             }
         },
         {
+            "name": "CreateType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "KeyspacesService.CreateType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteKeyspace",
             "config": {
                 "http": {
@@ -112,6 +141,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "KeyspacesService.DeleteType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteTypeRequest"
                         }
                     }
                 }
@@ -205,6 +263,35 @@
             }
         },
         {
+            "name": "GetType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "KeyspacesService.GetType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListKeyspaces",
             "config": {
                 "http": {
@@ -292,6 +379,35 @@
             }
         },
         {
+            "name": "ListTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "KeyspacesService.ListTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "RestoreTable",
             "config": {
                 "http": {
@@ -373,6 +489,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UntagResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateKeyspace",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "KeyspacesService.UpdateKeyspace"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateKeyspaceResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateKeyspaceRequest"
                         }
                     }
                 }
@@ -835,6 +980,51 @@
                 }
             }
         },
+        "CreateTypeResponse": {
+            "type": "object",
+            "properties": {
+                "keyspaceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/TypeName"
+                }
+            }
+        },
+        "TypeName": {
+            "type": "string"
+        },
+        "CreateTypeRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/TypeName"
+                },
+                "fieldDefinitions": {
+                    "$ref": "#/$defs/FieldList"
+                }
+            }
+        },
+        "FieldList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldDefinition"
+            }
+        },
+        "FieldDefinition": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/GenericString"
+                },
+                "type": {
+                    "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
         "DeleteKeyspaceResponse": {
             "type": "object",
             "properties": {}
@@ -862,6 +1052,28 @@
                 }
             }
         },
+        "DeleteTypeResponse": {
+            "type": "object",
+            "properties": {
+                "keyspaceArn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/TypeName"
+                }
+            }
+        },
+        "DeleteTypeRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/TypeName"
+                }
+            }
+        },
         "GetKeyspaceResponse": {
             "type": "object",
             "properties": {
@@ -876,8 +1088,37 @@
                 },
                 "replicationRegions": {
                     "$ref": "#/$defs/RegionList"
+                },
+                "replicationGroupStatuses": {
+                    "$ref": "#/$defs/ReplicationGroupStatusList"
                 }
             }
+        },
+        "ReplicationGroupStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ReplicationGroupStatus"
+            }
+        },
+        "ReplicationGroupStatus": {
+            "type": "object",
+            "properties": {
+                "region": {
+                    "$ref": "#/$defs/region"
+                },
+                "keyspaceStatus": {
+                    "$ref": "#/$defs/KeyspaceStatus"
+                },
+                "tablesReplicationProgress": {
+                    "$ref": "#/$defs/TablesReplicationProgress"
+                }
+            }
+        },
+        "KeyspaceStatus": {
+            "type": "string"
+        },
+        "TablesReplicationProgress": {
+            "type": "string"
         },
         "GetKeyspaceRequest": {
             "type": "object",
@@ -1048,6 +1289,68 @@
                 }
             }
         },
+        "GetTypeResponse": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/TypeName"
+                },
+                "fieldDefinitions": {
+                    "$ref": "#/$defs/FieldList"
+                },
+                "lastModifiedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "status": {
+                    "$ref": "#/$defs/TypeStatus"
+                },
+                "directReferringTables": {
+                    "$ref": "#/$defs/TableNameList"
+                },
+                "directParentTypes": {
+                    "$ref": "#/$defs/TypeNameList"
+                },
+                "maxNestingDepth": {
+                    "$ref": "#/$defs/Depth"
+                },
+                "keyspaceArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "TypeStatus": {
+            "type": "string"
+        },
+        "TableNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TableName"
+            }
+        },
+        "TypeNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TypeName"
+            }
+        },
+        "Depth": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "GetTypeRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "typeName": {
+                    "$ref": "#/$defs/TypeName"
+                }
+            }
+        },
         "ListKeyspacesResponse": {
             "type": "object",
             "properties": {
@@ -1170,6 +1473,31 @@
                 }
             }
         },
+        "ListTypesResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "types": {
+                    "$ref": "#/$defs/TypeNameList"
+                }
+            }
+        },
+        "ListTypesRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                }
+            }
+        },
         "RestoreTableResponse": {
             "type": "object",
             "properties": {
@@ -1243,6 +1571,28 @@
                 },
                 "tags": {
                     "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "UpdateKeyspaceResponse": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
+                }
+            }
+        },
+        "UpdateKeyspaceRequest": {
+            "type": "object",
+            "properties": {
+                "keyspaceName": {
+                    "$ref": "#/$defs/KeyspaceName"
+                },
+                "replicationSpecification": {
+                    "$ref": "#/$defs/ReplicationSpecification"
+                },
+                "clientSideTimestamps": {
+                    "$ref": "#/$defs/ClientSideTimestamps"
                 }
             }
         },

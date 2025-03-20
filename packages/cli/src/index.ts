@@ -1,5 +1,6 @@
-import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each, getSetter } from '@akala/core';
+import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each, ObservableObject } from '@akala/core';
 import program, { CliContext, NamespaceMiddleware, OptionOptions, OptionType, usageParser } from './router/index.js';
+
 export * from './router/index.js'
 export default program;
 export { program };
@@ -33,7 +34,7 @@ export function supportInteract(cli: NamespaceMiddleware)
                 const indexOfDot = err.as.indexOf('.');
                 if (indexOfDot > 0)
                 {
-                    getSetter(err.as, context.options).set(value);
+                    ObservableObject.setValue(context.options, err.as, value);
                 }
                 context.options[err.as] = value;
             }
@@ -145,3 +146,5 @@ export function unparseWithMeta(definition: { usage?: string, options?: { [key: 
 
     return args.flat();
 }
+
+export { xpm } from './xpm.js'

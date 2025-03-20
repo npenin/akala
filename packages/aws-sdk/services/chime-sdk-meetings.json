@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {},
+                        "Attendees": {}
                     }
                 }
             }
@@ -72,9 +71,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {},
+                        "ExcludedAttendeeIds": {},
+                        "Capabilities": {}
                     }
                 }
             }
@@ -111,9 +110,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {},
+                        "ExternalUserId": {},
+                        "Capabilities": {}
                     }
                 }
             }
@@ -146,9 +145,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ClientRequestToken": {},
+                        "MediaRegion": {},
+                        "MeetingHostId": {},
+                        "ExternalMeetingId": {},
+                        "NotificationsConfiguration": {},
+                        "MeetingFeatures": {},
+                        "PrimaryMeetingId": {},
+                        "TenantIds": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -181,9 +186,16 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ClientRequestToken": {},
+                        "MediaRegion": {},
+                        "MeetingHostId": {},
+                        "ExternalMeetingId": {},
+                        "MeetingFeatures": {},
+                        "NotificationsConfiguration": {},
+                        "Attendees": {},
+                        "PrimaryMeetingId": {},
+                        "TenantIds": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -222,9 +234,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {},
+                        "AttendeeId": {}
                     }
                 }
             }
@@ -261,9 +272,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {}
                     }
                 }
             }
@@ -302,9 +311,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {},
+                        "AttendeeId": {}
                     }
                 }
             }
@@ -341,9 +349,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {}
                     }
                 }
             }
@@ -380,9 +386,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -415,9 +421,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {}
                     }
                 }
             }
@@ -454,9 +458,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {},
+                        "TranscriptionConfiguration": {}
                     }
                 }
             }
@@ -493,9 +496,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {}
                     }
                 }
             }
@@ -528,9 +529,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -563,9 +563,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -604,9 +603,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MeetingId": {},
+                        "AttendeeId": {},
+                        "Capabilities": {}
                     }
                 }
             }
@@ -658,6 +657,62 @@
             "type": "string",
             "format": "binary"
         },
+        "BatchCreateAttendeeRequest": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "Attendees": {
+                    "$ref": "#/$defs/CreateAttendeeRequestItemList"
+                }
+            }
+        },
+        "GuidString": {
+            "type": "string"
+        },
+        "CreateAttendeeRequestItemList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateAttendeeRequestItem"
+            }
+        },
+        "CreateAttendeeRequestItem": {
+            "type": "object",
+            "properties": {
+                "ExternalUserId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/AttendeeCapabilities"
+                }
+            }
+        },
+        "ExternalUserId": {
+            "type": "string"
+        },
+        "AttendeeCapabilities": {
+            "type": "object",
+            "properties": {
+                "Audio": {
+                    "$ref": "#/$defs/MediaCapabilities"
+                },
+                "Video": {
+                    "$ref": "#/$defs/MediaCapabilities"
+                },
+                "Content": {
+                    "$ref": "#/$defs/MediaCapabilities"
+                }
+            }
+        },
+        "MediaCapabilities": {
+            "enum": [
+                "SEND_RECEIVE",
+                "SEND",
+                "RECEIVE",
+                "NONE"
+            ]
+        },
         "BatchCreateAttendeeResponse": {
             "type": "object",
             "properties": {
@@ -692,36 +747,8 @@
                 }
             }
         },
-        "ExternalUserId": {
-            "type": "string"
-        },
-        "GuidString": {
-            "type": "string"
-        },
         "JoinTokenString": {
             "type": "string"
-        },
-        "AttendeeCapabilities": {
-            "type": "object",
-            "properties": {
-                "Audio": {
-                    "$ref": "#/$defs/MediaCapabilities"
-                },
-                "Video": {
-                    "$ref": "#/$defs/MediaCapabilities"
-                },
-                "Content": {
-                    "$ref": "#/$defs/MediaCapabilities"
-                }
-            }
-        },
-        "MediaCapabilities": {
-            "enum": [
-                "SEND_RECEIVE",
-                "SEND",
-                "RECEIVE",
-                "NONE"
-            ]
         },
         "BatchCreateAttendeeErrorList": {
             "type": "array",
@@ -745,34 +772,6 @@
         },
         "String": {
             "type": "string"
-        },
-        "BatchCreateAttendeeRequest": {
-            "type": "object",
-            "properties": {
-                "MeetingId": {
-                    "$ref": "#/$defs/GuidString"
-                },
-                "Attendees": {
-                    "$ref": "#/$defs/CreateAttendeeRequestItemList"
-                }
-            }
-        },
-        "CreateAttendeeRequestItemList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/CreateAttendeeRequestItem"
-            }
-        },
-        "CreateAttendeeRequestItem": {
-            "type": "object",
-            "properties": {
-                "ExternalUserId": {
-                    "$ref": "#/$defs/ExternalUserId"
-                },
-                "Capabilities": {
-                    "$ref": "#/$defs/AttendeeCapabilities"
-                }
-            }
         },
         "BatchUpdateAttendeeCapabilitiesExceptRequest": {
             "type": "object",
@@ -802,14 +801,6 @@
                 }
             }
         },
-        "CreateAttendeeResponse": {
-            "type": "object",
-            "properties": {
-                "Attendee": {
-                    "$ref": "#/$defs/Attendee"
-                }
-            }
-        },
         "CreateAttendeeRequest": {
             "type": "object",
             "properties": {
@@ -824,19 +815,22 @@
                 }
             }
         },
-        "CreateMeetingResponse": {
+        "CreateAttendeeResponse": {
             "type": "object",
             "properties": {
-                "Meeting": {
-                    "$ref": "#/$defs/Meeting"
+                "Attendee": {
+                    "$ref": "#/$defs/Attendee"
                 }
             }
         },
-        "Meeting": {
+        "CreateMeetingRequest": {
             "type": "object",
             "properties": {
-                "MeetingId": {
-                    "$ref": "#/$defs/GuidString"
+                "ClientRequestToken": {
+                    "$ref": "#/$defs/ClientRequestToken"
+                },
+                "MediaRegion": {
+                    "$ref": "#/$defs/MediaRegion"
                 },
                 "MeetingHostId": {
                     "$ref": "#/$defs/ExternalUserId"
@@ -844,11 +838,8 @@
                 "ExternalMeetingId": {
                     "$ref": "#/$defs/ExternalMeetingId"
                 },
-                "MediaRegion": {
-                    "$ref": "#/$defs/MediaRegion"
-                },
-                "MediaPlacement": {
-                    "$ref": "#/$defs/MediaPlacement"
+                "NotificationsConfiguration": {
+                    "$ref": "#/$defs/NotificationsConfiguration"
                 },
                 "MeetingFeatures": {
                     "$ref": "#/$defs/MeetingFeaturesConfiguration"
@@ -859,45 +850,36 @@
                 "TenantIds": {
                     "$ref": "#/$defs/TenantIdList"
                 },
-                "MeetingArn": {
-                    "$ref": "#/$defs/AmazonResourceName"
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
         },
-        "ExternalMeetingId": {
+        "ClientRequestToken": {
             "type": "string"
         },
         "MediaRegion": {
             "type": "string"
         },
-        "MediaPlacement": {
+        "ExternalMeetingId": {
+            "type": "string"
+        },
+        "NotificationsConfiguration": {
             "type": "object",
             "properties": {
-                "AudioHostUrl": {
-                    "$ref": "#/$defs/String"
+                "LambdaFunctionArn": {
+                    "$ref": "#/$defs/Arn"
                 },
-                "AudioFallbackUrl": {
-                    "$ref": "#/$defs/String"
+                "SnsTopicArn": {
+                    "$ref": "#/$defs/Arn"
                 },
-                "SignalingUrl": {
-                    "$ref": "#/$defs/String"
-                },
-                "TurnControlUrl": {
-                    "$ref": "#/$defs/String"
-                },
-                "ScreenDataUrl": {
-                    "$ref": "#/$defs/String"
-                },
-                "ScreenViewingUrl": {
-                    "$ref": "#/$defs/String"
-                },
-                "ScreenSharingUrl": {
-                    "$ref": "#/$defs/String"
-                },
-                "EventIngestionUrl": {
-                    "$ref": "#/$defs/String"
+                "SqsQueueArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
+        },
+        "Arn": {
+            "type": "string"
         },
         "MeetingFeaturesConfiguration": {
             "type": "object",
@@ -984,61 +966,6 @@
         "TenantId": {
             "type": "string"
         },
-        "AmazonResourceName": {
-            "type": "string"
-        },
-        "CreateMeetingRequest": {
-            "type": "object",
-            "properties": {
-                "ClientRequestToken": {
-                    "$ref": "#/$defs/ClientRequestToken"
-                },
-                "MediaRegion": {
-                    "$ref": "#/$defs/MediaRegion"
-                },
-                "MeetingHostId": {
-                    "$ref": "#/$defs/ExternalUserId"
-                },
-                "ExternalMeetingId": {
-                    "$ref": "#/$defs/ExternalMeetingId"
-                },
-                "NotificationsConfiguration": {
-                    "$ref": "#/$defs/NotificationsConfiguration"
-                },
-                "MeetingFeatures": {
-                    "$ref": "#/$defs/MeetingFeaturesConfiguration"
-                },
-                "PrimaryMeetingId": {
-                    "$ref": "#/$defs/PrimaryMeetingId"
-                },
-                "TenantIds": {
-                    "$ref": "#/$defs/TenantIdList"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
-        "ClientRequestToken": {
-            "type": "string"
-        },
-        "NotificationsConfiguration": {
-            "type": "object",
-            "properties": {
-                "LambdaFunctionArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "SnsTopicArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "SqsQueueArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
         "TagList": {
             "type": "array",
             "items": {
@@ -1062,19 +989,77 @@
         "TagValue": {
             "type": "string"
         },
-        "CreateMeetingWithAttendeesResponse": {
+        "CreateMeetingResponse": {
             "type": "object",
             "properties": {
                 "Meeting": {
                     "$ref": "#/$defs/Meeting"
-                },
-                "Attendees": {
-                    "$ref": "#/$defs/AttendeeList"
-                },
-                "Errors": {
-                    "$ref": "#/$defs/BatchCreateAttendeeErrorList"
                 }
             }
+        },
+        "Meeting": {
+            "type": "object",
+            "properties": {
+                "MeetingId": {
+                    "$ref": "#/$defs/GuidString"
+                },
+                "MeetingHostId": {
+                    "$ref": "#/$defs/ExternalUserId"
+                },
+                "ExternalMeetingId": {
+                    "$ref": "#/$defs/ExternalMeetingId"
+                },
+                "MediaRegion": {
+                    "$ref": "#/$defs/MediaRegion"
+                },
+                "MediaPlacement": {
+                    "$ref": "#/$defs/MediaPlacement"
+                },
+                "MeetingFeatures": {
+                    "$ref": "#/$defs/MeetingFeaturesConfiguration"
+                },
+                "PrimaryMeetingId": {
+                    "$ref": "#/$defs/PrimaryMeetingId"
+                },
+                "TenantIds": {
+                    "$ref": "#/$defs/TenantIdList"
+                },
+                "MeetingArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "MediaPlacement": {
+            "type": "object",
+            "properties": {
+                "AudioHostUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "AudioFallbackUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "SignalingUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "TurnControlUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "ScreenDataUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "ScreenViewingUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "ScreenSharingUrl": {
+                    "$ref": "#/$defs/String"
+                },
+                "EventIngestionUrl": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
         },
         "CreateMeetingWithAttendeesRequest": {
             "type": "object",
@@ -1117,6 +1102,20 @@
                 "$ref": "#/$defs/CreateAttendeeRequestItem"
             }
         },
+        "CreateMeetingWithAttendeesResponse": {
+            "type": "object",
+            "properties": {
+                "Meeting": {
+                    "$ref": "#/$defs/Meeting"
+                },
+                "Attendees": {
+                    "$ref": "#/$defs/AttendeeList"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/BatchCreateAttendeeErrorList"
+                }
+            }
+        },
         "DeleteAttendeeRequest": {
             "type": "object",
             "properties": {
@@ -1136,14 +1135,6 @@
                 }
             }
         },
-        "GetAttendeeResponse": {
-            "type": "object",
-            "properties": {
-                "Attendee": {
-                    "$ref": "#/$defs/Attendee"
-                }
-            }
-        },
         "GetAttendeeRequest": {
             "type": "object",
             "properties": {
@@ -1155,11 +1146,11 @@
                 }
             }
         },
-        "GetMeetingResponse": {
+        "GetAttendeeResponse": {
             "type": "object",
             "properties": {
-                "Meeting": {
-                    "$ref": "#/$defs/Meeting"
+                "Attendee": {
+                    "$ref": "#/$defs/Attendee"
                 }
             }
         },
@@ -1171,14 +1162,11 @@
                 }
             }
         },
-        "ListAttendeesResponse": {
+        "GetMeetingResponse": {
             "type": "object",
             "properties": {
-                "Attendees": {
-                    "$ref": "#/$defs/AttendeeList"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/String"
+                "Meeting": {
+                    "$ref": "#/$defs/Meeting"
                 }
             }
         },
@@ -1200,11 +1188,14 @@
             "type": "integer",
             "format": "int32"
         },
-        "ListTagsForResourceResponse": {
+        "ListAttendeesResponse": {
             "type": "object",
             "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
+                "Attendees": {
+                    "$ref": "#/$defs/AttendeeList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
                 }
             }
         },
@@ -1213,6 +1204,14 @@
             "properties": {
                 "ResourceARN": {
                     "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
                 }
             }
         },
@@ -1433,10 +1432,6 @@
                 }
             }
         },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -1448,7 +1443,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1469,13 +1464,9 @@
                 "$ref": "#/$defs/TagKey"
             }
         },
-        "UpdateAttendeeCapabilitiesResponse": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "Attendee": {
-                    "$ref": "#/$defs/Attendee"
-                }
-            }
+            "properties": {}
         },
         "UpdateAttendeeCapabilitiesRequest": {
             "type": "object",
@@ -1488,6 +1479,14 @@
                 },
                 "Capabilities": {
                     "$ref": "#/$defs/AttendeeCapabilities"
+                }
+            }
+        },
+        "UpdateAttendeeCapabilitiesResponse": {
+            "type": "object",
+            "properties": {
+                "Attendee": {
+                    "$ref": "#/$defs/Attendee"
                 }
             }
         }

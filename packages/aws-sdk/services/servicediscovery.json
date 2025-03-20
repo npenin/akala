@@ -176,6 +176,35 @@
             }
         },
         {
+            "name": "DeleteServiceAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Route53AutoNaming_v20170314.DeleteServiceAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteServiceAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteServiceAttributesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeregisterInstance",
             "config": {
                 "http": {
@@ -402,6 +431,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetServiceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetServiceAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Route53AutoNaming_v20170314.GetServiceAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetServiceAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetServiceAttributesRequest"
                         }
                     }
                 }
@@ -779,6 +837,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateServiceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateServiceAttributes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "Route53AutoNaming_v20170314.UpdateServiceAttributes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateServiceAttributesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateServiceAttributesRequest"
                         }
                     }
                 }
@@ -1216,6 +1303,30 @@
                 }
             }
         },
+        "DeleteServiceAttributesResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteServiceAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/ServiceAttributeKeyList"
+                }
+            }
+        },
+        "ServiceAttributeKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceAttributeKey"
+            }
+        },
+        "ServiceAttributeKey": {
+            "type": "string"
+        },
         "DeregisterInstanceResponse": {
             "type": "object",
             "properties": {
@@ -1601,6 +1712,42 @@
             "type": "object",
             "properties": {
                 "Id": {
+                    "$ref": "#/$defs/ResourceId"
+                }
+            }
+        },
+        "GetServiceAttributesResponse": {
+            "type": "object",
+            "properties": {
+                "ServiceAttributes": {
+                    "$ref": "#/$defs/ServiceAttributes"
+                }
+            }
+        },
+        "ServiceAttributes": {
+            "type": "object",
+            "properties": {
+                "ServiceArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/ServiceAttributesMap"
+                }
+            }
+        },
+        "ServiceAttributesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ServiceAttributeValue"
+            }
+        },
+        "ServiceAttributeValue": {
+            "type": "string"
+        },
+        "GetServiceAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
                     "$ref": "#/$defs/ResourceId"
                 }
             }
@@ -2190,6 +2337,21 @@
             "properties": {
                 "DnsRecords": {
                     "$ref": "#/$defs/DnsRecordList"
+                }
+            }
+        },
+        "UpdateServiceAttributesResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateServiceAttributesRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "Attributes": {
+                    "$ref": "#/$defs/ServiceAttributesMap"
                 }
             }
         }

@@ -29,8 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ConfigurationToken": {}
                     }
                 }
             }
@@ -82,6 +81,17 @@
             "type": "string",
             "format": "binary"
         },
+        "GetLatestConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
         "GetLatestConfigurationResponse": {
             "type": "object",
             "properties": {
@@ -102,9 +112,6 @@
                 }
             }
         },
-        "Token": {
-            "type": "string"
-        },
         "Integer": {
             "type": "integer",
             "format": "int32"
@@ -115,14 +122,6 @@
         "SensitiveBlob": {
             "type": "string",
             "format": "binary"
-        },
-        "GetLatestConfigurationRequest": {
-            "type": "object",
-            "properties": {
-                "ConfigurationToken": {
-                    "$ref": "#/$defs/Token"
-                }
-            }
         }
     },
     "aws": {

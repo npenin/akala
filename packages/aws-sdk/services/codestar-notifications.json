@@ -29,9 +29,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "EventTypeIds": {},
+                        "Resource": {},
+                        "Targets": {},
+                        "DetailType": {},
+                        "ClientRequestToken": {},
+                        "Tags": {},
+                        "Status": {}
                     }
                 }
             }
@@ -64,9 +69,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {}
                     }
                 }
             }
@@ -99,9 +102,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TargetAddress": {},
+                        "ForceUnsubscribeAll": {}
                     }
                 }
             }
@@ -134,9 +136,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {}
                     }
                 }
             }
@@ -169,9 +169,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Filters": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -204,9 +204,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Filters": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -239,9 +239,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {}
                     }
                 }
             }
@@ -274,9 +272,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Filters": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -309,9 +307,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {},
+                        "Target": {},
+                        "ClientRequestToken": {}
                     }
                 }
             }
@@ -344,9 +342,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -379,9 +376,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {},
+                        "TargetAddress": {}
                     }
                 }
             }
@@ -418,9 +414,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -453,9 +448,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {},
+                        "Name": {},
+                        "Status": {},
+                        "EventTypeIds": {},
+                        "Targets": {},
+                        "DetailType": {}
                     }
                 }
             }
@@ -506,17 +504,6 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
-        },
-        "CreateNotificationRuleResult": {
-            "type": "object",
-            "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/NotificationRuleArn"
-                }
-            }
-        },
-        "NotificationRuleArn": {
-            "type": "string"
         },
         "CreateNotificationRuleRequest": {
             "type": "object",
@@ -609,13 +596,16 @@
                 "DISABLED"
             ]
         },
-        "DeleteNotificationRuleResult": {
+        "CreateNotificationRuleResult": {
             "type": "object",
             "properties": {
                 "Arn": {
                     "$ref": "#/$defs/NotificationRuleArn"
                 }
             }
+        },
+        "NotificationRuleArn": {
+            "type": "string"
         },
         "DeleteNotificationRuleRequest": {
             "type": "object",
@@ -625,9 +615,13 @@
                 }
             }
         },
-        "DeleteTargetResult": {
+        "DeleteNotificationRuleResult": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
         },
         "DeleteTargetRequest": {
             "type": "object",
@@ -642,6 +636,18 @@
         },
         "ForceUnsubscribeAll": {
             "type": "boolean"
+        },
+        "DeleteTargetResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeNotificationRuleRequest": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
         },
         "DescribeNotificationRuleResult": {
             "type": "object",
@@ -753,28 +759,6 @@
             "type": "string",
             "format": "date-time"
         },
-        "DescribeNotificationRuleRequest": {
-            "type": "object",
-            "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/NotificationRuleArn"
-                }
-            }
-        },
-        "ListEventTypesResult": {
-            "type": "object",
-            "properties": {
-                "EventTypes": {
-                    "$ref": "#/$defs/EventTypeBatch"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "NextToken": {
-            "type": "string"
-        },
         "ListEventTypesRequest": {
             "type": "object",
             "properties": {
@@ -815,40 +799,23 @@
         "ListEventTypesFilterValue": {
             "type": "string"
         },
+        "NextToken": {
+            "type": "string"
+        },
         "MaxResults": {
             "type": "integer",
             "format": "int32"
         },
-        "ListNotificationRulesResult": {
+        "ListEventTypesResult": {
             "type": "object",
             "properties": {
+                "EventTypes": {
+                    "$ref": "#/$defs/EventTypeBatch"
+                },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
-                },
-                "NotificationRules": {
-                    "$ref": "#/$defs/NotificationRuleBatch"
                 }
             }
-        },
-        "NotificationRuleBatch": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/NotificationRuleSummary"
-            }
-        },
-        "NotificationRuleSummary": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/NotificationRuleId"
-                },
-                "Arn": {
-                    "$ref": "#/$defs/NotificationRuleArn"
-                }
-            }
-        },
-        "NotificationRuleId": {
-            "type": "string"
         },
         "ListNotificationRulesRequest": {
             "type": "object",
@@ -892,13 +859,36 @@
         "ListNotificationRulesFilterValue": {
             "type": "string"
         },
-        "ListTagsForResourceResult": {
+        "ListNotificationRulesResult": {
             "type": "object",
             "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "NotificationRules": {
+                    "$ref": "#/$defs/NotificationRuleBatch"
                 }
             }
+        },
+        "NotificationRuleBatch": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NotificationRuleSummary"
+            }
+        },
+        "NotificationRuleSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/NotificationRuleId"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
+        },
+        "NotificationRuleId": {
+            "type": "string"
         },
         "ListTagsForResourceRequest": {
             "type": "object",
@@ -908,14 +898,11 @@
                 }
             }
         },
-        "ListTargetsResult": {
+        "ListTagsForResourceResult": {
             "type": "object",
             "properties": {
-                "Targets": {
-                    "$ref": "#/$defs/TargetsBatch"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -960,11 +947,14 @@
         "ListTargetsFilterValue": {
             "type": "string"
         },
-        "SubscribeResult": {
+        "ListTargetsResult": {
             "type": "object",
             "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/NotificationRuleArn"
+                "Targets": {
+                    "$ref": "#/$defs/TargetsBatch"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
         },
@@ -982,11 +972,11 @@
                 }
             }
         },
-        "TagResourceResult": {
+        "SubscribeResult": {
             "type": "object",
             "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
                 }
             }
         },
@@ -1001,11 +991,11 @@
                 }
             }
         },
-        "UnsubscribeResult": {
+        "TagResourceResult": {
             "type": "object",
             "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/NotificationRuleArn"
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -1020,9 +1010,13 @@
                 }
             }
         },
-        "UntagResourceResult": {
+        "UnsubscribeResult": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/NotificationRuleArn"
+                }
+            }
         },
         "UntagResourceRequest": {
             "type": "object",
@@ -1044,7 +1038,7 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateNotificationRuleResult": {
+        "UntagResourceResult": {
             "type": "object",
             "properties": {}
         },
@@ -1070,6 +1064,10 @@
                     "$ref": "#/$defs/DetailType"
                 }
             }
+        },
+        "UpdateNotificationRuleResult": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

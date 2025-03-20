@@ -1773,6 +1773,9 @@
                 },
                 "timeoutInMinutes": {
                     "$ref": "#/$defs/ActionTimeout"
+                },
+                "environmentVariables": {
+                    "$ref": "#/$defs/EnvironmentVariableList"
                 }
             }
         },
@@ -1863,11 +1866,37 @@
             "type": "integer",
             "format": "int32"
         },
+        "EnvironmentVariableList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EnvironmentVariable"
+            }
+        },
+        "EnvironmentVariable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/EnvironmentVariableName"
+                },
+                "value": {
+                    "$ref": "#/$defs/EnvironmentVariableValue"
+                }
+            }
+        },
+        "EnvironmentVariableName": {
+            "type": "string"
+        },
+        "EnvironmentVariableValue": {
+            "type": "string"
+        },
         "FailureConditions": {
             "type": "object",
             "properties": {
                 "result": {
                     "$ref": "#/$defs/Result"
+                },
+                "retryConfiguration": {
+                    "$ref": "#/$defs/RetryConfiguration"
                 },
                 "conditions": {
                     "$ref": "#/$defs/ConditionList"
@@ -1877,7 +1906,23 @@
         "Result": {
             "enum": [
                 "ROLLBACK",
-                "FAIL"
+                "FAIL",
+                "RETRY",
+                "SKIP"
+            ]
+        },
+        "RetryConfiguration": {
+            "type": "object",
+            "properties": {
+                "retryMode": {
+                    "$ref": "#/$defs/StageRetryMode"
+                }
+            }
+        },
+        "StageRetryMode": {
+            "enum": [
+                "FAILED_ACTIONS",
+                "ALL_ACTIONS"
             ]
         },
         "ConditionList": {
@@ -1914,6 +1959,9 @@
                 },
                 "configuration": {
                     "$ref": "#/$defs/RuleConfigurationMap"
+                },
+                "commands": {
+                    "$ref": "#/$defs/CommandList"
                 },
                 "inputArtifacts": {
                     "$ref": "#/$defs/InputArtifactList"
@@ -2991,6 +3039,9 @@
                 },
                 "onFailureConditionState": {
                     "$ref": "#/$defs/StageConditionState"
+                },
+                "retryStageMetadata": {
+                    "$ref": "#/$defs/RetryStageMetadata"
                 }
             }
         },
@@ -3015,7 +3066,8 @@
                 "Failed",
                 "Stopped",
                 "Stopping",
-                "Succeeded"
+                "Succeeded",
+                "Skipped"
             ]
         },
         "StageExecutionList": {
@@ -3123,6 +3175,9 @@
                 },
                 "errorDetails": {
                     "$ref": "#/$defs/ErrorDetails"
+                },
+                "logStreamARN": {
+                    "$ref": "#/$defs/LogStreamARN"
                 }
             }
         },
@@ -3165,6 +3220,9 @@
             "type": "string"
         },
         "Message": {
+            "type": "string"
+        },
+        "LogStreamARN": {
             "type": "string"
         },
         "StageConditionState": {
@@ -3316,6 +3374,30 @@
         },
         "RuleExecutionToken": {
             "type": "string"
+        },
+        "RetryStageMetadata": {
+            "type": "object",
+            "properties": {
+                "autoStageRetryAttempt": {
+                    "$ref": "#/$defs/RetryAttempt"
+                },
+                "manualStageRetryAttempt": {
+                    "$ref": "#/$defs/RetryAttempt"
+                },
+                "latestRetryTrigger": {
+                    "$ref": "#/$defs/RetryTrigger"
+                }
+            }
+        },
+        "RetryAttempt": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RetryTrigger": {
+            "enum": [
+                "AutomatedStageRetry",
+                "ManualStageRetry"
+            ]
         },
         "GetPipelineStateInput": {
             "type": "object",
@@ -3536,6 +3618,9 @@
                 },
                 "errorDetails": {
                     "$ref": "#/$defs/ErrorDetails"
+                },
+                "logStreamARN": {
+                    "$ref": "#/$defs/LogStreamARN"
                 }
             }
         },
@@ -4598,12 +4683,6 @@
                     "$ref": "#/$defs/StageRetryMode"
                 }
             }
-        },
-        "StageRetryMode": {
-            "enum": [
-                "FAILED_ACTIONS",
-                "ALL_ACTIONS"
-            ]
         },
         "RollbackStageOutput": {
             "type": "object",

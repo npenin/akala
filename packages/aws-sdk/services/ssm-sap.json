@@ -29,8 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ActionType": {},
+                        "SourceResourceArn": {},
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -63,8 +64,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {}
                     }
                 }
             }
@@ -97,8 +97,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {},
+                        "ApplicationArn": {},
+                        "AppRegistryArn": {}
                     }
                 }
             }
@@ -131,8 +132,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {},
+                        "ComponentId": {}
                     }
                 }
             }
@@ -165,8 +166,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {},
+                        "ComponentId": {},
+                        "DatabaseId": {},
+                        "DatabaseArn": {}
                     }
                 }
             }
@@ -199,8 +202,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "OperationId": {}
                     }
                 }
             }
@@ -233,8 +235,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ActionType": {},
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -267,8 +269,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "Filters": {}
                     }
                 }
             }
@@ -301,8 +304,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -335,8 +339,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {},
+                        "ComponentId": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -369,9 +375,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OperationId": {},
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "Filters": {}
                     }
                 }
             }
@@ -404,8 +411,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {},
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "Filters": {}
                     }
                 }
             }
@@ -442,8 +451,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -476,8 +484,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ActionType": {},
+                        "SourceResourceArn": {},
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -510,8 +519,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {},
+                        "ApplicationType": {},
+                        "Instances": {},
+                        "SapInstanceNumber": {},
+                        "Sid": {},
+                        "Tags": {},
+                        "Credentials": {},
+                        "DatabaseArn": {},
+                        "ComponentsInfo": {}
                     }
                 }
             }
@@ -544,9 +560,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {}
                     }
                 }
             }
@@ -579,9 +593,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {}
                     }
                 }
             }
@@ -614,9 +626,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ApplicationId": {},
+                        "StopConnectedEntity": {},
+                        "IncludeEc2InstanceShutdown": {}
                     }
                 }
             }
@@ -653,8 +665,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -691,8 +703,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -725,8 +737,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ApplicationId": {},
+                        "CredentialsToAddOrUpdate": {},
+                        "CredentialsToRemove": {},
+                        "Backint": {},
+                        "DatabaseArn": {}
                     }
                 }
             }
@@ -778,14 +793,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteResourcePermissionOutput": {
-            "type": "object",
-            "properties": {
-                "Policy": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
         "DeleteResourcePermissionInput": {
             "type": "object",
             "properties": {
@@ -808,9 +815,13 @@
         "Arn": {
             "type": "string"
         },
-        "DeregisterApplicationOutput": {
+        "DeleteResourcePermissionOutput": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "Policy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
         },
         "DeregisterApplicationInput": {
             "type": "object",
@@ -821,6 +832,30 @@
             }
         },
         "ApplicationId": {
+            "type": "string"
+        },
+        "DeregisterApplicationOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetApplicationInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "ApplicationArn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "AppRegistryArn": {
+                    "$ref": "#/$defs/AppRegistryArn"
+                }
+            }
+        },
+        "SsmSapArn": {
+            "type": "string"
+        },
+        "AppRegistryArn": {
             "type": "string"
         },
         "GetApplicationOutput": {
@@ -875,12 +910,6 @@
                 "SAP_ABAP"
             ]
         },
-        "SsmSapArn": {
-            "type": "string"
-        },
-        "AppRegistryArn": {
-            "type": "string"
-        },
         "ApplicationStatus": {
             "enum": [
                 "ACTIVATED",
@@ -926,17 +955,14 @@
         "TagValue": {
             "type": "string"
         },
-        "GetApplicationInput": {
+        "GetComponentInput": {
             "type": "object",
             "properties": {
                 "ApplicationId": {
                     "$ref": "#/$defs/ApplicationId"
                 },
-                "ApplicationArn": {
-                    "$ref": "#/$defs/SsmSapArn"
-                },
-                "AppRegistryArn": {
-                    "$ref": "#/$defs/AppRegistryArn"
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
                 }
             }
         },
@@ -1203,7 +1229,7 @@
                 "OVERLAY"
             ]
         },
-        "GetComponentInput": {
+        "GetDatabaseInput": {
             "type": "object",
             "properties": {
                 "ApplicationId": {
@@ -1211,6 +1237,12 @@
                 },
                 "ComponentId": {
                     "$ref": "#/$defs/ComponentId"
+                },
+                "DatabaseId": {
+                    "$ref": "#/$defs/DatabaseId"
+                },
+                "DatabaseArn": {
+                    "$ref": "#/$defs/SsmSapArn"
                 }
             }
         },
@@ -1319,22 +1351,16 @@
                 "$ref": "#/$defs/SsmSapArn"
             }
         },
-        "GetDatabaseInput": {
+        "GetOperationInput": {
             "type": "object",
             "properties": {
-                "ApplicationId": {
-                    "$ref": "#/$defs/ApplicationId"
-                },
-                "ComponentId": {
-                    "$ref": "#/$defs/ComponentId"
-                },
-                "DatabaseId": {
-                    "$ref": "#/$defs/DatabaseId"
-                },
-                "DatabaseArn": {
-                    "$ref": "#/$defs/SsmSapArn"
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
                 }
             }
+        },
+        "OperationId": {
+            "type": "string"
         },
         "GetOperationOutput": {
             "type": "object",
@@ -1382,9 +1408,6 @@
                 }
             }
         },
-        "OperationId": {
-            "type": "string"
-        },
         "OperationType": {
             "type": "string"
         },
@@ -1407,22 +1430,6 @@
         "ResourceId": {
             "type": "string"
         },
-        "GetOperationInput": {
-            "type": "object",
-            "properties": {
-                "OperationId": {
-                    "$ref": "#/$defs/OperationId"
-                }
-            }
-        },
-        "GetResourcePermissionOutput": {
-            "type": "object",
-            "properties": {
-                "Policy": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
         "GetResourcePermissionInput": {
             "type": "object",
             "properties": {
@@ -1434,45 +1441,13 @@
                 }
             }
         },
-        "ListApplicationsOutput": {
+        "GetResourcePermissionOutput": {
             "type": "object",
             "properties": {
-                "Applications": {
-                    "$ref": "#/$defs/ApplicationSummaryList"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "Policy": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
-        },
-        "ApplicationSummaryList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ApplicationSummary"
-            }
-        },
-        "ApplicationSummary": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/ApplicationId"
-                },
-                "DiscoveryStatus": {
-                    "$ref": "#/$defs/ApplicationDiscoveryStatus"
-                },
-                "Type": {
-                    "$ref": "#/$defs/ApplicationType"
-                },
-                "Arn": {
-                    "$ref": "#/$defs/SsmSapArn"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagMap"
-                }
-            }
-        },
-        "NextToken": {
-            "type": "string"
         },
         "ListApplicationsInput": {
             "type": "object",
@@ -1487,6 +1462,9 @@
                     "$ref": "#/$defs/FilterList"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
         },
         "MaxResults": {
             "type": "integer",
@@ -1525,6 +1503,57 @@
                 "LESS_THAN_OR_EQUALS"
             ]
         },
+        "ListApplicationsOutput": {
+            "type": "object",
+            "properties": {
+                "Applications": {
+                    "$ref": "#/$defs/ApplicationSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ApplicationSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ApplicationSummary"
+            }
+        },
+        "ApplicationSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "DiscoveryStatus": {
+                    "$ref": "#/$defs/ApplicationDiscoveryStatus"
+                },
+                "Type": {
+                    "$ref": "#/$defs/ApplicationType"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/SsmSapArn"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "ListComponentsInput": {
+            "type": "object",
+            "properties": {
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
         "ListComponentsOutput": {
             "type": "object",
             "properties": {
@@ -1562,11 +1591,14 @@
                 }
             }
         },
-        "ListComponentsInput": {
+        "ListDatabasesInput": {
             "type": "object",
             "properties": {
                 "ApplicationId": {
                     "$ref": "#/$defs/ApplicationId"
+                },
+                "ComponentId": {
+                    "$ref": "#/$defs/ComponentId"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
@@ -1616,20 +1648,20 @@
                 }
             }
         },
-        "ListDatabasesInput": {
+        "ListOperationEventsInput": {
             "type": "object",
             "properties": {
-                "ApplicationId": {
-                    "$ref": "#/$defs/ApplicationId"
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
                 },
-                "ComponentId": {
-                    "$ref": "#/$defs/ComponentId"
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
                 },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "Filters": {
+                    "$ref": "#/$defs/FilterList"
                 }
             }
         },
@@ -1691,11 +1723,11 @@
                 "FAILED"
             ]
         },
-        "ListOperationEventsInput": {
+        "ListOperationsInput": {
             "type": "object",
             "properties": {
-                "OperationId": {
-                    "$ref": "#/$defs/OperationId"
+                "ApplicationId": {
+                    "$ref": "#/$defs/ApplicationId"
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
@@ -1725,31 +1757,6 @@
                 "$ref": "#/$defs/Operation"
             }
         },
-        "ListOperationsInput": {
-            "type": "object",
-            "properties": {
-                "ApplicationId": {
-                    "$ref": "#/$defs/ApplicationId"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "Filters": {
-                    "$ref": "#/$defs/FilterList"
-                }
-            }
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "tags": {
-                    "$ref": "#/$defs/TagMap"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -1758,11 +1765,11 @@
                 }
             }
         },
-        "PutResourcePermissionOutput": {
+        "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
-                "Policy": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
                 }
             }
         },
@@ -1780,14 +1787,11 @@
                 }
             }
         },
-        "RegisterApplicationOutput": {
+        "PutResourcePermissionOutput": {
             "type": "object",
             "properties": {
-                "Application": {
-                    "$ref": "#/$defs/Application"
-                },
-                "OperationId": {
-                    "$ref": "#/$defs/OperationId"
+                "Policy": {
+                    "$ref": "#/$defs/smithy.api#String"
                 }
             }
         },
@@ -1817,6 +1821,9 @@
                 },
                 "DatabaseArn": {
                     "$ref": "#/$defs/SsmSapArn"
+                },
+                "ComponentsInfo": {
+                    "$ref": "#/$defs/ComponentInfoList"
                 }
             }
         },
@@ -1829,9 +1836,32 @@
         "InstanceId": {
             "type": "string"
         },
-        "StartApplicationOutput": {
+        "ComponentInfoList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComponentInfo"
+            }
+        },
+        "ComponentInfo": {
             "type": "object",
             "properties": {
+                "ComponentType": {
+                    "$ref": "#/$defs/ComponentType"
+                },
+                "Sid": {
+                    "$ref": "#/$defs/SID"
+                },
+                "Ec2InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                }
+            }
+        },
+        "RegisterApplicationOutput": {
+            "type": "object",
+            "properties": {
+                "Application": {
+                    "$ref": "#/$defs/Application"
+                },
                 "OperationId": {
                     "$ref": "#/$defs/OperationId"
                 }
@@ -1845,7 +1875,7 @@
                 }
             }
         },
-        "StartApplicationRefreshOutput": {
+        "StartApplicationOutput": {
             "type": "object",
             "properties": {
                 "OperationId": {
@@ -1861,7 +1891,7 @@
                 }
             }
         },
-        "StopApplicationOutput": {
+        "StartApplicationRefreshOutput": {
             "type": "object",
             "properties": {
                 "OperationId": {
@@ -1888,9 +1918,13 @@
                 "DBMS"
             ]
         },
-        "TagResourceResponse": {
+        "StopApplicationOutput": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "OperationId": {
+                    "$ref": "#/$defs/OperationId"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1903,7 +1937,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1927,22 +1961,9 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateApplicationSettingsOutput": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "Message": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "OperationIds": {
-                    "$ref": "#/$defs/OperationIdList"
-                }
-            }
-        },
-        "OperationIdList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/OperationId"
-            }
+            "properties": {}
         },
         "UpdateApplicationSettingsInput": {
             "type": "object",
@@ -1979,6 +2000,23 @@
             "enum": [
                 "AWSBackup"
             ]
+        },
+        "UpdateApplicationSettingsOutput": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "OperationIds": {
+                    "$ref": "#/$defs/OperationIdList"
+                }
+            }
+        },
+        "OperationIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OperationId"
+            }
         }
     },
     "aws": {

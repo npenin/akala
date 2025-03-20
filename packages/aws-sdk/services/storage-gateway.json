@@ -263,6 +263,35 @@
             }
         },
         {
+            "name": "CancelCacheReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StorageGateway_20130630.CancelCacheReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CancelCacheReportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CancelCacheReportInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CancelRetrieval",
             "config": {
                 "http": {
@@ -605,6 +634,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteBandwidthRateLimitInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteCacheReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StorageGateway_20130630.DeleteCacheReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCacheReportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCacheReportInput"
                         }
                     }
                 }
@@ -982,6 +1040,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DescribeCachediSCSIVolumesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeCacheReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StorageGateway_20130630.DescribeCacheReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCacheReportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCacheReportInput"
                         }
                     }
                 }
@@ -1510,6 +1597,35 @@
             }
         },
         {
+            "name": "EvictFilesFailingUpload",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StorageGateway_20130630.EvictFilesFailingUpload"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EvictFilesFailingUploadOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EvictFilesFailingUploadInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "JoinDomain",
             "config": {
                 "http": {
@@ -1562,6 +1678,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListAutomaticTapeCreationPoliciesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListCacheReports",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StorageGateway_20130630.ListCacheReports"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListCacheReportsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListCacheReportsInput"
                         }
                     }
                 }
@@ -2142,6 +2287,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/StartAvailabilityMonitorTestInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartCacheReport",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StorageGateway_20130630.StartCacheReport"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartCacheReportOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartCacheReportInput"
                         }
                     }
                 }
@@ -3010,6 +3184,25 @@
                 }
             }
         },
+        "CancelCacheReportOutput": {
+            "type": "object",
+            "properties": {
+                "CacheReportARN": {
+                    "$ref": "#/$defs/CacheReportARN"
+                }
+            }
+        },
+        "CacheReportARN": {
+            "type": "string"
+        },
+        "CancelCacheReportInput": {
+            "type": "object",
+            "properties": {
+                "CacheReportARN": {
+                    "$ref": "#/$defs/CacheReportARN"
+                }
+            }
+        },
         "CancelRetrievalOutput": {
             "type": "object",
             "properties": {
@@ -3648,6 +3841,22 @@
         "BandwidthType": {
             "type": "string"
         },
+        "DeleteCacheReportOutput": {
+            "type": "object",
+            "properties": {
+                "CacheReportARN": {
+                    "$ref": "#/$defs/CacheReportARN"
+                }
+            }
+        },
+        "DeleteCacheReportInput": {
+            "type": "object",
+            "properties": {
+                "CacheReportARN": {
+                    "$ref": "#/$defs/CacheReportARN"
+                }
+            }
+        },
         "DeleteChapCredentialsOutput": {
             "type": "object",
             "properties": {
@@ -4089,6 +4298,111 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/VolumeARN"
+            }
+        },
+        "DescribeCacheReportOutput": {
+            "type": "object",
+            "properties": {
+                "CacheReportInfo": {
+                    "$ref": "#/$defs/CacheReportInfo"
+                }
+            }
+        },
+        "CacheReportInfo": {
+            "type": "object",
+            "properties": {
+                "CacheReportARN": {
+                    "$ref": "#/$defs/CacheReportARN"
+                },
+                "CacheReportStatus": {
+                    "$ref": "#/$defs/CacheReportStatus"
+                },
+                "ReportCompletionPercent": {
+                    "$ref": "#/$defs/ReportCompletionPercent"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "FileShareARN": {
+                    "$ref": "#/$defs/FileShareARN"
+                },
+                "LocationARN": {
+                    "$ref": "#/$defs/LocationARN"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/Time"
+                },
+                "InclusionFilters": {
+                    "$ref": "#/$defs/CacheReportFilterList"
+                },
+                "ExclusionFilters": {
+                    "$ref": "#/$defs/CacheReportFilterList"
+                },
+                "ReportName": {
+                    "$ref": "#/$defs/CacheReportName"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CacheReportStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETED",
+                "CANCELED",
+                "FAILED",
+                "ERROR"
+            ]
+        },
+        "ReportCompletionPercent": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "CacheReportFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CacheReportFilter"
+            }
+        },
+        "CacheReportFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CacheReportFilterName"
+                },
+                "Values": {
+                    "$ref": "#/$defs/CacheReportFilterValues"
+                }
+            }
+        },
+        "CacheReportFilterName": {
+            "enum": [
+                "UploadState",
+                "UploadFailureReason"
+            ]
+        },
+        "CacheReportFilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CacheReportFilterValue"
+            }
+        },
+        "CacheReportFilterValue": {
+            "type": "string"
+        },
+        "CacheReportName": {
+            "type": "string"
+        },
+        "DescribeCacheReportInput": {
+            "type": "object",
+            "properties": {
+                "CacheReportARN": {
+                    "$ref": "#/$defs/CacheReportARN"
+                }
             }
         },
         "DescribeChapCredentialsOutput": {
@@ -5247,6 +5561,25 @@
                 }
             }
         },
+        "EvictFilesFailingUploadOutput": {
+            "type": "object",
+            "properties": {
+                "NotificationId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "EvictFilesFailingUploadInput": {
+            "type": "object",
+            "properties": {
+                "FileShareARN": {
+                    "$ref": "#/$defs/FileShareARN"
+                },
+                "ForceRemove": {
+                    "$ref": "#/$defs/Boolean2"
+                }
+            }
+        },
         "JoinDomainOutput": {
             "type": "object",
             "properties": {
@@ -5360,6 +5693,31 @@
             "properties": {
                 "GatewayARN": {
                     "$ref": "#/$defs/GatewayARN"
+                }
+            }
+        },
+        "ListCacheReportsOutput": {
+            "type": "object",
+            "properties": {
+                "CacheReportList": {
+                    "$ref": "#/$defs/CacheReportList"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
+                }
+            }
+        },
+        "CacheReportList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CacheReportInfo"
+            }
+        },
+        "ListCacheReportsInput": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/Marker"
                 }
             }
         },
@@ -6101,6 +6459,46 @@
             "properties": {
                 "GatewayARN": {
                     "$ref": "#/$defs/GatewayARN"
+                }
+            }
+        },
+        "StartCacheReportOutput": {
+            "type": "object",
+            "properties": {
+                "CacheReportARN": {
+                    "$ref": "#/$defs/CacheReportARN"
+                }
+            }
+        },
+        "StartCacheReportInput": {
+            "type": "object",
+            "properties": {
+                "FileShareARN": {
+                    "$ref": "#/$defs/FileShareARN"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "LocationARN": {
+                    "$ref": "#/$defs/LocationARN"
+                },
+                "BucketRegion": {
+                    "$ref": "#/$defs/RegionId"
+                },
+                "VPCEndpointDNSName": {
+                    "$ref": "#/$defs/DNSHostName"
+                },
+                "InclusionFilters": {
+                    "$ref": "#/$defs/CacheReportFilterList"
+                },
+                "ExclusionFilters": {
+                    "$ref": "#/$defs/CacheReportFilterList"
+                },
+                "ClientToken": {
+                    "$ref": "#/$defs/ClientToken"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },

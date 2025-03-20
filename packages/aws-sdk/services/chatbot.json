@@ -2,6 +2,40 @@
     "name": "chatbot",
     "commands": [
         {
+            "name": "AssociateToConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/associate-to-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateToConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateToConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Resource": {},
+                        "ChatConfiguration": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateChimeWebhookConfiguration",
             "config": {
                 "http": {
@@ -29,9 +63,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "WebhookDescription": {},
+                        "WebhookUrl": {},
+                        "SnsTopicArns": {},
+                        "IamRoleArn": {},
+                        "ConfigurationName": {},
+                        "LoggingLevel": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -64,9 +102,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChannelId": {},
+                        "ChannelName": {},
+                        "TeamId": {},
+                        "TeamName": {},
+                        "TenantId": {},
+                        "SnsTopicArns": {},
+                        "IamRoleArn": {},
+                        "ConfigurationName": {},
+                        "LoggingLevel": {},
+                        "GuardrailPolicyArns": {},
+                        "UserAuthorizationRequired": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -99,9 +146,16 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SlackTeamId": {},
+                        "SlackChannelId": {},
+                        "SlackChannelName": {},
+                        "SnsTopicArns": {},
+                        "IamRoleArn": {},
+                        "ConfigurationName": {},
+                        "LoggingLevel": {},
+                        "GuardrailPolicyArns": {},
+                        "UserAuthorizationRequired": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -134,9 +188,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {}
                     }
                 }
             }
@@ -169,9 +221,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {}
                     }
                 }
             }
@@ -204,9 +254,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TeamId": {}
                     }
                 }
             }
@@ -239,9 +287,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {},
+                        "UserId": {}
                     }
                 }
             }
@@ -274,9 +321,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {}
                     }
                 }
             }
@@ -309,9 +354,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {},
+                        "SlackTeamId": {},
+                        "SlackUserId": {}
                     }
                 }
             }
@@ -344,9 +389,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SlackTeamId": {}
                     }
                 }
             }
@@ -379,9 +422,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "ChatConfigurationArn": {}
                     }
                 }
             }
@@ -414,9 +457,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "ChatConfigurationArn": {}
                     }
                 }
             }
@@ -449,9 +492,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -484,9 +527,42 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisassociateFromConfiguration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/disassociate-from-configuration"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateFromConfigurationResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateFromConfigurationRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Resource": {},
+                        "ChatConfiguration": {}
                     }
                 }
             }
@@ -518,11 +594,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -554,9 +626,42 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssociations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/list-associations"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssociationsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssociationsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ChatConfiguration": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -589,9 +694,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "TeamId": {}
                     }
                 }
             }
@@ -624,9 +729,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -659,9 +763,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -694,9 +798,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {}
                     }
                 }
             }
@@ -729,9 +831,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -764,9 +865,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceARN": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -799,9 +899,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "UserAuthorizationRequired": {},
+                        "TrainingDataCollectionEnabled": {}
                     }
                 }
             }
@@ -834,9 +933,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {},
+                        "WebhookDescription": {},
+                        "WebhookUrl": {},
+                        "SnsTopicArns": {},
+                        "IamRoleArn": {},
+                        "LoggingLevel": {}
                     }
                 }
             }
@@ -869,9 +971,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {},
+                        "ChannelId": {},
+                        "ChannelName": {},
+                        "SnsTopicArns": {},
+                        "IamRoleArn": {},
+                        "LoggingLevel": {},
+                        "GuardrailPolicyArns": {},
+                        "UserAuthorizationRequired": {}
                     }
                 }
             }
@@ -904,9 +1011,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChatConfigurationArn": {},
+                        "SlackChannelId": {},
+                        "SlackChannelName": {},
+                        "SnsTopicArns": {},
+                        "IamRoleArn": {},
+                        "LoggingLevel": {},
+                        "GuardrailPolicyArns": {},
+                        "UserAuthorizationRequired": {}
                     }
                 }
             }
@@ -958,6 +1070,97 @@
             "type": "string",
             "format": "binary"
         },
+        "AssociateToConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "ChatConfiguration": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
+                }
+            }
+        },
+        "ResourceIdentifier": {
+            "type": "string"
+        },
+        "ChatConfigurationArn": {
+            "type": "string"
+        },
+        "AssociateToConfigurationResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateChimeWebhookConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "WebhookDescription": {
+                    "$ref": "#/$defs/ChimeWebhookDescription"
+                },
+                "WebhookUrl": {
+                    "$ref": "#/$defs/ChimeWebhookUrl"
+                },
+                "SnsTopicArns": {
+                    "$ref": "#/$defs/SnsTopicArnList"
+                },
+                "IamRoleArn": {
+                    "$ref": "#/$defs/Arn"
+                },
+                "ConfigurationName": {
+                    "$ref": "#/$defs/ConfigurationName"
+                },
+                "LoggingLevel": {
+                    "$ref": "#/$defs/CustomerCwLogLevel"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ChimeWebhookDescription": {
+            "type": "string"
+        },
+        "ChimeWebhookUrl": {
+            "type": "string"
+        },
+        "SnsTopicArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Arn"
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
+        "ConfigurationName": {
+            "type": "string"
+        },
+        "CustomerCwLogLevel": {
+            "type": "string"
+        },
+        "Tags": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "TagKey": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "TagValue": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
         "CreateChimeWebhookConfigurationResult": {
             "type": "object",
             "properties": {
@@ -998,64 +1201,29 @@
                 }
             }
         },
-        "ChimeWebhookDescription": {
-            "type": "string"
-        },
-        "ChatConfigurationArn": {
-            "type": "string"
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "SnsTopicArnList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Arn"
-            }
-        },
-        "ConfigurationName": {
-            "type": "string"
-        },
-        "CustomerCwLogLevel": {
-            "type": "string"
-        },
-        "Tags": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Tag"
-            }
-        },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "TagKey": {
-                    "$ref": "#/$defs/TagKey"
-                },
-                "TagValue": {
-                    "$ref": "#/$defs/TagValue"
-                }
-            }
-        },
-        "TagKey": {
-            "type": "string"
-        },
-        "TagValue": {
-            "type": "string"
-        },
         "ResourceState": {
             "type": "string"
         },
         "String": {
             "type": "string"
         },
-        "CreateChimeWebhookConfigurationRequest": {
+        "CreateTeamsChannelConfigurationRequest": {
             "type": "object",
             "properties": {
-                "WebhookDescription": {
-                    "$ref": "#/$defs/ChimeWebhookDescription"
+                "ChannelId": {
+                    "$ref": "#/$defs/TeamsChannelId"
                 },
-                "WebhookUrl": {
-                    "$ref": "#/$defs/ChimeWebhookUrl"
+                "ChannelName": {
+                    "$ref": "#/$defs/TeamsChannelName"
+                },
+                "TeamId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "TeamName": {
+                    "$ref": "#/$defs/TeamName"
+                },
+                "TenantId": {
+                    "$ref": "#/$defs/UUID"
                 },
                 "SnsTopicArns": {
                     "$ref": "#/$defs/SnsTopicArnList"
@@ -1069,13 +1237,40 @@
                 "LoggingLevel": {
                     "$ref": "#/$defs/CustomerCwLogLevel"
                 },
+                "GuardrailPolicyArns": {
+                    "$ref": "#/$defs/GuardrailPolicyArnList"
+                },
+                "UserAuthorizationRequired": {
+                    "$ref": "#/$defs/BooleanAccountPreference"
+                },
                 "Tags": {
                     "$ref": "#/$defs/Tags"
                 }
             }
         },
-        "ChimeWebhookUrl": {
+        "TeamsChannelId": {
             "type": "string"
+        },
+        "TeamsChannelName": {
+            "type": "string"
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "TeamName": {
+            "type": "string"
+        },
+        "GuardrailPolicyArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GuardrailPolicyArn"
+            }
+        },
+        "GuardrailPolicyArn": {
+            "type": "string"
+        },
+        "BooleanAccountPreference": {
+            "type": "boolean"
         },
         "CreateTeamsChannelConfigurationResult": {
             "type": "object",
@@ -1135,47 +1330,17 @@
                 }
             }
         },
-        "TeamsChannelId": {
-            "type": "string"
-        },
-        "TeamsChannelName": {
-            "type": "string"
-        },
-        "UUID": {
-            "type": "string"
-        },
-        "TeamName": {
-            "type": "string"
-        },
-        "GuardrailPolicyArnList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/GuardrailPolicyArn"
-            }
-        },
-        "GuardrailPolicyArn": {
-            "type": "string"
-        },
-        "BooleanAccountPreference": {
-            "type": "boolean"
-        },
-        "CreateTeamsChannelConfigurationRequest": {
+        "CreateSlackChannelConfigurationRequest": {
             "type": "object",
             "properties": {
-                "ChannelId": {
-                    "$ref": "#/$defs/TeamsChannelId"
+                "SlackTeamId": {
+                    "$ref": "#/$defs/SlackTeamId"
                 },
-                "ChannelName": {
-                    "$ref": "#/$defs/TeamsChannelName"
+                "SlackChannelId": {
+                    "$ref": "#/$defs/SlackChannelId"
                 },
-                "TeamId": {
-                    "$ref": "#/$defs/UUID"
-                },
-                "TeamName": {
-                    "$ref": "#/$defs/TeamName"
-                },
-                "TenantId": {
-                    "$ref": "#/$defs/UUID"
+                "SlackChannelName": {
+                    "$ref": "#/$defs/SlackChannelDisplayName"
                 },
                 "SnsTopicArns": {
                     "$ref": "#/$defs/SnsTopicArnList"
@@ -1199,6 +1364,15 @@
                     "$ref": "#/$defs/Tags"
                 }
             }
+        },
+        "SlackTeamId": {
+            "type": "string"
+        },
+        "SlackChannelId": {
+            "type": "string"
+        },
+        "SlackChannelDisplayName": {
+            "type": "string"
         },
         "CreateSlackChannelConfigurationResult": {
             "type": "object",
@@ -1258,54 +1432,6 @@
         "SlackTeamName": {
             "type": "string"
         },
-        "SlackTeamId": {
-            "type": "string"
-        },
-        "SlackChannelId": {
-            "type": "string"
-        },
-        "SlackChannelDisplayName": {
-            "type": "string"
-        },
-        "CreateSlackChannelConfigurationRequest": {
-            "type": "object",
-            "properties": {
-                "SlackTeamId": {
-                    "$ref": "#/$defs/SlackTeamId"
-                },
-                "SlackChannelId": {
-                    "$ref": "#/$defs/SlackChannelId"
-                },
-                "SlackChannelName": {
-                    "$ref": "#/$defs/SlackChannelDisplayName"
-                },
-                "SnsTopicArns": {
-                    "$ref": "#/$defs/SnsTopicArnList"
-                },
-                "IamRoleArn": {
-                    "$ref": "#/$defs/Arn"
-                },
-                "ConfigurationName": {
-                    "$ref": "#/$defs/ConfigurationName"
-                },
-                "LoggingLevel": {
-                    "$ref": "#/$defs/CustomerCwLogLevel"
-                },
-                "GuardrailPolicyArns": {
-                    "$ref": "#/$defs/GuardrailPolicyArnList"
-                },
-                "UserAuthorizationRequired": {
-                    "$ref": "#/$defs/BooleanAccountPreference"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "DeleteChimeWebhookConfigurationResult": {
-            "type": "object",
-            "properties": {}
-        },
         "DeleteChimeWebhookConfigurationRequest": {
             "type": "object",
             "properties": {
@@ -1314,7 +1440,7 @@
                 }
             }
         },
-        "DeleteTeamsChannelConfigurationResult": {
+        "DeleteChimeWebhookConfigurationResult": {
             "type": "object",
             "properties": {}
         },
@@ -1326,7 +1452,7 @@
                 }
             }
         },
-        "DeleteTeamsConfiguredTeamResult": {
+        "DeleteTeamsChannelConfigurationResult": {
             "type": "object",
             "properties": {}
         },
@@ -1338,7 +1464,7 @@
                 }
             }
         },
-        "DeleteMicrosoftTeamsUserIdentityResult": {
+        "DeleteTeamsConfiguredTeamResult": {
             "type": "object",
             "properties": {}
         },
@@ -1353,7 +1479,7 @@
                 }
             }
         },
-        "DeleteSlackChannelConfigurationResult": {
+        "DeleteMicrosoftTeamsUserIdentityResult": {
             "type": "object",
             "properties": {}
         },
@@ -1365,7 +1491,7 @@
                 }
             }
         },
-        "DeleteSlackUserIdentityResult": {
+        "DeleteSlackChannelConfigurationResult": {
             "type": "object",
             "properties": {}
         },
@@ -1386,7 +1512,7 @@
         "SlackUserId": {
             "type": "string"
         },
-        "DeleteSlackWorkspaceAuthorizationResult": {
+        "DeleteSlackUserIdentityResult": {
             "type": "object",
             "properties": {}
         },
@@ -1398,25 +1524,9 @@
                 }
             }
         },
-        "DescribeChimeWebhookConfigurationsResult": {
+        "DeleteSlackWorkspaceAuthorizationResult": {
             "type": "object",
-            "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "WebhookConfigurations": {
-                    "$ref": "#/$defs/ChimeWebhookConfigurationList"
-                }
-            }
-        },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "ChimeWebhookConfigurationList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ChimeWebhookConfiguration"
-            }
+            "properties": {}
         },
         "DescribeChimeWebhookConfigurationsRequest": {
             "type": "object",
@@ -1436,6 +1546,40 @@
             "type": "integer",
             "format": "int32"
         },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "DescribeChimeWebhookConfigurationsResult": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "WebhookConfigurations": {
+                    "$ref": "#/$defs/ChimeWebhookConfigurationList"
+                }
+            }
+        },
+        "ChimeWebhookConfigurationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ChimeWebhookConfiguration"
+            }
+        },
+        "DescribeSlackChannelConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "ChatConfigurationArn": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
+                }
+            }
+        },
         "DescribeSlackChannelConfigurationsResult": {
             "type": "object",
             "properties": {
@@ -1453,17 +1597,17 @@
                 "$ref": "#/$defs/SlackChannelConfiguration"
             }
         },
-        "DescribeSlackChannelConfigurationsRequest": {
+        "DescribeSlackUserIdentitiesRequest": {
             "type": "object",
             "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "ChatConfigurationArn": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/PaginationToken"
                 },
-                "ChatConfigurationArn": {
-                    "$ref": "#/$defs/ChatConfigurationArn"
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 }
             }
         },
@@ -1507,17 +1651,14 @@
         "AwsUserIdentity": {
             "type": "string"
         },
-        "DescribeSlackUserIdentitiesRequest": {
+        "DescribeSlackWorkspacesRequest": {
             "type": "object",
             "properties": {
-                "ChatConfigurationArn": {
-                    "$ref": "#/$defs/ChatConfigurationArn"
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/PaginationToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
                 }
             }
         },
@@ -1555,16 +1696,24 @@
                 }
             }
         },
-        "DescribeSlackWorkspacesRequest": {
+        "DisassociateFromConfigurationRequest": {
             "type": "object",
             "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "Resource": {
+                    "$ref": "#/$defs/ResourceIdentifier"
                 },
-                "NextToken": {
-                    "$ref": "#/$defs/PaginationToken"
+                "ChatConfiguration": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
                 }
             }
+        },
+        "DisassociateFromConfigurationResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetAccountPreferencesRequest": {
+            "type": "object",
+            "properties": {}
         },
         "GetAccountPreferencesResult": {
             "type": "object",
@@ -1585,9 +1734,13 @@
                 }
             }
         },
-        "GetAccountPreferencesRequest": {
+        "GetTeamsChannelConfigurationRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "ChatConfigurationArn": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
+                }
+            }
         },
         "GetTeamsChannelConfigurationResult": {
             "type": "object",
@@ -1597,11 +1750,56 @@
                 }
             }
         },
-        "GetTeamsChannelConfigurationRequest": {
+        "ListAssociationsRequest": {
             "type": "object",
             "properties": {
-                "ChatConfigurationArn": {
+                "ChatConfiguration": {
                     "$ref": "#/$defs/ChatConfigurationArn"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListAssociationsResult": {
+            "type": "object",
+            "properties": {
+                "Associations": {
+                    "$ref": "#/$defs/AssociationList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "AssociationList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssociationListing"
+            }
+        },
+        "AssociationListing": {
+            "type": "object",
+            "properties": {
+                "Resource": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "ListTeamsChannelConfigurationsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "TeamId": {
+                    "$ref": "#/$defs/UUID"
                 }
             }
         },
@@ -1622,7 +1820,7 @@
                 "$ref": "#/$defs/TeamsChannelConfiguration"
             }
         },
-        "ListTeamsChannelConfigurationsRequest": {
+        "ListMicrosoftTeamsConfiguredTeamsRequest": {
             "type": "object",
             "properties": {
                 "MaxResults": {
@@ -1630,9 +1828,6 @@
                 },
                 "NextToken": {
                     "$ref": "#/$defs/PaginationToken"
-                },
-                "TeamId": {
-                    "$ref": "#/$defs/UUID"
                 }
             }
         },
@@ -1673,14 +1868,17 @@
                 }
             }
         },
-        "ListMicrosoftTeamsConfiguredTeamsRequest": {
+        "ListMicrosoftTeamsUserIdentitiesRequest": {
             "type": "object",
             "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "ChatConfigurationArn": {
+                    "$ref": "#/$defs/ChatConfigurationArn"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/PaginationToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 }
             }
         },
@@ -1727,19 +1925,16 @@
                 }
             }
         },
-        "ListMicrosoftTeamsUserIdentitiesRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "ChatConfigurationArn": {
-                    "$ref": "#/$defs/ChatConfigurationArn"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "ResourceARN": {
+                    "$ref": "#/$defs/AmazonResourceName"
                 }
             }
+        },
+        "AmazonResourceName": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -1755,21 +1950,6 @@
                 "$ref": "#/$defs/Tag"
             }
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceARN": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                }
-            }
-        },
-        "AmazonResourceName": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -1781,7 +1961,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1802,13 +1982,9 @@
                 "$ref": "#/$defs/TagKey"
             }
         },
-        "UpdateAccountPreferencesResult": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "AccountPreferences": {
-                    "$ref": "#/$defs/AccountPreferences"
-                }
-            }
+            "properties": {}
         },
         "UpdateAccountPreferencesRequest": {
             "type": "object",
@@ -1821,11 +1997,11 @@
                 }
             }
         },
-        "UpdateChimeWebhookConfigurationResult": {
+        "UpdateAccountPreferencesResult": {
             "type": "object",
             "properties": {
-                "WebhookConfiguration": {
-                    "$ref": "#/$defs/ChimeWebhookConfiguration"
+                "AccountPreferences": {
+                    "$ref": "#/$defs/AccountPreferences"
                 }
             }
         },
@@ -1852,11 +2028,11 @@
                 }
             }
         },
-        "UpdateTeamsChannelConfigurationResult": {
+        "UpdateChimeWebhookConfigurationResult": {
             "type": "object",
             "properties": {
-                "ChannelConfiguration": {
-                    "$ref": "#/$defs/TeamsChannelConfiguration"
+                "WebhookConfiguration": {
+                    "$ref": "#/$defs/ChimeWebhookConfiguration"
                 }
             }
         },
@@ -1889,11 +2065,11 @@
                 }
             }
         },
-        "UpdateSlackChannelConfigurationResult": {
+        "UpdateTeamsChannelConfigurationResult": {
             "type": "object",
             "properties": {
                 "ChannelConfiguration": {
-                    "$ref": "#/$defs/SlackChannelConfiguration"
+                    "$ref": "#/$defs/TeamsChannelConfiguration"
                 }
             }
         },
@@ -1923,6 +2099,14 @@
                 },
                 "UserAuthorizationRequired": {
                     "$ref": "#/$defs/BooleanAccountPreference"
+                }
+            }
+        },
+        "UpdateSlackChannelConfigurationResult": {
+            "type": "object",
+            "properties": {
+                "ChannelConfiguration": {
+                    "$ref": "#/$defs/SlackChannelConfiguration"
                 }
             }
         }

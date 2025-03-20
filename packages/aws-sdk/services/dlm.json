@@ -29,9 +29,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ExecutionRoleArn": {},
+                        "Description": {},
+                        "State": {},
+                        "PolicyDetails": {},
+                        "Tags": {},
+                        "DefaultPolicy": {},
+                        "CreateInterval": {},
+                        "RetainInterval": {},
+                        "CopyTags": {},
+                        "ExtendDeletion": {},
+                        "CrossRegionCopyTargets": {},
+                        "Exclusions": {}
                     }
                 }
             }
@@ -68,9 +77,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PolicyId": {}
                     }
                 }
             }
@@ -103,9 +110,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PolicyIds": {},
+                        "State": {},
+                        "ResourceTypes": {},
+                        "TargetTags": {},
+                        "TagsToAdd": {},
+                        "DefaultPolicyType": {}
                     }
                 }
             }
@@ -142,9 +152,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PolicyId": {}
                     }
                 }
             }
@@ -181,9 +189,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -220,9 +226,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -259,9 +264,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -298,9 +302,17 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PolicyId": {},
+                        "ExecutionRoleArn": {},
+                        "State": {},
+                        "Description": {},
+                        "PolicyDetails": {},
+                        "CreateInterval": {},
+                        "RetainInterval": {},
+                        "CopyTags": {},
+                        "ExtendDeletion": {},
+                        "CrossRegionCopyTargets": {},
+                        "Exclusions": {}
                     }
                 }
             }
@@ -351,17 +363,6 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
-        },
-        "CreateLifecyclePolicyResponse": {
-            "type": "object",
-            "properties": {
-                "PolicyId": {
-                    "$ref": "#/$defs/PolicyId"
-                }
-            }
-        },
-        "PolicyId": {
-            "type": "string"
         },
         "CreateLifecyclePolicyRequest": {
             "type": "object",
@@ -497,7 +498,8 @@
         "ResourceLocationValues": {
             "enum": [
                 "CLOUD",
-                "OUTPOST"
+                "OUTPOST",
+                "LOCAL_ZONE"
             ]
         },
         "TargetTagList": {
@@ -608,7 +610,8 @@
         "LocationValues": {
             "enum": [
                 "CLOUD",
-                "OUTPOST_LOCAL"
+                "OUTPOST_LOCAL",
+                "LOCAL_ZONE"
             ]
         },
         "Interval": {
@@ -1093,9 +1096,16 @@
                 "INSTANCE"
             ]
         },
-        "DeleteLifecyclePolicyResponse": {
+        "CreateLifecyclePolicyResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
+                }
+            }
+        },
+        "PolicyId": {
+            "type": "string"
         },
         "DeleteLifecyclePolicyRequest": {
             "type": "object",
@@ -1104,6 +1114,68 @@
                     "$ref": "#/$defs/PolicyId"
                 }
             }
+        },
+        "DeleteLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetLifecyclePoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "PolicyIds": {
+                    "$ref": "#/$defs/PolicyIdList"
+                },
+                "State": {
+                    "$ref": "#/$defs/GettablePolicyStateValues"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeValuesList"
+                },
+                "TargetTags": {
+                    "$ref": "#/$defs/TargetTagsFilterList"
+                },
+                "TagsToAdd": {
+                    "$ref": "#/$defs/TagsToAddFilterList"
+                },
+                "DefaultPolicyType": {
+                    "$ref": "#/$defs/DefaultPoliciesTypeValues"
+                }
+            }
+        },
+        "PolicyIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PolicyId"
+            }
+        },
+        "GettablePolicyStateValues": {
+            "enum": [
+                "ENABLED",
+                "DISABLED",
+                "ERROR"
+            ]
+        },
+        "TargetTagsFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagFilter"
+            }
+        },
+        "TagFilter": {
+            "type": "string"
+        },
+        "TagsToAddFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagFilter"
+            }
+        },
+        "DefaultPoliciesTypeValues": {
+            "enum": [
+                "VOLUME",
+                "INSTANCE",
+                "ALL"
+            ]
         },
         "GetLifecyclePoliciesResponse": {
             "type": "object",
@@ -1142,66 +1214,16 @@
                 }
             }
         },
-        "GettablePolicyStateValues": {
-            "enum": [
-                "ENABLED",
-                "DISABLED",
-                "ERROR"
-            ]
-        },
         "DefaultPolicy": {
             "type": "boolean"
         },
-        "GetLifecyclePoliciesRequest": {
+        "GetLifecyclePolicyRequest": {
             "type": "object",
             "properties": {
-                "PolicyIds": {
-                    "$ref": "#/$defs/PolicyIdList"
-                },
-                "State": {
-                    "$ref": "#/$defs/GettablePolicyStateValues"
-                },
-                "ResourceTypes": {
-                    "$ref": "#/$defs/ResourceTypeValuesList"
-                },
-                "TargetTags": {
-                    "$ref": "#/$defs/TargetTagsFilterList"
-                },
-                "TagsToAdd": {
-                    "$ref": "#/$defs/TagsToAddFilterList"
-                },
-                "DefaultPolicyType": {
-                    "$ref": "#/$defs/DefaultPoliciesTypeValues"
+                "PolicyId": {
+                    "$ref": "#/$defs/PolicyId"
                 }
             }
-        },
-        "PolicyIdList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/PolicyId"
-            }
-        },
-        "TargetTagsFilterList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/TagFilter"
-            }
-        },
-        "TagFilter": {
-            "type": "string"
-        },
-        "TagsToAddFilterList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/TagFilter"
-            }
-        },
-        "DefaultPoliciesTypeValues": {
-            "enum": [
-                "VOLUME",
-                "INSTANCE",
-                "ALL"
-            ]
         },
         "GetLifecyclePolicyResponse": {
             "type": "object",
@@ -1259,11 +1281,11 @@
         "PolicyArn": {
             "type": "string"
         },
-        "GetLifecyclePolicyRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "PolicyId": {
-                    "$ref": "#/$defs/PolicyId"
+                "ResourceArn": {
+                    "$ref": "#/$defs/PolicyArn"
                 }
             }
         },
@@ -1274,18 +1296,6 @@
                     "$ref": "#/$defs/TagMap"
                 }
             }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/PolicyArn"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1298,7 +1308,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1322,7 +1332,7 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateLifecyclePolicyResponse": {
+        "UntagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1363,6 +1373,10 @@
                     "$ref": "#/$defs/Exclusions"
                 }
             }
+        },
+        "UpdateLifecyclePolicyResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

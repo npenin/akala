@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "findingIdentifiers": {}
                     }
                 }
             }
@@ -64,9 +62,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "clientToken": {},
+                        "resourceId": {},
+                        "scanName": {},
+                        "scanType": {},
+                        "analysisType": {},
+                        "tags": {}
                     }
                 }
             }
@@ -99,9 +100,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "scanName": {}
                     }
                 }
             }
@@ -133,11 +132,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -173,9 +168,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "scanName": {},
+                        "nextToken": {},
+                        "maxResults": {},
+                        "status": {}
                     }
                 }
             }
@@ -208,9 +204,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "date": {}
                     }
                 }
             }
@@ -247,9 +241,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "scanName": {},
+                        "runId": {}
                     }
                 }
             }
@@ -282,9 +275,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "startDate": {},
+                        "endDate": {}
                     }
                 }
             }
@@ -317,9 +311,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -356,9 +349,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -395,9 +386,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -434,9 +424,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -469,9 +458,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "encryptionConfig": {}
                     }
                 }
             }
@@ -522,6 +509,31 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "BatchGetFindingsRequest": {
+            "type": "object",
+            "properties": {
+                "findingIdentifiers": {
+                    "$ref": "#/$defs/FindingIdentifiers"
+                }
+            }
+        },
+        "FindingIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FindingIdentifier"
+            }
+        },
+        "FindingIdentifier": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "findingId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
         },
         "BatchGetFindingsResponse": {
             "type": "object",
@@ -769,72 +781,6 @@
                 "INVALID_SCAN_NAME"
             ]
         },
-        "BatchGetFindingsRequest": {
-            "type": "object",
-            "properties": {
-                "findingIdentifiers": {
-                    "$ref": "#/$defs/FindingIdentifiers"
-                }
-            }
-        },
-        "FindingIdentifiers": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/FindingIdentifier"
-            }
-        },
-        "FindingIdentifier": {
-            "type": "object",
-            "properties": {
-                "scanName": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "findingId": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "CreateScanResponse": {
-            "type": "object",
-            "properties": {
-                "scanName": {
-                    "$ref": "#/$defs/ScanName"
-                },
-                "runId": {
-                    "$ref": "#/$defs/Uuid"
-                },
-                "resourceId": {
-                    "$ref": "#/$defs/ResourceId"
-                },
-                "scanState": {
-                    "$ref": "#/$defs/ScanState"
-                },
-                "scanNameArn": {
-                    "$ref": "#/$defs/ScanNameArn"
-                }
-            }
-        },
-        "Uuid": {
-            "type": "string"
-        },
-        "ResourceId": {
-            "type": "object",
-            "properties": {
-                "codeArtifactId": {
-                    "$ref": "#/$defs/Uuid"
-                }
-            }
-        },
-        "ScanState": {
-            "enum": [
-                "IN_PROGRESS",
-                "SUCCESSFUL",
-                "FAILED"
-            ]
-        },
-        "ScanNameArn": {
-            "type": "string"
-        },
         "CreateScanRequest": {
             "type": "object",
             "properties": {
@@ -861,6 +807,17 @@
         "ClientToken": {
             "type": "string"
         },
+        "ResourceId": {
+            "type": "object",
+            "properties": {
+                "codeArtifactId": {
+                    "$ref": "#/$defs/Uuid"
+                }
+            }
+        },
+        "Uuid": {
+            "type": "string"
+        },
         "ScanType": {
             "enum": [
                 "STANDARD",
@@ -881,6 +838,44 @@
         },
         "TagValue": {
             "type": "string"
+        },
+        "CreateScanResponse": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "runId": {
+                    "$ref": "#/$defs/Uuid"
+                },
+                "resourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "scanState": {
+                    "$ref": "#/$defs/ScanState"
+                },
+                "scanNameArn": {
+                    "$ref": "#/$defs/ScanNameArn"
+                }
+            }
+        },
+        "ScanState": {
+            "enum": [
+                "IN_PROGRESS",
+                "SUCCESSFUL",
+                "FAILED"
+            ]
+        },
+        "ScanNameArn": {
+            "type": "string"
+        },
+        "CreateUploadUrlRequest": {
+            "type": "object",
+            "properties": {
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                }
+            }
         },
         "CreateUploadUrlResponse": {
             "type": "object",
@@ -908,13 +903,9 @@
         "HeaderValue": {
             "type": "string"
         },
-        "CreateUploadUrlRequest": {
+        "GetAccountConfigurationRequest": {
             "type": "object",
-            "properties": {
-                "scanName": {
-                    "$ref": "#/$defs/ScanName"
-                }
-            }
+            "properties": {}
         },
         "GetAccountConfigurationResponse": {
             "type": "object",
@@ -935,24 +926,6 @@
         "KmsKeyArn": {
             "type": "string"
         },
-        "GetAccountConfigurationRequest": {
-            "type": "object",
-            "properties": {}
-        },
-        "GetFindingsResponse": {
-            "type": "object",
-            "properties": {
-                "findings": {
-                    "$ref": "#/$defs/Findings"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "NextToken": {
-            "type": "string"
-        },
         "GetFindingsRequest": {
             "type": "object",
             "properties": {
@@ -967,6 +940,28 @@
                 },
                 "status": {
                     "$ref": "#/$defs/Status"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "GetFindingsResponse": {
+            "type": "object",
+            "properties": {
+                "findings": {
+                    "$ref": "#/$defs/Findings"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "GetMetricsSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
                 }
             }
         },
@@ -1058,11 +1053,14 @@
                 "$ref": "#/$defs/ScanNameWithFindingNum"
             }
         },
-        "GetMetricsSummaryRequest": {
+        "GetScanRequest": {
             "type": "object",
             "properties": {
-                "date": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
+                "scanName": {
+                    "$ref": "#/$defs/ScanName"
+                },
+                "runId": {
+                    "$ref": "#/$defs/Uuid"
                 }
             }
         },
@@ -1101,14 +1099,20 @@
         "ErrorMessage": {
             "type": "string"
         },
-        "GetScanRequest": {
+        "ListFindingsMetricsRequest": {
             "type": "object",
             "properties": {
-                "scanName": {
-                    "$ref": "#/$defs/ScanName"
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
                 },
-                "runId": {
-                    "$ref": "#/$defs/Uuid"
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "startDate": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "endDate": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
                 }
             }
         },
@@ -1149,7 +1153,7 @@
                 }
             }
         },
-        "ListFindingsMetricsRequest": {
+        "ListScansRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -1157,12 +1161,6 @@
                 },
                 "maxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "startDate": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
-                },
-                "endDate": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
                 }
             }
         },
@@ -1206,14 +1204,11 @@
                 }
             }
         },
-        "ListScansRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
+                "resourceArn": {
+                    "$ref": "#/$defs/ScanNameArn"
                 }
             }
         },
@@ -1224,18 +1219,6 @@
                     "$ref": "#/$defs/TagMap"
                 }
             }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/ScanNameArn"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1248,7 +1231,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1272,7 +1255,11 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateAccountConfigurationResponse": {
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateAccountConfigurationRequest": {
             "type": "object",
             "properties": {
                 "encryptionConfig": {
@@ -1280,7 +1267,7 @@
                 }
             }
         },
-        "UpdateAccountConfigurationRequest": {
+        "UpdateAccountConfigurationResponse": {
             "type": "object",
             "properties": {
                 "encryptionConfig": {

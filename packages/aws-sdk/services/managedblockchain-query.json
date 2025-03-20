@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "getTokenBalanceInputs": {}
                     }
                 }
             }
@@ -64,9 +62,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "contractIdentifier": {}
                     }
                 }
             }
@@ -99,9 +95,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "tokenIdentifier": {},
+                        "ownerIdentifier": {},
+                        "atBlockchainInstant": {}
                     }
                 }
             }
@@ -134,9 +130,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "transactionHash": {},
+                        "transactionId": {},
+                        "network": {}
                     }
                 }
             }
@@ -169,9 +165,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "contractFilter": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -204,9 +200,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "network": {},
+                        "addressIdentifierFilter": {},
+                        "timeFilter": {},
+                        "voutFilter": {},
+                        "confirmationStatusFilter": {},
+                        "sort": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -239,9 +240,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ownerFilter": {},
+                        "tokenFilter": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -274,9 +276,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "transactionHash": {},
+                        "transactionId": {},
+                        "network": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -309,9 +313,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "address": {},
+                        "network": {},
+                        "fromBlockchainInstant": {},
+                        "toBlockchainInstant": {},
+                        "sort": {},
+                        "nextToken": {},
+                        "maxResults": {},
+                        "confirmationStatusFilter": {}
                     }
                 }
             }
@@ -363,6 +372,73 @@
             "type": "string",
             "format": "binary"
         },
+        "BatchGetTokenBalanceInput": {
+            "type": "object",
+            "properties": {
+                "getTokenBalanceInputs": {
+                    "$ref": "#/$defs/GetTokenBalanceInputList"
+                }
+            }
+        },
+        "GetTokenBalanceInputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchGetTokenBalanceInputItem"
+            }
+        },
+        "BatchGetTokenBalanceInputItem": {
+            "type": "object",
+            "properties": {
+                "tokenIdentifier": {
+                    "$ref": "#/$defs/TokenIdentifier"
+                },
+                "ownerIdentifier": {
+                    "$ref": "#/$defs/OwnerIdentifier"
+                },
+                "atBlockchainInstant": {
+                    "$ref": "#/$defs/BlockchainInstant"
+                }
+            }
+        },
+        "TokenIdentifier": {
+            "type": "object",
+            "properties": {
+                "network": {
+                    "$ref": "#/$defs/QueryNetwork"
+                },
+                "contractAddress": {
+                    "$ref": "#/$defs/ChainAddress"
+                },
+                "tokenId": {
+                    "$ref": "#/$defs/QueryTokenId"
+                }
+            }
+        },
+        "QueryNetwork": {
+            "type": "string"
+        },
+        "ChainAddress": {
+            "type": "string"
+        },
+        "QueryTokenId": {
+            "type": "string"
+        },
+        "OwnerIdentifier": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "$ref": "#/$defs/ChainAddress"
+                }
+            }
+        },
+        "BlockchainInstant": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                }
+            }
+        },
         "BatchGetTokenBalanceOutput": {
             "type": "object",
             "properties": {
@@ -400,45 +476,6 @@
                 }
             }
         },
-        "OwnerIdentifier": {
-            "type": "object",
-            "properties": {
-                "address": {
-                    "$ref": "#/$defs/ChainAddress"
-                }
-            }
-        },
-        "ChainAddress": {
-            "type": "string"
-        },
-        "TokenIdentifier": {
-            "type": "object",
-            "properties": {
-                "network": {
-                    "$ref": "#/$defs/QueryNetwork"
-                },
-                "contractAddress": {
-                    "$ref": "#/$defs/ChainAddress"
-                },
-                "tokenId": {
-                    "$ref": "#/$defs/QueryTokenId"
-                }
-            }
-        },
-        "QueryNetwork": {
-            "type": "string"
-        },
-        "QueryTokenId": {
-            "type": "string"
-        },
-        "BlockchainInstant": {
-            "type": "object",
-            "properties": {
-                "time": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
-                }
-            }
-        },
         "BatchGetTokenBalanceErrors": {
             "type": "array",
             "items": {
@@ -471,31 +508,22 @@
         "ErrorType": {
             "type": "string"
         },
-        "BatchGetTokenBalanceInput": {
+        "GetAssetContractInput": {
             "type": "object",
             "properties": {
-                "getTokenBalanceInputs": {
-                    "$ref": "#/$defs/GetTokenBalanceInputList"
+                "contractIdentifier": {
+                    "$ref": "#/$defs/ContractIdentifier"
                 }
             }
         },
-        "GetTokenBalanceInputList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BatchGetTokenBalanceInputItem"
-            }
-        },
-        "BatchGetTokenBalanceInputItem": {
+        "ContractIdentifier": {
             "type": "object",
             "properties": {
-                "tokenIdentifier": {
-                    "$ref": "#/$defs/TokenIdentifier"
+                "network": {
+                    "$ref": "#/$defs/QueryNetwork"
                 },
-                "ownerIdentifier": {
-                    "$ref": "#/$defs/OwnerIdentifier"
-                },
-                "atBlockchainInstant": {
-                    "$ref": "#/$defs/BlockchainInstant"
+                "contractAddress": {
+                    "$ref": "#/$defs/ChainAddress"
                 }
             }
         },
@@ -516,17 +544,6 @@
                 }
             }
         },
-        "ContractIdentifier": {
-            "type": "object",
-            "properties": {
-                "network": {
-                    "$ref": "#/$defs/QueryNetwork"
-                },
-                "contractAddress": {
-                    "$ref": "#/$defs/ChainAddress"
-                }
-            }
-        },
         "QueryTokenStandard": {
             "type": "string"
         },
@@ -544,11 +561,17 @@
                 }
             }
         },
-        "GetAssetContractInput": {
+        "GetTokenBalanceInput": {
             "type": "object",
             "properties": {
-                "contractIdentifier": {
-                    "$ref": "#/$defs/ContractIdentifier"
+                "tokenIdentifier": {
+                    "$ref": "#/$defs/TokenIdentifier"
+                },
+                "ownerIdentifier": {
+                    "$ref": "#/$defs/OwnerIdentifier"
+                },
+                "atBlockchainInstant": {
+                    "$ref": "#/$defs/BlockchainInstant"
                 }
             }
         },
@@ -572,19 +595,25 @@
                 }
             }
         },
-        "GetTokenBalanceInput": {
+        "GetTransactionInput": {
             "type": "object",
             "properties": {
-                "tokenIdentifier": {
-                    "$ref": "#/$defs/TokenIdentifier"
+                "transactionHash": {
+                    "$ref": "#/$defs/QueryTransactionHash"
                 },
-                "ownerIdentifier": {
-                    "$ref": "#/$defs/OwnerIdentifier"
+                "transactionId": {
+                    "$ref": "#/$defs/QueryTransactionId"
                 },
-                "atBlockchainInstant": {
-                    "$ref": "#/$defs/BlockchainInstant"
+                "network": {
+                    "$ref": "#/$defs/QueryNetwork"
                 }
             }
+        },
+        "QueryTransactionHash": {
+            "type": "string"
+        },
+        "QueryTransactionId": {
+            "type": "string"
         },
         "GetTransactionOutput": {
             "type": "object",
@@ -662,30 +691,41 @@
         "BlockHash": {
             "type": "string"
         },
-        "QueryTransactionHash": {
-            "type": "string"
-        },
         "ConfirmationStatus": {
             "type": "string"
         },
         "ExecutionStatus": {
             "type": "string"
         },
-        "GetTransactionInput": {
+        "ListAssetContractsInput": {
             "type": "object",
             "properties": {
-                "transactionHash": {
-                    "$ref": "#/$defs/QueryTransactionHash"
+                "contractFilter": {
+                    "$ref": "#/$defs/ContractFilter"
                 },
-                "transactionId": {
-                    "$ref": "#/$defs/QueryTransactionId"
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
                 },
-                "network": {
-                    "$ref": "#/$defs/QueryNetwork"
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
         },
-        "QueryTransactionId": {
+        "ContractFilter": {
+            "type": "object",
+            "properties": {
+                "network": {
+                    "$ref": "#/$defs/QueryNetwork"
+                },
+                "tokenStandard": {
+                    "$ref": "#/$defs/QueryTokenStandard"
+                },
+                "deployerAddress": {
+                    "$ref": "#/$defs/ChainAddress"
+                }
+            }
+        },
+        "NextToken": {
             "type": "string"
         },
         "ListAssetContractsOutput": {
@@ -718,110 +758,6 @@
                     "$ref": "#/$defs/ChainAddress"
                 }
             }
-        },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListAssetContractsInput": {
-            "type": "object",
-            "properties": {
-                "contractFilter": {
-                    "$ref": "#/$defs/ContractFilter"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                }
-            }
-        },
-        "ContractFilter": {
-            "type": "object",
-            "properties": {
-                "network": {
-                    "$ref": "#/$defs/QueryNetwork"
-                },
-                "tokenStandard": {
-                    "$ref": "#/$defs/QueryTokenStandard"
-                },
-                "deployerAddress": {
-                    "$ref": "#/$defs/ChainAddress"
-                }
-            }
-        },
-        "ListFilteredTransactionEventsOutput": {
-            "type": "object",
-            "properties": {
-                "events": {
-                    "$ref": "#/$defs/TransactionEventList"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "TransactionEventList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/TransactionEvent"
-            }
-        },
-        "TransactionEvent": {
-            "type": "object",
-            "properties": {
-                "network": {
-                    "$ref": "#/$defs/QueryNetwork"
-                },
-                "transactionHash": {
-                    "$ref": "#/$defs/QueryTransactionHash"
-                },
-                "eventType": {
-                    "$ref": "#/$defs/QueryTransactionEventType"
-                },
-                "from": {
-                    "$ref": "#/$defs/ChainAddress"
-                },
-                "to": {
-                    "$ref": "#/$defs/ChainAddress"
-                },
-                "value": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "contractAddress": {
-                    "$ref": "#/$defs/ChainAddress"
-                },
-                "tokenId": {
-                    "$ref": "#/$defs/QueryTokenId"
-                },
-                "transactionId": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "voutIndex": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "voutSpent": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
-                },
-                "spentVoutTransactionId": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "spentVoutTransactionHash": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "spentVoutIndex": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "blockchainInstant": {
-                    "$ref": "#/$defs/BlockchainInstant"
-                },
-                "confirmationStatus": {
-                    "$ref": "#/$defs/ConfirmationStatus"
-                }
-            }
-        },
-        "QueryTransactionEventType": {
-            "type": "string"
         },
         "ListFilteredTransactionEventsInput": {
             "type": "object",
@@ -916,42 +852,78 @@
         "SortOrder": {
             "type": "string"
         },
-        "ListTokenBalancesOutput": {
+        "ListFilteredTransactionEventsOutput": {
             "type": "object",
             "properties": {
-                "tokenBalances": {
-                    "$ref": "#/$defs/TokenBalanceList"
+                "events": {
+                    "$ref": "#/$defs/TransactionEventList"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/NextToken"
                 }
             }
         },
-        "TokenBalanceList": {
+        "TransactionEventList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/TokenBalance"
+                "$ref": "#/$defs/TransactionEvent"
             }
         },
-        "TokenBalance": {
+        "TransactionEvent": {
             "type": "object",
             "properties": {
-                "ownerIdentifier": {
-                    "$ref": "#/$defs/OwnerIdentifier"
+                "network": {
+                    "$ref": "#/$defs/QueryNetwork"
                 },
-                "tokenIdentifier": {
-                    "$ref": "#/$defs/TokenIdentifier"
+                "transactionHash": {
+                    "$ref": "#/$defs/QueryTransactionHash"
                 },
-                "balance": {
+                "eventType": {
+                    "$ref": "#/$defs/QueryTransactionEventType"
+                },
+                "from": {
+                    "$ref": "#/$defs/ChainAddress"
+                },
+                "to": {
+                    "$ref": "#/$defs/ChainAddress"
+                },
+                "value": {
                     "$ref": "#/$defs/smithy.api#String"
                 },
-                "atBlockchainInstant": {
+                "contractAddress": {
+                    "$ref": "#/$defs/ChainAddress"
+                },
+                "tokenId": {
+                    "$ref": "#/$defs/QueryTokenId"
+                },
+                "transactionId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "voutIndex": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "voutSpent": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "spentVoutTransactionId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "spentVoutTransactionHash": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "spentVoutIndex": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "blockchainInstant": {
                     "$ref": "#/$defs/BlockchainInstant"
                 },
-                "lastUpdatedTime": {
-                    "$ref": "#/$defs/BlockchainInstant"
+                "confirmationStatus": {
+                    "$ref": "#/$defs/ConfirmationStatus"
                 }
             }
+        },
+        "QueryTransactionEventType": {
+            "type": "string"
         },
         "ListTokenBalancesInput": {
             "type": "object",
@@ -992,14 +964,40 @@
                 }
             }
         },
-        "ListTransactionEventsOutput": {
+        "ListTokenBalancesOutput": {
             "type": "object",
             "properties": {
-                "events": {
-                    "$ref": "#/$defs/TransactionEventList"
+                "tokenBalances": {
+                    "$ref": "#/$defs/TokenBalanceList"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TokenBalanceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TokenBalance"
+            }
+        },
+        "TokenBalance": {
+            "type": "object",
+            "properties": {
+                "ownerIdentifier": {
+                    "$ref": "#/$defs/OwnerIdentifier"
+                },
+                "tokenIdentifier": {
+                    "$ref": "#/$defs/TokenIdentifier"
+                },
+                "balance": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "atBlockchainInstant": {
+                    "$ref": "#/$defs/BlockchainInstant"
+                },
+                "lastUpdatedTime": {
+                    "$ref": "#/$defs/BlockchainInstant"
                 }
             }
         },
@@ -1023,40 +1021,14 @@
                 }
             }
         },
-        "ListTransactionsOutput": {
+        "ListTransactionEventsOutput": {
             "type": "object",
             "properties": {
-                "transactions": {
-                    "$ref": "#/$defs/TransactionOutputList"
+                "events": {
+                    "$ref": "#/$defs/TransactionEventList"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "TransactionOutputList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/TransactionOutputItem"
-            }
-        },
-        "TransactionOutputItem": {
-            "type": "object",
-            "properties": {
-                "transactionHash": {
-                    "$ref": "#/$defs/QueryTransactionHash"
-                },
-                "transactionId": {
-                    "$ref": "#/$defs/QueryTransactionId"
-                },
-                "network": {
-                    "$ref": "#/$defs/QueryNetwork"
-                },
-                "transactionTimestamp": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
-                },
-                "confirmationStatus": {
-                    "$ref": "#/$defs/ConfirmationStatus"
                 }
             }
         },
@@ -1102,6 +1074,43 @@
         },
         "ListTransactionsSortBy": {
             "type": "string"
+        },
+        "ListTransactionsOutput": {
+            "type": "object",
+            "properties": {
+                "transactions": {
+                    "$ref": "#/$defs/TransactionOutputList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "TransactionOutputList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TransactionOutputItem"
+            }
+        },
+        "TransactionOutputItem": {
+            "type": "object",
+            "properties": {
+                "transactionHash": {
+                    "$ref": "#/$defs/QueryTransactionHash"
+                },
+                "transactionId": {
+                    "$ref": "#/$defs/QueryTransactionId"
+                },
+                "network": {
+                    "$ref": "#/$defs/QueryNetwork"
+                },
+                "transactionTimestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "confirmationStatus": {
+                    "$ref": "#/$defs/ConfirmationStatus"
+                }
+            }
         }
     },
     "aws": {

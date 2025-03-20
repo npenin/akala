@@ -1,5 +1,119 @@
 {
     "name": "omics",
+    "commands": [
+        {
+            "name": "DeleteS3AccessPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "s3AccessPointArn": "route.s3AccessPointArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/s3accesspolicy/{s3AccessPointArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteS3AccessPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0.s3AccessPointArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteS3AccessPolicyRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "s3AccessPointArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetS3AccessPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "s3AccessPointArn": "route.s3AccessPointArn",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/s3accesspolicy/{s3AccessPointArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetS3AccessPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0.s3AccessPointArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetS3AccessPolicyRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "s3AccessPointArn": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutS3AccessPolicy",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "s3AccessPointArn": "route.s3AccessPointArn",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/s3accesspolicy/{s3AccessPointArn}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutS3AccessPolicyResponse"
+                    },
+                    "inject": [
+                        "param.0.s3AccessPointArn",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutS3AccessPolicyRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "s3AccessPointArn": {},
+                        "s3AccessPolicy": {}
+                    }
+                }
+            }
+        }
+    ],
     "$defs": {
         "smithy.api#Unit": {
             "type": "object"
@@ -45,6 +159,86 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "DeleteS3AccessPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "s3AccessPointArn": {
+                    "$ref": "#/$defs/S3AccessPointArn"
+                }
+            }
+        },
+        "S3AccessPointArn": {
+            "type": "string"
+        },
+        "DeleteS3AccessPolicyResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetS3AccessPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "s3AccessPointArn": {
+                    "$ref": "#/$defs/S3AccessPointArn"
+                }
+            }
+        },
+        "GetS3AccessPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "s3AccessPointArn": {
+                    "$ref": "#/$defs/S3AccessPointArn"
+                },
+                "storeId": {
+                    "$ref": "#/$defs/StoreId"
+                },
+                "storeType": {
+                    "$ref": "#/$defs/StoreType"
+                },
+                "updateTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "s3AccessPolicy": {
+                    "$ref": "#/$defs/S3AccessPolicy"
+                }
+            }
+        },
+        "StoreId": {
+            "type": "string"
+        },
+        "StoreType": {
+            "enum": [
+                "SEQUENCE_STORE",
+                "REFERENCE_STORE"
+            ]
+        },
+        "S3AccessPolicy": {
+            "type": "string"
+        },
+        "PutS3AccessPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "s3AccessPointArn": {
+                    "$ref": "#/$defs/S3AccessPointArn"
+                },
+                "s3AccessPolicy": {
+                    "$ref": "#/$defs/S3AccessPolicy"
+                }
+            }
+        },
+        "PutS3AccessPolicyResponse": {
+            "type": "object",
+            "properties": {
+                "s3AccessPointArn": {
+                    "$ref": "#/$defs/S3AccessPointArn"
+                },
+                "storeId": {
+                    "$ref": "#/$defs/StoreId"
+                },
+                "storeType": {
+                    "$ref": "#/$defs/StoreType"
+                }
+            }
         }
     },
     "aws": {

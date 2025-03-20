@@ -1770,6 +1770,9 @@
                 },
                 "encryptionConfiguration": {
                     "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "variableReferences": {
+                    "$ref": "#/$defs/VariableReferences"
                 }
             }
         },
@@ -1783,6 +1786,21 @@
             "type": "string"
         },
         "RevisionId": {
+            "type": "string"
+        },
+        "VariableReferences": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/VariableNameList"
+            }
+        },
+        "VariableNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VariableName"
+            }
+        },
+        "VariableName": {
             "type": "string"
         },
         "DescribeStateMachineInput": {
@@ -1862,6 +1880,9 @@
                 },
                 "encryptionConfiguration": {
                     "$ref": "#/$defs/EncryptionConfiguration"
+                },
+                "variableReferences": {
+                    "$ref": "#/$defs/VariableReferences"
                 }
             }
         },
@@ -2043,6 +2064,9 @@
                 },
                 "mapRunRedrivenEventDetails": {
                     "$ref": "#/$defs/MapRunRedrivenEventDetails"
+                },
+                "evaluationFailedEventDetails": {
+                    "$ref": "#/$defs/EvaluationFailedEventDetails"
                 }
             }
         },
@@ -2108,7 +2132,8 @@
                 "MapRunStarted",
                 "MapRunSucceeded",
                 "ExecutionRedriven",
-                "MapRunRedriven"
+                "MapRunRedriven",
+                "EvaluationFailed"
             ]
         },
         "EventId": {
@@ -2550,6 +2575,29 @@
                 },
                 "outputDetails": {
                     "$ref": "#/$defs/HistoryEventExecutionDataDetails"
+                },
+                "assignedVariables": {
+                    "$ref": "#/$defs/AssignedVariables"
+                },
+                "assignedVariablesDetails": {
+                    "$ref": "#/$defs/AssignedVariablesDetails"
+                }
+            }
+        },
+        "AssignedVariables": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/VariableValue"
+            }
+        },
+        "VariableValue": {
+            "type": "string"
+        },
+        "AssignedVariablesDetails": {
+            "type": "object",
+            "properties": {
+                "truncated": {
+                    "$ref": "#/$defs/truncated"
                 }
             }
         },
@@ -2582,6 +2630,29 @@
                     "$ref": "#/$defs/RedriveCount"
                 }
             }
+        },
+        "EvaluationFailedEventDetails": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/$defs/SensitiveError"
+                },
+                "cause": {
+                    "$ref": "#/$defs/SensitiveCause"
+                },
+                "location": {
+                    "$ref": "#/$defs/EvaluationFailureLocation"
+                },
+                "state": {
+                    "$ref": "#/$defs/StateName"
+                }
+            }
+        },
+        "EvaluationFailureLocation": {
+            "type": "string"
+        },
+        "StateName": {
+            "type": "string"
         },
         "PageToken": {
             "type": "string"
@@ -3223,6 +3294,9 @@
                 "input": {
                     "$ref": "#/$defs/SensitiveData"
                 },
+                "afterArguments": {
+                    "$ref": "#/$defs/SensitiveData"
+                },
                 "afterInputPath": {
                     "$ref": "#/$defs/SensitiveData"
                 },
@@ -3243,6 +3317,9 @@
                 },
                 "response": {
                     "$ref": "#/$defs/InspectionDataResponse"
+                },
+                "variables": {
+                    "$ref": "#/$defs/SensitiveData"
                 }
             }
         },
@@ -3307,9 +3384,6 @@
         "HTTPStatusMessage": {
             "type": "string"
         },
-        "StateName": {
-            "type": "string"
-        },
         "TestExecutionStatus": {
             "enum": [
                 "SUCCEEDED",
@@ -3335,6 +3409,9 @@
                 },
                 "revealSecrets": {
                     "$ref": "#/$defs/RevealSecrets"
+                },
+                "variables": {
+                    "$ref": "#/$defs/SensitiveData"
                 }
             }
         },

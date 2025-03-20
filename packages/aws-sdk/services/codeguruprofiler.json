@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "dailyReportsOnly": {}
                     }
                 }
             }
@@ -68,8 +68,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -106,8 +105,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -144,8 +143,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -197,6 +196,27 @@
             "type": "string",
             "format": "binary"
         },
+        "GetFindingsReportAccountSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "dailyReportsOnly": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "PaginationToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
         "GetFindingsReportAccountSummaryResponse": {
             "type": "object",
             "properties": {
@@ -241,26 +261,16 @@
             "type": "string",
             "format": "date-time"
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "GetFindingsReportAccountSummaryRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "dailyReportsOnly": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
+                "resourceArn": {
+                    "$ref": "#/$defs/ProfilingGroupArn"
                 }
             }
         },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
+        "ProfilingGroupArn": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -276,21 +286,6 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/ProfilingGroupArn"
-                }
-            }
-        },
-        "ProfilingGroupArn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -302,7 +297,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -322,6 +317,10 @@
             "items": {
                 "$ref": "#/$defs/smithy.api#String"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

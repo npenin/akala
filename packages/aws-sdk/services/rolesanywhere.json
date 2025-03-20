@@ -29,8 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -63,9 +62,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "trustAnchorId": {},
+                        "notificationSettings": {}
                     }
                 }
             }
@@ -98,9 +96,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "trustAnchorId": {},
+                        "notificationSettingKeys": {}
                     }
                 }
             }
@@ -133,8 +130,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -167,8 +164,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -220,6 +217,17 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -251,15 +259,47 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
+        "PutNotificationSettingsRequest": {
             "type": "object",
             "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/AmazonResourceName"
+                "trustAnchorId": {
+                    "$ref": "#/$defs/Uuid"
+                },
+                "notificationSettings": {
+                    "$ref": "#/$defs/NotificationSettings"
                 }
             }
         },
-        "AmazonResourceName": {
+        "Uuid": {
+            "type": "string"
+        },
+        "NotificationSettings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NotificationSetting"
+            }
+        },
+        "NotificationSetting": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "event": {
+                    "$ref": "#/$defs/NotificationEvent"
+                },
+                "threshold": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "channel": {
+                    "$ref": "#/$defs/NotificationChannel"
+                }
+            }
+        },
+        "NotificationEvent": {
+            "type": "string"
+        },
+        "NotificationChannel": {
             "type": "string"
         },
         "PutNotificationSettingsResponse": {
@@ -298,9 +338,6 @@
                     "$ref": "#/$defs/NotificationSettingDetails"
                 }
             }
-        },
-        "Uuid": {
-            "type": "string"
         },
         "ResourceName": {
             "type": "string"
@@ -356,54 +393,6 @@
                 }
             }
         },
-        "NotificationEvent": {
-            "type": "string"
-        },
-        "NotificationChannel": {
-            "type": "string"
-        },
-        "PutNotificationSettingsRequest": {
-            "type": "object",
-            "properties": {
-                "trustAnchorId": {
-                    "$ref": "#/$defs/Uuid"
-                },
-                "notificationSettings": {
-                    "$ref": "#/$defs/NotificationSettings"
-                }
-            }
-        },
-        "NotificationSettings": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/NotificationSetting"
-            }
-        },
-        "NotificationSetting": {
-            "type": "object",
-            "properties": {
-                "enabled": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
-                },
-                "event": {
-                    "$ref": "#/$defs/NotificationEvent"
-                },
-                "threshold": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "channel": {
-                    "$ref": "#/$defs/NotificationChannel"
-                }
-            }
-        },
-        "ResetNotificationSettingsResponse": {
-            "type": "object",
-            "properties": {
-                "trustAnchor": {
-                    "$ref": "#/$defs/TrustAnchorDetail"
-                }
-            }
-        },
         "ResetNotificationSettingsRequest": {
             "type": "object",
             "properties": {
@@ -432,9 +421,13 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "ResetNotificationSettingsResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "trustAnchor": {
+                    "$ref": "#/$defs/TrustAnchorDetail"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -447,7 +440,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -467,6 +460,10 @@
             "items": {
                 "$ref": "#/$defs/TagKey"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

@@ -29,9 +29,43 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Timestamp": {},
+                        "SloIds": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchUpdateExclusionWindows",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "PATCH",
+                    "route": "/exclusion-windows"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchUpdateExclusionWindowsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchUpdateExclusionWindowsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "SloIds": {},
+                        "AddExclusionWindows": {},
+                        "RemoveExclusionWindows": {}
                     }
                 }
             }
@@ -64,9 +98,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StartTime": {},
+                        "EndTime": {},
+                        "KeyAttributes": {}
                     }
                 }
             }
@@ -99,9 +133,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StartTime": {},
+                        "EndTime": {},
+                        "KeyAttributes": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -134,9 +170,50 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StartTime": {},
+                        "EndTime": {},
+                        "KeyAttributes": {},
+                        "MaxResults": {},
+                        "NextToken": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListServiceLevelObjectiveExclusionWindows",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/slo/{Id}/exclusion-windows"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServiceLevelObjectiveExclusionWindowsOutput"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServiceLevelObjectiveExclusionWindowsInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Id": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -169,9 +246,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StartTime": {},
+                        "EndTime": {},
+                        "KeyAttributes": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -204,9 +283,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StartTime": {},
+                        "EndTime": {},
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "IncludeLinkedAccounts": {},
+                        "AwsAccountId": {}
                     }
                 }
             }
@@ -239,9 +321,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -273,11 +353,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -309,9 +385,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -344,9 +419,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -397,6 +471,23 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "BatchGetServiceLevelObjectiveBudgetReportInput": {
+            "type": "object",
+            "properties": {
+                "Timestamp": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "SloIds": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveIds"
+                }
+            }
+        },
+        "ServiceLevelObjectiveIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
         },
         "BatchGetServiceLevelObjectiveBudgetReportOutput": {
             "type": "object",
@@ -853,21 +944,124 @@
         "ServiceLevelObjectiveBudgetReportErrorMessage": {
             "type": "string"
         },
-        "BatchGetServiceLevelObjectiveBudgetReportInput": {
+        "BatchUpdateExclusionWindowsInput": {
             "type": "object",
             "properties": {
-                "Timestamp": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
-                },
                 "SloIds": {
                     "$ref": "#/$defs/ServiceLevelObjectiveIds"
+                },
+                "AddExclusionWindows": {
+                    "$ref": "#/$defs/ExclusionWindows"
+                },
+                "RemoveExclusionWindows": {
+                    "$ref": "#/$defs/ExclusionWindows"
                 }
             }
         },
-        "ServiceLevelObjectiveIds": {
+        "ExclusionWindows": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/smithy.api#String"
+                "$ref": "#/$defs/ExclusionWindow"
+            }
+        },
+        "ExclusionWindow": {
+            "type": "object",
+            "properties": {
+                "Window": {
+                    "$ref": "#/$defs/Window"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "RecurrenceRule": {
+                    "$ref": "#/$defs/RecurrenceRule"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/ExclusionReason"
+                }
+            }
+        },
+        "Window": {
+            "type": "object",
+            "properties": {
+                "DurationUnit": {
+                    "$ref": "#/$defs/DurationUnit"
+                },
+                "Duration": {
+                    "$ref": "#/$defs/ExclusionDuration"
+                }
+            }
+        },
+        "ExclusionDuration": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "RecurrenceRule": {
+            "type": "object",
+            "properties": {
+                "Expression": {
+                    "$ref": "#/$defs/Expression"
+                }
+            }
+        },
+        "Expression": {
+            "type": "string"
+        },
+        "ExclusionReason": {
+            "type": "string"
+        },
+        "BatchUpdateExclusionWindowsOutput": {
+            "type": "object",
+            "properties": {
+                "SloIds": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveIds"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/BatchUpdateExclusionWindowsErrors"
+                }
+            }
+        },
+        "BatchUpdateExclusionWindowsErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchUpdateExclusionWindowsError"
+            }
+        },
+        "BatchUpdateExclusionWindowsError": {
+            "type": "object",
+            "properties": {
+                "SloId": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveId"
+                },
+                "ErrorCode": {
+                    "$ref": "#/$defs/ExclusionWindowErrorCode"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/ExclusionWindowErrorMessage"
+                }
+            }
+        },
+        "ServiceLevelObjectiveId": {
+            "type": "string"
+        },
+        "ExclusionWindowErrorCode": {
+            "type": "string"
+        },
+        "ExclusionWindowErrorMessage": {
+            "type": "string"
+        },
+        "GetServiceInput": {
+            "type": "object",
+            "properties": {
+                "StartTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "KeyAttributes": {
+                    "$ref": "#/$defs/Attributes"
+                }
             }
         },
         "GetServiceOutput": {
@@ -936,10 +1130,16 @@
                 },
                 "MetricName": {
                     "$ref": "#/$defs/MetricName"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
                 }
             }
         },
         "MetricType": {
+            "type": "string"
+        },
+        "AwsAccountId": {
             "type": "string"
         },
         "LogGroupReferences": {
@@ -948,7 +1148,7 @@
                 "$ref": "#/$defs/Attributes"
             }
         },
-        "GetServiceInput": {
+        "ListServiceDependenciesInput": {
             "type": "object",
             "properties": {
                 "StartTime": {
@@ -959,8 +1159,21 @@
                 },
                 "KeyAttributes": {
                     "$ref": "#/$defs/Attributes"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListServiceDependenciesMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
+        },
+        "ListServiceDependenciesMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListServiceDependenciesOutput": {
             "type": "object",
@@ -1002,10 +1215,7 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListServiceDependenciesInput": {
+        "ListServiceDependentsInput": {
             "type": "object",
             "properties": {
                 "StartTime": {
@@ -1018,14 +1228,14 @@
                     "$ref": "#/$defs/Attributes"
                 },
                 "MaxResults": {
-                    "$ref": "#/$defs/ListServiceDependenciesMaxResults"
+                    "$ref": "#/$defs/ListServiceDependentsMaxResults"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
                 }
             }
         },
-        "ListServiceDependenciesMaxResults": {
+        "ListServiceDependentsMaxResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -1069,7 +1279,36 @@
                 }
             }
         },
-        "ListServiceDependentsInput": {
+        "ListServiceLevelObjectiveExclusionWindowsInput": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/ServiceLevelObjectiveId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/ListServiceLevelObjectiveExclusionWindowsMaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListServiceLevelObjectiveExclusionWindowsMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListServiceLevelObjectiveExclusionWindowsOutput": {
+            "type": "object",
+            "properties": {
+                "ExclusionWindows": {
+                    "$ref": "#/$defs/ExclusionWindows"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListServiceOperationsInput": {
             "type": "object",
             "properties": {
                 "StartTime": {
@@ -1082,14 +1321,14 @@
                     "$ref": "#/$defs/Attributes"
                 },
                 "MaxResults": {
-                    "$ref": "#/$defs/ListServiceDependentsMaxResults"
+                    "$ref": "#/$defs/ListServiceOperationMaxResults"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
                 }
             }
         },
-        "ListServiceDependentsMaxResults": {
+        "ListServiceOperationMaxResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -1127,7 +1366,7 @@
                 }
             }
         },
-        "ListServiceOperationsInput": {
+        "ListServicesInput": {
             "type": "object",
             "properties": {
                 "StartTime": {
@@ -1136,18 +1375,21 @@
                 "EndTime": {
                     "$ref": "#/$defs/smithy.api#Timestamp"
                 },
-                "KeyAttributes": {
-                    "$ref": "#/$defs/Attributes"
-                },
                 "MaxResults": {
-                    "$ref": "#/$defs/ListServiceOperationMaxResults"
+                    "$ref": "#/$defs/ListServicesMaxResults"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
+                },
+                "IncludeLinkedAccounts": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                },
+                "AwsAccountId": {
+                    "$ref": "#/$defs/AwsAccountId"
                 }
             }
         },
-        "ListServiceOperationMaxResults": {
+        "ListServicesMaxResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -1188,26 +1430,16 @@
                 }
             }
         },
-        "ListServicesInput": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "StartTime": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
-                },
-                "EndTime": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/ListServicesMaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
                 }
             }
         },
-        "ListServicesMaxResults": {
-            "type": "integer",
-            "format": "int32"
+        "AmazonResourceName": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -1240,26 +1472,11 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                }
-            }
-        },
-        "AmazonResourceName": {
-            "type": "string"
-        },
-        "StartDiscoveryOutput": {
-            "type": "object",
-            "properties": {}
-        },
         "StartDiscoveryInput": {
             "type": "object",
             "properties": {}
         },
-        "TagResourceResponse": {
+        "StartDiscoveryOutput": {
             "type": "object",
             "properties": {}
         },
@@ -1274,7 +1491,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1294,6 +1511,10 @@
             "items": {
                 "$ref": "#/$defs/TagKey"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

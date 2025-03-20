@@ -28,8 +28,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "auditEvents": {},
+                        "channelArn": {},
+                        "externalId": {}
                     }
                 }
             }
@@ -81,63 +82,6 @@
             "type": "string",
             "format": "binary"
         },
-        "PutAuditEventsResponse": {
-            "type": "object",
-            "properties": {
-                "successful": {
-                    "$ref": "#/$defs/AuditEventResultEntries"
-                },
-                "failed": {
-                    "$ref": "#/$defs/ResultErrorEntries"
-                }
-            }
-        },
-        "AuditEventResultEntries": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AuditEventResultEntry"
-            }
-        },
-        "AuditEventResultEntry": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "$ref": "#/$defs/Uuid"
-                },
-                "eventID": {
-                    "$ref": "#/$defs/Uuid"
-                }
-            }
-        },
-        "Uuid": {
-            "type": "string"
-        },
-        "ResultErrorEntries": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ResultErrorEntry"
-            }
-        },
-        "ResultErrorEntry": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "$ref": "#/$defs/Uuid"
-                },
-                "errorCode": {
-                    "$ref": "#/$defs/ErrorCode"
-                },
-                "errorMessage": {
-                    "$ref": "#/$defs/ErrorMessage"
-                }
-            }
-        },
-        "ErrorCode": {
-            "type": "string"
-        },
-        "ErrorMessage": {
-            "type": "string"
-        },
         "PutAuditEventsRequest": {
             "type": "object",
             "properties": {
@@ -172,10 +116,67 @@
                 }
             }
         },
+        "Uuid": {
+            "type": "string"
+        },
         "ChannelArn": {
             "type": "string"
         },
         "ExternalId": {
+            "type": "string"
+        },
+        "PutAuditEventsResponse": {
+            "type": "object",
+            "properties": {
+                "successful": {
+                    "$ref": "#/$defs/AuditEventResultEntries"
+                },
+                "failed": {
+                    "$ref": "#/$defs/ResultErrorEntries"
+                }
+            }
+        },
+        "AuditEventResultEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuditEventResultEntry"
+            }
+        },
+        "AuditEventResultEntry": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Uuid"
+                },
+                "eventID": {
+                    "$ref": "#/$defs/Uuid"
+                }
+            }
+        },
+        "ResultErrorEntries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResultErrorEntry"
+            }
+        },
+        "ResultErrorEntry": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/Uuid"
+                },
+                "errorCode": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "errorMessage": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorCode": {
+            "type": "string"
+        },
+        "ErrorMessage": {
             "type": "string"
         }
     },

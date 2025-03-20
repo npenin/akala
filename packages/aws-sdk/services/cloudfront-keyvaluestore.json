@@ -35,9 +35,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KvsARN": {},
+                        "Key": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -74,9 +74,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KvsARN": {}
                     }
                 }
             }
@@ -115,9 +113,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KvsARN": {},
+                        "Key": {}
                     }
                 }
             }
@@ -154,9 +151,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KvsARN": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -195,9 +192,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Key": {},
+                        "Value": {},
+                        "KvsARN": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -234,9 +232,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KvsARN": {},
+                        "IfMatch": {},
+                        "Puts": {},
+                        "Deletes": {}
                     }
                 }
             }
@@ -288,23 +287,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteKeyResponse": {
-            "type": "object",
-            "properties": {
-                "ItemCount": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "TotalSizeInBytes": {
-                    "$ref": "#/$defs/smithy.api#Long"
-                },
-                "ETag": {
-                    "$ref": "#/$defs/Etag"
-                }
-            }
-        },
-        "Etag": {
-            "type": "string"
-        },
         "DeleteKeyRequest": {
             "type": "object",
             "properties": {
@@ -324,6 +306,31 @@
         },
         "Key": {
             "type": "string"
+        },
+        "Etag": {
+            "type": "string"
+        },
+        "DeleteKeyResponse": {
+            "type": "object",
+            "properties": {
+                "ItemCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "TotalSizeInBytes": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/Etag"
+                }
+            }
+        },
+        "DescribeKeyValueStoreRequest": {
+            "type": "object",
+            "properties": {
+                "KvsARN": {
+                    "$ref": "#/$defs/KvsARN"
+                }
+            }
         },
         "DescribeKeyValueStoreResponse": {
             "type": "object",
@@ -354,11 +361,14 @@
                 }
             }
         },
-        "DescribeKeyValueStoreRequest": {
+        "GetKeyRequest": {
             "type": "object",
             "properties": {
                 "KvsARN": {
                     "$ref": "#/$defs/KvsARN"
+                },
+                "Key": {
+                    "$ref": "#/$defs/Key"
                 }
             }
         },
@@ -382,14 +392,17 @@
         "Value": {
             "type": "string"
         },
-        "GetKeyRequest": {
+        "ListKeysRequest": {
             "type": "object",
             "properties": {
                 "KvsARN": {
                     "$ref": "#/$defs/KvsARN"
                 },
-                "Key": {
-                    "$ref": "#/$defs/Key"
+                "NextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
         },
@@ -421,34 +434,6 @@
                 }
             }
         },
-        "ListKeysRequest": {
-            "type": "object",
-            "properties": {
-                "KvsARN": {
-                    "$ref": "#/$defs/KvsARN"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                }
-            }
-        },
-        "PutKeyResponse": {
-            "type": "object",
-            "properties": {
-                "ItemCount": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "TotalSizeInBytes": {
-                    "$ref": "#/$defs/smithy.api#Long"
-                },
-                "ETag": {
-                    "$ref": "#/$defs/Etag"
-                }
-            }
-        },
         "PutKeyRequest": {
             "type": "object",
             "properties": {
@@ -466,7 +451,7 @@
                 }
             }
         },
-        "UpdateKeysResponse": {
+        "PutKeyResponse": {
             "type": "object",
             "properties": {
                 "ItemCount": {
@@ -525,6 +510,20 @@
             "properties": {
                 "Key": {
                     "$ref": "#/$defs/Key"
+                }
+            }
+        },
+        "UpdateKeysResponse": {
+            "type": "object",
+            "properties": {
+                "ItemCount": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "TotalSizeInBytes": {
+                    "$ref": "#/$defs/smithy.api#Long"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/Etag"
                 }
             }
         }

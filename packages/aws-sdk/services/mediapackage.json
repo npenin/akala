@@ -33,9 +33,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EgressAccessLogs": {},
+                        "Id": {},
+                        "IngressAccessLogs": {}
                     }
                 }
             }
@@ -68,9 +68,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Description": {},
+                        "Id": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -103,9 +103,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EndTime": {},
+                        "Id": {},
+                        "OriginEndpointId": {},
+                        "S3Destination": {},
+                        "StartTime": {}
                     }
                 }
             }
@@ -138,9 +140,20 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Authorization": {},
+                        "ChannelId": {},
+                        "CmafPackage": {},
+                        "DashPackage": {},
+                        "Description": {},
+                        "HlsPackage": {},
+                        "Id": {},
+                        "ManifestName": {},
+                        "MssPackage": {},
+                        "Origination": {},
+                        "StartoverWindowSeconds": {},
+                        "Tags": {},
+                        "TimeDelaySeconds": {},
+                        "Whitelist": {}
                     }
                 }
             }
@@ -177,9 +190,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -216,9 +227,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -255,9 +264,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -294,9 +301,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -333,9 +338,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -368,9 +371,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -403,9 +405,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "IncludeChannelId": {},
+                        "IncludeStatus": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -438,9 +441,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ChannelId": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -477,9 +480,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -516,9 +517,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -557,9 +556,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IngestEndpointId": {}
                     }
                 }
             }
@@ -596,9 +594,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -635,9 +632,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -674,9 +670,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Description": {},
+                        "Id": {}
                     }
                 }
             }
@@ -713,9 +708,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Authorization": {},
+                        "CmafPackage": {},
+                        "DashPackage": {},
+                        "Description": {},
+                        "HlsPackage": {},
+                        "Id": {},
+                        "ManifestName": {},
+                        "MssPackage": {},
+                        "Origination": {},
+                        "StartoverWindowSeconds": {},
+                        "TimeDelaySeconds": {},
+                        "Whitelist": {}
                     }
                 }
             }
@@ -767,6 +771,39 @@
             "type": "string",
             "format": "binary"
         },
+        "ConfigureLogsRequest": {
+            "type": "object",
+            "properties": {
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "IngressAccessLogs": {
+                    "$ref": "#/$defs/IngressAccessLogs"
+                }
+            }
+        },
+        "EgressAccessLogs": {
+            "type": "object",
+            "properties": {
+                "LogGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
+        "IngressAccessLogs": {
+            "type": "object",
+            "properties": {
+                "LogGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
         "ConfigureLogsResponse": {
             "type": "object",
             "properties": {
@@ -793,17 +830,6 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "__string": {
-            "type": "string"
-        },
-        "EgressAccessLogs": {
-            "type": "object",
-            "properties": {
-                "LogGroupName": {
-                    "$ref": "#/$defs/__string"
                 }
             }
         },
@@ -841,31 +867,23 @@
         "SensitiveString": {
             "type": "string"
         },
-        "IngressAccessLogs": {
-            "type": "object",
-            "properties": {
-                "LogGroupName": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
         "Tags": {
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/__string"
             }
         },
-        "ConfigureLogsRequest": {
+        "CreateChannelRequest": {
             "type": "object",
             "properties": {
-                "EgressAccessLogs": {
-                    "$ref": "#/$defs/EgressAccessLogs"
+                "Description": {
+                    "$ref": "#/$defs/__string"
                 },
                 "Id": {
                     "$ref": "#/$defs/__string"
                 },
-                "IngressAccessLogs": {
-                    "$ref": "#/$defs/IngressAccessLogs"
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -898,17 +916,37 @@
                 }
             }
         },
-        "CreateChannelRequest": {
+        "CreateHarvestJobRequest": {
             "type": "object",
             "properties": {
-                "Description": {
+                "EndTime": {
                     "$ref": "#/$defs/__string"
                 },
                 "Id": {
                     "$ref": "#/$defs/__string"
                 },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
+                "OriginEndpointId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "S3Destination": {
+                    "$ref": "#/$defs/S3Destination"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "S3Destination": {
+            "type": "object",
+            "properties": {
+                "BucketName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ManifestKey": {
+                    "$ref": "#/$defs/__string"
+                },
+                "RoleArn": {
+                    "$ref": "#/$defs/__string"
                 }
             }
         },
@@ -944,20 +982,6 @@
                 }
             }
         },
-        "S3Destination": {
-            "type": "object",
-            "properties": {
-                "BucketName": {
-                    "$ref": "#/$defs/__string"
-                },
-                "ManifestKey": {
-                    "$ref": "#/$defs/__string"
-                },
-                "RoleArn": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
         "Status": {
             "enum": [
                 "IN_PROGRESS",
@@ -965,32 +989,9 @@
                 "FAILED"
             ]
         },
-        "CreateHarvestJobRequest": {
+        "CreateOriginEndpointRequest": {
             "type": "object",
             "properties": {
-                "EndTime": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Id": {
-                    "$ref": "#/$defs/__string"
-                },
-                "OriginEndpointId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "S3Destination": {
-                    "$ref": "#/$defs/S3Destination"
-                },
-                "StartTime": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "CreateOriginEndpointResponse": {
-            "type": "object",
-            "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/__string"
-                },
                 "Authorization": {
                     "$ref": "#/$defs/Authorization"
                 },
@@ -998,10 +999,7 @@
                     "$ref": "#/$defs/__string"
                 },
                 "CmafPackage": {
-                    "$ref": "#/$defs/CmafPackage"
-                },
-                "CreatedAt": {
-                    "$ref": "#/$defs/__string"
+                    "$ref": "#/$defs/CmafPackageCreateOrUpdateParameters"
                 },
                 "DashPackage": {
                     "$ref": "#/$defs/DashPackage"
@@ -1033,9 +1031,6 @@
                 "TimeDelaySeconds": {
                     "$ref": "#/$defs/__integer"
                 },
-                "Url": {
-                    "$ref": "#/$defs/__string"
-                },
                 "Whitelist": {
                     "$ref": "#/$defs/__listOf__string"
                 }
@@ -1052,14 +1047,14 @@
                 }
             }
         },
-        "CmafPackage": {
+        "CmafPackageCreateOrUpdateParameters": {
             "type": "object",
             "properties": {
                 "Encryption": {
                     "$ref": "#/$defs/CmafEncryption"
                 },
                 "HlsManifests": {
-                    "$ref": "#/$defs/__listOfHlsManifest"
+                    "$ref": "#/$defs/__listOfHlsManifestCreateOrUpdateParameters"
                 },
                 "SegmentDurationSeconds": {
                     "$ref": "#/$defs/__integer"
@@ -1162,17 +1157,23 @@
                 "$ref": "#/$defs/__string"
             }
         },
-        "__listOfHlsManifest": {
+        "__listOfHlsManifestCreateOrUpdateParameters": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/HlsManifest"
+                "$ref": "#/$defs/HlsManifestCreateOrUpdateParameters"
             }
         },
-        "HlsManifest": {
+        "HlsManifestCreateOrUpdateParameters": {
             "type": "object",
             "properties": {
                 "AdMarkers": {
                     "$ref": "#/$defs/AdMarkers"
+                },
+                "AdTriggers": {
+                    "$ref": "#/$defs/AdTriggers"
+                },
+                "AdsOnDeliveryRestrictions": {
+                    "$ref": "#/$defs/AdsOnDeliveryRestrictions"
                 },
                 "Id": {
                     "$ref": "#/$defs/__string"
@@ -1191,15 +1192,6 @@
                 },
                 "ProgramDateTimeIntervalSeconds": {
                     "$ref": "#/$defs/__integer"
-                },
-                "Url": {
-                    "$ref": "#/$defs/__string"
-                },
-                "AdTriggers": {
-                    "$ref": "#/$defs/AdTriggers"
-                },
-                "AdsOnDeliveryRestrictions": {
-                    "$ref": "#/$defs/AdsOnDeliveryRestrictions"
                 }
             }
         },
@@ -1209,16 +1201,6 @@
                 "SCTE35_ENHANCED",
                 "PASSTHROUGH",
                 "DATERANGE"
-            ]
-        },
-        "__boolean": {
-            "type": "boolean"
-        },
-        "PlaylistType": {
-            "enum": [
-                "NONE",
-                "EVENT",
-                "VOD"
             ]
         },
         "AdTriggers": {
@@ -1245,6 +1227,16 @@
                 "RESTRICTED",
                 "UNRESTRICTED",
                 "BOTH"
+            ]
+        },
+        "__boolean": {
+            "type": "boolean"
+        },
+        "PlaylistType": {
+            "enum": [
+                "NONE",
+                "EVENT",
+                "VOD"
             ]
         },
         "StreamSelection": {
@@ -1471,9 +1463,12 @@
                 "DENY"
             ]
         },
-        "CreateOriginEndpointRequest": {
+        "CreateOriginEndpointResponse": {
             "type": "object",
             "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
                 "Authorization": {
                     "$ref": "#/$defs/Authorization"
                 },
@@ -1481,7 +1476,10 @@
                     "$ref": "#/$defs/__string"
                 },
                 "CmafPackage": {
-                    "$ref": "#/$defs/CmafPackageCreateOrUpdateParameters"
+                    "$ref": "#/$defs/CmafPackage"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
                 },
                 "DashPackage": {
                     "$ref": "#/$defs/DashPackage"
@@ -1513,19 +1511,22 @@
                 "TimeDelaySeconds": {
                     "$ref": "#/$defs/__integer"
                 },
+                "Url": {
+                    "$ref": "#/$defs/__string"
+                },
                 "Whitelist": {
                     "$ref": "#/$defs/__listOf__string"
                 }
             }
         },
-        "CmafPackageCreateOrUpdateParameters": {
+        "CmafPackage": {
             "type": "object",
             "properties": {
                 "Encryption": {
                     "$ref": "#/$defs/CmafEncryption"
                 },
                 "HlsManifests": {
-                    "$ref": "#/$defs/__listOfHlsManifestCreateOrUpdateParameters"
+                    "$ref": "#/$defs/__listOfHlsManifest"
                 },
                 "SegmentDurationSeconds": {
                     "$ref": "#/$defs/__integer"
@@ -1538,23 +1539,17 @@
                 }
             }
         },
-        "__listOfHlsManifestCreateOrUpdateParameters": {
+        "__listOfHlsManifest": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/HlsManifestCreateOrUpdateParameters"
+                "$ref": "#/$defs/HlsManifest"
             }
         },
-        "HlsManifestCreateOrUpdateParameters": {
+        "HlsManifest": {
             "type": "object",
             "properties": {
                 "AdMarkers": {
                     "$ref": "#/$defs/AdMarkers"
-                },
-                "AdTriggers": {
-                    "$ref": "#/$defs/AdTriggers"
-                },
-                "AdsOnDeliveryRestrictions": {
-                    "$ref": "#/$defs/AdsOnDeliveryRestrictions"
                 },
                 "Id": {
                     "$ref": "#/$defs/__string"
@@ -1573,6 +1568,23 @@
                 },
                 "ProgramDateTimeIntervalSeconds": {
                     "$ref": "#/$defs/__integer"
+                },
+                "Url": {
+                    "$ref": "#/$defs/__string"
+                },
+                "AdTriggers": {
+                    "$ref": "#/$defs/AdTriggers"
+                },
+                "AdsOnDeliveryRestrictions": {
+                    "$ref": "#/$defs/AdsOnDeliveryRestrictions"
+                }
+            }
+        },
+        "DeleteChannelRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
                 }
             }
         },
@@ -1580,7 +1592,7 @@
             "type": "object",
             "properties": {}
         },
-        "DeleteChannelRequest": {
+        "DeleteOriginEndpointRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -1592,7 +1604,7 @@
             "type": "object",
             "properties": {}
         },
-        "DeleteOriginEndpointRequest": {
+        "DescribeChannelRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -1629,7 +1641,7 @@
                 }
             }
         },
-        "DescribeChannelRequest": {
+        "DescribeHarvestJobRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -1669,7 +1681,7 @@
                 }
             }
         },
-        "DescribeHarvestJobRequest": {
+        "DescribeOriginEndpointRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -1733,13 +1745,20 @@
                 }
             }
         },
-        "DescribeOriginEndpointRequest": {
+        "ListChannelsRequest": {
             "type": "object",
             "properties": {
-                "Id": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
                     "$ref": "#/$defs/__string"
                 }
             }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListChannelsResponse": {
             "type": "object",
@@ -1787,9 +1806,15 @@
                 }
             }
         },
-        "ListChannelsRequest": {
+        "ListHarvestJobsRequest": {
             "type": "object",
             "properties": {
+                "IncludeChannelId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "IncludeStatus": {
+                    "$ref": "#/$defs/__string"
+                },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
                 },
@@ -1797,10 +1822,6 @@
                     "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListHarvestJobsResponse": {
             "type": "object",
@@ -1851,13 +1872,10 @@
                 }
             }
         },
-        "ListHarvestJobsRequest": {
+        "ListOriginEndpointsRequest": {
             "type": "object",
             "properties": {
-                "IncludeChannelId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "IncludeStatus": {
+                "ChannelId": {
                     "$ref": "#/$defs/__string"
                 },
                 "MaxResults": {
@@ -1941,16 +1959,10 @@
                 }
             }
         },
-        "ListOriginEndpointsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "ChannelId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
+                "ResourceArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1969,43 +1981,6 @@
                 "$ref": "#/$defs/__string"
             }
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "RotateChannelCredentialsResponse": {
-            "type": "object",
-            "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/__string"
-                },
-                "CreatedAt": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Description": {
-                    "$ref": "#/$defs/__string"
-                },
-                "EgressAccessLogs": {
-                    "$ref": "#/$defs/EgressAccessLogs"
-                },
-                "HlsIngest": {
-                    "$ref": "#/$defs/HlsIngest"
-                },
-                "Id": {
-                    "$ref": "#/$defs/__string"
-                },
-                "IngressAccessLogs": {
-                    "$ref": "#/$defs/IngressAccessLogs"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
         "RotateChannelCredentialsRequest": {
             "type": "object",
             "properties": {
@@ -2014,7 +1989,7 @@
                 }
             }
         },
-        "RotateIngestEndpointCredentialsResponse": {
+        "RotateChannelCredentialsResponse": {
             "type": "object",
             "properties": {
                 "Arn": {
@@ -2054,6 +2029,35 @@
                 }
             }
         },
+        "RotateIngestEndpointCredentialsResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "HlsIngest": {
+                    "$ref": "#/$defs/HlsIngest"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                },
+                "IngressAccessLogs": {
+                    "$ref": "#/$defs/IngressAccessLogs"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -2073,6 +2077,17 @@
                 },
                 "TagKeys": {
                     "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "UpdateChannelRequest": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
                 }
             }
         },
@@ -2105,14 +2120,44 @@
                 }
             }
         },
-        "UpdateChannelRequest": {
+        "UpdateOriginEndpointRequest": {
             "type": "object",
             "properties": {
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "CmafPackage": {
+                    "$ref": "#/$defs/CmafPackageCreateOrUpdateParameters"
+                },
+                "DashPackage": {
+                    "$ref": "#/$defs/DashPackage"
+                },
                 "Description": {
                     "$ref": "#/$defs/__string"
                 },
+                "HlsPackage": {
+                    "$ref": "#/$defs/HlsPackage"
+                },
                 "Id": {
                     "$ref": "#/$defs/__string"
+                },
+                "ManifestName": {
+                    "$ref": "#/$defs/__string"
+                },
+                "MssPackage": {
+                    "$ref": "#/$defs/MssPackage"
+                },
+                "Origination": {
+                    "$ref": "#/$defs/Origination"
+                },
+                "StartoverWindowSeconds": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "TimeDelaySeconds": {
+                    "$ref": "#/$defs/__integer"
+                },
+                "Whitelist": {
+                    "$ref": "#/$defs/__listOf__string"
                 }
             }
         },
@@ -2166,47 +2211,6 @@
                 },
                 "Url": {
                     "$ref": "#/$defs/__string"
-                },
-                "Whitelist": {
-                    "$ref": "#/$defs/__listOf__string"
-                }
-            }
-        },
-        "UpdateOriginEndpointRequest": {
-            "type": "object",
-            "properties": {
-                "Authorization": {
-                    "$ref": "#/$defs/Authorization"
-                },
-                "CmafPackage": {
-                    "$ref": "#/$defs/CmafPackageCreateOrUpdateParameters"
-                },
-                "DashPackage": {
-                    "$ref": "#/$defs/DashPackage"
-                },
-                "Description": {
-                    "$ref": "#/$defs/__string"
-                },
-                "HlsPackage": {
-                    "$ref": "#/$defs/HlsPackage"
-                },
-                "Id": {
-                    "$ref": "#/$defs/__string"
-                },
-                "ManifestName": {
-                    "$ref": "#/$defs/__string"
-                },
-                "MssPackage": {
-                    "$ref": "#/$defs/MssPackage"
-                },
-                "Origination": {
-                    "$ref": "#/$defs/Origination"
-                },
-                "StartoverWindowSeconds": {
-                    "$ref": "#/$defs/__integer"
-                },
-                "TimeDelaySeconds": {
-                    "$ref": "#/$defs/__integer"
                 },
                 "Whitelist": {
                     "$ref": "#/$defs/__listOf__string"

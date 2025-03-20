@@ -29,9 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Arn": {},
+                        "BillingPeriodRange": {},
+                        "GroupBy": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -64,8 +66,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "BillingPeriod": {},
+                        "Filters": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -98,8 +101,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "BillingPeriod": {},
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "Filters": {}
                     }
                 }
             }
@@ -136,9 +141,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -175,9 +178,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -214,9 +216,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -268,6 +269,59 @@
             "type": "string",
             "format": "binary"
         },
+        "GetBillingGroupCostReportInput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/BillingGroupArn"
+                },
+                "BillingPeriodRange": {
+                    "$ref": "#/$defs/BillingPeriodRange"
+                },
+                "GroupBy": {
+                    "$ref": "#/$defs/GroupByAttributesList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxBillingGroupCostReportResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "BillingGroupArn": {
+            "type": "string"
+        },
+        "BillingPeriodRange": {
+            "type": "object",
+            "properties": {
+                "InclusiveStartBillingPeriod": {
+                    "$ref": "#/$defs/BillingPeriod"
+                },
+                "ExclusiveEndBillingPeriod": {
+                    "$ref": "#/$defs/BillingPeriod"
+                }
+            }
+        },
+        "BillingPeriod": {
+            "type": "string"
+        },
+        "GroupByAttributesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/GroupByAttributeName"
+            }
+        },
+        "GroupByAttributeName": {
+            "type": "string"
+        },
+        "MaxBillingGroupCostReportResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Token": {
+            "type": "string"
+        },
         "GetBillingGroupCostReportOutput": {
             "type": "object",
             "properties": {
@@ -311,9 +365,6 @@
                 }
             }
         },
-        "BillingGroupArn": {
-            "type": "string"
-        },
         "AWSCost": {
             "type": "string"
         },
@@ -346,55 +397,45 @@
                 }
             }
         },
-        "Token": {
-            "type": "string"
-        },
-        "GetBillingGroupCostReportInput": {
+        "ListAccountAssociationsInput": {
             "type": "object",
             "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/BillingGroupArn"
+                "BillingPeriod": {
+                    "$ref": "#/$defs/BillingPeriod"
                 },
-                "BillingPeriodRange": {
-                    "$ref": "#/$defs/BillingPeriodRange"
-                },
-                "GroupBy": {
-                    "$ref": "#/$defs/GroupByAttributesList"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxBillingGroupCostReportResults"
+                "Filters": {
+                    "$ref": "#/$defs/ListAccountAssociationsFilter"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/Token"
                 }
             }
         },
-        "BillingPeriodRange": {
+        "ListAccountAssociationsFilter": {
             "type": "object",
             "properties": {
-                "InclusiveStartBillingPeriod": {
-                    "$ref": "#/$defs/BillingPeriod"
+                "Association": {
+                    "$ref": "#/$defs/Association"
                 },
-                "ExclusiveEndBillingPeriod": {
-                    "$ref": "#/$defs/BillingPeriod"
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "AccountIds": {
+                    "$ref": "#/$defs/AccountIdFilterList"
                 }
             }
         },
-        "BillingPeriod": {
+        "Association": {
             "type": "string"
         },
-        "GroupByAttributesList": {
+        "AccountId": {
+            "type": "string"
+        },
+        "AccountIdFilterList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/GroupByAttributeName"
+                "$ref": "#/$defs/AccountId"
             }
-        },
-        "GroupByAttributeName": {
-            "type": "string"
-        },
-        "MaxBillingGroupCostReportResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListAccountAssociationsOutput": {
             "type": "object",
@@ -430,50 +471,45 @@
                 }
             }
         },
-        "AccountId": {
-            "type": "string"
-        },
         "AccountName": {
             "type": "string"
         },
         "AccountEmail": {
             "type": "string"
         },
-        "ListAccountAssociationsInput": {
+        "ListBillingGroupCostReportsInput": {
             "type": "object",
             "properties": {
                 "BillingPeriod": {
                     "$ref": "#/$defs/BillingPeriod"
                 },
-                "Filters": {
-                    "$ref": "#/$defs/ListAccountAssociationsFilter"
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxBillingGroupResults"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/Token"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/ListBillingGroupCostReportsFilter"
                 }
             }
         },
-        "ListAccountAssociationsFilter": {
+        "MaxBillingGroupResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListBillingGroupCostReportsFilter": {
             "type": "object",
             "properties": {
-                "Association": {
-                    "$ref": "#/$defs/Association"
-                },
-                "AccountId": {
-                    "$ref": "#/$defs/AccountId"
-                },
-                "AccountIds": {
-                    "$ref": "#/$defs/AccountIdFilterList"
+                "BillingGroupArns": {
+                    "$ref": "#/$defs/BillingGroupArnList"
                 }
             }
         },
-        "Association": {
-            "type": "string"
-        },
-        "AccountIdFilterList": {
+        "BillingGroupArnList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/AccountId"
+                "$ref": "#/$defs/BillingGroupArn"
             }
         },
         "ListBillingGroupCostReportsOutput": {
@@ -516,40 +552,16 @@
                 }
             }
         },
-        "ListBillingGroupCostReportsInput": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "BillingPeriod": {
-                    "$ref": "#/$defs/BillingPeriod"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxBillingGroupResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/Token"
-                },
-                "Filters": {
-                    "$ref": "#/$defs/ListBillingGroupCostReportsFilter"
+                "ResourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
-        "MaxBillingGroupResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ListBillingGroupCostReportsFilter": {
-            "type": "object",
-            "properties": {
-                "BillingGroupArns": {
-                    "$ref": "#/$defs/BillingGroupArnList"
-                }
-            }
-        },
-        "BillingGroupArnList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BillingGroupArn"
-            }
+        "Arn": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -568,21 +580,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -594,7 +591,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -617,6 +614,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

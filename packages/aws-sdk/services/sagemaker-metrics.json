@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MetricQueries": {}
                     }
                 }
             }
@@ -64,9 +62,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TrialComponentName": {},
+                        "MetricData": {}
                     }
                 }
             }
@@ -117,68 +114,6 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
-        },
-        "BatchGetMetricsResponse": {
-            "type": "object",
-            "properties": {
-                "MetricQueryResults": {
-                    "$ref": "#/$defs/MetricQueryResultList"
-                }
-            }
-        },
-        "MetricQueryResultList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/MetricQueryResult"
-            }
-        },
-        "MetricQueryResult": {
-            "type": "object",
-            "properties": {
-                "Status": {
-                    "$ref": "#/$defs/MetricQueryResultStatus"
-                },
-                "Message": {
-                    "$ref": "#/$defs/Message"
-                },
-                "XAxisValues": {
-                    "$ref": "#/$defs/XAxisValues"
-                },
-                "MetricValues": {
-                    "$ref": "#/$defs/MetricValues"
-                }
-            }
-        },
-        "MetricQueryResultStatus": {
-            "enum": [
-                "COMPLETE",
-                "TRUNCATED",
-                "INTERNAL_ERROR",
-                "VALIDATION_ERROR"
-            ]
-        },
-        "Message": {
-            "type": "string"
-        },
-        "XAxisValues": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Long"
-            }
-        },
-        "Long": {
-            "type": "integer",
-            "format": "int64"
-        },
-        "MetricValues": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Double"
-            }
-        },
-        "Double": {
-            "type": "number",
-            "format": "double"
         },
         "BatchGetMetricsRequest": {
             "type": "object",
@@ -250,42 +185,67 @@
                 "TIMESTAMP"
             ]
         },
-        "BatchPutMetricsResponse": {
+        "Long": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "BatchGetMetricsResponse": {
             "type": "object",
             "properties": {
-                "Errors": {
-                    "$ref": "#/$defs/BatchPutMetricsErrorList"
+                "MetricQueryResults": {
+                    "$ref": "#/$defs/MetricQueryResultList"
                 }
             }
         },
-        "BatchPutMetricsErrorList": {
+        "MetricQueryResultList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/BatchPutMetricsError"
+                "$ref": "#/$defs/MetricQueryResult"
             }
         },
-        "BatchPutMetricsError": {
+        "MetricQueryResult": {
             "type": "object",
             "properties": {
-                "Code": {
-                    "$ref": "#/$defs/PutMetricsErrorCode"
+                "Status": {
+                    "$ref": "#/$defs/MetricQueryResultStatus"
                 },
-                "MetricIndex": {
-                    "$ref": "#/$defs/Integer"
+                "Message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "XAxisValues": {
+                    "$ref": "#/$defs/XAxisValues"
+                },
+                "MetricValues": {
+                    "$ref": "#/$defs/MetricValues"
                 }
             }
         },
-        "PutMetricsErrorCode": {
+        "MetricQueryResultStatus": {
             "enum": [
-                "METRIC_LIMIT_EXCEEDED",
+                "COMPLETE",
+                "TRUNCATED",
                 "INTERNAL_ERROR",
-                "VALIDATION_ERROR",
-                "CONFLICT_ERROR"
+                "VALIDATION_ERROR"
             ]
         },
-        "Integer": {
-            "type": "integer",
-            "format": "int32"
+        "Message": {
+            "type": "string"
+        },
+        "XAxisValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Long"
+            }
+        },
+        "MetricValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Double"
+            }
+        },
+        "Double": {
+            "type": "number",
+            "format": "double"
         },
         "BatchPutMetricsRequest": {
             "type": "object",
@@ -329,6 +289,43 @@
             "format": "date-time"
         },
         "Step": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BatchPutMetricsResponse": {
+            "type": "object",
+            "properties": {
+                "Errors": {
+                    "$ref": "#/$defs/BatchPutMetricsErrorList"
+                }
+            }
+        },
+        "BatchPutMetricsErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchPutMetricsError"
+            }
+        },
+        "BatchPutMetricsError": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/PutMetricsErrorCode"
+                },
+                "MetricIndex": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "PutMetricsErrorCode": {
+            "enum": [
+                "METRIC_LIMIT_EXCEEDED",
+                "INTERNAL_ERROR",
+                "VALIDATION_ERROR",
+                "CONFLICT_ERROR"
+            ]
+        },
+        "Integer": {
             "type": "integer",
             "format": "int32"
         }

@@ -29,9 +29,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DeviceName": {},
+                        "DeviceFleetName": {}
                     }
                 }
             }
@@ -64,9 +63,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DeviceName": {},
+                        "DeviceFleetName": {}
                     }
                 }
             }
@@ -99,9 +97,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "AgentMetrics": {},
+                        "Models": {},
+                        "AgentVersion": {},
+                        "DeviceName": {},
+                        "DeviceFleetName": {},
+                        "DeploymentResult": {}
                     }
                 }
             }
@@ -152,6 +153,23 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "GetDeploymentsRequest": {
+            "type": "object",
+            "properties": {
+                "DeviceName": {
+                    "$ref": "#/$defs/DeviceName"
+                },
+                "DeviceFleetName": {
+                    "$ref": "#/$defs/DeviceFleetName"
+                }
+            }
+        },
+        "DeviceName": {
+            "type": "string"
+        },
+        "DeviceFleetName": {
+            "type": "string"
         },
         "GetDeploymentsResult": {
             "type": "object",
@@ -249,7 +267,7 @@
                 "Undeploy"
             ]
         },
-        "GetDeploymentsRequest": {
+        "GetDeviceRegistrationRequest": {
             "type": "object",
             "properties": {
                 "DeviceName": {
@@ -259,12 +277,6 @@
                     "$ref": "#/$defs/DeviceFleetName"
                 }
             }
-        },
-        "DeviceName": {
-            "type": "string"
-        },
-        "DeviceFleetName": {
-            "type": "string"
         },
         "GetDeviceRegistrationResult": {
             "type": "object",
@@ -282,17 +294,6 @@
         },
         "CacheTTLSeconds": {
             "type": "string"
-        },
-        "GetDeviceRegistrationRequest": {
-            "type": "object",
-            "properties": {
-                "DeviceName": {
-                    "$ref": "#/$defs/DeviceName"
-                },
-                "DeviceFleetName": {
-                    "$ref": "#/$defs/DeviceFleetName"
-                }
-            }
         },
         "SendHeartbeatRequest": {
             "type": "object",

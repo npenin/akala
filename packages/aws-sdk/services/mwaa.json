@@ -33,8 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "Name": {}
                     }
                 }
             }
@@ -71,9 +70,31 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "ExecutionRoleArn": {},
+                        "SourceBucketArn": {},
+                        "DagS3Path": {},
+                        "NetworkConfiguration": {},
+                        "PluginsS3Path": {},
+                        "PluginsS3ObjectVersion": {},
+                        "RequirementsS3Path": {},
+                        "RequirementsS3ObjectVersion": {},
+                        "StartupScriptS3Path": {},
+                        "StartupScriptS3ObjectVersion": {},
+                        "AirflowConfigurationOptions": {},
+                        "EnvironmentClass": {},
+                        "MaxWorkers": {},
+                        "KmsKey": {},
+                        "AirflowVersion": {},
+                        "LoggingConfiguration": {},
+                        "WeeklyMaintenanceWindowStart": {},
+                        "Tags": {},
+                        "WebserverAccessMode": {},
+                        "MinWorkers": {},
+                        "Schedulers": {},
+                        "EndpointManagement": {},
+                        "MinWebservers": {},
+                        "MaxWebservers": {}
                     }
                 }
             }
@@ -110,8 +131,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "Name": {}
                     }
                 }
             }
@@ -148,8 +168,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "Name": {}
                     }
                 }
             }
@@ -186,8 +205,48 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "Name": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "InvokeRestApi",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Name": "route.Name",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/restapi/{Name}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/InvokeRestApiResponse"
+                    },
+                    "inject": [
+                        "param.0.Name",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/InvokeRestApiRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Name": {},
+                        "Path": {},
+                        "Method": {},
+                        "QueryParameters": {},
+                        "Body": {}
                     }
                 }
             }
@@ -220,8 +279,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -258,8 +317,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -296,9 +354,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EnvironmentName": {},
+                        "MetricData": {}
                     }
                 }
             }
@@ -335,8 +392,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -373,8 +430,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -411,8 +468,28 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "Name": {},
+                        "ExecutionRoleArn": {},
+                        "AirflowVersion": {},
+                        "SourceBucketArn": {},
+                        "DagS3Path": {},
+                        "PluginsS3Path": {},
+                        "PluginsS3ObjectVersion": {},
+                        "RequirementsS3Path": {},
+                        "RequirementsS3ObjectVersion": {},
+                        "StartupScriptS3Path": {},
+                        "StartupScriptS3ObjectVersion": {},
+                        "AirflowConfigurationOptions": {},
+                        "EnvironmentClass": {},
+                        "MaxWorkers": {},
+                        "NetworkConfiguration": {},
+                        "LoggingConfiguration": {},
+                        "WeeklyMaintenanceWindowStart": {},
+                        "WebserverAccessMode": {},
+                        "MinWorkers": {},
+                        "Schedulers": {},
+                        "MinWebservers": {},
+                        "MaxWebservers": {}
                     }
                 }
             }
@@ -464,6 +541,17 @@
             "type": "string",
             "format": "binary"
         },
+        "CreateCliTokenRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
+        "EnvironmentName": {
+            "type": "string"
+        },
         "CreateCliTokenResponse": {
             "type": "object",
             "properties": {
@@ -479,28 +567,6 @@
             "type": "string"
         },
         "Hostname": {
-            "type": "string"
-        },
-        "CreateCliTokenRequest": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/EnvironmentName"
-                }
-            }
-        },
-        "EnvironmentName": {
-            "type": "string"
-        },
-        "CreateEnvironmentOutput": {
-            "type": "object",
-            "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/EnvironmentArn"
-                }
-            }
-        },
-        "EnvironmentArn": {
             "type": "string"
         },
         "CreateEnvironmentInput": {
@@ -717,6 +783,25 @@
             "type": "integer",
             "format": "int32"
         },
+        "CreateEnvironmentOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/EnvironmentArn"
+                }
+            }
+        },
+        "EnvironmentArn": {
+            "type": "string"
+        },
+        "CreateWebLoginTokenRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/EnvironmentName"
+                }
+            }
+        },
         "CreateWebLoginTokenResponse": {
             "type": "object",
             "properties": {
@@ -740,7 +825,7 @@
         "AirflowIdentity": {
             "type": "string"
         },
-        "CreateWebLoginTokenRequest": {
+        "DeleteEnvironmentInput": {
             "type": "object",
             "properties": {
                 "Name": {
@@ -752,7 +837,7 @@
             "type": "object",
             "properties": {}
         },
-        "DeleteEnvironmentInput": {
+        "GetEnvironmentInput": {
             "type": "object",
             "properties": {
                 "Name": {
@@ -972,13 +1057,58 @@
         "CeleryExecutorQueue": {
             "type": "string"
         },
-        "GetEnvironmentInput": {
+        "InvokeRestApiRequest": {
             "type": "object",
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/EnvironmentName"
+                },
+                "Path": {
+                    "$ref": "#/$defs/RestApiPath"
+                },
+                "Method": {
+                    "$ref": "#/$defs/RestApiMethod"
+                },
+                "QueryParameters": {
+                    "$ref": "#/$defs/smithy.api#Document"
+                },
+                "Body": {
+                    "$ref": "#/$defs/RestApiRequestBody"
                 }
             }
+        },
+        "RestApiPath": {
+            "type": "string"
+        },
+        "RestApiMethod": {
+            "type": "string"
+        },
+        "RestApiRequestBody": {},
+        "InvokeRestApiResponse": {
+            "type": "object",
+            "properties": {
+                "RestApiStatusCode": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "RestApiResponse": {
+                    "$ref": "#/$defs/RestApiResponse"
+                }
+            }
+        },
+        "RestApiResponse": {},
+        "ListEnvironmentsInput": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListEnvironmentsOutput": {
             "type": "object",
@@ -997,17 +1127,11 @@
                 "$ref": "#/$defs/EnvironmentName"
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListEnvironmentsInput": {
+        "ListTagsForResourceInput": {
             "type": "object",
             "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
+                "ResourceArn": {
+                    "$ref": "#/$defs/EnvironmentArn"
                 }
             }
         },
@@ -1018,18 +1142,6 @@
                     "$ref": "#/$defs/TagMap"
                 }
             }
-        },
-        "ListTagsForResourceInput": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/EnvironmentArn"
-                }
-            }
-        },
-        "PublishMetricsOutput": {
-            "type": "object",
-            "properties": {}
         },
         "PublishMetricsInput": {
             "type": "object",
@@ -1108,7 +1220,7 @@
                 }
             }
         },
-        "TagResourceOutput": {
+        "PublishMetricsOutput": {
             "type": "object",
             "properties": {}
         },
@@ -1123,7 +1235,7 @@
                 }
             }
         },
-        "UntagResourceOutput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {}
         },
@@ -1147,13 +1259,9 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateEnvironmentOutput": {
+        "UntagResourceOutput": {
             "type": "object",
-            "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/EnvironmentArn"
-                }
-            }
+            "properties": {}
         },
         "UpdateEnvironmentInput": {
             "type": "object",
@@ -1231,6 +1339,14 @@
             "properties": {
                 "SecurityGroupIds": {
                     "$ref": "#/$defs/SecurityGroupList"
+                }
+            }
+        },
+        "UpdateEnvironmentOutput": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/EnvironmentArn"
                 }
             }
         }

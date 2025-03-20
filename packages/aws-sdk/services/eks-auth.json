@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "clusterName": {},
+                        "token": {}
                     }
                 }
             }
@@ -86,6 +85,23 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "AssumeRoleForPodIdentityRequest": {
+            "type": "object",
+            "properties": {
+                "clusterName": {
+                    "$ref": "#/$defs/ClusterName"
+                },
+                "token": {
+                    "$ref": "#/$defs/JwtToken"
+                }
+            }
+        },
+        "ClusterName": {
+            "type": "string"
+        },
+        "JwtToken": {
+            "type": "string"
         },
         "AssumeRoleForPodIdentityResponse": {
             "type": "object",
@@ -156,23 +172,6 @@
                     "$ref": "#/$defs/smithy.api#Timestamp"
                 }
             }
-        },
-        "AssumeRoleForPodIdentityRequest": {
-            "type": "object",
-            "properties": {
-                "clusterName": {
-                    "$ref": "#/$defs/ClusterName"
-                },
-                "token": {
-                    "$ref": "#/$defs/JwtToken"
-                }
-            }
-        },
-        "ClusterName": {
-            "type": "string"
-        },
-        "JwtToken": {
-            "type": "string"
         }
     },
     "aws": {

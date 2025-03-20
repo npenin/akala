@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Path": {}
                     }
                 }
             }
@@ -72,9 +70,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Path": {}
                     }
                 }
             }
@@ -111,9 +107,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Path": {},
+                        "Range": {}
                     }
                 }
             }
@@ -146,9 +141,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Path": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -185,9 +180,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Body": {},
+                        "Path": {},
+                        "ContentType": {},
+                        "CacheControl": {},
+                        "StorageClass": {},
+                        "UploadAvailability": {}
                     }
                 }
             }
@@ -239,10 +237,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteObjectResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "DeleteObjectRequest": {
             "type": "object",
             "properties": {
@@ -253,6 +247,18 @@
         },
         "PathNaming": {
             "type": "string"
+        },
+        "DeleteObjectResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeObjectRequest": {
+            "type": "object",
+            "properties": {
+                "Path": {
+                    "$ref": "#/$defs/PathNaming"
+                }
+            }
         },
         "DescribeObjectResponse": {
             "type": "object",
@@ -291,13 +297,19 @@
             "type": "string",
             "format": "date-time"
         },
-        "DescribeObjectRequest": {
+        "GetObjectRequest": {
             "type": "object",
             "properties": {
                 "Path": {
                     "$ref": "#/$defs/PathNaming"
+                },
+                "Range": {
+                    "$ref": "#/$defs/RangePattern"
                 }
             }
+        },
+        "RangePattern": {
+            "type": "string"
         },
         "GetObjectResponse": {
             "type": "object",
@@ -339,18 +351,28 @@
             "type": "integer",
             "format": "int32"
         },
-        "GetObjectRequest": {
+        "ListItemsRequest": {
             "type": "object",
             "properties": {
                 "Path": {
-                    "$ref": "#/$defs/PathNaming"
+                    "$ref": "#/$defs/ListPathNaming"
                 },
-                "Range": {
-                    "$ref": "#/$defs/RangePattern"
+                "MaxResults": {
+                    "$ref": "#/$defs/ListLimit"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/PaginationToken"
                 }
             }
         },
-        "RangePattern": {
+        "ListPathNaming": {
+            "type": "string"
+        },
+        "ListLimit": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PaginationToken": {
             "type": "string"
         },
         "ListItemsResponse": {
@@ -402,52 +424,6 @@
                 "FOLDER"
             ]
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "ListItemsRequest": {
-            "type": "object",
-            "properties": {
-                "Path": {
-                    "$ref": "#/$defs/ListPathNaming"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/ListLimit"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/PaginationToken"
-                }
-            }
-        },
-        "ListPathNaming": {
-            "type": "string"
-        },
-        "ListLimit": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "PutObjectResponse": {
-            "type": "object",
-            "properties": {
-                "ContentSHA256": {
-                    "$ref": "#/$defs/SHA256Hash"
-                },
-                "ETag": {
-                    "$ref": "#/$defs/ETag"
-                },
-                "StorageClass": {
-                    "$ref": "#/$defs/StorageClass"
-                }
-            }
-        },
-        "SHA256Hash": {
-            "type": "string"
-        },
-        "StorageClass": {
-            "enum": [
-                "TEMPORAL"
-            ]
-        },
         "PutObjectRequest": {
             "type": "object",
             "properties": {
@@ -471,11 +447,33 @@
                 }
             }
         },
+        "StorageClass": {
+            "enum": [
+                "TEMPORAL"
+            ]
+        },
         "UploadAvailability": {
             "enum": [
                 "STANDARD",
                 "STREAMING"
             ]
+        },
+        "PutObjectResponse": {
+            "type": "object",
+            "properties": {
+                "ContentSHA256": {
+                    "$ref": "#/$defs/SHA256Hash"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/ETag"
+                },
+                "StorageClass": {
+                    "$ref": "#/$defs/StorageClass"
+                }
+            }
+        },
+        "SHA256Hash": {
+            "type": "string"
         }
     },
     "aws": {

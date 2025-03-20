@@ -205,6 +205,35 @@
             }
         },
         {
+            "name": "GetPredictiveScalingForecast",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AnyScaleFrontendService.GetPredictiveScalingForecast"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetPredictiveScalingForecastResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetPredictiveScalingForecastRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListTagsForResource",
             "config": {
                 "http": {
@@ -569,6 +598,9 @@
                 "MaxCapacity": {
                     "$ref": "#/$defs/ResourceCapacity"
                 },
+                "PredictedCapacity": {
+                    "$ref": "#/$defs/ResourceCapacity"
+                },
                 "RoleARN": {
                     "$ref": "#/$defs/ResourceIdMaxLen1600"
                 },
@@ -805,6 +837,9 @@
                 "TargetTrackingScalingPolicyConfiguration": {
                     "$ref": "#/$defs/TargetTrackingScalingPolicyConfiguration"
                 },
+                "PredictiveScalingPolicyConfiguration": {
+                    "$ref": "#/$defs/PredictiveScalingPolicyConfiguration"
+                },
                 "Alarms": {
                     "$ref": "#/$defs/Alarms"
                 },
@@ -819,7 +854,8 @@
         "PolicyType": {
             "enum": [
                 "StepScaling",
-                "TargetTrackingScaling"
+                "TargetTrackingScaling",
+                "PredictiveScaling"
             ]
         },
         "StepScalingPolicyConfiguration": {
@@ -1122,6 +1158,208 @@
         "DisableScaleIn": {
             "type": "boolean"
         },
+        "PredictiveScalingPolicyConfiguration": {
+            "type": "object",
+            "properties": {
+                "MetricSpecifications": {
+                    "$ref": "#/$defs/PredictiveScalingMetricSpecifications"
+                },
+                "Mode": {
+                    "$ref": "#/$defs/PredictiveScalingMode"
+                },
+                "SchedulingBufferTime": {
+                    "$ref": "#/$defs/PredictiveScalingSchedulingBufferTime"
+                },
+                "MaxCapacityBreachBehavior": {
+                    "$ref": "#/$defs/PredictiveScalingMaxCapacityBreachBehavior"
+                },
+                "MaxCapacityBuffer": {
+                    "$ref": "#/$defs/PredictiveScalingMaxCapacityBuffer"
+                }
+            }
+        },
+        "PredictiveScalingMetricSpecifications": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictiveScalingMetricSpecification"
+            }
+        },
+        "PredictiveScalingMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "TargetValue": {
+                    "$ref": "#/$defs/MetricScale"
+                },
+                "PredefinedMetricPairSpecification": {
+                    "$ref": "#/$defs/PredictiveScalingPredefinedMetricPairSpecification"
+                },
+                "PredefinedScalingMetricSpecification": {
+                    "$ref": "#/$defs/PredictiveScalingPredefinedScalingMetricSpecification"
+                },
+                "PredefinedLoadMetricSpecification": {
+                    "$ref": "#/$defs/PredictiveScalingPredefinedLoadMetricSpecification"
+                },
+                "CustomizedScalingMetricSpecification": {
+                    "$ref": "#/$defs/PredictiveScalingCustomizedMetricSpecification"
+                },
+                "CustomizedLoadMetricSpecification": {
+                    "$ref": "#/$defs/PredictiveScalingCustomizedMetricSpecification"
+                },
+                "CustomizedCapacityMetricSpecification": {
+                    "$ref": "#/$defs/PredictiveScalingCustomizedMetricSpecification"
+                }
+            }
+        },
+        "PredictiveScalingPredefinedMetricPairSpecification": {
+            "type": "object",
+            "properties": {
+                "PredefinedMetricType": {
+                    "$ref": "#/$defs/PredictiveScalingMetricType"
+                },
+                "ResourceLabel": {
+                    "$ref": "#/$defs/ResourceLabel"
+                }
+            }
+        },
+        "PredictiveScalingMetricType": {
+            "type": "string"
+        },
+        "PredictiveScalingPredefinedScalingMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "PredefinedMetricType": {
+                    "$ref": "#/$defs/PredictiveScalingMetricType"
+                },
+                "ResourceLabel": {
+                    "$ref": "#/$defs/ResourceLabel"
+                }
+            }
+        },
+        "PredictiveScalingPredefinedLoadMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "PredefinedMetricType": {
+                    "$ref": "#/$defs/PredictiveScalingMetricType"
+                },
+                "ResourceLabel": {
+                    "$ref": "#/$defs/ResourceLabel"
+                }
+            }
+        },
+        "PredictiveScalingCustomizedMetricSpecification": {
+            "type": "object",
+            "properties": {
+                "MetricDataQueries": {
+                    "$ref": "#/$defs/PredictiveScalingMetricDataQueries"
+                }
+            }
+        },
+        "PredictiveScalingMetricDataQueries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictiveScalingMetricDataQuery"
+            }
+        },
+        "PredictiveScalingMetricDataQuery": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/Id"
+                },
+                "Expression": {
+                    "$ref": "#/$defs/Expression"
+                },
+                "MetricStat": {
+                    "$ref": "#/$defs/PredictiveScalingMetricStat"
+                },
+                "Label": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "ReturnData": {
+                    "$ref": "#/$defs/ReturnData"
+                }
+            }
+        },
+        "PredictiveScalingMetricStat": {
+            "type": "object",
+            "properties": {
+                "Metric": {
+                    "$ref": "#/$defs/PredictiveScalingMetric"
+                },
+                "Stat": {
+                    "$ref": "#/$defs/XmlString"
+                },
+                "Unit": {
+                    "$ref": "#/$defs/PredictiveScalingMetricUnit"
+                }
+            }
+        },
+        "PredictiveScalingMetric": {
+            "type": "object",
+            "properties": {
+                "Dimensions": {
+                    "$ref": "#/$defs/PredictiveScalingMetricDimensions"
+                },
+                "MetricName": {
+                    "$ref": "#/$defs/PredictiveScalingMetricName"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/PredictiveScalingMetricNamespace"
+                }
+            }
+        },
+        "PredictiveScalingMetricDimensions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PredictiveScalingMetricDimension"
+            }
+        },
+        "PredictiveScalingMetricDimension": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/PredictiveScalingMetricDimensionName"
+                },
+                "Value": {
+                    "$ref": "#/$defs/PredictiveScalingMetricDimensionValue"
+                }
+            }
+        },
+        "PredictiveScalingMetricDimensionName": {
+            "type": "string"
+        },
+        "PredictiveScalingMetricDimensionValue": {
+            "type": "string"
+        },
+        "PredictiveScalingMetricName": {
+            "type": "string"
+        },
+        "PredictiveScalingMetricNamespace": {
+            "type": "string"
+        },
+        "PredictiveScalingMetricUnit": {
+            "type": "string"
+        },
+        "PredictiveScalingMode": {
+            "enum": [
+                "ForecastOnly",
+                "ForecastAndScale"
+            ]
+        },
+        "PredictiveScalingSchedulingBufferTime": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PredictiveScalingMaxCapacityBreachBehavior": {
+            "enum": [
+                "HonorMaxCapacity",
+                "IncreaseMaxCapacity"
+            ]
+        },
+        "PredictiveScalingMaxCapacityBuffer": {
+            "type": "integer",
+            "format": "int32"
+        },
         "Alarms": {
             "type": "array",
             "items": {
@@ -1254,6 +1492,86 @@
                 }
             }
         },
+        "GetPredictiveScalingForecastResponse": {
+            "type": "object",
+            "properties": {
+                "LoadForecast": {
+                    "$ref": "#/$defs/LoadForecasts"
+                },
+                "CapacityForecast": {
+                    "$ref": "#/$defs/CapacityForecast"
+                },
+                "UpdateTime": {
+                    "$ref": "#/$defs/TimestampType"
+                }
+            }
+        },
+        "LoadForecasts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoadForecast"
+            }
+        },
+        "LoadForecast": {
+            "type": "object",
+            "properties": {
+                "Timestamps": {
+                    "$ref": "#/$defs/PredictiveScalingForecastTimestamps"
+                },
+                "Values": {
+                    "$ref": "#/$defs/PredictiveScalingForecastValues"
+                },
+                "MetricSpecification": {
+                    "$ref": "#/$defs/PredictiveScalingMetricSpecification"
+                }
+            }
+        },
+        "PredictiveScalingForecastTimestamps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TimestampType"
+            }
+        },
+        "PredictiveScalingForecastValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MetricScale"
+            }
+        },
+        "CapacityForecast": {
+            "type": "object",
+            "properties": {
+                "Timestamps": {
+                    "$ref": "#/$defs/PredictiveScalingForecastTimestamps"
+                },
+                "Values": {
+                    "$ref": "#/$defs/PredictiveScalingForecastValues"
+                }
+            }
+        },
+        "GetPredictiveScalingForecastRequest": {
+            "type": "object",
+            "properties": {
+                "ServiceNamespace": {
+                    "$ref": "#/$defs/ServiceNamespace"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/ResourceIdMaxLen1600"
+                },
+                "ScalableDimension": {
+                    "$ref": "#/$defs/ScalableDimension"
+                },
+                "PolicyName": {
+                    "$ref": "#/$defs/PolicyName"
+                },
+                "StartTime": {
+                    "$ref": "#/$defs/TimestampType"
+                },
+                "EndTime": {
+                    "$ref": "#/$defs/TimestampType"
+                }
+            }
+        },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
@@ -1316,6 +1634,9 @@
                 },
                 "TargetTrackingScalingPolicyConfiguration": {
                     "$ref": "#/$defs/TargetTrackingScalingPolicyConfiguration"
+                },
+                "PredictiveScalingPolicyConfiguration": {
+                    "$ref": "#/$defs/PredictiveScalingPolicyConfiguration"
                 }
             }
         },

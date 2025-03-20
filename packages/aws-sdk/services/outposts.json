@@ -35,9 +35,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CapacityTaskId": {},
+                        "OutpostIdentifier": {}
                     }
                 }
             }
@@ -74,9 +73,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OrderId": {}
                     }
                 }
             }
@@ -109,9 +106,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostIdentifier": {},
+                        "LineItems": {},
+                        "PaymentOption": {},
+                        "PaymentTerm": {}
                     }
                 }
             }
@@ -144,9 +142,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Description": {},
+                        "SiteId": {},
+                        "AvailabilityZone": {},
+                        "AvailabilityZoneId": {},
+                        "Tags": {},
+                        "SupportedHardwareType": {}
                     }
                 }
             }
@@ -179,9 +181,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Description": {},
+                        "Notes": {},
+                        "Tags": {},
+                        "OperatingAddress": {},
+                        "ShippingAddress": {},
+                        "RackPhysicalProperties": {}
                     }
                 }
             }
@@ -218,9 +224,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostId": {}
                     }
                 }
             }
@@ -257,9 +261,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SiteId": {}
                     }
                 }
             }
@@ -298,9 +300,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CapacityTaskId": {},
+                        "OutpostIdentifier": {}
                     }
                 }
             }
@@ -337,9 +338,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CatalogItemId": {}
                     }
                 }
             }
@@ -376,9 +375,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConnectionId": {}
                     }
                 }
             }
@@ -415,9 +412,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OrderId": {}
                     }
                 }
             }
@@ -454,9 +449,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostId": {}
                     }
                 }
             }
@@ -493,9 +486,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostId": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -532,9 +525,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostIdentifier": {},
+                        "OrderId": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -571,9 +565,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SiteId": {}
                     }
                 }
             }
@@ -610,9 +602,51 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SiteId": {},
+                        "AddressType": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAssetInstances",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "OutpostIdentifier": "route.OutpostIdentifier",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/outposts/{OutpostIdentifier}/assetInstances"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAssetInstancesOutput"
+                    },
+                    "inject": [
+                        "param.0.OutpostIdentifier",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAssetInstancesInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "OutpostIdentifier": {},
+                        "AssetIdFilter": {},
+                        "InstanceTypeFilter": {},
+                        "AccountIdFilter": {},
+                        "AwsServiceFilter": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -649,9 +683,53 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostIdentifier": {},
+                        "HostIdFilter": {},
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "StatusFilter": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListBlockingInstancesForCapacityTask",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "OutpostIdentifier": "route.OutpostIdentifier",
+                            "CapacityTaskId": "route.CapacityTaskId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/outposts/{OutpostIdentifier}/capacity/{CapacityTaskId}/blockingInstances"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListBlockingInstancesForCapacityTaskOutput"
+                    },
+                    "inject": [
+                        "param.0.OutpostIdentifier",
+                        "param.0.CapacityTaskId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListBlockingInstancesForCapacityTaskInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "OutpostIdentifier": {},
+                        "CapacityTaskId": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -684,9 +762,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostIdentifierFilter": {},
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "CapacityTaskStatusFilter": {}
                     }
                 }
             }
@@ -719,9 +798,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "ItemClassFilter": {},
+                        "SupportedStorageFilter": {},
+                        "EC2FamilyFilter": {}
                     }
                 }
             }
@@ -754,9 +835,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostIdentifierFilter": {},
+                        "NextToken": {},
+                        "MaxResults": {}
                     }
                 }
             }
@@ -789,9 +870,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "LifeCycleStatusFilter": {},
+                        "AvailabilityZoneFilter": {},
+                        "AvailabilityZoneIdFilter": {}
                     }
                 }
             }
@@ -824,9 +907,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "MaxResults": {},
+                        "OperatingAddressCountryCodeFilter": {},
+                        "OperatingAddressStateOrRegionFilter": {},
+                        "OperatingAddressCityFilter": {}
                     }
                 }
             }
@@ -863,9 +948,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -902,9 +985,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostIdentifier": {},
+                        "OrderId": {},
+                        "InstancePools": {},
+                        "InstancesToExclude": {},
+                        "DryRun": {},
+                        "TaskActionOnBlockingInstances": {}
                     }
                 }
             }
@@ -937,9 +1023,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DeviceSerialNumber": {},
+                        "AssetId": {},
+                        "ClientPublicKey": {},
+                        "NetworkInterfaceDeviceIndex": {}
                     }
                 }
             }
@@ -976,9 +1063,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -1015,9 +1101,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -1054,9 +1139,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OutpostId": {},
+                        "Name": {},
+                        "Description": {},
+                        "SupportedHardwareType": {}
                     }
                 }
             }
@@ -1093,9 +1179,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SiteId": {},
+                        "Name": {},
+                        "Description": {},
+                        "Notes": {}
                     }
                 }
             }
@@ -1132,9 +1219,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SiteId": {},
+                        "AddressType": {},
+                        "Address": {}
                     }
                 }
             }
@@ -1171,9 +1258,16 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SiteId": {},
+                        "PowerDrawKva": {},
+                        "PowerPhase": {},
+                        "PowerConnector": {},
+                        "PowerFeedDrop": {},
+                        "UplinkGbps": {},
+                        "UplinkCount": {},
+                        "FiberOpticCableType": {},
+                        "OpticalStandard": {},
+                        "MaximumSupportedWeightLbs": {}
                     }
                 }
             }
@@ -1225,10 +1319,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CancelCapacityTaskOutput": {
-            "type": "object",
-            "properties": {}
-        },
         "CancelCapacityTaskInput": {
             "type": "object",
             "properties": {
@@ -1246,7 +1336,7 @@
         "OutpostIdentifier": {
             "type": "string"
         },
-        "CancelOrderOutput": {
+        "CancelCapacityTaskOutput": {
             "type": "object",
             "properties": {}
         },
@@ -1260,6 +1350,65 @@
         },
         "OrderId": {
             "type": "string"
+        },
+        "CancelOrderOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateOrderInput": {
+            "type": "object",
+            "properties": {
+                "OutpostIdentifier": {
+                    "$ref": "#/$defs/OutpostIdentifier"
+                },
+                "LineItems": {
+                    "$ref": "#/$defs/LineItemRequestListDefinition"
+                },
+                "PaymentOption": {
+                    "$ref": "#/$defs/PaymentOption"
+                },
+                "PaymentTerm": {
+                    "$ref": "#/$defs/PaymentTerm"
+                }
+            }
+        },
+        "LineItemRequestListDefinition": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LineItemRequest"
+            }
+        },
+        "LineItemRequest": {
+            "type": "object",
+            "properties": {
+                "CatalogItemId": {
+                    "$ref": "#/$defs/SkuCode"
+                },
+                "Quantity": {
+                    "$ref": "#/$defs/LineItemQuantity"
+                }
+            }
+        },
+        "SkuCode": {
+            "type": "string"
+        },
+        "LineItemQuantity": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PaymentOption": {
+            "enum": [
+                "ALL_UPFRONT",
+                "NO_UPFRONT",
+                "PARTIAL_UPFRONT"
+            ]
+        },
+        "PaymentTerm": {
+            "enum": [
+                "THREE_YEARS",
+                "ONE_YEAR",
+                "FIVE_YEARS"
+            ]
         },
         "CreateOrderOutput": {
             "type": "object",
@@ -1354,15 +1503,8 @@
                 }
             }
         },
-        "SkuCode": {
-            "type": "string"
-        },
         "LineItemId": {
             "type": "string"
-        },
-        "LineItemQuantity": {
-            "type": "integer",
-            "format": "int32"
         },
         "LineItemStatus": {
             "enum": [
@@ -1429,22 +1571,9 @@
         "MacAddress": {
             "type": "string"
         },
-        "PaymentOption": {
-            "enum": [
-                "ALL_UPFRONT",
-                "NO_UPFRONT",
-                "PARTIAL_UPFRONT"
-            ]
-        },
         "ISO8601Timestamp": {
             "type": "string",
             "format": "date-time"
-        },
-        "PaymentTerm": {
-            "enum": [
-                "THREE_YEARS",
-                "ONE_YEAR"
-            ]
         },
         "OrderType": {
             "enum": [
@@ -1452,39 +1581,61 @@
                 "REPLACEMENT"
             ]
         },
-        "CreateOrderInput": {
+        "CreateOutpostInput": {
             "type": "object",
             "properties": {
-                "OutpostIdentifier": {
-                    "$ref": "#/$defs/OutpostIdentifier"
+                "Name": {
+                    "$ref": "#/$defs/OutpostName"
                 },
-                "LineItems": {
-                    "$ref": "#/$defs/LineItemRequestListDefinition"
+                "Description": {
+                    "$ref": "#/$defs/OutpostDescription"
                 },
-                "PaymentOption": {
-                    "$ref": "#/$defs/PaymentOption"
+                "SiteId": {
+                    "$ref": "#/$defs/SiteId"
                 },
-                "PaymentTerm": {
-                    "$ref": "#/$defs/PaymentTerm"
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/AvailabilityZone"
+                },
+                "AvailabilityZoneId": {
+                    "$ref": "#/$defs/AvailabilityZoneId"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                },
+                "SupportedHardwareType": {
+                    "$ref": "#/$defs/SupportedHardwareType"
                 }
             }
         },
-        "LineItemRequestListDefinition": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/LineItemRequest"
+        "OutpostName": {
+            "type": "string"
+        },
+        "OutpostDescription": {
+            "type": "string"
+        },
+        "SiteId": {
+            "type": "string"
+        },
+        "AvailabilityZone": {
+            "type": "string"
+        },
+        "AvailabilityZoneId": {
+            "type": "string"
+        },
+        "TagMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/TagValue"
             }
         },
-        "LineItemRequest": {
-            "type": "object",
-            "properties": {
-                "CatalogItemId": {
-                    "$ref": "#/$defs/SkuCode"
-                },
-                "Quantity": {
-                    "$ref": "#/$defs/LineItemQuantity"
-                }
-            }
+        "TagValue": {
+            "type": "string"
+        },
+        "SupportedHardwareType": {
+            "enum": [
+                "RACK",
+                "SERVER"
+            ]
         },
         "CreateOutpostOutput": {
             "type": "object",
@@ -1544,116 +1695,37 @@
         "OutpostArn": {
             "type": "string"
         },
-        "SiteId": {
-            "type": "string"
-        },
-        "OutpostName": {
-            "type": "string"
-        },
-        "OutpostDescription": {
-            "type": "string"
-        },
         "LifeCycleStatus": {
-            "type": "string"
-        },
-        "AvailabilityZone": {
-            "type": "string"
-        },
-        "AvailabilityZoneId": {
-            "type": "string"
-        },
-        "TagMap": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/TagValue"
-            }
-        },
-        "TagValue": {
             "type": "string"
         },
         "SiteArn": {
             "type": "string"
         },
-        "SupportedHardwareType": {
-            "enum": [
-                "RACK",
-                "SERVER"
-            ]
-        },
-        "CreateOutpostInput": {
+        "CreateSiteInput": {
             "type": "object",
             "properties": {
-                "Name": {
-                    "$ref": "#/$defs/OutpostName"
-                },
-                "Description": {
-                    "$ref": "#/$defs/OutpostDescription"
-                },
-                "SiteId": {
-                    "$ref": "#/$defs/SiteId"
-                },
-                "AvailabilityZone": {
-                    "$ref": "#/$defs/AvailabilityZone"
-                },
-                "AvailabilityZoneId": {
-                    "$ref": "#/$defs/AvailabilityZoneId"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagMap"
-                },
-                "SupportedHardwareType": {
-                    "$ref": "#/$defs/SupportedHardwareType"
-                }
-            }
-        },
-        "CreateSiteOutput": {
-            "type": "object",
-            "properties": {
-                "Site": {
-                    "$ref": "#/$defs/Site"
-                }
-            }
-        },
-        "Site": {
-            "type": "object",
-            "properties": {
-                "SiteId": {
-                    "$ref": "#/$defs/SiteId"
-                },
-                "AccountId": {
-                    "$ref": "#/$defs/AccountId"
-                },
                 "Name": {
                     "$ref": "#/$defs/SiteName"
                 },
                 "Description": {
                     "$ref": "#/$defs/SiteDescription"
                 },
-                "Tags": {
-                    "$ref": "#/$defs/TagMap"
-                },
-                "SiteArn": {
-                    "$ref": "#/$defs/SiteArn"
-                },
                 "Notes": {
                     "$ref": "#/$defs/SiteNotes"
                 },
-                "OperatingAddressCountryCode": {
-                    "$ref": "#/$defs/CountryCode"
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
                 },
-                "OperatingAddressStateOrRegion": {
-                    "$ref": "#/$defs/StateOrRegion"
+                "OperatingAddress": {
+                    "$ref": "#/$defs/Address"
                 },
-                "OperatingAddressCity": {
-                    "$ref": "#/$defs/City"
+                "ShippingAddress": {
+                    "$ref": "#/$defs/Address"
                 },
                 "RackPhysicalProperties": {
                     "$ref": "#/$defs/RackPhysicalProperties"
                 }
             }
-        },
-        "AccountId": {
-            "type": "string"
         },
         "SiteName": {
             "type": "string"
@@ -1664,13 +1736,75 @@
         "SiteNotes": {
             "type": "string"
         },
-        "CountryCode": {
+        "Address": {
+            "type": "object",
+            "properties": {
+                "ContactName": {
+                    "$ref": "#/$defs/ContactName"
+                },
+                "ContactPhoneNumber": {
+                    "$ref": "#/$defs/ContactPhoneNumber"
+                },
+                "AddressLine1": {
+                    "$ref": "#/$defs/AddressLine1"
+                },
+                "AddressLine2": {
+                    "$ref": "#/$defs/AddressLine2"
+                },
+                "AddressLine3": {
+                    "$ref": "#/$defs/AddressLine3"
+                },
+                "City": {
+                    "$ref": "#/$defs/City"
+                },
+                "StateOrRegion": {
+                    "$ref": "#/$defs/StateOrRegion"
+                },
+                "DistrictOrCounty": {
+                    "$ref": "#/$defs/DistrictOrCounty"
+                },
+                "PostalCode": {
+                    "$ref": "#/$defs/PostalCode"
+                },
+                "CountryCode": {
+                    "$ref": "#/$defs/CountryCode"
+                },
+                "Municipality": {
+                    "$ref": "#/$defs/Municipality"
+                }
+            }
+        },
+        "ContactName": {
+            "type": "string"
+        },
+        "ContactPhoneNumber": {
+            "type": "string"
+        },
+        "AddressLine1": {
+            "type": "string"
+        },
+        "AddressLine2": {
+            "type": "string"
+        },
+        "AddressLine3": {
+            "type": "string"
+        },
+        "City": {
             "type": "string"
         },
         "StateOrRegion": {
             "type": "string"
         },
-        "City": {
+        "DistrictOrCounty": {
+            "type": "string"
+        },
+        "PostalCode": {
+            "type": "string"
+        },
+        "CountryCode": {
+            "type": "string"
+        },
+        "Municipality": {
             "type": "string"
         },
         "RackPhysicalProperties": {
@@ -1724,7 +1858,8 @@
                 "L6_30P",
                 "IEC309",
                 "AH530P7W",
-                "AH532P6W"
+                "AH532P6W",
+                "CS8365C"
             ]
         },
         "PowerFeedDrop": {
@@ -1787,97 +1922,54 @@
                 "MAX_2000_LBS"
             ]
         },
-        "CreateSiteInput": {
+        "CreateSiteOutput": {
             "type": "object",
             "properties": {
+                "Site": {
+                    "$ref": "#/$defs/Site"
+                }
+            }
+        },
+        "Site": {
+            "type": "object",
+            "properties": {
+                "SiteId": {
+                    "$ref": "#/$defs/SiteId"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
                 "Name": {
                     "$ref": "#/$defs/SiteName"
                 },
                 "Description": {
                     "$ref": "#/$defs/SiteDescription"
                 },
-                "Notes": {
-                    "$ref": "#/$defs/SiteNotes"
-                },
                 "Tags": {
                     "$ref": "#/$defs/TagMap"
                 },
-                "OperatingAddress": {
-                    "$ref": "#/$defs/Address"
+                "SiteArn": {
+                    "$ref": "#/$defs/SiteArn"
                 },
-                "ShippingAddress": {
-                    "$ref": "#/$defs/Address"
+                "Notes": {
+                    "$ref": "#/$defs/SiteNotes"
+                },
+                "OperatingAddressCountryCode": {
+                    "$ref": "#/$defs/CountryCode"
+                },
+                "OperatingAddressStateOrRegion": {
+                    "$ref": "#/$defs/StateOrRegion"
+                },
+                "OperatingAddressCity": {
+                    "$ref": "#/$defs/City"
                 },
                 "RackPhysicalProperties": {
                     "$ref": "#/$defs/RackPhysicalProperties"
                 }
             }
         },
-        "Address": {
-            "type": "object",
-            "properties": {
-                "ContactName": {
-                    "$ref": "#/$defs/ContactName"
-                },
-                "ContactPhoneNumber": {
-                    "$ref": "#/$defs/ContactPhoneNumber"
-                },
-                "AddressLine1": {
-                    "$ref": "#/$defs/AddressLine1"
-                },
-                "AddressLine2": {
-                    "$ref": "#/$defs/AddressLine2"
-                },
-                "AddressLine3": {
-                    "$ref": "#/$defs/AddressLine3"
-                },
-                "City": {
-                    "$ref": "#/$defs/City"
-                },
-                "StateOrRegion": {
-                    "$ref": "#/$defs/StateOrRegion"
-                },
-                "DistrictOrCounty": {
-                    "$ref": "#/$defs/DistrictOrCounty"
-                },
-                "PostalCode": {
-                    "$ref": "#/$defs/PostalCode"
-                },
-                "CountryCode": {
-                    "$ref": "#/$defs/CountryCode"
-                },
-                "Municipality": {
-                    "$ref": "#/$defs/Municipality"
-                }
-            }
-        },
-        "ContactName": {
+        "AccountId": {
             "type": "string"
-        },
-        "ContactPhoneNumber": {
-            "type": "string"
-        },
-        "AddressLine1": {
-            "type": "string"
-        },
-        "AddressLine2": {
-            "type": "string"
-        },
-        "AddressLine3": {
-            "type": "string"
-        },
-        "DistrictOrCounty": {
-            "type": "string"
-        },
-        "PostalCode": {
-            "type": "string"
-        },
-        "Municipality": {
-            "type": "string"
-        },
-        "DeleteOutpostOutput": {
-            "type": "object",
-            "properties": {}
         },
         "DeleteOutpostInput": {
             "type": "object",
@@ -1887,7 +1979,7 @@
                 }
             }
         },
-        "DeleteSiteOutput": {
+        "DeleteOutpostOutput": {
             "type": "object",
             "properties": {}
         },
@@ -1896,6 +1988,21 @@
             "properties": {
                 "SiteId": {
                     "$ref": "#/$defs/SiteId"
+                }
+            }
+        },
+        "DeleteSiteOutput": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetCapacityTaskInput": {
+            "type": "object",
+            "properties": {
+                "CapacityTaskId": {
+                    "$ref": "#/$defs/CapacityTaskId"
+                },
+                "OutpostIdentifier": {
+                    "$ref": "#/$defs/OutpostIdentifier"
                 }
             }
         },
@@ -1914,6 +2021,9 @@
                 "RequestedInstancePools": {
                     "$ref": "#/$defs/RequestedInstancePools"
                 },
+                "InstancesToExclude": {
+                    "$ref": "#/$defs/InstancesToExclude"
+                },
                 "DryRun": {
                     "$ref": "#/$defs/DryRun"
                 },
@@ -1931,6 +2041,9 @@
                 },
                 "LastModifiedDate": {
                     "$ref": "#/$defs/ISO8601Timestamp"
+                },
+                "TaskActionOnBlockingInstances": {
+                    "$ref": "#/$defs/TaskActionOnBlockingInstances"
                 }
             }
         },
@@ -1958,6 +2071,51 @@
             "type": "integer",
             "format": "int32"
         },
+        "InstancesToExclude": {
+            "type": "object",
+            "properties": {
+                "Instances": {
+                    "$ref": "#/$defs/InstanceIdList"
+                },
+                "AccountIds": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "Services": {
+                    "$ref": "#/$defs/AWSServiceNameList"
+                }
+            }
+        },
+        "InstanceIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InstanceId"
+            }
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "AccountIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccountId"
+            }
+        },
+        "AWSServiceNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AWSServiceName"
+            }
+        },
+        "AWSServiceName": {
+            "enum": [
+                "AWS",
+                "EC2",
+                "ELASTICACHE",
+                "ELB",
+                "RDS",
+                "ROUTE53"
+            ]
+        },
         "DryRun": {
             "type": "boolean"
         },
@@ -1967,6 +2125,8 @@
                 "IN_PROGRESS",
                 "FAILED",
                 "COMPLETED",
+                "WAITING_FOR_EVACUATION",
+                "CANCELLATION_IN_PROGRESS",
                 "CANCELLED"
             ]
         },
@@ -1986,17 +2146,24 @@
         },
         "CapacityTaskFailureType": {
             "enum": [
-                "UNSUPPORTED_CAPACITY_CONFIGURATION"
+                "UNSUPPORTED_CAPACITY_CONFIGURATION",
+                "UNEXPECTED_ASSET_STATE",
+                "BLOCKING_INSTANCES_NOT_EVACUATED",
+                "INTERNAL_SERVER_ERROR",
+                "RESOURCE_NOT_FOUND"
             ]
         },
-        "GetCapacityTaskInput": {
+        "TaskActionOnBlockingInstances": {
+            "enum": [
+                "WAIT_FOR_EVACUATION",
+                "FAIL_TASK"
+            ]
+        },
+        "GetCatalogItemInput": {
             "type": "object",
             "properties": {
-                "CapacityTaskId": {
-                    "$ref": "#/$defs/CapacityTaskId"
-                },
-                "OutpostIdentifier": {
-                    "$ref": "#/$defs/OutpostIdentifier"
+                "CatalogItemId": {
+                    "$ref": "#/$defs/SkuCode"
                 }
             }
         },
@@ -2099,13 +2266,16 @@
                 "S3"
             ]
         },
-        "GetCatalogItemInput": {
+        "GetConnectionRequest": {
             "type": "object",
             "properties": {
-                "CatalogItemId": {
-                    "$ref": "#/$defs/SkuCode"
+                "ConnectionId": {
+                    "$ref": "#/$defs/ConnectionId"
                 }
             }
+        },
+        "ConnectionId": {
+            "type": "string"
         },
         "GetConnectionResponse": {
             "type": "object",
@@ -2117,9 +2287,6 @@
                     "$ref": "#/$defs/ConnectionDetails"
                 }
             }
-        },
-        "ConnectionId": {
-            "type": "string"
         },
         "ConnectionDetails": {
             "type": "object",
@@ -2159,11 +2326,11 @@
                 "$ref": "#/$defs/CIDR"
             }
         },
-        "GetConnectionRequest": {
+        "GetOrderInput": {
             "type": "object",
             "properties": {
-                "ConnectionId": {
-                    "$ref": "#/$defs/ConnectionId"
+                "OrderId": {
+                    "$ref": "#/$defs/OrderId"
                 }
             }
         },
@@ -2175,11 +2342,11 @@
                 }
             }
         },
-        "GetOrderInput": {
+        "GetOutpostInput": {
             "type": "object",
             "properties": {
-                "OrderId": {
-                    "$ref": "#/$defs/OrderId"
+                "OutpostId": {
+                    "$ref": "#/$defs/OutpostId"
                 }
             }
         },
@@ -2191,13 +2358,26 @@
                 }
             }
         },
-        "GetOutpostInput": {
+        "GetOutpostInstanceTypesInput": {
             "type": "object",
             "properties": {
                 "OutpostId": {
                     "$ref": "#/$defs/OutpostId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults1000"
                 }
             }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "MaxResults1000": {
+            "type": "integer",
+            "format": "int32"
         },
         "GetOutpostInstanceTypesOutput": {
             "type": "object",
@@ -2240,38 +2420,6 @@
             "type": "integer",
             "format": "int32"
         },
-        "Token": {
-            "type": "string"
-        },
-        "GetOutpostInstanceTypesInput": {
-            "type": "object",
-            "properties": {
-                "OutpostId": {
-                    "$ref": "#/$defs/OutpostId"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/Token"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults1000"
-                }
-            }
-        },
-        "MaxResults1000": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "GetOutpostSupportedInstanceTypesOutput": {
-            "type": "object",
-            "properties": {
-                "InstanceTypes": {
-                    "$ref": "#/$defs/InstanceTypeListDefinition"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/Token"
-                }
-            }
-        },
         "GetOutpostSupportedInstanceTypesInput": {
             "type": "object",
             "properties": {
@@ -2289,11 +2437,14 @@
                 }
             }
         },
-        "GetSiteOutput": {
+        "GetOutpostSupportedInstanceTypesOutput": {
             "type": "object",
             "properties": {
-                "Site": {
-                    "$ref": "#/$defs/Site"
+                "InstanceTypes": {
+                    "$ref": "#/$defs/InstanceTypeListDefinition"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
                 }
             }
         },
@@ -2304,6 +2455,31 @@
                     "$ref": "#/$defs/SiteId"
                 }
             }
+        },
+        "GetSiteOutput": {
+            "type": "object",
+            "properties": {
+                "Site": {
+                    "$ref": "#/$defs/Site"
+                }
+            }
+        },
+        "GetSiteAddressInput": {
+            "type": "object",
+            "properties": {
+                "SiteId": {
+                    "$ref": "#/$defs/SiteId"
+                },
+                "AddressType": {
+                    "$ref": "#/$defs/AddressType"
+                }
+            }
+        },
+        "AddressType": {
+            "enum": [
+                "SHIPPING_ADDRESS",
+                "OPERATING_ADDRESS"
+            ]
         },
         "GetSiteAddressOutput": {
             "type": "object",
@@ -2319,22 +2495,125 @@
                 }
             }
         },
-        "AddressType": {
-            "enum": [
-                "SHIPPING_ADDRESS",
-                "OPERATING_ADDRESS"
-            ]
-        },
-        "GetSiteAddressInput": {
+        "ListAssetInstancesInput": {
             "type": "object",
             "properties": {
-                "SiteId": {
-                    "$ref": "#/$defs/SiteId"
+                "OutpostIdentifier": {
+                    "$ref": "#/$defs/OutpostIdentifier"
                 },
-                "AddressType": {
-                    "$ref": "#/$defs/AddressType"
+                "AssetIdFilter": {
+                    "$ref": "#/$defs/AssetIdList"
+                },
+                "InstanceTypeFilter": {
+                    "$ref": "#/$defs/OutpostInstanceTypeList"
+                },
+                "AccountIdFilter": {
+                    "$ref": "#/$defs/AccountIdList"
+                },
+                "AwsServiceFilter": {
+                    "$ref": "#/$defs/AWSServiceNameList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults1000"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
                 }
             }
+        },
+        "AssetIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetId"
+            }
+        },
+        "OutpostInstanceTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/OutpostInstanceType"
+            }
+        },
+        "OutpostInstanceType": {
+            "type": "string"
+        },
+        "ListAssetInstancesOutput": {
+            "type": "object",
+            "properties": {
+                "AssetInstances": {
+                    "$ref": "#/$defs/AssetInstanceList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "AssetInstanceList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetInstance"
+            }
+        },
+        "AssetInstance": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "InstanceType": {
+                    "$ref": "#/$defs/OutpostInstanceType"
+                },
+                "AssetId": {
+                    "$ref": "#/$defs/AssetId"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "AwsServiceName": {
+                    "$ref": "#/$defs/AWSServiceName"
+                }
+            }
+        },
+        "ListAssetsInput": {
+            "type": "object",
+            "properties": {
+                "OutpostIdentifier": {
+                    "$ref": "#/$defs/OutpostIdentifier"
+                },
+                "HostIdFilter": {
+                    "$ref": "#/$defs/HostIdList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults1000"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "StatusFilter": {
+                    "$ref": "#/$defs/StatusList"
+                }
+            }
+        },
+        "HostIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HostId"
+            }
+        },
+        "HostId": {
+            "type": "string"
+        },
+        "StatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetState"
+            }
+        },
+        "AssetState": {
+            "enum": [
+                "ACTIVE",
+                "RETIRING",
+                "ISOLATED"
+            ]
         },
         "ListAssetsOutput": {
             "type": "object",
@@ -2392,11 +2671,14 @@
                 },
                 "InstanceFamilies": {
                     "$ref": "#/$defs/InstanceFamilies"
+                },
+                "InstanceTypeCapacities": {
+                    "$ref": "#/$defs/AssetInstanceCapacityList"
+                },
+                "MaxVcpus": {
+                    "$ref": "#/$defs/VCPUCount"
                 }
             }
-        },
-        "HostId": {
-            "type": "string"
         },
         "ComputeAssetState": {
             "enum": [
@@ -2414,6 +2696,23 @@
         "InstanceFamilyName": {
             "type": "string"
         },
+        "AssetInstanceCapacityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AssetInstanceTypeCapacity"
+            }
+        },
+        "AssetInstanceTypeCapacity": {
+            "type": "object",
+            "properties": {
+                "InstanceType": {
+                    "$ref": "#/$defs/InstanceTypeName"
+                },
+                "Count": {
+                    "$ref": "#/$defs/InstanceTypeCount"
+                }
+            }
+        },
         "AssetLocation": {
             "type": "object",
             "properties": {
@@ -2426,14 +2725,59 @@
             "type": "number",
             "format": "float"
         },
-        "ListAssetsInput": {
+        "ListBlockingInstancesForCapacityTaskInput": {
             "type": "object",
             "properties": {
                 "OutpostIdentifier": {
                     "$ref": "#/$defs/OutpostIdentifier"
                 },
-                "HostIdFilter": {
-                    "$ref": "#/$defs/HostIdList"
+                "CapacityTaskId": {
+                    "$ref": "#/$defs/CapacityTaskId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults1000"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "ListBlockingInstancesForCapacityTaskOutput": {
+            "type": "object",
+            "properties": {
+                "BlockingInstances": {
+                    "$ref": "#/$defs/BlockingInstancesList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "BlockingInstancesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BlockingInstance"
+            }
+        },
+        "BlockingInstance": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "AccountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "AwsServiceName": {
+                    "$ref": "#/$defs/AWSServiceName"
+                }
+            }
+        },
+        "ListCapacityTasksInput": {
+            "type": "object",
+            "properties": {
+                "OutpostIdentifierFilter": {
+                    "$ref": "#/$defs/OutpostIdentifier"
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults1000"
@@ -2441,29 +2785,16 @@
                 "NextToken": {
                     "$ref": "#/$defs/Token"
                 },
-                "StatusFilter": {
-                    "$ref": "#/$defs/StatusList"
+                "CapacityTaskStatusFilter": {
+                    "$ref": "#/$defs/CapacityTaskStatusList"
                 }
             }
         },
-        "HostIdList": {
+        "CapacityTaskStatusList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/HostId"
+                "$ref": "#/$defs/CapacityTaskStatus"
             }
-        },
-        "StatusList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AssetState"
-            }
-        },
-        "AssetState": {
-            "enum": [
-                "ACTIVE",
-                "RETIRING",
-                "ISOLATED"
-            ]
         },
         "ListCapacityTasksOutput": {
             "type": "object",
@@ -2508,46 +2839,6 @@
                 }
             }
         },
-        "ListCapacityTasksInput": {
-            "type": "object",
-            "properties": {
-                "OutpostIdentifierFilter": {
-                    "$ref": "#/$defs/OutpostIdentifier"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults1000"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/Token"
-                },
-                "CapacityTaskStatusFilter": {
-                    "$ref": "#/$defs/CapacityTaskStatusList"
-                }
-            }
-        },
-        "CapacityTaskStatusList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/CapacityTaskStatus"
-            }
-        },
-        "ListCatalogItemsOutput": {
-            "type": "object",
-            "properties": {
-                "CatalogItems": {
-                    "$ref": "#/$defs/CatalogItemListDefinition"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/Token"
-                }
-            }
-        },
-        "CatalogItemListDefinition": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/CatalogItem"
-            }
-        },
         "ListCatalogItemsInput": {
             "type": "object",
             "properties": {
@@ -2584,6 +2875,37 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/Family"
+            }
+        },
+        "ListCatalogItemsOutput": {
+            "type": "object",
+            "properties": {
+                "CatalogItems": {
+                    "$ref": "#/$defs/CatalogItemListDefinition"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "CatalogItemListDefinition": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CatalogItem"
+            }
+        },
+        "ListOrdersInput": {
+            "type": "object",
+            "properties": {
+                "OutpostIdentifierFilter": {
+                    "$ref": "#/$defs/OutpostIdentifier"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults1000"
+                }
             }
         },
         "ListOrdersOutput": {
@@ -2635,37 +2957,6 @@
                 "$ref": "#/$defs/LineItemQuantity"
             }
         },
-        "ListOrdersInput": {
-            "type": "object",
-            "properties": {
-                "OutpostIdentifierFilter": {
-                    "$ref": "#/$defs/OutpostIdentifier"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/Token"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults1000"
-                }
-            }
-        },
-        "ListOutpostsOutput": {
-            "type": "object",
-            "properties": {
-                "Outposts": {
-                    "$ref": "#/$defs/outpostListDefinition"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/Token"
-                }
-            }
-        },
-        "outpostListDefinition": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Outpost"
-            }
-        },
         "ListOutpostsInput": {
             "type": "object",
             "properties": {
@@ -2704,21 +2995,21 @@
                 "$ref": "#/$defs/AvailabilityZoneId"
             }
         },
-        "ListSitesOutput": {
+        "ListOutpostsOutput": {
             "type": "object",
             "properties": {
-                "Sites": {
-                    "$ref": "#/$defs/siteListDefinition"
+                "Outposts": {
+                    "$ref": "#/$defs/outpostListDefinition"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/Token"
                 }
             }
         },
-        "siteListDefinition": {
+        "outpostListDefinition": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/Site"
+                "$ref": "#/$defs/Outpost"
             }
         },
         "ListSitesInput": {
@@ -2759,12 +3050,21 @@
                 "$ref": "#/$defs/City"
             }
         },
-        "ListTagsForResourceResponse": {
+        "ListSitesOutput": {
             "type": "object",
             "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/TagMap"
+                "Sites": {
+                    "$ref": "#/$defs/siteListDefinition"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
                 }
+            }
+        },
+        "siteListDefinition": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Site"
             }
         },
         "ListTagsForResourceRequest": {
@@ -2777,6 +3077,37 @@
         },
         "Arn": {
             "type": "string"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagMap"
+                }
+            }
+        },
+        "StartCapacityTaskInput": {
+            "type": "object",
+            "properties": {
+                "OutpostIdentifier": {
+                    "$ref": "#/$defs/OutpostIdentifier"
+                },
+                "OrderId": {
+                    "$ref": "#/$defs/OrderId"
+                },
+                "InstancePools": {
+                    "$ref": "#/$defs/RequestedInstancePools"
+                },
+                "InstancesToExclude": {
+                    "$ref": "#/$defs/InstancesToExclude"
+                },
+                "DryRun": {
+                    "$ref": "#/$defs/DryRun"
+                },
+                "TaskActionOnBlockingInstances": {
+                    "$ref": "#/$defs/TaskActionOnBlockingInstances"
+                }
+            }
         },
         "StartCapacityTaskOutput": {
             "type": "object",
@@ -2792,6 +3123,9 @@
                 },
                 "RequestedInstancePools": {
                     "$ref": "#/$defs/RequestedInstancePools"
+                },
+                "InstancesToExclude": {
+                    "$ref": "#/$defs/InstancesToExclude"
                 },
                 "DryRun": {
                     "$ref": "#/$defs/DryRun"
@@ -2810,39 +3144,11 @@
                 },
                 "LastModifiedDate": {
                     "$ref": "#/$defs/ISO8601Timestamp"
+                },
+                "TaskActionOnBlockingInstances": {
+                    "$ref": "#/$defs/TaskActionOnBlockingInstances"
                 }
             }
-        },
-        "StartCapacityTaskInput": {
-            "type": "object",
-            "properties": {
-                "OutpostIdentifier": {
-                    "$ref": "#/$defs/OutpostIdentifier"
-                },
-                "OrderId": {
-                    "$ref": "#/$defs/OrderId"
-                },
-                "InstancePools": {
-                    "$ref": "#/$defs/RequestedInstancePools"
-                },
-                "DryRun": {
-                    "$ref": "#/$defs/DryRun"
-                }
-            }
-        },
-        "StartConnectionResponse": {
-            "type": "object",
-            "properties": {
-                "ConnectionId": {
-                    "$ref": "#/$defs/ConnectionId"
-                },
-                "UnderlayIpAddress": {
-                    "$ref": "#/$defs/UnderlayIpAddress"
-                }
-            }
-        },
-        "UnderlayIpAddress": {
-            "type": "string"
         },
         "StartConnectionRequest": {
             "type": "object",
@@ -2868,9 +3174,19 @@
             "type": "integer",
             "format": "int32"
         },
-        "TagResourceResponse": {
+        "StartConnectionResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "ConnectionId": {
+                    "$ref": "#/$defs/ConnectionId"
+                },
+                "UnderlayIpAddress": {
+                    "$ref": "#/$defs/UnderlayIpAddress"
+                }
+            }
+        },
+        "UnderlayIpAddress": {
+            "type": "string"
         },
         "TagResourceRequest": {
             "type": "object",
@@ -2883,7 +3199,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -2907,13 +3223,9 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateOutpostOutput": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "Outpost": {
-                    "$ref": "#/$defs/Outpost"
-                }
-            }
+            "properties": {}
         },
         "UpdateOutpostInput": {
             "type": "object",
@@ -2932,11 +3244,11 @@
                 }
             }
         },
-        "UpdateSiteOutput": {
+        "UpdateOutpostOutput": {
             "type": "object",
             "properties": {
-                "Site": {
-                    "$ref": "#/$defs/Site"
+                "Outpost": {
+                    "$ref": "#/$defs/Outpost"
                 }
             }
         },
@@ -2957,14 +3269,11 @@
                 }
             }
         },
-        "UpdateSiteAddressOutput": {
+        "UpdateSiteOutput": {
             "type": "object",
             "properties": {
-                "AddressType": {
-                    "$ref": "#/$defs/AddressType"
-                },
-                "Address": {
-                    "$ref": "#/$defs/Address"
+                "Site": {
+                    "$ref": "#/$defs/Site"
                 }
             }
         },
@@ -2982,11 +3291,14 @@
                 }
             }
         },
-        "UpdateSiteRackPhysicalPropertiesOutput": {
+        "UpdateSiteAddressOutput": {
             "type": "object",
             "properties": {
-                "Site": {
-                    "$ref": "#/$defs/Site"
+                "AddressType": {
+                    "$ref": "#/$defs/AddressType"
+                },
+                "Address": {
+                    "$ref": "#/$defs/Address"
                 }
             }
         },
@@ -3022,6 +3334,14 @@
                 },
                 "MaximumSupportedWeightLbs": {
                     "$ref": "#/$defs/MaximumSupportedWeightLbs"
+                }
+            }
+        },
+        "UpdateSiteRackPhysicalPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "Site": {
+                    "$ref": "#/$defs/Site"
                 }
             }
         }

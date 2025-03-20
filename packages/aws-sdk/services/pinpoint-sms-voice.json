@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -68,9 +66,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "EventDestination": {},
+                        "EventDestinationName": {}
                     }
                 }
             }
@@ -107,9 +105,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -148,9 +144,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "EventDestinationName": {}
                     }
                 }
             }
@@ -187,9 +182,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -222,9 +215,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -257,9 +249,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CallerId": {},
+                        "ConfigurationSetName": {},
+                        "Content": {},
+                        "DestinationPhoneNumber": {},
+                        "OriginationPhoneNumber": {}
                     }
                 }
             }
@@ -298,9 +292,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "EventDestination": {},
+                        "EventDestinationName": {}
                     }
                 }
             }
@@ -352,10 +346,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateConfigurationSetResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "CreateConfigurationSetRequest": {
             "type": "object",
             "properties": {
@@ -367,7 +357,7 @@
         "WordCharactersWithDelimiters": {
             "type": "string"
         },
-        "CreateConfigurationSetEventDestinationResponse": {
+        "CreateConfigurationSetResponse": {
             "type": "object",
             "properties": {}
         },
@@ -464,7 +454,7 @@
         "NonEmptyString": {
             "type": "string"
         },
-        "DeleteConfigurationSetResponse": {
+        "CreateConfigurationSetEventDestinationResponse": {
             "type": "object",
             "properties": {}
         },
@@ -476,7 +466,7 @@
                 }
             }
         },
-        "DeleteConfigurationSetEventDestinationResponse": {
+        "DeleteConfigurationSetResponse": {
             "type": "object",
             "properties": {}
         },
@@ -487,6 +477,18 @@
                     "$ref": "#/$defs/__string"
                 },
                 "EventDestinationName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeleteConfigurationSetEventDestinationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetConfigurationSetEventDestinationsRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationSetName": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -528,10 +530,13 @@
                 }
             }
         },
-        "GetConfigurationSetEventDestinationsRequest": {
+        "ListConfigurationSetsRequest": {
             "type": "object",
             "properties": {
-                "ConfigurationSetName": {
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PageSize": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -555,25 +560,6 @@
         },
         "NextTokenString": {
             "type": "string"
-        },
-        "ListConfigurationSetsRequest": {
-            "type": "object",
-            "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/__string"
-                },
-                "PageSize": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
-        "SendVoiceMessageResponse": {
-            "type": "object",
-            "properties": {
-                "MessageId": {
-                    "$ref": "#/$defs/String"
-                }
-            }
         },
         "SendVoiceMessageRequest": {
             "type": "object",
@@ -645,9 +631,13 @@
                 }
             }
         },
-        "UpdateConfigurationSetEventDestinationResponse": {
+        "SendVoiceMessageResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "MessageId": {
+                    "$ref": "#/$defs/String"
+                }
+            }
         },
         "UpdateConfigurationSetEventDestinationRequest": {
             "type": "object",
@@ -662,6 +652,10 @@
                     "$ref": "#/$defs/__string"
                 }
             }
+        },
+        "UpdateConfigurationSetEventDestinationResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

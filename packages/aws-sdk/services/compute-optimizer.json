@@ -176,6 +176,35 @@
             }
         },
         {
+            "name": "ExportIdleRecommendations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ComputeOptimizerService.ExportIdleRecommendations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ExportIdleRecommendationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExportIdleRecommendationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ExportLambdaFunctionRecommendations",
             "config": {
                 "http": {
@@ -524,6 +553,35 @@
             }
         },
         {
+            "name": "GetIdleRecommendations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ComputeOptimizerService.GetIdleRecommendations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIdleRecommendationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIdleRecommendationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetLambdaFunctionRecommendations",
             "config": {
                 "http": {
@@ -829,7 +887,8 @@
                 "NOT_APPLICABLE",
                 "ECS_SERVICE",
                 "LICENSE",
-                "RDS_DB_INSTANCE"
+                "RDS_DB_INSTANCE",
+                "IDLE"
             ]
         },
         "Scope": {
@@ -1129,6 +1188,9 @@
                 "CURRENT_CONFIGURATION_DESIRED_CAPACITY",
                 "CURRENT_CONFIGURATION_MIN_SIZE",
                 "CURRENT_CONFIGURATION_MAX_SIZE",
+                "CURRENT_CONFIGURATION_ALLOCATION_STRATEGY",
+                "CURRENT_CONFIGURATION_MIXED_INSTANCE_TYPES",
+                "CURRENT_CONFIGURATION_TYPE",
                 "CURRENT_ON_DEMAND_PRICE",
                 "CURRENT_STANDARD_ONE_YEAR_NO_UPFRONT_RESERVED_PRICE",
                 "CURRENT_STANDARD_THREE_YEAR_NO_UPFRONT_RESERVED_PRICE",
@@ -1140,6 +1202,10 @@
                 "RECOMMENDATION_OPTIONS_CONFIGURATION_DESIRED_CAPACITY",
                 "RECOMMENDATION_OPTIONS_CONFIGURATION_MIN_SIZE",
                 "RECOMMENDATION_OPTIONS_CONFIGURATION_MAX_SIZE",
+                "RECOMMENDATION_OPTIONS_CONFIGURATION_ESTIMATED_INSTANCE_HOUR_REDUCTION_PERCENTAGE",
+                "RECOMMENDATION_OPTIONS_CONFIGURATION_ALLOCATION_STRATEGY",
+                "RECOMMENDATION_OPTIONS_CONFIGURATION_MIXED_INSTANCE_TYPES",
+                "RECOMMENDATION_OPTIONS_CONFIGURATION_TYPE",
                 "RECOMMENDATION_OPTIONS_PROJECTED_UTILIZATION_METRICS_CPU_MAXIMUM",
                 "RECOMMENDATION_OPTIONS_PROJECTED_UTILIZATION_METRICS_MEMORY_MAXIMUM",
                 "RECOMMENDATION_OPTIONS_PERFORMANCE_RISK",
@@ -1530,6 +1596,93 @@
                 "RECOMMENDATION_OPTIONS_ESTIMATED_MONTHLY_SAVINGS_VALUE_AFTER_DISCOUNTS"
             ]
         },
+        "ExportIdleRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "s3Destination": {
+                    "$ref": "#/$defs/S3Destination"
+                }
+            }
+        },
+        "ExportIdleRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "accountIds": {
+                    "$ref": "#/$defs/AccountIds"
+                },
+                "filters": {
+                    "$ref": "#/$defs/IdleRecommendationFilters"
+                },
+                "fieldsToExport": {
+                    "$ref": "#/$defs/ExportableIdleFields"
+                },
+                "s3DestinationConfig": {
+                    "$ref": "#/$defs/S3DestinationConfig"
+                },
+                "fileFormat": {
+                    "$ref": "#/$defs/FileFormat"
+                },
+                "includeMemberAccounts": {
+                    "$ref": "#/$defs/IncludeMemberAccounts"
+                }
+            }
+        },
+        "IdleRecommendationFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdleRecommendationFilter"
+            }
+        },
+        "IdleRecommendationFilter": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IdleRecommendationFilterName"
+                },
+                "values": {
+                    "$ref": "#/$defs/FilterValues"
+                }
+            }
+        },
+        "IdleRecommendationFilterName": {
+            "enum": [
+                "FINDING",
+                "RESOURCE_TYPE"
+            ]
+        },
+        "ExportableIdleFields": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ExportableIdleField"
+            }
+        },
+        "ExportableIdleField": {
+            "enum": [
+                "ACCOUNT_ID",
+                "RESOURCE_ARN",
+                "RESOURCE_ID",
+                "RESOURCE_TYPE",
+                "LAST_REFRESH_TIMESTAMP",
+                "LOOKBACK_PERIOD_IN_DAYS",
+                "SAVINGS_OPPORTUNITY",
+                "SAVINGS_OPPORTUNITY_AFTER_DISCOUNT",
+                "UTILIZATION_METRICS_CPU_MAXIMUM",
+                "UTILIZATION_METRICS_MEMORY_MAXIMUM",
+                "UTILIZATION_METRICS_NETWORK_OUT_BYTES_PER_SECOND_MAXIMUM",
+                "UTILIZATION_METRICS_NETWORK_IN_BYTES_PER_SECOND_MAXIMUM",
+                "UTILIZATION_METRICS_DATABASE_CONNECTIONS_MAXIMUM",
+                "UTILIZATION_METRICS_EBS_VOLUME_READ_IOPS_MAXIMUM",
+                "UTILIZATION_METRICS_EBS_VOLUME_WRITE_IOPS_MAXIMUM",
+                "UTILIZATION_METRICS_VOLUME_READ_OPS_PER_SECOND_MAXIMUM",
+                "UTILIZATION_METRICS_VOLUME_WRITE_OPS_PER_SECOND_MAXIMUM",
+                "FINDING",
+                "FINDING_DESCRIPTION",
+                "TAGS"
+            ]
+        },
         "ExportLambdaFunctionRecommendationsResponse": {
             "type": "object",
             "properties": {
@@ -1803,6 +1956,7 @@
                 "CURRENT_INSTANCE_ON_DEMAND_HOURLY_PRICE",
                 "CURRENT_STORAGE_ON_DEMAND_MONTHLY_PRICE",
                 "LOOKBACK_PERIOD_IN_DAYS",
+                "CURRENT_INSTANCE_PERFORMANCE_RISK",
                 "UTILIZATION_METRICS_CPU_MAXIMUM",
                 "UTILIZATION_METRICS_MEMORY_MAXIMUM",
                 "UTILIZATION_METRICS_EBS_VOLUME_STORAGE_SPACE_UTILIZATION_MAXIMUM",
@@ -1813,6 +1967,14 @@
                 "UTILIZATION_METRICS_EBS_VOLUME_READ_THROUGHPUT_MAXIMUM",
                 "UTILIZATION_METRICS_EBS_VOLUME_WRITE_THROUGHPUT_MAXIMUM",
                 "UTILIZATION_METRICS_DATABASE_CONNECTIONS_MAXIMUM",
+                "UTILIZATION_METRICS_STORAGE_NETWORK_RECEIVE_THROUGHPUT_MAXIMUM",
+                "UTILIZATION_METRICS_STORAGE_NETWORK_TRANSMIT_THROUGHPUT_MAXIMUM",
+                "UTILIZATION_METRICS_AURORA_MEMORY_HEALTH_STATE_MAXIMUM",
+                "UTILIZATION_METRICS_AURORA_MEMORY_NUM_DECLINED_SQL_TOTAL_MAXIMUM",
+                "UTILIZATION_METRICS_AURORA_MEMORY_NUM_KILL_CONN_TOTAL_MAXIMUM",
+                "UTILIZATION_METRICS_AURORA_MEMORY_NUM_KILL_QUERY_TOTAL_MAXIMUM",
+                "UTILIZATION_METRICS_READ_IOPS_EPHEMERAL_STORAGE_MAXIMUM",
+                "UTILIZATION_METRICS_WRITE_IOPS_EPHEMERAL_STORAGE_MAXIMUM",
                 "INSTANCE_FINDING",
                 "INSTANCE_FINDING_REASON_CODES",
                 "STORAGE_FINDING",
@@ -1846,7 +2008,9 @@
                 "EFFECTIVE_RECOMMENDATION_PREFERENCES_LOOKBACK_PERIOD",
                 "EFFECTIVE_RECOMMENDATION_PREFERENCES_SAVINGS_ESTIMATION_MODE",
                 "LAST_REFRESH_TIMESTAMP",
-                "TAGS"
+                "TAGS",
+                "DB_CLUSTER_IDENTIFIER",
+                "PROMOTION_TIER"
             ]
         },
         "GetAutoScalingGroupRecommendationsResponse": {
@@ -1994,7 +2158,19 @@
                     "$ref": "#/$defs/MaxSize"
                 },
                 "instanceType": {
-                    "$ref": "#/$defs/InstanceType"
+                    "$ref": "#/$defs/NullableInstanceType"
+                },
+                "allocationStrategy": {
+                    "$ref": "#/$defs/AllocationStrategy"
+                },
+                "estimatedInstanceHourReductionPercentage": {
+                    "$ref": "#/$defs/NullableEstimatedInstanceHourReductionPercentage"
+                },
+                "type": {
+                    "$ref": "#/$defs/AsgType"
+                },
+                "mixedInstanceTypes": {
+                    "$ref": "#/$defs/MixedInstanceTypes"
                 }
             }
         },
@@ -2010,7 +2186,32 @@
             "type": "integer",
             "format": "int32"
         },
-        "InstanceType": {
+        "NullableInstanceType": {
+            "type": "string"
+        },
+        "AllocationStrategy": {
+            "enum": [
+                "PRIORITIZED",
+                "LOWEST_PRICE"
+            ]
+        },
+        "NullableEstimatedInstanceHourReductionPercentage": {
+            "type": "number",
+            "format": "double"
+        },
+        "AsgType": {
+            "enum": [
+                "SINGLE_INSTANCE_TYPE",
+                "MIXED_INSTANCE_TYPE"
+            ]
+        },
+        "MixedInstanceTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MixedInstanceType"
+            }
+        },
+        "MixedInstanceType": {
             "type": "string"
         },
         "GpuInfo": {
@@ -2841,6 +3042,9 @@
                 }
             }
         },
+        "InstanceType": {
+            "type": "string"
+        },
         "PlatformDifferences": {
             "type": "array",
             "items": {
@@ -3652,6 +3856,233 @@
                 "STATUS"
             ]
         },
+        "GetIdleRecommendationsResponse": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "idleRecommendations": {
+                    "$ref": "#/$defs/IdleRecommendations"
+                },
+                "errors": {
+                    "$ref": "#/$defs/IdleRecommendationErrors"
+                }
+            }
+        },
+        "IdleRecommendations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdleRecommendation"
+            }
+        },
+        "IdleRecommendation": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "resourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/IdleRecommendationResourceType"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "finding": {
+                    "$ref": "#/$defs/IdleFinding"
+                },
+                "findingDescription": {
+                    "$ref": "#/$defs/IdleFindingDescription"
+                },
+                "savingsOpportunity": {
+                    "$ref": "#/$defs/IdleSavingsOpportunity"
+                },
+                "savingsOpportunityAfterDiscounts": {
+                    "$ref": "#/$defs/IdleSavingsOpportunityAfterDiscounts"
+                },
+                "utilizationMetrics": {
+                    "$ref": "#/$defs/IdleUtilizationMetrics"
+                },
+                "lookBackPeriodInDays": {
+                    "$ref": "#/$defs/LookBackPeriodInDays"
+                },
+                "lastRefreshTimestamp": {
+                    "$ref": "#/$defs/LastRefreshTimestamp"
+                },
+                "tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ResourceId": {
+            "type": "string"
+        },
+        "IdleRecommendationResourceType": {
+            "enum": [
+                "EC2_INSTANCE",
+                "AUTO_SCALING_GROUP",
+                "EBS_VOLUME",
+                "ECS_SERVICE",
+                "RDS_DB_INSTANCE"
+            ]
+        },
+        "IdleFinding": {
+            "enum": [
+                "IDLE",
+                "UNATTACHED"
+            ]
+        },
+        "IdleFindingDescription": {
+            "type": "string"
+        },
+        "IdleSavingsOpportunity": {
+            "type": "object",
+            "properties": {
+                "savingsOpportunityPercentage": {
+                    "$ref": "#/$defs/SavingsOpportunityPercentage"
+                },
+                "estimatedMonthlySavings": {
+                    "$ref": "#/$defs/IdleEstimatedMonthlySavings"
+                }
+            }
+        },
+        "IdleEstimatedMonthlySavings": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "$ref": "#/$defs/Currency"
+                },
+                "value": {
+                    "$ref": "#/$defs/Value"
+                }
+            }
+        },
+        "IdleSavingsOpportunityAfterDiscounts": {
+            "type": "object",
+            "properties": {
+                "savingsOpportunityPercentage": {
+                    "$ref": "#/$defs/SavingsOpportunityPercentage"
+                },
+                "estimatedMonthlySavings": {
+                    "$ref": "#/$defs/IdleEstimatedMonthlySavings"
+                }
+            }
+        },
+        "IdleUtilizationMetrics": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdleUtilizationMetric"
+            }
+        },
+        "IdleUtilizationMetric": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IdleMetricName"
+                },
+                "statistic": {
+                    "$ref": "#/$defs/MetricStatistic"
+                },
+                "value": {
+                    "$ref": "#/$defs/MetricValue"
+                }
+            }
+        },
+        "IdleMetricName": {
+            "enum": [
+                "CPU",
+                "MEMORY",
+                "NETWORK_OUT_BYTES_PER_SECOND",
+                "NETWORK_IN_BYTES_PER_SECOND",
+                "DATABASE_CONNECTIONS",
+                "EBS_VOLUME_READ_IOPS",
+                "EBS_VOLUME_WRITE_IOPS",
+                "VOLUME_READ_OPS_PER_SECOND",
+                "VOLUME_WRITE_OPS_PER_SECOND"
+            ]
+        },
+        "IdleRecommendationErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdleRecommendationError"
+            }
+        },
+        "IdleRecommendationError": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/Identifier"
+                },
+                "code": {
+                    "$ref": "#/$defs/Code"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/IdleRecommendationResourceType"
+                }
+            }
+        },
+        "GetIdleRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "resourceArns": {
+                    "$ref": "#/$defs/ResourceArns"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/IdleMaxResults"
+                },
+                "filters": {
+                    "$ref": "#/$defs/IdleRecommendationFilters"
+                },
+                "accountIds": {
+                    "$ref": "#/$defs/AccountIds"
+                },
+                "orderBy": {
+                    "$ref": "#/$defs/OrderBy"
+                }
+            }
+        },
+        "ResourceArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceArn"
+            }
+        },
+        "IdleMaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OrderBy": {
+            "type": "object",
+            "properties": {
+                "dimension": {
+                    "$ref": "#/$defs/Dimension"
+                },
+                "order": {
+                    "$ref": "#/$defs/Order"
+                }
+            }
+        },
+        "Dimension": {
+            "enum": [
+                "SAVINGS_VALUE",
+                "SAVINGS_VALUE_AFTER_DISCOUNT"
+            ]
+        },
+        "Order": {
+            "enum": [
+                "ASC",
+                "DESC"
+            ]
+        },
         "GetLambdaFunctionRecommendationsResponse": {
             "type": "object",
             "properties": {
@@ -4110,12 +4541,6 @@
                 }
             }
         },
-        "ResourceArns": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ResourceArn"
-            }
-        },
         "GetRDSDatabaseRecommendationProjectedMetricsResponse": {
             "type": "object",
             "properties": {
@@ -4178,7 +4603,15 @@
                 "EBS_VOLUME_WRITE_IOPS",
                 "EBS_VOLUME_READ_THROUGHPUT",
                 "EBS_VOLUME_WRITE_THROUGHPUT",
-                "DATABASE_CONNECTIONS"
+                "DATABASE_CONNECTIONS",
+                "STORAGE_NETWORK_RECEIVE_THROUGHPUT",
+                "STORAGE_NETWORK_TRANSMIT_THROUGHPUT",
+                "AURORA_MEMORY_HEALTH_STATE",
+                "AURORA_MEMORY_NUM_DECLINED_SQL",
+                "AURORA_MEMORY_NUM_KILL_CONN_TOTAL",
+                "AURORA_MEMORY_NUM_KILL_QUERY_TOTAL",
+                "READ_IOPS_EPHEMERAL_STORAGE",
+                "WRITE_IOPS_EPHEMERAL_STORAGE"
             ]
         },
         "GetRDSDatabaseRecommendationProjectedMetricsRequest": {
@@ -4239,11 +4672,17 @@
                 "engineVersion": {
                     "$ref": "#/$defs/EngineVersion"
                 },
+                "promotionTier": {
+                    "$ref": "#/$defs/PromotionTier"
+                },
                 "currentDBInstanceClass": {
                     "$ref": "#/$defs/CurrentDBInstanceClass"
                 },
                 "currentStorageConfiguration": {
                     "$ref": "#/$defs/DBStorageConfiguration"
+                },
+                "dbClusterIdentifier": {
+                    "$ref": "#/$defs/DBClusterIdentifier"
                 },
                 "idle": {
                     "$ref": "#/$defs/Idle"
@@ -4256,6 +4695,9 @@
                 },
                 "instanceFindingReasonCodes": {
                     "$ref": "#/$defs/RDSInstanceFindingReasonCodes"
+                },
+                "currentInstancePerformanceRisk": {
+                    "$ref": "#/$defs/RDSCurrentInstancePerformanceRisk"
                 },
                 "storageFindingReasonCodes": {
                     "$ref": "#/$defs/RDSStorageFindingReasonCodes"
@@ -4288,6 +4730,10 @@
         },
         "EngineVersion": {
             "type": "string"
+        },
+        "PromotionTier": {
+            "type": "integer",
+            "format": "int32"
         },
         "CurrentDBInstanceClass": {
             "type": "string"
@@ -4331,6 +4777,9 @@
             "type": "integer",
             "format": "int32"
         },
+        "DBClusterIdentifier": {
+            "type": "string"
+        },
         "Idle": {
             "enum": [
                 "TRUE",
@@ -4362,12 +4811,25 @@
                 "CPU_OVER_PROVISIONED",
                 "NETWORK_BANDWIDTH_OVER_PROVISIONED",
                 "EBS_IOPS_OVER_PROVISIONED",
+                "EBS_IOPS_UNDER_PROVISIONED",
                 "EBS_THROUGHPUT_OVER_PROVISIONED",
                 "CPU_UNDER_PROVISIONED",
                 "NETWORK_BANDWIDTH_UNDER_PROVISIONED",
                 "EBS_THROUGHPUT_UNDER_PROVISIONED",
                 "NEW_GENERATION_DB_INSTANCE_CLASS_AVAILABLE",
-                "NEW_ENGINE_VERSION_AVAILABLE"
+                "NEW_ENGINE_VERSION_AVAILABLE",
+                "DB_CLUSTER_WRITER_UNDER_PROVISIONED",
+                "MEMORY_UNDER_PROVISIONED",
+                "INSTANCE_STORAGE_READ_IOPS_UNDER_PROVISIONED",
+                "INSTANCE_STORAGE_WRITE_IOPS_UNDER_PROVISIONED"
+            ]
+        },
+        "RDSCurrentInstancePerformanceRisk": {
+            "enum": [
+                "VERY_LOW",
+                "LOW",
+                "MEDIUM",
+                "HIGH"
             ]
         },
         "RDSStorageFindingReasonCodes": {
@@ -4667,6 +5129,9 @@
                 "summaries": {
                     "$ref": "#/$defs/Summaries"
                 },
+                "idleSummaries": {
+                    "$ref": "#/$defs/IdleSummaries"
+                },
                 "recommendationResourceType": {
                     "$ref": "#/$defs/RecommendationSourceType"
                 },
@@ -4674,6 +5139,12 @@
                     "$ref": "#/$defs/AccountId"
                 },
                 "savingsOpportunity": {
+                    "$ref": "#/$defs/SavingsOpportunity"
+                },
+                "idleSavingsOpportunity": {
+                    "$ref": "#/$defs/SavingsOpportunity"
+                },
+                "aggregatedSavingsOpportunity": {
                     "$ref": "#/$defs/SavingsOpportunity"
                 },
                 "currentPerformanceRiskRatings": {
@@ -4730,6 +5201,23 @@
                 "MEMORY_OVER_PROVISIONED",
                 "MEMORY_UNDER_PROVISIONED"
             ]
+        },
+        "IdleSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IdleSummary"
+            }
+        },
+        "IdleSummary": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/IdleFinding"
+                },
+                "value": {
+                    "$ref": "#/$defs/SummaryValue"
+                }
+            }
         },
         "CurrentPerformanceRiskRatings": {
             "type": "object",

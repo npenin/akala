@@ -1800,6 +1800,35 @@
             }
         },
         {
+            "name": "ModifyEndpointEncryptionMode",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "WorkspacesService.ModifyEndpointEncryptionMode"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyEndpointEncryptionModeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyEndpointEncryptionModeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ModifySamlProperties",
             "config": {
                 "http": {
@@ -3266,6 +3295,8 @@
                 "POWER",
                 "GRAPHICS",
                 "POWERPRO",
+                "GENERALPURPOSE_4XLARGE",
+                "GENERALPURPOSE_8XLARGE",
                 "GRAPHICSPRO",
                 "GRAPHICS_G4DN",
                 "GRAPHICSPRO_G4DN"
@@ -3478,6 +3509,9 @@
                 },
                 "OperatingSystemName": {
                     "$ref": "#/$defs/OperatingSystemName"
+                },
+                "GlobalAccelerator": {
+                    "$ref": "#/$defs/GlobalAcceleratorForWorkSpace"
                 }
             }
         },
@@ -3525,7 +3559,33 @@
                 "WINDOWS_SERVER_2016",
                 "WINDOWS_SERVER_2019",
                 "WINDOWS_SERVER_2022",
-                "RHEL_8"
+                "RHEL_8",
+                "ROCKY_8"
+            ]
+        },
+        "GlobalAcceleratorForWorkSpace": {
+            "type": "object",
+            "properties": {
+                "Mode": {
+                    "$ref": "#/$defs/AGAModeForWorkSpaceEnum"
+                },
+                "PreferredProtocol": {
+                    "$ref": "#/$defs/AGAPreferredProtocolForWorkSpace"
+                }
+            }
+        },
+        "AGAModeForWorkSpaceEnum": {
+            "enum": [
+                "ENABLED_AUTO",
+                "DISABLED",
+                "INHERITED"
+            ]
+        },
+        "AGAPreferredProtocolForWorkSpace": {
+            "enum": [
+                "TCP",
+                "NONE",
+                "INHERITED"
             ]
         },
         "WorkspaceName": {
@@ -5111,6 +5171,9 @@
                 "CertificateBasedAuthProperties": {
                     "$ref": "#/$defs/CertificateBasedAuthProperties"
                 },
+                "EndpointEncryptionMode": {
+                    "$ref": "#/$defs/EndpointEncryptionMode"
+                },
                 "MicrosoftEntraConfig": {
                     "$ref": "#/$defs/MicrosoftEntraConfig"
                 },
@@ -5236,6 +5299,9 @@
                 },
                 "DeviceTypeLinux": {
                     "$ref": "#/$defs/AccessPropertyValue"
+                },
+                "DeviceTypeWorkSpacesThinClient": {
+                    "$ref": "#/$defs/AccessPropertyValue"
                 }
             }
         },
@@ -5315,6 +5381,12 @@
         "CertificateAuthorityArn": {
             "type": "string"
         },
+        "EndpointEncryptionMode": {
+            "enum": [
+                "STANDARD_TLS",
+                "FIPS_VALIDATED"
+            ]
+        },
         "MicrosoftEntraConfig": {
             "type": "object",
             "properties": {
@@ -5387,6 +5459,9 @@
                 },
                 "StorageConnectors": {
                     "$ref": "#/$defs/StorageConnectors"
+                },
+                "GlobalAccelerator": {
+                    "$ref": "#/$defs/GlobalAcceleratorForDirectory"
                 }
             }
         },
@@ -5460,6 +5535,29 @@
             "enum": [
                 "ENABLED",
                 "DISABLED"
+            ]
+        },
+        "GlobalAcceleratorForDirectory": {
+            "type": "object",
+            "properties": {
+                "Mode": {
+                    "$ref": "#/$defs/AGAModeForDirectoryEnum"
+                },
+                "PreferredProtocol": {
+                    "$ref": "#/$defs/AGAPreferredProtocolForDirectory"
+                }
+            }
+        },
+        "AGAModeForDirectoryEnum": {
+            "enum": [
+                "ENABLED_AUTO",
+                "DISABLED"
+            ]
+        },
+        "AGAPreferredProtocolForDirectory": {
+            "enum": [
+                "TCP",
+                "NONE"
             ]
         },
         "DescribeWorkspaceDirectoriesRequest": {
@@ -5687,7 +5785,23 @@
                 "UEFI_NOT_SUPPORTED",
                 "UNKNOWN_ERROR",
                 "APPX_PACKAGES_INSTALLED",
-                "RESERVED_STORAGE_IN_USE"
+                "RESERVED_STORAGE_IN_USE",
+                "ADDITIONAL_DRIVES_PRESENT",
+                "WINDOWS_UPDATES_REQUIRED",
+                "SYSPREP_FILE_MISSING",
+                "USER_PROFILE_MISSING",
+                "INSUFFICIENT_DISK_SPACE",
+                "ENVIRONMENT_VARIABLES_PATH_MISSING_ENTRIES",
+                "DOMAIN_ACCOUNT_SERVICES_FOUND",
+                "INVALID_IP",
+                "REMOTE_DESKTOP_SERVICES_DISABLED",
+                "WINDOWS_MODULES_INSTALLER_DISABLED",
+                "AMAZON_SSM_AGENT_ENABLED",
+                "UNSUPPORTED_SECURITY_PROTOCOL",
+                "MULTIPLE_USER_PROFILES",
+                "STAGED_APPX_PACKAGE",
+                "UNSUPPORTED_OS_UPGRADE",
+                "INSUFFICIENT_REARM_COUNT"
             ]
         },
         "DescribeWorkspaceImagesRequest": {
@@ -6419,6 +6533,21 @@
                 },
                 "ClientProperties": {
                     "$ref": "#/$defs/ClientProperties"
+                }
+            }
+        },
+        "ModifyEndpointEncryptionModeResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "ModifyEndpointEncryptionModeRequest": {
+            "type": "object",
+            "properties": {
+                "DirectoryId": {
+                    "$ref": "#/$defs/DirectoryId"
+                },
+                "EndpointEncryptionMode": {
+                    "$ref": "#/$defs/EndpointEncryptionMode"
                 }
             }
         },

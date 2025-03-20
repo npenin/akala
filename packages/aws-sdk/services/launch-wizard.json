@@ -33,9 +33,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -72,9 +70,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -111,9 +108,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -165,6 +161,14 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
         "ListTagsForResourceOutput": {
             "type": "object",
             "properties": {
@@ -182,18 +186,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceInput": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "TagResourceOutput": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceInput": {
             "type": "object",
             "properties": {
@@ -205,7 +197,7 @@
                 }
             }
         },
-        "UntagResourceOutput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {}
         },
@@ -228,6 +220,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

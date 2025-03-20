@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PercentEnabled": {},
+                        "PlaybackConfigurationName": {},
+                        "EnabledLoggingStrategies": {}
                     }
                 }
             }
@@ -64,8 +64,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -102,8 +103,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -140,8 +140,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -178,8 +178,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -231,7 +231,7 @@
             "type": "string",
             "format": "binary"
         },
-        "ConfigureLogsForPlaybackConfigurationResponse": {
+        "ConfigureLogsForPlaybackConfigurationRequest": {
             "type": "object",
             "properties": {
                 "PercentEnabled": {
@@ -239,6 +239,9 @@
                 },
                 "PlaybackConfigurationName": {
                     "$ref": "#/$defs/__string"
+                },
+                "EnabledLoggingStrategies": {
+                    "$ref": "#/$defs/__listOfLoggingStrategies"
                 }
             }
         },
@@ -249,7 +252,19 @@
         "__string": {
             "type": "string"
         },
-        "ConfigureLogsForPlaybackConfigurationRequest": {
+        "__listOfLoggingStrategies": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/LoggingStrategy"
+            }
+        },
+        "LoggingStrategy": {
+            "enum": [
+                "VENDED_LOGS",
+                "LEGACY_CLOUDWATCH"
+            ]
+        },
+        "ConfigureLogsForPlaybackConfigurationResponse": {
             "type": "object",
             "properties": {
                 "PercentEnabled": {
@@ -257,8 +272,29 @@
                 },
                 "PlaybackConfigurationName": {
                     "$ref": "#/$defs/__string"
+                },
+                "EnabledLoggingStrategies": {
+                    "$ref": "#/$defs/__listOfLoggingStrategies"
                 }
             }
+        },
+        "ListAlertsRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListAlertsResponse": {
             "type": "object",
@@ -317,23 +353,13 @@
                 "INFO"
             ]
         },
-        "ListAlertsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/__string"
-                },
                 "ResourceArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -347,14 +373,6 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/__string"
-            }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/__string"
-                }
             }
         },
         "TagResourceRequest": {

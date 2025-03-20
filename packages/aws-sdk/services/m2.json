@@ -60,8 +60,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "engineType": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -98,8 +99,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -136,8 +136,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -174,8 +174,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -235,6 +235,30 @@
                 }
             }
         },
+        "ListEngineVersionsRequest": {
+            "type": "object",
+            "properties": {
+                "engineType": {
+                    "$ref": "#/$defs/EngineType"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "EngineType": {
+            "type": "string"
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ListEngineVersionsResponse": {
             "type": "object",
             "properties": {
@@ -263,29 +287,16 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListEngineVersionsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "engineType": {
-                    "$ref": "#/$defs/EngineType"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
-        "EngineType": {
+        "Arn": {
             "type": "string"
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -304,21 +315,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -330,7 +326,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -353,6 +349,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

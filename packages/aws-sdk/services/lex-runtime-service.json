@@ -37,9 +37,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botName": {},
+                        "botAlias": {},
+                        "userId": {}
                     }
                 }
             }
@@ -80,9 +80,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botName": {},
+                        "botAlias": {},
+                        "userId": {},
+                        "checkpointLabelFilter": {}
                     }
                 }
             }
@@ -123,9 +124,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botName": {},
+                        "botAlias": {},
+                        "userId": {},
+                        "sessionAttributes": {},
+                        "requestAttributes": {},
+                        "contentType": {},
+                        "accept": {},
+                        "inputStream": {},
+                        "activeContexts": {}
                     }
                 }
             }
@@ -166,9 +173,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botName": {},
+                        "botAlias": {},
+                        "userId": {},
+                        "sessionAttributes": {},
+                        "requestAttributes": {},
+                        "inputText": {},
+                        "activeContexts": {}
                     }
                 }
             }
@@ -209,9 +220,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botName": {},
+                        "botAlias": {},
+                        "userId": {},
+                        "sessionAttributes": {},
+                        "dialogAction": {},
+                        "recentIntentSummaryView": {},
+                        "accept": {},
+                        "activeContexts": {}
                     }
                 }
             }
@@ -263,6 +279,29 @@
             "type": "string",
             "format": "binary"
         },
+        "DeleteSessionRequest": {
+            "type": "object",
+            "properties": {
+                "botName": {
+                    "$ref": "#/$defs/BotName"
+                },
+                "botAlias": {
+                    "$ref": "#/$defs/BotAlias"
+                },
+                "userId": {
+                    "$ref": "#/$defs/UserId"
+                }
+            }
+        },
+        "BotName": {
+            "type": "string"
+        },
+        "BotAlias": {
+            "type": "string"
+        },
+        "UserId": {
+            "type": "string"
+        },
         "DeleteSessionResponse": {
             "type": "object",
             "properties": {
@@ -280,19 +319,10 @@
                 }
             }
         },
-        "BotName": {
-            "type": "string"
-        },
-        "BotAlias": {
-            "type": "string"
-        },
-        "UserId": {
-            "type": "string"
-        },
         "String": {
             "type": "string"
         },
-        "DeleteSessionRequest": {
+        "GetSessionRequest": {
             "type": "object",
             "properties": {
                 "botName": {
@@ -303,8 +333,14 @@
                 },
                 "userId": {
                     "$ref": "#/$defs/UserId"
+                },
+                "checkpointLabelFilter": {
+                    "$ref": "#/$defs/IntentSummaryCheckpointLabel"
                 }
             }
+        },
+        "IntentSummaryCheckpointLabel": {
+            "type": "string"
         },
         "GetSessionResponse": {
             "type": "object",
@@ -359,9 +395,6 @@
             }
         },
         "IntentName": {
-            "type": "string"
-        },
-        "IntentSummaryCheckpointLabel": {
             "type": "string"
         },
         "StringMap": {
@@ -478,7 +511,7 @@
                 "$ref": "#/$defs/Text"
             }
         },
-        "GetSessionRequest": {
+        "PostContentRequest": {
             "type": "object",
             "properties": {
                 "botName": {
@@ -490,10 +523,41 @@
                 "userId": {
                     "$ref": "#/$defs/UserId"
                 },
-                "checkpointLabelFilter": {
-                    "$ref": "#/$defs/IntentSummaryCheckpointLabel"
+                "sessionAttributes": {
+                    "$ref": "#/$defs/SynthesizedJsonAttributesString"
+                },
+                "requestAttributes": {
+                    "$ref": "#/$defs/SynthesizedJsonAttributesString"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/HttpContentType"
+                },
+                "accept": {
+                    "$ref": "#/$defs/Accept"
+                },
+                "inputStream": {
+                    "$ref": "#/$defs/BlobStream"
+                },
+                "activeContexts": {
+                    "$ref": "#/$defs/SynthesizedJsonActiveContextsString"
                 }
             }
+        },
+        "SynthesizedJsonAttributesString": {
+            "type": "string"
+        },
+        "HttpContentType": {
+            "type": "string"
+        },
+        "Accept": {
+            "type": "string"
+        },
+        "BlobStream": {
+            "type": "string",
+            "format": "binary"
+        },
+        "SynthesizedJsonActiveContextsString": {
+            "type": "string"
         },
         "PostContentResponse": {
             "type": "object",
@@ -554,9 +618,6 @@
                 }
             }
         },
-        "HttpContentType": {
-            "type": "string"
-        },
         "SynthesizedJsonString": {
             "type": "string"
         },
@@ -576,17 +637,10 @@
         "SensitiveStringUnbounded": {
             "type": "string"
         },
-        "BlobStream": {
-            "type": "string",
-            "format": "binary"
-        },
         "BotVersion": {
             "type": "string"
         },
-        "SynthesizedJsonActiveContextsString": {
-            "type": "string"
-        },
-        "PostContentRequest": {
+        "PostTextRequest": {
             "type": "object",
             "properties": {
                 "botName": {
@@ -599,30 +653,18 @@
                     "$ref": "#/$defs/UserId"
                 },
                 "sessionAttributes": {
-                    "$ref": "#/$defs/SynthesizedJsonAttributesString"
+                    "$ref": "#/$defs/StringMap"
                 },
                 "requestAttributes": {
-                    "$ref": "#/$defs/SynthesizedJsonAttributesString"
+                    "$ref": "#/$defs/StringMap"
                 },
-                "contentType": {
-                    "$ref": "#/$defs/HttpContentType"
-                },
-                "accept": {
-                    "$ref": "#/$defs/Accept"
-                },
-                "inputStream": {
-                    "$ref": "#/$defs/BlobStream"
+                "inputText": {
+                    "$ref": "#/$defs/Text"
                 },
                 "activeContexts": {
-                    "$ref": "#/$defs/SynthesizedJsonActiveContextsString"
+                    "$ref": "#/$defs/ActiveContextsList"
                 }
             }
-        },
-        "SynthesizedJsonAttributesString": {
-            "type": "string"
-        },
-        "Accept": {
-            "type": "string"
         },
         "PostTextResponse": {
             "type": "object",
@@ -794,7 +836,7 @@
         "ButtonValueStringWithLength": {
             "type": "string"
         },
-        "PostTextRequest": {
+        "PutSessionRequest": {
             "type": "object",
             "properties": {
                 "botName": {
@@ -809,11 +851,14 @@
                 "sessionAttributes": {
                     "$ref": "#/$defs/StringMap"
                 },
-                "requestAttributes": {
-                    "$ref": "#/$defs/StringMap"
+                "dialogAction": {
+                    "$ref": "#/$defs/DialogAction"
                 },
-                "inputText": {
-                    "$ref": "#/$defs/Text"
+                "recentIntentSummaryView": {
+                    "$ref": "#/$defs/IntentSummaryList"
+                },
+                "accept": {
+                    "$ref": "#/$defs/Accept"
                 },
                 "activeContexts": {
                     "$ref": "#/$defs/ActiveContextsList"
@@ -858,35 +903,6 @@
                 },
                 "activeContexts": {
                     "$ref": "#/$defs/SynthesizedJsonActiveContextsString"
-                }
-            }
-        },
-        "PutSessionRequest": {
-            "type": "object",
-            "properties": {
-                "botName": {
-                    "$ref": "#/$defs/BotName"
-                },
-                "botAlias": {
-                    "$ref": "#/$defs/BotAlias"
-                },
-                "userId": {
-                    "$ref": "#/$defs/UserId"
-                },
-                "sessionAttributes": {
-                    "$ref": "#/$defs/StringMap"
-                },
-                "dialogAction": {
-                    "$ref": "#/$defs/DialogAction"
-                },
-                "recentIntentSummaryView": {
-                    "$ref": "#/$defs/IntentSummaryList"
-                },
-                "accept": {
-                    "$ref": "#/$defs/Accept"
-                },
-                "activeContexts": {
-                    "$ref": "#/$defs/ActiveContextsList"
                 }
             }
         }

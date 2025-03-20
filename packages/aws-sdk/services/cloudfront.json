@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TargetDistributionId": {},
+                        "Alias": {}
                     }
                 }
             }
@@ -72,9 +71,46 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PrimaryDistributionId": {},
+                        "Staging": {},
+                        "IfMatch": {},
+                        "CallerReference": {},
+                        "Enabled": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateAnycastIpList",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2020-05-31/anycast-ip-list"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateAnycastIpListResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateAnycastIpListRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Name": {},
+                        "IpCount": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -107,9 +143,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CachePolicyConfig": {}
                     }
                 }
             }
@@ -142,9 +176,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CloudFrontOriginAccessIdentityConfig": {}
                     }
                 }
             }
@@ -177,9 +209,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContinuousDeploymentPolicyConfig": {}
                     }
                 }
             }
@@ -212,9 +242,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionConfig": {}
                     }
                 }
             }
@@ -247,9 +275,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionConfigWithTags": {}
                     }
                 }
             }
@@ -282,9 +308,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FieldLevelEncryptionConfig": {}
                     }
                 }
             }
@@ -317,9 +341,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FieldLevelEncryptionProfileConfig": {}
                     }
                 }
             }
@@ -352,9 +374,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "FunctionConfig": {},
+                        "FunctionCode": {}
                     }
                 }
             }
@@ -391,9 +413,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionId": {},
+                        "InvalidationBatch": {}
                     }
                 }
             }
@@ -426,9 +447,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyGroupConfig": {}
                     }
                 }
             }
@@ -461,9 +480,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Comment": {},
+                        "ImportSource": {}
                     }
                 }
             }
@@ -500,9 +519,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionId": {},
+                        "MonitoringSubscription": {}
                     }
                 }
             }
@@ -535,9 +553,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OriginAccessControlConfig": {}
                     }
                 }
             }
@@ -570,9 +586,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OriginRequestPolicyConfig": {}
                     }
                 }
             }
@@ -605,9 +619,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PublicKeyConfig": {}
                     }
                 }
             }
@@ -640,9 +652,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EndPoints": {},
+                        "Fields": {},
+                        "Name": {},
+                        "SamplingRate": {}
                     }
                 }
             }
@@ -675,9 +688,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResponseHeadersPolicyConfig": {}
                     }
                 }
             }
@@ -710,9 +721,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamingDistributionConfig": {}
                     }
                 }
             }
@@ -745,9 +754,79 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamingDistributionConfigWithTags": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateVpcOrigin",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/2020-05-31/vpc-origin"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateVpcOriginResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateVpcOriginRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "VpcOriginEndpointConfig": {},
+                        "Tags": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteAnycastIpList",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/2020-05-31/anycast-ip-list/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteAnycastIpListRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -784,9 +863,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -823,9 +901,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -862,9 +939,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -901,9 +977,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -940,9 +1015,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -979,9 +1053,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1018,9 +1091,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1057,9 +1129,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1096,9 +1167,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1135,9 +1205,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionId": {}
                     }
                 }
             }
@@ -1174,9 +1242,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1213,9 +1280,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1252,9 +1318,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1287,9 +1352,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "ARN": {}
                     }
                 }
             }
@@ -1326,9 +1390,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1365,9 +1428,46 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "IfMatch": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteVpcOrigin",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/2020-05-31/vpc-origin/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteVpcOriginResult"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteVpcOriginRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -1404,9 +1504,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Stage": {}
                     }
                 }
             }
@@ -1443,9 +1542,44 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetAnycastIpList",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/anycast-ip-list/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetAnycastIpListResult"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetAnycastIpListRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Id": {}
                     }
                 }
             }
@@ -1482,9 +1616,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1521,9 +1653,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1560,9 +1690,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1599,9 +1727,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1638,9 +1764,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1677,9 +1801,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1716,9 +1838,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1755,9 +1875,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1794,9 +1912,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1833,9 +1949,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1872,9 +1986,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1911,9 +2023,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -1950,9 +2060,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Stage": {}
                     }
                 }
             }
@@ -1991,9 +2100,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionId": {},
+                        "Id": {}
                     }
                 }
             }
@@ -2030,9 +2138,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2069,9 +2175,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2108,9 +2212,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionId": {}
                     }
                 }
             }
@@ -2147,9 +2249,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2186,9 +2286,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2225,9 +2323,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2264,9 +2360,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2303,9 +2397,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2342,9 +2434,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2377,9 +2467,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "ARN": {}
                     }
                 }
             }
@@ -2416,9 +2505,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2455,9 +2542,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2494,9 +2579,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -2533,9 +2616,78 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetVpcOrigin",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/vpc-origin/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetVpcOriginResult"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetVpcOriginRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Id": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListAnycastIpLists",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/anycast-ip-list"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListAnycastIpListsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListAnycastIpListsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -2568,9 +2720,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Type": {},
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -2603,9 +2755,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -2638,9 +2789,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionId": {},
+                        "Alias": {},
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -2673,9 +2825,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -2708,9 +2859,47 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDistributionsByAnycastIpListId",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "AnycastIpListId": "route.AnycastIpListId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByAnycastIpListId/{AnycastIpListId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDistributionsByAnycastIpListIdResult"
+                    },
+                    "inject": [
+                        "param.0.AnycastIpListId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDistributionsByAnycastIpListIdRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Marker": {},
+                        "MaxItems": {},
+                        "AnycastIpListId": {}
                     }
                 }
             }
@@ -2747,9 +2936,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {},
+                        "CachePolicyId": {}
                     }
                 }
             }
@@ -2786,9 +2975,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {},
+                        "KeyGroupId": {}
                     }
                 }
             }
@@ -2825,9 +3014,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {},
+                        "OriginRequestPolicyId": {}
                     }
                 }
             }
@@ -2860,9 +3049,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {},
+                        "RealtimeLogConfigName": {},
+                        "RealtimeLogConfigArn": {}
                     }
                 }
             }
@@ -2899,9 +3089,48 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {},
+                        "ResponseHeadersPolicyId": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListDistributionsByVpcOriginId",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "VpcOriginId": "route.VpcOriginId",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/distributionsByVpcOriginId/{VpcOriginId}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListDistributionsByVpcOriginIdResult"
+                    },
+                    "inject": [
+                        "param.0.VpcOriginId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListDistributionsByVpcOriginIdRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Marker": {},
+                        "MaxItems": {},
+                        "VpcOriginId": {}
                     }
                 }
             }
@@ -2938,9 +3167,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {},
+                        "WebACLId": {}
                     }
                 }
             }
@@ -2973,9 +3202,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3008,9 +3236,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3043,9 +3270,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {},
+                        "Stage": {}
                     }
                 }
             }
@@ -3082,9 +3309,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionId": {},
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3117,9 +3344,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3152,9 +3378,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {},
+                        "Status": {}
                     }
                 }
             }
@@ -3187,9 +3413,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3222,9 +3447,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Type": {},
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3257,9 +3482,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3292,9 +3516,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxItems": {},
+                        "Marker": {}
                     }
                 }
             }
@@ -3327,9 +3550,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Type": {},
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3362,9 +3585,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3397,9 +3619,41 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Resource": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListVpcOrigins",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/2020-05-31/vpc-origin"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListVpcOriginsResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListVpcOriginsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "Marker": {},
+                        "MaxItems": {}
                     }
                 }
             }
@@ -3436,9 +3690,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3471,9 +3724,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Resource": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -3510,9 +3762,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "IfMatch": {},
+                        "Stage": {},
+                        "EventObject": {}
                     }
                 }
             }
@@ -3545,9 +3798,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Resource": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -3584,9 +3836,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CachePolicyConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3623,9 +3875,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CloudFrontOriginAccessIdentityConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3662,9 +3914,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContinuousDeploymentPolicyConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3701,9 +3953,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DistributionConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3740,9 +3992,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "StagingDistributionId": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3779,9 +4031,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FieldLevelEncryptionConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3818,9 +4070,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FieldLevelEncryptionProfileConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3857,9 +4109,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "IfMatch": {},
+                        "FunctionConfig": {},
+                        "FunctionCode": {}
                     }
                 }
             }
@@ -3896,9 +4149,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "KeyGroupConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3935,9 +4188,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Name": {},
+                        "Comment": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -3974,9 +4227,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OriginAccessControlConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -4013,9 +4266,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "OriginRequestPolicyConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -4052,9 +4305,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PublicKeyConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -4087,9 +4340,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EndPoints": {},
+                        "Fields": {},
+                        "Name": {},
+                        "ARN": {},
+                        "SamplingRate": {}
                     }
                 }
             }
@@ -4126,9 +4381,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResponseHeadersPolicyConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -4165,9 +4420,48 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamingDistributionConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateVpcOrigin",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "Id": "route.Id",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/2020-05-31/vpc-origin/{Id}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateVpcOriginResult"
+                    },
+                    "inject": [
+                        "param.0.Id",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateVpcOriginRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "VpcOriginEndpointConfig": {},
+                        "Id": {},
+                        "IfMatch": {}
                     }
                 }
             }
@@ -4232,6 +4526,29 @@
         },
         "string": {
             "type": "string"
+        },
+        "CopyDistributionRequest": {
+            "type": "object",
+            "properties": {
+                "PrimaryDistributionId": {
+                    "$ref": "#/$defs/string"
+                },
+                "Staging": {
+                    "$ref": "#/$defs/boolean"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/string"
+                },
+                "CallerReference": {
+                    "$ref": "#/$defs/string"
+                },
+                "Enabled": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
+        "boolean": {
+            "type": "boolean"
         },
         "CopyDistributionResult": {
             "type": "object",
@@ -4303,9 +4620,6 @@
                     "$ref": "#/$defs/SignerList"
                 }
             }
-        },
-        "boolean": {
-            "type": "boolean"
         },
         "SignerList": {
             "type": "array",
@@ -4431,6 +4745,9 @@
                 },
                 "Staging": {
                     "$ref": "#/$defs/boolean"
+                },
+                "AnycastIpListId": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -4488,6 +4805,9 @@
                 },
                 "CustomOriginConfig": {
                     "$ref": "#/$defs/CustomOriginConfig"
+                },
+                "VpcOriginConfig": {
+                    "$ref": "#/$defs/VpcOriginConfig"
                 },
                 "ConnectionAttempts": {
                     "$ref": "#/$defs/integer"
@@ -4597,6 +4917,20 @@
                 "TLSv1_2"
             ]
         },
+        "VpcOriginConfig": {
+            "type": "object",
+            "properties": {
+                "VpcOriginId": {
+                    "$ref": "#/$defs/string"
+                },
+                "OriginReadTimeout": {
+                    "$ref": "#/$defs/integer"
+                },
+                "OriginKeepaliveTimeout": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
         "OriginShield": {
             "type": "object",
             "properties": {
@@ -4639,6 +4973,9 @@
                 },
                 "Members": {
                     "$ref": "#/$defs/OriginGroupMembers"
+                },
+                "SelectionCriteria": {
+                    "$ref": "#/$defs/OriginGroupSelectionCriteria"
                 }
             }
         },
@@ -4692,6 +5029,12 @@
                 }
             }
         },
+        "OriginGroupSelectionCriteria": {
+            "enum": [
+                "Default",
+                "MediaQualityBased"
+            ]
+        },
         "DefaultCacheBehavior": {
             "type": "object",
             "properties": {
@@ -4736,6 +5079,9 @@
                 },
                 "ResponseHeadersPolicyId": {
                     "$ref": "#/$defs/string"
+                },
+                "GrpcConfig": {
+                    "$ref": "#/$defs/GrpcConfig"
                 },
                 "ForwardedValues": {
                     "$ref": "#/$defs/ForwardedValues"
@@ -4913,6 +5259,14 @@
         "FunctionARN": {
             "type": "string"
         },
+        "GrpcConfig": {
+            "type": "object",
+            "properties": {
+                "Enabled": {
+                    "$ref": "#/$defs/boolean"
+                }
+            }
+        },
         "ForwardedValues": {
             "type": "object",
             "properties": {
@@ -5067,6 +5421,9 @@
                 },
                 "ResponseHeadersPolicyId": {
                     "$ref": "#/$defs/string"
+                },
+                "GrpcConfig": {
+                    "$ref": "#/$defs/GrpcConfig"
                 },
                 "ForwardedValues": {
                     "$ref": "#/$defs/ForwardedValues"
@@ -5261,49 +5618,100 @@
                 "PENDING"
             ]
         },
-        "CopyDistributionRequest": {
+        "CreateAnycastIpListRequest": {
             "type": "object",
             "properties": {
-                "PrimaryDistributionId": {
-                    "$ref": "#/$defs/string"
+                "Name": {
+                    "$ref": "#/$defs/AnycastIpListName"
                 },
-                "Staging": {
-                    "$ref": "#/$defs/boolean"
+                "IpCount": {
+                    "$ref": "#/$defs/integer"
                 },
-                "IfMatch": {
-                    "$ref": "#/$defs/string"
-                },
-                "CallerReference": {
-                    "$ref": "#/$defs/string"
-                },
-                "Enabled": {
-                    "$ref": "#/$defs/boolean"
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
-        "CreateCachePolicyResult": {
+        "AnycastIpListName": {
+            "type": "string"
+        },
+        "Tags": {
             "type": "object",
             "properties": {
-                "CachePolicy": {
-                    "$ref": "#/$defs/CachePolicy"
+                "Items": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/TagKey"
                 },
-                "Location": {
-                    "$ref": "#/$defs/string"
+                "Value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "TagValue": {
+            "type": "string"
+        },
+        "CreateAnycastIpListResult": {
+            "type": "object",
+            "properties": {
+                "AnycastIpList": {
+                    "$ref": "#/$defs/AnycastIpList"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
                 }
             }
         },
-        "CachePolicy": {
+        "AnycastIpList": {
             "type": "object",
             "properties": {
                 "Id": {
                     "$ref": "#/$defs/string"
                 },
+                "Name": {
+                    "$ref": "#/$defs/AnycastIpListName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "AnycastIps": {
+                    "$ref": "#/$defs/AnycastIps"
+                },
+                "IpCount": {
+                    "$ref": "#/$defs/integer"
+                },
                 "LastModifiedTime": {
                     "$ref": "#/$defs/timestamp"
-                },
+                }
+            }
+        },
+        "AnycastIps": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string"
+            }
+        },
+        "CreateCachePolicyRequest": {
+            "type": "object",
+            "properties": {
                 "CachePolicyConfig": {
                     "$ref": "#/$defs/CachePolicyConfig"
                 }
@@ -5424,11 +5832,50 @@
                 "$ref": "#/$defs/string"
             }
         },
-        "CreateCachePolicyRequest": {
+        "CreateCachePolicyResult": {
             "type": "object",
             "properties": {
+                "CachePolicy": {
+                    "$ref": "#/$defs/CachePolicy"
+                },
+                "Location": {
+                    "$ref": "#/$defs/string"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "CachePolicy": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
                 "CachePolicyConfig": {
                     "$ref": "#/$defs/CachePolicyConfig"
+                }
+            }
+        },
+        "CreateCloudFrontOriginAccessIdentityRequest": {
+            "type": "object",
+            "properties": {
+                "CloudFrontOriginAccessIdentityConfig": {
+                    "$ref": "#/$defs/CloudFrontOriginAccessIdentityConfig"
+                }
+            }
+        },
+        "CloudFrontOriginAccessIdentityConfig": {
+            "type": "object",
+            "properties": {
+                "CallerReference": {
+                    "$ref": "#/$defs/string"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -5460,48 +5907,9 @@
                 }
             }
         },
-        "CloudFrontOriginAccessIdentityConfig": {
+        "CreateContinuousDeploymentPolicyRequest": {
             "type": "object",
             "properties": {
-                "CallerReference": {
-                    "$ref": "#/$defs/string"
-                },
-                "Comment": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "CreateCloudFrontOriginAccessIdentityRequest": {
-            "type": "object",
-            "properties": {
-                "CloudFrontOriginAccessIdentityConfig": {
-                    "$ref": "#/$defs/CloudFrontOriginAccessIdentityConfig"
-                }
-            }
-        },
-        "CreateContinuousDeploymentPolicyResult": {
-            "type": "object",
-            "properties": {
-                "ContinuousDeploymentPolicy": {
-                    "$ref": "#/$defs/ContinuousDeploymentPolicy"
-                },
-                "Location": {
-                    "$ref": "#/$defs/string"
-                },
-                "ETag": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "ContinuousDeploymentPolicy": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/string"
-                },
-                "LastModifiedTime": {
-                    "$ref": "#/$defs/timestamp"
-                },
                 "ContinuousDeploymentPolicyConfig": {
                     "$ref": "#/$defs/ContinuousDeploymentPolicyConfig"
                 }
@@ -5595,25 +6003,31 @@
                 "SingleHeader"
             ]
         },
-        "CreateContinuousDeploymentPolicyRequest": {
+        "CreateContinuousDeploymentPolicyResult": {
             "type": "object",
             "properties": {
-                "ContinuousDeploymentPolicyConfig": {
-                    "$ref": "#/$defs/ContinuousDeploymentPolicyConfig"
-                }
-            }
-        },
-        "CreateDistributionResult": {
-            "type": "object",
-            "properties": {
-                "Distribution": {
-                    "$ref": "#/$defs/Distribution"
+                "ContinuousDeploymentPolicy": {
+                    "$ref": "#/$defs/ContinuousDeploymentPolicy"
                 },
                 "Location": {
                     "$ref": "#/$defs/string"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ContinuousDeploymentPolicy": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "ContinuousDeploymentPolicyConfig": {
+                    "$ref": "#/$defs/ContinuousDeploymentPolicyConfig"
                 }
             }
         },
@@ -5625,7 +6039,7 @@
                 }
             }
         },
-        "CreateDistributionWithTagsResult": {
+        "CreateDistributionResult": {
             "type": "object",
             "properties": {
                 "Distribution": {
@@ -5658,42 +6072,11 @@
                 }
             }
         },
-        "Tags": {
+        "CreateDistributionWithTagsResult": {
             "type": "object",
             "properties": {
-                "Items": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
-        "TagList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Tag"
-            }
-        },
-        "Tag": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "$ref": "#/$defs/TagKey"
-                },
-                "Value": {
-                    "$ref": "#/$defs/TagValue"
-                }
-            }
-        },
-        "TagKey": {
-            "type": "string"
-        },
-        "TagValue": {
-            "type": "string"
-        },
-        "CreateFieldLevelEncryptionConfigResult": {
-            "type": "object",
-            "properties": {
-                "FieldLevelEncryption": {
-                    "$ref": "#/$defs/FieldLevelEncryption"
+                "Distribution": {
+                    "$ref": "#/$defs/Distribution"
                 },
                 "Location": {
                     "$ref": "#/$defs/string"
@@ -5703,15 +6086,9 @@
                 }
             }
         },
-        "FieldLevelEncryption": {
+        "CreateFieldLevelEncryptionConfigRequest": {
             "type": "object",
             "properties": {
-                "Id": {
-                    "$ref": "#/$defs/string"
-                },
-                "LastModifiedTime": {
-                    "$ref": "#/$defs/timestamp"
-                },
                 "FieldLevelEncryptionConfig": {
                     "$ref": "#/$defs/FieldLevelEncryptionConfig"
                 }
@@ -5820,19 +6197,11 @@
                 "URLEncoded"
             ]
         },
-        "CreateFieldLevelEncryptionConfigRequest": {
+        "CreateFieldLevelEncryptionConfigResult": {
             "type": "object",
             "properties": {
-                "FieldLevelEncryptionConfig": {
-                    "$ref": "#/$defs/FieldLevelEncryptionConfig"
-                }
-            }
-        },
-        "CreateFieldLevelEncryptionProfileResult": {
-            "type": "object",
-            "properties": {
-                "FieldLevelEncryptionProfile": {
-                    "$ref": "#/$defs/FieldLevelEncryptionProfile"
+                "FieldLevelEncryption": {
+                    "$ref": "#/$defs/FieldLevelEncryption"
                 },
                 "Location": {
                     "$ref": "#/$defs/string"
@@ -5842,7 +6211,7 @@
                 }
             }
         },
-        "FieldLevelEncryptionProfile": {
+        "FieldLevelEncryption": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -5851,6 +6220,14 @@
                 "LastModifiedTime": {
                     "$ref": "#/$defs/timestamp"
                 },
+                "FieldLevelEncryptionConfig": {
+                    "$ref": "#/$defs/FieldLevelEncryptionConfig"
+                }
+            }
+        },
+        "CreateFieldLevelEncryptionProfileRequest": {
+            "type": "object",
+            "properties": {
                 "FieldLevelEncryptionProfileConfig": {
                     "$ref": "#/$defs/FieldLevelEncryptionProfileConfig"
                 }
@@ -5921,19 +6298,11 @@
                 "$ref": "#/$defs/string"
             }
         },
-        "CreateFieldLevelEncryptionProfileRequest": {
+        "CreateFieldLevelEncryptionProfileResult": {
             "type": "object",
             "properties": {
-                "FieldLevelEncryptionProfileConfig": {
-                    "$ref": "#/$defs/FieldLevelEncryptionProfileConfig"
-                }
-            }
-        },
-        "CreateFunctionResult": {
-            "type": "object",
-            "properties": {
-                "FunctionSummary": {
-                    "$ref": "#/$defs/FunctionSummary"
+                "FieldLevelEncryptionProfile": {
+                    "$ref": "#/$defs/FieldLevelEncryptionProfile"
                 },
                 "Location": {
                     "$ref": "#/$defs/string"
@@ -5943,20 +6312,31 @@
                 }
             }
         },
-        "FunctionSummary": {
+        "FieldLevelEncryptionProfile": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "FieldLevelEncryptionProfileConfig": {
+                    "$ref": "#/$defs/FieldLevelEncryptionProfileConfig"
+                }
+            }
+        },
+        "CreateFunctionRequest": {
             "type": "object",
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/FunctionName"
                 },
-                "Status": {
-                    "$ref": "#/$defs/string"
-                },
                 "FunctionConfig": {
                     "$ref": "#/$defs/FunctionConfig"
                 },
-                "FunctionMetadata": {
-                    "$ref": "#/$defs/FunctionMetadata"
+                "FunctionCode": {
+                    "$ref": "#/$defs/FunctionBlob"
                 }
             }
         },
@@ -6011,6 +6391,41 @@
         "KeyValueStoreARN": {
             "type": "string"
         },
+        "FunctionBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "CreateFunctionResult": {
+            "type": "object",
+            "properties": {
+                "FunctionSummary": {
+                    "$ref": "#/$defs/FunctionSummary"
+                },
+                "Location": {
+                    "$ref": "#/$defs/string"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "FunctionSummary": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/FunctionName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "FunctionConfig": {
+                    "$ref": "#/$defs/FunctionConfig"
+                },
+                "FunctionMetadata": {
+                    "$ref": "#/$defs/FunctionMetadata"
+                }
+            }
+        },
         "FunctionMetadata": {
             "type": "object",
             "properties": {
@@ -6034,46 +6449,11 @@
                 "LIVE"
             ]
         },
-        "CreateFunctionRequest": {
+        "CreateInvalidationRequest": {
             "type": "object",
             "properties": {
-                "Name": {
-                    "$ref": "#/$defs/FunctionName"
-                },
-                "FunctionConfig": {
-                    "$ref": "#/$defs/FunctionConfig"
-                },
-                "FunctionCode": {
-                    "$ref": "#/$defs/FunctionBlob"
-                }
-            }
-        },
-        "FunctionBlob": {
-            "type": "string",
-            "format": "binary"
-        },
-        "CreateInvalidationResult": {
-            "type": "object",
-            "properties": {
-                "Location": {
+                "DistributionId": {
                     "$ref": "#/$defs/string"
-                },
-                "Invalidation": {
-                    "$ref": "#/$defs/Invalidation"
-                }
-            }
-        },
-        "Invalidation": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/string"
-                },
-                "Status": {
-                    "$ref": "#/$defs/string"
-                },
-                "CreateTime": {
-                    "$ref": "#/$defs/timestamp"
                 },
                 "InvalidationBatch": {
                     "$ref": "#/$defs/InvalidationBatch"
@@ -6108,15 +6488,60 @@
                 "$ref": "#/$defs/string"
             }
         },
-        "CreateInvalidationRequest": {
+        "CreateInvalidationResult": {
             "type": "object",
             "properties": {
-                "DistributionId": {
+                "Location": {
                     "$ref": "#/$defs/string"
+                },
+                "Invalidation": {
+                    "$ref": "#/$defs/Invalidation"
+                }
+            }
+        },
+        "Invalidation": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/timestamp"
                 },
                 "InvalidationBatch": {
                     "$ref": "#/$defs/InvalidationBatch"
                 }
+            }
+        },
+        "CreateKeyGroupRequest": {
+            "type": "object",
+            "properties": {
+                "KeyGroupConfig": {
+                    "$ref": "#/$defs/KeyGroupConfig"
+                }
+            }
+        },
+        "KeyGroupConfig": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "Items": {
+                    "$ref": "#/$defs/PublicKeyIdList"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "PublicKeyIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/string"
             }
         },
         "CreateKeyGroupResult": {
@@ -6144,71 +6569,6 @@
                 },
                 "KeyGroupConfig": {
                     "$ref": "#/$defs/KeyGroupConfig"
-                }
-            }
-        },
-        "KeyGroupConfig": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/string"
-                },
-                "Items": {
-                    "$ref": "#/$defs/PublicKeyIdList"
-                },
-                "Comment": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "PublicKeyIdList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/string"
-            }
-        },
-        "CreateKeyGroupRequest": {
-            "type": "object",
-            "properties": {
-                "KeyGroupConfig": {
-                    "$ref": "#/$defs/KeyGroupConfig"
-                }
-            }
-        },
-        "CreateKeyValueStoreResult": {
-            "type": "object",
-            "properties": {
-                "KeyValueStore": {
-                    "$ref": "#/$defs/KeyValueStore"
-                },
-                "ETag": {
-                    "$ref": "#/$defs/string"
-                },
-                "Location": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "KeyValueStore": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/string"
-                },
-                "Id": {
-                    "$ref": "#/$defs/string"
-                },
-                "Comment": {
-                    "$ref": "#/$defs/string"
-                },
-                "ARN": {
-                    "$ref": "#/$defs/string"
-                },
-                "Status": {
-                    "$ref": "#/$defs/string"
-                },
-                "LastModifiedTime": {
-                    "$ref": "#/$defs/timestamp"
                 }
             }
         },
@@ -6248,9 +6608,49 @@
                 "S3"
             ]
         },
-        "CreateMonitoringSubscriptionResult": {
+        "CreateKeyValueStoreResult": {
             "type": "object",
             "properties": {
+                "KeyValueStore": {
+                    "$ref": "#/$defs/KeyValueStore"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                },
+                "Location": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "KeyValueStore": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/string"
+                },
+                "ARN": {
+                    "$ref": "#/$defs/string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "CreateMonitoringSubscriptionRequest": {
+            "type": "object",
+            "properties": {
+                "DistributionId": {
+                    "$ref": "#/$defs/string"
+                },
                 "MonitoringSubscription": {
                     "$ref": "#/$defs/MonitoringSubscription"
                 }
@@ -6278,37 +6678,17 @@
                 "Disabled"
             ]
         },
-        "CreateMonitoringSubscriptionRequest": {
+        "CreateMonitoringSubscriptionResult": {
             "type": "object",
             "properties": {
-                "DistributionId": {
-                    "$ref": "#/$defs/string"
-                },
                 "MonitoringSubscription": {
                     "$ref": "#/$defs/MonitoringSubscription"
                 }
             }
         },
-        "CreateOriginAccessControlResult": {
+        "CreateOriginAccessControlRequest": {
             "type": "object",
             "properties": {
-                "OriginAccessControl": {
-                    "$ref": "#/$defs/OriginAccessControl"
-                },
-                "Location": {
-                    "$ref": "#/$defs/string"
-                },
-                "ETag": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "OriginAccessControl": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/string"
-                },
                 "OriginAccessControlConfig": {
                     "$ref": "#/$defs/OriginAccessControlConfig"
                 }
@@ -6354,19 +6734,11 @@
                 "lambda"
             ]
         },
-        "CreateOriginAccessControlRequest": {
+        "CreateOriginAccessControlResult": {
             "type": "object",
             "properties": {
-                "OriginAccessControlConfig": {
-                    "$ref": "#/$defs/OriginAccessControlConfig"
-                }
-            }
-        },
-        "CreateOriginRequestPolicyResult": {
-            "type": "object",
-            "properties": {
-                "OriginRequestPolicy": {
-                    "$ref": "#/$defs/OriginRequestPolicy"
+                "OriginAccessControl": {
+                    "$ref": "#/$defs/OriginAccessControl"
                 },
                 "Location": {
                     "$ref": "#/$defs/string"
@@ -6376,15 +6748,20 @@
                 }
             }
         },
-        "OriginRequestPolicy": {
+        "OriginAccessControl": {
             "type": "object",
             "properties": {
                 "Id": {
                     "$ref": "#/$defs/string"
                 },
-                "LastModifiedTime": {
-                    "$ref": "#/$defs/timestamp"
-                },
+                "OriginAccessControlConfig": {
+                    "$ref": "#/$defs/OriginAccessControlConfig"
+                }
+            }
+        },
+        "CreateOriginRequestPolicyRequest": {
+            "type": "object",
+            "properties": {
                 "OriginRequestPolicyConfig": {
                     "$ref": "#/$defs/OriginRequestPolicyConfig"
                 }
@@ -6468,11 +6845,56 @@
                 "allExcept"
             ]
         },
-        "CreateOriginRequestPolicyRequest": {
+        "CreateOriginRequestPolicyResult": {
             "type": "object",
             "properties": {
+                "OriginRequestPolicy": {
+                    "$ref": "#/$defs/OriginRequestPolicy"
+                },
+                "Location": {
+                    "$ref": "#/$defs/string"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "OriginRequestPolicy": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
                 "OriginRequestPolicyConfig": {
                     "$ref": "#/$defs/OriginRequestPolicyConfig"
+                }
+            }
+        },
+        "CreatePublicKeyRequest": {
+            "type": "object",
+            "properties": {
+                "PublicKeyConfig": {
+                    "$ref": "#/$defs/PublicKeyConfig"
+                }
+            }
+        },
+        "PublicKeyConfig": {
+            "type": "object",
+            "properties": {
+                "CallerReference": {
+                    "$ref": "#/$defs/string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "EncodedKey": {
+                    "$ref": "#/$defs/string"
+                },
+                "Comment": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -6504,56 +6926,20 @@
                 }
             }
         },
-        "PublicKeyConfig": {
+        "CreateRealtimeLogConfigRequest": {
             "type": "object",
             "properties": {
-                "CallerReference": {
-                    "$ref": "#/$defs/string"
+                "EndPoints": {
+                    "$ref": "#/$defs/EndPointList"
                 },
-                "Name": {
-                    "$ref": "#/$defs/string"
-                },
-                "EncodedKey": {
-                    "$ref": "#/$defs/string"
-                },
-                "Comment": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "CreatePublicKeyRequest": {
-            "type": "object",
-            "properties": {
-                "PublicKeyConfig": {
-                    "$ref": "#/$defs/PublicKeyConfig"
-                }
-            }
-        },
-        "CreateRealtimeLogConfigResult": {
-            "type": "object",
-            "properties": {
-                "RealtimeLogConfig": {
-                    "$ref": "#/$defs/RealtimeLogConfig"
-                }
-            }
-        },
-        "RealtimeLogConfig": {
-            "type": "object",
-            "properties": {
-                "ARN": {
-                    "$ref": "#/$defs/string"
+                "Fields": {
+                    "$ref": "#/$defs/FieldList"
                 },
                 "Name": {
                     "$ref": "#/$defs/string"
                 },
                 "SamplingRate": {
                     "$ref": "#/$defs/long"
-                },
-                "EndPoints": {
-                    "$ref": "#/$defs/EndPointList"
-                },
-                "Fields": {
-                    "$ref": "#/$defs/FieldList"
                 }
             }
         },
@@ -6591,46 +6977,37 @@
                 "$ref": "#/$defs/string"
             }
         },
-        "CreateRealtimeLogConfigRequest": {
+        "CreateRealtimeLogConfigResult": {
             "type": "object",
             "properties": {
-                "EndPoints": {
-                    "$ref": "#/$defs/EndPointList"
-                },
-                "Fields": {
-                    "$ref": "#/$defs/FieldList"
+                "RealtimeLogConfig": {
+                    "$ref": "#/$defs/RealtimeLogConfig"
+                }
+            }
+        },
+        "RealtimeLogConfig": {
+            "type": "object",
+            "properties": {
+                "ARN": {
+                    "$ref": "#/$defs/string"
                 },
                 "Name": {
                     "$ref": "#/$defs/string"
                 },
                 "SamplingRate": {
                     "$ref": "#/$defs/long"
+                },
+                "EndPoints": {
+                    "$ref": "#/$defs/EndPointList"
+                },
+                "Fields": {
+                    "$ref": "#/$defs/FieldList"
                 }
             }
         },
-        "CreateResponseHeadersPolicyResult": {
+        "CreateResponseHeadersPolicyRequest": {
             "type": "object",
             "properties": {
-                "ResponseHeadersPolicy": {
-                    "$ref": "#/$defs/ResponseHeadersPolicy"
-                },
-                "Location": {
-                    "$ref": "#/$defs/string"
-                },
-                "ETag": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "ResponseHeadersPolicy": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/string"
-                },
-                "LastModifiedTime": {
-                    "$ref": "#/$defs/timestamp"
-                },
                 "ResponseHeadersPolicyConfig": {
                     "$ref": "#/$defs/ResponseHeadersPolicyConfig"
                 }
@@ -6955,19 +7332,11 @@
                 }
             }
         },
-        "CreateResponseHeadersPolicyRequest": {
+        "CreateResponseHeadersPolicyResult": {
             "type": "object",
             "properties": {
-                "ResponseHeadersPolicyConfig": {
-                    "$ref": "#/$defs/ResponseHeadersPolicyConfig"
-                }
-            }
-        },
-        "CreateStreamingDistributionResult": {
-            "type": "object",
-            "properties": {
-                "StreamingDistribution": {
-                    "$ref": "#/$defs/StreamingDistribution"
+                "ResponseHeadersPolicy": {
+                    "$ref": "#/$defs/ResponseHeadersPolicy"
                 },
                 "Location": {
                     "$ref": "#/$defs/string"
@@ -6977,27 +7346,23 @@
                 }
             }
         },
-        "StreamingDistribution": {
+        "ResponseHeadersPolicy": {
             "type": "object",
             "properties": {
                 "Id": {
                     "$ref": "#/$defs/string"
                 },
-                "ARN": {
-                    "$ref": "#/$defs/string"
-                },
-                "Status": {
-                    "$ref": "#/$defs/string"
-                },
                 "LastModifiedTime": {
                     "$ref": "#/$defs/timestamp"
                 },
-                "DomainName": {
-                    "$ref": "#/$defs/string"
-                },
-                "ActiveTrustedSigners": {
-                    "$ref": "#/$defs/ActiveTrustedSigners"
-                },
+                "ResponseHeadersPolicyConfig": {
+                    "$ref": "#/$defs/ResponseHeadersPolicyConfig"
+                }
+            }
+        },
+        "CreateStreamingDistributionRequest": {
+            "type": "object",
+            "properties": {
                 "StreamingDistributionConfig": {
                     "$ref": "#/$defs/StreamingDistributionConfig"
                 }
@@ -7057,15 +7422,7 @@
                 }
             }
         },
-        "CreateStreamingDistributionRequest": {
-            "type": "object",
-            "properties": {
-                "StreamingDistributionConfig": {
-                    "$ref": "#/$defs/StreamingDistributionConfig"
-                }
-            }
-        },
-        "CreateStreamingDistributionWithTagsResult": {
+        "CreateStreamingDistributionResult": {
             "type": "object",
             "properties": {
                 "StreamingDistribution": {
@@ -7076,6 +7433,32 @@
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "StreamingDistribution": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "ARN": {
+                    "$ref": "#/$defs/string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "DomainName": {
+                    "$ref": "#/$defs/string"
+                },
+                "ActiveTrustedSigners": {
+                    "$ref": "#/$defs/ActiveTrustedSigners"
+                },
+                "StreamingDistributionConfig": {
+                    "$ref": "#/$defs/StreamingDistributionConfig"
                 }
             }
         },
@@ -7095,6 +7478,102 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreateStreamingDistributionWithTagsResult": {
+            "type": "object",
+            "properties": {
+                "StreamingDistribution": {
+                    "$ref": "#/$defs/StreamingDistribution"
+                },
+                "Location": {
+                    "$ref": "#/$defs/string"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "CreateVpcOriginRequest": {
+            "type": "object",
+            "properties": {
+                "VpcOriginEndpointConfig": {
+                    "$ref": "#/$defs/VpcOriginEndpointConfig"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "VpcOriginEndpointConfig": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "HTTPPort": {
+                    "$ref": "#/$defs/integer"
+                },
+                "HTTPSPort": {
+                    "$ref": "#/$defs/integer"
+                },
+                "OriginProtocolPolicy": {
+                    "$ref": "#/$defs/OriginProtocolPolicy"
+                },
+                "OriginSslProtocols": {
+                    "$ref": "#/$defs/OriginSslProtocols"
+                }
+            }
+        },
+        "CreateVpcOriginResult": {
+            "type": "object",
+            "properties": {
+                "VpcOrigin": {
+                    "$ref": "#/$defs/VpcOrigin"
+                },
+                "Location": {
+                    "$ref": "#/$defs/string"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "VpcOrigin": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "VpcOriginEndpointConfig": {
+                    "$ref": "#/$defs/VpcOriginEndpointConfig"
+                }
+            }
+        },
+        "DeleteAnycastIpListRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -7197,10 +7676,6 @@
                 }
             }
         },
-        "DeleteMonitoringSubscriptionResult": {
-            "type": "object",
-            "properties": {}
-        },
         "DeleteMonitoringSubscriptionRequest": {
             "type": "object",
             "properties": {
@@ -7208,6 +7683,10 @@
                     "$ref": "#/$defs/string"
                 }
             }
+        },
+        "DeleteMonitoringSubscriptionResult": {
+            "type": "object",
+            "properties": {}
         },
         "DeleteOriginAccessControlRequest": {
             "type": "object",
@@ -7275,11 +7754,22 @@
                 }
             }
         },
-        "DescribeFunctionResult": {
+        "DeleteVpcOriginRequest": {
             "type": "object",
             "properties": {
-                "FunctionSummary": {
-                    "$ref": "#/$defs/FunctionSummary"
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "DeleteVpcOriginResult": {
+            "type": "object",
+            "properties": {
+                "VpcOrigin": {
+                    "$ref": "#/$defs/VpcOrigin"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -7297,11 +7787,11 @@
                 }
             }
         },
-        "DescribeKeyValueStoreResult": {
+        "DescribeFunctionResult": {
             "type": "object",
             "properties": {
-                "KeyValueStore": {
-                    "$ref": "#/$defs/KeyValueStore"
+                "FunctionSummary": {
+                    "$ref": "#/$defs/FunctionSummary"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -7316,6 +7806,44 @@
                 }
             }
         },
+        "DescribeKeyValueStoreResult": {
+            "type": "object",
+            "properties": {
+                "KeyValueStore": {
+                    "$ref": "#/$defs/KeyValueStore"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetAnycastIpListRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetAnycastIpListResult": {
+            "type": "object",
+            "properties": {
+                "AnycastIpList": {
+                    "$ref": "#/$defs/AnycastIpList"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "GetCachePolicyRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
         "GetCachePolicyResult": {
             "type": "object",
             "properties": {
@@ -7327,7 +7855,7 @@
                 }
             }
         },
-        "GetCachePolicyRequest": {
+        "GetCachePolicyConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7346,7 +7874,7 @@
                 }
             }
         },
-        "GetCachePolicyConfigRequest": {
+        "GetCloudFrontOriginAccessIdentityRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7365,7 +7893,7 @@
                 }
             }
         },
-        "GetCloudFrontOriginAccessIdentityRequest": {
+        "GetCloudFrontOriginAccessIdentityConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7384,7 +7912,7 @@
                 }
             }
         },
-        "GetCloudFrontOriginAccessIdentityConfigRequest": {
+        "GetContinuousDeploymentPolicyRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7403,7 +7931,7 @@
                 }
             }
         },
-        "GetContinuousDeploymentPolicyRequest": {
+        "GetContinuousDeploymentPolicyConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7422,7 +7950,7 @@
                 }
             }
         },
-        "GetContinuousDeploymentPolicyConfigRequest": {
+        "GetDistributionRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7441,7 +7969,7 @@
                 }
             }
         },
-        "GetDistributionRequest": {
+        "GetDistributionConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7460,7 +7988,7 @@
                 }
             }
         },
-        "GetDistributionConfigRequest": {
+        "GetFieldLevelEncryptionRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7479,7 +8007,7 @@
                 }
             }
         },
-        "GetFieldLevelEncryptionRequest": {
+        "GetFieldLevelEncryptionConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7498,7 +8026,7 @@
                 }
             }
         },
-        "GetFieldLevelEncryptionConfigRequest": {
+        "GetFieldLevelEncryptionProfileRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7517,7 +8045,7 @@
                 }
             }
         },
-        "GetFieldLevelEncryptionProfileRequest": {
+        "GetFieldLevelEncryptionProfileConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7536,11 +8064,14 @@
                 }
             }
         },
-        "GetFieldLevelEncryptionProfileConfigRequest": {
+        "GetFunctionRequest": {
             "type": "object",
             "properties": {
-                "Id": {
+                "Name": {
                     "$ref": "#/$defs/string"
+                },
+                "Stage": {
+                    "$ref": "#/$defs/FunctionStage"
                 }
             }
         },
@@ -7558,14 +8089,14 @@
                 }
             }
         },
-        "GetFunctionRequest": {
+        "GetInvalidationRequest": {
             "type": "object",
             "properties": {
-                "Name": {
+                "DistributionId": {
                     "$ref": "#/$defs/string"
                 },
-                "Stage": {
-                    "$ref": "#/$defs/FunctionStage"
+                "Id": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -7577,12 +8108,9 @@
                 }
             }
         },
-        "GetInvalidationRequest": {
+        "GetKeyGroupRequest": {
             "type": "object",
             "properties": {
-                "DistributionId": {
-                    "$ref": "#/$defs/string"
-                },
                 "Id": {
                     "$ref": "#/$defs/string"
                 }
@@ -7599,7 +8127,7 @@
                 }
             }
         },
-        "GetKeyGroupRequest": {
+        "GetKeyGroupConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7618,10 +8146,10 @@
                 }
             }
         },
-        "GetKeyGroupConfigRequest": {
+        "GetMonitoringSubscriptionRequest": {
             "type": "object",
             "properties": {
-                "Id": {
+                "DistributionId": {
                     "$ref": "#/$defs/string"
                 }
             }
@@ -7634,10 +8162,10 @@
                 }
             }
         },
-        "GetMonitoringSubscriptionRequest": {
+        "GetOriginAccessControlRequest": {
             "type": "object",
             "properties": {
-                "DistributionId": {
+                "Id": {
                     "$ref": "#/$defs/string"
                 }
             }
@@ -7653,7 +8181,7 @@
                 }
             }
         },
-        "GetOriginAccessControlRequest": {
+        "GetOriginAccessControlConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7672,7 +8200,7 @@
                 }
             }
         },
-        "GetOriginAccessControlConfigRequest": {
+        "GetOriginRequestPolicyRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7691,7 +8219,7 @@
                 }
             }
         },
-        "GetOriginRequestPolicyRequest": {
+        "GetOriginRequestPolicyConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7710,7 +8238,7 @@
                 }
             }
         },
-        "GetOriginRequestPolicyConfigRequest": {
+        "GetPublicKeyRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7729,7 +8257,7 @@
                 }
             }
         },
-        "GetPublicKeyRequest": {
+        "GetPublicKeyConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7748,10 +8276,13 @@
                 }
             }
         },
-        "GetPublicKeyConfigRequest": {
+        "GetRealtimeLogConfigRequest": {
             "type": "object",
             "properties": {
-                "Id": {
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "ARN": {
                     "$ref": "#/$defs/string"
                 }
             }
@@ -7764,13 +8295,10 @@
                 }
             }
         },
-        "GetRealtimeLogConfigRequest": {
+        "GetResponseHeadersPolicyRequest": {
             "type": "object",
             "properties": {
-                "Name": {
-                    "$ref": "#/$defs/string"
-                },
-                "ARN": {
+                "Id": {
                     "$ref": "#/$defs/string"
                 }
             }
@@ -7786,7 +8314,7 @@
                 }
             }
         },
-        "GetResponseHeadersPolicyRequest": {
+        "GetResponseHeadersPolicyConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7805,7 +8333,7 @@
                 }
             }
         },
-        "GetResponseHeadersPolicyConfigRequest": {
+        "GetStreamingDistributionRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7824,7 +8352,7 @@
                 }
             }
         },
-        "GetStreamingDistributionRequest": {
+        "GetStreamingDistributionConfigRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -7843,13 +8371,115 @@
                 }
             }
         },
-        "GetStreamingDistributionConfigRequest": {
+        "GetVpcOriginRequest": {
             "type": "object",
             "properties": {
                 "Id": {
                     "$ref": "#/$defs/string"
                 }
             }
+        },
+        "GetVpcOriginResult": {
+            "type": "object",
+            "properties": {
+                "VpcOrigin": {
+                    "$ref": "#/$defs/VpcOrigin"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListAnycastIpListsRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
+        "ListAnycastIpListsResult": {
+            "type": "object",
+            "properties": {
+                "AnycastIpLists": {
+                    "$ref": "#/$defs/AnycastIpListCollection"
+                }
+            }
+        },
+        "AnycastIpListCollection": {
+            "type": "object",
+            "properties": {
+                "Items": {
+                    "$ref": "#/$defs/AnycastIpListSummaries"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                },
+                "IsTruncated": {
+                    "$ref": "#/$defs/boolean"
+                },
+                "Quantity": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
+        "AnycastIpListSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AnycastIpListSummary"
+            }
+        },
+        "AnycastIpListSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/AnycastIpListName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "IpCount": {
+                    "$ref": "#/$defs/integer"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                }
+            }
+        },
+        "ListCachePoliciesRequest": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/CachePolicyType"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
+        "CachePolicyType": {
+            "enum": [
+                "managed",
+                "custom"
+            ]
         },
         "ListCachePoliciesResult": {
             "type": "object",
@@ -7893,18 +8523,9 @@
                 }
             }
         },
-        "CachePolicyType": {
-            "enum": [
-                "managed",
-                "custom"
-            ]
-        },
-        "ListCachePoliciesRequest": {
+        "ListCloudFrontOriginAccessIdentitiesRequest": {
             "type": "object",
             "properties": {
-                "Type": {
-                    "$ref": "#/$defs/CachePolicyType"
-                },
                 "Marker": {
                     "$ref": "#/$defs/string"
                 },
@@ -7964,16 +8585,32 @@
                 }
             }
         },
-        "ListCloudFrontOriginAccessIdentitiesRequest": {
+        "ListConflictingAliasesRequest": {
             "type": "object",
             "properties": {
+                "DistributionId": {
+                    "$ref": "#/$defs/distributionIdString"
+                },
+                "Alias": {
+                    "$ref": "#/$defs/aliasString"
+                },
                 "Marker": {
                     "$ref": "#/$defs/string"
                 },
                 "MaxItems": {
-                    "$ref": "#/$defs/integer"
+                    "$ref": "#/$defs/listConflictingAliasesMaxItemsInteger"
                 }
             }
+        },
+        "distributionIdString": {
+            "type": "string"
+        },
+        "aliasString": {
+            "type": "string"
+        },
+        "listConflictingAliasesMaxItemsInteger": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListConflictingAliasesResult": {
             "type": "object",
@@ -8020,32 +8657,16 @@
                 }
             }
         },
-        "ListConflictingAliasesRequest": {
+        "ListContinuousDeploymentPoliciesRequest": {
             "type": "object",
             "properties": {
-                "DistributionId": {
-                    "$ref": "#/$defs/distributionIdString"
-                },
-                "Alias": {
-                    "$ref": "#/$defs/aliasString"
-                },
                 "Marker": {
                     "$ref": "#/$defs/string"
                 },
                 "MaxItems": {
-                    "$ref": "#/$defs/listConflictingAliasesMaxItemsInteger"
+                    "$ref": "#/$defs/integer"
                 }
             }
-        },
-        "distributionIdString": {
-            "type": "string"
-        },
-        "aliasString": {
-            "type": "string"
-        },
-        "listConflictingAliasesMaxItemsInteger": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListContinuousDeploymentPoliciesResult": {
             "type": "object",
@@ -8086,7 +8707,7 @@
                 }
             }
         },
-        "ListContinuousDeploymentPoliciesRequest": {
+        "ListDistributionsRequest": {
             "type": "object",
             "properties": {
                 "Marker": {
@@ -8199,10 +8820,13 @@
                 },
                 "Staging": {
                     "$ref": "#/$defs/boolean"
+                },
+                "AnycastIpListId": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
-        "ListDistributionsRequest": {
+        "ListDistributionsByAnycastIpListIdRequest": {
             "type": "object",
             "properties": {
                 "Marker": {
@@ -8210,6 +8834,31 @@
                 },
                 "MaxItems": {
                     "$ref": "#/$defs/integer"
+                },
+                "AnycastIpListId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListDistributionsByAnycastIpListIdResult": {
+            "type": "object",
+            "properties": {
+                "DistributionList": {
+                    "$ref": "#/$defs/DistributionList"
+                }
+            }
+        },
+        "ListDistributionsByCachePolicyIdRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                },
+                "CachePolicyId": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -8250,28 +8899,6 @@
                 "$ref": "#/$defs/string"
             }
         },
-        "ListDistributionsByCachePolicyIdRequest": {
-            "type": "object",
-            "properties": {
-                "Marker": {
-                    "$ref": "#/$defs/string"
-                },
-                "MaxItems": {
-                    "$ref": "#/$defs/integer"
-                },
-                "CachePolicyId": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "ListDistributionsByKeyGroupResult": {
-            "type": "object",
-            "properties": {
-                "DistributionIdList": {
-                    "$ref": "#/$defs/DistributionIdList"
-                }
-            }
-        },
         "ListDistributionsByKeyGroupRequest": {
             "type": "object",
             "properties": {
@@ -8286,7 +8913,7 @@
                 }
             }
         },
-        "ListDistributionsByOriginRequestPolicyIdResult": {
+        "ListDistributionsByKeyGroupResult": {
             "type": "object",
             "properties": {
                 "DistributionIdList": {
@@ -8308,11 +8935,11 @@
                 }
             }
         },
-        "ListDistributionsByRealtimeLogConfigResult": {
+        "ListDistributionsByOriginRequestPolicyIdResult": {
             "type": "object",
             "properties": {
-                "DistributionList": {
-                    "$ref": "#/$defs/DistributionList"
+                "DistributionIdList": {
+                    "$ref": "#/$defs/DistributionIdList"
                 }
             }
         },
@@ -8333,11 +8960,11 @@
                 }
             }
         },
-        "ListDistributionsByResponseHeadersPolicyIdResult": {
+        "ListDistributionsByRealtimeLogConfigResult": {
             "type": "object",
             "properties": {
-                "DistributionIdList": {
-                    "$ref": "#/$defs/DistributionIdList"
+                "DistributionList": {
+                    "$ref": "#/$defs/DistributionList"
                 }
             }
         },
@@ -8355,11 +8982,33 @@
                 }
             }
         },
-        "ListDistributionsByWebACLIdResult": {
+        "ListDistributionsByResponseHeadersPolicyIdResult": {
             "type": "object",
             "properties": {
-                "DistributionList": {
-                    "$ref": "#/$defs/DistributionList"
+                "DistributionIdList": {
+                    "$ref": "#/$defs/DistributionIdList"
+                }
+            }
+        },
+        "ListDistributionsByVpcOriginIdRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                },
+                "VpcOriginId": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListDistributionsByVpcOriginIdResult": {
+            "type": "object",
+            "properties": {
+                "DistributionIdList": {
+                    "$ref": "#/$defs/DistributionIdList"
                 }
             }
         },
@@ -8374,6 +9023,25 @@
                 },
                 "WebACLId": {
                     "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "ListDistributionsByWebACLIdResult": {
+            "type": "object",
+            "properties": {
+                "DistributionList": {
+                    "$ref": "#/$defs/DistributionList"
+                }
+            }
+        },
+        "ListFieldLevelEncryptionConfigsRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
                 }
             }
         },
@@ -8428,7 +9096,7 @@
                 }
             }
         },
-        "ListFieldLevelEncryptionConfigsRequest": {
+        "ListFieldLevelEncryptionProfilesRequest": {
             "type": "object",
             "properties": {
                 "Marker": {
@@ -8490,7 +9158,7 @@
                 }
             }
         },
-        "ListFieldLevelEncryptionProfilesRequest": {
+        "ListFunctionsRequest": {
             "type": "object",
             "properties": {
                 "Marker": {
@@ -8498,6 +9166,9 @@
                 },
                 "MaxItems": {
                     "$ref": "#/$defs/integer"
+                },
+                "Stage": {
+                    "$ref": "#/$defs/FunctionStage"
                 }
             }
         },
@@ -8532,17 +9203,17 @@
                 "$ref": "#/$defs/FunctionSummary"
             }
         },
-        "ListFunctionsRequest": {
+        "ListInvalidationsRequest": {
             "type": "object",
             "properties": {
+                "DistributionId": {
+                    "$ref": "#/$defs/string"
+                },
                 "Marker": {
                     "$ref": "#/$defs/string"
                 },
                 "MaxItems": {
                     "$ref": "#/$defs/integer"
-                },
-                "Stage": {
-                    "$ref": "#/$defs/FunctionStage"
                 }
             }
         },
@@ -8597,12 +9268,9 @@
                 }
             }
         },
-        "ListInvalidationsRequest": {
+        "ListKeyGroupsRequest": {
             "type": "object",
             "properties": {
-                "DistributionId": {
-                    "$ref": "#/$defs/string"
-                },
                 "Marker": {
                     "$ref": "#/$defs/string"
                 },
@@ -8650,7 +9318,7 @@
                 }
             }
         },
-        "ListKeyGroupsRequest": {
+        "ListKeyValueStoresRequest": {
             "type": "object",
             "properties": {
                 "Marker": {
@@ -8658,6 +9326,9 @@
                 },
                 "MaxItems": {
                     "$ref": "#/$defs/integer"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -8692,7 +9363,7 @@
                 "$ref": "#/$defs/KeyValueStore"
             }
         },
-        "ListKeyValueStoresRequest": {
+        "ListOriginAccessControlsRequest": {
             "type": "object",
             "properties": {
                 "Marker": {
@@ -8700,9 +9371,6 @@
                 },
                 "MaxItems": {
                     "$ref": "#/$defs/integer"
-                },
-                "Status": {
-                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -8766,9 +9434,12 @@
                 }
             }
         },
-        "ListOriginAccessControlsRequest": {
+        "ListOriginRequestPoliciesRequest": {
             "type": "object",
             "properties": {
+                "Type": {
+                    "$ref": "#/$defs/OriginRequestPolicyType"
+                },
                 "Marker": {
                     "$ref": "#/$defs/string"
                 },
@@ -8776,6 +9447,12 @@
                     "$ref": "#/$defs/integer"
                 }
             }
+        },
+        "OriginRequestPolicyType": {
+            "enum": [
+                "managed",
+                "custom"
+            ]
         },
         "ListOriginRequestPoliciesResult": {
             "type": "object",
@@ -8819,18 +9496,9 @@
                 }
             }
         },
-        "OriginRequestPolicyType": {
-            "enum": [
-                "managed",
-                "custom"
-            ]
-        },
-        "ListOriginRequestPoliciesRequest": {
+        "ListPublicKeysRequest": {
             "type": "object",
             "properties": {
-                "Type": {
-                    "$ref": "#/$defs/OriginRequestPolicyType"
-                },
                 "Marker": {
                     "$ref": "#/$defs/string"
                 },
@@ -8890,14 +9558,14 @@
                 }
             }
         },
-        "ListPublicKeysRequest": {
+        "ListRealtimeLogConfigsRequest": {
             "type": "object",
             "properties": {
-                "Marker": {
-                    "$ref": "#/$defs/string"
-                },
                 "MaxItems": {
                     "$ref": "#/$defs/integer"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -8935,16 +9603,25 @@
                 "$ref": "#/$defs/RealtimeLogConfig"
             }
         },
-        "ListRealtimeLogConfigsRequest": {
+        "ListResponseHeadersPoliciesRequest": {
             "type": "object",
             "properties": {
-                "MaxItems": {
-                    "$ref": "#/$defs/integer"
+                "Type": {
+                    "$ref": "#/$defs/ResponseHeadersPolicyType"
                 },
                 "Marker": {
                     "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
                 }
             }
+        },
+        "ResponseHeadersPolicyType": {
+            "enum": [
+                "managed",
+                "custom"
+            ]
         },
         "ListResponseHeadersPoliciesResult": {
             "type": "object",
@@ -8988,18 +9665,9 @@
                 }
             }
         },
-        "ResponseHeadersPolicyType": {
-            "enum": [
-                "managed",
-                "custom"
-            ]
-        },
-        "ListResponseHeadersPoliciesRequest": {
+        "ListStreamingDistributionsRequest": {
             "type": "object",
             "properties": {
-                "Type": {
-                    "$ref": "#/$defs/ResponseHeadersPolicyType"
-                },
                 "Marker": {
                     "$ref": "#/$defs/string"
                 },
@@ -9083,25 +9751,6 @@
                 }
             }
         },
-        "ListStreamingDistributionsRequest": {
-            "type": "object",
-            "properties": {
-                "Marker": {
-                    "$ref": "#/$defs/string"
-                },
-                "MaxItems": {
-                    "$ref": "#/$defs/integer"
-                }
-            }
-        },
-        "ListTagsForResourceResult": {
-            "type": "object",
-            "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -9113,11 +9762,85 @@
         "ResourceARN": {
             "type": "string"
         },
-        "PublishFunctionResult": {
+        "ListTagsForResourceResult": {
             "type": "object",
             "properties": {
-                "FunctionSummary": {
-                    "$ref": "#/$defs/FunctionSummary"
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "ListVpcOriginsRequest": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                }
+            }
+        },
+        "ListVpcOriginsResult": {
+            "type": "object",
+            "properties": {
+                "VpcOriginList": {
+                    "$ref": "#/$defs/VpcOriginList"
+                }
+            }
+        },
+        "VpcOriginList": {
+            "type": "object",
+            "properties": {
+                "Marker": {
+                    "$ref": "#/$defs/string"
+                },
+                "NextMarker": {
+                    "$ref": "#/$defs/string"
+                },
+                "MaxItems": {
+                    "$ref": "#/$defs/integer"
+                },
+                "IsTruncated": {
+                    "$ref": "#/$defs/boolean"
+                },
+                "Quantity": {
+                    "$ref": "#/$defs/integer"
+                },
+                "Items": {
+                    "$ref": "#/$defs/VpcOriginSummaryList"
+                }
+            }
+        },
+        "VpcOriginSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VpcOriginSummary"
+            }
+        },
+        "VpcOriginSummary": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "Status": {
+                    "$ref": "#/$defs/string"
+                },
+                "CreatedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/string"
+                },
+                "OriginEndpointArn": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -9132,6 +9855,14 @@
                 }
             }
         },
+        "PublishFunctionResult": {
+            "type": "object",
+            "properties": {
+                "FunctionSummary": {
+                    "$ref": "#/$defs/FunctionSummary"
+                }
+            }
+        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -9142,6 +9873,27 @@
                     "$ref": "#/$defs/Tags"
                 }
             }
+        },
+        "TestFunctionRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/string"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/string"
+                },
+                "Stage": {
+                    "$ref": "#/$defs/FunctionStage"
+                },
+                "EventObject": {
+                    "$ref": "#/$defs/FunctionEventObject"
+                }
+            }
+        },
+        "FunctionEventObject": {
+            "type": "string",
+            "format": "binary"
         },
         "TestFunctionResult": {
             "type": "object",
@@ -9177,27 +9929,6 @@
                 "$ref": "#/$defs/string"
             }
         },
-        "TestFunctionRequest": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "$ref": "#/$defs/string"
-                },
-                "IfMatch": {
-                    "$ref": "#/$defs/string"
-                },
-                "Stage": {
-                    "$ref": "#/$defs/FunctionStage"
-                },
-                "EventObject": {
-                    "$ref": "#/$defs/FunctionEventObject"
-                }
-            }
-        },
-        "FunctionEventObject": {
-            "type": "string",
-            "format": "binary"
-        },
         "UntagResourceRequest": {
             "type": "object",
             "properties": {
@@ -9223,17 +9954,6 @@
                 "$ref": "#/$defs/TagKey"
             }
         },
-        "UpdateCachePolicyResult": {
-            "type": "object",
-            "properties": {
-                "CachePolicy": {
-                    "$ref": "#/$defs/CachePolicy"
-                },
-                "ETag": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
         "UpdateCachePolicyRequest": {
             "type": "object",
             "properties": {
@@ -9248,11 +9968,11 @@
                 }
             }
         },
-        "UpdateCloudFrontOriginAccessIdentityResult": {
+        "UpdateCachePolicyResult": {
             "type": "object",
             "properties": {
-                "CloudFrontOriginAccessIdentity": {
-                    "$ref": "#/$defs/CloudFrontOriginAccessIdentity"
+                "CachePolicy": {
+                    "$ref": "#/$defs/CachePolicy"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9273,11 +9993,11 @@
                 }
             }
         },
-        "UpdateContinuousDeploymentPolicyResult": {
+        "UpdateCloudFrontOriginAccessIdentityResult": {
             "type": "object",
             "properties": {
-                "ContinuousDeploymentPolicy": {
-                    "$ref": "#/$defs/ContinuousDeploymentPolicy"
+                "CloudFrontOriginAccessIdentity": {
+                    "$ref": "#/$defs/CloudFrontOriginAccessIdentity"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9298,11 +10018,11 @@
                 }
             }
         },
-        "UpdateDistributionResult": {
+        "UpdateContinuousDeploymentPolicyResult": {
             "type": "object",
             "properties": {
-                "Distribution": {
-                    "$ref": "#/$defs/Distribution"
+                "ContinuousDeploymentPolicy": {
+                    "$ref": "#/$defs/ContinuousDeploymentPolicy"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9323,7 +10043,7 @@
                 }
             }
         },
-        "UpdateDistributionWithStagingConfigResult": {
+        "UpdateDistributionResult": {
             "type": "object",
             "properties": {
                 "Distribution": {
@@ -9348,11 +10068,11 @@
                 }
             }
         },
-        "UpdateFieldLevelEncryptionConfigResult": {
+        "UpdateDistributionWithStagingConfigResult": {
             "type": "object",
             "properties": {
-                "FieldLevelEncryption": {
-                    "$ref": "#/$defs/FieldLevelEncryption"
+                "Distribution": {
+                    "$ref": "#/$defs/Distribution"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9373,11 +10093,11 @@
                 }
             }
         },
-        "UpdateFieldLevelEncryptionProfileResult": {
+        "UpdateFieldLevelEncryptionConfigResult": {
             "type": "object",
             "properties": {
-                "FieldLevelEncryptionProfile": {
-                    "$ref": "#/$defs/FieldLevelEncryptionProfile"
+                "FieldLevelEncryption": {
+                    "$ref": "#/$defs/FieldLevelEncryption"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9398,11 +10118,11 @@
                 }
             }
         },
-        "UpdateFunctionResult": {
+        "UpdateFieldLevelEncryptionProfileResult": {
             "type": "object",
             "properties": {
-                "FunctionSummary": {
-                    "$ref": "#/$defs/FunctionSummary"
+                "FieldLevelEncryptionProfile": {
+                    "$ref": "#/$defs/FieldLevelEncryptionProfile"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9426,11 +10146,11 @@
                 }
             }
         },
-        "UpdateKeyGroupResult": {
+        "UpdateFunctionResult": {
             "type": "object",
             "properties": {
-                "KeyGroup": {
-                    "$ref": "#/$defs/KeyGroup"
+                "FunctionSummary": {
+                    "$ref": "#/$defs/FunctionSummary"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9451,11 +10171,11 @@
                 }
             }
         },
-        "UpdateKeyValueStoreResult": {
+        "UpdateKeyGroupResult": {
             "type": "object",
             "properties": {
-                "KeyValueStore": {
-                    "$ref": "#/$defs/KeyValueStore"
+                "KeyGroup": {
+                    "$ref": "#/$defs/KeyGroup"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9476,11 +10196,11 @@
                 }
             }
         },
-        "UpdateOriginAccessControlResult": {
+        "UpdateKeyValueStoreResult": {
             "type": "object",
             "properties": {
-                "OriginAccessControl": {
-                    "$ref": "#/$defs/OriginAccessControl"
+                "KeyValueStore": {
+                    "$ref": "#/$defs/KeyValueStore"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9501,11 +10221,11 @@
                 }
             }
         },
-        "UpdateOriginRequestPolicyResult": {
+        "UpdateOriginAccessControlResult": {
             "type": "object",
             "properties": {
-                "OriginRequestPolicy": {
-                    "$ref": "#/$defs/OriginRequestPolicy"
+                "OriginAccessControl": {
+                    "$ref": "#/$defs/OriginAccessControl"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9526,11 +10246,11 @@
                 }
             }
         },
-        "UpdatePublicKeyResult": {
+        "UpdateOriginRequestPolicyResult": {
             "type": "object",
             "properties": {
-                "PublicKey": {
-                    "$ref": "#/$defs/PublicKey"
+                "OriginRequestPolicy": {
+                    "$ref": "#/$defs/OriginRequestPolicy"
                 },
                 "ETag": {
                     "$ref": "#/$defs/string"
@@ -9551,11 +10271,14 @@
                 }
             }
         },
-        "UpdateRealtimeLogConfigResult": {
+        "UpdatePublicKeyResult": {
             "type": "object",
             "properties": {
-                "RealtimeLogConfig": {
-                    "$ref": "#/$defs/RealtimeLogConfig"
+                "PublicKey": {
+                    "$ref": "#/$defs/PublicKey"
+                },
+                "ETag": {
+                    "$ref": "#/$defs/string"
                 }
             }
         },
@@ -9579,6 +10302,28 @@
                 }
             }
         },
+        "UpdateRealtimeLogConfigResult": {
+            "type": "object",
+            "properties": {
+                "RealtimeLogConfig": {
+                    "$ref": "#/$defs/RealtimeLogConfig"
+                }
+            }
+        },
+        "UpdateResponseHeadersPolicyRequest": {
+            "type": "object",
+            "properties": {
+                "ResponseHeadersPolicyConfig": {
+                    "$ref": "#/$defs/ResponseHeadersPolicyConfig"
+                },
+                "Id": {
+                    "$ref": "#/$defs/string"
+                },
+                "IfMatch": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
         "UpdateResponseHeadersPolicyResult": {
             "type": "object",
             "properties": {
@@ -9590,11 +10335,11 @@
                 }
             }
         },
-        "UpdateResponseHeadersPolicyRequest": {
+        "UpdateStreamingDistributionRequest": {
             "type": "object",
             "properties": {
-                "ResponseHeadersPolicyConfig": {
-                    "$ref": "#/$defs/ResponseHeadersPolicyConfig"
+                "StreamingDistributionConfig": {
+                    "$ref": "#/$defs/StreamingDistributionConfig"
                 },
                 "Id": {
                     "$ref": "#/$defs/string"
@@ -9615,16 +10360,27 @@
                 }
             }
         },
-        "UpdateStreamingDistributionRequest": {
+        "UpdateVpcOriginRequest": {
             "type": "object",
             "properties": {
-                "StreamingDistributionConfig": {
-                    "$ref": "#/$defs/StreamingDistributionConfig"
+                "VpcOriginEndpointConfig": {
+                    "$ref": "#/$defs/VpcOriginEndpointConfig"
                 },
                 "Id": {
                     "$ref": "#/$defs/string"
                 },
                 "IfMatch": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "UpdateVpcOriginResult": {
+            "type": "object",
+            "properties": {
+                "VpcOrigin": {
+                    "$ref": "#/$defs/VpcOrigin"
+                },
+                "ETag": {
                     "$ref": "#/$defs/string"
                 }
             }

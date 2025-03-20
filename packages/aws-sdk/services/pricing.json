@@ -200,7 +200,7 @@
                     "$ref": "#/$defs/ServiceList"
                 },
                 "FormatVersion": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/FormatVersion"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/String"
@@ -233,6 +233,9 @@
                 "$ref": "#/$defs/String"
             }
         },
+        "FormatVersion": {
+            "type": "string"
+        },
         "DescribeServicesRequest": {
             "type": "object",
             "properties": {
@@ -240,7 +243,7 @@
                     "$ref": "#/$defs/String"
                 },
                 "FormatVersion": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/FormatVersion"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/String"
@@ -325,7 +328,7 @@
             "type": "object",
             "properties": {
                 "FormatVersion": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/FormatVersion"
                 },
                 "PriceList": {
                     "$ref": "#/$defs/PriceListJsonItems"
@@ -354,7 +357,7 @@
                     "$ref": "#/$defs/Filters"
                 },
                 "FormatVersion": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/FormatVersion"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/String"
@@ -377,10 +380,10 @@
                     "$ref": "#/$defs/FilterType"
                 },
                 "Field": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/Field"
                 },
                 "Value": {
-                    "$ref": "#/$defs/String"
+                    "$ref": "#/$defs/Value"
                 }
             }
         },
@@ -388,6 +391,12 @@
             "enum": [
                 "TERM_MATCH"
             ]
+        },
+        "Field": {
+            "type": "string"
+        },
+        "Value": {
+            "type": "string"
         },
         "ListPriceListsResponse": {
             "type": "object",

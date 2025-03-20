@@ -2515,6 +2515,9 @@
                 "FirewallDomainListId": {
                     "$ref": "#/$defs/ResourceId"
                 },
+                "FirewallThreatProtectionId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
                 "Name": {
                     "$ref": "#/$defs/Name"
                 },
@@ -2550,6 +2553,12 @@
                 },
                 "Qtype": {
                     "$ref": "#/$defs/Qtype"
+                },
+                "DnsThreatProtection": {
+                    "$ref": "#/$defs/DnsThreatProtection"
+                },
+                "ConfidenceThreshold": {
+                    "$ref": "#/$defs/ConfidenceThreshold"
                 }
             }
         },
@@ -2583,6 +2592,19 @@
         },
         "Qtype": {
             "type": "string"
+        },
+        "DnsThreatProtection": {
+            "enum": [
+                "DGA",
+                "DNS_TUNNELING"
+            ]
+        },
+        "ConfidenceThreshold": {
+            "enum": [
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+            ]
         },
         "CreateFirewallRuleRequest": {
             "type": "object",
@@ -2622,6 +2644,12 @@
                 },
                 "Qtype": {
                     "$ref": "#/$defs/Qtype"
+                },
+                "DnsThreatProtection": {
+                    "$ref": "#/$defs/DnsThreatProtection"
+                },
+                "ConfidenceThreshold": {
+                    "$ref": "#/$defs/ConfidenceThreshold"
                 }
             }
         },
@@ -3100,6 +3128,9 @@
                     "$ref": "#/$defs/ResourceId"
                 },
                 "FirewallDomainListId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "FirewallThreatProtectionId": {
                     "$ref": "#/$defs/ResourceId"
                 },
                 "Qtype": {
@@ -4473,6 +4504,9 @@
                 "FirewallDomainListId": {
                     "$ref": "#/$defs/ResourceId"
                 },
+                "FirewallThreatProtectionId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
                 "Priority": {
                     "$ref": "#/$defs/Priority"
                 },
@@ -4499,6 +4533,12 @@
                 },
                 "Qtype": {
                     "$ref": "#/$defs/Qtype"
+                },
+                "DnsThreatProtection": {
+                    "$ref": "#/$defs/DnsThreatProtection"
+                },
+                "ConfidenceThreshold": {
+                    "$ref": "#/$defs/ConfidenceThreshold"
                 }
             }
         },

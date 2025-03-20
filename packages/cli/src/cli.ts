@@ -113,6 +113,11 @@ export function cli()
 {
     const mainProgram = program.command(null).option<boolean, 'help'>('help', { needsValue: false });
     program.useError(supportInteract(mainProgram))
+    program.option('verbose', {
+        aliases: ['v'],
+        needsValue: false,
+        default: akala.LogLevels.info as akala.LogLevels
+    }).preAction(async context => { context.logger.level = context.options.verbose });
     program.
         option('configFile', { aliases: ['c', 'config-file'], needsValue: true, default: '' as string }).
         state<AkalaConfig>().

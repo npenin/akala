@@ -466,6 +466,64 @@
             }
         },
         {
+            "name": "DescribeServiceDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2ContainerServiceV20141113.DescribeServiceDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeServiceDeploymentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeServiceDeploymentsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeServiceRevisions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2ContainerServiceV20141113.DescribeServiceRevisions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeServiceRevisionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeServiceRevisionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeServices",
             "config": {
                 "http": {
@@ -779,6 +837,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListContainerInstancesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListServiceDeployments",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonEC2ContainerServiceV20141113.ListServiceDeployments"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListServiceDeploymentsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListServiceDeploymentsRequest"
                         }
                     }
                 }
@@ -2207,6 +2294,9 @@
                 },
                 "enableExecuteCommand": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "availabilityZoneRebalancing": {
+                    "$ref": "#/$defs/AvailabilityZoneRebalancing"
                 }
             }
         },
@@ -2301,10 +2391,10 @@
                 "alarmNames": {
                     "$ref": "#/$defs/StringList"
                 },
-                "enable": {
+                "rollback": {
                     "$ref": "#/$defs/Boolean"
                 },
-                "rollback": {
+                "enable": {
                     "$ref": "#/$defs/Boolean"
                 }
             }
@@ -2529,6 +2619,9 @@
                 },
                 "fargateEphemeralStorage": {
                     "$ref": "#/$defs/DeploymentEphemeralStorage"
+                },
+                "vpcLatticeConfigurations": {
+                    "$ref": "#/$defs/VpcLatticeConfigurations"
                 }
             }
         },
@@ -2815,8 +2908,29 @@
             "enum": [
                 "EXT3",
                 "EXT4",
-                "XFS"
+                "XFS",
+                "NTFS"
             ]
+        },
+        "VpcLatticeConfigurations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/VpcLatticeConfiguration"
+            }
+        },
+        "VpcLatticeConfiguration": {
+            "type": "object",
+            "properties": {
+                "roleArn": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "targetGroupArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "portName": {
+                    "$ref": "#/$defs/String"
+                }
+            }
         },
         "ServiceEvents": {
             "type": "array",
@@ -2906,6 +3020,12 @@
                 "EXTERNAL"
             ]
         },
+        "AvailabilityZoneRebalancing": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
         "CreateServiceRequest": {
             "type": "object",
             "properties": {
@@ -2917,6 +3037,9 @@
                 },
                 "taskDefinition": {
                     "$ref": "#/$defs/String"
+                },
+                "availabilityZoneRebalancing": {
+                    "$ref": "#/$defs/AvailabilityZoneRebalancing"
                 },
                 "loadBalancers": {
                     "$ref": "#/$defs/LoadBalancers"
@@ -2980,6 +3103,9 @@
                 },
                 "volumeConfigurations": {
                     "$ref": "#/$defs/ServiceVolumeConfigurations"
+                },
+                "vpcLatticeConfigurations": {
+                    "$ref": "#/$defs/VpcLatticeConfigurations"
                 }
             }
         },
@@ -3282,6 +3408,9 @@
                 },
                 "ephemeralStorage": {
                     "$ref": "#/$defs/EphemeralStorage"
+                },
+                "enableFaultInjection": {
+                    "$ref": "#/$defs/BoxedBoolean"
                 }
             }
         },
@@ -3356,6 +3485,9 @@
                 },
                 "stopTimeout": {
                     "$ref": "#/$defs/BoxedInteger"
+                },
+                "versionConsistency": {
+                    "$ref": "#/$defs/VersionConsistency"
                 },
                 "hostname": {
                     "$ref": "#/$defs/String"
@@ -3667,6 +3799,12 @@
                 "COMPLETE",
                 "SUCCESS",
                 "HEALTHY"
+            ]
+        },
+        "VersionConsistency": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
             ]
         },
         "HostEntryList": {
@@ -4487,6 +4625,273 @@
                 "CONTAINER_INSTANCE_HEALTH"
             ]
         },
+        "DescribeServiceDeploymentsResponse": {
+            "type": "object",
+            "properties": {
+                "serviceDeployments": {
+                    "$ref": "#/$defs/ServiceDeployments"
+                },
+                "failures": {
+                    "$ref": "#/$defs/Failures"
+                }
+            }
+        },
+        "ServiceDeployments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceDeployment"
+            }
+        },
+        "ServiceDeployment": {
+            "type": "object",
+            "properties": {
+                "serviceDeploymentArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "serviceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "clusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "finishedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "stoppedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "sourceServiceRevisions": {
+                    "$ref": "#/$defs/ServiceRevisionsSummaryList"
+                },
+                "targetServiceRevision": {
+                    "$ref": "#/$defs/ServiceRevisionSummary"
+                },
+                "status": {
+                    "$ref": "#/$defs/ServiceDeploymentStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                },
+                "deploymentConfiguration": {
+                    "$ref": "#/$defs/DeploymentConfiguration"
+                },
+                "rollback": {
+                    "$ref": "#/$defs/Rollback"
+                },
+                "deploymentCircuitBreaker": {
+                    "$ref": "#/$defs/ServiceDeploymentCircuitBreaker"
+                },
+                "alarms": {
+                    "$ref": "#/$defs/ServiceDeploymentAlarms"
+                }
+            }
+        },
+        "ServiceRevisionsSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceRevisionSummary"
+            }
+        },
+        "ServiceRevisionSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/String"
+                },
+                "requestedTaskCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "runningTaskCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "pendingTaskCount": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "ServiceDeploymentStatus": {
+            "enum": [
+                "PENDING",
+                "SUCCESSFUL",
+                "STOPPED",
+                "STOP_REQUESTED",
+                "IN_PROGRESS",
+                "ROLLBACK_IN_PROGRESS",
+                "ROLLBACK_SUCCESSFUL",
+                "ROLLBACK_FAILED"
+            ]
+        },
+        "Rollback": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "$ref": "#/$defs/String"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "serviceRevisionArn": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceDeploymentCircuitBreaker": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ServiceDeploymentRollbackMonitorsStatus"
+                },
+                "failureCount": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "threshold": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "ServiceDeploymentRollbackMonitorsStatus": {
+            "enum": [
+                "TRIGGERED",
+                "MONITORING",
+                "MONITORING_COMPLETE",
+                "DISABLED"
+            ]
+        },
+        "ServiceDeploymentAlarms": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/$defs/ServiceDeploymentRollbackMonitorsStatus"
+                },
+                "alarmNames": {
+                    "$ref": "#/$defs/StringList"
+                },
+                "triggeredAlarmNames": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "DescribeServiceDeploymentsRequest": {
+            "type": "object",
+            "properties": {
+                "serviceDeploymentArns": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
+        "DescribeServiceRevisionsResponse": {
+            "type": "object",
+            "properties": {
+                "serviceRevisions": {
+                    "$ref": "#/$defs/ServiceRevisions"
+                },
+                "failures": {
+                    "$ref": "#/$defs/Failures"
+                }
+            }
+        },
+        "ServiceRevisions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceRevision"
+            }
+        },
+        "ServiceRevision": {
+            "type": "object",
+            "properties": {
+                "serviceRevisionArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "serviceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "clusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "taskDefinition": {
+                    "$ref": "#/$defs/String"
+                },
+                "capacityProviderStrategy": {
+                    "$ref": "#/$defs/CapacityProviderStrategy"
+                },
+                "launchType": {
+                    "$ref": "#/$defs/LaunchType"
+                },
+                "platformVersion": {
+                    "$ref": "#/$defs/String"
+                },
+                "platformFamily": {
+                    "$ref": "#/$defs/String"
+                },
+                "loadBalancers": {
+                    "$ref": "#/$defs/LoadBalancers"
+                },
+                "serviceRegistries": {
+                    "$ref": "#/$defs/ServiceRegistries"
+                },
+                "networkConfiguration": {
+                    "$ref": "#/$defs/NetworkConfiguration"
+                },
+                "containerImages": {
+                    "$ref": "#/$defs/ContainerImages"
+                },
+                "guardDutyEnabled": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "serviceConnectConfiguration": {
+                    "$ref": "#/$defs/ServiceConnectConfiguration"
+                },
+                "volumeConfigurations": {
+                    "$ref": "#/$defs/ServiceVolumeConfigurations"
+                },
+                "fargateEphemeralStorage": {
+                    "$ref": "#/$defs/DeploymentEphemeralStorage"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "vpcLatticeConfigurations": {
+                    "$ref": "#/$defs/VpcLatticeConfigurations"
+                }
+            }
+        },
+        "ContainerImages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContainerImage"
+            }
+        },
+        "ContainerImage": {
+            "type": "object",
+            "properties": {
+                "containerName": {
+                    "$ref": "#/$defs/String"
+                },
+                "imageDigest": {
+                    "$ref": "#/$defs/String"
+                },
+                "image": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DescribeServiceRevisionsRequest": {
+            "type": "object",
+            "properties": {
+                "serviceRevisionArns": {
+                    "$ref": "#/$defs/StringList"
+                }
+            }
+        },
         "DescribeServicesResponse": {
             "type": "object",
             "properties": {
@@ -5279,6 +5684,95 @@
                 "REGISTRATION_FAILED"
             ]
         },
+        "ListServiceDeploymentsResponse": {
+            "type": "object",
+            "properties": {
+                "serviceDeployments": {
+                    "$ref": "#/$defs/ServiceDeploymentsBrief"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ServiceDeploymentsBrief": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceDeploymentBrief"
+            }
+        },
+        "ServiceDeploymentBrief": {
+            "type": "object",
+            "properties": {
+                "serviceDeploymentArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "serviceArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "clusterArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "startedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "finishedAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "targetServiceRevisionArn": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/ServiceDeploymentStatus"
+                },
+                "statusReason": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ListServiceDeploymentsRequest": {
+            "type": "object",
+            "properties": {
+                "service": {
+                    "$ref": "#/$defs/String"
+                },
+                "cluster": {
+                    "$ref": "#/$defs/String"
+                },
+                "status": {
+                    "$ref": "#/$defs/ServiceDeploymentStatusList"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/CreatedAt"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/BoxedInteger"
+                }
+            }
+        },
+        "ServiceDeploymentStatusList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServiceDeploymentStatus"
+            }
+        },
+        "CreatedAt": {
+            "type": "object",
+            "properties": {
+                "before": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "after": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
         "ListServicesResponse": {
             "type": "object",
             "properties": {
@@ -5681,6 +6175,9 @@
                 },
                 "runtimePlatform": {
                     "$ref": "#/$defs/RuntimePlatform"
+                },
+                "enableFaultInjection": {
+                    "$ref": "#/$defs/BoxedBoolean"
                 }
             }
         },
@@ -6254,6 +6751,9 @@
                 "deploymentConfiguration": {
                     "$ref": "#/$defs/DeploymentConfiguration"
                 },
+                "availabilityZoneRebalancing": {
+                    "$ref": "#/$defs/AvailabilityZoneRebalancing"
+                },
                 "networkConfiguration": {
                     "$ref": "#/$defs/NetworkConfiguration"
                 },
@@ -6292,6 +6792,9 @@
                 },
                 "volumeConfigurations": {
                     "$ref": "#/$defs/ServiceVolumeConfigurations"
+                },
+                "vpcLatticeConfigurations": {
+                    "$ref": "#/$defs/VpcLatticeConfigurations"
                 }
             }
         },

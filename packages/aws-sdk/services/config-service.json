@@ -2,6 +2,35 @@
     "name": "config",
     "commands": [
         {
+            "name": "AssociateResourceTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StarlingDoveService.AssociateResourceTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/AssociateResourceTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/AssociateResourceTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "BatchGetAggregateResourceConfig",
             "config": {
                 "http": {
@@ -460,6 +489,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteRetentionConfigurationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteServiceLinkedConfigurationRecorder",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StarlingDoveService.DeleteServiceLinkedConfigurationRecorder"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteServiceLinkedConfigurationRecorderResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteServiceLinkedConfigurationRecorderRequest"
                         }
                     }
                 }
@@ -1249,6 +1307,35 @@
             }
         },
         {
+            "name": "DisassociateResourceTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StarlingDoveService.DisassociateResourceTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisassociateResourceTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisassociateResourceTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetAggregateComplianceDetailsByConfigRule",
             "config": {
                 "http": {
@@ -1829,6 +1916,35 @@
             }
         },
         {
+            "name": "ListConfigurationRecorders",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StarlingDoveService.ListConfigurationRecorders"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConfigurationRecordersResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConfigurationRecordersRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListConformancePackComplianceScores",
             "config": {
                 "http": {
@@ -2380,6 +2496,35 @@
             }
         },
         {
+            "name": "PutServiceLinkedConfigurationRecorder",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "StarlingDoveService.PutServiceLinkedConfigurationRecorder"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutServiceLinkedConfigurationRecorderResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutServiceLinkedConfigurationRecorderRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "PutStoredQuery",
             "config": {
                 "http": {
@@ -2716,100 +2861,80 @@
             "type": "string",
             "format": "binary"
         },
-        "BatchGetAggregateResourceConfigResponse": {
+        "AssociateResourceTypesResponse": {
             "type": "object",
             "properties": {
-                "BaseConfigurationItems": {
-                    "$ref": "#/$defs/BaseConfigurationItems"
-                },
-                "UnprocessedResourceIdentifiers": {
-                    "$ref": "#/$defs/UnprocessedResourceIdentifierList"
+                "ConfigurationRecorder": {
+                    "$ref": "#/$defs/ConfigurationRecorder"
                 }
             }
         },
-        "BaseConfigurationItems": {
+        "ConfigurationRecorder": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "name": {
+                    "$ref": "#/$defs/RecorderName"
+                },
+                "roleARN": {
+                    "$ref": "#/$defs/String"
+                },
+                "recordingGroup": {
+                    "$ref": "#/$defs/RecordingGroup"
+                },
+                "recordingMode": {
+                    "$ref": "#/$defs/RecordingMode"
+                },
+                "recordingScope": {
+                    "$ref": "#/$defs/RecordingScope"
+                },
+                "servicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                }
+            }
+        },
+        "AmazonResourceName": {
+            "type": "string"
+        },
+        "RecorderName": {
+            "type": "string"
+        },
+        "String": {
+            "type": "string"
+        },
+        "RecordingGroup": {
+            "type": "object",
+            "properties": {
+                "allSupported": {
+                    "$ref": "#/$defs/AllSupported"
+                },
+                "includeGlobalResourceTypes": {
+                    "$ref": "#/$defs/IncludeGlobalResourceTypes"
+                },
+                "resourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeList"
+                },
+                "exclusionByResourceTypes": {
+                    "$ref": "#/$defs/ExclusionByResourceTypes"
+                },
+                "recordingStrategy": {
+                    "$ref": "#/$defs/RecordingStrategy"
+                }
+            }
+        },
+        "AllSupported": {
+            "type": "boolean"
+        },
+        "IncludeGlobalResourceTypes": {
+            "type": "boolean"
+        },
+        "ResourceTypeList": {
             "type": "array",
             "items": {
-                "$ref": "#/$defs/BaseConfigurationItem"
+                "$ref": "#/$defs/ResourceType"
             }
-        },
-        "BaseConfigurationItem": {
-            "type": "object",
-            "properties": {
-                "version": {
-                    "$ref": "#/$defs/Version"
-                },
-                "accountId": {
-                    "$ref": "#/$defs/AccountId"
-                },
-                "configurationItemCaptureTime": {
-                    "$ref": "#/$defs/ConfigurationItemCaptureTime"
-                },
-                "configurationItemStatus": {
-                    "$ref": "#/$defs/ConfigurationItemStatus"
-                },
-                "configurationStateId": {
-                    "$ref": "#/$defs/ConfigurationStateId"
-                },
-                "arn": {
-                    "$ref": "#/$defs/ARN"
-                },
-                "resourceType": {
-                    "$ref": "#/$defs/ResourceType"
-                },
-                "resourceId": {
-                    "$ref": "#/$defs/ResourceId"
-                },
-                "resourceName": {
-                    "$ref": "#/$defs/ResourceName"
-                },
-                "awsRegion": {
-                    "$ref": "#/$defs/AwsRegion"
-                },
-                "availabilityZone": {
-                    "$ref": "#/$defs/AvailabilityZone"
-                },
-                "resourceCreationTime": {
-                    "$ref": "#/$defs/ResourceCreationTime"
-                },
-                "configuration": {
-                    "$ref": "#/$defs/Configuration"
-                },
-                "supplementaryConfiguration": {
-                    "$ref": "#/$defs/SupplementaryConfiguration"
-                },
-                "recordingFrequency": {
-                    "$ref": "#/$defs/RecordingFrequency"
-                },
-                "configurationItemDeliveryTime": {
-                    "$ref": "#/$defs/ConfigurationItemDeliveryTime"
-                }
-            }
-        },
-        "Version": {
-            "type": "string"
-        },
-        "AccountId": {
-            "type": "string"
-        },
-        "ConfigurationItemCaptureTime": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "ConfigurationItemStatus": {
-            "enum": [
-                "OK",
-                "ResourceDiscovered",
-                "ResourceNotRecorded",
-                "ResourceDeleted",
-                "ResourceDeletedNotRecorded"
-            ]
-        },
-        "ConfigurationStateId": {
-            "type": "string"
-        },
-        "ARN": {
-            "type": "string"
         },
         "ResourceType": {
             "enum": [
@@ -3222,6 +3347,190 @@
                 "SSMDocument"
             ]
         },
+        "ExclusionByResourceTypes": {
+            "type": "object",
+            "properties": {
+                "resourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeList"
+                }
+            }
+        },
+        "RecordingStrategy": {
+            "type": "object",
+            "properties": {
+                "useOnly": {
+                    "$ref": "#/$defs/RecordingStrategyType"
+                }
+            }
+        },
+        "RecordingStrategyType": {
+            "enum": [
+                "ALL_SUPPORTED_RESOURCE_TYPES",
+                "INCLUSION_BY_RESOURCE_TYPES",
+                "EXCLUSION_BY_RESOURCE_TYPES"
+            ]
+        },
+        "RecordingMode": {
+            "type": "object",
+            "properties": {
+                "recordingFrequency": {
+                    "$ref": "#/$defs/RecordingFrequency"
+                },
+                "recordingModeOverrides": {
+                    "$ref": "#/$defs/RecordingModeOverrides"
+                }
+            }
+        },
+        "RecordingFrequency": {
+            "enum": [
+                "CONTINUOUS",
+                "DAILY"
+            ]
+        },
+        "RecordingModeOverrides": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecordingModeOverride"
+            }
+        },
+        "RecordingModeOverride": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "resourceTypes": {
+                    "$ref": "#/$defs/RecordingModeResourceTypesList"
+                },
+                "recordingFrequency": {
+                    "$ref": "#/$defs/RecordingFrequency"
+                }
+            }
+        },
+        "Description": {
+            "type": "string"
+        },
+        "RecordingModeResourceTypesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceType"
+            }
+        },
+        "RecordingScope": {
+            "enum": [
+                "INTERNAL",
+                "PAID"
+            ]
+        },
+        "ServicePrincipal": {
+            "type": "string"
+        },
+        "AssociateResourceTypesRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationRecorderArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeList"
+                }
+            }
+        },
+        "BatchGetAggregateResourceConfigResponse": {
+            "type": "object",
+            "properties": {
+                "BaseConfigurationItems": {
+                    "$ref": "#/$defs/BaseConfigurationItems"
+                },
+                "UnprocessedResourceIdentifiers": {
+                    "$ref": "#/$defs/UnprocessedResourceIdentifierList"
+                }
+            }
+        },
+        "BaseConfigurationItems": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BaseConfigurationItem"
+            }
+        },
+        "BaseConfigurationItem": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "$ref": "#/$defs/Version"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountId"
+                },
+                "configurationItemCaptureTime": {
+                    "$ref": "#/$defs/ConfigurationItemCaptureTime"
+                },
+                "configurationItemStatus": {
+                    "$ref": "#/$defs/ConfigurationItemStatus"
+                },
+                "configurationStateId": {
+                    "$ref": "#/$defs/ConfigurationStateId"
+                },
+                "arn": {
+                    "$ref": "#/$defs/ARN"
+                },
+                "resourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                },
+                "resourceId": {
+                    "$ref": "#/$defs/ResourceId"
+                },
+                "resourceName": {
+                    "$ref": "#/$defs/ResourceName"
+                },
+                "awsRegion": {
+                    "$ref": "#/$defs/AwsRegion"
+                },
+                "availabilityZone": {
+                    "$ref": "#/$defs/AvailabilityZone"
+                },
+                "resourceCreationTime": {
+                    "$ref": "#/$defs/ResourceCreationTime"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/Configuration"
+                },
+                "supplementaryConfiguration": {
+                    "$ref": "#/$defs/SupplementaryConfiguration"
+                },
+                "recordingFrequency": {
+                    "$ref": "#/$defs/RecordingFrequency"
+                },
+                "configurationItemDeliveryTime": {
+                    "$ref": "#/$defs/ConfigurationItemDeliveryTime"
+                }
+            }
+        },
+        "Version": {
+            "type": "string"
+        },
+        "AccountId": {
+            "type": "string"
+        },
+        "ConfigurationItemCaptureTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ConfigurationItemStatus": {
+            "enum": [
+                "OK",
+                "ResourceDiscovered",
+                "ResourceNotRecorded",
+                "ResourceDeleted",
+                "ResourceDeletedNotRecorded"
+            ]
+        },
+        "ConfigurationStateId": {
+            "type": "string"
+        },
+        "ARN": {
+            "type": "string"
+        },
         "ResourceId": {
             "type": "string"
         },
@@ -3249,12 +3558,6 @@
         },
         "SupplementaryConfigurationValue": {
             "type": "string"
-        },
-        "RecordingFrequency": {
-            "enum": [
-                "CONTINUOUS",
-                "DAILY"
-            ]
         },
         "ConfigurationItemDeliveryTime": {
             "type": "string",
@@ -3380,9 +3683,6 @@
                 }
             }
         },
-        "RecorderName": {
-            "type": "string"
-        },
         "DeleteConformancePackRequest": {
             "type": "object",
             "properties": {
@@ -3468,9 +3768,6 @@
                 }
             }
         },
-        "String": {
-            "type": "string"
-        },
         "DeleteRemediationExceptionsResponse": {
             "type": "object",
             "properties": {
@@ -3554,6 +3851,25 @@
         },
         "RetentionConfigurationName": {
             "type": "string"
+        },
+        "DeleteServiceLinkedConfigurationRecorderResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/RecorderName"
+                }
+            }
+        },
+        "DeleteServiceLinkedConfigurationRecorderRequest": {
+            "type": "object",
+            "properties": {
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                }
+            }
         },
         "DeleteStoredQueryResponse": {
             "type": "object",
@@ -4296,6 +4612,9 @@
                 },
                 "CreatedBy": {
                     "$ref": "#/$defs/StringWithCharLimit256"
+                },
+                "AggregatorFilters": {
+                    "$ref": "#/$defs/AggregatorFilters"
                 }
             }
         },
@@ -4347,6 +4666,62 @@
                     "$ref": "#/$defs/Boolean"
                 }
             }
+        },
+        "AggregatorFilters": {
+            "type": "object",
+            "properties": {
+                "ResourceType": {
+                    "$ref": "#/$defs/AggregatorFilterResourceType"
+                },
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/AggregatorFilterServicePrincipal"
+                }
+            }
+        },
+        "AggregatorFilterResourceType": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/AggregatorFilterType"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ResourceTypeValueList"
+                }
+            }
+        },
+        "AggregatorFilterType": {
+            "enum": [
+                "INCLUDE"
+            ]
+        },
+        "ResourceTypeValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceTypeValue"
+            }
+        },
+        "ResourceTypeValue": {
+            "type": "string"
+        },
+        "AggregatorFilterServicePrincipal": {
+            "type": "object",
+            "properties": {
+                "Type": {
+                    "$ref": "#/$defs/AggregatorFilterType"
+                },
+                "Value": {
+                    "$ref": "#/$defs/ServicePrincipalValueList"
+                }
+            }
+        },
+        "ServicePrincipalValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServicePrincipalValue"
+            }
+        },
+        "ServicePrincipalValue": {
+            "type": "string"
         },
         "DescribeConfigurationAggregatorsRequest": {
             "type": "object",
@@ -4461,123 +4836,17 @@
                 "$ref": "#/$defs/ConfigurationRecorder"
             }
         },
-        "ConfigurationRecorder": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "$ref": "#/$defs/RecorderName"
-                },
-                "roleARN": {
-                    "$ref": "#/$defs/String"
-                },
-                "recordingGroup": {
-                    "$ref": "#/$defs/RecordingGroup"
-                },
-                "recordingMode": {
-                    "$ref": "#/$defs/RecordingMode"
-                }
-            }
-        },
-        "RecordingGroup": {
-            "type": "object",
-            "properties": {
-                "allSupported": {
-                    "$ref": "#/$defs/AllSupported"
-                },
-                "includeGlobalResourceTypes": {
-                    "$ref": "#/$defs/IncludeGlobalResourceTypes"
-                },
-                "resourceTypes": {
-                    "$ref": "#/$defs/ResourceTypeList"
-                },
-                "exclusionByResourceTypes": {
-                    "$ref": "#/$defs/ExclusionByResourceTypes"
-                },
-                "recordingStrategy": {
-                    "$ref": "#/$defs/RecordingStrategy"
-                }
-            }
-        },
-        "AllSupported": {
-            "type": "boolean"
-        },
-        "IncludeGlobalResourceTypes": {
-            "type": "boolean"
-        },
-        "ResourceTypeList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ResourceType"
-            }
-        },
-        "ExclusionByResourceTypes": {
-            "type": "object",
-            "properties": {
-                "resourceTypes": {
-                    "$ref": "#/$defs/ResourceTypeList"
-                }
-            }
-        },
-        "RecordingStrategy": {
-            "type": "object",
-            "properties": {
-                "useOnly": {
-                    "$ref": "#/$defs/RecordingStrategyType"
-                }
-            }
-        },
-        "RecordingStrategyType": {
-            "enum": [
-                "ALL_SUPPORTED_RESOURCE_TYPES",
-                "INCLUSION_BY_RESOURCE_TYPES",
-                "EXCLUSION_BY_RESOURCE_TYPES"
-            ]
-        },
-        "RecordingMode": {
-            "type": "object",
-            "properties": {
-                "recordingFrequency": {
-                    "$ref": "#/$defs/RecordingFrequency"
-                },
-                "recordingModeOverrides": {
-                    "$ref": "#/$defs/RecordingModeOverrides"
-                }
-            }
-        },
-        "RecordingModeOverrides": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/RecordingModeOverride"
-            }
-        },
-        "RecordingModeOverride": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "$ref": "#/$defs/Description"
-                },
-                "resourceTypes": {
-                    "$ref": "#/$defs/RecordingModeResourceTypesList"
-                },
-                "recordingFrequency": {
-                    "$ref": "#/$defs/RecordingFrequency"
-                }
-            }
-        },
-        "Description": {
-            "type": "string"
-        },
-        "RecordingModeResourceTypesList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ResourceType"
-            }
-        },
         "DescribeConfigurationRecordersRequest": {
             "type": "object",
             "properties": {
                 "ConfigurationRecorderNames": {
                     "$ref": "#/$defs/ConfigurationRecorderNameList"
+                },
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
                 }
             }
         },
@@ -4604,6 +4873,9 @@
         "ConfigurationRecorderStatus": {
             "type": "object",
             "properties": {
+                "arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
                 "name": {
                     "$ref": "#/$defs/String"
                 },
@@ -4627,6 +4899,9 @@
                 },
                 "lastStatusChangeTime": {
                     "$ref": "#/$defs/Date"
+                },
+                "servicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
                 }
             }
         },
@@ -4634,7 +4909,8 @@
             "enum": [
                 "Pending",
                 "Success",
-                "Failure"
+                "Failure",
+                "NotApplicable"
             ]
         },
         "DescribeConfigurationRecorderStatusRequest": {
@@ -4642,6 +4918,12 @@
             "properties": {
                 "ConfigurationRecorderNames": {
                     "$ref": "#/$defs/ConfigurationRecorderNameList"
+                },
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                },
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
                 }
             }
         },
@@ -5856,6 +6138,25 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/RetentionConfigurationName"
+            }
+        },
+        "DisassociateResourceTypesResponse": {
+            "type": "object",
+            "properties": {
+                "ConfigurationRecorder": {
+                    "$ref": "#/$defs/ConfigurationRecorder"
+                }
+            }
+        },
+        "DisassociateResourceTypesRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationRecorderArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "ResourceTypes": {
+                    "$ref": "#/$defs/ResourceTypeList"
+                }
             }
         },
         "GetAggregateComplianceDetailsByConfigRuleResponse": {
@@ -7088,6 +7389,89 @@
                 }
             }
         },
+        "ListConfigurationRecordersResponse": {
+            "type": "object",
+            "properties": {
+                "ConfigurationRecorderSummaries": {
+                    "$ref": "#/$defs/ConfigurationRecorderSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConfigurationRecorderSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationRecorderSummary"
+            }
+        },
+        "ConfigurationRecorderSummary": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "name": {
+                    "$ref": "#/$defs/RecorderName"
+                },
+                "servicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                },
+                "recordingScope": {
+                    "$ref": "#/$defs/RecordingScope"
+                }
+            }
+        },
+        "ListConfigurationRecordersRequest": {
+            "type": "object",
+            "properties": {
+                "Filters": {
+                    "$ref": "#/$defs/ConfigurationRecorderFilterList"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConfigurationRecorderFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationRecorderFilter"
+            }
+        },
+        "ConfigurationRecorderFilter": {
+            "type": "object",
+            "properties": {
+                "filterName": {
+                    "$ref": "#/$defs/ConfigurationRecorderFilterName"
+                },
+                "filterValue": {
+                    "$ref": "#/$defs/ConfigurationRecorderFilterValues"
+                }
+            }
+        },
+        "ConfigurationRecorderFilterName": {
+            "enum": [
+                "RecordingScope"
+            ]
+        },
+        "ConfigurationRecorderFilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConfigurationRecorderFilterValue"
+            }
+        },
+        "ConfigurationRecorderFilterValue": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ListConformancePackComplianceScoresResponse": {
             "type": "object",
             "properties": {
@@ -7405,9 +7789,6 @@
                 }
             }
         },
-        "AmazonResourceName": {
-            "type": "string"
-        },
         "PutAggregationAuthorizationResponse": {
             "type": "object",
             "properties": {
@@ -7469,6 +7850,9 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagsList"
+                },
+                "AggregatorFilters": {
+                    "$ref": "#/$defs/AggregatorFilters"
                 }
             }
         },
@@ -7477,6 +7861,9 @@
             "properties": {
                 "ConfigurationRecorder": {
                     "$ref": "#/$defs/ConfigurationRecorder"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsList"
                 }
             }
         },
@@ -7829,6 +8216,28 @@
             "properties": {
                 "RetentionPeriodInDays": {
                     "$ref": "#/$defs/RetentionPeriodInDays"
+                }
+            }
+        },
+        "PutServiceLinkedConfigurationRecorderResponse": {
+            "type": "object",
+            "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "Name": {
+                    "$ref": "#/$defs/RecorderName"
+                }
+            }
+        },
+        "PutServiceLinkedConfigurationRecorderRequest": {
+            "type": "object",
+            "properties": {
+                "ServicePrincipal": {
+                    "$ref": "#/$defs/ServicePrincipal"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsList"
                 }
             }
         },

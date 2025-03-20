@@ -176,6 +176,35 @@
             }
         },
         {
+            "name": "GetTrack",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftServerless.GetTrack"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetTrackResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetTrackRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListCustomDomainAssociations",
             "config": {
                 "http": {
@@ -228,6 +257,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListTagsForResourceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListTracks",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "RedshiftServerless.ListTracks"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListTracksResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListTracksRequest"
                         }
                     }
                 }
@@ -561,6 +619,56 @@
                 }
             }
         },
+        "GetTrackResponse": {
+            "type": "object",
+            "properties": {
+                "track": {
+                    "$ref": "#/$defs/ServerlessTrack"
+                }
+            }
+        },
+        "ServerlessTrack": {
+            "type": "object",
+            "properties": {
+                "trackName": {
+                    "$ref": "#/$defs/TrackName"
+                },
+                "workgroupVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "updateTargets": {
+                    "$ref": "#/$defs/UpdateTargetsList"
+                }
+            }
+        },
+        "TrackName": {
+            "type": "string"
+        },
+        "UpdateTargetsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateTarget"
+            }
+        },
+        "UpdateTarget": {
+            "type": "object",
+            "properties": {
+                "trackName": {
+                    "$ref": "#/$defs/TrackName"
+                },
+                "workgroupVersion": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "GetTrackRequest": {
+            "type": "object",
+            "properties": {
+                "trackName": {
+                    "$ref": "#/$defs/TrackName"
+                }
+            }
+        },
         "ListCustomDomainAssociationsResponse": {
             "type": "object",
             "properties": {
@@ -656,6 +764,34 @@
         },
         "AmazonResourceName": {
             "type": "string"
+        },
+        "ListTracksResponse": {
+            "type": "object",
+            "properties": {
+                "tracks": {
+                    "$ref": "#/$defs/TrackList"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                }
+            }
+        },
+        "TrackList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServerlessTrack"
+            }
+        },
+        "ListTracksRequest": {
+            "type": "object",
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
+            }
         },
         "PutResourcePolicyResponse": {
             "type": "object",

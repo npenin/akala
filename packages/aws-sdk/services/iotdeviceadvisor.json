@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionConfiguration": {},
+                        "tags": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -68,9 +68,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionId": {}
                     }
                 }
             }
@@ -103,9 +101,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "thingArn": {},
+                        "certificateArn": {},
+                        "deviceRoleArn": {},
+                        "authenticationMethod": {}
                     }
                 }
             }
@@ -142,9 +141,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionId": {},
+                        "suiteDefinitionVersion": {}
                     }
                 }
             }
@@ -183,9 +181,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionId": {},
+                        "suiteRunId": {}
                     }
                 }
             }
@@ -224,9 +221,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionId": {},
+                        "suiteRunId": {}
                     }
                 }
             }
@@ -259,9 +255,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -294,9 +289,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionId": {},
+                        "suiteDefinitionVersion": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -333,9 +329,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -372,9 +366,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionId": {},
+                        "suiteDefinitionVersion": {},
+                        "suiteRunConfiguration": {},
+                        "tags": {}
                     }
                 }
             }
@@ -413,9 +408,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionId": {},
+                        "suiteRunId": {}
                     }
                 }
             }
@@ -452,9 +446,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -491,9 +484,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -530,9 +522,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "suiteDefinitionId": {},
+                        "suiteDefinitionConfiguration": {}
                     }
                 }
             }
@@ -584,36 +575,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateSuiteDefinitionResponse": {
-            "type": "object",
-            "properties": {
-                "suiteDefinitionId": {
-                    "$ref": "#/$defs/UUID"
-                },
-                "suiteDefinitionArn": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                },
-                "suiteDefinitionName": {
-                    "$ref": "#/$defs/SuiteDefinitionName"
-                },
-                "createdAt": {
-                    "$ref": "#/$defs/Timestamp"
-                }
-            }
-        },
-        "UUID": {
-            "type": "string"
-        },
-        "AmazonResourceName": {
-            "type": "string"
-        },
-        "SuiteDefinitionName": {
-            "type": "string"
-        },
-        "Timestamp": {
-            "type": "string",
-            "format": "date-time"
-        },
         "CreateSuiteDefinitionRequest": {
             "type": "object",
             "properties": {
@@ -654,6 +615,9 @@
                 }
             }
         },
+        "SuiteDefinitionName": {
+            "type": "string"
+        },
         "DeviceUnderTestList": {
             "type": "array",
             "items": {
@@ -673,6 +637,9 @@
                     "$ref": "#/$defs/AmazonResourceName"
                 }
             }
+        },
+        "AmazonResourceName": {
+            "type": "string"
         },
         "IntendedForQualificationBoolean": {
             "type": "boolean"
@@ -703,9 +670,29 @@
         "ClientToken": {
             "type": "string"
         },
-        "DeleteSuiteDefinitionResponse": {
+        "CreateSuiteDefinitionResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "suiteDefinitionName": {
+                    "$ref": "#/$defs/SuiteDefinitionName"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
         },
         "DeleteSuiteDefinitionRequest": {
             "type": "object",
@@ -715,16 +702,9 @@
                 }
             }
         },
-        "GetEndpointResponse": {
+        "DeleteSuiteDefinitionResponse": {
             "type": "object",
-            "properties": {
-                "endpoint": {
-                    "$ref": "#/$defs/Endpoint"
-                }
-            }
-        },
-        "Endpoint": {
-            "type": "string"
+            "properties": {}
         },
         "GetEndpointRequest": {
             "type": "object",
@@ -748,6 +728,31 @@
                 "X509ClientCertificate",
                 "SignatureVersion4"
             ]
+        },
+        "GetEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "endpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                }
+            }
+        },
+        "Endpoint": {
+            "type": "string"
+        },
+        "GetSuiteDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                }
+            }
+        },
+        "SuiteDefinitionVersion": {
+            "type": "string"
         },
         "GetSuiteDefinitionResponse": {
             "type": "object",
@@ -778,17 +783,14 @@
                 }
             }
         },
-        "SuiteDefinitionVersion": {
-            "type": "string"
-        },
-        "GetSuiteDefinitionRequest": {
+        "GetSuiteRunRequest": {
             "type": "object",
             "properties": {
                 "suiteDefinitionId": {
                     "$ref": "#/$defs/UUID"
                 },
-                "suiteDefinitionVersion": {
-                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                "suiteRunId": {
+                    "$ref": "#/$defs/UUID"
                 }
             }
         },
@@ -1017,7 +1019,7 @@
         "ErrorReason": {
             "type": "string"
         },
-        "GetSuiteRunRequest": {
+        "GetSuiteRunReportRequest": {
             "type": "object",
             "properties": {
                 "suiteDefinitionId": {
@@ -1039,16 +1041,23 @@
         "QualificationReportDownloadUrl": {
             "type": "string"
         },
-        "GetSuiteRunReportRequest": {
+        "ListSuiteDefinitionsRequest": {
             "type": "object",
             "properties": {
-                "suiteDefinitionId": {
-                    "$ref": "#/$defs/UUID"
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 },
-                "suiteRunId": {
-                    "$ref": "#/$defs/UUID"
+                "nextToken": {
+                    "$ref": "#/$defs/Token"
                 }
             }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Token": {
+            "type": "string"
         },
         "ListSuiteDefinitionsResponse": {
             "type": "object",
@@ -1093,12 +1102,15 @@
                 }
             }
         },
-        "Token": {
-            "type": "string"
-        },
-        "ListSuiteDefinitionsRequest": {
+        "ListSuiteRunsRequest": {
             "type": "object",
             "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionVersion": {
+                    "$ref": "#/$defs/SuiteDefinitionVersion"
+                },
                 "maxResults": {
                     "$ref": "#/$defs/MaxResults"
                 },
@@ -1106,10 +1118,6 @@
                     "$ref": "#/$defs/Token"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListSuiteRunsResponse": {
             "type": "object",
@@ -1167,31 +1175,6 @@
             "type": "integer",
             "format": "int32"
         },
-        "ListSuiteRunsRequest": {
-            "type": "object",
-            "properties": {
-                "suiteDefinitionId": {
-                    "$ref": "#/$defs/UUID"
-                },
-                "suiteDefinitionVersion": {
-                    "$ref": "#/$defs/SuiteDefinitionVersion"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/Token"
-                }
-            }
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "tags": {
-                    "$ref": "#/$defs/TagMap"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -1200,20 +1183,11 @@
                 }
             }
         },
-        "StartSuiteRunResponse": {
+        "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
-                "suiteRunId": {
-                    "$ref": "#/$defs/UUID"
-                },
-                "suiteRunArn": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                },
-                "createdAt": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "endpoint": {
-                    "$ref": "#/$defs/Endpoint"
+                "tags": {
+                    "$ref": "#/$defs/TagMap"
                 }
             }
         },
@@ -1234,9 +1208,22 @@
                 }
             }
         },
-        "StopSuiteRunResponse": {
+        "StartSuiteRunResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "suiteRunId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteRunArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "endpoint": {
+                    "$ref": "#/$defs/Endpoint"
+                }
+            }
         },
         "StopSuiteRunRequest": {
             "type": "object",
@@ -1249,7 +1236,7 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "StopSuiteRunResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1264,7 +1251,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1288,6 +1275,21 @@
         "String128": {
             "type": "string"
         },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateSuiteDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "suiteDefinitionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "suiteDefinitionConfiguration": {
+                    "$ref": "#/$defs/SuiteDefinitionConfiguration"
+                }
+            }
+        },
         "UpdateSuiteDefinitionResponse": {
             "type": "object",
             "properties": {
@@ -1308,17 +1310,6 @@
                 },
                 "lastUpdatedAt": {
                     "$ref": "#/$defs/Timestamp"
-                }
-            }
-        },
-        "UpdateSuiteDefinitionRequest": {
-            "type": "object",
-            "properties": {
-                "suiteDefinitionId": {
-                    "$ref": "#/$defs/UUID"
-                },
-                "suiteDefinitionConfiguration": {
-                    "$ref": "#/$defs/SuiteDefinitionConfiguration"
                 }
             }
         }

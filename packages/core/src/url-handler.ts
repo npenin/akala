@@ -43,6 +43,11 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult
      * @param context - Middleware context parameters
      * @returns Promise resolving to the final TResult object
      */
+    /**
+     * Processes the URL through protocol, host, and path routing middleware
+     * @param context - Middleware context parameters
+     * @returns Promise resolving to the final TResult object
+     */
     public process(...context: T): Promise<TResult>
     {
         return this.handle(...context).then(v => { throw v }, () => context[context.length - 1] as TResult);

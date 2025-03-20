@@ -1806,7 +1806,8 @@
                 "ResourceMissingDnsFirewall",
                 "RouteHasOutOfScopeEndpoint",
                 "FirewallSubnetMissingVPCEndpoint",
-                "InvalidNetworkAclEntry"
+                "InvalidNetworkAclEntry",
+                "WebACLConfigurationOrScopeOfUse"
             ]
         },
         "ResourceType": {
@@ -1914,6 +1915,9 @@
                 },
                 "PolicyStatus": {
                     "$ref": "#/$defs/CustomerPolicyStatus"
+                },
+                "ResourceTagLogicalOperator": {
+                    "$ref": "#/$defs/ResourceTagLogicalOperator"
                 }
             }
         },
@@ -2129,6 +2133,12 @@
             "enum": [
                 "ACTIVE",
                 "OUT_OF_ADMIN_SCOPE"
+            ]
+        },
+        "ResourceTagLogicalOperator": {
+            "enum": [
+                "AND",
+                "OR"
             ]
         },
         "GetPolicyRequest": {
@@ -2446,6 +2456,12 @@
                 },
                 "PossibleRemediationActions": {
                     "$ref": "#/$defs/PossibleRemediationActions"
+                },
+                "WebACLHasIncompatibleConfigurationViolation": {
+                    "$ref": "#/$defs/WebACLHasIncompatibleConfigurationViolation"
+                },
+                "WebACLHasOutOfScopeResourcesViolation": {
+                    "$ref": "#/$defs/WebACLHasOutOfScopeResourcesViolation"
                 }
             }
         },
@@ -3627,6 +3643,34 @@
                 "FMSCanRemediate": {
                     "$ref": "#/$defs/Boolean"
                 }
+            }
+        },
+        "WebACLHasIncompatibleConfigurationViolation": {
+            "type": "object",
+            "properties": {
+                "WebACLArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "Description": {
+                    "$ref": "#/$defs/LengthBoundedString"
+                }
+            }
+        },
+        "WebACLHasOutOfScopeResourcesViolation": {
+            "type": "object",
+            "properties": {
+                "WebACLArn": {
+                    "$ref": "#/$defs/ResourceArn"
+                },
+                "OutOfScopeResourceList": {
+                    "$ref": "#/$defs/ResourceArnList"
+                }
+            }
+        },
+        "ResourceArnList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceArn"
             }
         },
         "TagList": {

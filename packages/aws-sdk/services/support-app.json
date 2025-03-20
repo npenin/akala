@@ -29,8 +29,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "teamId": {},
+                        "channelId": {},
+                        "channelName": {},
+                        "notifyOnCreateOrReopenCase": {},
+                        "notifyOnAddCorrespondenceToCase": {},
+                        "notifyOnResolveCase": {},
+                        "notifyOnCaseSeverity": {},
+                        "channelRoleArn": {}
                     }
                 }
             }
@@ -62,10 +68,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -97,8 +100,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "teamId": {},
+                        "channelId": {}
                     }
                 }
             }
@@ -131,8 +134,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "teamId": {}
                     }
                 }
             }
@@ -164,10 +166,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -199,8 +198,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "nextToken": {}
                     }
                 }
             }
@@ -233,8 +231,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "nextToken": {}
                     }
                 }
             }
@@ -267,8 +264,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "accountAlias": {}
                     }
                 }
             }
@@ -301,8 +297,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "teamId": {}
                     }
                 }
             }
@@ -335,8 +330,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "teamId": {},
+                        "channelId": {},
+                        "channelName": {},
+                        "notifyOnCreateOrReopenCase": {},
+                        "notifyOnAddCorrespondenceToCase": {},
+                        "notifyOnResolveCase": {},
+                        "notifyOnCaseSeverity": {},
+                        "channelRoleArn": {}
                     }
                 }
             }
@@ -388,10 +389,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateSlackChannelConfigurationResult": {
-            "type": "object",
-            "properties": {}
-        },
         "CreateSlackChannelConfigurationRequest": {
             "type": "object",
             "properties": {
@@ -439,7 +436,7 @@
         "roleArn": {
             "type": "string"
         },
-        "DeleteAccountAliasResult": {
+        "CreateSlackChannelConfigurationResult": {
             "type": "object",
             "properties": {}
         },
@@ -447,7 +444,7 @@
             "type": "object",
             "properties": {}
         },
-        "DeleteSlackChannelConfigurationResult": {
+        "DeleteAccountAliasResult": {
             "type": "object",
             "properties": {}
         },
@@ -462,7 +459,7 @@
                 }
             }
         },
-        "DeleteSlackWorkspaceConfigurationResult": {
+        "DeleteSlackChannelConfigurationResult": {
             "type": "object",
             "properties": {}
         },
@@ -473,6 +470,14 @@
                     "$ref": "#/$defs/teamId"
                 }
             }
+        },
+        "DeleteSlackWorkspaceConfigurationResult": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetAccountAliasRequest": {
+            "type": "object",
+            "properties": {}
         },
         "GetAccountAliasResult": {
             "type": "object",
@@ -485,9 +490,16 @@
         "awsAccountAlias": {
             "type": "string"
         },
-        "GetAccountAliasRequest": {
+        "ListSlackChannelConfigurationsRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/paginationToken"
+                }
+            }
+        },
+        "paginationToken": {
+            "type": "string"
         },
         "ListSlackChannelConfigurationsResult": {
             "type": "object",
@@ -499,9 +511,6 @@
                     "$ref": "#/$defs/slackChannelConfigurationList"
                 }
             }
-        },
-        "paginationToken": {
-            "type": "string"
         },
         "slackChannelConfigurationList": {
             "type": "array",
@@ -538,7 +547,7 @@
                 }
             }
         },
-        "ListSlackChannelConfigurationsRequest": {
+        "ListSlackWorkspaceConfigurationsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -580,11 +589,11 @@
         "teamName": {
             "type": "string"
         },
-        "ListSlackWorkspaceConfigurationsRequest": {
+        "PutAccountAliasRequest": {
             "type": "object",
             "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/paginationToken"
+                "accountAlias": {
+                    "$ref": "#/$defs/awsAccountAlias"
                 }
             }
         },
@@ -592,11 +601,11 @@
             "type": "object",
             "properties": {}
         },
-        "PutAccountAliasRequest": {
+        "RegisterSlackWorkspaceForOrganizationRequest": {
             "type": "object",
             "properties": {
-                "accountAlias": {
-                    "$ref": "#/$defs/awsAccountAlias"
+                "teamId": {
+                    "$ref": "#/$defs/teamId"
                 }
             }
         },
@@ -617,15 +626,7 @@
         "AccountType": {
             "type": "string"
         },
-        "RegisterSlackWorkspaceForOrganizationRequest": {
-            "type": "object",
-            "properties": {
-                "teamId": {
-                    "$ref": "#/$defs/teamId"
-                }
-            }
-        },
-        "UpdateSlackChannelConfigurationResult": {
+        "UpdateSlackChannelConfigurationRequest": {
             "type": "object",
             "properties": {
                 "teamId": {
@@ -654,7 +655,7 @@
                 }
             }
         },
-        "UpdateSlackChannelConfigurationRequest": {
+        "UpdateSlackChannelConfigurationResult": {
             "type": "object",
             "properties": {
                 "teamId": {

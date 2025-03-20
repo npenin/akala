@@ -49,6 +49,50 @@
                     }
                 }
             }
+        },
+        {
+            "name": "generate-tf",
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-tf.js",
+                    "source": "src/cli/generate-tf.ts",
+                    "inject": [
+                        "ignore",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "$http",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "usage": "tf <packagePath> <environment> [containerName]",
+                    "inject": [
+                        "context.logger",
+                        "options.packagePath",
+                        "options.containerName",
+                        "options.environment",
+                        "options.outputPath"
+                    ],
+                    "options": {
+                        "packagePath": {
+                            "normalize": true,
+                            "needsValue": true
+                        },
+                        "outputPath": {
+                            "normalize": true,
+                            "needsValue": true
+                        },
+                        "environment": {
+                            "needsValue": true
+                        }
+                    }
+                }
+            }
         }
     ],
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"

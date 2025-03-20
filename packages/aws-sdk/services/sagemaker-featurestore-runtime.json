@@ -29,9 +29,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Identifiers": {},
+                        "ExpirationTimeResponse": {}
                     }
                 }
             }
@@ -68,9 +67,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FeatureGroupName": {},
+                        "RecordIdentifierValueAsString": {},
+                        "EventTime": {},
+                        "TargetStores": {},
+                        "DeletionMode": {}
                     }
                 }
             }
@@ -107,9 +108,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FeatureGroupName": {},
+                        "RecordIdentifierValueAsString": {},
+                        "FeatureNames": {},
+                        "ExpirationTimeResponse": {}
                     }
                 }
             }
@@ -146,9 +148,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FeatureGroupName": {},
+                        "Record": {},
+                        "TargetStores": {},
+                        "TtlDuration": {}
                     }
                 }
             }
@@ -200,6 +203,64 @@
             "type": "string",
             "format": "binary"
         },
+        "BatchGetRecordRequest": {
+            "type": "object",
+            "properties": {
+                "Identifiers": {
+                    "$ref": "#/$defs/BatchGetRecordIdentifiers"
+                },
+                "ExpirationTimeResponse": {
+                    "$ref": "#/$defs/ExpirationTimeResponse"
+                }
+            }
+        },
+        "BatchGetRecordIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchGetRecordIdentifier"
+            }
+        },
+        "BatchGetRecordIdentifier": {
+            "type": "object",
+            "properties": {
+                "FeatureGroupName": {
+                    "$ref": "#/$defs/FeatureGroupNameOrArn"
+                },
+                "RecordIdentifiersValueAsString": {
+                    "$ref": "#/$defs/RecordIdentifiers"
+                },
+                "FeatureNames": {
+                    "$ref": "#/$defs/FeatureNames"
+                }
+            }
+        },
+        "FeatureGroupNameOrArn": {
+            "type": "string"
+        },
+        "RecordIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ValueAsString"
+            }
+        },
+        "ValueAsString": {
+            "type": "string"
+        },
+        "FeatureNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FeatureName"
+            }
+        },
+        "FeatureName": {
+            "type": "string"
+        },
+        "ExpirationTimeResponse": {
+            "enum": [
+                "ENABLED",
+                "DISABLED"
+            ]
+        },
         "BatchGetRecordResponse": {
             "type": "object",
             "properties": {
@@ -237,9 +298,6 @@
                 }
             }
         },
-        "ValueAsString": {
-            "type": "string"
-        },
         "Record": {
             "type": "array",
             "items": {
@@ -259,9 +317,6 @@
                     "$ref": "#/$defs/ValueAsStringList"
                 }
             }
-        },
-        "FeatureName": {
-            "type": "string"
         },
         "ValueAsStringList": {
             "type": "array",
@@ -304,58 +359,6 @@
                 "$ref": "#/$defs/BatchGetRecordIdentifier"
             }
         },
-        "BatchGetRecordIdentifier": {
-            "type": "object",
-            "properties": {
-                "FeatureGroupName": {
-                    "$ref": "#/$defs/FeatureGroupNameOrArn"
-                },
-                "RecordIdentifiersValueAsString": {
-                    "$ref": "#/$defs/RecordIdentifiers"
-                },
-                "FeatureNames": {
-                    "$ref": "#/$defs/FeatureNames"
-                }
-            }
-        },
-        "FeatureGroupNameOrArn": {
-            "type": "string"
-        },
-        "RecordIdentifiers": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ValueAsString"
-            }
-        },
-        "FeatureNames": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/FeatureName"
-            }
-        },
-        "BatchGetRecordRequest": {
-            "type": "object",
-            "properties": {
-                "Identifiers": {
-                    "$ref": "#/$defs/BatchGetRecordIdentifiers"
-                },
-                "ExpirationTimeResponse": {
-                    "$ref": "#/$defs/ExpirationTimeResponse"
-                }
-            }
-        },
-        "BatchGetRecordIdentifiers": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BatchGetRecordIdentifier"
-            }
-        },
-        "ExpirationTimeResponse": {
-            "enum": [
-                "ENABLED",
-                "DISABLED"
-            ]
-        },
         "DeleteRecordRequest": {
             "type": "object",
             "properties": {
@@ -394,17 +397,6 @@
                 "HARD_DELETE"
             ]
         },
-        "GetRecordResponse": {
-            "type": "object",
-            "properties": {
-                "Record": {
-                    "$ref": "#/$defs/Record"
-                },
-                "ExpiresAt": {
-                    "$ref": "#/$defs/ExpiresAt"
-                }
-            }
-        },
         "GetRecordRequest": {
             "type": "object",
             "properties": {
@@ -419,6 +411,17 @@
                 },
                 "ExpirationTimeResponse": {
                     "$ref": "#/$defs/ExpirationTimeResponse"
+                }
+            }
+        },
+        "GetRecordResponse": {
+            "type": "object",
+            "properties": {
+                "Record": {
+                    "$ref": "#/$defs/Record"
+                },
+                "ExpiresAt": {
+                    "$ref": "#/$defs/ExpiresAt"
                 }
             }
         },

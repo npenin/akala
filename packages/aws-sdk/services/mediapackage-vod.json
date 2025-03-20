@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EgressAccessLogs": {},
+                        "Id": {}
                     }
                 }
             }
@@ -68,9 +67,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {},
+                        "PackagingGroupId": {},
+                        "ResourceId": {},
+                        "SourceArn": {},
+                        "SourceRoleArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -103,9 +105,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CmafPackage": {},
+                        "DashPackage": {},
+                        "HlsPackage": {},
+                        "Id": {},
+                        "MssPackage": {},
+                        "PackagingGroupId": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -138,9 +144,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Authorization": {},
+                        "EgressAccessLogs": {},
+                        "Id": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -177,9 +184,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -216,9 +221,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -255,9 +258,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -294,9 +295,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -333,9 +332,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -372,9 +369,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Id": {}
                     }
                 }
             }
@@ -407,9 +402,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "PackagingGroupId": {}
                     }
                 }
             }
@@ -442,9 +437,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "PackagingGroupId": {}
                     }
                 }
             }
@@ -477,9 +472,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -516,9 +510,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -555,9 +547,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -594,9 +585,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -633,9 +623,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Authorization": {},
+                        "Id": {}
                     }
                 }
             }
@@ -687,6 +676,28 @@
             "type": "string",
             "format": "binary"
         },
+        "ConfigureLogsRequest": {
+            "type": "object",
+            "properties": {
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "EgressAccessLogs": {
+            "type": "object",
+            "properties": {
+                "LogGroupName": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "__string": {
+            "type": "string"
+        },
         "ConfigureLogsResponse": {
             "type": "object",
             "properties": {
@@ -713,9 +724,6 @@
                 }
             }
         },
-        "__string": {
-            "type": "string"
-        },
         "Authorization": {
             "type": "object",
             "properties": {
@@ -727,28 +735,32 @@
                 }
             }
         },
-        "EgressAccessLogs": {
-            "type": "object",
-            "properties": {
-                "LogGroupName": {
-                    "$ref": "#/$defs/__string"
-                }
-            }
-        },
         "Tags": {
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/__string"
             }
         },
-        "ConfigureLogsRequest": {
+        "CreateAssetRequest": {
             "type": "object",
             "properties": {
-                "EgressAccessLogs": {
-                    "$ref": "#/$defs/EgressAccessLogs"
-                },
                 "Id": {
                     "$ref": "#/$defs/__string"
+                },
+                "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "ResourceId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "SourceRoleArn": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
                 }
             }
         },
@@ -804,40 +816,11 @@
                 }
             }
         },
-        "CreateAssetRequest": {
+        "CreatePackagingConfigurationRequest": {
             "type": "object",
             "properties": {
-                "Id": {
-                    "$ref": "#/$defs/__string"
-                },
-                "PackagingGroupId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "ResourceId": {
-                    "$ref": "#/$defs/__string"
-                },
-                "SourceArn": {
-                    "$ref": "#/$defs/__string"
-                },
-                "SourceRoleArn": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "CreatePackagingConfigurationResponse": {
-            "type": "object",
-            "properties": {
-                "Arn": {
-                    "$ref": "#/$defs/__string"
-                },
                 "CmafPackage": {
                     "$ref": "#/$defs/CmafPackage"
-                },
-                "CreatedAt": {
-                    "$ref": "#/$defs/__string"
                 },
                 "DashPackage": {
                     "$ref": "#/$defs/DashPackage"
@@ -1186,11 +1169,17 @@
                 }
             }
         },
-        "CreatePackagingConfigurationRequest": {
+        "CreatePackagingConfigurationResponse": {
             "type": "object",
             "properties": {
+                "Arn": {
+                    "$ref": "#/$defs/__string"
+                },
                 "CmafPackage": {
                     "$ref": "#/$defs/CmafPackage"
+                },
+                "CreatedAt": {
+                    "$ref": "#/$defs/__string"
                 },
                 "DashPackage": {
                     "$ref": "#/$defs/DashPackage"
@@ -1205,6 +1194,23 @@
                     "$ref": "#/$defs/MssPackage"
                 },
                 "PackagingGroupId": {
+                    "$ref": "#/$defs/__string"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/Tags"
+                }
+            }
+        },
+        "CreatePackagingGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "EgressAccessLogs": {
+                    "$ref": "#/$defs/EgressAccessLogs"
+                },
+                "Id": {
                     "$ref": "#/$defs/__string"
                 },
                 "Tags": {
@@ -1238,27 +1244,6 @@
                 }
             }
         },
-        "CreatePackagingGroupRequest": {
-            "type": "object",
-            "properties": {
-                "Authorization": {
-                    "$ref": "#/$defs/Authorization"
-                },
-                "EgressAccessLogs": {
-                    "$ref": "#/$defs/EgressAccessLogs"
-                },
-                "Id": {
-                    "$ref": "#/$defs/__string"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "DeleteAssetResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "DeleteAssetRequest": {
             "type": "object",
             "properties": {
@@ -1267,7 +1252,7 @@
                 }
             }
         },
-        "DeletePackagingConfigurationResponse": {
+        "DeleteAssetResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1279,11 +1264,23 @@
                 }
             }
         },
-        "DeletePackagingGroupResponse": {
+        "DeletePackagingConfigurationResponse": {
             "type": "object",
             "properties": {}
         },
         "DeletePackagingGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/__string"
+                }
+            }
+        },
+        "DeletePackagingGroupResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeAssetRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -1323,7 +1320,7 @@
                 }
             }
         },
-        "DescribeAssetRequest": {
+        "DescribePackagingConfigurationRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -1363,7 +1360,7 @@
                 }
             }
         },
-        "DescribePackagingConfigurationRequest": {
+        "DescribePackagingGroupRequest": {
             "type": "object",
             "properties": {
                 "Id": {
@@ -1400,13 +1397,23 @@
                 }
             }
         },
-        "DescribePackagingGroupRequest": {
+        "ListAssetsRequest": {
             "type": "object",
             "properties": {
-                "Id": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/__string"
+                },
+                "PackagingGroupId": {
                     "$ref": "#/$defs/__string"
                 }
             }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListAssetsResponse": {
             "type": "object",
@@ -1454,7 +1461,7 @@
                 }
             }
         },
-        "ListAssetsRequest": {
+        "ListPackagingConfigurationsRequest": {
             "type": "object",
             "properties": {
                 "MaxResults": {
@@ -1467,10 +1474,6 @@
                     "$ref": "#/$defs/__string"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListPackagingConfigurationsResponse": {
             "type": "object",
@@ -1521,16 +1524,13 @@
                 }
             }
         },
-        "ListPackagingConfigurationsRequest": {
+        "ListPackagingGroupsRequest": {
             "type": "object",
             "properties": {
                 "MaxResults": {
                     "$ref": "#/$defs/MaxResults"
                 },
                 "NextToken": {
-                    "$ref": "#/$defs/__string"
-                },
-                "PackagingGroupId": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1581,13 +1581,10 @@
                 }
             }
         },
-        "ListPackagingGroupsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
+                "ResourceArn": {
                     "$ref": "#/$defs/__string"
                 }
             }
@@ -1604,14 +1601,6 @@
             "type": "object",
             "additionalProperties": {
                 "$ref": "#/$defs/__string"
-            }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/__string"
-                }
             }
         },
         "TagResourceRequest": {
@@ -1633,6 +1622,17 @@
                 },
                 "TagKeys": {
                     "$ref": "#/$defs/__listOf__string"
+                }
+            }
+        },
+        "UpdatePackagingGroupRequest": {
+            "type": "object",
+            "properties": {
+                "Authorization": {
+                    "$ref": "#/$defs/Authorization"
+                },
+                "Id": {
+                    "$ref": "#/$defs/__string"
                 }
             }
         },
@@ -1662,17 +1662,6 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "UpdatePackagingGroupRequest": {
-            "type": "object",
-            "properties": {
-                "Authorization": {
-                    "$ref": "#/$defs/Authorization"
-                },
-                "Id": {
-                    "$ref": "#/$defs/__string"
                 }
             }
         }

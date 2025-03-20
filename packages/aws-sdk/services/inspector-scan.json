@@ -29,9 +29,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "sbom": {},
+                        "outputFormat": {}
                     }
                 }
             }
@@ -83,15 +82,6 @@
             "type": "string",
             "format": "binary"
         },
-        "ScanSbomResponse": {
-            "type": "object",
-            "properties": {
-                "sbom": {
-                    "$ref": "#/$defs/Sbom"
-                }
-            }
-        },
-        "Sbom": {},
         "ScanSbomRequest": {
             "type": "object",
             "properties": {
@@ -103,11 +93,20 @@
                 }
             }
         },
+        "Sbom": {},
         "OutputFormat": {
             "enum": [
                 "CYCLONE_DX_1_5",
                 "INSPECTOR"
             ]
+        },
+        "ScanSbomResponse": {
+            "type": "object",
+            "properties": {
+                "sbom": {
+                    "$ref": "#/$defs/Sbom"
+                }
+            }
         }
     },
     "aws": {

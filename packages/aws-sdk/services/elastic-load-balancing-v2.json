@@ -466,6 +466,35 @@
             }
         },
         {
+            "name": "DescribeCapacityReservation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ElasticLoadBalancing_v10.DescribeCapacityReservation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeCapacityReservationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeCapacityReservationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeListenerAttributes",
             "config": {
                 "http": {
@@ -953,6 +982,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetTrustStoreRevocationContentInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ModifyCapacityReservation",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ElasticLoadBalancing_v10.ModifyCapacityReservation"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyCapacityReservationOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyCapacityReservationInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ModifyIpPools",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "ElasticLoadBalancing_v10.ModifyIpPools"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyIpPoolsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyIpPoolsInput"
                         }
                     }
                 }
@@ -2032,6 +2119,9 @@
                 },
                 "TrustStoreAssociationStatus": {
                     "$ref": "#/$defs/TrustStoreAssociationStatusEnum"
+                },
+                "AdvertiseTrustStoreCaNames": {
+                    "$ref": "#/$defs/AdvertiseTrustStoreCaNamesEnum"
                 }
             }
         },
@@ -2045,6 +2135,12 @@
             "enum": [
                 "ACTIVE",
                 "REMOVED"
+            ]
+        },
+        "AdvertiseTrustStoreCaNamesEnum": {
+            "enum": [
+                "on",
+                "off"
             ]
         },
         "CreateListenerInput": {
@@ -2137,6 +2233,12 @@
                 },
                 "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic": {
                     "$ref": "#/$defs/EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic"
+                },
+                "EnablePrefixForIpv6SourceNat": {
+                    "$ref": "#/$defs/EnablePrefixForIpv6SourceNatEnum"
+                },
+                "IpamPools": {
+                    "$ref": "#/$defs/IpamPools"
                 }
             }
         },
@@ -2211,6 +2313,9 @@
                 },
                 "LoadBalancerAddresses": {
                     "$ref": "#/$defs/LoadBalancerAddresses"
+                },
+                "SourceNatIpv6Prefixes": {
+                    "$ref": "#/$defs/SourceNatIpv6Prefixes"
                 }
             }
         },
@@ -2258,6 +2363,15 @@
         "IPv6Address": {
             "type": "string"
         },
+        "SourceNatIpv6Prefixes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SourceNatIpv6Prefix"
+            }
+        },
+        "SourceNatIpv6Prefix": {
+            "type": "string"
+        },
         "SecurityGroups": {
             "type": "array",
             "items": {
@@ -2278,6 +2392,23 @@
             "type": "string"
         },
         "EnforceSecurityGroupInboundRulesOnPrivateLinkTraffic": {
+            "type": "string"
+        },
+        "EnablePrefixForIpv6SourceNatEnum": {
+            "enum": [
+                "ON",
+                "OFF"
+            ]
+        },
+        "IpamPools": {
+            "type": "object",
+            "properties": {
+                "Ipv4IpamPoolId": {
+                    "$ref": "#/$defs/IpamPoolId"
+                }
+            }
+        },
+        "IpamPoolId": {
             "type": "string"
         },
         "CreateLoadBalancerInput": {
@@ -2309,6 +2440,12 @@
                 },
                 "CustomerOwnedIpv4Pool": {
                     "$ref": "#/$defs/CustomerOwnedIpv4Pool"
+                },
+                "EnablePrefixForIpv6SourceNat": {
+                    "$ref": "#/$defs/EnablePrefixForIpv6SourceNatEnum"
+                },
+                "IpamPools": {
+                    "$ref": "#/$defs/IpamPools"
                 }
             }
         },
@@ -2338,6 +2475,9 @@
                 },
                 "IPv6Address": {
                     "$ref": "#/$defs/IPv6Address"
+                },
+                "SourceNatIpv6Prefix": {
+                    "$ref": "#/$defs/SourceNatIpv6Prefix"
                 }
             }
         },
@@ -2954,6 +3094,94 @@
         "PageSize": {
             "type": "integer",
             "format": "int32"
+        },
+        "DescribeCapacityReservationOutput": {
+            "type": "object",
+            "properties": {
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/LastModifiedTime"
+                },
+                "DecreaseRequestsRemaining": {
+                    "$ref": "#/$defs/DecreaseRequestsRemaining"
+                },
+                "MinimumLoadBalancerCapacity": {
+                    "$ref": "#/$defs/MinimumLoadBalancerCapacity"
+                },
+                "CapacityReservationState": {
+                    "$ref": "#/$defs/ZonalCapacityReservationStates"
+                }
+            }
+        },
+        "LastModifiedTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "DecreaseRequestsRemaining": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "MinimumLoadBalancerCapacity": {
+            "type": "object",
+            "properties": {
+                "CapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnits"
+                }
+            }
+        },
+        "CapacityUnits": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ZonalCapacityReservationStates": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ZonalCapacityReservationState"
+            }
+        },
+        "ZonalCapacityReservationState": {
+            "type": "object",
+            "properties": {
+                "State": {
+                    "$ref": "#/$defs/CapacityReservationStatus"
+                },
+                "AvailabilityZone": {
+                    "$ref": "#/$defs/ZoneName"
+                },
+                "EffectiveCapacityUnits": {
+                    "$ref": "#/$defs/CapacityUnitsDouble"
+                }
+            }
+        },
+        "CapacityReservationStatus": {
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "$ref": "#/$defs/CapacityReservationStateEnum"
+                },
+                "Reason": {
+                    "$ref": "#/$defs/StateReason"
+                }
+            }
+        },
+        "CapacityReservationStateEnum": {
+            "enum": [
+                "PROVISIONED",
+                "PENDING",
+                "REBALANCING",
+                "FAILED"
+            ]
+        },
+        "CapacityUnitsDouble": {
+            "type": "number",
+            "format": "double"
+        },
+        "DescribeCapacityReservationInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerArn": {
+                    "$ref": "#/$defs/LoadBalancerArn"
+                }
+            }
         },
         "DescribeListenerAttributesOutput": {
             "type": "object",
@@ -3718,6 +3946,73 @@
                 }
             }
         },
+        "ModifyCapacityReservationOutput": {
+            "type": "object",
+            "properties": {
+                "LastModifiedTime": {
+                    "$ref": "#/$defs/LastModifiedTime"
+                },
+                "DecreaseRequestsRemaining": {
+                    "$ref": "#/$defs/DecreaseRequestsRemaining"
+                },
+                "MinimumLoadBalancerCapacity": {
+                    "$ref": "#/$defs/MinimumLoadBalancerCapacity"
+                },
+                "CapacityReservationState": {
+                    "$ref": "#/$defs/ZonalCapacityReservationStates"
+                }
+            }
+        },
+        "ModifyCapacityReservationInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerArn": {
+                    "$ref": "#/$defs/LoadBalancerArn"
+                },
+                "MinimumLoadBalancerCapacity": {
+                    "$ref": "#/$defs/MinimumLoadBalancerCapacity"
+                },
+                "ResetCapacityReservation": {
+                    "$ref": "#/$defs/ResetCapacityReservation"
+                }
+            }
+        },
+        "ResetCapacityReservation": {
+            "type": "boolean"
+        },
+        "ModifyIpPoolsOutput": {
+            "type": "object",
+            "properties": {
+                "IpamPools": {
+                    "$ref": "#/$defs/IpamPools"
+                }
+            }
+        },
+        "ModifyIpPoolsInput": {
+            "type": "object",
+            "properties": {
+                "LoadBalancerArn": {
+                    "$ref": "#/$defs/LoadBalancerArn"
+                },
+                "IpamPools": {
+                    "$ref": "#/$defs/IpamPools"
+                },
+                "RemoveIpamPools": {
+                    "$ref": "#/$defs/RemoveIpamPools"
+                }
+            }
+        },
+        "RemoveIpamPools": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RemoveIpamPoolEnum"
+            }
+        },
+        "RemoveIpamPoolEnum": {
+            "enum": [
+                "ipv4"
+            ]
+        },
         "ModifyListenerOutput": {
             "type": "object",
             "properties": {
@@ -4059,6 +4354,9 @@
                 },
                 "IpAddressType": {
                     "$ref": "#/$defs/IpAddressType"
+                },
+                "EnablePrefixForIpv6SourceNat": {
+                    "$ref": "#/$defs/EnablePrefixForIpv6SourceNatEnum"
                 }
             }
         },
@@ -4076,6 +4374,9 @@
                 },
                 "IpAddressType": {
                     "$ref": "#/$defs/IpAddressType"
+                },
+                "EnablePrefixForIpv6SourceNat": {
+                    "$ref": "#/$defs/EnablePrefixForIpv6SourceNatEnum"
                 }
             }
         }

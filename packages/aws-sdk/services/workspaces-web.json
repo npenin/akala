@@ -35,9 +35,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "portalId": {},
+                        "sessionId": {}
                     }
                 }
             }
@@ -76,9 +75,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "portalId": {},
+                        "sessionId": {}
                     }
                 }
             }
@@ -115,9 +113,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "portalId": {},
+                        "username": {},
+                        "sessionId": {},
+                        "sortBy": {},
+                        "status": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -154,9 +156,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -193,9 +193,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {},
+                        "clientToken": {}
                     }
                 }
             }
@@ -232,9 +232,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -286,10 +285,6 @@
             "type": "string",
             "format": "binary"
         },
-        "ExpireSessionResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "ExpireSessionRequest": {
             "type": "object",
             "properties": {
@@ -306,6 +301,21 @@
         },
         "SessionId": {
             "type": "string"
+        },
+        "ExpireSessionResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetSessionRequest": {
+            "type": "object",
+            "properties": {
+                "portalId": {
+                    "$ref": "#/$defs/PortalId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/SessionId"
+                }
+            }
         },
         "GetSessionResponse": {
             "type": "object",
@@ -369,16 +379,44 @@
             "type": "string",
             "format": "date-time"
         },
-        "GetSessionRequest": {
+        "ListSessionsRequest": {
             "type": "object",
             "properties": {
                 "portalId": {
                     "$ref": "#/$defs/PortalId"
                 },
+                "username": {
+                    "$ref": "#/$defs/Username"
+                },
                 "sessionId": {
                     "$ref": "#/$defs/SessionId"
+                },
+                "sortBy": {
+                    "$ref": "#/$defs/SessionSortBy"
+                },
+                "status": {
+                    "$ref": "#/$defs/SessionStatus"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/PaginationToken"
                 }
             }
+        },
+        "SessionSortBy": {
+            "enum": [
+                "START_TIME_ASCENDING",
+                "START_TIME_DESCENDING"
+            ]
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "PaginationToken": {
+            "type": "string"
         },
         "ListSessionsResponse": {
             "type": "object",
@@ -420,44 +458,13 @@
                 }
             }
         },
-        "PaginationToken": {
-            "type": "string"
-        },
-        "ListSessionsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "portalId": {
-                    "$ref": "#/$defs/PortalId"
-                },
-                "username": {
-                    "$ref": "#/$defs/Username"
-                },
-                "sessionId": {
-                    "$ref": "#/$defs/SessionId"
-                },
-                "sortBy": {
-                    "$ref": "#/$defs/SessionSortBy"
-                },
-                "status": {
-                    "$ref": "#/$defs/SessionStatus"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/PaginationToken"
+                "resourceArn": {
+                    "$ref": "#/$defs/ARN"
                 }
             }
-        },
-        "SessionSortBy": {
-            "enum": [
-                "START_TIME_ASCENDING",
-                "START_TIME_DESCENDING"
-            ]
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -490,18 +497,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/ARN"
-                }
-            }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -519,7 +514,7 @@
         "ClientToken": {
             "type": "string"
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -539,6 +534,10 @@
             "items": {
                 "$ref": "#/$defs/TagKey"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

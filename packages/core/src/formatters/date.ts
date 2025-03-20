@@ -22,11 +22,6 @@ const formats = {
 }
 
 /**
- * Parses and formats a date according to the specified format.
- * @param {string} format - The format string.
- * @returns {object} An object with format and parse functions.
- */
-/**
  * Parses and formats dates according to the specified format string.
  * 
  * @param format - The date format string (e.g., 'yyyy-MM-dd').
@@ -170,28 +165,6 @@ export function formatParser(format: string)
         }
     };
 }
-
-// /**
-//  * Formats a date according to the specified format.
-//  * @param {Date} a - The date to format.
-//  * @param {string} format - The format string (e.g., 'yyyy-MM-dd').
-//  * @returns {string} The formatted date string.
-//  */
-// function date(a: Date, format: string): string
-// {
-//     return formatParser(format).format(a);
-// }
-
-// /**
-//  * Parses a date string into a Date object using the specified format.
-//  * @param {string} s - The date string to parse.
-//  * @param {string} format - The format string.
-//  * @returns {Date} The parsed date.
-//  */
-// date['reverse'] = function (s: string, format: string): Date
-// {
-//     return formatParser(format).parse(s);
-// };
 
 /**
  * Formatter for converting dates to strings and vice versa.

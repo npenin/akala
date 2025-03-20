@@ -1905,6 +1905,12 @@
                 },
                 "credentialArn": {
                     "$ref": "#/$defs/CredentialArn"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                },
+                "upstreamRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
                 }
             }
         },
@@ -1920,6 +1926,7 @@
         },
         "UpstreamRegistry": {
             "enum": [
+                "Ecr",
                 "EcrPublic",
                 "Quay",
                 "K8s",
@@ -1930,6 +1937,9 @@
             ]
         },
         "CredentialArn": {
+            "type": "string"
+        },
+        "CustomRoleArn": {
             "type": "string"
         },
         "CreatePullThroughCacheRuleRequest": {
@@ -1949,6 +1959,12 @@
                 },
                 "credentialArn": {
                     "$ref": "#/$defs/CredentialArn"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                },
+                "upstreamRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
                 }
             }
         },
@@ -2157,9 +2173,6 @@
                 "PULL_THROUGH_CACHE"
             ]
         },
-        "CustomRoleArn": {
-            "type": "string"
-        },
         "Date": {
             "type": "string",
             "format": "date-time"
@@ -2248,6 +2261,12 @@
                 },
                 "credentialArn": {
                     "$ref": "#/$defs/CredentialArn"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                },
+                "upstreamRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
                 }
             }
         },
@@ -2502,7 +2521,8 @@
                 "ACTIVE",
                 "PENDING",
                 "SCAN_ELIGIBILITY_EXPIRED",
-                "FINDINGS_UNAVAILABLE"
+                "FINDINGS_UNAVAILABLE",
+                "LIMIT_EXCEEDED"
             ]
         },
         "ScanStatusDescription": {
@@ -3144,6 +3164,12 @@
                 },
                 "credentialArn": {
                     "$ref": "#/$defs/CredentialArn"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                },
+                "upstreamRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
                 },
                 "upstreamRegistry": {
                     "$ref": "#/$defs/UpstreamRegistry"
@@ -4100,6 +4126,12 @@
                 },
                 "credentialArn": {
                     "$ref": "#/$defs/CredentialArn"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                },
+                "upstreamRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
                 }
             }
         },
@@ -4114,6 +4146,9 @@
                 },
                 "credentialArn": {
                     "$ref": "#/$defs/CredentialArn"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
                 }
             }
         },
@@ -4218,6 +4253,12 @@
                 },
                 "credentialArn": {
                     "$ref": "#/$defs/CredentialArn"
+                },
+                "customRoleArn": {
+                    "$ref": "#/$defs/CustomRoleArn"
+                },
+                "upstreamRepositoryPrefix": {
+                    "$ref": "#/$defs/PullThroughCacheRuleRepositoryPrefix"
                 },
                 "isValid": {
                     "$ref": "#/$defs/IsPTCRuleValid"

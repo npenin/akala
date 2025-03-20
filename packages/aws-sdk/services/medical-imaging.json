@@ -35,9 +35,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "sourceImageSetId": {},
+                        "copyImageSetInformation": {},
+                        "force": {}
                     }
                 }
             }
@@ -76,9 +77,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "imageSetId": {}
                     }
                 }
             }
@@ -117,9 +117,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "jobId": {}
                     }
                 }
             }
@@ -158,9 +157,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "imageSetId": {},
+                        "imageFrameInformation": {}
                     }
                 }
             }
@@ -199,9 +198,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "imageSetId": {},
+                        "versionId": {}
                     }
                 }
             }
@@ -240,9 +239,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "imageSetId": {},
+                        "versionId": {}
                     }
                 }
             }
@@ -279,9 +278,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "jobStatus": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -320,9 +320,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "imageSetId": {},
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -359,9 +360,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -398,9 +397,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "searchCriteria": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -437,9 +437,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "jobName": {},
+                        "dataAccessRoleArn": {},
+                        "clientToken": {},
+                        "datastoreId": {},
+                        "inputS3Uri": {},
+                        "outputS3Uri": {},
+                        "inputOwnerAccountId": {}
                     }
                 }
             }
@@ -476,9 +480,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -515,9 +518,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -556,9 +558,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "datastoreId": {},
+                        "imageSetId": {},
+                        "latestVersionId": {},
+                        "force": {},
+                        "updateImageSetMetadataUpdates": {}
                     }
                 }
             }
@@ -610,6 +614,76 @@
             "type": "string",
             "format": "binary"
         },
+        "CopyImageSetRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "sourceImageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "copyImageSetInformation": {
+                    "$ref": "#/$defs/CopyImageSetInformation"
+                },
+                "force": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "DatastoreId": {
+            "type": "string"
+        },
+        "ImageSetId": {
+            "type": "string"
+        },
+        "CopyImageSetInformation": {
+            "type": "object",
+            "properties": {
+                "sourceImageSet": {
+                    "$ref": "#/$defs/CopySourceImageSetInformation"
+                },
+                "destinationImageSet": {
+                    "$ref": "#/$defs/CopyDestinationImageSet"
+                }
+            }
+        },
+        "CopySourceImageSetInformation": {
+            "type": "object",
+            "properties": {
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "DICOMCopies": {
+                    "$ref": "#/$defs/MetadataCopies"
+                }
+            }
+        },
+        "ImageSetExternalVersionId": {
+            "type": "string"
+        },
+        "MetadataCopies": {
+            "type": "object",
+            "properties": {
+                "copiableAttributes": {
+                    "$ref": "#/$defs/CopiableAttributes"
+                }
+            }
+        },
+        "CopiableAttributes": {
+            "type": "string"
+        },
+        "CopyDestinationImageSet": {
+            "type": "object",
+            "properties": {
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                }
+            }
+        },
         "CopyImageSetResponse": {
             "type": "object",
             "properties": {
@@ -623,9 +697,6 @@
                     "$ref": "#/$defs/CopyDestinationImageSetProperties"
                 }
             }
-        },
-        "DatastoreId": {
-            "type": "string"
         },
         "CopySourceImageSetProperties": {
             "type": "object",
@@ -652,12 +723,6 @@
                     "$ref": "#/$defs/Arn"
                 }
             }
-        },
-        "ImageSetId": {
-            "type": "string"
-        },
-        "ImageSetExternalVersionId": {
-            "type": "string"
         },
         "ImageSetState": {
             "enum": [
@@ -713,64 +778,14 @@
                 }
             }
         },
-        "CopyImageSetRequest": {
+        "DeleteImageSetRequest": {
             "type": "object",
             "properties": {
                 "datastoreId": {
                     "$ref": "#/$defs/DatastoreId"
                 },
-                "sourceImageSetId": {
-                    "$ref": "#/$defs/ImageSetId"
-                },
-                "copyImageSetInformation": {
-                    "$ref": "#/$defs/CopyImageSetInformation"
-                },
-                "force": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
-                }
-            }
-        },
-        "CopyImageSetInformation": {
-            "type": "object",
-            "properties": {
-                "sourceImageSet": {
-                    "$ref": "#/$defs/CopySourceImageSetInformation"
-                },
-                "destinationImageSet": {
-                    "$ref": "#/$defs/CopyDestinationImageSet"
-                }
-            }
-        },
-        "CopySourceImageSetInformation": {
-            "type": "object",
-            "properties": {
-                "latestVersionId": {
-                    "$ref": "#/$defs/ImageSetExternalVersionId"
-                },
-                "DICOMCopies": {
-                    "$ref": "#/$defs/MetadataCopies"
-                }
-            }
-        },
-        "MetadataCopies": {
-            "type": "object",
-            "properties": {
-                "copiableAttributes": {
-                    "$ref": "#/$defs/CopiableAttributes"
-                }
-            }
-        },
-        "CopiableAttributes": {
-            "type": "string"
-        },
-        "CopyDestinationImageSet": {
-            "type": "object",
-            "properties": {
                 "imageSetId": {
                     "$ref": "#/$defs/ImageSetId"
-                },
-                "latestVersionId": {
-                    "$ref": "#/$defs/ImageSetExternalVersionId"
                 }
             }
         },
@@ -791,16 +806,19 @@
                 }
             }
         },
-        "DeleteImageSetRequest": {
+        "GetDICOMImportJobRequest": {
             "type": "object",
             "properties": {
                 "datastoreId": {
                     "$ref": "#/$defs/DatastoreId"
                 },
-                "imageSetId": {
-                    "$ref": "#/$defs/ImageSetId"
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
                 }
             }
+        },
+        "JobId": {
+            "type": "string"
         },
         "GetDICOMImportJobResponse": {
             "type": "object",
@@ -845,9 +863,6 @@
                 }
             }
         },
-        "JobId": {
-            "type": "string"
-        },
         "JobName": {
             "type": "string"
         },
@@ -867,32 +882,6 @@
         },
         "Message": {
             "type": "string"
-        },
-        "GetDICOMImportJobRequest": {
-            "type": "object",
-            "properties": {
-                "datastoreId": {
-                    "$ref": "#/$defs/DatastoreId"
-                },
-                "jobId": {
-                    "$ref": "#/$defs/JobId"
-                }
-            }
-        },
-        "GetImageFrameResponse": {
-            "type": "object",
-            "properties": {
-                "imageFrameBlob": {
-                    "$ref": "#/$defs/PayloadBlob"
-                },
-                "contentType": {
-                    "$ref": "#/$defs/smithy.api#String"
-                }
-            }
-        },
-        "PayloadBlob": {
-            "type": "string",
-            "format": "binary"
         },
         "GetImageFrameRequest": {
             "type": "object",
@@ -918,6 +907,35 @@
         },
         "ImageFrameId": {
             "type": "string"
+        },
+        "GetImageFrameResponse": {
+            "type": "object",
+            "properties": {
+                "imageFrameBlob": {
+                    "$ref": "#/$defs/PayloadBlob"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                }
+            }
+        },
+        "PayloadBlob": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetImageSetRequest": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "versionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                }
+            }
         },
         "GetImageSetResponse": {
             "type": "object",
@@ -965,7 +983,7 @@
                 }
             }
         },
-        "GetImageSetRequest": {
+        "GetImageSetMetadataRequest": {
             "type": "object",
             "properties": {
                 "datastoreId": {
@@ -997,19 +1015,25 @@
             "type": "string",
             "format": "binary"
         },
-        "GetImageSetMetadataRequest": {
+        "ListDICOMImportJobsRequest": {
             "type": "object",
             "properties": {
                 "datastoreId": {
                     "$ref": "#/$defs/DatastoreId"
                 },
-                "imageSetId": {
-                    "$ref": "#/$defs/ImageSetId"
+                "jobStatus": {
+                    "$ref": "#/$defs/JobStatus"
                 },
-                "versionId": {
-                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListDICOMImportJobsResponse": {
             "type": "object",
@@ -1057,17 +1081,14 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListDICOMImportJobsRequest": {
+        "ListImageSetVersionsRequest": {
             "type": "object",
             "properties": {
                 "datastoreId": {
                     "$ref": "#/$defs/DatastoreId"
                 },
-                "jobStatus": {
-                    "$ref": "#/$defs/JobStatus"
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
                 },
                 "nextToken": {
                     "$ref": "#/$defs/NextToken"
@@ -1126,20 +1147,11 @@
                 }
             }
         },
-        "ListImageSetVersionsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "datastoreId": {
-                    "$ref": "#/$defs/DatastoreId"
-                },
-                "imageSetId": {
-                    "$ref": "#/$defs/ImageSetId"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -1160,13 +1172,147 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
+        "SearchImageSetsRequest": {
             "type": "object",
             "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "searchCriteria": {
+                    "$ref": "#/$defs/SearchCriteria"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
+        },
+        "SearchCriteria": {
+            "type": "object",
+            "properties": {
+                "filters": {
+                    "$ref": "#/$defs/SearchFilters"
+                },
+                "sort": {
+                    "$ref": "#/$defs/Sort"
+                }
+            }
+        },
+        "SearchFilters": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchFilter"
+            }
+        },
+        "SearchFilter": {
+            "type": "object",
+            "properties": {
+                "values": {
+                    "$ref": "#/$defs/SearchByAttributeValues"
+                },
+                "operator": {
+                    "$ref": "#/$defs/Operator"
+                }
+            }
+        },
+        "SearchByAttributeValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SearchByAttributeValue"
+            }
+        },
+        "SearchByAttributeValue": {
+            "type": "object",
+            "properties": {
+                "DICOMPatientId": {
+                    "$ref": "#/$defs/DICOMPatientId"
+                },
+                "DICOMAccessionNumber": {
+                    "$ref": "#/$defs/DICOMAccessionNumber"
+                },
+                "DICOMStudyId": {
+                    "$ref": "#/$defs/DICOMStudyId"
+                },
+                "DICOMStudyInstanceUID": {
+                    "$ref": "#/$defs/DICOMStudyInstanceUID"
+                },
+                "DICOMSeriesInstanceUID": {
+                    "$ref": "#/$defs/DICOMSeriesInstanceUID"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "DICOMStudyDateAndTime": {
+                    "$ref": "#/$defs/DICOMStudyDateAndTime"
+                }
+            }
+        },
+        "DICOMPatientId": {
+            "type": "string"
+        },
+        "DICOMAccessionNumber": {
+            "type": "string"
+        },
+        "DICOMStudyId": {
+            "type": "string"
+        },
+        "DICOMStudyInstanceUID": {
+            "type": "string"
+        },
+        "DICOMSeriesInstanceUID": {
+            "type": "string"
+        },
+        "DICOMStudyDateAndTime": {
+            "type": "object",
+            "properties": {
+                "DICOMStudyDate": {
+                    "$ref": "#/$defs/DICOMStudyDate"
+                },
+                "DICOMStudyTime": {
+                    "$ref": "#/$defs/DICOMStudyTime"
+                }
+            }
+        },
+        "DICOMStudyDate": {
+            "type": "string"
+        },
+        "DICOMStudyTime": {
+            "type": "string"
+        },
+        "Operator": {
+            "enum": [
+                "EQUAL",
+                "BETWEEN"
+            ]
+        },
+        "Sort": {
+            "type": "object",
+            "properties": {
+                "sortOrder": {
+                    "$ref": "#/$defs/SortOrder"
+                },
+                "sortField": {
+                    "$ref": "#/$defs/SortField"
+                }
+            }
+        },
+        "SortOrder": {
+            "enum": [
+                "ASC",
+                "DESC"
+            ]
+        },
+        "SortField": {
+            "enum": [
+                "updatedAt",
+                "createdAt",
+                "DICOMStudyDateAndTime"
+            ]
         },
         "SearchImageSetsResponse": {
             "type": "object",
@@ -1261,9 +1407,6 @@
                 }
             }
         },
-        "DICOMPatientId": {
-            "type": "string"
-        },
         "DICOMPatientName": {
             "type": "string"
         },
@@ -1271,12 +1414,6 @@
             "type": "string"
         },
         "DICOMPatientSex": {
-            "type": "string"
-        },
-        "DICOMStudyInstanceUID": {
-            "type": "string"
-        },
-        "DICOMStudyId": {
             "type": "string"
         },
         "DICOMStudyDescription": {
@@ -1290,12 +1427,6 @@
             "type": "integer",
             "format": "int32"
         },
-        "DICOMAccessionNumber": {
-            "type": "string"
-        },
-        "DICOMSeriesInstanceUID": {
-            "type": "string"
-        },
         "DICOMSeriesModality": {
             "type": "string"
         },
@@ -1305,150 +1436,6 @@
         "DICOMSeriesNumber": {
             "type": "integer",
             "format": "int32"
-        },
-        "DICOMStudyDate": {
-            "type": "string"
-        },
-        "DICOMStudyTime": {
-            "type": "string"
-        },
-        "Sort": {
-            "type": "object",
-            "properties": {
-                "sortOrder": {
-                    "$ref": "#/$defs/SortOrder"
-                },
-                "sortField": {
-                    "$ref": "#/$defs/SortField"
-                }
-            }
-        },
-        "SortOrder": {
-            "enum": [
-                "ASC",
-                "DESC"
-            ]
-        },
-        "SortField": {
-            "enum": [
-                "updatedAt",
-                "createdAt",
-                "DICOMStudyDateAndTime"
-            ]
-        },
-        "SearchImageSetsRequest": {
-            "type": "object",
-            "properties": {
-                "datastoreId": {
-                    "$ref": "#/$defs/DatastoreId"
-                },
-                "searchCriteria": {
-                    "$ref": "#/$defs/SearchCriteria"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "SearchCriteria": {
-            "type": "object",
-            "properties": {
-                "filters": {
-                    "$ref": "#/$defs/SearchFilters"
-                },
-                "sort": {
-                    "$ref": "#/$defs/Sort"
-                }
-            }
-        },
-        "SearchFilters": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SearchFilter"
-            }
-        },
-        "SearchFilter": {
-            "type": "object",
-            "properties": {
-                "values": {
-                    "$ref": "#/$defs/SearchByAttributeValues"
-                },
-                "operator": {
-                    "$ref": "#/$defs/Operator"
-                }
-            }
-        },
-        "SearchByAttributeValues": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/SearchByAttributeValue"
-            }
-        },
-        "SearchByAttributeValue": {
-            "type": "object",
-            "properties": {
-                "DICOMPatientId": {
-                    "$ref": "#/$defs/DICOMPatientId"
-                },
-                "DICOMAccessionNumber": {
-                    "$ref": "#/$defs/DICOMAccessionNumber"
-                },
-                "DICOMStudyId": {
-                    "$ref": "#/$defs/DICOMStudyId"
-                },
-                "DICOMStudyInstanceUID": {
-                    "$ref": "#/$defs/DICOMStudyInstanceUID"
-                },
-                "DICOMSeriesInstanceUID": {
-                    "$ref": "#/$defs/DICOMSeriesInstanceUID"
-                },
-                "createdAt": {
-                    "$ref": "#/$defs/Date"
-                },
-                "updatedAt": {
-                    "$ref": "#/$defs/Date"
-                },
-                "DICOMStudyDateAndTime": {
-                    "$ref": "#/$defs/DICOMStudyDateAndTime"
-                }
-            }
-        },
-        "DICOMStudyDateAndTime": {
-            "type": "object",
-            "properties": {
-                "DICOMStudyDate": {
-                    "$ref": "#/$defs/DICOMStudyDate"
-                },
-                "DICOMStudyTime": {
-                    "$ref": "#/$defs/DICOMStudyTime"
-                }
-            }
-        },
-        "Operator": {
-            "enum": [
-                "EQUAL",
-                "BETWEEN"
-            ]
-        },
-        "StartDICOMImportJobResponse": {
-            "type": "object",
-            "properties": {
-                "datastoreId": {
-                    "$ref": "#/$defs/DatastoreId"
-                },
-                "jobId": {
-                    "$ref": "#/$defs/JobId"
-                },
-                "jobStatus": {
-                    "$ref": "#/$defs/JobStatus"
-                },
-                "submittedAt": {
-                    "$ref": "#/$defs/Date"
-                }
-            }
         },
         "StartDICOMImportJobRequest": {
             "type": "object",
@@ -1482,9 +1469,22 @@
         "AwsAccountId": {
             "type": "string"
         },
-        "TagResourceResponse": {
+        "StartDICOMImportJobResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "jobId": {
+                    "$ref": "#/$defs/JobId"
+                },
+                "jobStatus": {
+                    "$ref": "#/$defs/JobStatus"
+                },
+                "submittedAt": {
+                    "$ref": "#/$defs/Date"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1497,7 +1497,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1521,34 +1521,9 @@
         "TagKey": {
             "type": "string"
         },
-        "UpdateImageSetMetadataResponse": {
+        "UntagResourceResponse": {
             "type": "object",
-            "properties": {
-                "datastoreId": {
-                    "$ref": "#/$defs/DatastoreId"
-                },
-                "imageSetId": {
-                    "$ref": "#/$defs/ImageSetId"
-                },
-                "latestVersionId": {
-                    "$ref": "#/$defs/ImageSetExternalVersionId"
-                },
-                "imageSetState": {
-                    "$ref": "#/$defs/ImageSetState"
-                },
-                "imageSetWorkflowStatus": {
-                    "$ref": "#/$defs/ImageSetWorkflowStatus"
-                },
-                "createdAt": {
-                    "$ref": "#/$defs/Date"
-                },
-                "updatedAt": {
-                    "$ref": "#/$defs/Date"
-                },
-                "message": {
-                    "$ref": "#/$defs/Message"
-                }
-            }
+            "properties": {}
         },
         "UpdateImageSetMetadataRequest": {
             "type": "object",
@@ -1595,6 +1570,35 @@
         "DICOMAttribute": {
             "type": "string",
             "format": "binary"
+        },
+        "UpdateImageSetMetadataResponse": {
+            "type": "object",
+            "properties": {
+                "datastoreId": {
+                    "$ref": "#/$defs/DatastoreId"
+                },
+                "imageSetId": {
+                    "$ref": "#/$defs/ImageSetId"
+                },
+                "latestVersionId": {
+                    "$ref": "#/$defs/ImageSetExternalVersionId"
+                },
+                "imageSetState": {
+                    "$ref": "#/$defs/ImageSetState"
+                },
+                "imageSetWorkflowStatus": {
+                    "$ref": "#/$defs/ImageSetWorkflowStatus"
+                },
+                "createdAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "updatedAt": {
+                    "$ref": "#/$defs/Date"
+                },
+                "message": {
+                    "$ref": "#/$defs/Message"
+                }
+            }
         }
     },
     "aws": {

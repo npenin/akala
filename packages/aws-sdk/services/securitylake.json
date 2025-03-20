@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "subscriptionProtocol": {},
+                        "notificationEndpoint": {},
+                        "exceptionTimeToLive": {}
                     }
                 }
             }
@@ -63,11 +63,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -98,11 +94,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -133,11 +125,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -169,9 +157,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "regions": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -208,9 +196,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -243,9 +229,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "accountId": {}
                     }
                 }
             }
@@ -282,9 +266,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -321,9 +304,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -356,9 +338,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "subscriptionProtocol": {},
+                        "notificationEndpoint": {},
+                        "exceptionTimeToLive": {}
                     }
                 }
             }
@@ -410,10 +392,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateDataLakeExceptionSubscriptionResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "CreateDataLakeExceptionSubscriptionRequest": {
             "type": "object",
             "properties": {
@@ -434,7 +412,7 @@
         "SafeString": {
             "type": "string"
         },
-        "DeleteDataLakeExceptionSubscriptionResponse": {
+        "CreateDataLakeExceptionSubscriptionResponse": {
             "type": "object",
             "properties": {}
         },
@@ -442,11 +420,19 @@
             "type": "object",
             "properties": {}
         },
-        "DeregisterDataLakeDelegatedAdministratorResponse": {
+        "DeleteDataLakeExceptionSubscriptionResponse": {
             "type": "object",
             "properties": {}
         },
         "DeregisterDataLakeDelegatedAdministratorRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeregisterDataLakeDelegatedAdministratorResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetDataLakeExceptionSubscriptionRequest": {
             "type": "object",
             "properties": {}
         },
@@ -464,9 +450,35 @@
                 }
             }
         },
-        "GetDataLakeExceptionSubscriptionRequest": {
+        "ListDataLakeExceptionsRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "regions": {
+                    "$ref": "#/$defs/RegionList"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "RegionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Region"
+            }
+        },
+        "Region": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListDataLakeExceptionsResponse": {
             "type": "object",
@@ -502,35 +514,16 @@
                 }
             }
         },
-        "Region": {
-            "type": "string"
-        },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListDataLakeExceptionsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "regions": {
-                    "$ref": "#/$defs/RegionList"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "resourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
                 }
             }
         },
-        "RegionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Region"
-            }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
+        "AmazonResourceName": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -563,21 +556,6 @@
         "TagValue": {
             "type": "string"
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                }
-            }
-        },
-        "AmazonResourceName": {
-            "type": "string"
-        },
-        "RegisterDataLakeDelegatedAdministratorResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "RegisterDataLakeDelegatedAdministratorRequest": {
             "type": "object",
             "properties": {
@@ -586,7 +564,7 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "RegisterDataLakeDelegatedAdministratorResponse": {
             "type": "object",
             "properties": {}
         },
@@ -601,7 +579,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -622,7 +600,7 @@
                 "$ref": "#/$defs/TagKey"
             }
         },
-        "UpdateDataLakeExceptionSubscriptionResponse": {
+        "UntagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -639,6 +617,10 @@
                     "$ref": "#/$defs/smithy.api#Long"
                 }
             }
+        },
+        "UpdateDataLakeExceptionSubscriptionResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

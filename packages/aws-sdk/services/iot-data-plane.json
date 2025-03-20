@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "thingName": {},
+                        "shadowName": {}
                     }
                 }
             }
@@ -72,9 +71,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "topic": {}
                     }
                 }
             }
@@ -111,9 +108,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "thingName": {},
+                        "shadowName": {}
                     }
                 }
             }
@@ -150,9 +146,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "thingName": {},
+                        "nextToken": {},
+                        "pageSize": {}
                     }
                 }
             }
@@ -185,9 +181,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -224,9 +219,16 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "topic": {},
+                        "qos": {},
+                        "retain": {},
+                        "payload": {},
+                        "userProperties": {},
+                        "payloadFormatIndicator": {},
+                        "contentType": {},
+                        "responseTopic": {},
+                        "correlationData": {},
+                        "messageExpiry": {}
                     }
                 }
             }
@@ -263,9 +265,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "thingName": {},
+                        "shadowName": {},
+                        "payload": {}
                     }
                 }
             }
@@ -317,18 +319,6 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteThingShadowResponse": {
-            "type": "object",
-            "properties": {
-                "payload": {
-                    "$ref": "#/$defs/JsonDocument"
-                }
-            }
-        },
-        "JsonDocument": {
-            "type": "string",
-            "format": "binary"
-        },
         "DeleteThingShadowRequest": {
             "type": "object",
             "properties": {
@@ -344,6 +334,29 @@
             "type": "string"
         },
         "ShadowName": {
+            "type": "string"
+        },
+        "DeleteThingShadowResponse": {
+            "type": "object",
+            "properties": {
+                "payload": {
+                    "$ref": "#/$defs/JsonDocument"
+                }
+            }
+        },
+        "JsonDocument": {
+            "type": "string",
+            "format": "binary"
+        },
+        "GetRetainedMessageRequest": {
+            "type": "object",
+            "properties": {
+                "topic": {
+                    "$ref": "#/$defs/Topic"
+                }
+            }
+        },
+        "Topic": {
             "type": "string"
         },
         "GetRetainedMessageResponse": {
@@ -366,9 +379,6 @@
                 }
             }
         },
-        "Topic": {
-            "type": "string"
-        },
         "Payload": {
             "type": "string",
             "format": "binary"
@@ -385,11 +395,14 @@
             "type": "string",
             "format": "binary"
         },
-        "GetRetainedMessageRequest": {
+        "GetThingShadowRequest": {
             "type": "object",
             "properties": {
-                "topic": {
-                    "$ref": "#/$defs/Topic"
+                "thingName": {
+                    "$ref": "#/$defs/ThingName"
+                },
+                "shadowName": {
+                    "$ref": "#/$defs/ShadowName"
                 }
             }
         },
@@ -401,16 +414,26 @@
                 }
             }
         },
-        "GetThingShadowRequest": {
+        "ListNamedShadowsForThingRequest": {
             "type": "object",
             "properties": {
                 "thingName": {
                     "$ref": "#/$defs/ThingName"
                 },
-                "shadowName": {
-                    "$ref": "#/$defs/ShadowName"
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "pageSize": {
+                    "$ref": "#/$defs/PageSize"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "PageSize": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListNamedShadowsForThingResponse": {
             "type": "object",
@@ -432,24 +455,18 @@
                 "$ref": "#/$defs/ShadowName"
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListNamedShadowsForThingRequest": {
+        "ListRetainedMessagesRequest": {
             "type": "object",
             "properties": {
-                "thingName": {
-                    "$ref": "#/$defs/ThingName"
-                },
                 "nextToken": {
                     "$ref": "#/$defs/NextToken"
                 },
-                "pageSize": {
-                    "$ref": "#/$defs/PageSize"
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
                 }
             }
         },
-        "PageSize": {
+        "MaxResults": {
             "type": "integer",
             "format": "int32"
         },
@@ -490,21 +507,6 @@
         "PayloadSize": {
             "type": "integer",
             "format": "int64"
-        },
-        "ListRetainedMessagesRequest": {
-            "type": "object",
-            "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                }
-            }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "PublishRequest": {
             "type": "object",
@@ -566,14 +568,6 @@
             "type": "integer",
             "format": "int64"
         },
-        "UpdateThingShadowResponse": {
-            "type": "object",
-            "properties": {
-                "payload": {
-                    "$ref": "#/$defs/JsonDocument"
-                }
-            }
-        },
         "UpdateThingShadowRequest": {
             "type": "object",
             "properties": {
@@ -583,6 +577,14 @@
                 "shadowName": {
                     "$ref": "#/$defs/ShadowName"
                 },
+                "payload": {
+                    "$ref": "#/$defs/JsonDocument"
+                }
+            }
+        },
+        "UpdateThingShadowResponse": {
+            "type": "object",
+            "properties": {
                 "payload": {
                     "$ref": "#/$defs/JsonDocument"
                 }

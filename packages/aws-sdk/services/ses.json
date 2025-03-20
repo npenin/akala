@@ -2474,6 +2474,9 @@
                 },
                 "SNSAction": {
                     "$ref": "#/$defs/SNSAction"
+                },
+                "ConnectAction": {
+                    "$ref": "#/$defs/ConnectAction"
                 }
             }
         },
@@ -2618,6 +2621,20 @@
                 "UTF8",
                 "Base64"
             ]
+        },
+        "ConnectAction": {
+            "type": "object",
+            "properties": {
+                "InstanceARN": {
+                    "$ref": "#/$defs/ConnectInstanceArn"
+                },
+                "IAMRoleARN": {
+                    "$ref": "#/$defs/IAMRoleARN"
+                }
+            }
+        },
+        "ConnectInstanceArn": {
+            "type": "string"
         },
         "CreateReceiptRuleSetResponse": {
             "type": "object",

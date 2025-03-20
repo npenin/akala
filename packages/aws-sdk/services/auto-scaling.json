@@ -2013,6 +2013,9 @@
                 },
                 "TrafficSources": {
                     "$ref": "#/$defs/TrafficSources"
+                },
+                "SkipZonalShiftValidation": {
+                    "$ref": "#/$defs/SkipZonalShiftValidation"
                 }
             }
         },
@@ -2032,6 +2035,9 @@
                     "$ref": "#/$defs/XmlStringMaxLen511"
                 }
             }
+        },
+        "SkipZonalShiftValidation": {
+            "type": "boolean"
         },
         "BatchDeleteScheduledActionAnswer": {
             "type": "object",
@@ -2292,6 +2298,18 @@
                 },
                 "InstanceMaintenancePolicy": {
                     "$ref": "#/$defs/InstanceMaintenancePolicy"
+                },
+                "AvailabilityZoneDistribution": {
+                    "$ref": "#/$defs/AvailabilityZoneDistribution"
+                },
+                "AvailabilityZoneImpairmentPolicy": {
+                    "$ref": "#/$defs/AvailabilityZoneImpairmentPolicy"
+                },
+                "SkipZonalShiftValidation": {
+                    "$ref": "#/$defs/SkipZonalShiftValidation"
+                },
+                "CapacityReservationSpecification": {
+                    "$ref": "#/$defs/CapacityReservationSpecification"
                 }
             }
         },
@@ -2434,6 +2452,9 @@
                 },
                 "AllowedInstanceTypes": {
                     "$ref": "#/$defs/AllowedInstanceTypes"
+                },
+                "BaselinePerformanceFactors": {
+                    "$ref": "#/$defs/BaselinePerformanceFactorsRequest"
                 }
             }
         },
@@ -2667,6 +2688,39 @@
         "AllowedInstanceType": {
             "type": "string"
         },
+        "BaselinePerformanceFactorsRequest": {
+            "type": "object",
+            "properties": {
+                "Cpu": {
+                    "$ref": "#/$defs/CpuPerformanceFactorRequest"
+                }
+            }
+        },
+        "CpuPerformanceFactorRequest": {
+            "type": "object",
+            "properties": {
+                "References": {
+                    "$ref": "#/$defs/PerformanceFactorReferenceSetRequest"
+                }
+            }
+        },
+        "PerformanceFactorReferenceSetRequest": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PerformanceFactorReferenceRequest"
+            }
+        },
+        "PerformanceFactorReferenceRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceFamily": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "String": {
+            "type": "string"
+        },
         "InstancesDistribution": {
             "type": "object",
             "properties": {
@@ -2846,6 +2900,82 @@
         "IntPercent100To200Resettable": {
             "type": "integer",
             "format": "int32"
+        },
+        "AvailabilityZoneDistribution": {
+            "type": "object",
+            "properties": {
+                "CapacityDistributionStrategy": {
+                    "$ref": "#/$defs/CapacityDistributionStrategy"
+                }
+            }
+        },
+        "CapacityDistributionStrategy": {
+            "enum": [
+                "BALANCED_ONLY",
+                "BALANCED_BEST_EFFORT"
+            ]
+        },
+        "AvailabilityZoneImpairmentPolicy": {
+            "type": "object",
+            "properties": {
+                "ZonalShiftEnabled": {
+                    "$ref": "#/$defs/ZonalShiftEnabled"
+                },
+                "ImpairedZoneHealthCheckBehavior": {
+                    "$ref": "#/$defs/ImpairedZoneHealthCheckBehavior"
+                }
+            }
+        },
+        "ZonalShiftEnabled": {
+            "type": "boolean"
+        },
+        "ImpairedZoneHealthCheckBehavior": {
+            "enum": [
+                "ReplaceUnhealthy",
+                "IgnoreUnhealthy"
+            ]
+        },
+        "CapacityReservationSpecification": {
+            "type": "object",
+            "properties": {
+                "CapacityReservationPreference": {
+                    "$ref": "#/$defs/CapacityReservationPreference"
+                },
+                "CapacityReservationTarget": {
+                    "$ref": "#/$defs/CapacityReservationTarget"
+                }
+            }
+        },
+        "CapacityReservationPreference": {
+            "enum": [
+                "CapacityReservationsOnly",
+                "CapacityReservationsFirst",
+                "None",
+                "Default"
+            ]
+        },
+        "CapacityReservationTarget": {
+            "type": "object",
+            "properties": {
+                "CapacityReservationIds": {
+                    "$ref": "#/$defs/CapacityReservationIds"
+                },
+                "CapacityReservationResourceGroupArns": {
+                    "$ref": "#/$defs/CapacityReservationResourceGroupArns"
+                }
+            }
+        },
+        "CapacityReservationIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AsciiStringMaxLen255"
+            }
+        },
+        "CapacityReservationResourceGroupArns": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceName"
+            }
         },
         "CreateLaunchConfigurationType": {
             "type": "object",
@@ -3327,6 +3457,15 @@
                 },
                 "InstanceMaintenancePolicy": {
                     "$ref": "#/$defs/InstanceMaintenancePolicy"
+                },
+                "AvailabilityZoneDistribution": {
+                    "$ref": "#/$defs/AvailabilityZoneDistribution"
+                },
+                "AvailabilityZoneImpairmentPolicy": {
+                    "$ref": "#/$defs/AvailabilityZoneImpairmentPolicy"
+                },
+                "CapacityReservationSpecification": {
+                    "$ref": "#/$defs/CapacityReservationSpecification"
                 }
             }
         },
@@ -3712,7 +3851,8 @@
                 "Cancelled",
                 "RollbackInProgress",
                 "RollbackFailed",
-                "RollbackSuccessful"
+                "RollbackSuccessful",
+                "Baking"
             ]
         },
         "XmlStringMaxLen1023": {
@@ -3791,6 +3931,9 @@
                 },
                 "MaxHealthyPercentage": {
                     "$ref": "#/$defs/IntPercent100To200"
+                },
+                "BakeTime": {
+                    "$ref": "#/$defs/BakeTime"
                 }
             }
         },
@@ -3847,6 +3990,10 @@
             }
         },
         "IntPercent100To200": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "BakeTime": {
             "type": "integer",
             "format": "int32"
         },
@@ -4430,6 +4577,9 @@
                 "Unit": {
                     "$ref": "#/$defs/MetricUnit"
                 },
+                "Period": {
+                    "$ref": "#/$defs/MetricGranularityInSeconds"
+                },
                 "Metrics": {
                     "$ref": "#/$defs/TargetTrackingMetricDataQueries"
                 }
@@ -4476,6 +4626,10 @@
         "MetricUnit": {
             "type": "string"
         },
+        "MetricGranularityInSeconds": {
+            "type": "integer",
+            "format": "int32"
+        },
         "TargetTrackingMetricDataQueries": {
             "type": "array",
             "items": {
@@ -4497,6 +4651,9 @@
                 "Label": {
                     "$ref": "#/$defs/XmlStringMetricLabel"
                 },
+                "Period": {
+                    "$ref": "#/$defs/MetricGranularityInSeconds"
+                },
                 "ReturnData": {
                     "$ref": "#/$defs/ReturnData"
                 }
@@ -4516,6 +4673,9 @@
                 },
                 "Unit": {
                     "$ref": "#/$defs/MetricUnit"
+                },
+                "Period": {
+                    "$ref": "#/$defs/MetricGranularityInSeconds"
                 }
             }
         },
@@ -5691,7 +5851,7 @@
                     "$ref": "#/$defs/HealthCheckGracePeriod"
                 },
                 "PlacementGroup": {
-                    "$ref": "#/$defs/XmlStringMaxLen255"
+                    "$ref": "#/$defs/UpdatePlacementGroupParam"
                 },
                 "VPCZoneIdentifier": {
                     "$ref": "#/$defs/XmlStringMaxLen5000"
@@ -5722,8 +5882,23 @@
                 },
                 "InstanceMaintenancePolicy": {
                     "$ref": "#/$defs/InstanceMaintenancePolicy"
+                },
+                "AvailabilityZoneDistribution": {
+                    "$ref": "#/$defs/AvailabilityZoneDistribution"
+                },
+                "AvailabilityZoneImpairmentPolicy": {
+                    "$ref": "#/$defs/AvailabilityZoneImpairmentPolicy"
+                },
+                "SkipZonalShiftValidation": {
+                    "$ref": "#/$defs/SkipZonalShiftValidation"
+                },
+                "CapacityReservationSpecification": {
+                    "$ref": "#/$defs/CapacityReservationSpecification"
                 }
             }
+        },
+        "UpdatePlacementGroupParam": {
+            "type": "string"
         }
     },
     "aws": {

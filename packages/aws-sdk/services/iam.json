@@ -1394,6 +1394,64 @@
             }
         },
         {
+            "name": "DisableOrganizationsRootCredentialsManagement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSIdentityManagementV20100508.DisableOrganizationsRootCredentialsManagement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisableOrganizationsRootCredentialsManagementResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableOrganizationsRootCredentialsManagementRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DisableOrganizationsRootSessions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSIdentityManagementV20100508.DisableOrganizationsRootSessions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DisableOrganizationsRootSessionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DisableOrganizationsRootSessionsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "EnableMFADevice",
             "config": {
                 "http": {
@@ -1417,6 +1475,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/EnableMFADeviceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableOrganizationsRootCredentialsManagement",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSIdentityManagementV20100508.EnableOrganizationsRootCredentialsManagement"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnableOrganizationsRootCredentialsManagementResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableOrganizationsRootCredentialsManagementRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "EnableOrganizationsRootSessions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSIdentityManagementV20100508.EnableOrganizationsRootSessions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/EnableOrganizationsRootSessionsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/EnableOrganizationsRootSessionsRequest"
                         }
                     }
                 }
@@ -2722,6 +2838,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListOpenIDConnectProviderTagsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListOrganizationsFeatures",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSIdentityManagementV20100508.ListOrganizationsFeatures"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListOrganizationsFeaturesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListOrganizationsFeaturesRequest"
                         }
                     }
                 }
@@ -5288,6 +5433,12 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/tagListType"
+                },
+                "AssertionEncryptionMode": {
+                    "$ref": "#/$defs/assertionEncryptionModeType"
+                },
+                "AddPrivateKey": {
+                    "$ref": "#/$defs/privateKeyType"
                 }
             }
         },
@@ -5295,6 +5446,15 @@
             "type": "string"
         },
         "SAMLProviderNameType": {
+            "type": "string"
+        },
+        "assertionEncryptionModeType": {
+            "enum": [
+                "Required",
+                "Allowed"
+            ]
+        },
+        "privateKeyType": {
             "type": "string"
         },
         "CreateServiceLinkedRoleResponse": {
@@ -5752,6 +5912,51 @@
                 }
             }
         },
+        "DisableOrganizationsRootCredentialsManagementResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationIdType"
+                },
+                "EnabledFeatures": {
+                    "$ref": "#/$defs/FeaturesListType"
+                }
+            }
+        },
+        "OrganizationIdType": {
+            "type": "string"
+        },
+        "FeaturesListType": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FeatureType"
+            }
+        },
+        "FeatureType": {
+            "enum": [
+                "ROOT_CREDENTIALS_MANAGEMENT",
+                "ROOT_SESSIONS"
+            ]
+        },
+        "DisableOrganizationsRootCredentialsManagementRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "DisableOrganizationsRootSessionsResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationIdType"
+                },
+                "EnabledFeatures": {
+                    "$ref": "#/$defs/FeaturesListType"
+                }
+            }
+        },
+        "DisableOrganizationsRootSessionsRequest": {
+            "type": "object",
+            "properties": {}
+        },
         "EnableMFADeviceRequest": {
             "type": "object",
             "properties": {
@@ -5771,6 +5976,36 @@
         },
         "authenticationCodeType": {
             "type": "string"
+        },
+        "EnableOrganizationsRootCredentialsManagementResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationIdType"
+                },
+                "EnabledFeatures": {
+                    "$ref": "#/$defs/FeaturesListType"
+                }
+            }
+        },
+        "EnableOrganizationsRootCredentialsManagementRequest": {
+            "type": "object",
+            "properties": {}
+        },
+        "EnableOrganizationsRootSessionsResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationIdType"
+                },
+                "EnabledFeatures": {
+                    "$ref": "#/$defs/FeaturesListType"
+                }
+            }
+        },
+        "EnableOrganizationsRootSessionsRequest": {
+            "type": "object",
+            "properties": {}
         },
         "GenerateCredentialReportResponse": {
             "type": "object",
@@ -6653,6 +6888,9 @@
         "GetSAMLProviderResponse": {
             "type": "object",
             "properties": {
+                "SAMLProviderUUID": {
+                    "$ref": "#/$defs/privateKeyIdType"
+                },
                 "SAMLMetadataDocument": {
                     "$ref": "#/$defs/SAMLMetadataDocumentType"
                 },
@@ -6664,6 +6902,32 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/tagListType"
+                },
+                "AssertionEncryptionMode": {
+                    "$ref": "#/$defs/assertionEncryptionModeType"
+                },
+                "PrivateKeyList": {
+                    "$ref": "#/$defs/privateKeyList"
+                }
+            }
+        },
+        "privateKeyIdType": {
+            "type": "string"
+        },
+        "privateKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SAMLPrivateKey"
+            }
+        },
+        "SAMLPrivateKey": {
+            "type": "object",
+            "properties": {
+                "KeyId": {
+                    "$ref": "#/$defs/privateKeyIdType"
+                },
+                "Timestamp": {
+                    "$ref": "#/$defs/dateType"
                 }
             }
         },
@@ -7674,6 +7938,21 @@
                     "$ref": "#/$defs/maxItemsType"
                 }
             }
+        },
+        "ListOrganizationsFeaturesResponse": {
+            "type": "object",
+            "properties": {
+                "OrganizationId": {
+                    "$ref": "#/$defs/OrganizationIdType"
+                },
+                "EnabledFeatures": {
+                    "$ref": "#/$defs/FeaturesListType"
+                }
+            }
+        },
+        "ListOrganizationsFeaturesRequest": {
+            "type": "object",
+            "properties": {}
         },
         "ListPoliciesResponse": {
             "type": "object",
@@ -9151,6 +9430,15 @@
                 },
                 "SAMLProviderArn": {
                     "$ref": "#/$defs/arnType"
+                },
+                "AssertionEncryptionMode": {
+                    "$ref": "#/$defs/assertionEncryptionModeType"
+                },
+                "AddPrivateKey": {
+                    "$ref": "#/$defs/privateKeyType"
+                },
+                "RemovePrivateKey": {
+                    "$ref": "#/$defs/privateKeyIdType"
                 }
             }
         },
@@ -9257,9 +9545,6 @@
                     "$ref": "#/$defs/tagListType"
                 }
             }
-        },
-        "privateKeyType": {
-            "type": "string"
         },
         "UploadSigningCertificateResponse": {
             "type": "object",

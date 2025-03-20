@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "recommendationResourceExclusions": {}
                     }
                 }
             }
@@ -68,9 +66,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "organizationRecommendationIdentifier": {}
                     }
                 }
             }
@@ -107,9 +103,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "recommendationIdentifier": {}
                     }
                 }
             }
@@ -142,9 +136,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "pillar": {},
+                        "awsService": {},
+                        "source": {},
+                        "language": {}
                     }
                 }
             }
@@ -181,9 +178,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "organizationRecommendationIdentifier": {},
+                        "affectedAccountId": {}
                     }
                 }
             }
@@ -220,9 +218,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "status": {},
+                        "exclusionStatus": {},
+                        "regionCode": {},
+                        "organizationRecommendationIdentifier": {},
+                        "affectedAccountId": {}
                     }
                 }
             }
@@ -255,9 +257,16 @@
                         "options"
                     ],
                     "options": {
+                        "nextToken": {},
+                        "maxResults": {},
                         "type": {},
-                        "members": {},
-                        "traits": {}
+                        "status": {},
+                        "pillar": {},
+                        "awsService": {},
+                        "source": {},
+                        "checkIdentifier": {},
+                        "afterLastUpdatedAt": {},
+                        "beforeLastUpdatedAt": {}
                     }
                 }
             }
@@ -294,9 +303,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "status": {},
+                        "exclusionStatus": {},
+                        "regionCode": {},
+                        "recommendationIdentifier": {}
                     }
                 }
             }
@@ -329,9 +341,16 @@
                         "options"
                     ],
                     "options": {
+                        "nextToken": {},
+                        "maxResults": {},
                         "type": {},
-                        "members": {},
-                        "traits": {}
+                        "status": {},
+                        "pillar": {},
+                        "awsService": {},
+                        "source": {},
+                        "checkIdentifier": {},
+                        "afterLastUpdatedAt": {},
+                        "beforeLastUpdatedAt": {}
                     }
                 }
             }
@@ -368,9 +387,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "lifecycleStage": {},
+                        "updateReason": {},
+                        "updateReasonCode": {},
+                        "organizationRecommendationIdentifier": {}
                     }
                 }
             }
@@ -407,9 +427,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "lifecycleStage": {},
+                        "updateReason": {},
+                        "updateReasonCode": {},
+                        "recommendationIdentifier": {}
                     }
                 }
             }
@@ -461,6 +482,34 @@
             "type": "string",
             "format": "binary"
         },
+        "BatchUpdateRecommendationResourceExclusionRequest": {
+            "type": "object",
+            "properties": {
+                "recommendationResourceExclusions": {
+                    "$ref": "#/$defs/RecommendationResourceExclusionList"
+                }
+            }
+        },
+        "RecommendationResourceExclusionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RecommendationResourceExclusion"
+            }
+        },
+        "RecommendationResourceExclusion": {
+            "type": "object",
+            "properties": {
+                "arn": {
+                    "$ref": "#/$defs/RecommendationResourceArn"
+                },
+                "isExcluded": {
+                    "$ref": "#/$defs/smithy.api#Boolean"
+                }
+            }
+        },
+        "RecommendationResourceArn": {
+            "type": "string"
+        },
         "BatchUpdateRecommendationResourceExclusionResponse": {
             "type": "object",
             "properties": {
@@ -489,33 +538,16 @@
                 }
             }
         },
-        "RecommendationResourceArn": {
+        "GetOrganizationRecommendationRequest": {
+            "type": "object",
+            "properties": {
+                "organizationRecommendationIdentifier": {
+                    "$ref": "#/$defs/OrganizationRecommendationIdentifier"
+                }
+            }
+        },
+        "OrganizationRecommendationIdentifier": {
             "type": "string"
-        },
-        "BatchUpdateRecommendationResourceExclusionRequest": {
-            "type": "object",
-            "properties": {
-                "recommendationResourceExclusions": {
-                    "$ref": "#/$defs/RecommendationResourceExclusionList"
-                }
-            }
-        },
-        "RecommendationResourceExclusionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/RecommendationResourceExclusion"
-            }
-        },
-        "RecommendationResourceExclusion": {
-            "type": "object",
-            "properties": {
-                "arn": {
-                    "$ref": "#/$defs/RecommendationResourceArn"
-                },
-                "isExcluded": {
-                    "$ref": "#/$defs/smithy.api#Boolean"
-                }
-            }
         },
         "GetOrganizationRecommendationResponse": {
             "type": "object",
@@ -706,15 +738,15 @@
                 "OTHER"
             ]
         },
-        "GetOrganizationRecommendationRequest": {
+        "GetRecommendationRequest": {
             "type": "object",
             "properties": {
-                "organizationRecommendationIdentifier": {
-                    "$ref": "#/$defs/OrganizationRecommendationIdentifier"
+                "recommendationIdentifier": {
+                    "$ref": "#/$defs/AccountRecommendationIdentifier"
                 }
             }
         },
-        "OrganizationRecommendationIdentifier": {
+        "AccountRecommendationIdentifier": {
             "type": "string"
         },
         "GetRecommendationResponse": {
@@ -796,16 +828,43 @@
         "AccountRecommendationArn": {
             "type": "string"
         },
-        "GetRecommendationRequest": {
+        "ListChecksRequest": {
             "type": "object",
             "properties": {
-                "recommendationIdentifier": {
-                    "$ref": "#/$defs/AccountRecommendationIdentifier"
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                },
+                "pillar": {
+                    "$ref": "#/$defs/RecommendationPillar"
+                },
+                "awsService": {
+                    "$ref": "#/$defs/RecommendationAwsService"
+                },
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "language": {
+                    "$ref": "#/$defs/RecommendationLanguage"
                 }
             }
         },
-        "AccountRecommendationIdentifier": {
-            "type": "string"
+        "RecommendationLanguage": {
+            "enum": [
+                "ENGLISH",
+                "JAPANESE",
+                "CHINESE",
+                "FRENCH",
+                "GERMAN",
+                "KOREAN",
+                "TRADITIONAL_CHINESE",
+                "ITALIAN",
+                "SPANISH",
+                "BRAZILIAN_PORTUGUESE",
+                "BAHASA_INDONESIA"
+            ]
         },
         "ListChecksResponse": {
             "type": "object",
@@ -862,7 +921,7 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "ListChecksRequest": {
+        "ListOrganizationRecommendationAccountsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -871,34 +930,16 @@
                 "maxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
                 },
-                "pillar": {
-                    "$ref": "#/$defs/RecommendationPillar"
+                "organizationRecommendationIdentifier": {
+                    "$ref": "#/$defs/OrganizationRecommendationIdentifier"
                 },
-                "awsService": {
-                    "$ref": "#/$defs/RecommendationAwsService"
-                },
-                "source": {
-                    "$ref": "#/$defs/RecommendationSource"
-                },
-                "language": {
-                    "$ref": "#/$defs/RecommendationLanguage"
+                "affectedAccountId": {
+                    "$ref": "#/$defs/AccountId"
                 }
             }
         },
-        "RecommendationLanguage": {
-            "enum": [
-                "ENGLISH",
-                "JAPANESE",
-                "CHINESE",
-                "FRENCH",
-                "GERMAN",
-                "KOREAN",
-                "TRADITIONAL_CHINESE",
-                "ITALIAN",
-                "SPANISH",
-                "BRAZILIAN_PORTUGUESE",
-                "BAHASA_INDONESIA"
-            ]
+        "AccountId": {
+            "type": "string"
         },
         "ListOrganizationRecommendationAccountsResponse": {
             "type": "object",
@@ -946,10 +987,7 @@
                 }
             }
         },
-        "AccountId": {
-            "type": "string"
-        },
-        "ListOrganizationRecommendationAccountsRequest": {
+        "ListOrganizationRecommendationResourcesRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -958,6 +996,15 @@
                 "maxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
                 },
+                "status": {
+                    "$ref": "#/$defs/ResourceStatus"
+                },
+                "exclusionStatus": {
+                    "$ref": "#/$defs/ExclusionStatus"
+                },
+                "regionCode": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
                 "organizationRecommendationIdentifier": {
                     "$ref": "#/$defs/OrganizationRecommendationIdentifier"
                 },
@@ -965,6 +1012,19 @@
                     "$ref": "#/$defs/AccountId"
                 }
             }
+        },
+        "ResourceStatus": {
+            "enum": [
+                "OK",
+                "WARNING",
+                "ERROR"
+            ]
+        },
+        "ExclusionStatus": {
+            "enum": [
+                "EXCLUDED",
+                "INCLUDED"
+            ]
         },
         "ListOrganizationRecommendationResourcesResponse": {
             "type": "object",
@@ -1021,20 +1081,7 @@
         "RecommendationRegionCode": {
             "type": "string"
         },
-        "ResourceStatus": {
-            "enum": [
-                "OK",
-                "WARNING",
-                "ERROR"
-            ]
-        },
-        "ExclusionStatus": {
-            "enum": [
-                "EXCLUDED",
-                "INCLUDED"
-            ]
-        },
-        "ListOrganizationRecommendationResourcesRequest": {
+        "ListOrganizationRecommendationsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -1043,22 +1090,34 @@
                 "maxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
                 },
+                "type": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
                 "status": {
-                    "$ref": "#/$defs/ResourceStatus"
+                    "$ref": "#/$defs/RecommendationStatus"
                 },
-                "exclusionStatus": {
-                    "$ref": "#/$defs/ExclusionStatus"
+                "pillar": {
+                    "$ref": "#/$defs/RecommendationPillar"
                 },
-                "regionCode": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "awsService": {
+                    "$ref": "#/$defs/RecommendationAwsService"
                 },
-                "organizationRecommendationIdentifier": {
-                    "$ref": "#/$defs/OrganizationRecommendationIdentifier"
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
                 },
-                "affectedAccountId": {
-                    "$ref": "#/$defs/AccountId"
+                "checkIdentifier": {
+                    "$ref": "#/$defs/CheckIdentifier"
+                },
+                "afterLastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "beforeLastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
                 }
             }
+        },
+        "CheckIdentifier": {
+            "type": "string"
         },
         "ListOrganizationRecommendationsResponse": {
             "type": "object",
@@ -1124,7 +1183,7 @@
                 }
             }
         },
-        "ListOrganizationRecommendationsRequest": {
+        "ListRecommendationResourcesRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -1133,34 +1192,19 @@
                 "maxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
                 },
-                "type": {
-                    "$ref": "#/$defs/RecommendationType"
-                },
                 "status": {
-                    "$ref": "#/$defs/RecommendationStatus"
+                    "$ref": "#/$defs/ResourceStatus"
                 },
-                "pillar": {
-                    "$ref": "#/$defs/RecommendationPillar"
+                "exclusionStatus": {
+                    "$ref": "#/$defs/ExclusionStatus"
                 },
-                "awsService": {
-                    "$ref": "#/$defs/RecommendationAwsService"
+                "regionCode": {
+                    "$ref": "#/$defs/smithy.api#String"
                 },
-                "source": {
-                    "$ref": "#/$defs/RecommendationSource"
-                },
-                "checkIdentifier": {
-                    "$ref": "#/$defs/CheckIdentifier"
-                },
-                "afterLastUpdatedAt": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
-                },
-                "beforeLastUpdatedAt": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
+                "recommendationIdentifier": {
+                    "$ref": "#/$defs/AccountRecommendationIdentifier"
                 }
             }
-        },
-        "CheckIdentifier": {
-            "type": "string"
         },
         "ListRecommendationResourcesResponse": {
             "type": "object",
@@ -1211,7 +1255,7 @@
                 }
             }
         },
-        "ListRecommendationResourcesRequest": {
+        "ListRecommendationsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -1220,17 +1264,29 @@
                 "maxResults": {
                     "$ref": "#/$defs/smithy.api#Integer"
                 },
+                "type": {
+                    "$ref": "#/$defs/RecommendationType"
+                },
                 "status": {
-                    "$ref": "#/$defs/ResourceStatus"
+                    "$ref": "#/$defs/RecommendationStatus"
                 },
-                "exclusionStatus": {
-                    "$ref": "#/$defs/ExclusionStatus"
+                "pillar": {
+                    "$ref": "#/$defs/RecommendationPillar"
                 },
-                "regionCode": {
-                    "$ref": "#/$defs/smithy.api#String"
+                "awsService": {
+                    "$ref": "#/$defs/RecommendationAwsService"
                 },
-                "recommendationIdentifier": {
-                    "$ref": "#/$defs/AccountRecommendationIdentifier"
+                "source": {
+                    "$ref": "#/$defs/RecommendationSource"
+                },
+                "checkIdentifier": {
+                    "$ref": "#/$defs/CheckIdentifier"
+                },
+                "afterLastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
+                },
+                "beforeLastUpdatedAt": {
+                    "$ref": "#/$defs/smithy.api#Timestamp"
                 }
             }
         },
@@ -1295,41 +1351,6 @@
                 },
                 "arn": {
                     "$ref": "#/$defs/AccountRecommendationArn"
-                }
-            }
-        },
-        "ListRecommendationsRequest": {
-            "type": "object",
-            "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                },
-                "type": {
-                    "$ref": "#/$defs/RecommendationType"
-                },
-                "status": {
-                    "$ref": "#/$defs/RecommendationStatus"
-                },
-                "pillar": {
-                    "$ref": "#/$defs/RecommendationPillar"
-                },
-                "awsService": {
-                    "$ref": "#/$defs/RecommendationAwsService"
-                },
-                "source": {
-                    "$ref": "#/$defs/RecommendationSource"
-                },
-                "checkIdentifier": {
-                    "$ref": "#/$defs/CheckIdentifier"
-                },
-                "afterLastUpdatedAt": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
-                },
-                "beforeLastUpdatedAt": {
-                    "$ref": "#/$defs/smithy.api#Timestamp"
                 }
             }
         },

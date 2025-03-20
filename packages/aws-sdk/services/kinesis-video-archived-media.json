@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamName": {},
+                        "StreamARN": {},
+                        "ClipFragmentSelector": {}
                     }
                 }
             }
@@ -64,9 +64,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamName": {},
+                        "StreamARN": {},
+                        "PlaybackMode": {},
+                        "DisplayFragmentTimestamp": {},
+                        "DisplayFragmentNumber": {},
+                        "DASHFragmentSelector": {},
+                        "Expires": {},
+                        "MaxManifestFragmentResults": {}
                     }
                 }
             }
@@ -99,9 +104,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamName": {},
+                        "StreamARN": {},
+                        "PlaybackMode": {},
+                        "HLSFragmentSelector": {},
+                        "ContainerFormat": {},
+                        "DiscontinuityMode": {},
+                        "DisplayFragmentTimestamp": {},
+                        "Expires": {},
+                        "MaxMediaPlaylistFragmentResults": {}
                     }
                 }
             }
@@ -134,9 +145,18 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamName": {},
+                        "StreamARN": {},
+                        "ImageSelectorType": {},
+                        "StartTimestamp": {},
+                        "EndTimestamp": {},
+                        "SamplingInterval": {},
+                        "Format": {},
+                        "FormatConfig": {},
+                        "WidthPixels": {},
+                        "HeightPixels": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -169,9 +189,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamName": {},
+                        "StreamARN": {},
+                        "Fragments": {}
                     }
                 }
             }
@@ -204,9 +224,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StreamName": {},
+                        "StreamARN": {},
+                        "MaxResults": {},
+                        "NextToken": {},
+                        "FragmentSelector": {}
                     }
                 }
             }
@@ -255,24 +277,6 @@
         },
         "smithy.api#Document": {},
         "smithy.api#Blob": {
-            "type": "string",
-            "format": "binary"
-        },
-        "GetClipOutput": {
-            "type": "object",
-            "properties": {
-                "ContentType": {
-                    "$ref": "#/$defs/ContentType"
-                },
-                "Payload": {
-                    "$ref": "#/$defs/Payload"
-                }
-            }
-        },
-        "ContentType": {
-            "type": "string"
-        },
-        "Payload": {
             "type": "string",
             "format": "binary"
         },
@@ -328,16 +332,23 @@
             "type": "string",
             "format": "date-time"
         },
-        "GetDASHStreamingSessionURLOutput": {
+        "GetClipOutput": {
             "type": "object",
             "properties": {
-                "DASHStreamingSessionURL": {
-                    "$ref": "#/$defs/DASHStreamingSessionURL"
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
+                },
+                "Payload": {
+                    "$ref": "#/$defs/Payload"
                 }
             }
         },
-        "DASHStreamingSessionURL": {
+        "ContentType": {
             "type": "string"
+        },
+        "Payload": {
+            "type": "string",
+            "format": "binary"
         },
         "GetDASHStreamingSessionURLInput": {
             "type": "object",
@@ -423,15 +434,15 @@
             "type": "integer",
             "format": "int64"
         },
-        "GetHLSStreamingSessionURLOutput": {
+        "GetDASHStreamingSessionURLOutput": {
             "type": "object",
             "properties": {
-                "HLSStreamingSessionURL": {
-                    "$ref": "#/$defs/HLSStreamingSessionURL"
+                "DASHStreamingSessionURL": {
+                    "$ref": "#/$defs/DASHStreamingSessionURL"
                 }
             }
         },
-        "HLSStreamingSessionURL": {
+        "DASHStreamingSessionURL": {
             "type": "string"
         },
         "GetHLSStreamingSessionURLInput": {
@@ -524,47 +535,15 @@
             "type": "integer",
             "format": "int64"
         },
-        "GetImagesOutput": {
+        "GetHLSStreamingSessionURLOutput": {
             "type": "object",
             "properties": {
-                "Images": {
-                    "$ref": "#/$defs/Images"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "HLSStreamingSessionURL": {
+                    "$ref": "#/$defs/HLSStreamingSessionURL"
                 }
             }
         },
-        "Images": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Image"
-            }
-        },
-        "Image": {
-            "type": "object",
-            "properties": {
-                "TimeStamp": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "Error": {
-                    "$ref": "#/$defs/ImageError"
-                },
-                "ImageContent": {
-                    "$ref": "#/$defs/ImageContent"
-                }
-            }
-        },
-        "ImageError": {
-            "enum": [
-                "NO_MEDIA",
-                "MEDIA_ERROR"
-            ]
-        },
-        "ImageContent": {
-            "type": "string"
-        },
-        "NextToken": {
+        "HLSStreamingSessionURL": {
             "type": "string"
         },
         "GetImagesInput": {
@@ -645,16 +624,48 @@
             "type": "integer",
             "format": "int64"
         },
-        "GetMediaForFragmentListOutput": {
+        "NextToken": {
+            "type": "string"
+        },
+        "GetImagesOutput": {
             "type": "object",
             "properties": {
-                "ContentType": {
-                    "$ref": "#/$defs/ContentType"
+                "Images": {
+                    "$ref": "#/$defs/Images"
                 },
-                "Payload": {
-                    "$ref": "#/$defs/Payload"
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
+        },
+        "Images": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Image"
+            }
+        },
+        "Image": {
+            "type": "object",
+            "properties": {
+                "TimeStamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ImageError"
+                },
+                "ImageContent": {
+                    "$ref": "#/$defs/ImageContent"
+                }
+            }
+        },
+        "ImageError": {
+            "enum": [
+                "NO_MEDIA",
+                "MEDIA_ERROR"
+            ]
+        },
+        "ImageContent": {
+            "type": "string"
         },
         "GetMediaForFragmentListInput": {
             "type": "object",
@@ -679,46 +690,16 @@
         "FragmentNumberString": {
             "type": "string"
         },
-        "ListFragmentsOutput": {
+        "GetMediaForFragmentListOutput": {
             "type": "object",
             "properties": {
-                "Fragments": {
-                    "$ref": "#/$defs/FragmentList"
+                "ContentType": {
+                    "$ref": "#/$defs/ContentType"
                 },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "Payload": {
+                    "$ref": "#/$defs/Payload"
                 }
             }
-        },
-        "FragmentList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Fragment"
-            }
-        },
-        "Fragment": {
-            "type": "object",
-            "properties": {
-                "FragmentNumber": {
-                    "$ref": "#/$defs/FragmentNumberString"
-                },
-                "FragmentSizeInBytes": {
-                    "$ref": "#/$defs/Long"
-                },
-                "ProducerTimestamp": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "ServerTimestamp": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "FragmentLengthInMilliseconds": {
-                    "$ref": "#/$defs/Long"
-                }
-            }
-        },
-        "Long": {
-            "type": "integer",
-            "format": "int64"
         },
         "ListFragmentsInput": {
             "type": "object",
@@ -771,6 +752,47 @@
                     "$ref": "#/$defs/Timestamp"
                 }
             }
+        },
+        "ListFragmentsOutput": {
+            "type": "object",
+            "properties": {
+                "Fragments": {
+                    "$ref": "#/$defs/FragmentList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FragmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Fragment"
+            }
+        },
+        "Fragment": {
+            "type": "object",
+            "properties": {
+                "FragmentNumber": {
+                    "$ref": "#/$defs/FragmentNumberString"
+                },
+                "FragmentSizeInBytes": {
+                    "$ref": "#/$defs/Long"
+                },
+                "ProducerTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ServerTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "FragmentLengthInMilliseconds": {
+                    "$ref": "#/$defs/Long"
+                }
+            }
+        },
+        "Long": {
+            "type": "integer",
+            "format": "int64"
         }
     },
     "aws": {

@@ -263,6 +263,35 @@
             }
         },
         {
+            "name": "CreateStackRefactor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudFormation.CreateStackRefactor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateStackRefactorOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateStackRefactorInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateStackSet",
             "config": {
                 "http": {
@@ -814,6 +843,35 @@
             }
         },
         {
+            "name": "DescribeStackRefactor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudFormation.DescribeStackRefactor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeStackRefactorOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeStackRefactorInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DescribeStackResource",
             "config": {
                 "http": {
@@ -1191,6 +1249,35 @@
             }
         },
         {
+            "name": "ExecuteStackRefactor",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudFormation.ExecuteStackRefactor"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "type": "object"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ExecuteStackRefactorInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetGeneratedTemplate",
             "config": {
                 "http": {
@@ -1423,6 +1510,35 @@
             }
         },
         {
+            "name": "ListHookResults",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudFormation.ListHookResults"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListHookResultsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListHookResultsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListImports",
             "config": {
                 "http": {
@@ -1591,6 +1707,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListStackInstancesInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStackRefactorActions",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudFormation.ListStackRefactorActions"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStackRefactorActionsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStackRefactorActionsInput"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListStackRefactors",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "CloudFormation.ListStackRefactors"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListStackRefactorsOutput"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListStackRefactorsInput"
                         }
                     }
                 }
@@ -3305,6 +3479,85 @@
                 "DELEGATED_ADMIN"
             ]
         },
+        "CreateStackRefactorOutput": {
+            "type": "object",
+            "properties": {
+                "StackRefactorId": {
+                    "$ref": "#/$defs/StackRefactorId"
+                }
+            }
+        },
+        "StackRefactorId": {
+            "type": "string"
+        },
+        "CreateStackRefactorInput": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "EnableStackCreation": {
+                    "$ref": "#/$defs/EnableStackCreation"
+                },
+                "ResourceMappings": {
+                    "$ref": "#/$defs/ResourceMappings"
+                },
+                "StackDefinitions": {
+                    "$ref": "#/$defs/StackDefinitions"
+                }
+            }
+        },
+        "EnableStackCreation": {
+            "type": "boolean"
+        },
+        "ResourceMappings": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceMapping"
+            }
+        },
+        "ResourceMapping": {
+            "type": "object",
+            "properties": {
+                "Source": {
+                    "$ref": "#/$defs/ResourceLocation"
+                },
+                "Destination": {
+                    "$ref": "#/$defs/ResourceLocation"
+                }
+            }
+        },
+        "ResourceLocation": {
+            "type": "object",
+            "properties": {
+                "StackName": {
+                    "$ref": "#/$defs/StackName"
+                },
+                "LogicalResourceId": {
+                    "$ref": "#/$defs/LogicalResourceId"
+                }
+            }
+        },
+        "StackDefinitions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StackDefinition"
+            }
+        },
+        "StackDefinition": {
+            "type": "object",
+            "properties": {
+                "StackName": {
+                    "$ref": "#/$defs/StackName"
+                },
+                "TemplateBody": {
+                    "$ref": "#/$defs/TemplateBody"
+                },
+                "TemplateURL": {
+                    "$ref": "#/$defs/TemplateURL"
+                }
+            }
+        },
         "CreateStackSetOutput": {
             "type": "object",
             "properties": {
@@ -4578,6 +4831,12 @@
                 "IMPORT_ROLLBACK_IN_PROGRESS",
                 "IMPORT_ROLLBACK_FAILED",
                 "IMPORT_ROLLBACK_COMPLETE",
+                "EXPORT_FAILED",
+                "EXPORT_COMPLETE",
+                "EXPORT_IN_PROGRESS",
+                "EXPORT_ROLLBACK_IN_PROGRESS",
+                "EXPORT_ROLLBACK_FAILED",
+                "EXPORT_ROLLBACK_COMPLETE",
                 "UPDATE_ROLLBACK_IN_PROGRESS",
                 "UPDATE_ROLLBACK_COMPLETE",
                 "UPDATE_ROLLBACK_FAILED",
@@ -4713,6 +4972,75 @@
                 },
                 "CallAs": {
                     "$ref": "#/$defs/CallAs"
+                }
+            }
+        },
+        "DescribeStackRefactorOutput": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "StackRefactorId": {
+                    "$ref": "#/$defs/StackRefactorId"
+                },
+                "StackIds": {
+                    "$ref": "#/$defs/StackIds"
+                },
+                "ExecutionStatus": {
+                    "$ref": "#/$defs/StackRefactorExecutionStatus"
+                },
+                "ExecutionStatusReason": {
+                    "$ref": "#/$defs/ExecutionStatusReason"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StackRefactorStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/StackRefactorStatusReason"
+                }
+            }
+        },
+        "StackIds": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StackId"
+            }
+        },
+        "StackRefactorExecutionStatus": {
+            "enum": [
+                "UNAVAILABLE",
+                "AVAILABLE",
+                "OBSOLETE",
+                "EXECUTE_IN_PROGRESS",
+                "EXECUTE_COMPLETE",
+                "EXECUTE_FAILED",
+                "ROLLBACK_IN_PROGRESS",
+                "ROLLBACK_COMPLETE",
+                "ROLLBACK_FAILED"
+            ]
+        },
+        "ExecutionStatusReason": {
+            "type": "string"
+        },
+        "StackRefactorStatus": {
+            "enum": [
+                "CREATE_IN_PROGRESS",
+                "CREATE_COMPLETE",
+                "CREATE_FAILED",
+                "DELETE_IN_PROGRESS",
+                "DELETE_COMPLETE",
+                "DELETE_FAILED"
+            ]
+        },
+        "StackRefactorStatusReason": {
+            "type": "string"
+        },
+        "DescribeStackRefactorInput": {
+            "type": "object",
+            "properties": {
+                "StackRefactorId": {
+                    "$ref": "#/$defs/StackRefactorId"
                 }
             }
         },
@@ -5786,6 +6114,14 @@
                 }
             }
         },
+        "ExecuteStackRefactorInput": {
+            "type": "object",
+            "properties": {
+                "StackRefactorId": {
+                    "$ref": "#/$defs/StackRefactorId"
+                }
+            }
+        },
         "GetGeneratedTemplateOutput": {
             "type": "object",
             "properties": {
@@ -6259,6 +6595,80 @@
             "type": "integer",
             "format": "int32"
         },
+        "ListHookResultsOutput": {
+            "type": "object",
+            "properties": {
+                "TargetType": {
+                    "$ref": "#/$defs/ListHookResultsTargetType"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/HookResultId"
+                },
+                "HookResults": {
+                    "$ref": "#/$defs/HookResultSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListHookResultsTargetType": {
+            "enum": [
+                "CHANGE_SET",
+                "STACK",
+                "RESOURCE",
+                "CLOUD_CONTROL"
+            ]
+        },
+        "HookResultId": {
+            "type": "string"
+        },
+        "HookResultSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/HookResultSummary"
+            }
+        },
+        "HookResultSummary": {
+            "type": "object",
+            "properties": {
+                "InvocationPoint": {
+                    "$ref": "#/$defs/HookInvocationPoint"
+                },
+                "FailureMode": {
+                    "$ref": "#/$defs/HookFailureMode"
+                },
+                "TypeName": {
+                    "$ref": "#/$defs/HookTypeName"
+                },
+                "TypeVersionId": {
+                    "$ref": "#/$defs/HookTypeVersionId"
+                },
+                "TypeConfigurationVersionId": {
+                    "$ref": "#/$defs/HookTypeConfigurationVersionId"
+                },
+                "Status": {
+                    "$ref": "#/$defs/HookStatus"
+                },
+                "HookStatusReason": {
+                    "$ref": "#/$defs/HookStatusReason"
+                }
+            }
+        },
+        "ListHookResultsInput": {
+            "type": "object",
+            "properties": {
+                "TargetType": {
+                    "$ref": "#/$defs/ListHookResultsTargetType"
+                },
+                "TargetId": {
+                    "$ref": "#/$defs/HookResultId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
         "ListImportsOutput": {
             "type": "object",
             "properties": {
@@ -6650,6 +7060,168 @@
         },
         "StackInstanceFilterValues": {
             "type": "string"
+        },
+        "ListStackRefactorActionsOutput": {
+            "type": "object",
+            "properties": {
+                "StackRefactorActions": {
+                    "$ref": "#/$defs/StackRefactorActions"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "StackRefactorActions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StackRefactorAction"
+            }
+        },
+        "StackRefactorAction": {
+            "type": "object",
+            "properties": {
+                "Action": {
+                    "$ref": "#/$defs/StackRefactorActionType"
+                },
+                "Entity": {
+                    "$ref": "#/$defs/StackRefactorActionEntity"
+                },
+                "PhysicalResourceId": {
+                    "$ref": "#/$defs/PhysicalResourceId"
+                },
+                "ResourceIdentifier": {
+                    "$ref": "#/$defs/StackRefactorResourceIdentifier"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Detection": {
+                    "$ref": "#/$defs/StackRefactorDetection"
+                },
+                "DetectionReason": {
+                    "$ref": "#/$defs/DetectionReason"
+                },
+                "TagResources": {
+                    "$ref": "#/$defs/StackRefactorTagResources"
+                },
+                "UntagResources": {
+                    "$ref": "#/$defs/StackRefactorUntagResources"
+                },
+                "ResourceMapping": {
+                    "$ref": "#/$defs/ResourceMapping"
+                }
+            }
+        },
+        "StackRefactorActionType": {
+            "enum": [
+                "MOVE",
+                "CREATE"
+            ]
+        },
+        "StackRefactorActionEntity": {
+            "enum": [
+                "RESOURCE",
+                "STACK"
+            ]
+        },
+        "StackRefactorResourceIdentifier": {
+            "type": "string"
+        },
+        "StackRefactorDetection": {
+            "enum": [
+                "AUTO",
+                "MANUAL"
+            ]
+        },
+        "DetectionReason": {
+            "type": "string"
+        },
+        "StackRefactorTagResources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "StackRefactorUntagResources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TagKey"
+            }
+        },
+        "ListStackRefactorActionsInput": {
+            "type": "object",
+            "properties": {
+                "StackRefactorId": {
+                    "$ref": "#/$defs/StackRefactorId"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "ListStackRefactorsOutput": {
+            "type": "object",
+            "properties": {
+                "StackRefactorSummaries": {
+                    "$ref": "#/$defs/StackRefactorSummaries"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "StackRefactorSummaries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StackRefactorSummary"
+            }
+        },
+        "StackRefactorSummary": {
+            "type": "object",
+            "properties": {
+                "StackRefactorId": {
+                    "$ref": "#/$defs/StackRefactorId"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "ExecutionStatus": {
+                    "$ref": "#/$defs/StackRefactorExecutionStatus"
+                },
+                "ExecutionStatusReason": {
+                    "$ref": "#/$defs/ExecutionStatusReason"
+                },
+                "Status": {
+                    "$ref": "#/$defs/StackRefactorStatus"
+                },
+                "StatusReason": {
+                    "$ref": "#/$defs/StackRefactorStatusReason"
+                }
+            }
+        },
+        "ListStackRefactorsInput": {
+            "type": "object",
+            "properties": {
+                "ExecutionStatusFilter": {
+                    "$ref": "#/$defs/StackRefactorExecutionStatusFilter"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "StackRefactorExecutionStatusFilter": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StackRefactorExecutionStatus"
+            }
         },
         "ListStackResourcesOutput": {
             "type": "object",

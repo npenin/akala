@@ -674,6 +674,9 @@
                 "HsmType": {
                     "$ref": "#/$defs/HsmType"
                 },
+                "HsmTypeRollbackExpiration": {
+                    "$ref": "#/$defs/Timestamp"
+                },
                 "PreCoPassword": {
                     "$ref": "#/$defs/PreCoPassword"
                 },
@@ -694,6 +697,9 @@
                 },
                 "VpcId": {
                     "$ref": "#/$defs/VpcId"
+                },
+                "NetworkType": {
+                    "$ref": "#/$defs/NetworkType"
                 },
                 "Certificates": {
                     "$ref": "#/$defs/Certificates"
@@ -754,8 +760,14 @@
                 "EniIp": {
                     "$ref": "#/$defs/IpAddress"
                 },
+                "EniIpV6": {
+                    "$ref": "#/$defs/IpV6Address"
+                },
                 "HsmId": {
                     "$ref": "#/$defs/HsmId"
+                },
+                "HsmType": {
+                    "$ref": "#/$defs/HsmType"
                 },
                 "State": {
                     "$ref": "#/$defs/HsmState"
@@ -777,7 +789,13 @@
         "IpAddress": {
             "type": "string"
         },
+        "IpV6Address": {
+            "type": "string"
+        },
         "HsmId": {
+            "type": "string"
+        },
+        "HsmType": {
             "type": "string"
         },
         "HsmState": {
@@ -790,9 +808,6 @@
             ]
         },
         "String": {
-            "type": "string"
-        },
-        "HsmType": {
             "type": "string"
         },
         "PreCoPassword": {
@@ -809,6 +824,8 @@
                 "INITIALIZED",
                 "ACTIVE",
                 "UPDATE_IN_PROGRESS",
+                "MODIFY_IN_PROGRESS",
+                "ROLLBACK_IN_PROGRESS",
                 "DELETE_IN_PROGRESS",
                 "DELETED",
                 "DEGRADED"
@@ -825,6 +842,12 @@
         },
         "VpcId": {
             "type": "string"
+        },
+        "NetworkType": {
+            "enum": [
+                "IPV4",
+                "DUALSTACK"
+            ]
         },
         "Certificates": {
             "type": "object",
@@ -869,6 +892,9 @@
                 },
                 "SubnetIds": {
                     "$ref": "#/$defs/SubnetIds"
+                },
+                "NetworkType": {
+                    "$ref": "#/$defs/NetworkType"
                 },
                 "TagList": {
                     "$ref": "#/$defs/TagList"
@@ -1243,6 +1269,9 @@
         "ModifyClusterRequest": {
             "type": "object",
             "properties": {
+                "HsmType": {
+                    "$ref": "#/$defs/HsmType"
+                },
                 "BackupRetentionPolicy": {
                     "$ref": "#/$defs/BackupRetentionPolicy"
                 },

@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -64,9 +62,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -99,9 +96,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -153,6 +149,17 @@
             "type": "string",
             "format": "binary"
         },
+        "ListTagsForResourceInput": {
+            "type": "object",
+            "properties": {
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
+                }
+            }
+        },
+        "Arn": {
+            "type": "string"
+        },
         "ListTagsForResourceOutput": {
             "type": "object",
             "properties": {
@@ -181,25 +188,6 @@
                 }
             }
         },
-        "ListTagsForResourceInput": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
-                }
-            }
-        },
-        "Arn": {
-            "type": "string"
-        },
-        "TagResourceOutput": {
-            "type": "object",
-            "properties": {
-                "statusCode": {
-                    "$ref": "#/$defs/smithy.api#Integer"
-                }
-            }
-        },
         "TagResourceInput": {
             "type": "object",
             "properties": {
@@ -211,7 +199,7 @@
                 }
             }
         },
-        "UntagResourceOutput": {
+        "TagResourceOutput": {
             "type": "object",
             "properties": {
                 "statusCode": {
@@ -234,6 +222,14 @@
             "type": "array",
             "items": {
                 "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "UntagResourceOutput": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "$ref": "#/$defs/smithy.api#Integer"
+                }
             }
         }
     },

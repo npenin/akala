@@ -1539,6 +1539,151 @@
             }
         },
         {
+            "name": "UpdateLocationEfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "FmrsService.UpdateLocationEfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationEfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationEfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationFsxLustre",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "FmrsService.UpdateLocationFsxLustre"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationFsxLustreResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationFsxLustreRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationFsxOntap",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "FmrsService.UpdateLocationFsxOntap"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationFsxOntapResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationFsxOntapRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationFsxOpenZfs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "FmrsService.UpdateLocationFsxOpenZfs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationFsxOpenZfsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationFsxOpenZfsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationFsxWindows",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "FmrsService.UpdateLocationFsxWindows"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationFsxWindowsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationFsxWindowsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateLocationHdfs",
             "config": {
                 "http": {
@@ -1620,6 +1765,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateLocationObjectStorageRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateLocationS3",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "FmrsService.UpdateLocationS3"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateLocationS3Response"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateLocationS3Request"
                         }
                     }
                 }
@@ -2675,10 +2849,40 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/InputTagList"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/SmbAuthenticationType"
+                },
+                "DnsIpAddresses": {
+                    "$ref": "#/$defs/DnsIpList"
+                },
+                "KerberosPrincipal": {
+                    "$ref": "#/$defs/KerberosPrincipal"
+                },
+                "KerberosKeytab": {
+                    "$ref": "#/$defs/KerberosKeytabFile"
+                },
+                "KerberosKrb5Conf": {
+                    "$ref": "#/$defs/KerberosKrb5ConfFile"
                 }
             }
         },
         "SmbSubdirectory": {
+            "type": "string"
+        },
+        "SmbAuthenticationType": {
+            "enum": [
+                "NTLM",
+                "KERBEROS"
+            ]
+        },
+        "DnsIpList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ServerIpAddress"
+            }
+        },
+        "ServerIpAddress": {
             "type": "string"
         },
         "CreateTaskResponse": {
@@ -2727,6 +2931,9 @@
                 },
                 "TaskReportConfig": {
                     "$ref": "#/$defs/TaskReportConfig"
+                },
+                "TaskMode": {
+                    "$ref": "#/$defs/TaskMode"
                 }
             }
         },
@@ -3056,6 +3263,12 @@
                     "$ref": "#/$defs/ReportLevel"
                 }
             }
+        },
+        "TaskMode": {
+            "enum": [
+                "BASIC",
+                "ENHANCED"
+            ]
         },
         "DeleteAgentResponse": {
             "type": "object",
@@ -3588,6 +3801,15 @@
                 },
                 "CreationTime": {
                     "$ref": "#/$defs/Time"
+                },
+                "DnsIpAddresses": {
+                    "$ref": "#/$defs/DnsIpList"
+                },
+                "KerberosPrincipal": {
+                    "$ref": "#/$defs/KerberosPrincipal"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/SmbAuthenticationType"
                 }
             }
         },
@@ -4191,6 +4413,9 @@
                 },
                 "ScheduleDetails": {
                     "$ref": "#/$defs/TaskScheduleDetails"
+                },
+                "TaskMode": {
+                    "$ref": "#/$defs/TaskMode"
                 }
             }
         },
@@ -4314,6 +4539,18 @@
                 },
                 "EstimatedFilesToDelete": {
                     "$ref": "#/$defs/long"
+                },
+                "TaskMode": {
+                    "$ref": "#/$defs/TaskMode"
+                },
+                "FilesPrepared": {
+                    "$ref": "#/$defs/long"
+                },
+                "FilesListed": {
+                    "$ref": "#/$defs/TaskExecutionFilesListedDetail"
+                },
+                "FilesFailed": {
+                    "$ref": "#/$defs/TaskExecutionFilesFailedDetail"
                 }
             }
         },
@@ -4387,6 +4624,34 @@
                 },
                 "ErrorDetail": {
                     "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "TaskExecutionFilesListedDetail": {
+            "type": "object",
+            "properties": {
+                "AtSource": {
+                    "$ref": "#/$defs/long"
+                },
+                "AtDestinationForDelete": {
+                    "$ref": "#/$defs/long"
+                }
+            }
+        },
+        "TaskExecutionFilesFailedDetail": {
+            "type": "object",
+            "properties": {
+                "Prepare": {
+                    "$ref": "#/$defs/long"
+                },
+                "Transfer": {
+                    "$ref": "#/$defs/long"
+                },
+                "Verify": {
+                    "$ref": "#/$defs/long"
+                },
+                "Delete": {
+                    "$ref": "#/$defs/long"
                 }
             }
         },
@@ -4700,6 +4965,9 @@
                 },
                 "Status": {
                     "$ref": "#/$defs/TaskExecutionStatus"
+                },
+                "TaskMode": {
+                    "$ref": "#/$defs/TaskMode"
                 }
             }
         },
@@ -4745,6 +5013,9 @@
                 },
                 "Name": {
                     "$ref": "#/$defs/TagValue"
+                },
+                "TaskMode": {
+                    "$ref": "#/$defs/TaskMode"
                 }
             }
         },
@@ -4967,6 +5238,142 @@
                 }
             }
         },
+        "UpdateLocationEfsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationEfsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/EfsSubdirectory"
+                },
+                "AccessPointArn": {
+                    "$ref": "#/$defs/UpdatedEfsAccessPointArn"
+                },
+                "FileSystemAccessRoleArn": {
+                    "$ref": "#/$defs/UpdatedEfsIamRoleArn"
+                },
+                "InTransitEncryption": {
+                    "$ref": "#/$defs/EfsInTransitEncryption"
+                }
+            }
+        },
+        "UpdatedEfsAccessPointArn": {
+            "type": "string"
+        },
+        "UpdatedEfsIamRoleArn": {
+            "type": "string"
+        },
+        "UpdateLocationFsxLustreResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationFsxLustreRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/SmbSubdirectory"
+                }
+            }
+        },
+        "UpdateLocationFsxOntapResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationFsxOntapRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/FsxUpdateProtocol"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/FsxOntapSubdirectory"
+                }
+            }
+        },
+        "FsxUpdateProtocol": {
+            "type": "object",
+            "properties": {
+                "NFS": {
+                    "$ref": "#/$defs/FsxProtocolNfs"
+                },
+                "SMB": {
+                    "$ref": "#/$defs/FsxUpdateProtocolSmb"
+                }
+            }
+        },
+        "FsxUpdateProtocolSmb": {
+            "type": "object",
+            "properties": {
+                "Domain": {
+                    "$ref": "#/$defs/UpdateSmbDomain"
+                },
+                "MountOptions": {
+                    "$ref": "#/$defs/SmbMountOptions"
+                },
+                "Password": {
+                    "$ref": "#/$defs/SmbPassword"
+                },
+                "User": {
+                    "$ref": "#/$defs/SmbUser"
+                }
+            }
+        },
+        "UpdateSmbDomain": {
+            "type": "string"
+        },
+        "UpdateLocationFsxOpenZfsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationFsxOpenZfsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Protocol": {
+                    "$ref": "#/$defs/FsxProtocol"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/SmbSubdirectory"
+                }
+            }
+        },
+        "UpdateLocationFsxWindowsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationFsxWindowsRequest": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/FsxWindowsSubdirectory"
+                },
+                "Domain": {
+                    "$ref": "#/$defs/UpdateSmbDomain"
+                },
+                "User": {
+                    "$ref": "#/$defs/SmbUser"
+                },
+                "Password": {
+                    "$ref": "#/$defs/SmbPassword"
+                }
+            }
+        },
         "UpdateLocationHdfsResponse": {
             "type": "object",
             "properties": {}
@@ -5028,6 +5435,9 @@
                 "Subdirectory": {
                     "$ref": "#/$defs/NfsSubdirectory"
                 },
+                "ServerHostname": {
+                    "$ref": "#/$defs/ServerHostname"
+                },
                 "OnPremConfig": {
                     "$ref": "#/$defs/OnPremConfig"
                 },
@@ -5055,6 +5465,9 @@
                 "Subdirectory": {
                     "$ref": "#/$defs/S3Subdirectory"
                 },
+                "ServerHostname": {
+                    "$ref": "#/$defs/ServerHostname"
+                },
                 "AccessKey": {
                     "$ref": "#/$defs/ObjectStorageAccessKey"
                 },
@@ -5066,6 +5479,27 @@
                 },
                 "ServerCertificate": {
                     "$ref": "#/$defs/ObjectStorageCertificate"
+                }
+            }
+        },
+        "UpdateLocationS3Response": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateLocationS3Request": {
+            "type": "object",
+            "properties": {
+                "LocationArn": {
+                    "$ref": "#/$defs/LocationArn"
+                },
+                "Subdirectory": {
+                    "$ref": "#/$defs/S3Subdirectory"
+                },
+                "S3StorageClass": {
+                    "$ref": "#/$defs/S3StorageClass"
+                },
+                "S3Config": {
+                    "$ref": "#/$defs/S3Config"
                 }
             }
         },
@@ -5082,6 +5516,9 @@
                 "Subdirectory": {
                     "$ref": "#/$defs/SmbSubdirectory"
                 },
+                "ServerHostname": {
+                    "$ref": "#/$defs/ServerHostname"
+                },
                 "User": {
                     "$ref": "#/$defs/SmbUser"
                 },
@@ -5096,6 +5533,21 @@
                 },
                 "MountOptions": {
                     "$ref": "#/$defs/SmbMountOptions"
+                },
+                "AuthenticationType": {
+                    "$ref": "#/$defs/SmbAuthenticationType"
+                },
+                "DnsIpAddresses": {
+                    "$ref": "#/$defs/DnsIpList"
+                },
+                "KerberosPrincipal": {
+                    "$ref": "#/$defs/KerberosPrincipal"
+                },
+                "KerberosKeytab": {
+                    "$ref": "#/$defs/KerberosKeytabFile"
+                },
+                "KerberosKrb5Conf": {
+                    "$ref": "#/$defs/KerberosKrb5ConfFile"
                 }
             }
         },

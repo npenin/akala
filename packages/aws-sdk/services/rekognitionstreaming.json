@@ -29,9 +29,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SessionId": {},
+                        "VideoWidth": {},
+                        "VideoHeight": {},
+                        "ChallengeVersions": {},
+                        "LivenessRequestStream": {}
                     }
                 }
             }
@@ -83,6 +85,196 @@
             "type": "string",
             "format": "binary"
         },
+        "StartFaceLivenessSessionRequest": {
+            "type": "object",
+            "properties": {
+                "SessionId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "VideoWidth": {
+                    "$ref": "#/$defs/VideoWidth"
+                },
+                "VideoHeight": {
+                    "$ref": "#/$defs/VideoHeight"
+                },
+                "ChallengeVersions": {
+                    "$ref": "#/$defs/ChallengeVersions"
+                },
+                "LivenessRequestStream": {
+                    "$ref": "#/$defs/LivenessRequestStream"
+                }
+            }
+        },
+        "UUID": {
+            "type": "string"
+        },
+        "VideoWidth": {
+            "type": "string"
+        },
+        "VideoHeight": {
+            "type": "string"
+        },
+        "ChallengeVersions": {
+            "type": "string"
+        },
+        "LivenessRequestStream": {
+            "type": "object",
+            "properties": {
+                "VideoEvent": {
+                    "$ref": "#/$defs/VideoEvent"
+                },
+                "ClientSessionInformationEvent": {
+                    "$ref": "#/$defs/ClientSessionInformationEvent"
+                }
+            }
+        },
+        "VideoEvent": {
+            "type": "object",
+            "properties": {
+                "VideoChunk": {
+                    "$ref": "#/$defs/VideoChunk"
+                },
+                "TimestampMillis": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "VideoChunk": {
+            "type": "string",
+            "format": "binary"
+        },
+        "EpochMillis": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "ClientSessionInformationEvent": {
+            "type": "object",
+            "properties": {
+                "Challenge": {
+                    "$ref": "#/$defs/ClientChallenge"
+                }
+            }
+        },
+        "ClientChallenge": {
+            "type": "object",
+            "properties": {
+                "FaceMovementAndLightChallenge": {
+                    "$ref": "#/$defs/FaceMovementAndLightClientChallenge"
+                }
+            }
+        },
+        "FaceMovementAndLightClientChallenge": {
+            "type": "object",
+            "properties": {
+                "ChallengeId": {
+                    "$ref": "#/$defs/UUID"
+                },
+                "VideoStartTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "VideoEndTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "InitialFace": {
+                    "$ref": "#/$defs/InitialFace"
+                },
+                "TargetFace": {
+                    "$ref": "#/$defs/TargetFace"
+                },
+                "ColorDisplayed": {
+                    "$ref": "#/$defs/ColorDisplayed"
+                }
+            }
+        },
+        "InitialFace": {
+            "type": "object",
+            "properties": {
+                "BoundingBox": {
+                    "$ref": "#/$defs/BoundingBox"
+                },
+                "InitialFaceDetectedTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "BoundingBox": {
+            "type": "object",
+            "properties": {
+                "Width": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "Height": {
+                    "$ref": "#/$defs/Threshold"
+                },
+                "Left": {
+                    "$ref": "#/$defs/BoundingBoxFloat"
+                },
+                "Top": {
+                    "$ref": "#/$defs/BoundingBoxFloat"
+                }
+            }
+        },
+        "Threshold": {
+            "type": "number",
+            "format": "float"
+        },
+        "BoundingBoxFloat": {
+            "type": "number",
+            "format": "float"
+        },
+        "TargetFace": {
+            "type": "object",
+            "properties": {
+                "BoundingBox": {
+                    "$ref": "#/$defs/BoundingBox"
+                },
+                "FaceDetectedInTargetPositionStartTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                },
+                "FaceDetectedInTargetPositionEndTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "ColorDisplayed": {
+            "type": "object",
+            "properties": {
+                "CurrentColor": {
+                    "$ref": "#/$defs/FreshnessColor"
+                },
+                "PreviousColor": {
+                    "$ref": "#/$defs/FreshnessColor"
+                },
+                "SequenceNumber": {
+                    "$ref": "#/$defs/ColorSequenceInt"
+                },
+                "CurrentColorStartTimestamp": {
+                    "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "FreshnessColor": {
+            "type": "object",
+            "properties": {
+                "RGB": {
+                    "$ref": "#/$defs/ColorComponentList"
+                }
+            }
+        },
+        "ColorComponentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ColorComponentInt"
+            }
+        },
+        "ColorComponentInt": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ColorSequenceInt": {
+            "type": "integer",
+            "format": "int32"
+        },
         "StartFaceLivenessSessionResponse": {
             "type": "object",
             "properties": {
@@ -93,9 +285,6 @@
                     "$ref": "#/$defs/LivenessResponseStream"
                 }
             }
-        },
-        "UUID": {
-            "type": "string"
         },
         "LivenessResponseStream": {
             "type": "object",
@@ -228,10 +417,6 @@
                 }
             }
         },
-        "Threshold": {
-            "type": "number",
-            "format": "float"
-        },
         "Float": {
             "type": "number",
             "format": "float"
@@ -260,24 +445,6 @@
                 }
             }
         },
-        "FreshnessColor": {
-            "type": "object",
-            "properties": {
-                "RGB": {
-                    "$ref": "#/$defs/ColorComponentList"
-                }
-            }
-        },
-        "ColorComponentList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/ColorComponentInt"
-            }
-        },
-        "ColorComponentInt": {
-            "type": "integer",
-            "format": "int32"
-        },
         "ColorDurationInMs": {
             "type": "number",
             "format": "float"
@@ -289,10 +456,6 @@
                     "$ref": "#/$defs/EpochMillis"
                 }
             }
-        },
-        "EpochMillis": {
-            "type": "integer",
-            "format": "int64"
         },
         "ValidationException": {
             "type": "object",
@@ -351,167 +514,6 @@
                     "$ref": "#/$defs/String"
                 }
             }
-        },
-        "StartFaceLivenessSessionRequest": {
-            "type": "object",
-            "properties": {
-                "SessionId": {
-                    "$ref": "#/$defs/UUID"
-                },
-                "VideoWidth": {
-                    "$ref": "#/$defs/VideoWidth"
-                },
-                "VideoHeight": {
-                    "$ref": "#/$defs/VideoHeight"
-                },
-                "ChallengeVersions": {
-                    "$ref": "#/$defs/ChallengeVersions"
-                },
-                "LivenessRequestStream": {
-                    "$ref": "#/$defs/LivenessRequestStream"
-                }
-            }
-        },
-        "VideoWidth": {
-            "type": "string"
-        },
-        "VideoHeight": {
-            "type": "string"
-        },
-        "ChallengeVersions": {
-            "type": "string"
-        },
-        "LivenessRequestStream": {
-            "type": "object",
-            "properties": {
-                "VideoEvent": {
-                    "$ref": "#/$defs/VideoEvent"
-                },
-                "ClientSessionInformationEvent": {
-                    "$ref": "#/$defs/ClientSessionInformationEvent"
-                }
-            }
-        },
-        "VideoEvent": {
-            "type": "object",
-            "properties": {
-                "VideoChunk": {
-                    "$ref": "#/$defs/VideoChunk"
-                },
-                "TimestampMillis": {
-                    "$ref": "#/$defs/EpochMillis"
-                }
-            }
-        },
-        "VideoChunk": {
-            "type": "string",
-            "format": "binary"
-        },
-        "ClientSessionInformationEvent": {
-            "type": "object",
-            "properties": {
-                "Challenge": {
-                    "$ref": "#/$defs/ClientChallenge"
-                }
-            }
-        },
-        "ClientChallenge": {
-            "type": "object",
-            "properties": {
-                "FaceMovementAndLightChallenge": {
-                    "$ref": "#/$defs/FaceMovementAndLightClientChallenge"
-                }
-            }
-        },
-        "FaceMovementAndLightClientChallenge": {
-            "type": "object",
-            "properties": {
-                "ChallengeId": {
-                    "$ref": "#/$defs/UUID"
-                },
-                "VideoStartTimestamp": {
-                    "$ref": "#/$defs/EpochMillis"
-                },
-                "VideoEndTimestamp": {
-                    "$ref": "#/$defs/EpochMillis"
-                },
-                "InitialFace": {
-                    "$ref": "#/$defs/InitialFace"
-                },
-                "TargetFace": {
-                    "$ref": "#/$defs/TargetFace"
-                },
-                "ColorDisplayed": {
-                    "$ref": "#/$defs/ColorDisplayed"
-                }
-            }
-        },
-        "InitialFace": {
-            "type": "object",
-            "properties": {
-                "BoundingBox": {
-                    "$ref": "#/$defs/BoundingBox"
-                },
-                "InitialFaceDetectedTimestamp": {
-                    "$ref": "#/$defs/EpochMillis"
-                }
-            }
-        },
-        "BoundingBox": {
-            "type": "object",
-            "properties": {
-                "Width": {
-                    "$ref": "#/$defs/Threshold"
-                },
-                "Height": {
-                    "$ref": "#/$defs/Threshold"
-                },
-                "Left": {
-                    "$ref": "#/$defs/BoundingBoxFloat"
-                },
-                "Top": {
-                    "$ref": "#/$defs/BoundingBoxFloat"
-                }
-            }
-        },
-        "BoundingBoxFloat": {
-            "type": "number",
-            "format": "float"
-        },
-        "TargetFace": {
-            "type": "object",
-            "properties": {
-                "BoundingBox": {
-                    "$ref": "#/$defs/BoundingBox"
-                },
-                "FaceDetectedInTargetPositionStartTimestamp": {
-                    "$ref": "#/$defs/EpochMillis"
-                },
-                "FaceDetectedInTargetPositionEndTimestamp": {
-                    "$ref": "#/$defs/EpochMillis"
-                }
-            }
-        },
-        "ColorDisplayed": {
-            "type": "object",
-            "properties": {
-                "CurrentColor": {
-                    "$ref": "#/$defs/FreshnessColor"
-                },
-                "PreviousColor": {
-                    "$ref": "#/$defs/FreshnessColor"
-                },
-                "SequenceNumber": {
-                    "$ref": "#/$defs/ColorSequenceInt"
-                },
-                "CurrentColorStartTimestamp": {
-                    "$ref": "#/$defs/EpochMillis"
-                }
-            }
-        },
-        "ColorSequenceInt": {
-            "type": "integer",
-            "format": "int32"
         }
     },
     "aws": {

@@ -39,9 +39,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botId": {},
+                        "botAliasId": {},
+                        "localeId": {},
+                        "sessionId": {}
                     }
                 }
             }
@@ -84,9 +85,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botId": {},
+                        "botAliasId": {},
+                        "localeId": {},
+                        "sessionId": {}
                     }
                 }
             }
@@ -129,9 +131,14 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botId": {},
+                        "botAliasId": {},
+                        "localeId": {},
+                        "sessionId": {},
+                        "messages": {},
+                        "sessionState": {},
+                        "requestAttributes": {},
+                        "responseContentType": {}
                     }
                 }
             }
@@ -174,9 +181,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botId": {},
+                        "botAliasId": {},
+                        "localeId": {},
+                        "sessionId": {},
+                        "text": {},
+                        "sessionState": {},
+                        "requestAttributes": {}
                     }
                 }
             }
@@ -219,9 +230,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botId": {},
+                        "botAliasId": {},
+                        "localeId": {},
+                        "sessionId": {},
+                        "sessionState": {},
+                        "requestAttributes": {},
+                        "requestContentType": {},
+                        "responseContentType": {},
+                        "inputStream": {}
                     }
                 }
             }
@@ -264,9 +281,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "botId": {},
+                        "botAliasId": {},
+                        "localeId": {},
+                        "sessionId": {},
+                        "conversationMode": {},
+                        "requestEventStream": {}
                     }
                 }
             }
@@ -318,7 +338,7 @@
             "type": "string",
             "format": "binary"
         },
-        "DeleteSessionResponse": {
+        "DeleteSessionRequest": {
             "type": "object",
             "properties": {
                 "botId": {
@@ -347,7 +367,24 @@
         "SessionId": {
             "type": "string"
         },
-        "DeleteSessionRequest": {
+        "DeleteSessionResponse": {
+            "type": "object",
+            "properties": {
+                "botId": {
+                    "$ref": "#/$defs/BotIdentifier"
+                },
+                "botAliasId": {
+                    "$ref": "#/$defs/BotAliasIdentifier"
+                },
+                "localeId": {
+                    "$ref": "#/$defs/LocaleId"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/SessionId"
+                }
+            }
+        },
+        "GetSessionRequest": {
             "type": "object",
             "properties": {
                 "botId": {
@@ -801,7 +838,7 @@
         "RuntimeHintPhrase": {
             "type": "string"
         },
-        "GetSessionRequest": {
+        "PutSessionRequest": {
             "type": "object",
             "properties": {
                 "botId": {
@@ -815,6 +852,18 @@
                 },
                 "sessionId": {
                     "$ref": "#/$defs/SessionId"
+                },
+                "messages": {
+                    "$ref": "#/$defs/Messages"
+                },
+                "sessionState": {
+                    "$ref": "#/$defs/SessionState"
+                },
+                "requestAttributes": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "responseContentType": {
+                    "$ref": "#/$defs/NonEmptyString"
                 }
             }
         },
@@ -845,7 +894,7 @@
             "type": "string",
             "format": "binary"
         },
-        "PutSessionRequest": {
+        "RecognizeTextRequest": {
             "type": "object",
             "properties": {
                 "botId": {
@@ -860,17 +909,14 @@
                 "sessionId": {
                     "$ref": "#/$defs/SessionId"
                 },
-                "messages": {
-                    "$ref": "#/$defs/Messages"
+                "text": {
+                    "$ref": "#/$defs/Text"
                 },
                 "sessionState": {
                     "$ref": "#/$defs/SessionState"
                 },
                 "requestAttributes": {
                     "$ref": "#/$defs/StringMap"
-                },
-                "responseContentType": {
-                    "$ref": "#/$defs/NonEmptyString"
                 }
             }
         },
@@ -911,67 +957,6 @@
         "Name": {
             "type": "string"
         },
-        "RecognizeTextRequest": {
-            "type": "object",
-            "properties": {
-                "botId": {
-                    "$ref": "#/$defs/BotIdentifier"
-                },
-                "botAliasId": {
-                    "$ref": "#/$defs/BotAliasIdentifier"
-                },
-                "localeId": {
-                    "$ref": "#/$defs/LocaleId"
-                },
-                "sessionId": {
-                    "$ref": "#/$defs/SessionId"
-                },
-                "text": {
-                    "$ref": "#/$defs/Text"
-                },
-                "sessionState": {
-                    "$ref": "#/$defs/SessionState"
-                },
-                "requestAttributes": {
-                    "$ref": "#/$defs/StringMap"
-                }
-            }
-        },
-        "RecognizeUtteranceResponse": {
-            "type": "object",
-            "properties": {
-                "inputMode": {
-                    "$ref": "#/$defs/NonEmptyString"
-                },
-                "contentType": {
-                    "$ref": "#/$defs/NonEmptyString"
-                },
-                "messages": {
-                    "$ref": "#/$defs/NonEmptyString"
-                },
-                "interpretations": {
-                    "$ref": "#/$defs/NonEmptyString"
-                },
-                "sessionState": {
-                    "$ref": "#/$defs/NonEmptyString"
-                },
-                "requestAttributes": {
-                    "$ref": "#/$defs/NonEmptyString"
-                },
-                "sessionId": {
-                    "$ref": "#/$defs/SessionId"
-                },
-                "inputTranscript": {
-                    "$ref": "#/$defs/NonEmptyString"
-                },
-                "audioStream": {
-                    "$ref": "#/$defs/BlobStream"
-                },
-                "recognizedBotMember": {
-                    "$ref": "#/$defs/NonEmptyString"
-                }
-            }
-        },
         "RecognizeUtteranceRequest": {
             "type": "object",
             "properties": {
@@ -1007,227 +992,38 @@
         "SensitiveNonEmptyString": {
             "type": "string"
         },
-        "StartConversationResponse": {
-            "type": "object",
-            "properties": {
-                "responseEventStream": {
-                    "$ref": "#/$defs/StartConversationResponseEventStream"
-                }
-            }
-        },
-        "StartConversationResponseEventStream": {
-            "type": "object",
-            "properties": {
-                "PlaybackInterruptionEvent": {
-                    "$ref": "#/$defs/PlaybackInterruptionEvent"
-                },
-                "TranscriptEvent": {
-                    "$ref": "#/$defs/TranscriptEvent"
-                },
-                "IntentResultEvent": {
-                    "$ref": "#/$defs/IntentResultEvent"
-                },
-                "TextResponseEvent": {
-                    "$ref": "#/$defs/TextResponseEvent"
-                },
-                "AudioResponseEvent": {
-                    "$ref": "#/$defs/AudioResponseEvent"
-                },
-                "HeartbeatEvent": {
-                    "$ref": "#/$defs/HeartbeatEvent"
-                },
-                "AccessDeniedException": {
-                    "$ref": "#/$defs/AccessDeniedException"
-                },
-                "ResourceNotFoundException": {
-                    "$ref": "#/$defs/ResourceNotFoundException"
-                },
-                "ValidationException": {
-                    "$ref": "#/$defs/ValidationException"
-                },
-                "ThrottlingException": {
-                    "$ref": "#/$defs/ThrottlingException"
-                },
-                "InternalServerException": {
-                    "$ref": "#/$defs/InternalServerException"
-                },
-                "ConflictException": {
-                    "$ref": "#/$defs/ConflictException"
-                },
-                "DependencyFailedException": {
-                    "$ref": "#/$defs/DependencyFailedException"
-                },
-                "BadGatewayException": {
-                    "$ref": "#/$defs/BadGatewayException"
-                }
-            }
-        },
-        "PlaybackInterruptionEvent": {
-            "type": "object",
-            "properties": {
-                "eventReason": {
-                    "$ref": "#/$defs/PlaybackInterruptionReason"
-                },
-                "causedByEventId": {
-                    "$ref": "#/$defs/EventId"
-                },
-                "eventId": {
-                    "$ref": "#/$defs/EventId"
-                }
-            }
-        },
-        "PlaybackInterruptionReason": {
-            "enum": [
-                "DTMF_START_DETECTED",
-                "TEXT_DETECTED",
-                "VOICE_START_DETECTED"
-            ]
-        },
-        "EventId": {
-            "type": "string"
-        },
-        "TranscriptEvent": {
-            "type": "object",
-            "properties": {
-                "transcript": {
-                    "$ref": "#/$defs/String"
-                },
-                "eventId": {
-                    "$ref": "#/$defs/EventId"
-                }
-            }
-        },
-        "IntentResultEvent": {
+        "RecognizeUtteranceResponse": {
             "type": "object",
             "properties": {
                 "inputMode": {
-                    "$ref": "#/$defs/InputMode"
-                },
-                "interpretations": {
-                    "$ref": "#/$defs/Interpretations"
-                },
-                "sessionState": {
-                    "$ref": "#/$defs/SessionState"
-                },
-                "requestAttributes": {
-                    "$ref": "#/$defs/StringMap"
-                },
-                "sessionId": {
-                    "$ref": "#/$defs/SessionId"
-                },
-                "eventId": {
-                    "$ref": "#/$defs/EventId"
-                },
-                "recognizedBotMember": {
-                    "$ref": "#/$defs/RecognizedBotMember"
-                }
-            }
-        },
-        "InputMode": {
-            "enum": [
-                "TEXT",
-                "SPEECH",
-                "DTMF"
-            ]
-        },
-        "TextResponseEvent": {
-            "type": "object",
-            "properties": {
-                "messages": {
-                    "$ref": "#/$defs/Messages"
-                },
-                "eventId": {
-                    "$ref": "#/$defs/EventId"
-                }
-            }
-        },
-        "AudioResponseEvent": {
-            "type": "object",
-            "properties": {
-                "audioChunk": {
-                    "$ref": "#/$defs/AudioChunk"
+                    "$ref": "#/$defs/NonEmptyString"
                 },
                 "contentType": {
                     "$ref": "#/$defs/NonEmptyString"
                 },
-                "eventId": {
-                    "$ref": "#/$defs/EventId"
-                }
-            }
-        },
-        "AudioChunk": {
-            "type": "string",
-            "format": "binary"
-        },
-        "HeartbeatEvent": {
-            "type": "object",
-            "properties": {
-                "eventId": {
-                    "$ref": "#/$defs/EventId"
-                }
-            }
-        },
-        "AccessDeniedException": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "ResourceNotFoundException": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "ValidationException": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "ThrottlingException": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "InternalServerException": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "ConflictException": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "DependencyFailedException": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/String"
-                }
-            }
-        },
-        "BadGatewayException": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "$ref": "#/$defs/String"
+                "messages": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "interpretations": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "sessionState": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "requestAttributes": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "inputTranscript": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "audioStream": {
+                    "$ref": "#/$defs/BlobStream"
+                },
+                "recognizedBotMember": {
+                    "$ref": "#/$defs/NonEmptyString"
                 }
             }
         },
@@ -1312,6 +1108,9 @@
         "Boolean": {
             "type": "boolean"
         },
+        "EventId": {
+            "type": "string"
+        },
         "EpochMillis": {
             "type": "integer",
             "format": "int64"
@@ -1332,6 +1131,10 @@
                     "$ref": "#/$defs/EpochMillis"
                 }
             }
+        },
+        "AudioChunk": {
+            "type": "string",
+            "format": "binary"
         },
         "DTMFInputEvent": {
             "type": "object",
@@ -1383,6 +1186,223 @@
                 },
                 "clientTimestampMillis": {
                     "$ref": "#/$defs/EpochMillis"
+                }
+            }
+        },
+        "StartConversationResponse": {
+            "type": "object",
+            "properties": {
+                "responseEventStream": {
+                    "$ref": "#/$defs/StartConversationResponseEventStream"
+                }
+            }
+        },
+        "StartConversationResponseEventStream": {
+            "type": "object",
+            "properties": {
+                "PlaybackInterruptionEvent": {
+                    "$ref": "#/$defs/PlaybackInterruptionEvent"
+                },
+                "TranscriptEvent": {
+                    "$ref": "#/$defs/TranscriptEvent"
+                },
+                "IntentResultEvent": {
+                    "$ref": "#/$defs/IntentResultEvent"
+                },
+                "TextResponseEvent": {
+                    "$ref": "#/$defs/TextResponseEvent"
+                },
+                "AudioResponseEvent": {
+                    "$ref": "#/$defs/AudioResponseEvent"
+                },
+                "HeartbeatEvent": {
+                    "$ref": "#/$defs/HeartbeatEvent"
+                },
+                "AccessDeniedException": {
+                    "$ref": "#/$defs/AccessDeniedException"
+                },
+                "ResourceNotFoundException": {
+                    "$ref": "#/$defs/ResourceNotFoundException"
+                },
+                "ValidationException": {
+                    "$ref": "#/$defs/ValidationException"
+                },
+                "ThrottlingException": {
+                    "$ref": "#/$defs/ThrottlingException"
+                },
+                "InternalServerException": {
+                    "$ref": "#/$defs/InternalServerException"
+                },
+                "ConflictException": {
+                    "$ref": "#/$defs/ConflictException"
+                },
+                "DependencyFailedException": {
+                    "$ref": "#/$defs/DependencyFailedException"
+                },
+                "BadGatewayException": {
+                    "$ref": "#/$defs/BadGatewayException"
+                }
+            }
+        },
+        "PlaybackInterruptionEvent": {
+            "type": "object",
+            "properties": {
+                "eventReason": {
+                    "$ref": "#/$defs/PlaybackInterruptionReason"
+                },
+                "causedByEventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "PlaybackInterruptionReason": {
+            "enum": [
+                "DTMF_START_DETECTED",
+                "TEXT_DETECTED",
+                "VOICE_START_DETECTED"
+            ]
+        },
+        "TranscriptEvent": {
+            "type": "object",
+            "properties": {
+                "transcript": {
+                    "$ref": "#/$defs/String"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "IntentResultEvent": {
+            "type": "object",
+            "properties": {
+                "inputMode": {
+                    "$ref": "#/$defs/InputMode"
+                },
+                "interpretations": {
+                    "$ref": "#/$defs/Interpretations"
+                },
+                "sessionState": {
+                    "$ref": "#/$defs/SessionState"
+                },
+                "requestAttributes": {
+                    "$ref": "#/$defs/StringMap"
+                },
+                "sessionId": {
+                    "$ref": "#/$defs/SessionId"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/EventId"
+                },
+                "recognizedBotMember": {
+                    "$ref": "#/$defs/RecognizedBotMember"
+                }
+            }
+        },
+        "InputMode": {
+            "enum": [
+                "TEXT",
+                "SPEECH",
+                "DTMF"
+            ]
+        },
+        "TextResponseEvent": {
+            "type": "object",
+            "properties": {
+                "messages": {
+                    "$ref": "#/$defs/Messages"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "AudioResponseEvent": {
+            "type": "object",
+            "properties": {
+                "audioChunk": {
+                    "$ref": "#/$defs/AudioChunk"
+                },
+                "contentType": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "eventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "HeartbeatEvent": {
+            "type": "object",
+            "properties": {
+                "eventId": {
+                    "$ref": "#/$defs/EventId"
+                }
+            }
+        },
+        "AccessDeniedException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ResourceNotFoundException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ValidationException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ThrottlingException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "InternalServerException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "ConflictException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "DependencyFailedException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "BadGatewayException": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/String"
                 }
             }
         }

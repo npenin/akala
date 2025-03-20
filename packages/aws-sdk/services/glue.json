@@ -698,6 +698,35 @@
             }
         },
         {
+            "name": "CreateCatalog",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.CreateCatalog"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateCatalogResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateCatalogRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateClassifier",
             "config": {
                 "http": {
@@ -721,6 +750,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateClassifierRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateColumnStatisticsTaskSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.CreateColumnStatisticsTaskSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateColumnStatisticsTaskSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateColumnStatisticsTaskSettingsRequest"
                         }
                     }
                 }
@@ -895,6 +953,93 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/CreateDevEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.CreateIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateIntegrationResourceProperty",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.CreateIntegrationResourceProperty"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateIntegrationResourcePropertyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateIntegrationResourcePropertyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateIntegrationTableProperties",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.CreateIntegrationTableProperties"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateIntegrationTablePropertiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateIntegrationTablePropertiesRequest"
                         }
                     }
                 }
@@ -1365,6 +1510,35 @@
             }
         },
         {
+            "name": "DeleteCatalog",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.DeleteCatalog"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteCatalogResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteCatalogRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "DeleteClassifier",
             "config": {
                 "http": {
@@ -1446,6 +1620,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteColumnStatisticsForTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteColumnStatisticsTaskSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.DeleteColumnStatisticsTaskSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteColumnStatisticsTaskSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteColumnStatisticsTaskSettingsRequest"
                         }
                     }
                 }
@@ -1620,6 +1823,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/DeleteDevEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.DeleteIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIntegrationRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteIntegrationTableProperties",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.DeleteIntegrationTableProperties"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteIntegrationTablePropertiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteIntegrationTablePropertiesRequest"
                         }
                     }
                 }
@@ -2119,6 +2380,122 @@
             }
         },
         {
+            "name": "DescribeConnectionType",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.DescribeConnectionType"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeConnectionTypeResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeConnectionTypeRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeEntity",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.DescribeEntity"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeEntityResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeEntityRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeInboundIntegrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.DescribeInboundIntegrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeInboundIntegrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeInboundIntegrationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "DescribeIntegrations",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.DescribeIntegrations"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DescribeIntegrationsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DescribeIntegrationsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetBlueprint",
             "config": {
                 "http": {
@@ -2206,6 +2583,35 @@
             }
         },
         {
+            "name": "GetCatalog",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.GetCatalog"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCatalogResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCatalogRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetCatalogImportStatus",
             "config": {
                 "http": {
@@ -2229,6 +2635,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetCatalogImportStatusRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetCatalogs",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.GetCatalogs"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetCatalogsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetCatalogsRequest"
                         }
                     }
                 }
@@ -2403,6 +2838,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetColumnStatisticsTaskRunsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetColumnStatisticsTaskSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.GetColumnStatisticsTaskSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetColumnStatisticsTaskSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetColumnStatisticsTaskSettingsRequest"
                         }
                     }
                 }
@@ -2925,6 +3389,93 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/GetDevEndpointsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetEntityRecords",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.GetEntityRecords"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetEntityRecordsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetEntityRecordsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIntegrationResourceProperty",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.GetIntegrationResourceProperty"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIntegrationResourcePropertyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIntegrationResourcePropertyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetIntegrationTableProperties",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.GetIntegrationTableProperties"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetIntegrationTablePropertiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetIntegrationTablePropertiesRequest"
                         }
                     }
                 }
@@ -4265,6 +4816,35 @@
             }
         },
         {
+            "name": "ListConnectionTypes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.ListConnectionTypes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListConnectionTypesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListConnectionTypesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListCrawlers",
             "config": {
                 "http": {
@@ -4549,6 +5129,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListDevEndpointsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListEntities",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.ListEntities"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListEntitiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListEntitiesRequest"
                         }
                     }
                 }
@@ -4868,6 +5477,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/ListWorkflowsRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ModifyIntegration",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.ModifyIntegration"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ModifyIntegrationResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ModifyIntegrationRequest"
                         }
                     }
                 }
@@ -5280,6 +5918,35 @@
             }
         },
         {
+            "name": "StartColumnStatisticsTaskRunSchedule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.StartColumnStatisticsTaskRunSchedule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartColumnStatisticsTaskRunScheduleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartColumnStatisticsTaskRunScheduleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "StartCrawler",
             "config": {
                 "http": {
@@ -5628,6 +6295,35 @@
             }
         },
         {
+            "name": "StopColumnStatisticsTaskRunSchedule",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.StopColumnStatisticsTaskRunSchedule"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StopColumnStatisticsTaskRunScheduleResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StopColumnStatisticsTaskRunScheduleRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "StopCrawler",
             "config": {
                 "http": {
@@ -5889,6 +6585,35 @@
             }
         },
         {
+            "name": "UpdateCatalog",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.UpdateCatalog"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateCatalogResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateCatalogRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "UpdateClassifier",
             "config": {
                 "http": {
@@ -5970,6 +6695,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateColumnStatisticsForTableRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateColumnStatisticsTaskSettings",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.UpdateColumnStatisticsTaskSettings"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateColumnStatisticsTaskSettingsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateColumnStatisticsTaskSettingsRequest"
                         }
                     }
                 }
@@ -6144,6 +6898,64 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/UpdateDevEndpointRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateIntegrationResourceProperty",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.UpdateIntegrationResourceProperty"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateIntegrationResourcePropertyResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateIntegrationResourcePropertyRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "UpdateIntegrationTableProperties",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AWSGlue.UpdateIntegrationTableProperties"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/UpdateIntegrationTablePropertiesResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/UpdateIntegrationTablePropertiesRequest"
                         }
                     }
                 }
@@ -11361,6 +12173,9 @@
                 "enabled": {
                     "$ref": "#/$defs/NullableBoolean"
                 },
+                "vpcConfiguration": {
+                    "$ref": "#/$defs/TableOptimizerVpcConfiguration"
+                },
                 "retentionConfiguration": {
                     "$ref": "#/$defs/RetentionConfiguration"
                 },
@@ -11370,6 +12185,17 @@
             }
         },
         "ArnString": {
+            "type": "string"
+        },
+        "TableOptimizerVpcConfiguration": {
+            "type": "object",
+            "properties": {
+                "glueConnectionName": {
+                    "$ref": "#/$defs/glueConnectionNameString"
+                }
+            }
+        },
+        "glueConnectionNameString": {
             "type": "string"
         },
         "RetentionConfiguration": {
@@ -12588,6 +13414,165 @@
         "TagValue": {
             "type": "string"
         },
+        "CreateCatalogResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateCatalogRequest": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/CatalogNameString"
+                },
+                "CatalogInput": {
+                    "$ref": "#/$defs/CatalogInput"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "CatalogNameString": {
+            "type": "string"
+        },
+        "CatalogInput": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/DescriptionString"
+                },
+                "FederatedCatalog": {
+                    "$ref": "#/$defs/FederatedCatalog"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParametersMap"
+                },
+                "TargetRedshiftCatalog": {
+                    "$ref": "#/$defs/TargetRedshiftCatalog"
+                },
+                "CatalogProperties": {
+                    "$ref": "#/$defs/CatalogProperties"
+                },
+                "CreateTableDefaultPermissions": {
+                    "$ref": "#/$defs/PrincipalPermissionsList"
+                },
+                "CreateDatabaseDefaultPermissions": {
+                    "$ref": "#/$defs/PrincipalPermissionsList"
+                },
+                "AllowFullTableExternalDataAccess": {
+                    "$ref": "#/$defs/AllowFullTableExternalDataAccessEnum"
+                }
+            }
+        },
+        "FederatedCatalog": {
+            "type": "object",
+            "properties": {
+                "Identifier": {
+                    "$ref": "#/$defs/FederationIdentifier"
+                },
+                "ConnectionName": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
+        "FederationIdentifier": {
+            "type": "string"
+        },
+        "TargetRedshiftCatalog": {
+            "type": "object",
+            "properties": {
+                "CatalogArn": {
+                    "$ref": "#/$defs/ResourceArnString"
+                }
+            }
+        },
+        "ResourceArnString": {
+            "type": "string"
+        },
+        "CatalogProperties": {
+            "type": "object",
+            "properties": {
+                "DataLakeAccessProperties": {
+                    "$ref": "#/$defs/DataLakeAccessProperties"
+                },
+                "CustomProperties": {
+                    "$ref": "#/$defs/ParametersMap"
+                }
+            }
+        },
+        "DataLakeAccessProperties": {
+            "type": "object",
+            "properties": {
+                "DataLakeAccess": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DataTransferRole": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/ResourceArnString"
+                },
+                "CatalogType": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
+        "IAMRoleArn": {
+            "type": "string"
+        },
+        "PrincipalPermissionsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PrincipalPermissions"
+            }
+        },
+        "PrincipalPermissions": {
+            "type": "object",
+            "properties": {
+                "Principal": {
+                    "$ref": "#/$defs/DataLakePrincipal"
+                },
+                "Permissions": {
+                    "$ref": "#/$defs/PermissionList"
+                }
+            }
+        },
+        "DataLakePrincipal": {
+            "type": "object",
+            "properties": {
+                "DataLakePrincipalIdentifier": {
+                    "$ref": "#/$defs/DataLakePrincipalString"
+                }
+            }
+        },
+        "DataLakePrincipalString": {
+            "type": "string"
+        },
+        "PermissionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Permission"
+            }
+        },
+        "Permission": {
+            "enum": [
+                "ALL",
+                "SELECT",
+                "ALTER",
+                "DROP",
+                "DELETE",
+                "INSERT",
+                "CREATE_DATABASE",
+                "CREATE_TABLE",
+                "DATA_LOCATION_ACCESS"
+            ]
+        },
+        "AllowFullTableExternalDataAccessEnum": {
+            "enum": [
+                "True",
+                "False"
+            ]
+        },
         "CreateClassifierResponse": {
             "type": "object",
             "properties": {}
@@ -12733,6 +13718,52 @@
                 "None"
             ]
         },
+        "CreateColumnStatisticsTaskSettingsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateColumnStatisticsTaskSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Role": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/CronExpression"
+                },
+                "ColumnNameList": {
+                    "$ref": "#/$defs/ColumnNameList"
+                },
+                "SampleSize": {
+                    "$ref": "#/$defs/SampleSizePercentage"
+                },
+                "CatalogID": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "SecurityConfiguration": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagsMap"
+                }
+            }
+        },
+        "ColumnNameList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NameString"
+            }
+        },
+        "SampleSizePercentage": {
+            "type": "number",
+            "format": "double"
+        },
         "CreateConnectionResponse": {
             "type": "object",
             "properties": {
@@ -12780,7 +13811,13 @@
                 "ConnectionProperties": {
                     "$ref": "#/$defs/ConnectionProperties"
                 },
+                "SparkProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
                 "AthenaProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
+                "PythonProperties": {
                     "$ref": "#/$defs/PropertyMap"
                 },
                 "PhysicalConnectionRequirements": {
@@ -12791,6 +13828,9 @@
                 },
                 "ValidateCredentials": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "ValidateForComputeEnvironments": {
+                    "$ref": "#/$defs/ComputeEnvironmentList"
                 }
             }
         },
@@ -12805,7 +13845,26 @@
                 "CUSTOM",
                 "SALESFORCE",
                 "VIEW_VALIDATION_REDSHIFT",
-                "VIEW_VALIDATION_ATHENA"
+                "VIEW_VALIDATION_ATHENA",
+                "GOOGLEADS",
+                "GOOGLESHEETS",
+                "GOOGLEANALYTICS4",
+                "SERVICENOW",
+                "MARKETO",
+                "SAPODATA",
+                "ZENDESK",
+                "JIRACLOUD",
+                "NETSUITEERP",
+                "HUBSPOT",
+                "FACEBOOKADS",
+                "INSTAGRAMADS",
+                "ZOHOCRM",
+                "SALESFORCEPARDOT",
+                "SALESFORCEMARKETINGCLOUD",
+                "SLACK",
+                "STRIPE",
+                "INTERCOM",
+                "SNAPCHATADS"
             ]
         },
         "MatchCriteria": {
@@ -12860,6 +13919,15 @@
                 },
                 "SecretArn": {
                     "$ref": "#/$defs/SecretArn"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                },
+                "BasicAuthenticationCredentials": {
+                    "$ref": "#/$defs/BasicAuthenticationCredentials"
+                },
+                "CustomAuthenticationCredentials": {
+                    "$ref": "#/$defs/CredentialMap"
                 }
             }
         },
@@ -12867,7 +13935,8 @@
             "enum": [
                 "BASIC",
                 "OAUTH2",
-                "CUSTOM"
+                "CUSTOM",
+                "IAM"
             ]
         },
         "OAuth2PropertiesInput": {
@@ -12887,6 +13956,9 @@
                 },
                 "AuthorizationCodeProperties": {
                     "$ref": "#/$defs/AuthorizationCodeProperties"
+                },
+                "OAuth2Credentials": {
+                    "$ref": "#/$defs/OAuth2Credentials"
                 }
             }
         },
@@ -12943,8 +14015,79 @@
         "RedirectUri": {
             "type": "string"
         },
+        "OAuth2Credentials": {
+            "type": "object",
+            "properties": {
+                "UserManagedClientApplicationClientSecret": {
+                    "$ref": "#/$defs/UserManagedClientApplicationClientSecret"
+                },
+                "AccessToken": {
+                    "$ref": "#/$defs/AccessToken"
+                },
+                "RefreshToken": {
+                    "$ref": "#/$defs/RefreshToken"
+                },
+                "JwtToken": {
+                    "$ref": "#/$defs/JwtToken"
+                }
+            }
+        },
+        "UserManagedClientApplicationClientSecret": {
+            "type": "string"
+        },
+        "AccessToken": {
+            "type": "string"
+        },
+        "RefreshToken": {
+            "type": "string"
+        },
+        "JwtToken": {
+            "type": "string"
+        },
         "SecretArn": {
             "type": "string"
+        },
+        "KmsKeyArn": {
+            "type": "string"
+        },
+        "BasicAuthenticationCredentials": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "$ref": "#/$defs/Username"
+                },
+                "Password": {
+                    "$ref": "#/$defs/Password"
+                }
+            }
+        },
+        "Username": {
+            "type": "string"
+        },
+        "Password": {
+            "type": "string"
+        },
+        "CredentialMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/CredentialValue"
+            }
+        },
+        "CredentialValue": {
+            "type": "string"
+        },
+        "ComputeEnvironmentList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComputeEnvironment"
+            }
+        },
+        "ComputeEnvironment": {
+            "enum": [
+                "SPARK",
+                "ATHENA",
+                "PYTHON"
+            ]
         },
         "CreateCrawlerResponse": {
             "type": "object",
@@ -13072,53 +14215,6 @@
         "URI": {
             "type": "string"
         },
-        "PrincipalPermissionsList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/PrincipalPermissions"
-            }
-        },
-        "PrincipalPermissions": {
-            "type": "object",
-            "properties": {
-                "Principal": {
-                    "$ref": "#/$defs/DataLakePrincipal"
-                },
-                "Permissions": {
-                    "$ref": "#/$defs/PermissionList"
-                }
-            }
-        },
-        "DataLakePrincipal": {
-            "type": "object",
-            "properties": {
-                "DataLakePrincipalIdentifier": {
-                    "$ref": "#/$defs/DataLakePrincipalString"
-                }
-            }
-        },
-        "DataLakePrincipalString": {
-            "type": "string"
-        },
-        "PermissionList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Permission"
-            }
-        },
-        "Permission": {
-            "enum": [
-                "ALL",
-                "SELECT",
-                "ALTER",
-                "DROP",
-                "DELETE",
-                "INSERT",
-                "CREATE_DATABASE",
-                "CREATE_TABLE",
-                "DATA_LOCATION_ACCESS"
-            ]
-        },
         "DatabaseIdentifier": {
             "type": "object",
             "properties": {
@@ -13143,9 +14239,6 @@
                     "$ref": "#/$defs/NameString"
                 }
             }
-        },
-        "FederationIdentifier": {
-            "type": "string"
         },
         "CreateDataQualityRulesetResponse": {
             "type": "object",
@@ -13307,6 +14400,287 @@
                 },
                 "Arguments": {
                     "$ref": "#/$defs/MapValue"
+                }
+            }
+        },
+        "CreateIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "SourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "IntegrationName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Description": {
+                    "$ref": "#/$defs/IntegrationDescription"
+                },
+                "IntegrationArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "AdditionalEncryptionContext": {
+                    "$ref": "#/$defs/IntegrationAdditionalEncryptionContextMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/IntegrationTagsList"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/IntegrationTimestamp"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/IntegrationErrorList"
+                },
+                "DataFilter": {
+                    "$ref": "#/$defs/String2048"
+                }
+            }
+        },
+        "String128": {
+            "type": "string"
+        },
+        "IntegrationDescription": {
+            "type": "string"
+        },
+        "String2048": {
+            "type": "string"
+        },
+        "IntegrationAdditionalEncryptionContextMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/IntegrationString"
+            }
+        },
+        "IntegrationString": {
+            "type": "string"
+        },
+        "IntegrationTagsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tag"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "$ref": "#/$defs/TagKey"
+                },
+                "value": {
+                    "$ref": "#/$defs/TagValue"
+                }
+            }
+        },
+        "TagKey": {
+            "type": "string"
+        },
+        "IntegrationStatus": {
+            "enum": [
+                "CREATING",
+                "ACTIVE",
+                "MODIFYING",
+                "FAILED",
+                "DELETING",
+                "SYNCING",
+                "NEEDS_ATTENTION"
+            ]
+        },
+        "IntegrationTimestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "IntegrationErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IntegrationError"
+            }
+        },
+        "IntegrationError": {
+            "type": "object",
+            "properties": {
+                "ErrorCode": {
+                    "$ref": "#/$defs/String128"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/String2048"
+                }
+            }
+        },
+        "CreateIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "IntegrationName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Description": {
+                    "$ref": "#/$defs/IntegrationDescription"
+                },
+                "DataFilter": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "AdditionalEncryptionContext": {
+                    "$ref": "#/$defs/IntegrationAdditionalEncryptionContextMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/IntegrationTagsList"
+                }
+            }
+        },
+        "CreateIntegrationResourcePropertyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceProcessingProperties": {
+                    "$ref": "#/$defs/SourceProcessingProperties"
+                },
+                "TargetProcessingProperties": {
+                    "$ref": "#/$defs/TargetProcessingProperties"
+                }
+            }
+        },
+        "SourceProcessingProperties": {
+            "type": "object",
+            "properties": {
+                "RoleArn": {
+                    "$ref": "#/$defs/String128"
+                }
+            }
+        },
+        "TargetProcessingProperties": {
+            "type": "object",
+            "properties": {
+                "RoleArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "KmsArn": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "ConnectionName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "EventBusArn": {
+                    "$ref": "#/$defs/String2048"
+                }
+            }
+        },
+        "CreateIntegrationResourcePropertyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceProcessingProperties": {
+                    "$ref": "#/$defs/SourceProcessingProperties"
+                },
+                "TargetProcessingProperties": {
+                    "$ref": "#/$defs/TargetProcessingProperties"
+                }
+            }
+        },
+        "CreateIntegrationTablePropertiesResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "CreateIntegrationTablePropertiesRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceTableConfig": {
+                    "$ref": "#/$defs/SourceTableConfig"
+                },
+                "TargetTableConfig": {
+                    "$ref": "#/$defs/TargetTableConfig"
+                }
+            }
+        },
+        "SourceTableConfig": {
+            "type": "object",
+            "properties": {
+                "Fields": {
+                    "$ref": "#/$defs/SourceTableFieldsList"
+                },
+                "FilterPredicate": {
+                    "$ref": "#/$defs/String128"
+                },
+                "PrimaryKey": {
+                    "$ref": "#/$defs/PrimaryKeyList"
+                },
+                "RecordUpdateField": {
+                    "$ref": "#/$defs/String128"
+                }
+            }
+        },
+        "SourceTableFieldsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String128"
+            }
+        },
+        "PrimaryKeyList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String128"
+            }
+        },
+        "TargetTableConfig": {
+            "type": "object",
+            "properties": {
+                "UnnestSpec": {
+                    "$ref": "#/$defs/UnnestSpec"
+                },
+                "PartitionSpec": {
+                    "$ref": "#/$defs/IntegrationPartitionSpecList"
+                },
+                "TargetTableName": {
+                    "$ref": "#/$defs/String128"
+                }
+            }
+        },
+        "UnnestSpec": {
+            "enum": [
+                "TOPLEVEL",
+                "FULL",
+                "NOUNNEST"
+            ]
+        },
+        "IntegrationPartitionSpecList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IntegrationPartition"
+            }
+        },
+        "IntegrationPartition": {
+            "type": "object",
+            "properties": {
+                "FieldName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "FunctionSpec": {
+                    "$ref": "#/$defs/String128"
                 }
             }
         },
@@ -13870,6 +15244,9 @@
                 },
                 "JobBookmarksEncryption": {
                     "$ref": "#/$defs/JobBookmarksEncryption"
+                },
+                "DataQualityEncryption": {
+                    "$ref": "#/$defs/DataQualityEncryption"
                 }
             }
         },
@@ -13896,9 +15273,6 @@
                 "SSEKMS",
                 "SSES3"
             ]
-        },
-        "KmsKeyArn": {
-            "type": "string"
         },
         "CloudWatchEncryption": {
             "type": "object",
@@ -13932,6 +15306,23 @@
             "enum": [
                 "DISABLED",
                 "CSEKMS"
+            ]
+        },
+        "DataQualityEncryption": {
+            "type": "object",
+            "properties": {
+                "DataQualityEncryptionMode": {
+                    "$ref": "#/$defs/DataQualityEncryptionMode"
+                },
+                "KmsKeyArn": {
+                    "$ref": "#/$defs/KmsKeyArn"
+                }
+            }
+        },
+        "DataQualityEncryptionMode": {
+            "enum": [
+                "DISABLED",
+                "SSEKMS"
             ]
         },
         "CreateSessionResponse": {
@@ -14536,6 +15927,18 @@
                 }
             }
         },
+        "DeleteCatalogResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteCatalogRequest": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                }
+            }
+        },
         "DeleteClassifierResponse": {
             "type": "object",
             "properties": {}
@@ -14589,6 +15992,21 @@
                     "$ref": "#/$defs/NameString"
                 },
                 "ColumnName": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
+        "DeleteColumnStatisticsTaskSettingsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteColumnStatisticsTaskSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "TableName": {
                     "$ref": "#/$defs/NameString"
                 }
             }
@@ -14672,6 +16090,70 @@
             "properties": {
                 "EndpointName": {
                     "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "DeleteIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "SourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "IntegrationName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Description": {
+                    "$ref": "#/$defs/IntegrationDescription"
+                },
+                "IntegrationArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "AdditionalEncryptionContext": {
+                    "$ref": "#/$defs/IntegrationAdditionalEncryptionContextMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/IntegrationTagsList"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/IntegrationTimestamp"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/IntegrationErrorList"
+                },
+                "DataFilter": {
+                    "$ref": "#/$defs/String2048"
+                }
+            }
+        },
+        "DeleteIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "IntegrationIdentifier": {
+                    "$ref": "#/$defs/String128"
+                }
+            }
+        },
+        "DeleteIntegrationTablePropertiesResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DeleteIntegrationTablePropertiesRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/String128"
                 }
             }
         },
@@ -15026,6 +16508,566 @@
                 }
             }
         },
+        "DescribeConnectionTypeResponse": {
+            "type": "object",
+            "properties": {
+                "ConnectionType": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/Capabilities"
+                },
+                "ConnectionProperties": {
+                    "$ref": "#/$defs/PropertiesMap"
+                },
+                "ConnectionOptions": {
+                    "$ref": "#/$defs/PropertiesMap"
+                },
+                "AuthenticationConfiguration": {
+                    "$ref": "#/$defs/AuthConfiguration"
+                },
+                "ComputeEnvironmentConfigurations": {
+                    "$ref": "#/$defs/ComputeEnvironmentConfigurationMap"
+                },
+                "PhysicalConnectionRequirements": {
+                    "$ref": "#/$defs/PropertiesMap"
+                },
+                "AthenaConnectionProperties": {
+                    "$ref": "#/$defs/PropertiesMap"
+                },
+                "PythonConnectionProperties": {
+                    "$ref": "#/$defs/PropertiesMap"
+                },
+                "SparkConnectionProperties": {
+                    "$ref": "#/$defs/PropertiesMap"
+                }
+            }
+        },
+        "Description": {
+            "type": "string"
+        },
+        "Capabilities": {
+            "type": "object",
+            "properties": {
+                "SupportedAuthenticationTypes": {
+                    "$ref": "#/$defs/AuthenticationTypes"
+                },
+                "SupportedDataOperations": {
+                    "$ref": "#/$defs/DataOperations"
+                },
+                "SupportedComputeEnvironments": {
+                    "$ref": "#/$defs/ComputeEnvironments"
+                }
+            }
+        },
+        "AuthenticationTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AuthenticationType"
+            }
+        },
+        "DataOperations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DataOperation"
+            }
+        },
+        "DataOperation": {
+            "enum": [
+                "READ",
+                "WRITE"
+            ]
+        },
+        "ComputeEnvironments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ComputeEnvironment"
+            }
+        },
+        "PropertiesMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Property"
+            }
+        },
+        "Property": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/PropertyName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/PropertyDescriptionString"
+                },
+                "Required": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "DefaultValue": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "PropertyTypes": {
+                    "$ref": "#/$defs/PropertyTypes"
+                },
+                "AllowedValues": {
+                    "$ref": "#/$defs/AllowedValues"
+                },
+                "DataOperationScopes": {
+                    "$ref": "#/$defs/DataOperations"
+                }
+            }
+        },
+        "PropertyName": {
+            "type": "string"
+        },
+        "PropertyDescriptionString": {
+            "type": "string"
+        },
+        "Bool": {
+            "type": "boolean"
+        },
+        "PropertyTypes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PropertyType"
+            }
+        },
+        "PropertyType": {
+            "enum": [
+                "USER_INPUT",
+                "SECRET",
+                "READ_ONLY",
+                "UNUSED",
+                "SECRET_OR_USER_INPUT"
+            ]
+        },
+        "AllowedValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AllowedValue"
+            }
+        },
+        "AllowedValue": {
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "$ref": "#/$defs/AllowedValueDescriptionString"
+                },
+                "Value": {
+                    "$ref": "#/$defs/AllowedValueValueString"
+                }
+            }
+        },
+        "AllowedValueDescriptionString": {
+            "type": "string"
+        },
+        "AllowedValueValueString": {
+            "type": "string"
+        },
+        "AuthConfiguration": {
+            "type": "object",
+            "properties": {
+                "AuthenticationType": {
+                    "$ref": "#/$defs/Property"
+                },
+                "SecretArn": {
+                    "$ref": "#/$defs/Property"
+                },
+                "OAuth2Properties": {
+                    "$ref": "#/$defs/PropertiesMap"
+                },
+                "BasicAuthenticationProperties": {
+                    "$ref": "#/$defs/PropertiesMap"
+                },
+                "CustomAuthenticationProperties": {
+                    "$ref": "#/$defs/PropertiesMap"
+                }
+            }
+        },
+        "ComputeEnvironmentConfigurationMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ComputeEnvironmentConfiguration"
+            }
+        },
+        "ComputeEnvironmentConfiguration": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/ComputeEnvironmentName"
+                },
+                "Description": {
+                    "$ref": "#/$defs/ComputeEnvironmentConfigurationDescriptionString"
+                },
+                "ComputeEnvironment": {
+                    "$ref": "#/$defs/ComputeEnvironment"
+                },
+                "SupportedAuthenticationTypes": {
+                    "$ref": "#/$defs/AuthenticationTypes"
+                },
+                "ConnectionOptions": {
+                    "$ref": "#/$defs/PropertiesMap"
+                },
+                "ConnectionPropertyNameOverrides": {
+                    "$ref": "#/$defs/PropertyNameOverrides"
+                },
+                "ConnectionOptionNameOverrides": {
+                    "$ref": "#/$defs/PropertyNameOverrides"
+                },
+                "ConnectionPropertiesRequiredOverrides": {
+                    "$ref": "#/$defs/ListOfString"
+                },
+                "PhysicalConnectionPropertiesRequired": {
+                    "$ref": "#/$defs/Bool"
+                }
+            }
+        },
+        "ComputeEnvironmentName": {
+            "type": "string"
+        },
+        "ComputeEnvironmentConfigurationDescriptionString": {
+            "type": "string"
+        },
+        "PropertyNameOverrides": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/PropertyName"
+            }
+        },
+        "ListOfString": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "DescribeConnectionTypeRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectionType": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
+        "DescribeEntityResponse": {
+            "type": "object",
+            "properties": {
+                "Fields": {
+                    "$ref": "#/$defs/FieldsList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "FieldsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Field"
+            }
+        },
+        "Field": {
+            "type": "object",
+            "properties": {
+                "FieldName": {
+                    "$ref": "#/$defs/EntityFieldName"
+                },
+                "Label": {
+                    "$ref": "#/$defs/FieldLabel"
+                },
+                "Description": {
+                    "$ref": "#/$defs/FieldDescription"
+                },
+                "FieldType": {
+                    "$ref": "#/$defs/FieldDataType"
+                },
+                "IsPrimaryKey": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "IsNullable": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "IsRetrievable": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "IsFilterable": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "IsPartitionable": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "IsCreateable": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "IsUpdateable": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "IsUpsertable": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "IsDefaultOnCreate": {
+                    "$ref": "#/$defs/Bool"
+                },
+                "SupportedValues": {
+                    "$ref": "#/$defs/ListOfString"
+                },
+                "SupportedFilterOperators": {
+                    "$ref": "#/$defs/FieldFilterOperatorsList"
+                },
+                "ParentField": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "NativeDataType": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "CustomProperties": {
+                    "$ref": "#/$defs/CustomProperties"
+                }
+            }
+        },
+        "EntityFieldName": {
+            "type": "string"
+        },
+        "FieldLabel": {
+            "type": "string"
+        },
+        "FieldDescription": {
+            "type": "string"
+        },
+        "FieldDataType": {
+            "enum": [
+                "INT",
+                "SMALLINT",
+                "BIGINT",
+                "FLOAT",
+                "LONG",
+                "DATE",
+                "BOOLEAN",
+                "MAP",
+                "ARRAY",
+                "STRING",
+                "TIMESTAMP",
+                "DECIMAL",
+                "BYTE",
+                "SHORT",
+                "DOUBLE",
+                "STRUCT"
+            ]
+        },
+        "FieldFilterOperatorsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FieldFilterOperator"
+            }
+        },
+        "FieldFilterOperator": {
+            "enum": [
+                "LESS_THAN",
+                "GREATER_THAN",
+                "BETWEEN",
+                "EQUAL_TO",
+                "NOT_EQUAL_TO",
+                "GREATER_THAN_OR_EQUAL_TO",
+                "LESS_THAN_OR_EQUAL_TO",
+                "CONTAINS",
+                "ORDER_BY"
+            ]
+        },
+        "CustomProperties": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "DescribeEntityRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectionName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "EntityName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "DataStoreApiVersion": {
+                    "$ref": "#/$defs/ApiVersion"
+                }
+            }
+        },
+        "EntityName": {
+            "type": "string"
+        },
+        "ApiVersion": {
+            "type": "string"
+        },
+        "DescribeInboundIntegrationsResponse": {
+            "type": "object",
+            "properties": {
+                "InboundIntegrations": {
+                    "$ref": "#/$defs/InboundIntegrationsList"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String128"
+                }
+            }
+        },
+        "InboundIntegrationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/InboundIntegration"
+            }
+        },
+        "InboundIntegration": {
+            "type": "object",
+            "properties": {
+                "SourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "IntegrationArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/IntegrationTimestamp"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/IntegrationErrorList"
+                }
+            }
+        },
+        "DescribeInboundIntegrationsRequest": {
+            "type": "object",
+            "properties": {
+                "IntegrationArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String128"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/IntegrationInteger"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/String128"
+                }
+            }
+        },
+        "IntegrationInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "DescribeIntegrationsResponse": {
+            "type": "object",
+            "properties": {
+                "Integrations": {
+                    "$ref": "#/$defs/IntegrationsList"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String128"
+                }
+            }
+        },
+        "IntegrationsList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Integration"
+            }
+        },
+        "Integration": {
+            "type": "object",
+            "properties": {
+                "SourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Description": {
+                    "$ref": "#/$defs/IntegrationDescription"
+                },
+                "IntegrationName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "IntegrationArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "AdditionalEncryptionContext": {
+                    "$ref": "#/$defs/IntegrationAdditionalEncryptionContextMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/IntegrationTagsList"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/IntegrationTimestamp"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/IntegrationErrorList"
+                },
+                "DataFilter": {
+                    "$ref": "#/$defs/String2048"
+                }
+            }
+        },
+        "DescribeIntegrationsRequest": {
+            "type": "object",
+            "properties": {
+                "IntegrationIdentifier": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Marker": {
+                    "$ref": "#/$defs/String128"
+                },
+                "MaxRecords": {
+                    "$ref": "#/$defs/IntegrationInteger"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/IntegrationFilterList"
+                }
+            }
+        },
+        "IntegrationFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/IntegrationFilter"
+            }
+        },
+        "IntegrationFilter": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Values": {
+                    "$ref": "#/$defs/IntegrationFilterValues"
+                }
+            }
+        },
+        "IntegrationFilterValues": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/String128"
+            }
+        },
         "GetBlueprintResponse": {
             "type": "object",
             "properties": {
@@ -15151,6 +17193,106 @@
             "type": "integer",
             "format": "int32"
         },
+        "GetCatalogResponse": {
+            "type": "object",
+            "properties": {
+                "Catalog": {
+                    "$ref": "#/$defs/Catalog"
+                }
+            }
+        },
+        "Catalog": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "Name": {
+                    "$ref": "#/$defs/CatalogNameString"
+                },
+                "ResourceArn": {
+                    "$ref": "#/$defs/ResourceArnString"
+                },
+                "Description": {
+                    "$ref": "#/$defs/DescriptionString"
+                },
+                "Parameters": {
+                    "$ref": "#/$defs/ParametersMap"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "UpdateTime": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "TargetRedshiftCatalog": {
+                    "$ref": "#/$defs/TargetRedshiftCatalog"
+                },
+                "FederatedCatalog": {
+                    "$ref": "#/$defs/FederatedCatalog"
+                },
+                "CatalogProperties": {
+                    "$ref": "#/$defs/CatalogPropertiesOutput"
+                },
+                "CreateTableDefaultPermissions": {
+                    "$ref": "#/$defs/PrincipalPermissionsList"
+                },
+                "CreateDatabaseDefaultPermissions": {
+                    "$ref": "#/$defs/PrincipalPermissionsList"
+                },
+                "AllowFullTableExternalDataAccess": {
+                    "$ref": "#/$defs/AllowFullTableExternalDataAccessEnum"
+                }
+            }
+        },
+        "CatalogPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "DataLakeAccessProperties": {
+                    "$ref": "#/$defs/DataLakeAccessPropertiesOutput"
+                },
+                "CustomProperties": {
+                    "$ref": "#/$defs/ParametersMap"
+                }
+            }
+        },
+        "DataLakeAccessPropertiesOutput": {
+            "type": "object",
+            "properties": {
+                "DataLakeAccess": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "DataTransferRole": {
+                    "$ref": "#/$defs/IAMRoleArn"
+                },
+                "KmsKey": {
+                    "$ref": "#/$defs/ResourceArnString"
+                },
+                "ManagedWorkgroupName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "ManagedWorkgroupStatus": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "RedshiftDatabaseName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "CatalogType": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
+        "GetCatalogRequest": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                }
+            }
+        },
         "GetCatalogImportStatusResponse": {
             "type": "object",
             "properties": {
@@ -15178,6 +17320,46 @@
             "properties": {
                 "CatalogId": {
                     "$ref": "#/$defs/CatalogIdString"
+                }
+            }
+        },
+        "GetCatalogsResponse": {
+            "type": "object",
+            "properties": {
+                "CatalogList": {
+                    "$ref": "#/$defs/CatalogList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                }
+            }
+        },
+        "CatalogList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Catalog"
+            }
+        },
+        "Token": {
+            "type": "string"
+        },
+        "GetCatalogsRequest": {
+            "type": "object",
+            "properties": {
+                "ParentCatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/Token"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/PageSize"
+                },
+                "Recursive": {
+                    "$ref": "#/$defs/Boolean"
+                },
+                "IncludeRoot": {
+                    "$ref": "#/$defs/NullableBoolean"
                 }
             }
         },
@@ -15343,9 +17525,6 @@
             "items": {
                 "$ref": "#/$defs/Classifier"
             }
-        },
-        "Token": {
-            "type": "string"
         },
         "GetClassifiersRequest": {
             "type": "object",
@@ -15694,6 +17873,9 @@
                 "WorkerType": {
                     "$ref": "#/$defs/NameString"
                 },
+                "ComputationType": {
+                    "$ref": "#/$defs/ComputationType"
+                },
                 "Status": {
                     "$ref": "#/$defs/ColumnStatisticsState"
                 },
@@ -15720,19 +17902,15 @@
         "TableName": {
             "type": "string"
         },
-        "ColumnNameList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/NameString"
-            }
-        },
-        "SampleSizePercentage": {
-            "type": "number",
-            "format": "double"
-        },
         "PositiveInteger": {
             "type": "integer",
             "format": "int32"
+        },
+        "ComputationType": {
+            "enum": [
+                "FULL",
+                "INCREMENTAL"
+            ]
         },
         "ColumnStatisticsState": {
             "enum": [
@@ -15785,6 +17963,98 @@
                 }
             }
         },
+        "GetColumnStatisticsTaskSettingsResponse": {
+            "type": "object",
+            "properties": {
+                "ColumnStatisticsTaskSettings": {
+                    "$ref": "#/$defs/ColumnStatisticsTaskSettings"
+                }
+            }
+        },
+        "ColumnStatisticsTaskSettings": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/DatabaseName"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/TableName"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/Schedule"
+                },
+                "ColumnNameList": {
+                    "$ref": "#/$defs/ColumnNameList"
+                },
+                "CatalogID": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "Role": {
+                    "$ref": "#/$defs/Role"
+                },
+                "SampleSize": {
+                    "$ref": "#/$defs/SampleSizePercentage"
+                },
+                "SecurityConfiguration": {
+                    "$ref": "#/$defs/CrawlerSecurityConfiguration"
+                },
+                "ScheduleType": {
+                    "$ref": "#/$defs/ScheduleType"
+                },
+                "SettingSource": {
+                    "$ref": "#/$defs/SettingSource"
+                },
+                "LastExecutionAttempt": {
+                    "$ref": "#/$defs/ExecutionAttempt"
+                }
+            }
+        },
+        "ScheduleType": {
+            "enum": [
+                "CRON",
+                "AUTO"
+            ]
+        },
+        "SettingSource": {
+            "enum": [
+                "CATALOG",
+                "TABLE"
+            ]
+        },
+        "ExecutionAttempt": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/ExecutionStatus"
+                },
+                "ColumnStatisticsTaskRunId": {
+                    "$ref": "#/$defs/HashString"
+                },
+                "ExecutionTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "ErrorMessage": {
+                    "$ref": "#/$defs/DescriptionString"
+                }
+            }
+        },
+        "ExecutionStatus": {
+            "enum": [
+                "FAILED",
+                "STARTED"
+            ]
+        },
+        "GetColumnStatisticsTaskSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
         "GetConnectionResponse": {
             "type": "object",
             "properties": {
@@ -15811,7 +18081,13 @@
                 "ConnectionProperties": {
                     "$ref": "#/$defs/ConnectionProperties"
                 },
+                "SparkProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
                 "AthenaProperties": {
+                    "$ref": "#/$defs/PropertyMap"
+                },
+                "PythonProperties": {
                     "$ref": "#/$defs/PropertyMap"
                 },
                 "PhysicalConnectionRequirements": {
@@ -15837,6 +18113,12 @@
                 },
                 "AuthenticationConfiguration": {
                     "$ref": "#/$defs/AuthenticationConfiguration"
+                },
+                "ConnectionSchemaVersion": {
+                    "$ref": "#/$defs/ConnectionSchemaVersion"
+                },
+                "CompatibleComputeEnvironments": {
+                    "$ref": "#/$defs/ComputeEnvironmentList"
                 }
             }
         },
@@ -15874,6 +18156,10 @@
                 }
             }
         },
+        "ConnectionSchemaVersion": {
+            "type": "integer",
+            "format": "int32"
+        },
         "GetConnectionRequest": {
             "type": "object",
             "properties": {
@@ -15885,6 +18171,9 @@
                 },
                 "HidePassword": {
                     "$ref": "#/$defs/Boolean"
+                },
+                "ApplyOverrideForComputeEnvironment": {
+                    "$ref": "#/$defs/ComputeEnvironment"
                 }
             }
         },
@@ -15933,6 +18222,9 @@
                 },
                 "ConnectionType": {
                     "$ref": "#/$defs/ConnectionType"
+                },
+                "ConnectionSchemaVersion": {
+                    "$ref": "#/$defs/ConnectionSchemaVersion"
                 }
             }
         },
@@ -16205,9 +18497,6 @@
                 "SSEKMS",
                 "SSEKMSWITHSERVICEROLE"
             ]
-        },
-        "IAMRoleArn": {
-            "type": "string"
         },
         "ConnectionPasswordEncryption": {
             "type": "object",
@@ -16611,6 +18900,131 @@
                 },
                 "NextToken": {
                     "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "GetEntityRecordsResponse": {
+            "type": "object",
+            "properties": {
+                "Records": {
+                    "$ref": "#/$defs/Records"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "Records": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Record"
+            }
+        },
+        "Record": {},
+        "GetEntityRecordsRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectionName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "EntityName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "DataStoreApiVersion": {
+                    "$ref": "#/$defs/ApiVersion"
+                },
+                "ConnectionOptions": {
+                    "$ref": "#/$defs/ConnectionOptions"
+                },
+                "FilterPredicate": {
+                    "$ref": "#/$defs/FilterPredicate"
+                },
+                "Limit": {
+                    "$ref": "#/$defs/Limit"
+                },
+                "OrderBy": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "SelectedFields": {
+                    "$ref": "#/$defs/SelectedFields"
+                }
+            }
+        },
+        "ConnectionOptions": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/OptionValue"
+            }
+        },
+        "OptionValue": {
+            "type": "string"
+        },
+        "FilterPredicate": {
+            "type": "string"
+        },
+        "Limit": {
+            "type": "integer",
+            "format": "int64"
+        },
+        "SelectedFields": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/EntityFieldName"
+            }
+        },
+        "GetIntegrationResourcePropertyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceProcessingProperties": {
+                    "$ref": "#/$defs/SourceProcessingProperties"
+                },
+                "TargetProcessingProperties": {
+                    "$ref": "#/$defs/TargetProcessingProperties"
+                }
+            }
+        },
+        "GetIntegrationResourcePropertyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                }
+            }
+        },
+        "GetIntegrationTablePropertiesResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceTableConfig": {
+                    "$ref": "#/$defs/SourceTableConfig"
+                },
+                "TargetTableConfig": {
+                    "$ref": "#/$defs/TargetTableConfig"
+                }
+            }
+        },
+        "GetIntegrationTablePropertiesRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/String128"
                 }
             }
         },
@@ -19129,6 +21543,52 @@
                 }
             }
         },
+        "ListConnectionTypesResponse": {
+            "type": "object",
+            "properties": {
+                "ConnectionTypes": {
+                    "$ref": "#/$defs/ConnectionTypeList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ConnectionTypeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ConnectionTypeBrief"
+            }
+        },
+        "ConnectionTypeBrief": {
+            "type": "object",
+            "properties": {
+                "ConnectionType": {
+                    "$ref": "#/$defs/ConnectionType"
+                },
+                "Description": {
+                    "$ref": "#/$defs/Description"
+                },
+                "Capabilities": {
+                    "$ref": "#/$defs/Capabilities"
+                }
+            }
+        },
+        "ListConnectionTypesRequest": {
+            "type": "object",
+            "properties": {
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
         "ListCrawlersResponse": {
             "type": "object",
             "properties": {
@@ -19794,6 +22254,78 @@
                 }
             }
         },
+        "ListEntitiesResponse": {
+            "type": "object",
+            "properties": {
+                "Entities": {
+                    "$ref": "#/$defs/EntityList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "EntityList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Entity"
+            }
+        },
+        "Entity": {
+            "type": "object",
+            "properties": {
+                "EntityName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "Label": {
+                    "$ref": "#/$defs/EntityLabel"
+                },
+                "IsParentEntity": {
+                    "$ref": "#/$defs/IsParentEntity"
+                },
+                "Description": {
+                    "$ref": "#/$defs/EntityDescription"
+                },
+                "Category": {
+                    "$ref": "#/$defs/Category"
+                },
+                "CustomProperties": {
+                    "$ref": "#/$defs/CustomProperties"
+                }
+            }
+        },
+        "EntityLabel": {
+            "type": "string"
+        },
+        "IsParentEntity": {
+            "type": "boolean"
+        },
+        "EntityDescription": {
+            "type": "string"
+        },
+        "Category": {
+            "type": "string"
+        },
+        "ListEntitiesRequest": {
+            "type": "object",
+            "properties": {
+                "ConnectionName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "ParentEntityName": {
+                    "$ref": "#/$defs/EntityName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "DataStoreApiVersion": {
+                    "$ref": "#/$defs/ApiVersion"
+                }
+            }
+        },
         "ListJobsResponse": {
             "type": "object",
             "properties": {
@@ -20247,6 +22779,64 @@
                 },
                 "MaxResults": {
                     "$ref": "#/$defs/OrchestrationPageSize25"
+                }
+            }
+        },
+        "ModifyIntegrationResponse": {
+            "type": "object",
+            "properties": {
+                "SourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TargetArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "IntegrationName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Description": {
+                    "$ref": "#/$defs/IntegrationDescription"
+                },
+                "IntegrationArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "KmsKeyId": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "AdditionalEncryptionContext": {
+                    "$ref": "#/$defs/IntegrationAdditionalEncryptionContextMap"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/IntegrationTagsList"
+                },
+                "Status": {
+                    "$ref": "#/$defs/IntegrationStatus"
+                },
+                "CreateTime": {
+                    "$ref": "#/$defs/IntegrationTimestamp"
+                },
+                "Errors": {
+                    "$ref": "#/$defs/IntegrationErrorList"
+                },
+                "DataFilter": {
+                    "$ref": "#/$defs/String2048"
+                }
+            }
+        },
+        "ModifyIntegrationRequest": {
+            "type": "object",
+            "properties": {
+                "IntegrationIdentifier": {
+                    "$ref": "#/$defs/String128"
+                },
+                "Description": {
+                    "$ref": "#/$defs/IntegrationDescription"
+                },
+                "DataFilter": {
+                    "$ref": "#/$defs/String2048"
+                },
+                "IntegrationName": {
+                    "$ref": "#/$defs/String128"
                 }
             }
         },
@@ -20780,6 +23370,21 @@
                 }
             }
         },
+        "StartColumnStatisticsTaskRunScheduleResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StartColumnStatisticsTaskRunScheduleRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
         "StartCrawlerResponse": {
             "type": "object",
             "properties": {}
@@ -21050,6 +23655,21 @@
                 }
             }
         },
+        "StopColumnStatisticsTaskRunScheduleResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "StopColumnStatisticsTaskRunScheduleRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
         "StopCrawlerResponse": {
             "type": "object",
             "properties": {}
@@ -21149,6 +23769,9 @@
                 "ConnectionName": {
                     "$ref": "#/$defs/NameString"
                 },
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
                 "TestConnectionInput": {
                     "$ref": "#/$defs/TestConnectionInput"
                 }
@@ -21189,9 +23812,6 @@
                 "$ref": "#/$defs/TagKey"
             }
         },
-        "TagKey": {
-            "type": "string"
-        },
         "UpdateBlueprintResponse": {
             "type": "object",
             "properties": {
@@ -21211,6 +23831,21 @@
                 },
                 "BlueprintLocation": {
                     "$ref": "#/$defs/OrchestrationS3Location"
+                }
+            }
+        },
+        "UpdateCatalogResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateCatalogRequest": {
+            "type": "object",
+            "properties": {
+                "CatalogId": {
+                    "$ref": "#/$defs/CatalogIdString"
+                },
+                "CatalogInput": {
+                    "$ref": "#/$defs/CatalogInput"
                 }
             }
         },
@@ -21388,6 +24023,39 @@
                 }
             }
         },
+        "UpdateColumnStatisticsTaskSettingsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateColumnStatisticsTaskSettingsRequest": {
+            "type": "object",
+            "properties": {
+                "DatabaseName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Role": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "Schedule": {
+                    "$ref": "#/$defs/CronExpression"
+                },
+                "ColumnNameList": {
+                    "$ref": "#/$defs/ColumnNameList"
+                },
+                "SampleSize": {
+                    "$ref": "#/$defs/SampleSizePercentage"
+                },
+                "CatalogID": {
+                    "$ref": "#/$defs/NameString"
+                },
+                "SecurityConfiguration": {
+                    "$ref": "#/$defs/NameString"
+                }
+            }
+        },
         "UpdateConnectionResponse": {
             "type": "object",
             "properties": {}
@@ -21562,6 +24230,55 @@
                 },
                 "ExtraJarsS3Path": {
                     "$ref": "#/$defs/GenericString"
+                }
+            }
+        },
+        "UpdateIntegrationResourcePropertyResponse": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceProcessingProperties": {
+                    "$ref": "#/$defs/SourceProcessingProperties"
+                },
+                "TargetProcessingProperties": {
+                    "$ref": "#/$defs/TargetProcessingProperties"
+                }
+            }
+        },
+        "UpdateIntegrationResourcePropertyRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceProcessingProperties": {
+                    "$ref": "#/$defs/SourceProcessingProperties"
+                },
+                "TargetProcessingProperties": {
+                    "$ref": "#/$defs/TargetProcessingProperties"
+                }
+            }
+        },
+        "UpdateIntegrationTablePropertiesResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "UpdateIntegrationTablePropertiesRequest": {
+            "type": "object",
+            "properties": {
+                "ResourceArn": {
+                    "$ref": "#/$defs/String128"
+                },
+                "TableName": {
+                    "$ref": "#/$defs/String128"
+                },
+                "SourceTableConfig": {
+                    "$ref": "#/$defs/SourceTableConfig"
+                },
+                "TargetTableConfig": {
+                    "$ref": "#/$defs/TargetTableConfig"
                 }
             }
         },

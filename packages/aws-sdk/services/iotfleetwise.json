@@ -29,8 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "vehicles": {}
                     }
                 }
             }
@@ -63,8 +62,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "vehicles": {}
                     }
                 }
             }
@@ -96,11 +94,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -131,10 +125,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -165,10 +156,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -204,8 +192,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "vehicleName": {}
                     }
                 }
             }
@@ -238,8 +227,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceARN": {}
                     }
                 }
             }
@@ -272,9 +260,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "kmsKeyId": {},
+                        "encryptionType": {}
                     }
                 }
             }
@@ -307,8 +294,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "cloudWatchLogDelivery": {}
                     }
                 }
             }
@@ -341,8 +327,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "timestreamResources": {},
+                        "iamResources": {}
                     }
                 }
             }
@@ -375,8 +361,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceARN": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -409,8 +395,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {}
+                        "ResourceARN": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -462,66 +448,6 @@
             "type": "string",
             "format": "binary"
         },
-        "BatchCreateVehicleResponse": {
-            "type": "object",
-            "properties": {
-                "vehicles": {
-                    "$ref": "#/$defs/createVehicleResponses"
-                },
-                "errors": {
-                    "$ref": "#/$defs/createVehicleErrors"
-                }
-            }
-        },
-        "createVehicleResponses": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/CreateVehicleResponseItem"
-            }
-        },
-        "CreateVehicleResponseItem": {
-            "type": "object",
-            "properties": {
-                "vehicleName": {
-                    "$ref": "#/$defs/vehicleName"
-                },
-                "arn": {
-                    "$ref": "#/$defs/arn"
-                },
-                "thingArn": {
-                    "$ref": "#/$defs/arn"
-                }
-            }
-        },
-        "vehicleName": {
-            "type": "string"
-        },
-        "arn": {
-            "type": "string"
-        },
-        "createVehicleErrors": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/CreateVehicleError"
-            }
-        },
-        "CreateVehicleError": {
-            "type": "object",
-            "properties": {
-                "vehicleName": {
-                    "$ref": "#/$defs/vehicleName"
-                },
-                "code": {
-                    "$ref": "#/$defs/string"
-                },
-                "message": {
-                    "$ref": "#/$defs/string"
-                }
-            }
-        },
-        "string": {
-            "type": "string"
-        },
         "BatchCreateVehicleRequest": {
             "type": "object",
             "properties": {
@@ -556,8 +482,17 @@
                 },
                 "tags": {
                     "$ref": "#/$defs/TagList"
+                },
+                "stateTemplates": {
+                    "$ref": "#/$defs/StateTemplateAssociations"
                 }
             }
+        },
+        "vehicleName": {
+            "type": "string"
+        },
+        "arn": {
+            "type": "string"
         },
         "attributesMap": {
             "type": "object",
@@ -596,6 +531,178 @@
         },
         "TagValue": {
             "type": "string"
+        },
+        "StateTemplateAssociations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/StateTemplateAssociation"
+            }
+        },
+        "StateTemplateAssociation": {
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/ResourceIdentifier"
+                },
+                "stateTemplateUpdateStrategy": {
+                    "$ref": "#/$defs/StateTemplateUpdateStrategy"
+                }
+            }
+        },
+        "ResourceIdentifier": {
+            "type": "string"
+        },
+        "StateTemplateUpdateStrategy": {
+            "type": "object",
+            "properties": {
+                "periodic": {
+                    "$ref": "#/$defs/PeriodicStateTemplateUpdateStrategy"
+                },
+                "onChange": {
+                    "$ref": "#/$defs/OnChangeStateTemplateUpdateStrategy"
+                }
+            }
+        },
+        "PeriodicStateTemplateUpdateStrategy": {
+            "type": "object",
+            "properties": {
+                "stateTemplateUpdateRate": {
+                    "$ref": "#/$defs/TimePeriod"
+                }
+            }
+        },
+        "TimePeriod": {
+            "type": "object",
+            "properties": {
+                "unit": {
+                    "$ref": "#/$defs/TimeUnit"
+                },
+                "value": {
+                    "$ref": "#/$defs/positiveInteger"
+                }
+            }
+        },
+        "TimeUnit": {
+            "enum": [
+                "MILLISECOND",
+                "SECOND",
+                "MINUTE",
+                "HOUR"
+            ]
+        },
+        "positiveInteger": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "OnChangeStateTemplateUpdateStrategy": {
+            "type": "object",
+            "properties": {}
+        },
+        "BatchCreateVehicleResponse": {
+            "type": "object",
+            "properties": {
+                "vehicles": {
+                    "$ref": "#/$defs/createVehicleResponses"
+                },
+                "errors": {
+                    "$ref": "#/$defs/createVehicleErrors"
+                }
+            }
+        },
+        "createVehicleResponses": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateVehicleResponseItem"
+            }
+        },
+        "CreateVehicleResponseItem": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "arn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "thingArn": {
+                    "$ref": "#/$defs/arn"
+                }
+            }
+        },
+        "createVehicleErrors": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/CreateVehicleError"
+            }
+        },
+        "CreateVehicleError": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "code": {
+                    "$ref": "#/$defs/string"
+                },
+                "message": {
+                    "$ref": "#/$defs/string"
+                }
+            }
+        },
+        "string": {
+            "type": "string"
+        },
+        "BatchUpdateVehicleRequest": {
+            "type": "object",
+            "properties": {
+                "vehicles": {
+                    "$ref": "#/$defs/updateVehicleRequestItems"
+                }
+            }
+        },
+        "updateVehicleRequestItems": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/UpdateVehicleRequestItem"
+            }
+        },
+        "UpdateVehicleRequestItem": {
+            "type": "object",
+            "properties": {
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                },
+                "modelManifestArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "decoderManifestArn": {
+                    "$ref": "#/$defs/arn"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/attributesMap"
+                },
+                "attributeUpdateMode": {
+                    "$ref": "#/$defs/UpdateMode"
+                },
+                "stateTemplatesToAdd": {
+                    "$ref": "#/$defs/StateTemplateAssociations"
+                },
+                "stateTemplatesToRemove": {
+                    "$ref": "#/$defs/StateTemplateAssociationIdentifiers"
+                }
+            }
+        },
+        "UpdateMode": {
+            "enum": [
+                "OVERWRITE",
+                "MERGE"
+            ]
+        },
+        "StateTemplateAssociationIdentifiers": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ResourceIdentifier"
+            }
         },
         "BatchUpdateVehicleResponse": {
             "type": "object",
@@ -649,45 +756,9 @@
             "type": "integer",
             "format": "int32"
         },
-        "BatchUpdateVehicleRequest": {
+        "GetEncryptionConfigurationRequest": {
             "type": "object",
-            "properties": {
-                "vehicles": {
-                    "$ref": "#/$defs/updateVehicleRequestItems"
-                }
-            }
-        },
-        "updateVehicleRequestItems": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/UpdateVehicleRequestItem"
-            }
-        },
-        "UpdateVehicleRequestItem": {
-            "type": "object",
-            "properties": {
-                "vehicleName": {
-                    "$ref": "#/$defs/vehicleName"
-                },
-                "modelManifestArn": {
-                    "$ref": "#/$defs/arn"
-                },
-                "decoderManifestArn": {
-                    "$ref": "#/$defs/arn"
-                },
-                "attributes": {
-                    "$ref": "#/$defs/attributesMap"
-                },
-                "attributeUpdateMode": {
-                    "$ref": "#/$defs/UpdateMode"
-                }
-            }
-        },
-        "UpdateMode": {
-            "enum": [
-                "OVERWRITE",
-                "MERGE"
-            ]
+            "properties": {}
         },
         "GetEncryptionConfigurationResponse": {
             "type": "object",
@@ -732,7 +803,7 @@
             "type": "string",
             "format": "date-time"
         },
-        "GetEncryptionConfigurationRequest": {
+        "GetLoggingOptionsRequest": {
             "type": "object",
             "properties": {}
         },
@@ -764,7 +835,7 @@
         "CloudWatchLogGroupName": {
             "type": "string"
         },
-        "GetLoggingOptionsRequest": {
+        "GetRegisterAccountStatusRequest": {
             "type": "object",
             "properties": {}
         },
@@ -844,9 +915,26 @@
                 }
             }
         },
-        "GetRegisterAccountStatusRequest": {
+        "GetVehicleStatusRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "nextToken": {
+                    "$ref": "#/$defs/nextToken"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/maxResults"
+                },
+                "vehicleName": {
+                    "$ref": "#/$defs/vehicleName"
+                }
+            }
+        },
+        "nextToken": {
+            "type": "string"
+        },
+        "maxResults": {
+            "type": "integer",
+            "format": "int32"
         },
         "GetVehicleStatusResponse": {
             "type": "object",
@@ -891,35 +979,6 @@
                 "DELETING"
             ]
         },
-        "nextToken": {
-            "type": "string"
-        },
-        "GetVehicleStatusRequest": {
-            "type": "object",
-            "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/nextToken"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/maxResults"
-                },
-                "vehicleName": {
-                    "$ref": "#/$defs/vehicleName"
-                }
-            }
-        },
-        "maxResults": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -930,6 +989,25 @@
         },
         "AmazonResourceName": {
             "type": "string"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "PutEncryptionConfigurationRequest": {
+            "type": "object",
+            "properties": {
+                "kmsKeyId": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "encryptionType": {
+                    "$ref": "#/$defs/EncryptionType"
+                }
+            }
         },
         "PutEncryptionConfigurationResponse": {
             "type": "object",
@@ -945,21 +1023,6 @@
                 }
             }
         },
-        "PutEncryptionConfigurationRequest": {
-            "type": "object",
-            "properties": {
-                "kmsKeyId": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "encryptionType": {
-                    "$ref": "#/$defs/EncryptionType"
-                }
-            }
-        },
-        "PutLoggingOptionsResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "PutLoggingOptionsRequest": {
             "type": "object",
             "properties": {
@@ -968,23 +1031,18 @@
                 }
             }
         },
-        "RegisterAccountResponse": {
+        "PutLoggingOptionsResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "RegisterAccountRequest": {
             "type": "object",
             "properties": {
-                "registerAccountStatus": {
-                    "$ref": "#/$defs/RegistrationStatus"
-                },
                 "timestreamResources": {
                     "$ref": "#/$defs/TimestreamResources"
                 },
                 "iamResources": {
                     "$ref": "#/$defs/IamResources"
-                },
-                "creationTime": {
-                    "$ref": "#/$defs/timestamp"
-                },
-                "lastModificationTime": {
-                    "$ref": "#/$defs/timestamp"
                 }
             }
         },
@@ -1010,20 +1068,25 @@
         "IAMRoleArn": {
             "type": "string"
         },
-        "RegisterAccountRequest": {
+        "RegisterAccountResponse": {
             "type": "object",
             "properties": {
+                "registerAccountStatus": {
+                    "$ref": "#/$defs/RegistrationStatus"
+                },
                 "timestreamResources": {
                     "$ref": "#/$defs/TimestreamResources"
                 },
                 "iamResources": {
                     "$ref": "#/$defs/IamResources"
+                },
+                "creationTime": {
+                    "$ref": "#/$defs/timestamp"
+                },
+                "lastModificationTime": {
+                    "$ref": "#/$defs/timestamp"
                 }
             }
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
         },
         "TagResourceRequest": {
             "type": "object",
@@ -1036,7 +1099,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -1056,6 +1119,10 @@
             "items": {
                 "$ref": "#/$defs/TagKey"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

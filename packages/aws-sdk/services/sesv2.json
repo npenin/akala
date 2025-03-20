@@ -29,9 +29,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Queries": {}
                     }
                 }
             }
@@ -68,9 +66,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "JobId": {}
                     }
                 }
             }
@@ -103,9 +99,15 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "TrackingOptions": {},
+                        "DeliveryOptions": {},
+                        "ReputationOptions": {},
+                        "SendingOptions": {},
+                        "Tags": {},
+                        "SuppressionOptions": {},
+                        "VdmOptions": {},
+                        "ArchivingOptions": {}
                     }
                 }
             }
@@ -142,9 +144,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "EventDestinationName": {},
+                        "EventDestination": {}
                     }
                 }
             }
@@ -181,9 +183,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {},
+                        "EmailAddress": {},
+                        "TopicPreferences": {},
+                        "UnsubscribeAll": {},
+                        "AttributesData": {}
                     }
                 }
             }
@@ -216,9 +220,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {},
+                        "Topics": {},
+                        "Description": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -251,9 +256,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {},
+                        "FromEmailAddress": {},
+                        "TemplateSubject": {},
+                        "TemplateContent": {},
+                        "SuccessRedirectionURL": {},
+                        "FailureRedirectionURL": {}
                     }
                 }
             }
@@ -286,9 +294,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PoolName": {},
+                        "Tags": {},
+                        "ScalingMode": {}
                     }
                 }
             }
@@ -321,9 +329,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ReportName": {},
+                        "FromEmailAddress": {},
+                        "Content": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -356,9 +365,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "Tags": {},
+                        "DkimSigningAttributes": {},
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -397,9 +407,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "PolicyName": {},
+                        "Policy": {}
                     }
                 }
             }
@@ -432,9 +442,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {},
+                        "TemplateContent": {}
                     }
                 }
             }
@@ -467,9 +476,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ExportDataSource": {},
+                        "ExportDestination": {}
                     }
                 }
             }
@@ -502,9 +510,43 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ImportDestination": {},
+                        "ImportDataSource": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "CreateMultiRegionEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/v2/email/multi-region-endpoints"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/CreateMultiRegionEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/CreateMultiRegionEndpointRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "EndpointName": {},
+                        "Details": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -541,9 +583,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -582,9 +622,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "EventDestinationName": {}
                     }
                 }
             }
@@ -623,9 +662,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {},
+                        "EmailAddress": {}
                     }
                 }
             }
@@ -662,9 +700,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {}
                     }
                 }
             }
@@ -701,9 +737,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {}
                     }
                 }
             }
@@ -740,9 +774,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PoolName": {}
                     }
                 }
             }
@@ -779,9 +811,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {}
                     }
                 }
             }
@@ -820,9 +850,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "PolicyName": {}
                     }
                 }
             }
@@ -859,9 +888,44 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeleteMultiRegionEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "EndpointName": "route.EndpointName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "DELETE",
+                    "route": "/v2/email/multi-region-endpoints/{EndpointName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/DeleteMultiRegionEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0.EndpointName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/DeleteMultiRegionEndpointRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "EndpointName": {}
                     }
                 }
             }
@@ -898,9 +962,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailAddress": {}
                     }
                 }
             }
@@ -932,11 +994,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -968,9 +1026,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "BlacklistItemNames": {}
                     }
                 }
             }
@@ -1007,9 +1063,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -1046,9 +1100,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -1087,9 +1139,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {},
+                        "EmailAddress": {}
                     }
                 }
             }
@@ -1126,9 +1177,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {}
                     }
                 }
             }
@@ -1165,9 +1214,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {}
                     }
                 }
             }
@@ -1204,9 +1251,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Ip": {}
                     }
                 }
             }
@@ -1243,9 +1288,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PoolName": {}
                     }
                 }
             }
@@ -1278,9 +1321,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PoolName": {},
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -1312,11 +1355,7 @@
                     "inject": [
                         "options"
                     ],
-                    "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
-                    }
+                    "options": {}
                 }
             }
         },
@@ -1352,9 +1391,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ReportId": {}
                     }
                 }
             }
@@ -1391,9 +1428,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "CampaignId": {}
                     }
                 }
             }
@@ -1430,9 +1465,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Domain": {},
+                        "StartDate": {},
+                        "EndDate": {}
                     }
                 }
             }
@@ -1469,9 +1504,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {}
                     }
                 }
             }
@@ -1508,9 +1541,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {}
                     }
                 }
             }
@@ -1547,9 +1578,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {}
                     }
                 }
             }
@@ -1586,9 +1615,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "JobId": {}
                     }
                 }
             }
@@ -1625,9 +1652,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "JobId": {}
                     }
                 }
             }
@@ -1664,9 +1689,44 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MessageId": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "GetMultiRegionEndpoint",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "EndpointName": "route.EndpointName",
+                            "...": "query"
+                        }
+                    ],
+                    "method": "GET",
+                    "route": "/v2/email/multi-region-endpoints/{EndpointName}"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetMultiRegionEndpointResponse"
+                    },
+                    "inject": [
+                        "param.0.EndpointName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetMultiRegionEndpointRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "EndpointName": {}
                     }
                 }
             }
@@ -1703,9 +1763,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailAddress": {}
                     }
                 }
             }
@@ -1738,9 +1796,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -1773,9 +1830,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PageSize": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -1812,9 +1868,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {},
+                        "Filter": {},
+                        "PageSize": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -1847,9 +1904,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -1882,9 +1938,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -1917,9 +1972,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -1956,9 +2010,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "StartDate": {},
+                        "EndDate": {},
+                        "SubscribedDomain": {},
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -1991,9 +2047,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -2026,9 +2081,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -2061,9 +2115,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "NextToken": {},
+                        "PageSize": {},
+                        "ExportSourceType": {},
+                        "JobStatus": {}
                     }
                 }
             }
@@ -2096,9 +2151,43 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ImportDestinationType": {},
+                        "NextToken": {},
+                        "PageSize": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListMultiRegionEndpoints",
+            "config": {
+                "http": {
+                    "inject": [
+                        "query"
+                    ],
+                    "method": "GET",
+                    "route": "/v2/email/multi-region-endpoints"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListMultiRegionEndpointsResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListMultiRegionEndpointsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -2131,9 +2220,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Filter": {},
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -2166,9 +2255,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Reasons": {},
+                        "StartDate": {},
+                        "EndDate": {},
+                        "NextToken": {},
+                        "PageSize": {}
                     }
                 }
             }
@@ -2201,9 +2292,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {}
                     }
                 }
             }
@@ -2236,9 +2325,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "AutoWarmupEnabled": {}
                     }
                 }
             }
@@ -2271,9 +2358,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "MailType": {},
+                        "WebsiteURL": {},
+                        "ContactLanguage": {},
+                        "UseCaseDescription": {},
+                        "AdditionalContactEmailAddresses": {},
+                        "ProductionAccessEnabled": {}
                     }
                 }
             }
@@ -2306,9 +2396,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SendingEnabled": {}
                     }
                 }
             }
@@ -2341,9 +2429,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "SuppressedReasons": {}
                     }
                 }
             }
@@ -2376,9 +2462,45 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "VdmAttributes": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "PutConfigurationSetArchivingOptions",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "ConfigurationSetName": "route.ConfigurationSetName",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PUT",
+                    "route": "/v2/email/configuration-sets/{ConfigurationSetName}/archiving-options"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/PutConfigurationSetArchivingOptionsResponse"
+                    },
+                    "inject": [
+                        "param.0.ConfigurationSetName",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/PutConfigurationSetArchivingOptionsRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "ConfigurationSetName": {},
+                        "ArchiveArn": {}
                     }
                 }
             }
@@ -2415,9 +2537,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "TlsPolicy": {},
+                        "SendingPoolName": {},
+                        "MaxDeliverySeconds": {}
                     }
                 }
             }
@@ -2454,9 +2577,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "ReputationMetricsEnabled": {}
                     }
                 }
             }
@@ -2493,9 +2615,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "SendingEnabled": {}
                     }
                 }
             }
@@ -2532,9 +2653,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "SuppressedReasons": {}
                     }
                 }
             }
@@ -2571,9 +2691,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "CustomRedirectDomain": {},
+                        "HttpsPolicy": {}
                     }
                 }
             }
@@ -2610,9 +2730,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "VdmOptions": {}
                     }
                 }
             }
@@ -2649,9 +2768,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Ip": {},
+                        "DestinationPoolName": {}
                     }
                 }
             }
@@ -2688,9 +2806,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "PoolName": {},
+                        "ScalingMode": {}
                     }
                 }
             }
@@ -2727,9 +2844,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "Ip": {},
+                        "WarmupPercentage": {}
                     }
                 }
             }
@@ -2762,9 +2878,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "DashboardEnabled": {},
+                        "SubscribedDomains": {}
                     }
                 }
             }
@@ -2801,9 +2916,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -2840,9 +2954,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "SigningEnabled": {}
                     }
                 }
             }
@@ -2879,9 +2992,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "SigningAttributesOrigin": {},
+                        "SigningAttributes": {}
                     }
                 }
             }
@@ -2918,9 +3031,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "EmailForwardingEnabled": {}
                     }
                 }
             }
@@ -2957,9 +3069,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "MailFromDomain": {},
+                        "BehaviorOnMxFailure": {}
                     }
                 }
             }
@@ -2992,9 +3104,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailAddress": {},
+                        "Reason": {}
                     }
                 }
             }
@@ -3027,9 +3138,16 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FromEmailAddress": {},
+                        "FromEmailAddressIdentityArn": {},
+                        "ReplyToAddresses": {},
+                        "FeedbackForwardingEmailAddress": {},
+                        "FeedbackForwardingEmailAddressIdentityArn": {},
+                        "DefaultEmailTags": {},
+                        "DefaultContent": {},
+                        "BulkEmailEntries": {},
+                        "ConfigurationSetName": {},
+                        "EndpointId": {}
                     }
                 }
             }
@@ -3062,9 +3180,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailAddress": {},
+                        "TemplateName": {},
+                        "ConfigurationSetName": {}
                     }
                 }
             }
@@ -3097,9 +3215,17 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "FromEmailAddress": {},
+                        "FromEmailAddressIdentityArn": {},
+                        "Destination": {},
+                        "ReplyToAddresses": {},
+                        "FeedbackForwardingEmailAddress": {},
+                        "FeedbackForwardingEmailAddressIdentityArn": {},
+                        "Content": {},
+                        "EmailTags": {},
+                        "ConfigurationSetName": {},
+                        "EndpointId": {},
+                        "ListManagementOptions": {}
                     }
                 }
             }
@@ -3132,9 +3258,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "Tags": {}
                     }
                 }
             }
@@ -3171,9 +3296,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {},
+                        "TemplateData": {}
                     }
                 }
             }
@@ -3206,9 +3330,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ResourceArn": {},
+                        "TagKeys": {}
                     }
                 }
             }
@@ -3247,9 +3370,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ConfigurationSetName": {},
+                        "EventDestinationName": {},
+                        "EventDestination": {}
                     }
                 }
             }
@@ -3288,9 +3411,11 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {},
+                        "EmailAddress": {},
+                        "TopicPreferences": {},
+                        "UnsubscribeAll": {},
+                        "AttributesData": {}
                     }
                 }
             }
@@ -3327,9 +3452,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "ContactListName": {},
+                        "Topics": {},
+                        "Description": {}
                     }
                 }
             }
@@ -3366,9 +3491,12 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {},
+                        "FromEmailAddress": {},
+                        "TemplateSubject": {},
+                        "TemplateContent": {},
+                        "SuccessRedirectionURL": {},
+                        "FailureRedirectionURL": {}
                     }
                 }
             }
@@ -3407,9 +3535,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "EmailIdentity": {},
+                        "PolicyName": {},
+                        "Policy": {}
                     }
                 }
             }
@@ -3446,9 +3574,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "TemplateName": {},
+                        "TemplateContent": {}
                     }
                 }
             }
@@ -3500,6 +3627,78 @@
             "type": "string",
             "format": "binary"
         },
+        "BatchGetMetricDataRequest": {
+            "type": "object",
+            "properties": {
+                "Queries": {
+                    "$ref": "#/$defs/BatchGetMetricDataQueries"
+                }
+            }
+        },
+        "BatchGetMetricDataQueries": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchGetMetricDataQuery"
+            }
+        },
+        "BatchGetMetricDataQuery": {
+            "type": "object",
+            "properties": {
+                "Id": {
+                    "$ref": "#/$defs/QueryIdentifier"
+                },
+                "Namespace": {
+                    "$ref": "#/$defs/MetricNamespace"
+                },
+                "Metric": {
+                    "$ref": "#/$defs/Metric"
+                },
+                "Dimensions": {
+                    "$ref": "#/$defs/Dimensions"
+                },
+                "StartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndDate": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "QueryIdentifier": {
+            "type": "string"
+        },
+        "MetricNamespace": {
+            "enum": [
+                "VDM"
+            ]
+        },
+        "Metric": {
+            "enum": [
+                "SEND",
+                "COMPLAINT",
+                "PERMANENT_BOUNCE",
+                "TRANSIENT_BOUNCE",
+                "OPEN",
+                "CLICK",
+                "DELIVERY",
+                "DELIVERY_OPEN",
+                "DELIVERY_CLICK",
+                "DELIVERY_COMPLAINT"
+            ]
+        },
+        "Dimensions": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/MetricDimensionValue"
+            }
+        },
+        "MetricDimensionValue": {
+            "type": "string"
+        },
+        "Timestamp": {
+            "type": "string",
+            "format": "date-time"
+        },
         "BatchGetMetricDataResponse": {
             "type": "object",
             "properties": {
@@ -3531,18 +3730,11 @@
                 }
             }
         },
-        "QueryIdentifier": {
-            "type": "string"
-        },
         "TimestampList": {
             "type": "array",
             "items": {
                 "$ref": "#/$defs/Timestamp"
             }
-        },
-        "Timestamp": {
-            "type": "string",
-            "format": "date-time"
         },
         "MetricValueList": {
             "type": "array",
@@ -3583,75 +3775,6 @@
         "QueryErrorMessage": {
             "type": "string"
         },
-        "BatchGetMetricDataRequest": {
-            "type": "object",
-            "properties": {
-                "Queries": {
-                    "$ref": "#/$defs/BatchGetMetricDataQueries"
-                }
-            }
-        },
-        "BatchGetMetricDataQueries": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BatchGetMetricDataQuery"
-            }
-        },
-        "BatchGetMetricDataQuery": {
-            "type": "object",
-            "properties": {
-                "Id": {
-                    "$ref": "#/$defs/QueryIdentifier"
-                },
-                "Namespace": {
-                    "$ref": "#/$defs/MetricNamespace"
-                },
-                "Metric": {
-                    "$ref": "#/$defs/Metric"
-                },
-                "Dimensions": {
-                    "$ref": "#/$defs/Dimensions"
-                },
-                "StartDate": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "EndDate": {
-                    "$ref": "#/$defs/Timestamp"
-                }
-            }
-        },
-        "MetricNamespace": {
-            "enum": [
-                "VDM"
-            ]
-        },
-        "Metric": {
-            "enum": [
-                "SEND",
-                "COMPLAINT",
-                "PERMANENT_BOUNCE",
-                "TRANSIENT_BOUNCE",
-                "OPEN",
-                "CLICK",
-                "DELIVERY",
-                "DELIVERY_OPEN",
-                "DELIVERY_CLICK",
-                "DELIVERY_COMPLAINT"
-            ]
-        },
-        "Dimensions": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/MetricDimensionValue"
-            }
-        },
-        "MetricDimensionValue": {
-            "type": "string"
-        },
-        "CancelExportJobResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "CancelExportJobRequest": {
             "type": "object",
             "properties": {
@@ -3663,7 +3786,7 @@
         "JobId": {
             "type": "string"
         },
-        "CreateConfigurationSetResponse": {
+        "CancelExportJobResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3693,6 +3816,9 @@
                 },
                 "VdmOptions": {
                     "$ref": "#/$defs/VdmOptions"
+                },
+                "ArchivingOptions": {
+                    "$ref": "#/$defs/ArchivingOptions"
                 }
             }
         },
@@ -3728,6 +3854,9 @@
                 },
                 "SendingPoolName": {
                     "$ref": "#/$defs/PoolName"
+                },
+                "MaxDeliverySeconds": {
+                    "$ref": "#/$defs/MaxDeliverySeconds"
                 }
             }
         },
@@ -3739,6 +3868,10 @@
         },
         "PoolName": {
             "type": "string"
+        },
+        "MaxDeliverySeconds": {
+            "type": "integer",
+            "format": "int64"
         },
         "ReputationOptions": {
             "type": "object",
@@ -3842,7 +3975,18 @@
                 }
             }
         },
-        "CreateConfigurationSetEventDestinationResponse": {
+        "ArchivingOptions": {
+            "type": "object",
+            "properties": {
+                "ArchiveArn": {
+                    "$ref": "#/$defs/ArchiveArn"
+                }
+            }
+        },
+        "ArchiveArn": {
+            "type": "string"
+        },
+        "CreateConfigurationSetResponse": {
             "type": "object",
             "properties": {}
         },
@@ -3988,7 +4132,7 @@
                 }
             }
         },
-        "CreateContactResponse": {
+        "CreateConfigurationSetEventDestinationResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4050,7 +4194,7 @@
         "AttributesData": {
             "type": "string"
         },
-        "CreateContactListResponse": {
+        "CreateContactResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4100,7 +4244,7 @@
         "Description": {
             "type": "string"
         },
-        "CreateCustomVerificationEmailTemplateResponse": {
+        "CreateContactListResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4142,7 +4286,7 @@
         "FailureRedirectionURL": {
             "type": "string"
         },
-        "CreateDedicatedIpPoolResponse": {
+        "CreateCustomVerificationEmailTemplateResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4166,25 +4310,9 @@
                 "MANAGED"
             ]
         },
-        "CreateDeliverabilityTestReportResponse": {
+        "CreateDedicatedIpPoolResponse": {
             "type": "object",
-            "properties": {
-                "ReportId": {
-                    "$ref": "#/$defs/ReportId"
-                },
-                "DeliverabilityTestStatus": {
-                    "$ref": "#/$defs/DeliverabilityTestStatus"
-                }
-            }
-        },
-        "ReportId": {
-            "type": "string"
-        },
-        "DeliverabilityTestStatus": {
-            "enum": [
-                "IN_PROGRESS",
-                "COMPLETED"
-            ]
+            "properties": {}
         },
         "CreateDeliverabilityTestReportRequest": {
             "type": "object",
@@ -4306,6 +4434,9 @@
                 "TemplateArn": {
                     "$ref": "#/$defs/AmazonResourceName"
                 },
+                "TemplateContent": {
+                    "$ref": "#/$defs/EmailTemplateContent"
+                },
                 "TemplateData": {
                     "$ref": "#/$defs/EmailTemplateData"
                 },
@@ -4314,8 +4445,125 @@
                 }
             }
         },
+        "EmailTemplateContent": {
+            "type": "object",
+            "properties": {
+                "Subject": {
+                    "$ref": "#/$defs/EmailTemplateSubject"
+                },
+                "Text": {
+                    "$ref": "#/$defs/EmailTemplateText"
+                },
+                "Html": {
+                    "$ref": "#/$defs/EmailTemplateHtml"
+                }
+            }
+        },
+        "EmailTemplateText": {
+            "type": "string"
+        },
+        "EmailTemplateHtml": {
+            "type": "string"
+        },
         "EmailTemplateData": {
             "type": "string"
+        },
+        "CreateDeliverabilityTestReportResponse": {
+            "type": "object",
+            "properties": {
+                "ReportId": {
+                    "$ref": "#/$defs/ReportId"
+                },
+                "DeliverabilityTestStatus": {
+                    "$ref": "#/$defs/DeliverabilityTestStatus"
+                }
+            }
+        },
+        "ReportId": {
+            "type": "string"
+        },
+        "DeliverabilityTestStatus": {
+            "enum": [
+                "IN_PROGRESS",
+                "COMPLETED"
+            ]
+        },
+        "CreateEmailIdentityRequest": {
+            "type": "object",
+            "properties": {
+                "EmailIdentity": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                },
+                "DkimSigningAttributes": {
+                    "$ref": "#/$defs/DkimSigningAttributes"
+                },
+                "ConfigurationSetName": {
+                    "$ref": "#/$defs/ConfigurationSetName"
+                }
+            }
+        },
+        "Identity": {
+            "type": "string"
+        },
+        "DkimSigningAttributes": {
+            "type": "object",
+            "properties": {
+                "DomainSigningSelector": {
+                    "$ref": "#/$defs/Selector"
+                },
+                "DomainSigningPrivateKey": {
+                    "$ref": "#/$defs/PrivateKey"
+                },
+                "NextSigningKeyLength": {
+                    "$ref": "#/$defs/DkimSigningKeyLength"
+                },
+                "DomainSigningAttributesOrigin": {
+                    "$ref": "#/$defs/DkimSigningAttributesOrigin"
+                }
+            }
+        },
+        "Selector": {
+            "type": "string"
+        },
+        "PrivateKey": {
+            "type": "string"
+        },
+        "DkimSigningKeyLength": {
+            "enum": [
+                "RSA_1024_BIT",
+                "RSA_2048_BIT"
+            ]
+        },
+        "DkimSigningAttributesOrigin": {
+            "enum": [
+                "AWS_SES",
+                "EXTERNAL",
+                "AWS_SES_AF_SOUTH_1",
+                "AWS_SES_EU_NORTH_1",
+                "AWS_SES_AP_SOUTH_1",
+                "AWS_SES_EU_WEST_3",
+                "AWS_SES_EU_WEST_2",
+                "AWS_SES_EU_SOUTH_1",
+                "AWS_SES_EU_WEST_1",
+                "AWS_SES_AP_NORTHEAST_3",
+                "AWS_SES_AP_NORTHEAST_2",
+                "AWS_SES_ME_SOUTH_1",
+                "AWS_SES_AP_NORTHEAST_1",
+                "AWS_SES_IL_CENTRAL_1",
+                "AWS_SES_SA_EAST_1",
+                "AWS_SES_CA_CENTRAL_1",
+                "AWS_SES_AP_SOUTHEAST_1",
+                "AWS_SES_AP_SOUTHEAST_2",
+                "AWS_SES_AP_SOUTHEAST_3",
+                "AWS_SES_EU_CENTRAL_1",
+                "AWS_SES_US_EAST_1",
+                "AWS_SES_US_EAST_2",
+                "AWS_SES_US_WEST_1",
+                "AWS_SES_US_WEST_2"
+            ]
         },
         "CreateEmailIdentityResponse": {
             "type": "object",
@@ -4382,62 +4630,6 @@
         "DnsToken": {
             "type": "string"
         },
-        "DkimSigningAttributesOrigin": {
-            "enum": [
-                "AWS_SES",
-                "EXTERNAL"
-            ]
-        },
-        "DkimSigningKeyLength": {
-            "enum": [
-                "RSA_1024_BIT",
-                "RSA_2048_BIT"
-            ]
-        },
-        "CreateEmailIdentityRequest": {
-            "type": "object",
-            "properties": {
-                "EmailIdentity": {
-                    "$ref": "#/$defs/Identity"
-                },
-                "Tags": {
-                    "$ref": "#/$defs/TagList"
-                },
-                "DkimSigningAttributes": {
-                    "$ref": "#/$defs/DkimSigningAttributes"
-                },
-                "ConfigurationSetName": {
-                    "$ref": "#/$defs/ConfigurationSetName"
-                }
-            }
-        },
-        "Identity": {
-            "type": "string"
-        },
-        "DkimSigningAttributes": {
-            "type": "object",
-            "properties": {
-                "DomainSigningSelector": {
-                    "$ref": "#/$defs/Selector"
-                },
-                "DomainSigningPrivateKey": {
-                    "$ref": "#/$defs/PrivateKey"
-                },
-                "NextSigningKeyLength": {
-                    "$ref": "#/$defs/DkimSigningKeyLength"
-                }
-            }
-        },
-        "Selector": {
-            "type": "string"
-        },
-        "PrivateKey": {
-            "type": "string"
-        },
-        "CreateEmailIdentityPolicyResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "CreateEmailIdentityPolicyRequest": {
             "type": "object",
             "properties": {
@@ -4458,7 +4650,7 @@
         "Policy": {
             "type": "string"
         },
-        "CreateEmailTemplateResponse": {
+        "CreateEmailIdentityPolicyResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4473,33 +4665,9 @@
                 }
             }
         },
-        "EmailTemplateContent": {
+        "CreateEmailTemplateResponse": {
             "type": "object",
-            "properties": {
-                "Subject": {
-                    "$ref": "#/$defs/EmailTemplateSubject"
-                },
-                "Text": {
-                    "$ref": "#/$defs/EmailTemplateText"
-                },
-                "Html": {
-                    "$ref": "#/$defs/EmailTemplateHtml"
-                }
-            }
-        },
-        "EmailTemplateText": {
-            "type": "string"
-        },
-        "EmailTemplateHtml": {
-            "type": "string"
-        },
-        "CreateExportJobResponse": {
-            "type": "object",
-            "properties": {
-                "JobId": {
-                    "$ref": "#/$defs/JobId"
-                }
-            }
+            "properties": {}
         },
         "CreateExportJobRequest": {
             "type": "object",
@@ -4700,7 +4868,7 @@
         "S3Url": {
             "type": "string"
         },
-        "CreateImportJobResponse": {
+        "CreateExportJobResponse": {
             "type": "object",
             "properties": {
                 "JobId": {
@@ -4772,9 +4940,77 @@
                 }
             }
         },
-        "DeleteConfigurationSetResponse": {
+        "CreateImportJobResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
+                }
+            }
+        },
+        "CreateMultiRegionEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                },
+                "Details": {
+                    "$ref": "#/$defs/Details"
+                },
+                "Tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "EndpointName": {
+            "type": "string"
+        },
+        "Details": {
+            "type": "object",
+            "properties": {
+                "RoutesDetails": {
+                    "$ref": "#/$defs/RoutesDetails"
+                }
+            }
+        },
+        "RoutesDetails": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/RouteDetails"
+            }
+        },
+        "RouteDetails": {
+            "type": "object",
+            "properties": {
+                "Region": {
+                    "$ref": "#/$defs/Region"
+                }
+            }
+        },
+        "Region": {
+            "type": "string"
+        },
+        "CreateMultiRegionEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/EndpointId"
+                }
+            }
+        },
+        "Status": {
+            "enum": [
+                "CREATING",
+                "READY",
+                "FAILED",
+                "DELETING"
+            ]
+        },
+        "EndpointId": {
+            "type": "string"
         },
         "DeleteConfigurationSetRequest": {
             "type": "object",
@@ -4784,7 +5020,7 @@
                 }
             }
         },
-        "DeleteConfigurationSetEventDestinationResponse": {
+        "DeleteConfigurationSetResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4799,7 +5035,7 @@
                 }
             }
         },
-        "DeleteContactResponse": {
+        "DeleteConfigurationSetEventDestinationResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4814,7 +5050,7 @@
                 }
             }
         },
-        "DeleteContactListResponse": {
+        "DeleteContactResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4826,7 +5062,7 @@
                 }
             }
         },
-        "DeleteCustomVerificationEmailTemplateResponse": {
+        "DeleteContactListResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4838,7 +5074,7 @@
                 }
             }
         },
-        "DeleteDedicatedIpPoolResponse": {
+        "DeleteCustomVerificationEmailTemplateResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4850,7 +5086,7 @@
                 }
             }
         },
-        "DeleteEmailIdentityResponse": {
+        "DeleteDedicatedIpPoolResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4862,7 +5098,7 @@
                 }
             }
         },
-        "DeleteEmailIdentityPolicyResponse": {
+        "DeleteEmailIdentityResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4877,7 +5113,7 @@
                 }
             }
         },
-        "DeleteEmailTemplateResponse": {
+        "DeleteEmailIdentityPolicyResponse": {
             "type": "object",
             "properties": {}
         },
@@ -4889,9 +5125,25 @@
                 }
             }
         },
-        "DeleteSuppressedDestinationResponse": {
+        "DeleteEmailTemplateResponse": {
             "type": "object",
             "properties": {}
+        },
+        "DeleteMultiRegionEndpointRequest": {
+            "type": "object",
+            "properties": {
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                }
+            }
+        },
+        "DeleteMultiRegionEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                }
+            }
         },
         "DeleteSuppressedDestinationRequest": {
             "type": "object",
@@ -4900,6 +5152,14 @@
                     "$ref": "#/$defs/EmailAddress"
                 }
             }
+        },
+        "DeleteSuppressedDestinationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "GetAccountRequest": {
+            "type": "object",
+            "properties": {}
         },
         "GetAccountResponse": {
             "type": "object",
@@ -5069,9 +5329,22 @@
                 }
             }
         },
-        "GetAccountRequest": {
+        "GetBlacklistReportsRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "BlacklistItemNames": {
+                    "$ref": "#/$defs/BlacklistItemNames"
+                }
+            }
+        },
+        "BlacklistItemNames": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BlacklistItemName"
+            }
+        },
+        "BlacklistItemName": {
+            "type": "string"
         },
         "GetBlacklistReportsResponse": {
             "type": "object",
@@ -5113,22 +5386,13 @@
         "BlacklistingDescription": {
             "type": "string"
         },
-        "GetBlacklistReportsRequest": {
+        "GetConfigurationSetRequest": {
             "type": "object",
             "properties": {
-                "BlacklistItemNames": {
-                    "$ref": "#/$defs/BlacklistItemNames"
+                "ConfigurationSetName": {
+                    "$ref": "#/$defs/ConfigurationSetName"
                 }
             }
-        },
-        "BlacklistItemNames": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BlacklistItemName"
-            }
-        },
-        "BlacklistItemName": {
-            "type": "string"
         },
         "GetConfigurationSetResponse": {
             "type": "object",
@@ -5156,10 +5420,13 @@
                 },
                 "VdmOptions": {
                     "$ref": "#/$defs/VdmOptions"
+                },
+                "ArchivingOptions": {
+                    "$ref": "#/$defs/ArchivingOptions"
                 }
             }
         },
-        "GetConfigurationSetRequest": {
+        "GetConfigurationSetEventDestinationsRequest": {
             "type": "object",
             "properties": {
                 "ConfigurationSetName": {
@@ -5210,11 +5477,14 @@
                 }
             }
         },
-        "GetConfigurationSetEventDestinationsRequest": {
+        "GetContactRequest": {
             "type": "object",
             "properties": {
-                "ConfigurationSetName": {
-                    "$ref": "#/$defs/ConfigurationSetName"
+                "ContactListName": {
+                    "$ref": "#/$defs/ContactListName"
+                },
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
                 }
             }
         },
@@ -5247,14 +5517,11 @@
                 }
             }
         },
-        "GetContactRequest": {
+        "GetContactListRequest": {
             "type": "object",
             "properties": {
                 "ContactListName": {
                     "$ref": "#/$defs/ContactListName"
-                },
-                "EmailAddress": {
-                    "$ref": "#/$defs/EmailAddress"
                 }
             }
         },
@@ -5281,11 +5548,11 @@
                 }
             }
         },
-        "GetContactListRequest": {
+        "GetCustomVerificationEmailTemplateRequest": {
             "type": "object",
             "properties": {
-                "ContactListName": {
-                    "$ref": "#/$defs/ContactListName"
+                "TemplateName": {
+                    "$ref": "#/$defs/EmailTemplateName"
                 }
             }
         },
@@ -5312,13 +5579,16 @@
                 }
             }
         },
-        "GetCustomVerificationEmailTemplateRequest": {
+        "GetDedicatedIpRequest": {
             "type": "object",
             "properties": {
-                "TemplateName": {
-                    "$ref": "#/$defs/EmailTemplateName"
+                "Ip": {
+                    "$ref": "#/$defs/Ip"
                 }
             }
+        },
+        "Ip": {
+            "type": "string"
         },
         "GetDedicatedIpResponse": {
             "type": "object",
@@ -5345,9 +5615,6 @@
                 }
             }
         },
-        "Ip": {
-            "type": "string"
-        },
         "WarmupStatus": {
             "enum": [
                 "IN_PROGRESS",
@@ -5358,11 +5625,11 @@
             "type": "integer",
             "format": "int32"
         },
-        "GetDedicatedIpRequest": {
+        "GetDedicatedIpPoolRequest": {
             "type": "object",
             "properties": {
-                "Ip": {
-                    "$ref": "#/$defs/Ip"
+                "PoolName": {
+                    "$ref": "#/$defs/PoolName"
                 }
             }
         },
@@ -5385,13 +5652,26 @@
                 }
             }
         },
-        "GetDedicatedIpPoolRequest": {
+        "GetDedicatedIpsRequest": {
             "type": "object",
             "properties": {
                 "PoolName": {
                     "$ref": "#/$defs/PoolName"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/MaxItems"
                 }
             }
+        },
+        "NextToken": {
+            "type": "string"
+        },
+        "MaxItems": {
+            "type": "integer",
+            "format": "int32"
         },
         "GetDedicatedIpsResponse": {
             "type": "object",
@@ -5410,26 +5690,9 @@
                 "$ref": "#/$defs/DedicatedIp"
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "GetDedicatedIpsRequest": {
+        "GetDeliverabilityDashboardOptionsRequest": {
             "type": "object",
-            "properties": {
-                "PoolName": {
-                    "$ref": "#/$defs/PoolName"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "PageSize": {
-                    "$ref": "#/$defs/MaxItems"
-                }
-            }
-        },
-        "MaxItems": {
-            "type": "integer",
-            "format": "int32"
+            "properties": {}
         },
         "GetDeliverabilityDashboardOptionsResponse": {
             "type": "object",
@@ -5501,9 +5764,13 @@
         "IspName": {
             "type": "string"
         },
-        "GetDeliverabilityDashboardOptionsRequest": {
+        "GetDeliverabilityTestReportRequest": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "ReportId": {
+                    "$ref": "#/$defs/ReportId"
+                }
+            }
         },
         "GetDeliverabilityTestReportResponse": {
             "type": "object",
@@ -5595,13 +5862,16 @@
         "MessageContent": {
             "type": "string"
         },
-        "GetDeliverabilityTestReportRequest": {
+        "GetDomainDeliverabilityCampaignRequest": {
             "type": "object",
             "properties": {
-                "ReportId": {
-                    "$ref": "#/$defs/ReportId"
+                "CampaignId": {
+                    "$ref": "#/$defs/CampaignId"
                 }
             }
+        },
+        "CampaignId": {
+            "type": "string"
         },
         "GetDomainDeliverabilityCampaignResponse": {
             "type": "object",
@@ -5658,9 +5928,6 @@
                 }
             }
         },
-        "CampaignId": {
-            "type": "string"
-        },
         "ImageUrl": {
             "type": "string"
         },
@@ -5686,11 +5953,17 @@
         "Esp": {
             "type": "string"
         },
-        "GetDomainDeliverabilityCampaignRequest": {
+        "GetDomainStatisticsReportRequest": {
             "type": "object",
             "properties": {
-                "CampaignId": {
-                    "$ref": "#/$defs/CampaignId"
+                "Domain": {
+                    "$ref": "#/$defs/Identity"
+                },
+                "StartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndDate": {
+                    "$ref": "#/$defs/Timestamp"
                 }
             }
         },
@@ -5782,17 +6055,11 @@
                 }
             }
         },
-        "GetDomainStatisticsReportRequest": {
+        "GetEmailIdentityRequest": {
             "type": "object",
             "properties": {
-                "Domain": {
+                "EmailIdentity": {
                     "$ref": "#/$defs/Identity"
-                },
-                "StartDate": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "EndDate": {
-                    "$ref": "#/$defs/Timestamp"
                 }
             }
         },
@@ -5900,7 +6167,12 @@
                 "DNS_SERVER_ERROR",
                 "HOST_NOT_FOUND",
                 "TYPE_NOT_FOUND",
-                "INVALID_VALUE"
+                "INVALID_VALUE",
+                "REPLICATION_ACCESS_DENIED",
+                "REPLICATION_PRIMARY_NOT_FOUND",
+                "REPLICATION_PRIMARY_BYO_DKIM_NOT_SUPPORTED",
+                "REPLICATION_REPLICA_AS_PRIMARY_NOT_SUPPORTED",
+                "REPLICATION_PRIMARY_INVALID_REGION"
             ]
         },
         "SOARecord": {
@@ -5927,7 +6199,7 @@
             "type": "integer",
             "format": "int64"
         },
-        "GetEmailIdentityRequest": {
+        "GetEmailIdentityPoliciesRequest": {
             "type": "object",
             "properties": {
                 "EmailIdentity": {
@@ -5943,11 +6215,11 @@
                 }
             }
         },
-        "GetEmailIdentityPoliciesRequest": {
+        "GetEmailTemplateRequest": {
             "type": "object",
             "properties": {
-                "EmailIdentity": {
-                    "$ref": "#/$defs/Identity"
+                "TemplateName": {
+                    "$ref": "#/$defs/EmailTemplateName"
                 }
             }
         },
@@ -5962,11 +6234,11 @@
                 }
             }
         },
-        "GetEmailTemplateRequest": {
+        "GetExportJobRequest": {
             "type": "object",
             "properties": {
-                "TemplateName": {
-                    "$ref": "#/$defs/EmailTemplateName"
+                "JobId": {
+                    "$ref": "#/$defs/JobId"
                 }
             }
         },
@@ -6053,7 +6325,7 @@
             "type": "integer",
             "format": "int32"
         },
-        "GetExportJobRequest": {
+        "GetImportJobRequest": {
             "type": "object",
             "properties": {
                 "JobId": {
@@ -6097,13 +6369,16 @@
             "type": "integer",
             "format": "int32"
         },
-        "GetImportJobRequest": {
+        "GetMessageInsightsRequest": {
             "type": "object",
             "properties": {
-                "JobId": {
-                    "$ref": "#/$defs/JobId"
+                "MessageId": {
+                    "$ref": "#/$defs/OutboundMessageId"
                 }
             }
+        },
+        "OutboundMessageId": {
+            "type": "string"
         },
         "GetMessageInsightsResponse": {
             "type": "object",
@@ -6124,9 +6399,6 @@
                     "$ref": "#/$defs/EmailInsightsList"
                 }
             }
-        },
-        "OutboundMessageId": {
-            "type": "string"
         },
         "MessageTagList": {
             "type": "array",
@@ -6246,11 +6518,56 @@
         "ComplaintFeedbackType": {
             "type": "string"
         },
-        "GetMessageInsightsRequest": {
+        "GetMultiRegionEndpointRequest": {
             "type": "object",
             "properties": {
-                "MessageId": {
-                    "$ref": "#/$defs/OutboundMessageId"
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                }
+            }
+        },
+        "GetMultiRegionEndpointResponse": {
+            "type": "object",
+            "properties": {
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/EndpointId"
+                },
+                "Routes": {
+                    "$ref": "#/$defs/Routes"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Routes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Route"
+            }
+        },
+        "Route": {
+            "type": "object",
+            "properties": {
+                "Region": {
+                    "$ref": "#/$defs/Region"
+                }
+            }
+        },
+        "GetSuppressedDestinationRequest": {
+            "type": "object",
+            "properties": {
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
                 }
             }
         },
@@ -6293,11 +6610,14 @@
         "FeedbackId": {
             "type": "string"
         },
-        "GetSuppressedDestinationRequest": {
+        "ListConfigurationSetsRequest": {
             "type": "object",
             "properties": {
-                "EmailAddress": {
-                    "$ref": "#/$defs/EmailAddress"
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/MaxItems"
                 }
             }
         },
@@ -6318,14 +6638,14 @@
                 "$ref": "#/$defs/ConfigurationSetName"
             }
         },
-        "ListConfigurationSetsRequest": {
+        "ListContactListsRequest": {
             "type": "object",
             "properties": {
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
                 "PageSize": {
                     "$ref": "#/$defs/MaxItems"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
                 }
             }
         },
@@ -6351,54 +6671,6 @@
             "properties": {
                 "ContactListName": {
                     "$ref": "#/$defs/ContactListName"
-                },
-                "LastUpdatedTimestamp": {
-                    "$ref": "#/$defs/Timestamp"
-                }
-            }
-        },
-        "ListContactListsRequest": {
-            "type": "object",
-            "properties": {
-                "PageSize": {
-                    "$ref": "#/$defs/MaxItems"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ListContactsResponse": {
-            "type": "object",
-            "properties": {
-                "Contacts": {
-                    "$ref": "#/$defs/ListOfContacts"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "ListOfContacts": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/Contact"
-            }
-        },
-        "Contact": {
-            "type": "object",
-            "properties": {
-                "EmailAddress": {
-                    "$ref": "#/$defs/EmailAddress"
-                },
-                "TopicPreferences": {
-                    "$ref": "#/$defs/TopicPreferenceList"
-                },
-                "TopicDefaultPreferences": {
-                    "$ref": "#/$defs/TopicPreferenceList"
-                },
-                "UnsubscribeAll": {
-                    "$ref": "#/$defs/UnsubscribeAll"
                 },
                 "LastUpdatedTimestamp": {
                     "$ref": "#/$defs/Timestamp"
@@ -6447,6 +6719,54 @@
         "UseDefaultIfPreferenceUnavailable": {
             "type": "boolean"
         },
+        "ListContactsResponse": {
+            "type": "object",
+            "properties": {
+                "Contacts": {
+                    "$ref": "#/$defs/ListOfContacts"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "ListOfContacts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Contact"
+            }
+        },
+        "Contact": {
+            "type": "object",
+            "properties": {
+                "EmailAddress": {
+                    "$ref": "#/$defs/EmailAddress"
+                },
+                "TopicPreferences": {
+                    "$ref": "#/$defs/TopicPreferenceList"
+                },
+                "TopicDefaultPreferences": {
+                    "$ref": "#/$defs/TopicPreferenceList"
+                },
+                "UnsubscribeAll": {
+                    "$ref": "#/$defs/UnsubscribeAll"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "ListCustomVerificationEmailTemplatesRequest": {
+            "type": "object",
+            "properties": {
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/MaxItems"
+                }
+            }
+        },
         "ListCustomVerificationEmailTemplatesResponse": {
             "type": "object",
             "properties": {
@@ -6484,7 +6804,7 @@
                 }
             }
         },
-        "ListCustomVerificationEmailTemplatesRequest": {
+        "ListDedicatedIpPoolsRequest": {
             "type": "object",
             "properties": {
                 "NextToken": {
@@ -6512,7 +6832,7 @@
                 "$ref": "#/$defs/PoolName"
             }
         },
-        "ListDedicatedIpPoolsRequest": {
+        "ListDeliverabilityTestReportsRequest": {
             "type": "object",
             "properties": {
                 "NextToken": {
@@ -6540,9 +6860,18 @@
                 "$ref": "#/$defs/DeliverabilityTestReport"
             }
         },
-        "ListDeliverabilityTestReportsRequest": {
+        "ListDomainDeliverabilityCampaignsRequest": {
             "type": "object",
             "properties": {
+                "StartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "SubscribedDomain": {
+                    "$ref": "#/$defs/Domain"
+                },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
                 },
@@ -6568,18 +6897,9 @@
                 "$ref": "#/$defs/DomainDeliverabilityCampaign"
             }
         },
-        "ListDomainDeliverabilityCampaignsRequest": {
+        "ListEmailIdentitiesRequest": {
             "type": "object",
             "properties": {
-                "StartDate": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "EndDate": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "SubscribedDomain": {
-                    "$ref": "#/$defs/Domain"
-                },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
                 },
@@ -6622,7 +6942,7 @@
                 }
             }
         },
-        "ListEmailIdentitiesRequest": {
+        "ListEmailTemplatesRequest": {
             "type": "object",
             "properties": {
                 "NextToken": {
@@ -6661,7 +6981,7 @@
                 }
             }
         },
-        "ListEmailTemplatesRequest": {
+        "ListExportJobsRequest": {
             "type": "object",
             "properties": {
                 "NextToken": {
@@ -6669,6 +6989,12 @@
                 },
                 "PageSize": {
                     "$ref": "#/$defs/MaxItems"
+                },
+                "ExportSourceType": {
+                    "$ref": "#/$defs/ExportSourceType"
+                },
+                "JobStatus": {
+                    "$ref": "#/$defs/JobStatus"
                 }
             }
         },
@@ -6709,22 +7035,25 @@
                 }
             }
         },
-        "ListExportJobsRequest": {
+        "ListImportJobsRequest": {
             "type": "object",
             "properties": {
+                "ImportDestinationType": {
+                    "$ref": "#/$defs/ImportDestinationType"
+                },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
                 },
                 "PageSize": {
                     "$ref": "#/$defs/MaxItems"
-                },
-                "ExportSourceType": {
-                    "$ref": "#/$defs/ExportSourceType"
-                },
-                "JobStatus": {
-                    "$ref": "#/$defs/JobStatus"
                 }
             }
+        },
+        "ImportDestinationType": {
+            "enum": [
+                "SUPPRESSION_LIST",
+                "CONTACT_LIST"
+            ]
         },
         "ListImportJobsResponse": {
             "type": "object",
@@ -6766,11 +7095,75 @@
                 }
             }
         },
-        "ListImportJobsRequest": {
+        "ListMultiRegionEndpointsRequest": {
             "type": "object",
             "properties": {
-                "ImportDestinationType": {
-                    "$ref": "#/$defs/ImportDestinationType"
+                "NextToken": {
+                    "$ref": "#/$defs/NextTokenV2"
+                },
+                "PageSize": {
+                    "$ref": "#/$defs/PageSizeV2"
+                }
+            }
+        },
+        "NextTokenV2": {
+            "type": "string"
+        },
+        "PageSizeV2": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ListMultiRegionEndpointsResponse": {
+            "type": "object",
+            "properties": {
+                "MultiRegionEndpoints": {
+                    "$ref": "#/$defs/MultiRegionEndpoints"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextTokenV2"
+                }
+            }
+        },
+        "MultiRegionEndpoints": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/MultiRegionEndpoint"
+            }
+        },
+        "MultiRegionEndpoint": {
+            "type": "object",
+            "properties": {
+                "EndpointName": {
+                    "$ref": "#/$defs/EndpointName"
+                },
+                "Status": {
+                    "$ref": "#/$defs/Status"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/EndpointId"
+                },
+                "Regions": {
+                    "$ref": "#/$defs/Regions"
+                },
+                "CreatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "LastUpdatedTimestamp": {
+                    "$ref": "#/$defs/Timestamp"
+                }
+            }
+        },
+        "Regions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Region"
+            }
+        },
+        "ListRecommendationsRequest": {
+            "type": "object",
+            "properties": {
+                "Filter": {
+                    "$ref": "#/$defs/ListRecommendationsFilter"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
@@ -6780,11 +7173,14 @@
                 }
             }
         },
-        "ImportDestinationType": {
-            "enum": [
-                "SUPPRESSION_LIST",
-                "CONTACT_LIST"
-            ]
+        "ListRecommendationsFilter": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/ListRecommendationFilterValue"
+            }
+        },
+        "ListRecommendationFilterValue": {
+            "type": "string"
         },
         "ListRecommendationsResponse": {
             "type": "object",
@@ -6834,7 +7230,8 @@
                 "DKIM",
                 "DMARC",
                 "SPF",
-                "BIMI"
+                "BIMI",
+                "COMPLAINT"
             ]
         },
         "RecommendationDescription": {
@@ -6852,11 +7249,17 @@
                 "HIGH"
             ]
         },
-        "ListRecommendationsRequest": {
+        "ListSuppressedDestinationsRequest": {
             "type": "object",
             "properties": {
-                "Filter": {
-                    "$ref": "#/$defs/ListRecommendationsFilter"
+                "Reasons": {
+                    "$ref": "#/$defs/SuppressionListReasons"
+                },
+                "StartDate": {
+                    "$ref": "#/$defs/Timestamp"
+                },
+                "EndDate": {
+                    "$ref": "#/$defs/Timestamp"
                 },
                 "NextToken": {
                     "$ref": "#/$defs/NextToken"
@@ -6865,15 +7268,6 @@
                     "$ref": "#/$defs/MaxItems"
                 }
             }
-        },
-        "ListRecommendationsFilter": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "#/$defs/ListRecommendationFilterValue"
-            }
-        },
-        "ListRecommendationFilterValue": {
-            "type": "string"
         },
         "ListSuppressedDestinationsResponse": {
             "type": "object",
@@ -6906,23 +7300,11 @@
                 }
             }
         },
-        "ListSuppressedDestinationsRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "Reasons": {
-                    "$ref": "#/$defs/SuppressionListReasons"
-                },
-                "StartDate": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "EndDate": {
-                    "$ref": "#/$defs/Timestamp"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                },
-                "PageSize": {
-                    "$ref": "#/$defs/MaxItems"
+                "ResourceArn": {
+                    "$ref": "#/$defs/AmazonResourceName"
                 }
             }
         },
@@ -6934,18 +7316,6 @@
                 }
             }
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "ResourceArn": {
-                    "$ref": "#/$defs/AmazonResourceName"
-                }
-            }
-        },
-        "PutAccountDedicatedIpWarmupAttributesResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "PutAccountDedicatedIpWarmupAttributesRequest": {
             "type": "object",
             "properties": {
@@ -6954,7 +7324,7 @@
                 }
             }
         },
-        "PutAccountDetailsResponse": {
+        "PutAccountDedicatedIpWarmupAttributesResponse": {
             "type": "object",
             "properties": {}
         },
@@ -6984,7 +7354,7 @@
         "EnabledWrapper": {
             "type": "boolean"
         },
-        "PutAccountSendingAttributesResponse": {
+        "PutAccountDetailsResponse": {
             "type": "object",
             "properties": {}
         },
@@ -6996,7 +7366,7 @@
                 }
             }
         },
-        "PutAccountSuppressionAttributesResponse": {
+        "PutAccountSendingAttributesResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7008,7 +7378,7 @@
                 }
             }
         },
-        "PutAccountVdmAttributesResponse": {
+        "PutAccountSuppressionAttributesResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7020,7 +7390,22 @@
                 }
             }
         },
-        "PutConfigurationSetDeliveryOptionsResponse": {
+        "PutAccountVdmAttributesResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "PutConfigurationSetArchivingOptionsRequest": {
+            "type": "object",
+            "properties": {
+                "ConfigurationSetName": {
+                    "$ref": "#/$defs/ConfigurationSetName"
+                },
+                "ArchiveArn": {
+                    "$ref": "#/$defs/ArchiveArn"
+                }
+            }
+        },
+        "PutConfigurationSetArchivingOptionsResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7035,13 +7420,16 @@
                 },
                 "SendingPoolName": {
                     "$ref": "#/$defs/SendingPoolName"
+                },
+                "MaxDeliverySeconds": {
+                    "$ref": "#/$defs/MaxDeliverySeconds"
                 }
             }
         },
         "SendingPoolName": {
             "type": "string"
         },
-        "PutConfigurationSetReputationOptionsResponse": {
+        "PutConfigurationSetDeliveryOptionsResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7056,7 +7444,7 @@
                 }
             }
         },
-        "PutConfigurationSetSendingOptionsResponse": {
+        "PutConfigurationSetReputationOptionsResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7071,7 +7459,7 @@
                 }
             }
         },
-        "PutConfigurationSetSuppressionOptionsResponse": {
+        "PutConfigurationSetSendingOptionsResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7086,7 +7474,7 @@
                 }
             }
         },
-        "PutConfigurationSetTrackingOptionsResponse": {
+        "PutConfigurationSetSuppressionOptionsResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7104,7 +7492,7 @@
                 }
             }
         },
-        "PutConfigurationSetVdmOptionsResponse": {
+        "PutConfigurationSetTrackingOptionsResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7119,7 +7507,7 @@
                 }
             }
         },
-        "PutDedicatedIpInPoolResponse": {
+        "PutConfigurationSetVdmOptionsResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7134,7 +7522,7 @@
                 }
             }
         },
-        "PutDedicatedIpPoolScalingAttributesResponse": {
+        "PutDedicatedIpInPoolResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7149,7 +7537,7 @@
                 }
             }
         },
-        "PutDedicatedIpWarmupAttributesResponse": {
+        "PutDedicatedIpPoolScalingAttributesResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7164,7 +7552,7 @@
                 }
             }
         },
-        "PutDeliverabilityDashboardOptionResponse": {
+        "PutDedicatedIpWarmupAttributesResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7179,7 +7567,7 @@
                 }
             }
         },
-        "PutEmailIdentityConfigurationSetAttributesResponse": {
+        "PutDeliverabilityDashboardOptionResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7194,7 +7582,7 @@
                 }
             }
         },
-        "PutEmailIdentityDkimAttributesResponse": {
+        "PutEmailIdentityConfigurationSetAttributesResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7209,16 +7597,9 @@
                 }
             }
         },
-        "PutEmailIdentityDkimSigningAttributesResponse": {
+        "PutEmailIdentityDkimAttributesResponse": {
             "type": "object",
-            "properties": {
-                "DkimStatus": {
-                    "$ref": "#/$defs/DkimStatus"
-                },
-                "DkimTokens": {
-                    "$ref": "#/$defs/DnsTokenList"
-                }
-            }
+            "properties": {}
         },
         "PutEmailIdentityDkimSigningAttributesRequest": {
             "type": "object",
@@ -7234,9 +7615,16 @@
                 }
             }
         },
-        "PutEmailIdentityFeedbackAttributesResponse": {
+        "PutEmailIdentityDkimSigningAttributesResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "DkimStatus": {
+                    "$ref": "#/$defs/DkimStatus"
+                },
+                "DkimTokens": {
+                    "$ref": "#/$defs/DnsTokenList"
+                }
+            }
         },
         "PutEmailIdentityFeedbackAttributesRequest": {
             "type": "object",
@@ -7249,7 +7637,7 @@
                 }
             }
         },
-        "PutEmailIdentityMailFromAttributesResponse": {
+        "PutEmailIdentityFeedbackAttributesResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7267,7 +7655,7 @@
                 }
             }
         },
-        "PutSuppressedDestinationResponse": {
+        "PutEmailIdentityMailFromAttributesResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7282,51 +7670,9 @@
                 }
             }
         },
-        "SendBulkEmailResponse": {
+        "PutSuppressedDestinationResponse": {
             "type": "object",
-            "properties": {
-                "BulkEmailEntryResults": {
-                    "$ref": "#/$defs/BulkEmailEntryResultList"
-                }
-            }
-        },
-        "BulkEmailEntryResultList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/BulkEmailEntryResult"
-            }
-        },
-        "BulkEmailEntryResult": {
-            "type": "object",
-            "properties": {
-                "Status": {
-                    "$ref": "#/$defs/BulkEmailStatus"
-                },
-                "Error": {
-                    "$ref": "#/$defs/ErrorMessage"
-                },
-                "MessageId": {
-                    "$ref": "#/$defs/OutboundMessageId"
-                }
-            }
-        },
-        "BulkEmailStatus": {
-            "enum": [
-                "SUCCESS",
-                "MESSAGE_REJECTED",
-                "MAIL_FROM_DOMAIN_NOT_VERIFIED",
-                "CONFIGURATION_SET_NOT_FOUND",
-                "TEMPLATE_NOT_FOUND",
-                "ACCOUNT_SUSPENDED",
-                "ACCOUNT_THROTTLED",
-                "ACCOUNT_DAILY_QUOTA_EXCEEDED",
-                "INVALID_SENDING_POOL_NAME",
-                "ACCOUNT_SENDING_PAUSED",
-                "CONFIGURATION_SET_SENDING_PAUSED",
-                "INVALID_PARAMETER",
-                "TRANSIENT_FAILURE",
-                "FAILED"
-            ]
+            "properties": {}
         },
         "SendBulkEmailRequest": {
             "type": "object",
@@ -7357,6 +7703,9 @@
                 },
                 "ConfigurationSetName": {
                     "$ref": "#/$defs/ConfigurationSetName"
+                },
+                "EndpointId": {
+                    "$ref": "#/$defs/EndpointId"
                 }
             }
         },
@@ -7427,13 +7776,51 @@
                 }
             }
         },
-        "SendCustomVerificationEmailResponse": {
+        "SendBulkEmailResponse": {
             "type": "object",
             "properties": {
+                "BulkEmailEntryResults": {
+                    "$ref": "#/$defs/BulkEmailEntryResultList"
+                }
+            }
+        },
+        "BulkEmailEntryResultList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BulkEmailEntryResult"
+            }
+        },
+        "BulkEmailEntryResult": {
+            "type": "object",
+            "properties": {
+                "Status": {
+                    "$ref": "#/$defs/BulkEmailStatus"
+                },
+                "Error": {
+                    "$ref": "#/$defs/ErrorMessage"
+                },
                 "MessageId": {
                     "$ref": "#/$defs/OutboundMessageId"
                 }
             }
+        },
+        "BulkEmailStatus": {
+            "enum": [
+                "SUCCESS",
+                "MESSAGE_REJECTED",
+                "MAIL_FROM_DOMAIN_NOT_VERIFIED",
+                "CONFIGURATION_SET_NOT_FOUND",
+                "TEMPLATE_NOT_FOUND",
+                "ACCOUNT_SUSPENDED",
+                "ACCOUNT_THROTTLED",
+                "ACCOUNT_DAILY_QUOTA_EXCEEDED",
+                "INVALID_SENDING_POOL_NAME",
+                "ACCOUNT_SENDING_PAUSED",
+                "CONFIGURATION_SET_SENDING_PAUSED",
+                "INVALID_PARAMETER",
+                "TRANSIENT_FAILURE",
+                "FAILED"
+            ]
         },
         "SendCustomVerificationEmailRequest": {
             "type": "object",
@@ -7449,7 +7836,7 @@
                 }
             }
         },
-        "SendEmailResponse": {
+        "SendCustomVerificationEmailResponse": {
             "type": "object",
             "properties": {
                 "MessageId": {
@@ -7487,6 +7874,9 @@
                 "ConfigurationSetName": {
                     "$ref": "#/$defs/ConfigurationSetName"
                 },
+                "EndpointId": {
+                    "$ref": "#/$defs/EndpointId"
+                },
                 "ListManagementOptions": {
                     "$ref": "#/$defs/ListManagementOptions"
                 }
@@ -7503,9 +7893,13 @@
                 }
             }
         },
-        "TagResourceResponse": {
+        "SendEmailResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "MessageId": {
+                    "$ref": "#/$defs/OutboundMessageId"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -7515,6 +7909,21 @@
                 },
                 "Tags": {
                     "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "TagResourceResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "TestRenderEmailTemplateRequest": {
+            "type": "object",
+            "properties": {
+                "TemplateName": {
+                    "$ref": "#/$defs/EmailTemplateName"
+                },
+                "TemplateData": {
+                    "$ref": "#/$defs/EmailTemplateData"
                 }
             }
         },
@@ -7528,21 +7937,6 @@
         },
         "RenderedEmailTemplate": {
             "type": "string"
-        },
-        "TestRenderEmailTemplateRequest": {
-            "type": "object",
-            "properties": {
-                "TemplateName": {
-                    "$ref": "#/$defs/EmailTemplateName"
-                },
-                "TemplateData": {
-                    "$ref": "#/$defs/EmailTemplateData"
-                }
-            }
-        },
-        "UntagResourceResponse": {
-            "type": "object",
-            "properties": {}
         },
         "UntagResourceRequest": {
             "type": "object",
@@ -7561,7 +7955,7 @@
                 "$ref": "#/$defs/TagKey"
             }
         },
-        "UpdateConfigurationSetEventDestinationResponse": {
+        "UntagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7579,7 +7973,7 @@
                 }
             }
         },
-        "UpdateContactResponse": {
+        "UpdateConfigurationSetEventDestinationResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7603,7 +7997,7 @@
                 }
             }
         },
-        "UpdateContactListResponse": {
+        "UpdateContactResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7621,7 +8015,7 @@
                 }
             }
         },
-        "UpdateCustomVerificationEmailTemplateResponse": {
+        "UpdateContactListResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7648,7 +8042,7 @@
                 }
             }
         },
-        "UpdateEmailIdentityPolicyResponse": {
+        "UpdateCustomVerificationEmailTemplateResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7666,7 +8060,7 @@
                 }
             }
         },
-        "UpdateEmailTemplateResponse": {
+        "UpdateEmailIdentityPolicyResponse": {
             "type": "object",
             "properties": {}
         },
@@ -7680,6 +8074,10 @@
                     "$ref": "#/$defs/EmailTemplateContent"
                 }
             }
+        },
+        "UpdateEmailTemplateResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {
@@ -7711,9 +8109,199 @@
                     "required": false,
                     "documentation": "Override the endpoint used to send this request",
                     "type": "String"
+                },
+                "EndpointId": {
+                    "required": false,
+                    "documentation": "Operation parameter for EndpointId",
+                    "type": "String"
                 }
             },
             "rules": [
+                {
+                    "conditions": [
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "EndpointId"
+                                }
+                            ]
+                        },
+                        {
+                            "fn": "isSet",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ]
+                        },
+                        {
+                            "fn": "aws.partition",
+                            "argv": [
+                                {
+                                    "ref": "Region"
+                                }
+                            ],
+                            "assign": "PartitionResult"
+                        }
+                    ],
+                    "rules": [
+                        {
+                            "conditions": [
+                                {
+                                    "fn": "isValidHostLabel",
+                                    "argv": [
+                                        {
+                                            "ref": "EndpointId"
+                                        },
+                                        true
+                                    ]
+                                }
+                            ],
+                            "rules": [
+                                {
+                                    "conditions": [
+                                        {
+                                            "fn": "booleanEquals",
+                                            "argv": [
+                                                {
+                                                    "ref": "UseFIPS"
+                                                },
+                                                false
+                                            ]
+                                        }
+                                    ],
+                                    "rules": [
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "isSet",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "Endpoint"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "endpoint": {
+                                                "url": {
+                                                    "ref": "Endpoint"
+                                                },
+                                                "properties": {
+                                                    "authSchemes": [
+                                                        {
+                                                            "name": "sigv4a",
+                                                            "signingName": "ses",
+                                                            "signingRegionSet": [
+                                                                "*"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        },
+                                        {
+                                            "conditions": [
+                                                {
+                                                    "fn": "booleanEquals",
+                                                    "argv": [
+                                                        {
+                                                            "ref": "UseDualStack"
+                                                        },
+                                                        true
+                                                    ]
+                                                }
+                                            ],
+                                            "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "booleanEquals",
+                                                            "argv": [
+                                                                true,
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "supportsDualStack"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "rules": [
+                                                        {
+                                                            "conditions": [],
+                                                            "endpoint": {
+                                                                "url": "https://{EndpointId}.endpoints.email.{PartitionResult#dualStackDnsSuffix}",
+                                                                "properties": {
+                                                                    "authSchemes": [
+                                                                        {
+                                                                            "name": "sigv4a",
+                                                                            "signingName": "ses",
+                                                                            "signingRegionSet": [
+                                                                                "*"
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "headers": {}
+                                                            },
+                                                            "type": "endpoint"
+                                                        }
+                                                    ],
+                                                    "type": "tree"
+                                                },
+                                                {
+                                                    "conditions": [],
+                                                    "error": "DualStack is enabled but this partition does not support DualStack",
+                                                    "type": "error"
+                                                }
+                                            ],
+                                            "type": "tree"
+                                        },
+                                        {
+                                            "conditions": [],
+                                            "endpoint": {
+                                                "url": "https://{EndpointId}.endpoints.email.{PartitionResult#dnsSuffix}",
+                                                "properties": {
+                                                    "authSchemes": [
+                                                        {
+                                                            "name": "sigv4a",
+                                                            "signingName": "ses",
+                                                            "signingRegionSet": [
+                                                                "*"
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "headers": {}
+                                            },
+                                            "type": "endpoint"
+                                        }
+                                    ],
+                                    "type": "tree"
+                                },
+                                {
+                                    "conditions": [],
+                                    "error": "Invalid Configuration: FIPS is not supported with multi-region endpoints",
+                                    "type": "error"
+                                }
+                            ],
+                            "type": "tree"
+                        },
+                        {
+                            "conditions": [],
+                            "error": "EndpointId must be a valid host label",
+                            "type": "error"
+                        }
+                    ],
+                    "type": "tree"
+                },
                 {
                     "conditions": [
                         {

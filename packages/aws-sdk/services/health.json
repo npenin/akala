@@ -551,6 +551,9 @@
                 },
                 "tags": {
                     "$ref": "#/$defs/tagSet"
+                },
+                "entityMetadata": {
+                    "$ref": "#/$defs/entityMetadata"
                 }
             }
         },
@@ -583,6 +586,15 @@
             }
         },
         "tagValue": {
+            "type": "string"
+        },
+        "entityMetadata": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/entityMetadataValue"
+            }
+        },
+        "entityMetadataValue": {
             "type": "string"
         },
         "DescribeAffectedEntitiesRequest": {

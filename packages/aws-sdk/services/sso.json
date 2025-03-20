@@ -29,9 +29,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "roleName": {},
+                        "accountId": {},
+                        "accessToken": {}
                     }
                 }
             }
@@ -64,9 +64,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "accessToken": {},
+                        "accountId": {}
                     }
                 }
             }
@@ -99,9 +100,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {},
+                        "accessToken": {}
                     }
                 }
             }
@@ -134,9 +135,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "accessToken": {}
                     }
                 }
             }
@@ -188,6 +187,29 @@
             "type": "string",
             "format": "binary"
         },
+        "GetRoleCredentialsRequest": {
+            "type": "object",
+            "properties": {
+                "roleName": {
+                    "$ref": "#/$defs/RoleNameType"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountIdType"
+                },
+                "accessToken": {
+                    "$ref": "#/$defs/AccessTokenType"
+                }
+            }
+        },
+        "RoleNameType": {
+            "type": "string"
+        },
+        "AccountIdType": {
+            "type": "string"
+        },
+        "AccessTokenType": {
+            "type": "string"
+        },
         "GetRoleCredentialsResponse": {
             "type": "object",
             "properties": {
@@ -226,28 +248,29 @@
             "type": "integer",
             "format": "int64"
         },
-        "GetRoleCredentialsRequest": {
+        "ListAccountRolesRequest": {
             "type": "object",
             "properties": {
-                "roleName": {
-                    "$ref": "#/$defs/RoleNameType"
+                "nextToken": {
+                    "$ref": "#/$defs/NextTokenType"
                 },
-                "accountId": {
-                    "$ref": "#/$defs/AccountIdType"
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResultType"
                 },
                 "accessToken": {
                     "$ref": "#/$defs/AccessTokenType"
+                },
+                "accountId": {
+                    "$ref": "#/$defs/AccountIdType"
                 }
             }
         },
-        "RoleNameType": {
+        "NextTokenType": {
             "type": "string"
         },
-        "AccountIdType": {
-            "type": "string"
-        },
-        "AccessTokenType": {
-            "type": "string"
+        "MaxResultType": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListAccountRolesResponse": {
             "type": "object",
@@ -259,9 +282,6 @@
                     "$ref": "#/$defs/RoleListType"
                 }
             }
-        },
-        "NextTokenType": {
-            "type": "string"
         },
         "RoleListType": {
             "type": "array",
@@ -280,7 +300,7 @@
                 }
             }
         },
-        "ListAccountRolesRequest": {
+        "ListAccountsRequest": {
             "type": "object",
             "properties": {
                 "nextToken": {
@@ -291,15 +311,8 @@
                 },
                 "accessToken": {
                     "$ref": "#/$defs/AccessTokenType"
-                },
-                "accountId": {
-                    "$ref": "#/$defs/AccountIdType"
                 }
             }
-        },
-        "MaxResultType": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListAccountsResponse": {
             "type": "object",
@@ -337,20 +350,6 @@
         },
         "EmailAddressType": {
             "type": "string"
-        },
-        "ListAccountsRequest": {
-            "type": "object",
-            "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/NextTokenType"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResultType"
-                },
-                "accessToken": {
-                    "$ref": "#/$defs/AccessTokenType"
-                }
-            }
         },
         "LogoutRequest": {
             "type": "object",

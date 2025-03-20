@@ -2032,6 +2032,35 @@
             }
         },
         {
+            "name": "GetExecutionPreview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonSSM.GetExecutionPreview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/GetExecutionPreviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/GetExecutionPreviewRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "GetInventory",
             "config": {
                 "http": {
@@ -2873,6 +2902,64 @@
             }
         },
         {
+            "name": "ListNodes",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonSSM.ListNodes"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListNodesResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListNodesRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "ListNodesSummary",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonSSM.ListNodesSummary"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ListNodesSummaryResult"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ListNodesSummaryRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "ListOpsItemEvents",
             "config": {
                 "http": {
@@ -3534,6 +3621,35 @@
                     "$defs": {
                         "param.0": {
                             "$ref": "#/$defs/StartChangeRequestExecutionRequest"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "StartExecutionPreview",
+            "config": {
+                "http": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "method": "POST",
+                    "route": "/",
+                    "type": "json",
+                    "headers": {
+                        "X-Amz-Target": "AmazonSSM.StartExecutionPreview"
+                    }
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/StartExecutionPreviewResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/StartExecutionPreviewRequest"
                         }
                     }
                 }
@@ -10563,6 +10679,99 @@
                 }
             }
         },
+        "GetExecutionPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "ExecutionPreviewId": {
+                    "$ref": "#/$defs/ExecutionPreviewId"
+                },
+                "EndedAt": {
+                    "$ref": "#/$defs/DateTime"
+                },
+                "Status": {
+                    "$ref": "#/$defs/ExecutionPreviewStatus"
+                },
+                "StatusMessage": {
+                    "$ref": "#/$defs/String"
+                },
+                "ExecutionPreview": {
+                    "$ref": "#/$defs/ExecutionPreview"
+                }
+            }
+        },
+        "ExecutionPreviewId": {
+            "type": "string"
+        },
+        "ExecutionPreviewStatus": {
+            "enum": [
+                "PENDING",
+                "IN_PROGRESS",
+                "SUCCESS",
+                "FAILED"
+            ]
+        },
+        "ExecutionPreview": {
+            "type": "object",
+            "properties": {
+                "Automation": {
+                    "$ref": "#/$defs/AutomationExecutionPreview"
+                }
+            }
+        },
+        "AutomationExecutionPreview": {
+            "type": "object",
+            "properties": {
+                "StepPreviews": {
+                    "$ref": "#/$defs/StepPreviewMap"
+                },
+                "Regions": {
+                    "$ref": "#/$defs/RegionList"
+                },
+                "TargetPreviews": {
+                    "$ref": "#/$defs/TargetPreviewList"
+                },
+                "TotalAccounts": {
+                    "$ref": "#/$defs/Integer"
+                }
+            }
+        },
+        "StepPreviewMap": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/Integer"
+            }
+        },
+        "RegionList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Region"
+            }
+        },
+        "TargetPreviewList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/TargetPreview"
+            }
+        },
+        "TargetPreview": {
+            "type": "object",
+            "properties": {
+                "Count": {
+                    "$ref": "#/$defs/Integer"
+                },
+                "TargetType": {
+                    "$ref": "#/$defs/String"
+                }
+            }
+        },
+        "GetExecutionPreviewRequest": {
+            "type": "object",
+            "properties": {
+                "ExecutionPreviewId": {
+                    "$ref": "#/$defs/ExecutionPreviewId"
+                }
+            }
+        },
         "GetInventoryResult": {
             "type": "object",
             "properties": {
@@ -13185,6 +13394,293 @@
                 }
             }
         },
+        "ListNodesResult": {
+            "type": "object",
+            "properties": {
+                "Nodes": {
+                    "$ref": "#/$defs/NodeList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "NodeList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Node"
+            }
+        },
+        "Node": {
+            "type": "object",
+            "properties": {
+                "CaptureTime": {
+                    "$ref": "#/$defs/NodeCaptureTime"
+                },
+                "Id": {
+                    "$ref": "#/$defs/NodeId"
+                },
+                "Owner": {
+                    "$ref": "#/$defs/NodeOwnerInfo"
+                },
+                "Region": {
+                    "$ref": "#/$defs/NodeRegion"
+                },
+                "NodeType": {
+                    "$ref": "#/$defs/NodeType"
+                }
+            }
+        },
+        "NodeCaptureTime": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "NodeId": {
+            "type": "string"
+        },
+        "NodeOwnerInfo": {
+            "type": "object",
+            "properties": {
+                "AccountId": {
+                    "$ref": "#/$defs/NodeAccountId"
+                },
+                "OrganizationalUnitId": {
+                    "$ref": "#/$defs/NodeOrganizationalUnitId"
+                },
+                "OrganizationalUnitPath": {
+                    "$ref": "#/$defs/NodeOrganizationalUnitPath"
+                }
+            }
+        },
+        "NodeAccountId": {
+            "type": "string"
+        },
+        "NodeOrganizationalUnitId": {
+            "type": "string"
+        },
+        "NodeOrganizationalUnitPath": {
+            "type": "string"
+        },
+        "NodeRegion": {
+            "type": "string"
+        },
+        "NodeType": {
+            "type": "object",
+            "properties": {
+                "Instance": {
+                    "$ref": "#/$defs/InstanceInfo"
+                }
+            }
+        },
+        "InstanceInfo": {
+            "type": "object",
+            "properties": {
+                "AgentType": {
+                    "$ref": "#/$defs/AgentType"
+                },
+                "AgentVersion": {
+                    "$ref": "#/$defs/AgentVersion"
+                },
+                "ComputerName": {
+                    "$ref": "#/$defs/ComputerName"
+                },
+                "InstanceStatus": {
+                    "$ref": "#/$defs/InstanceStatus"
+                },
+                "IpAddress": {
+                    "$ref": "#/$defs/IPAddress"
+                },
+                "ManagedStatus": {
+                    "$ref": "#/$defs/ManagedStatus"
+                },
+                "PlatformType": {
+                    "$ref": "#/$defs/PlatformType"
+                },
+                "PlatformName": {
+                    "$ref": "#/$defs/PlatformName"
+                },
+                "PlatformVersion": {
+                    "$ref": "#/$defs/PlatformVersion"
+                },
+                "ResourceType": {
+                    "$ref": "#/$defs/ResourceType"
+                }
+            }
+        },
+        "AgentType": {
+            "type": "string"
+        },
+        "AgentVersion": {
+            "type": "string"
+        },
+        "InstanceStatus": {
+            "type": "string"
+        },
+        "ManagedStatus": {
+            "enum": [
+                "ALL",
+                "MANAGED",
+                "UNMANAGED"
+            ]
+        },
+        "ListNodesRequest": {
+            "type": "object",
+            "properties": {
+                "SyncName": {
+                    "$ref": "#/$defs/ResourceDataSyncName"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/NodeFilterList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "NodeFilterList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NodeFilter"
+            }
+        },
+        "NodeFilter": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "$ref": "#/$defs/NodeFilterKey"
+                },
+                "Values": {
+                    "$ref": "#/$defs/NodeFilterValueList"
+                },
+                "Type": {
+                    "$ref": "#/$defs/NodeFilterOperatorType"
+                }
+            }
+        },
+        "NodeFilterKey": {
+            "enum": [
+                "AGENT_TYPE",
+                "AGENT_VERSION",
+                "COMPUTER_NAME",
+                "INSTANCE_ID",
+                "INSTANCE_STATUS",
+                "IP_ADDRESS",
+                "MANAGED_STATUS",
+                "PLATFORM_NAME",
+                "PLATFORM_TYPE",
+                "PLATFORM_VERSION",
+                "RESOURCE_TYPE",
+                "ORGANIZATIONAL_UNIT_ID",
+                "ORGANIZATIONAL_UNIT_PATH",
+                "REGION",
+                "ACCOUNT_ID"
+            ]
+        },
+        "NodeFilterValueList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NodeFilterValue"
+            }
+        },
+        "NodeFilterValue": {
+            "type": "string"
+        },
+        "NodeFilterOperatorType": {
+            "enum": [
+                "EQUAL",
+                "NOT_EQUAL",
+                "BEGIN_WITH"
+            ]
+        },
+        "ListNodesSummaryResult": {
+            "type": "object",
+            "properties": {
+                "Summary": {
+                    "$ref": "#/$defs/NodeSummaryList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "NodeSummaryList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NodeSummary"
+            }
+        },
+        "NodeSummary": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/AttributeValue"
+            }
+        },
+        "ListNodesSummaryRequest": {
+            "type": "object",
+            "properties": {
+                "SyncName": {
+                    "$ref": "#/$defs/ResourceDataSyncName"
+                },
+                "Filters": {
+                    "$ref": "#/$defs/NodeFilterList"
+                },
+                "Aggregators": {
+                    "$ref": "#/$defs/NodeAggregatorList"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                }
+            }
+        },
+        "NodeAggregatorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/NodeAggregator"
+            }
+        },
+        "NodeAggregator": {
+            "type": "object",
+            "properties": {
+                "AggregatorType": {
+                    "$ref": "#/$defs/NodeAggregatorType"
+                },
+                "TypeName": {
+                    "$ref": "#/$defs/NodeTypeName"
+                },
+                "AttributeName": {
+                    "$ref": "#/$defs/NodeAttributeName"
+                },
+                "Aggregators": {
+                    "$ref": "#/$defs/NodeAggregatorList"
+                }
+            }
+        },
+        "NodeAggregatorType": {
+            "enum": [
+                "COUNT"
+            ]
+        },
+        "NodeTypeName": {
+            "enum": [
+                "INSTANCE"
+            ]
+        },
+        "NodeAttributeName": {
+            "enum": [
+                "AGENT_VERSION",
+                "PLATFORM_NAME",
+                "PLATFORM_TYPE",
+                "PLATFORM_VERSION",
+                "REGION",
+                "RESOURCE_TYPE"
+            ]
+        },
         "ListOpsItemEventsResponse": {
             "type": "object",
             "properties": {
@@ -14330,6 +14826,59 @@
         },
         "ChangeDetailsValue": {
             "type": "string"
+        },
+        "StartExecutionPreviewResponse": {
+            "type": "object",
+            "properties": {
+                "ExecutionPreviewId": {
+                    "$ref": "#/$defs/ExecutionPreviewId"
+                }
+            }
+        },
+        "StartExecutionPreviewRequest": {
+            "type": "object",
+            "properties": {
+                "DocumentName": {
+                    "$ref": "#/$defs/DocumentName"
+                },
+                "DocumentVersion": {
+                    "$ref": "#/$defs/DocumentVersion"
+                },
+                "ExecutionInputs": {
+                    "$ref": "#/$defs/ExecutionInputs"
+                }
+            }
+        },
+        "ExecutionInputs": {
+            "type": "object",
+            "properties": {
+                "Automation": {
+                    "$ref": "#/$defs/AutomationExecutionInputs"
+                }
+            }
+        },
+        "AutomationExecutionInputs": {
+            "type": "object",
+            "properties": {
+                "Parameters": {
+                    "$ref": "#/$defs/AutomationParameterMap"
+                },
+                "TargetParameterName": {
+                    "$ref": "#/$defs/AutomationParameterKey"
+                },
+                "Targets": {
+                    "$ref": "#/$defs/Targets"
+                },
+                "TargetMaps": {
+                    "$ref": "#/$defs/TargetMaps"
+                },
+                "TargetLocations": {
+                    "$ref": "#/$defs/TargetLocations"
+                },
+                "TargetLocationsURL": {
+                    "$ref": "#/$defs/TargetLocationsURL"
+                }
+            }
         },
         "StartSessionResponse": {
             "type": "object",

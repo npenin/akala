@@ -33,9 +33,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "tunnelId": {},
+                        "delete": {}
                     }
                 }
             }
@@ -72,9 +71,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "tunnelId": {}
                     }
                 }
             }
@@ -107,9 +104,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -142,9 +137,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "thingName": {},
+                        "maxResults": {},
+                        "nextToken": {}
                     }
                 }
             }
@@ -177,9 +172,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "description": {},
+                        "tags": {},
+                        "destinationConfig": {},
+                        "timeoutConfig": {}
                     }
                 }
             }
@@ -216,9 +212,9 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "tunnelId": {},
+                        "clientMode": {},
+                        "destinationConfig": {}
                     }
                 }
             }
@@ -251,9 +247,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -286,9 +281,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -340,10 +334,6 @@
             "type": "string",
             "format": "binary"
         },
-        "CloseTunnelResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "CloseTunnelRequest": {
             "type": "object",
             "properties": {
@@ -360,6 +350,18 @@
         },
         "DeleteFlag": {
             "type": "boolean"
+        },
+        "CloseTunnelResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "DescribeTunnelRequest": {
+            "type": "object",
+            "properties": {
+                "tunnelId": {
+                    "$ref": "#/$defs/TunnelId"
+                }
+            }
         },
         "DescribeTunnelResponse": {
             "type": "object",
@@ -498,22 +500,6 @@
         "TagValue": {
             "type": "string"
         },
-        "DescribeTunnelRequest": {
-            "type": "object",
-            "properties": {
-                "tunnelId": {
-                    "$ref": "#/$defs/TunnelId"
-                }
-            }
-        },
-        "ListTagsForResourceResponse": {
-            "type": "object",
-            "properties": {
-                "tags": {
-                    "$ref": "#/$defs/TagList"
-                }
-            }
-        },
         "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
@@ -523,6 +509,35 @@
             }
         },
         "AmazonResourceName": {
+            "type": "string"
+        },
+        "ListTagsForResourceResponse": {
+            "type": "object",
+            "properties": {
+                "tags": {
+                    "$ref": "#/$defs/TagList"
+                }
+            }
+        },
+        "ListTunnelsRequest": {
+            "type": "object",
+            "properties": {
+                "thingName": {
+                    "$ref": "#/$defs/ThingName"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "nextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
             "type": "string"
         },
         "ListTunnelsResponse": {
@@ -565,26 +580,22 @@
                 }
             }
         },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListTunnelsRequest": {
+        "OpenTunnelRequest": {
             "type": "object",
             "properties": {
-                "thingName": {
-                    "$ref": "#/$defs/ThingName"
+                "description": {
+                    "$ref": "#/$defs/Description"
                 },
-                "maxResults": {
-                    "$ref": "#/$defs/MaxResults"
+                "tags": {
+                    "$ref": "#/$defs/TagList"
                 },
-                "nextToken": {
-                    "$ref": "#/$defs/NextToken"
+                "destinationConfig": {
+                    "$ref": "#/$defs/DestinationConfig"
+                },
+                "timeoutConfig": {
+                    "$ref": "#/$defs/TimeoutConfig"
                 }
             }
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         },
         "OpenTunnelResponse": {
             "type": "object",
@@ -605,37 +616,6 @@
         },
         "ClientAccessToken": {
             "type": "string"
-        },
-        "OpenTunnelRequest": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "$ref": "#/$defs/Description"
-                },
-                "tags": {
-                    "$ref": "#/$defs/TagList"
-                },
-                "destinationConfig": {
-                    "$ref": "#/$defs/DestinationConfig"
-                },
-                "timeoutConfig": {
-                    "$ref": "#/$defs/TimeoutConfig"
-                }
-            }
-        },
-        "RotateTunnelAccessTokenResponse": {
-            "type": "object",
-            "properties": {
-                "tunnelArn": {
-                    "$ref": "#/$defs/TunnelArn"
-                },
-                "sourceAccessToken": {
-                    "$ref": "#/$defs/ClientAccessToken"
-                },
-                "destinationAccessToken": {
-                    "$ref": "#/$defs/ClientAccessToken"
-                }
-            }
         },
         "RotateTunnelAccessTokenRequest": {
             "type": "object",
@@ -658,9 +638,19 @@
                 "ALL"
             ]
         },
-        "TagResourceResponse": {
+        "RotateTunnelAccessTokenResponse": {
             "type": "object",
-            "properties": {}
+            "properties": {
+                "tunnelArn": {
+                    "$ref": "#/$defs/TunnelArn"
+                },
+                "sourceAccessToken": {
+                    "$ref": "#/$defs/ClientAccessToken"
+                },
+                "destinationAccessToken": {
+                    "$ref": "#/$defs/ClientAccessToken"
+                }
+            }
         },
         "TagResourceRequest": {
             "type": "object",
@@ -673,7 +663,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -693,6 +683,10 @@
             "items": {
                 "$ref": "#/$defs/TagKey"
             }
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {
@@ -865,6 +859,81 @@
                                             ],
                                             "rules": [
                                                 {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                "aws",
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://api.iot-tunneling-fips.{Region}.api.aws",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                "aws-cn",
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://api.iot-tunneling-fips.{Region}.api.amazonwebservices.com.cn",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                "aws-us-gov",
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://api.iot-tunneling-fips.{Region}.api.aws",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
                                                     "conditions": [],
                                                     "endpoint": {
                                                         "url": "https://api.tunneling.iot-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
@@ -968,6 +1037,81 @@
                                                 }
                                             ],
                                             "rules": [
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                "aws",
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://api.iot-tunneling.{Region}.api.aws",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                "aws-cn",
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://api.iot-tunneling.{Region}.api.amazonwebservices.com.cn",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
+                                                {
+                                                    "conditions": [
+                                                        {
+                                                            "fn": "stringEquals",
+                                                            "argv": [
+                                                                "aws-us-gov",
+                                                                {
+                                                                    "fn": "getAttr",
+                                                                    "argv": [
+                                                                        {
+                                                                            "ref": "PartitionResult"
+                                                                        },
+                                                                        "name"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "endpoint": {
+                                                        "url": "https://api.iot-tunneling.{Region}.api.aws",
+                                                        "properties": {},
+                                                        "headers": {}
+                                                    },
+                                                    "type": "endpoint"
+                                                },
                                                 {
                                                     "conditions": [],
                                                     "endpoint": {

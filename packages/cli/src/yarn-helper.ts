@@ -21,6 +21,10 @@ if (platform() == 'win32')
 
 export default
     {
+        async setup(path?: string, options?: { production?: boolean }): Promise<void>
+        {
+            await spawnAsync(npm, { cwd: path, shell: true }, 'workspaces', 'focus', ...(options?.production ? ['--production'] : []));
+        },
         async install(packageName: string, path?: string): Promise<void>
         {
             await spawnAsync(npm, { cwd: path, shell: true }, 'add', packageName)

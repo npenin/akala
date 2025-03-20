@@ -2,6 +2,84 @@
     "name": "repostspace",
     "commands": [
         {
+            "name": "BatchAddRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "spaceId": "route.spaceId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "POST",
+                    "route": "/spaces/{spaceId}/roles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchAddRoleOutput"
+                    },
+                    "inject": [
+                        "param.0.spaceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchAddRoleInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "spaceId": {},
+                        "accessorIds": {},
+                        "role": {}
+                    }
+                }
+            }
+        },
+        {
+            "name": "BatchRemoveRole",
+            "config": {
+                "http": {
+                    "inject": [
+                        {
+                            "spaceId": "route.spaceId",
+                            "...": "body"
+                        }
+                    ],
+                    "method": "PATCH",
+                    "route": "/spaces/{spaceId}/roles"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/BatchRemoveRoleOutput"
+                    },
+                    "inject": [
+                        "param.0.spaceId",
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/BatchRemoveRoleInput"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "spaceId": {},
+                        "accessorIds": {},
+                        "role": {}
+                    }
+                }
+            }
+        },
+        {
             "name": "CreateSpace",
             "config": {
                 "http": {
@@ -29,9 +107,13 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "name": {},
+                        "subdomain": {},
+                        "tier": {},
+                        "description": {},
+                        "userKMSKey": {},
+                        "tags": {},
+                        "roleArn": {}
                     }
                 }
             }
@@ -68,9 +150,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {}
                     }
                 }
             }
@@ -109,9 +189,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "adminId": {}
                     }
                 }
             }
@@ -148,9 +227,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {}
                     }
                 }
             }
@@ -183,9 +260,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "nextToken": {},
+                        "maxResults": {}
                     }
                 }
             }
@@ -222,9 +298,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -263,9 +337,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "adminId": {}
                     }
                 }
             }
@@ -302,9 +375,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "accessorIds": {},
+                        "title": {},
+                        "body": {}
                     }
                 }
             }
@@ -341,9 +415,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -380,9 +453,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -419,9 +491,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "spaceId": {},
+                        "description": {},
+                        "tier": {},
+                        "roleArn": {}
                     }
                 }
             }
@@ -473,16 +546,102 @@
             "type": "string",
             "format": "binary"
         },
-        "CreateSpaceOutput": {
+        "BatchAddRoleInput": {
             "type": "object",
             "properties": {
                 "spaceId": {
                     "$ref": "#/$defs/SpaceId"
+                },
+                "accessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "role": {
+                    "$ref": "#/$defs/Role"
                 }
             }
         },
         "SpaceId": {
             "type": "string"
+        },
+        "AccessorIdList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/AccessorId"
+            }
+        },
+        "AccessorId": {
+            "type": "string"
+        },
+        "Role": {
+            "enum": [
+                "EXPERT",
+                "MODERATOR",
+                "ADMINISTRATOR",
+                "SUPPORTREQUESTOR"
+            ]
+        },
+        "BatchAddRoleOutput": {
+            "type": "object",
+            "properties": {
+                "addedAccessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchErrorList"
+                }
+            }
+        },
+        "BatchErrorList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/BatchError"
+            }
+        },
+        "BatchError": {
+            "type": "object",
+            "properties": {
+                "accessorId": {
+                    "$ref": "#/$defs/AccessorId"
+                },
+                "error": {
+                    "$ref": "#/$defs/ErrorCode"
+                },
+                "message": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorCode": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "BatchRemoveRoleInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                },
+                "accessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "role": {
+                    "$ref": "#/$defs/Role"
+                }
+            }
+        },
+        "BatchRemoveRoleOutput": {
+            "type": "object",
+            "properties": {
+                "removedAccessorIds": {
+                    "$ref": "#/$defs/AccessorIdList"
+                },
+                "errors": {
+                    "$ref": "#/$defs/BatchErrorList"
+                }
+            }
         },
         "CreateSpaceInput": {
             "type": "object",
@@ -540,6 +699,14 @@
         "Arn": {
             "type": "string"
         },
+        "CreateSpaceOutput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                }
+            }
+        },
         "DeleteSpaceInput": {
             "type": "object",
             "properties": {
@@ -561,6 +728,14 @@
         },
         "AdminId": {
             "type": "string"
+        },
+        "GetSpaceInput": {
+            "type": "object",
+            "properties": {
+                "spaceId": {
+                    "$ref": "#/$defs/SpaceId"
+                }
+            }
         },
         "GetSpaceOutput": {
             "type": "object",
@@ -616,6 +791,9 @@
                 "groupAdmins": {
                     "$ref": "#/$defs/GroupAdmins"
                 },
+                "roles": {
+                    "$ref": "#/$defs/Roles"
+                },
                 "userKMSKey": {
                     "$ref": "#/$defs/KMSKey"
                 },
@@ -665,6 +843,18 @@
                 "$ref": "#/$defs/AdminId"
             }
         },
+        "Roles": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/$defs/RoleList"
+            }
+        },
+        "RoleList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Role"
+            }
+        },
         "UserCount": {
             "type": "integer",
             "format": "int32"
@@ -673,13 +863,20 @@
             "type": "integer",
             "format": "int64"
         },
-        "GetSpaceInput": {
+        "ListSpacesInput": {
             "type": "object",
             "properties": {
-                "spaceId": {
-                    "$ref": "#/$defs/SpaceId"
+                "nextToken": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "maxResults": {
+                    "$ref": "#/$defs/ListSpacesLimit"
                 }
             }
+        },
+        "ListSpacesLimit": {
+            "type": "integer",
+            "format": "int32"
         },
         "ListSpacesOutput": {
             "type": "object",
@@ -751,34 +948,19 @@
                 }
             }
         },
-        "ListSpacesInput": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "nextToken": {
-                    "$ref": "#/$defs/smithy.api#String"
-                },
-                "maxResults": {
-                    "$ref": "#/$defs/ListSpacesLimit"
+                "resourceArn": {
+                    "$ref": "#/$defs/Arn"
                 }
             }
-        },
-        "ListSpacesLimit": {
-            "type": "integer",
-            "format": "int32"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
             "properties": {
                 "tags": {
                     "$ref": "#/$defs/Tags"
-                }
-            }
-        },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/Arn"
                 }
             }
         },
@@ -810,24 +992,11 @@
                 }
             }
         },
-        "AccessorIdList": {
-            "type": "array",
-            "items": {
-                "$ref": "#/$defs/AccessorId"
-            }
-        },
-        "AccessorId": {
-            "type": "string"
-        },
         "InviteTitle": {
             "type": "string"
         },
         "InviteBody": {
             "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
         },
         "TagResourceRequest": {
             "type": "object",
@@ -840,7 +1009,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -863,6 +1032,10 @@
         },
         "TagKey": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         },
         "UpdateSpaceInput": {
             "type": "object",

@@ -1,5 +1,40 @@
 {
     "name": "bedrock",
+    "commands": [
+        {
+            "name": "ValidateFlowDefinition",
+            "config": {
+                "http": {
+                    "inject": [
+                        "body"
+                    ],
+                    "method": "POST",
+                    "route": "/flows/validate-definition"
+                },
+                "schema": {
+                    "resultSchema": {
+                        "$ref": "#/$defs/ValidateFlowDefinitionResponse"
+                    },
+                    "inject": [
+                        "param.0"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "$ref": "#/$defs/ValidateFlowDefinitionRequest"
+                        }
+                    }
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ],
+                    "options": {
+                        "definition": {}
+                    }
+                }
+            }
+        }
+    ],
     "$defs": {
         "smithy.api#Unit": {
             "type": "object"
@@ -45,6 +80,1140 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "ValidateFlowDefinitionRequest": {
+            "type": "object",
+            "properties": {
+                "definition": {
+                    "$ref": "#/$defs/FlowDefinition"
+                }
+            }
+        },
+        "FlowDefinition": {
+            "type": "object",
+            "properties": {
+                "nodes": {
+                    "$ref": "#/$defs/FlowNodes"
+                },
+                "connections": {
+                    "$ref": "#/$defs/FlowConnections"
+                }
+            }
+        },
+        "FlowNodes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FlowNode"
+            }
+        },
+        "FlowNode": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "type": {
+                    "$ref": "#/$defs/FlowNodeType"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/FlowNodeConfiguration"
+                },
+                "inputs": {
+                    "$ref": "#/$defs/FlowNodeInputs"
+                },
+                "outputs": {
+                    "$ref": "#/$defs/FlowNodeOutputs"
+                }
+            }
+        },
+        "FlowNodeName": {
+            "type": "string"
+        },
+        "FlowNodeType": {
+            "enum": [
+                "INPUT",
+                "OUTPUT",
+                "KNOWLEDGE_BASE",
+                "CONDITION",
+                "LEX",
+                "PROMPT",
+                "LAMBDA_FUNCTION",
+                "STORAGE",
+                "AGENT",
+                "RETRIEVAL",
+                "ITERATOR",
+                "COLLECTOR"
+            ]
+        },
+        "FlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "input": {
+                    "$ref": "#/$defs/InputFlowNodeConfiguration"
+                },
+                "output": {
+                    "$ref": "#/$defs/OutputFlowNodeConfiguration"
+                },
+                "knowledgeBase": {
+                    "$ref": "#/$defs/KnowledgeBaseFlowNodeConfiguration"
+                },
+                "condition": {
+                    "$ref": "#/$defs/ConditionFlowNodeConfiguration"
+                },
+                "lex": {
+                    "$ref": "#/$defs/LexFlowNodeConfiguration"
+                },
+                "prompt": {
+                    "$ref": "#/$defs/PromptFlowNodeConfiguration"
+                },
+                "lambdaFunction": {
+                    "$ref": "#/$defs/LambdaFunctionFlowNodeConfiguration"
+                },
+                "storage": {
+                    "$ref": "#/$defs/StorageFlowNodeConfiguration"
+                },
+                "agent": {
+                    "$ref": "#/$defs/AgentFlowNodeConfiguration"
+                },
+                "retrieval": {
+                    "$ref": "#/$defs/RetrievalFlowNodeConfiguration"
+                },
+                "iterator": {
+                    "$ref": "#/$defs/IteratorFlowNodeConfiguration"
+                },
+                "collector": {
+                    "$ref": "#/$defs/CollectorFlowNodeConfiguration"
+                }
+            }
+        },
+        "InputFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {}
+        },
+        "OutputFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {}
+        },
+        "KnowledgeBaseFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "knowledgeBaseId": {
+                    "$ref": "#/$defs/KnowledgeBaseId"
+                },
+                "modelId": {
+                    "$ref": "#/$defs/KnowledgeBaseModelIdentifier"
+                },
+                "guardrailConfiguration": {
+                    "$ref": "#/$defs/GuardrailConfiguration"
+                }
+            }
+        },
+        "KnowledgeBaseId": {
+            "type": "string"
+        },
+        "KnowledgeBaseModelIdentifier": {
+            "type": "string"
+        },
+        "GuardrailConfiguration": {
+            "type": "object",
+            "properties": {
+                "guardrailIdentifier": {
+                    "$ref": "#/$defs/GuardrailIdentifier"
+                },
+                "guardrailVersion": {
+                    "$ref": "#/$defs/GuardrailVersion"
+                }
+            }
+        },
+        "GuardrailIdentifier": {
+            "type": "string"
+        },
+        "GuardrailVersion": {
+            "type": "string"
+        },
+        "ConditionFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "conditions": {
+                    "$ref": "#/$defs/FlowConditions"
+                }
+            }
+        },
+        "FlowConditions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FlowCondition"
+            }
+        },
+        "FlowCondition": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/FlowConditionName"
+                },
+                "expression": {
+                    "$ref": "#/$defs/FlowConditionExpression"
+                }
+            }
+        },
+        "FlowConditionName": {
+            "type": "string"
+        },
+        "FlowConditionExpression": {
+            "type": "string"
+        },
+        "LexFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "botAliasArn": {
+                    "$ref": "#/$defs/LexBotAliasArn"
+                },
+                "localeId": {
+                    "$ref": "#/$defs/LexBotLocaleId"
+                }
+            }
+        },
+        "LexBotAliasArn": {
+            "type": "string"
+        },
+        "LexBotLocaleId": {
+            "type": "string"
+        },
+        "PromptFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "sourceConfiguration": {
+                    "$ref": "#/$defs/PromptFlowNodeSourceConfiguration"
+                },
+                "guardrailConfiguration": {
+                    "$ref": "#/$defs/GuardrailConfiguration"
+                }
+            }
+        },
+        "PromptFlowNodeSourceConfiguration": {
+            "type": "object",
+            "properties": {
+                "resource": {
+                    "$ref": "#/$defs/PromptFlowNodeResourceConfiguration"
+                },
+                "inline": {
+                    "$ref": "#/$defs/PromptFlowNodeInlineConfiguration"
+                }
+            }
+        },
+        "PromptFlowNodeResourceConfiguration": {
+            "type": "object",
+            "properties": {
+                "promptArn": {
+                    "$ref": "#/$defs/PromptArn"
+                }
+            }
+        },
+        "PromptArn": {
+            "type": "string"
+        },
+        "PromptFlowNodeInlineConfiguration": {
+            "type": "object",
+            "properties": {
+                "templateType": {
+                    "$ref": "#/$defs/PromptTemplateType"
+                },
+                "templateConfiguration": {
+                    "$ref": "#/$defs/PromptTemplateConfiguration"
+                },
+                "modelId": {
+                    "$ref": "#/$defs/PromptModelIdentifier"
+                },
+                "inferenceConfiguration": {
+                    "$ref": "#/$defs/PromptInferenceConfiguration"
+                },
+                "additionalModelRequestFields": {
+                    "$ref": "#/$defs/smithy.api#Document"
+                }
+            }
+        },
+        "PromptTemplateType": {
+            "enum": [
+                "TEXT",
+                "CHAT"
+            ]
+        },
+        "PromptTemplateConfiguration": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/TextPromptTemplateConfiguration"
+                },
+                "chat": {
+                    "$ref": "#/$defs/ChatPromptTemplateConfiguration"
+                }
+            }
+        },
+        "TextPromptTemplateConfiguration": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/TextPrompt"
+                },
+                "cachePoint": {
+                    "$ref": "#/$defs/CachePointBlock"
+                },
+                "inputVariables": {
+                    "$ref": "#/$defs/PromptInputVariablesList"
+                }
+            }
+        },
+        "TextPrompt": {
+            "type": "string"
+        },
+        "CachePointBlock": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/CachePointType"
+                }
+            }
+        },
+        "CachePointType": {
+            "enum": [
+                "DEFAULT"
+            ]
+        },
+        "PromptInputVariablesList": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/PromptInputVariable"
+            }
+        },
+        "PromptInputVariable": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/PromptInputVariableName"
+                }
+            }
+        },
+        "PromptInputVariableName": {
+            "type": "string"
+        },
+        "ChatPromptTemplateConfiguration": {
+            "type": "object",
+            "properties": {
+                "messages": {
+                    "$ref": "#/$defs/Messages"
+                },
+                "system": {
+                    "$ref": "#/$defs/SystemContentBlocks"
+                },
+                "inputVariables": {
+                    "$ref": "#/$defs/PromptInputVariablesList"
+                },
+                "toolConfiguration": {
+                    "$ref": "#/$defs/ToolConfiguration"
+                }
+            }
+        },
+        "Messages": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Message"
+            }
+        },
+        "Message": {
+            "type": "object",
+            "properties": {
+                "role": {
+                    "$ref": "#/$defs/ConversationRole"
+                },
+                "content": {
+                    "$ref": "#/$defs/ContentBlocks"
+                }
+            }
+        },
+        "ConversationRole": {
+            "enum": [
+                "USER",
+                "ASSISTANT"
+            ]
+        },
+        "ContentBlocks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ContentBlock"
+            }
+        },
+        "ContentBlock": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/smithy.api#String"
+                },
+                "cachePoint": {
+                    "$ref": "#/$defs/CachePointBlock"
+                }
+            }
+        },
+        "SystemContentBlocks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/SystemContentBlock"
+            }
+        },
+        "SystemContentBlock": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "cachePoint": {
+                    "$ref": "#/$defs/CachePointBlock"
+                }
+            }
+        },
+        "NonEmptyString": {
+            "type": "string"
+        },
+        "ToolConfiguration": {
+            "type": "object",
+            "properties": {
+                "tools": {
+                    "$ref": "#/$defs/Tools"
+                },
+                "toolChoice": {
+                    "$ref": "#/$defs/ToolChoice"
+                }
+            }
+        },
+        "Tools": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/Tool"
+            }
+        },
+        "Tool": {
+            "type": "object",
+            "properties": {
+                "toolSpec": {
+                    "$ref": "#/$defs/ToolSpecification"
+                },
+                "cachePoint": {
+                    "$ref": "#/$defs/CachePointBlock"
+                }
+            }
+        },
+        "ToolSpecification": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ToolName"
+                },
+                "description": {
+                    "$ref": "#/$defs/NonEmptyString"
+                },
+                "inputSchema": {
+                    "$ref": "#/$defs/ToolInputSchema"
+                }
+            }
+        },
+        "ToolName": {
+            "type": "string"
+        },
+        "ToolInputSchema": {
+            "type": "object",
+            "properties": {
+                "json": {
+                    "$ref": "#/$defs/smithy.api#Document"
+                }
+            }
+        },
+        "ToolChoice": {
+            "type": "object",
+            "properties": {
+                "auto": {
+                    "$ref": "#/$defs/AutoToolChoice"
+                },
+                "any": {
+                    "$ref": "#/$defs/AnyToolChoice"
+                },
+                "tool": {
+                    "$ref": "#/$defs/SpecificToolChoice"
+                }
+            }
+        },
+        "AutoToolChoice": {
+            "type": "object",
+            "properties": {}
+        },
+        "AnyToolChoice": {
+            "type": "object",
+            "properties": {}
+        },
+        "SpecificToolChoice": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/ToolName"
+                }
+            }
+        },
+        "PromptModelIdentifier": {
+            "type": "string"
+        },
+        "PromptInferenceConfiguration": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "$ref": "#/$defs/PromptModelInferenceConfiguration"
+                }
+            }
+        },
+        "PromptModelInferenceConfiguration": {
+            "type": "object",
+            "properties": {
+                "temperature": {
+                    "$ref": "#/$defs/Temperature"
+                },
+                "topP": {
+                    "$ref": "#/$defs/TopP"
+                },
+                "maxTokens": {
+                    "$ref": "#/$defs/MaximumLength"
+                },
+                "stopSequences": {
+                    "$ref": "#/$defs/StopSequences"
+                }
+            }
+        },
+        "Temperature": {
+            "type": "number",
+            "format": "float"
+        },
+        "TopP": {
+            "type": "number",
+            "format": "float"
+        },
+        "MaximumLength": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "StopSequences": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/smithy.api#String"
+            }
+        },
+        "LambdaFunctionFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "lambdaArn": {
+                    "$ref": "#/$defs/LambdaArn"
+                }
+            }
+        },
+        "LambdaArn": {
+            "type": "string"
+        },
+        "StorageFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "serviceConfiguration": {
+                    "$ref": "#/$defs/StorageFlowNodeServiceConfiguration"
+                }
+            }
+        },
+        "StorageFlowNodeServiceConfiguration": {
+            "type": "object",
+            "properties": {
+                "s3": {
+                    "$ref": "#/$defs/StorageFlowNodeS3Configuration"
+                }
+            }
+        },
+        "StorageFlowNodeS3Configuration": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                }
+            }
+        },
+        "S3BucketName": {
+            "type": "string"
+        },
+        "AgentFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "agentAliasArn": {
+                    "$ref": "#/$defs/AgentAliasArn"
+                }
+            }
+        },
+        "AgentAliasArn": {
+            "type": "string"
+        },
+        "RetrievalFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {
+                "serviceConfiguration": {
+                    "$ref": "#/$defs/RetrievalFlowNodeServiceConfiguration"
+                }
+            }
+        },
+        "RetrievalFlowNodeServiceConfiguration": {
+            "type": "object",
+            "properties": {
+                "s3": {
+                    "$ref": "#/$defs/RetrievalFlowNodeS3Configuration"
+                }
+            }
+        },
+        "RetrievalFlowNodeS3Configuration": {
+            "type": "object",
+            "properties": {
+                "bucketName": {
+                    "$ref": "#/$defs/S3BucketName"
+                }
+            }
+        },
+        "IteratorFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {}
+        },
+        "CollectorFlowNodeConfiguration": {
+            "type": "object",
+            "properties": {}
+        },
+        "FlowNodeInputs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FlowNodeInput"
+            }
+        },
+        "FlowNodeInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                },
+                "type": {
+                    "$ref": "#/$defs/FlowNodeIODataType"
+                },
+                "expression": {
+                    "$ref": "#/$defs/FlowNodeInputExpression"
+                }
+            }
+        },
+        "FlowNodeInputName": {
+            "type": "string"
+        },
+        "FlowNodeIODataType": {
+            "enum": [
+                "STRING",
+                "NUMBER",
+                "BOOLEAN",
+                "OBJECT",
+                "ARRAY"
+            ]
+        },
+        "FlowNodeInputExpression": {
+            "type": "string"
+        },
+        "FlowNodeOutputs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FlowNodeOutput"
+            }
+        },
+        "FlowNodeOutput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "$ref": "#/$defs/FlowNodeOutputName"
+                },
+                "type": {
+                    "$ref": "#/$defs/FlowNodeIODataType"
+                }
+            }
+        },
+        "FlowNodeOutputName": {
+            "type": "string"
+        },
+        "FlowConnections": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FlowConnection"
+            }
+        },
+        "FlowConnection": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/$defs/FlowConnectionType"
+                },
+                "name": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                },
+                "source": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "target": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "configuration": {
+                    "$ref": "#/$defs/FlowConnectionConfiguration"
+                }
+            }
+        },
+        "FlowConnectionType": {
+            "enum": [
+                "DATA",
+                "CONDITIONAL"
+            ]
+        },
+        "FlowConnectionName": {
+            "type": "string"
+        },
+        "FlowConnectionConfiguration": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/$defs/FlowDataConnectionConfiguration"
+                },
+                "conditional": {
+                    "$ref": "#/$defs/FlowConditionalConnectionConfiguration"
+                }
+            }
+        },
+        "FlowDataConnectionConfiguration": {
+            "type": "object",
+            "properties": {
+                "sourceOutput": {
+                    "$ref": "#/$defs/FlowNodeOutputName"
+                },
+                "targetInput": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "FlowConditionalConnectionConfiguration": {
+            "type": "object",
+            "properties": {
+                "condition": {
+                    "$ref": "#/$defs/FlowConditionName"
+                }
+            }
+        },
+        "ValidateFlowDefinitionResponse": {
+            "type": "object",
+            "properties": {
+                "validations": {
+                    "$ref": "#/$defs/FlowValidations"
+                }
+            }
+        },
+        "FlowValidations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/FlowValidation"
+            }
+        },
+        "FlowValidation": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "$ref": "#/$defs/NonBlankString"
+                },
+                "severity": {
+                    "$ref": "#/$defs/FlowValidationSeverity"
+                },
+                "details": {
+                    "$ref": "#/$defs/FlowValidationDetails"
+                },
+                "type": {
+                    "$ref": "#/$defs/FlowValidationType"
+                }
+            }
+        },
+        "NonBlankString": {
+            "type": "string"
+        },
+        "FlowValidationSeverity": {
+            "enum": [
+                "WARNING",
+                "ERROR"
+            ]
+        },
+        "FlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "cyclicConnection": {
+                    "$ref": "#/$defs/CyclicConnectionFlowValidationDetails"
+                },
+                "duplicateConnections": {
+                    "$ref": "#/$defs/DuplicateConnectionsFlowValidationDetails"
+                },
+                "duplicateConditionExpression": {
+                    "$ref": "#/$defs/DuplicateConditionExpressionFlowValidationDetails"
+                },
+                "unreachableNode": {
+                    "$ref": "#/$defs/UnreachableNodeFlowValidationDetails"
+                },
+                "unknownConnectionSource": {
+                    "$ref": "#/$defs/UnknownConnectionSourceFlowValidationDetails"
+                },
+                "unknownConnectionSourceOutput": {
+                    "$ref": "#/$defs/UnknownConnectionSourceOutputFlowValidationDetails"
+                },
+                "unknownConnectionTarget": {
+                    "$ref": "#/$defs/UnknownConnectionTargetFlowValidationDetails"
+                },
+                "unknownConnectionTargetInput": {
+                    "$ref": "#/$defs/UnknownConnectionTargetInputFlowValidationDetails"
+                },
+                "unknownConnectionCondition": {
+                    "$ref": "#/$defs/UnknownConnectionConditionFlowValidationDetails"
+                },
+                "malformedConditionExpression": {
+                    "$ref": "#/$defs/MalformedConditionExpressionFlowValidationDetails"
+                },
+                "malformedNodeInputExpression": {
+                    "$ref": "#/$defs/MalformedNodeInputExpressionFlowValidationDetails"
+                },
+                "mismatchedNodeInputType": {
+                    "$ref": "#/$defs/MismatchedNodeInputTypeFlowValidationDetails"
+                },
+                "mismatchedNodeOutputType": {
+                    "$ref": "#/$defs/MismatchedNodeOutputTypeFlowValidationDetails"
+                },
+                "incompatibleConnectionDataType": {
+                    "$ref": "#/$defs/IncompatibleConnectionDataTypeFlowValidationDetails"
+                },
+                "missingConnectionConfiguration": {
+                    "$ref": "#/$defs/MissingConnectionConfigurationFlowValidationDetails"
+                },
+                "missingDefaultCondition": {
+                    "$ref": "#/$defs/MissingDefaultConditionFlowValidationDetails"
+                },
+                "missingEndingNodes": {
+                    "$ref": "#/$defs/MissingEndingNodesFlowValidationDetails"
+                },
+                "missingNodeConfiguration": {
+                    "$ref": "#/$defs/MissingNodeConfigurationFlowValidationDetails"
+                },
+                "missingNodeInput": {
+                    "$ref": "#/$defs/MissingNodeInputFlowValidationDetails"
+                },
+                "missingNodeOutput": {
+                    "$ref": "#/$defs/MissingNodeOutputFlowValidationDetails"
+                },
+                "missingStartingNodes": {
+                    "$ref": "#/$defs/MissingStartingNodesFlowValidationDetails"
+                },
+                "multipleNodeInputConnections": {
+                    "$ref": "#/$defs/MultipleNodeInputConnectionsFlowValidationDetails"
+                },
+                "unfulfilledNodeInput": {
+                    "$ref": "#/$defs/UnfulfilledNodeInputFlowValidationDetails"
+                },
+                "unsatisfiedConnectionConditions": {
+                    "$ref": "#/$defs/UnsatisfiedConnectionConditionsFlowValidationDetails"
+                },
+                "unspecified": {
+                    "$ref": "#/$defs/UnspecifiedFlowValidationDetails"
+                },
+                "unknownNodeInput": {
+                    "$ref": "#/$defs/UnknownNodeInputFlowValidationDetails"
+                },
+                "unknownNodeOutput": {
+                    "$ref": "#/$defs/UnknownNodeOutputFlowValidationDetails"
+                }
+            }
+        },
+        "CyclicConnectionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "DuplicateConnectionsFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "target": {
+                    "$ref": "#/$defs/FlowNodeName"
+                }
+            }
+        },
+        "DuplicateConditionExpressionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "expression": {
+                    "$ref": "#/$defs/FlowConditionExpression"
+                }
+            }
+        },
+        "UnreachableNodeFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                }
+            }
+        },
+        "UnknownConnectionSourceFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnknownConnectionSourceOutputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnknownConnectionTargetFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnknownConnectionTargetInputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnknownConnectionConditionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "MalformedConditionExpressionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "condition": {
+                    "$ref": "#/$defs/FlowConditionName"
+                },
+                "cause": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "ErrorMessage": {
+            "type": "string"
+        },
+        "MalformedNodeInputExpressionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                },
+                "cause": {
+                    "$ref": "#/$defs/ErrorMessage"
+                }
+            }
+        },
+        "MismatchedNodeInputTypeFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                },
+                "expectedType": {
+                    "$ref": "#/$defs/FlowNodeIODataType"
+                }
+            }
+        },
+        "MismatchedNodeOutputTypeFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "output": {
+                    "$ref": "#/$defs/FlowNodeOutputName"
+                },
+                "expectedType": {
+                    "$ref": "#/$defs/FlowNodeIODataType"
+                }
+            }
+        },
+        "IncompatibleConnectionDataTypeFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "MissingConnectionConfigurationFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "MissingDefaultConditionFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                }
+            }
+        },
+        "MissingEndingNodesFlowValidationDetails": {
+            "type": "object",
+            "properties": {}
+        },
+        "MissingNodeConfigurationFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                }
+            }
+        },
+        "MissingNodeInputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "MissingNodeOutputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "output": {
+                    "$ref": "#/$defs/FlowNodeOutputName"
+                }
+            }
+        },
+        "MissingStartingNodesFlowValidationDetails": {
+            "type": "object",
+            "properties": {}
+        },
+        "MultipleNodeInputConnectionsFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "UnfulfilledNodeInputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "UnsatisfiedConnectionConditionsFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "connection": {
+                    "$ref": "#/$defs/FlowConnectionName"
+                }
+            }
+        },
+        "UnspecifiedFlowValidationDetails": {
+            "type": "object",
+            "properties": {}
+        },
+        "UnknownNodeInputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "input": {
+                    "$ref": "#/$defs/FlowNodeInputName"
+                }
+            }
+        },
+        "UnknownNodeOutputFlowValidationDetails": {
+            "type": "object",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/FlowNodeName"
+                },
+                "output": {
+                    "$ref": "#/$defs/FlowNodeOutputName"
+                }
+            }
+        },
+        "FlowValidationType": {
+            "enum": [
+                "CYCLIC_CONNECTION",
+                "DUPLICATE_CONNECTIONS",
+                "DUPLICATE_CONDITION_EXPRESSION",
+                "UNREACHABLE_NODE",
+                "UNKNOWN_CONNECTION_SOURCE",
+                "UNKNOWN_CONNECTION_SOURCE_OUTPUT",
+                "UNKNOWN_CONNECTION_TARGET",
+                "UNKNOWN_CONNECTION_TARGET_INPUT",
+                "UNKNOWN_CONNECTION_CONDITION",
+                "MALFORMED_CONDITION_EXPRESSION",
+                "MALFORMED_NODE_INPUT_EXPRESSION",
+                "MISMATCHED_NODE_INPUT_TYPE",
+                "MISMATCHED_NODE_OUTPUT_TYPE",
+                "INCOMPATIBLE_CONNECTION_DATA_TYPE",
+                "MISSING_CONNECTION_CONFIGURATION",
+                "MISSING_DEFAULT_CONDITION",
+                "MISSING_ENDING_NODES",
+                "MISSING_NODE_CONFIGURATION",
+                "MISSING_NODE_INPUT",
+                "MISSING_NODE_OUTPUT",
+                "MISSING_STARTING_NODES",
+                "MULTIPLE_NODE_INPUT_CONNECTIONS",
+                "UNFULFILLED_NODE_INPUT",
+                "UNSATISFIED_CONNECTION_CONDITIONS",
+                "UNSPECIFIED",
+                "UNKNOWN_NODE_INPUT",
+                "UNKNOWN_NODE_OUTPUT"
+            ]
         }
     },
     "aws": {

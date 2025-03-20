@@ -33,7 +33,7 @@ type AllEvents<T extends object> = EventMap<T> & SpecialEvents
  * @template T
  * @implements {Disposable}
  */
-export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> implements Disposable
+export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> extends TeardownManager implements Disposable
 {
     /**
      * Checks if there are listeners for a given event.
@@ -62,6 +62,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> i
      */
     constructor(init?: number | T)
     {
+        super();
         switch (typeof init)
         {
             case 'number':
@@ -215,6 +216,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> i
     {
         if (this.events[Symbol.dispose])
             this.events[Symbol.dispose].emit();
+        super[Symbol.dispose]();
         for (var prop in this.events)
         {
             if (this.events[prop][Symbol.dispose])

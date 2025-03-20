@@ -69,16 +69,11 @@ export type Resolvable<T = object> = string | symbol | InjectMap<T> | (string | 
 export const injectorLog = logger('akala:core:injector');
 
 /**
- * Converts a constructor to a function.
- * @param {new (...args: T) => TResult} ctor - The constructor to convert.
- * @returns {(...parameters: T) => TResult} The converted function.
- */
-/**
  * Converts a constructor to a function that creates new instances.
  * @template T - The parameter types of the constructor.
  * @template TResult - The instance type created by the constructor.
- * @param ctor - The constructor to convert.
- * @returns A function that creates new instances of the constructor.
+ * @param {new (...args: T) => TResult} ctor - The constructor to convert.
+ * @returns {(...parameters: T) => TResult} A function that creates new instances of the constructor.
  */
 export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args: T) => TResult): (...parameters: T) => TResult 
 {
@@ -162,11 +157,6 @@ export abstract class Injector
 
     // abstract keys(): (keyof TypeMap)[];
 
-    /**
-     * Resolves a parameter asynchronously.
-     * @param {Resolvable} name - The name of the parameter to resolve.
-     * @returns {PromiseLike<T>} The resolved parameter.
-     */
     /**
      * Resolves a parameter asynchronously and returns a promise.
      * @param name - The name of the parameter to resolve.

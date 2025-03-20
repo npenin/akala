@@ -47,6 +47,7 @@
                         "param.0"
                     ]
                 },
+                "aws": true,
                 "fs": {
                     "path": "dist/commands/commit.js",
                     "source": "src/commands/commit.ts",
@@ -84,6 +85,7 @@
                         "param.1"
                     ]
                 },
+                "aws": true,
                 "fs": {
                     "path": "dist/commands/get.js",
                     "source": "src/commands/get.ts",
@@ -121,6 +123,7 @@
                         "param.0"
                     ]
                 },
+                "aws": true,
                 "fs": {
                     "path": "dist/commands/revert.js",
                     "source": "src/commands/revert.ts",
@@ -154,6 +157,16 @@
                         "param.1",
                         "param.2"
                     ]
+                },
+                "aws": {
+                    "permissions": {
+                        "s3": {
+                            "mybucket": {
+                                "GetObject": true,
+                                "PutObject": true
+                            }
+                        }
+                    }
                 },
                 "fs": {
                     "path": "dist/commands/set.js",

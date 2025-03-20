@@ -29,9 +29,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "month": {},
+                        "year": {}
                     }
                 }
             }
@@ -68,9 +67,7 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {}
                     }
                 }
             }
@@ -107,9 +104,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tags": {}
                     }
                 }
             }
@@ -146,9 +142,8 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "resourceArn": {},
+                        "tagKeys": {}
                     }
                 }
             }
@@ -200,6 +195,25 @@
             "type": "string",
             "format": "binary"
         },
+        "GetMinuteUsageRequest": {
+            "type": "object",
+            "properties": {
+                "month": {
+                    "$ref": "#/$defs/Month"
+                },
+                "year": {
+                    "$ref": "#/$defs/Year"
+                }
+            }
+        },
+        "Month": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "Year": {
+            "type": "integer",
+            "format": "int32"
+        },
         "GetMinuteUsageResponse": {
             "type": "object",
             "properties": {
@@ -220,24 +234,16 @@
                 }
             }
         },
-        "GetMinuteUsageRequest": {
+        "ListTagsForResourceRequest": {
             "type": "object",
             "properties": {
-                "month": {
-                    "$ref": "#/$defs/Month"
-                },
-                "year": {
-                    "$ref": "#/$defs/Year"
+                "resourceArn": {
+                    "$ref": "#/$defs/AnyArn"
                 }
             }
         },
-        "Month": {
-            "type": "integer",
-            "format": "int32"
-        },
-        "Year": {
-            "type": "integer",
-            "format": "int32"
+        "AnyArn": {
+            "type": "string"
         },
         "ListTagsForResourceResponse": {
             "type": "object",
@@ -253,21 +259,6 @@
                 "$ref": "#/$defs/smithy.api#String"
             }
         },
-        "ListTagsForResourceRequest": {
-            "type": "object",
-            "properties": {
-                "resourceArn": {
-                    "$ref": "#/$defs/AnyArn"
-                }
-            }
-        },
-        "AnyArn": {
-            "type": "string"
-        },
-        "TagResourceResponse": {
-            "type": "object",
-            "properties": {}
-        },
         "TagResourceRequest": {
             "type": "object",
             "properties": {
@@ -279,7 +270,7 @@
                 }
             }
         },
-        "UntagResourceResponse": {
+        "TagResourceResponse": {
             "type": "object",
             "properties": {}
         },
@@ -302,6 +293,10 @@
         },
         "UnboundedString": {
             "type": "string"
+        },
+        "UntagResourceResponse": {
+            "type": "object",
+            "properties": {}
         }
     },
     "aws": {

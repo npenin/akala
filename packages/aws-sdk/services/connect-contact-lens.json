@@ -29,9 +29,10 @@
                         "options"
                     ],
                     "options": {
-                        "type": {},
-                        "members": {},
-                        "traits": {}
+                        "InstanceId": {},
+                        "ContactId": {},
+                        "MaxResults": {},
+                        "NextToken": {}
                     }
                 }
             }
@@ -82,6 +83,36 @@
         "smithy.api#Blob": {
             "type": "string",
             "format": "binary"
+        },
+        "ListRealtimeContactAnalysisSegmentsRequest": {
+            "type": "object",
+            "properties": {
+                "InstanceId": {
+                    "$ref": "#/$defs/InstanceId"
+                },
+                "ContactId": {
+                    "$ref": "#/$defs/ContactId"
+                },
+                "MaxResults": {
+                    "$ref": "#/$defs/MaxResults"
+                },
+                "NextToken": {
+                    "$ref": "#/$defs/NextToken"
+                }
+            }
+        },
+        "InstanceId": {
+            "type": "string"
+        },
+        "ContactId": {
+            "type": "string"
+        },
+        "MaxResults": {
+            "type": "integer",
+            "format": "int32"
+        },
+        "NextToken": {
+            "type": "string"
         },
         "ListRealtimeContactAnalysisSegmentsResponse": {
             "type": "object",
@@ -277,36 +308,6 @@
                 "INVALID_ANALYSIS_CONFIGURATION",
                 "INTERNAL_ERROR"
             ]
-        },
-        "NextToken": {
-            "type": "string"
-        },
-        "ListRealtimeContactAnalysisSegmentsRequest": {
-            "type": "object",
-            "properties": {
-                "InstanceId": {
-                    "$ref": "#/$defs/InstanceId"
-                },
-                "ContactId": {
-                    "$ref": "#/$defs/ContactId"
-                },
-                "MaxResults": {
-                    "$ref": "#/$defs/MaxResults"
-                },
-                "NextToken": {
-                    "$ref": "#/$defs/NextToken"
-                }
-            }
-        },
-        "InstanceId": {
-            "type": "string"
-        },
-        "ContactId": {
-            "type": "string"
-        },
-        "MaxResults": {
-            "type": "integer",
-            "format": "int32"
         }
     },
     "aws": {

@@ -2680,23 +2680,13 @@
                 "GOOGLECLOUDSTORAGE",
                 "HBASE",
                 "DOCUMENTDB",
-                "MSK",
-                "NEPTUNE",
                 "CMDB",
                 "TPCDS",
-                "REDIS",
-                "CLOUDWATCH",
                 "TIMESTREAM",
                 "SAPHANA",
                 "SNOWFLAKE",
-                "TERADATA",
-                "VERTICA",
-                "CLOUDERAIMPALA",
-                "CLOUDERAHIVE",
-                "HORTONWORKSHIVE",
                 "DATALAKEGEN2",
-                "DB2AS400",
-                "CLOUDWATCHMETRICS"
+                "DB2AS400"
             ]
         },
         "CreateDataCatalogInput": {
@@ -2955,6 +2945,9 @@
             "properties": {
                 "Name": {
                     "$ref": "#/$defs/CatalogNameString"
+                },
+                "DeleteCatalogOnly": {
+                    "$ref": "#/$defs/Boolean"
                 }
             }
         },
