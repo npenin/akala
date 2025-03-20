@@ -1,4 +1,4 @@
-import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus, HttpStatusCode, UrlTemplate } from '@akala/core';
+import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus, HttpStatusCode, UrlTemplate, MiddlewareCompositeWithPriorityAsync } from '@akala/core';
 import { CommandProcessor, StructuredParameters } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
 import { Container } from '../model/container.js';
@@ -216,45 +216,7 @@ export class HttpClient extends CommandProcessor
             options.url = resolveUrl(url);
 
         if (typeof auth != 'undefined' && config.http.auth)
-        {
-            switch (config.http.auth.mode)
-            {
-                case 'basic':
-                    if (typeof auth !== 'object' || !('username' in auth) || !('password' in auth) || typeof auth.username !== 'string' || typeof auth.password !== 'string')
-                        throw new Error('When using basic mode, the authentication has to be in form of {username:string, password:string}');
-                    if (!options.headers)
-                        options.headers = {};
-
-                    options.headers.authorization = 'Basic ' + base64.base64EncArr(base64.strToUTF8Arr(auth.username + ':' + auth.password));
-                    break;
-                case 'bearer':
-                    if (typeof auth !== 'string')
-                        throw new Error('When using bearer mode, the authentication has to be a string')
-                    if (!options.headers)
-                        options.headers = {};
-                    options.headers.authorization = 'Bearer ' + auth;
-                    break;
-                default:
-
-                    if (typeof auth !== 'string')
-                        throw new Error('When using ' + config.http.auth.mode.type + ' mode, the authentication has to be a string')
-
-                    switch (config.http.auth.mode.type)
-                    {
-                        case 'cookie':
-                            if (!options.headers.cookie)
-                                options.headers.cookie = '';
-                            options.headers.cookie += encodeURIComponent(config.http.auth.mode.name) + '=' + encodeURIComponent(auth);
-                            break;
-                        case 'query':
-                            options.queryString[config.http.auth.mode.name] = auth;
-                            break;
-                        case 'header':
-                            options.headers[config.http.auth.mode.name] = auth;
-                            break;
-                    }
-            }
-        }
+            authMiddleware.process(config.http.auth, options, auth);
 
         return options;
     }
@@ -268,6 +230,65 @@ export class HttpClient extends CommandProcessor
         this.injector = injector || defaultInjector;
     }
 }
+
+export const authMiddleware = new MiddlewareCompositeWithPriorityAsync<[{ mode: unknown }, HttpOptions<unknown>, unknown]>('auth');
+
+authMiddleware.use(100, function (httpConfig, options, auth)
+{
+    if (httpConfig.mode !== 'basic')
+        throw undefined;
+
+    if (typeof auth !== 'object' || !('username' in auth) || !('password' in auth) || typeof auth.username !== 'string' || typeof auth.password !== 'string')
+        throw new Error('When using basic mode, the authentication has to be in form of {username:string, password:string}');
+    if (!options.headers)
+        options.headers = {};
+
+    return authMiddleware.process({ mode: { type: 'header', name: 'authorization' } }, options, 'Basic ' + base64.base64EncArr(base64.strToUTF8Arr(auth.username + ':' + auth.password)));
+})
+
+authMiddleware.use(100, function (httpConfig, options, auth)
+{
+    if (httpConfig.mode !== 'bearer')
+        throw undefined;
+
+    if (typeof auth !== 'string')
+        throw new Error('When using bearer mode, the authentication has to be a string')
+
+    return authMiddleware.process({ mode: { type: 'header', name: 'authorization' } }, options, 'Bearer ' + auth);
+})
+
+authMiddleware.use(1000, async function (httpConfig, options, auth)
+{
+    const mode = httpConfig.mode as HttpConfiguration['auth']['mode'];
+    if (typeof mode !== 'object')
+        throw new Error('When reaching that step, the httpConfig is expected to be an object, but was ' + httpConfig.mode);
+
+    if (!('type' in mode) || mode.type !== 'query' && mode.type !== 'header' && mode.type !== 'cookie')
+        throw new Error('When reaching that step, the expected httpConfig mode type should be one of: cookie, query or header, but was ' + httpConfig.mode['type']);
+
+    if (typeof auth !== 'string')
+        throw new Error('When using ' + mode.type + ' mode, the authentication has to be a string')
+
+
+    switch (mode.type)
+    {
+        case 'cookie':
+            if (!options.headers)
+                options.headers = {};
+            if (!options.headers.cookie)
+                options.headers.cookie = '';
+            options.headers.cookie += encodeURIComponent(mode.name) + '=' + encodeURIComponent(auth);
+            break;
+        case 'query':
+            options.queryString[mode.name] = auth;
+            break;
+        case 'header':
+            if (!options.headers)
+                options.headers = {};
+            options.headers[mode.name] = auth;
+            break;
+    }
+})
 
 handlers.useProtocol('http', HttpClient.handler('http'));
 handlers.useProtocol('https', HttpClient.handler('https'));
