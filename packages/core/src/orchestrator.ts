@@ -1,14 +1,15 @@
-import { Event, EventEmitter } from './event-emitter.js'
+import { EventEmitter } from './events/event-emitter.js'
+import { IEvent } from './events/shared.js';
 import { eachAsync } from './helpers.js';
 import sequencify, { Task } from './sequencify.js'
 
 interface EventMap
 {
-    start: Event<[string[]], void>
-    task_start: Event<[{ message: string, task: Task }], void>
-    task_stop: Event<[{ message: string }, Task], void>
-    error: Event<[{ error: Error, task: Task }], void>
-    stop: Event<[Error] | [], void>
+    start: IEvent<[string[]], void>
+    task_start: IEvent<[{ message: string, task: Task }], void>
+    task_stop: IEvent<[{ message: string }, Task], void>
+    error: IEvent<[{ error: Error, task: Task }], void>
+    stop: IEvent<[Error] | [], void>
 }
 
 /**

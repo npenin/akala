@@ -20,7 +20,7 @@ export * from './service.js';
 import sequencify, { Task, Tasks } from './sequencify.js';
 export { sequencify, Task, Tasks }
 // export { Bound, PossiblyBound } from './binder.js';
-export * from './event-emitter.js';
+export * from './events/index.js';
 export * from './parser/parser.js';
 export * from './type-helper.js'
 export * from './helpers.js'
