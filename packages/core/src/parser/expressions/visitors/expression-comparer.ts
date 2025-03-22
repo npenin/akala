@@ -130,7 +130,7 @@ export class ExpressionComparer extends ExpressionVisitor
         if (exp.type != expression.type)
             throw new ErrorWithStatus(400);
 
-        if (exp.formatter != exp.formatter)
+        if (exp.formatter != expression.formatter)
             throw new ErrorWithStatus(400);
 
         this.source = exp.lhs;
