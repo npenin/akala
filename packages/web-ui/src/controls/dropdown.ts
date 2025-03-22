@@ -20,7 +20,6 @@ export const parentSize: () => Middleware = () =>
                     case 'bottom-start':
                     case 'bottom-end':
                         return { data: { minWidth: state.elements.reference.getBoundingClientRect().width } }
-                        break;
                     default:
                         break;
                 }
