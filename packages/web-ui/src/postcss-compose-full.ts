@@ -403,7 +403,7 @@ const creator: PluginCreator<{ composableClasses: ComposableClasses }> = (option
             //     }
 
             const movedRules: Rule[] = []
-            Object.entries(nonLoadedFiles).map(([filePath, file]) =>
+            Object.entries(nonLoadedFiles).forEach(([filePath, file]) =>
             {
                 if (composableClasses[filePath])
                     Object.values(composableClasses[filePath]).forEach((localComposableClass: LocalComposableClass) =>

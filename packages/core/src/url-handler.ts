@@ -10,7 +10,7 @@ type MiddlewareError = 'break' | 'loop' | void;
  * @template T - Tuple type representing middleware context parameters [URL, ...unknown[], Partial<TResult>]
  * @template TResult - Result type for middleware processing (default: object)
  */
-export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult>], TResult = object> implements MiddlewareAsync<T>
+export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], TResult = object> implements MiddlewareAsync<T>
 {
     /**
      * Composite middleware stack for protocol-specific processing

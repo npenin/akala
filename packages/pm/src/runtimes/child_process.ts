@@ -16,13 +16,13 @@ export type ChildProcessRuntimeEventMap = {
 
 } & RuntimeEventMap;
 
-export type ChildPRocessRuntimeOptions = { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean, inheritStdio?: boolean }
+export type ChildProcessRuntimeOptions = { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean, inheritStdio?: boolean }
 
-export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> implements RuntimeInstance
+export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> implements RuntimeInstance<ChildProcessRuntimeEventMap>
 {
     private readonly cp: ChildProcess;
     public readonly adapter: IpcAdapter;
-    constructor(args: string[], options: ChildPRocessRuntimeOptions)
+    constructor(args: string[], options: ChildProcessRuntimeOptions)
     {
         super();
         args.unshift(fileURLToPath(new URL('../fork', import.meta.url)));
@@ -35,7 +35,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
             this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stdout);
         }
         this.adapter = new IpcAdapter(this.cp);
-        this.cp.on('close', () => this.emit('exit'));
+        this.cp.on('close', (code, signal) => { this.emit('close', code, signal); this.emit('exit') });
 
         if (options.keepAttached)
             this.cp.on('disconnect', () => this.emit('exit'));
@@ -54,9 +54,9 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
         })
     }
 
-    public static build(args: string[], options: ChildPRocessRuntimeOptions)
+    public static build(args: string[], options: ChildProcessRuntimeOptions)
     {
-        return new Runtime(args, options);
+        return new Runtime(args, options) as Runtime & RuntimeInstance;
     }
 
     public unref()

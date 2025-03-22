@@ -447,11 +447,11 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
                 this.teardown(new CssClass(sortDesc, this.bind('config').pipe('sortDescClasses')))
 
                 const sortArrowContainer = content(c(e('div'), 'sort-container'), sortAsc, sortDesc);
-                new CssClass(sortArrowContainer, {
+                this.teardown(new CssClass(sortArrowContainer, {
                     sorted: option.sort.pipe<boolean>('direction!=="none"'),
                     asc: option.sort.pipe<boolean>('direction==="asc"'),
                     desc: option.sort.pipe<boolean>('direction==="desc"')
-                })
+                }));
                 let sortSub: Subscription;
                 this.teardown(option.sort.onChanged(sortOption =>
                 {

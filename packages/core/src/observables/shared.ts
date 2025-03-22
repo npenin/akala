@@ -1,4 +1,5 @@
-import EventEmitter, { Event, IEventSink, PipeEvent, ReplayEvent } from "../event-emitter.js";
+import { EventEmitter } from "../events/event-emitter.js";
+import { Event, IEventSink, PipeEvent, ReplayEvent } from "../events/shared.js";
 import { Formatter } from "../formatters/common.js";
 
 function noop() { }

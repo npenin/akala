@@ -224,7 +224,6 @@ export class Typeahead<T> extends Control<{ 'aria-controls': string, multiple: b
                             case 'shift':
                             case 'unshift':
                                 throw new ErrorWithStatus(HttpStatusCode.MethodNotAllowed);
-                                break;
                         }
                     }))
                 }

@@ -3,7 +3,7 @@ import { Template } from './template.js'
 import { Scope } from './scope.js'
 import { service } from './common.js'
 import { LocationService as Location } from './locationService.js'
-import { Event, EventEmitter, EventOptions, SimpleInjector, Subscription, map } from '@akala/core'
+import { Event, EventBus, EventBusWrapper, EventOptions, SimpleInjector, map } from '@akala/core'
 
 export type PartInstance = { scope: Scope<object>, element: HTMLElement | ShadowRoot };
 export const outletDefinition = Symbol()
@@ -132,13 +132,13 @@ export interface OutletDefinition<TScope extends Scope<object>>
 
 export class OutletDefinitionBuilder<TScope extends Scope<object>> implements OutletDefinition<TScope>
 {
-    constructor(private commandActions?: EventEmitter<Record<string, Event<[unknown]>>>)
+    constructor(private commandActions?: EventBus<Record<string, Event<[unknown]>>>)
     {
     }
 
     template?: string | Promise<string>;
     controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { [Symbol.dispose]?(): void };
-    private controllerCommands: EventEmitter<Record<string, Event<[unknown]>>>
+    private controllerCommands: EventBus<Record<string, Event<[unknown]>>>
 
     useTemplate(template?: string | Promise<string>)
     {
@@ -163,21 +163,10 @@ export class OutletDefinitionBuilder<TScope extends Scope<object>> implements Ou
         {
             this.useController(() =>
             {
-                let subscriptions: Subscription[] = Object.values(this.controllerCommands.definedEvents).map(e =>
-                    this.commandActions.on(e, (...args) => this.controllerCommands.emit(e, ...args))
-                )
-
-                return {
-                    [Symbol.dispose]()
-                    {
-                        subscriptions.forEach(s => s());
-                    }
-                }
+                this.controllerCommands = new EventBusWrapper(this.commandActions);
+                return this.controllerCommands;
             })
         }
-
-        if (!this.controllerCommands)
-            this.controllerCommands = new EventEmitter<Record<string, Event<[unknown]>>>
 
         this.controllerCommands.on(commandName, handler, options);
         return this;

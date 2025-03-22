@@ -6,7 +6,7 @@ export type Subscription = () => boolean
 /**
  * Manages cleanup of subscriptions and disposable resources
  */
-export class TeardownManager
+export class TeardownManager implements Disposable
 {
     /**
      * @param subscriptions - Optional initial array of teardown subscriptions

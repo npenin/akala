@@ -44,7 +44,7 @@ jobs:
       - name: Ensure CJS
         run: yarn workspaces foreach -Ap --no-private --include "@akala/config|@akala/core|@akala/json-rpc-ws|@akala/cli|@akala/commands" exec "echo '{"'"type":"commonjs"}'"' > dist/cjs/package.json"
       - name: publish updates
-        run: node packages/automate/dist/esm/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly
+        run: node packages/automate/dist/esm/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly --branch=${{github.ref}}a
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

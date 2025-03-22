@@ -1,4 +1,6 @@
 outputs: $(build.publicPackages)
+parameters:
+  - branch
 
 jobs:
   build:
@@ -52,6 +54,8 @@ jobs:
           - publish
           - --access
           - public
+          - --tag
+          - $(branch=='main' ? 'latest': branch)
         retries: 3
         with:
           shell: true

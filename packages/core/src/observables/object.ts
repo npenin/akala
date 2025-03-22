@@ -1,5 +1,6 @@
 import { map } from "../each.js";
-import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent } from "../event-emitter.js";
+import { EventEmitter } from "../events/event-emitter.js";
+import { Event, EventArgs, EventKeys, EventListener, IEvent } from "../events/shared.js";
 import { Formatter, formatters, isReversible, ReversibleFormatter } from "../formatters/index.js";
 import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
 import { EvaluatorAsFunction, ParsedFunction } from "../parser/evaluator-as-function.js";
@@ -220,7 +221,7 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
         return (target, watcher) =>
         {
             if (!sub && watcher)
-                change.pipe('change', watcher);
+                change.pipe(watcher.getOrCreate('change'));
             let x = getter(target, watcher);
             if (x instanceof Binding)
             {

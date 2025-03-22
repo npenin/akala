@@ -1,7 +1,7 @@
 .button-borderless {}
 
 .button {
-    composes: interactive from './interactive.module.css';
+    composes: interactive from './interactive.module.css' akala-button from global;
 
     cursor: pointer;
     display: inline-flex;
@@ -16,8 +16,6 @@
 
         &:hover {}
     }
-
-    composes: akala-button from global;
 }
 
 .button-filled {

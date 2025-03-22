@@ -1,4 +1,4 @@
-import { Event, IEventSink } from "./event-emitter.js";
+import { Event, IEventSink } from "./events/shared.js";
 
 export type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>
 export type RejectHandler<TResult> = (reason: unknown) => void | TResult | PromiseLike<TResult>;

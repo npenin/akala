@@ -59,7 +59,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (options.configFile)
             options.configFile += '#' + options.name
 
-        args.unshift(...context?.args, ...unparseOptions({ ...options, program: undefined, new: undefined, inspect: undefined }, { ignoreUndefined: true }));
+        args.unshift(...(context?.args || []), ...unparseOptions({ ...options, program: undefined, new: undefined, inspect: undefined }, { ignoreUndefined: true }));
         if (def && def.get('path'))
             args.unshift('--program=' + def.get('path'));
         else
@@ -70,7 +70,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (name != 'pm')
             throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
 
-        args = [new URL('../../../commands.json', import.meta.url).toString(), ...context?.args, ...unparseOptions({ ...options, inspect: undefined })];
+        args = [new URL('../../../commands.json', import.meta.url).toString(), ...(context?.args || []), ...unparseOptions({ ...options, inspect: undefined })];
     }
 
     if (!def?.type || def.type == 'nodejs')
