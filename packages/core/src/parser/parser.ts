@@ -301,12 +301,12 @@ export class ParsedBoolean extends ConstantExpression<boolean> implements Parsed
  */
 export class ParsedCall extends CallExpression<any, any> implements ParsedAny
 {
-    constructor(argsLength: number, source: TypedExpression<any> & ParsedAny, method: any, args: (StrictExpressions & ParsedAny)[])
+    constructor(argsLength: number, source: TypedExpression<any> & ParsedAny, method: TypedExpression<any> & ParsedAny, args: (StrictExpressions & ParsedAny)[])
     {
         super(source, method, args as StrictExpressions[]);
         this.$$length = source.$$length + argsLength;
         if (method)
-            this.$$length
+            this.$$length += method.$$length;
     }
 
     public $$length: number;
