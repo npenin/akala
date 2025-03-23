@@ -4,7 +4,7 @@ import { Response } from './shared.js';
 
 export class MimeMiddleware<T extends [{ accepts: accept.Accepts, isLocal: boolean }, Response, unknown]> implements MiddlewareAsync<T>
 {
-    constructor(private type: string, private serialize: (content: T[2]) => BufferSource | string, private options?: { showErrorDetails?: true | false | 'local' })
+    constructor(private type: string, private readonly serialize: (content: T[2]) => BufferSource | string, private options?: { showErrorDetails?: true | false | 'local' })
     {
         if (!this.options)
             this.options = {};
