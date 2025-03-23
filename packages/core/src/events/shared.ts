@@ -226,16 +226,35 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
 
     /**
      * Pipes the event to another event or emitter.
-     * @template U
-     * @template V
-     * @param {U | IEvent<T, TReturnType, TOptions>} event - The event to pipe to.
-    //  * @param {EventEmitter<V>} [emitter] - The emitter to pipe to.
+     * @param {IEvent<T, TReturnType, TOptions>} event - The event to pipe to.
      * @returns {Subscription} - The subscription.
      */
     pipe(event: IEvent<T, TReturnType, TOptions>): Subscription
+    /**
+     * Pipes the event to another event or emitter.
+     * @param {IEvent<T, TReturnType, TOptions>} event - The event to pipe to.
+     * @returns {Subscription} - The subscription.
+     */
+    pipe<U extends unknown[]>(event: Listener<T, U>): IEventSink<U, TReturnType, TOptions>
+    /**
+     * Pipes the event to another event or emitter.
+     * @param {IEvent<T, TReturnType, TOptions>} event - The event to pipe to.
+     * @returns {Subscription} - The subscription.
+     */
+    pipe<U extends unknown[]>(event: Listener<T, U> | IEvent<T, TReturnType, TOptions>): Subscription | IEventSink<U, TReturnType, TOptions>
     {
         switch (typeof event)
         {
+            case 'function':
+                const mapEvent = new Event<U, TReturnType, TOptions>();
+                const sub = this.addListener((...args) =>
+                {
+                    return mapEvent.emit(...event(...args))
+                });
+                this.teardown(sub);
+                mapEvent.teardown(sub);
+                return mapEvent;
+
             case 'object':
                 return this.addListener((...args) =>
                 {
