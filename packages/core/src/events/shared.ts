@@ -331,7 +331,7 @@ export class PipeEvent<T extends unknown[], U extends unknown[], TReturnType, TO
  */
 export class ReplayEvent<T extends unknown[], TReturnType = void> extends Event<T, TReturnType>
 {
-    private buffer: T[] = [];
+    private readonly buffer: T[] = [];
 
     /**
      * Creates an instance of ReplayEvent.
