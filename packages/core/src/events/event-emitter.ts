@@ -177,7 +177,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
         if (this.events[Symbol.dispose])
             this.events[Symbol.dispose].emit();
         super[Symbol.dispose]();
-        for (var prop in this.events)
+        for (const prop in this.events)
         {
             if (this.events[prop][Symbol.dispose])
                 this.events[prop][Symbol.dispose]();
