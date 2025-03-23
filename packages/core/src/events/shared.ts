@@ -247,12 +247,10 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
         {
             case 'function':
                 const mapEvent = new Event<U, TReturnType, TOptions>();
-                const sub = this.addListener((...args) =>
+                mapEvent.teardown(this.teardown(this.addListener((...args) =>
                 {
                     return mapEvent.emit(...event(...args))
-                });
-                this.teardown(sub);
-                mapEvent.teardown(sub);
+                })));
                 return mapEvent;
 
             case 'object':
