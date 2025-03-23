@@ -16,7 +16,7 @@ export class AsyncEvent<T extends unknown[] = unknown[], TReturnType = void> ext
      * @param {number} [maxListeners=10] - The maximum number of listeners.
      * @param {(args: TReturnType[]) => TReturnType} combineReturnTypes - Function to combine return types.
      */
-    constructor(maxListeners: number = 10, combineReturnTypes: Event<T, TReturnType>['combineReturnTypes'])
+    constructor(maxListeners: number = 10, combineReturnTypes: Event<T, TReturnType>['combineReturnTypes'] = null)
     {
         super(maxListeners, (promises) => Promise.all(promises).then((returns) => combineReturnTypes(returns)));
     }
