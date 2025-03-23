@@ -132,7 +132,7 @@ export interface OutletDefinition<TScope extends Scope<object>>
 
 export class OutletDefinitionBuilder<TScope extends Scope<object>> implements OutletDefinition<TScope>
 {
-    constructor(private commandActions?: EventBus<Record<string, Event<[unknown]>>>)
+    constructor(private readonly commandActions?: EventBus<Record<string, Event<[unknown]>>>)
     {
     }
 
