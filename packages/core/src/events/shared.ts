@@ -232,9 +232,7 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
     //  * @param {EventEmitter<V>} [emitter] - The emitter to pipe to.
      * @returns {Subscription} - The subscription.
      */
-    // pipe<const U extends string | symbol, V extends { [key in U]: IEvent<T, TReturnType, TOptions> }>(event: U, emitter: EventEmitter<V>): Subscription
     pipe(event: IEvent<T, TReturnType, TOptions>): Subscription
-    // pipe<const U extends EventKeys<V>, V extends { [key in U]: IEvent<T, TReturnType, TOptions> }>(event: (U) | IEvent<T, TReturnType, TOptions>, emitter?: EventEmitter<V>): Subscription
     {
         switch (typeof event)
         {
@@ -243,12 +241,6 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
                 {
                     return event.emit(...args)
                 });
-            case 'string':
-            case 'symbol':
-            // return this.addListener((...args) =>
-            // {
-            //     return (emitter.emit(event, ...args as EventArgs<V[U]>) || null) as TReturnType
-            // });
             default:
                 throw new Error('unsupported pipe type');
         }
