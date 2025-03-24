@@ -5,15 +5,12 @@
     "types": "./dist/esm/index.d.ts",
     "type": "module",
     "scripts": {
-        "test": "mocha dist/test.js"
+        "test": "node --test --enable-source-maps dist/test.js"
     },
     "source": "src/index.ts",
     "dependencies": {
         "@akala/storage": "workspace:^",
         "mongodb": "^6.15.0"
-    },
-    "devDependencies": {
-        "mocha": "11.1.0"
     },
     "exports": {
         ".": {

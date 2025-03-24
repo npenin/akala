@@ -14,7 +14,7 @@
     "main": "./dist/cjs/browser.js",
     "type": "module",
     "scripts": {
-        "test": "mocha --require source-map-support/register.js",
+        "test": "node --test --enable-source-maps",
         "validate": "npm ls",
         "jsdoc": "jsdoc",
         "docs": "jsdoc index.js lib -d docs",
@@ -48,7 +48,6 @@
         "@types/node": "^22.13.10",
         "@types/ws": "^8.18.0",
         "bufferutil": "^4.0.9",
-        "mocha": "11.1.0",
         "puppeteer": "^24.4.0",
         "selenium-webdriver": "^4.29.0",
         "source-map-support": "^0.5.21",
