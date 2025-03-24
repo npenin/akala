@@ -2,6 +2,7 @@ import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
 import { metadata, helper, commandList, fromObject } from '../generator.js';
 import { FileSystem } from '../processors/index.js';
+import { describe, it } from 'node:test'
 // import { createRequire } from 'module';
 
 // const require = createRequire(import.meta.url);

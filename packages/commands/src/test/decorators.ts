@@ -1,6 +1,7 @@
 import { Container } from '../model/container.js';
 import { inject, configure } from '../decorators.js';
 import * as assert from 'assert'
+import { describe, it } from 'node:test'
 
 describe('test decorators', function ()
 {

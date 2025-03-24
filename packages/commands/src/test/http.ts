@@ -6,11 +6,12 @@ import { HttpClient } from '../processors/http-client.js';
 import { metadata, proxy } from '../generator.js';
 import * as akala from '@akala/core'
 import { UrlTemplate } from '@akala/core';
+import { describe, it, before, after } from 'node:test'
 
 describe('test http processing', function ()
 {
     let server: http.Server;
-    this.beforeAll(function (done)
+    before(function (_, done)
     {
         server = http.createServer(function (req, res)
         {
@@ -31,21 +32,16 @@ describe('test http processing', function ()
                 {
                     const config = cmd.config.http;
                     const template = UrlTemplate.parse(config.route);
-                    // const keys: pathRegexp.Key[] = regexp.keys;
                     const match = UrlTemplate.match(url, template)
                     if (match && config.inject)
                     {
-                        Object.assign(params, match.variables);
-                        // match.varai.forEach(function (value, i)
-                        // {
-                        //     if (i > 0 && config.inject)
-                        //     {
-                        //         const key = keys[i - 1]
-                        //         const indexOfParam = config.inject.indexOf('route.' + key.name);
-                        //         if (indexOfParam > -1)
-                        //             params[indexOfParam] = value;
-                        //     }
-                        // })
+                        config.inject.forEach((inject, i) =>
+                        {
+                            if (inject == 'route.step')
+                            {
+                                params[i] = match.variables.step as string;
+                            }
+                        })
                     }
                 }
             }
@@ -60,33 +56,24 @@ describe('test http processing', function ()
                 }
                 else
                 {
-                    res.writeHead(204, 'OK', { 'content-length': 0 });
+                    res.writeHead(akala.HttpStatusCode.NoContent, 'OK', { 'content-length': 0 });
                 }
                 res.end();
             })
         });
-        server.on('error', function (err)
-        {
-            done(err);
-        })
-        server.listen(8887, function ()
-        {
-            done();
-        });
+
+        server.on('error', done)
+        server.listen(8887, done);
     })
 
-    this.afterAll(function (done)
+    after(function (_, done)
     {
-        server.close(function (err)
-        {
-            done(err);
-        })
+        server.close(done);
     })
 
     it('should handle basics', async function ()
     {
-        debugger;
-        calculator.dispatch('reset');
+        await calculator.dispatch('reset');
         akala.defaultInjector.register('$resolveUrl', function (url: string)
         {
             return new URL(url, 'http://localhost:8887/');

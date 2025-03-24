@@ -11,7 +11,7 @@ let cmd: cmds.SelfDefinedCommand<unknown[], state> = calculator.register(new cmd
         step = Number(step);
     this.value += step || 1;
 }, 'increment', ['param.0']));
-cmd.config.http = { method: 'post', route: '/increment/:step?', inject: ['route.step'] }
+cmd.config.http = { method: 'post', route: '/increment/{step}', inject: ['route.step'] }
 
 cmd = calculator.register(new cmds.SelfDefinedCommand<[], state>(function reset()
 {
@@ -19,7 +19,7 @@ cmd = calculator.register(new cmds.SelfDefinedCommand<[], state>(function reset(
 }, 'reset'));
 cmd.config.http = { method: 'post', route: '/reset' }
 
-cmd = configure('http', { method: 'post', route: '/decrement/:step?', inject: ['$state', 'route.step'] })(
+cmd = configure('http', { method: 'post', route: '/decrement/{step}', inject: ['$state', 'route.step'] })(
     calculator.register(new cmds.SelfDefinedCommand<[state: state, step: number], state>(function decrement(state: state, step: number)
     {
         if (step && typeof step == 'string')

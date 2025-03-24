@@ -3,6 +3,7 @@ import * as assert from 'assert'
 import { Pipe, EventProcessor } from '../processors/index.js';
 import { Container } from '../model/container.js';
 import { metadata, registerCommands } from '../generator.js';
+import { describe, it } from 'node:test'
 
 describe('test event processing', function ()
 {
