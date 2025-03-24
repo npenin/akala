@@ -2,7 +2,7 @@ import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
-import { metadata, proxy, helper, registerCommands } from '../generator.js';
+import { metadata, proxy, helper } from '../generator.js';
 import { JsonRpc, LogEventProcessor } from '../processors/index.js';
 import { Container } from '../model/container.js';
 // import { Command } from '../model/command';
