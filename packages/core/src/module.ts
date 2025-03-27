@@ -378,7 +378,7 @@ export function module(name: string, ...dependencies: string[]): Module
 export function module(name: string, ...dependencies: Module[]): Module
 export function module(name: string, ...dependencies: (Module | string)[]): Module
 {
-    if (dependencies && dependencies.length)
+    if (dependencies?.length)
         return new Module(name, dependencies.map(m => typeof (m) == 'string' ? module(m) : m));
     return new Module(name);
 }
