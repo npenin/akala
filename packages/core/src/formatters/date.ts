@@ -135,22 +135,22 @@ export function formatParser(format: string)
                             switch (currentFormat)
                             {
                                 case 'h':
-                                    result.setUTCHours(tmp);
+                                    result.setHours(tmp);
                                     break;
                                 case 'm':
-                                    result.setUTCMinutes(tmp);
+                                    result.setMinutes(tmp);
                                     break;
                                 case 'y':
-                                    result.setUTCFullYear(tmp);
+                                    result.setFullYear(tmp);
                                     break;
                                 case 'M':
-                                    result.setUTCMonth(tmp);
+                                    result.setMonth(tmp);
                                     break;
                                 case 'd':
-                                    result.setUTCDate(tmp);
+                                    result.setDate(tmp);
                                     break;
                                 case 's':
-                                    result.setUTCSeconds(tmp);
+                                    result.setSeconds(tmp);
                                     break;
                             }
                             break;
