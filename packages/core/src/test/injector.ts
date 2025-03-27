@@ -3,6 +3,7 @@ import 'source-map-support/register.js';
 import { SimpleInjector } from '../injectors/simple-injector.js';
 import assert from 'assert';
 import { useInjector, inject } from '../injectors/reflection-injector.js';
+import { it } from 'node:test'
 
 /*var oldProxy = Proxy;
 
@@ -62,65 +63,68 @@ i1.injectWithName(['$updateConfig.pwet.a.b.c'], function (config)
 {
     config({ x: 'y' }, 'd');
 })();*/
-
-const i = new SimpleInjector();
-i.register('os', 'linux')
-i.register('vendor', 'microsoft')
-i.register('action', 'loves')
-i.register('otherVendor', 'node')
-
-const subI = new SimpleInjector(i);
-@useInjector(subI)
-class A
+it('injector should work', () =>
 {
-    @inject('os')
-    public os: string;
 
-    @inject()
-    public vendor: string;
+    const i = new SimpleInjector();
+    i.register('os', 'linux')
+    i.register('vendor', 'microsoft')
+    i.register('action', 'loves')
+    i.register('otherVendor', 'node')
 
-    public otherVendor: string;
-
-    constructor(@inject('otherVendor') otherVendor?: string)
+    const subI = new SimpleInjector(i);
+    @useInjector(subI)
+    class A
     {
-        this.otherVendor = otherVendor;
+        @inject('os')
+        public os: string;
+
+        @inject()
+        public vendor: string;
+
+        public otherVendor: string;
+
+        constructor(@inject('otherVendor') otherVendor?: string)
+        {
+            this.otherVendor = otherVendor;
+        }
+
+        public do(@inject('action') action: string)
+        {
+            return `${this.vendor} ${action} ${this.os}`;
+        }
+
+        public doOtherVendor(@inject('action') action: string)
+        {
+            return `${this.vendor} ${action} ${this.otherVendor}`;
+        }
+    }
+    const a = new A();
+
+    assert.strictEqual(a.os, i.resolve('os'), 'named injection does not work');
+    assert.strictEqual(a.vendor, i.resolve('vendor'), 'implicit injection does not work');
+    assert.strictEqual(a.otherVendor, i.resolve('otherVendor'), 'constructor injection does not work');
+    assert.strictEqual(a.do('likes'), `${i.resolve('vendor')} ${i.resolve('action')} ${i.resolve('os')}`, 'parameter injection does not work');
+
+
+    class B extends A
+    {
+        constructor()
+        {
+            super();
+        }
     }
 
-    public do(@inject('action') action: string)
-    {
-        return `${this.vendor} ${action} ${this.os}`;
-    }
+    const b = new B();
 
-    public doOtherVendor(@inject('action') action: string)
-    {
-        return `${this.vendor} ${action} ${this.otherVendor}`;
-    }
-}
-const a = new A();
+    assert.strictEqual(b.os, i.resolve('os'), 'named injection does not work on inherited classes');
+    assert.strictEqual(b.vendor, i.resolve('vendor'), 'implicit injection does not work on inherited classes');
+    assert.strictEqual(b.do('loves'), 'microsoft loves linux', 'parameter injection does not work on inherited classes');
+    assert.strictEqual(b.doOtherVendor('loves'), 'microsoft loves node', 'parameter injection does not work on inherited classes');
 
-assert.strictEqual(a.os, i.resolve('os'), 'named injection does not work');
-assert.strictEqual(a.vendor, i.resolve('vendor'), 'implicit injection does not work');
-assert.strictEqual(a.otherVendor, i.resolve('otherVendor'), 'constructor injection does not work');
-assert.strictEqual(a.do('likes'), `${i.resolve('vendor')} ${i.resolve('action')} ${i.resolve('os')}`, 'parameter injection does not work');
-
-
-class B extends A
-{
-    constructor()
-    {
-        super();
-    }
-}
-
-const b = new B();
-
-assert.strictEqual(b.os, i.resolve('os'), 'named injection does not work on inherited classes');
-assert.strictEqual(b.vendor, i.resolve('vendor'), 'implicit injection does not work on inherited classes');
-assert.strictEqual(b.do('loves'), 'microsoft loves linux', 'parameter injection does not work on inherited classes');
-assert.strictEqual(b.doOtherVendor('loves'), 'microsoft loves node', 'parameter injection does not work on inherited classes');
-
-// nested resolutions
-const i1 = new SimpleInjector();
-const i2 = i1.register('a', new SimpleInjector());
-i2.register('b.c', 'x');
-assert.strictEqual(i1.resolve('a["b.c"]'), 'x')
+    // nested resolutions
+    const i1 = new SimpleInjector();
+    const i2 = i1.register('a', new SimpleInjector());
+    i2.register('b.c', 'x');
+    assert.strictEqual(i1.resolve('a.b.c'), 'x')
+})

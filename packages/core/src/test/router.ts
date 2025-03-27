@@ -1,6 +1,6 @@
 import * as r from '../router/index.js'
-import 'mocha'
 import assert from 'assert';
+import { describe, it } from 'node:test'
 
 class Router extends r.Router1<{ path: string, params?: Record<string, unknown> }>
 {
@@ -9,6 +9,7 @@ class Router extends r.Router1<{ path: string, params?: Record<string, unknown> 
         super(options);
     }
 }
+
 describe('router', () =>
 {
     const router = new Router();
@@ -23,13 +24,13 @@ describe('router', () =>
 
     const rb = new Router();
 
-    ra.use('/:id?', function (req)
+    ra.use('/{id}', function (req)
     {
         console.log('a' + req.path);
         return req.params.id;
     });
 
-    rb.use('/:id?', function (req)
+    rb.use('/{id}', function (req)
     {
         console.log('b' + req.path);
         return req.params.id;
@@ -52,19 +53,19 @@ describe('router', () =>
 
         }
         if (!isOk)
-            throw new Error('should not have matched anything')
+            assert.fail('should not have matched anything')
     });
     it('does not catch non matching routes', () =>
     {
         try { router.process({ path: '/a' }) } catch (x) 
         {
             if (typeof x !== 'undefined')
-                throw new Error('matched when it should not')
+                assert.fail('matched when it should not')
         }
         try { router.process({ path: '/api/pwic' }) } catch (x) 
         {
             if (typeof x !== 'undefined')
-                throw new Error('matched when it should not')
+                assert.fail('matched when it should not')
         }
     });
     it('catches obvious path', () =>
@@ -72,7 +73,7 @@ describe('router', () =>
         try { router.process({ path: '/api/a' }) } catch (x) 
         {
             if (typeof x !== 'undefined')
-                throw new Error('should never reach that point');
+                assert.fail('should never reach that point');
         }
     });
     it('catches path with id', () =>

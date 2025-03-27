@@ -4,6 +4,7 @@ import { MongoClient } from "mongodb";
 import { MongoDb } from "./persistenceengine.js";
 import assert from 'assert'
 import MongoDbTranslator from "./expression-visitor.js";
+import { describe, it } from 'node:test'
 
 describe('query', () =>
 {

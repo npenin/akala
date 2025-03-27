@@ -1,8 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('source-map-support').install();
-
 import { Polymorph } from '../polymorph.js'
-import * as assert from 'assert'
+import assert from 'assert'
+import { it } from 'node:test'
 
 class Test
 {
@@ -33,12 +32,14 @@ class Test
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 function noop() { }
 
-console.log(Test.transition(noop));
-console.log(Test.transition(1, noop));
-console.log(Test.transition(false, 1, noop));
-console.log(Test.transition(false, noop));
-console.log(Test.transition('pwic', noop));
-console.log(Test.transition('pwic', 1, noop));
-console.log(Test.transition('pwic', false, noop));
-console.log(Test.transition('pwic', false, 1, noop));
-console.log('success')
+it('polymorph should work', () =>
+{
+    assert.deepEqual(Test.transition(noop), { selector: undefined, rollback: undefined, duration: undefined, callback: noop });
+    assert.deepEqual(Test.transition(1, noop), { selector: undefined, rollback: undefined, duration: 1, callback: noop });
+    assert.deepEqual(Test.transition(false, 1, noop), { selector: undefined, rollback: false, duration: 1, callback: noop });
+    assert.deepEqual(Test.transition(false, noop), { selector: undefined, duration: undefined, rollback: false, callback: noop });
+    assert.deepEqual(Test.transition('pwic', noop), { selector: 'pwic', rollback: undefined, duration: undefined, callback: noop });
+    assert.deepEqual(Test.transition('pwic', 1, noop), { selector: 'pwic', rollback: undefined, duration: 1, callback: noop });
+    assert.deepEqual(Test.transition('pwic', false, noop), { selector: 'pwic', duration: undefined, rollback: false, callback: noop });
+    assert.deepEqual(Test.transition('pwic', false, 1, noop), { selector: 'pwic', rollback: false, duration: 1, callback: noop });
+})

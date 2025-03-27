@@ -1,10 +1,10 @@
-import 'mocha'
 import assert from 'assert';
 import specExamples from './uritemplate-test/spec-examples.json' with {type: 'json'}
 import extendedCases from './uritemplate-test/extended-tests.json' with {type: 'json'}
 import negativeCases from './uritemplate-test/negative-tests.json' with {type: 'json'}
 import { parse, expand, tryParse, match } from '../uri-template/index.js';
 import { each } from '../each.js';
+import { describe, it } from 'node:test'
 
 describe('uri-template-expansion', () =>
 {
@@ -37,8 +37,10 @@ describe('uri-template-expansion', () =>
 
     for (const e of Object.entries(negativeCases))
         for (const tc of e[1].testcases)
-            it(`works with ${e[0]} (${tc[0]})`, async () =>
+            it(`works with ${e[0]} (${tc[0]})`, () =>
             {
+                // if (tc[0] == '/{default-graph-uri}' || tc[0] == '/sparql{?query,default-graph-uri}')
+                //     return;
                 const parsed = tryParse(tc[0] as string)
 
                 function throws(f: () => void)
