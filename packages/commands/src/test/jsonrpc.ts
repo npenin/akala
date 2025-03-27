@@ -13,6 +13,8 @@ import { unlink } from 'fs';
 import { promisify } from 'util';
 import { SelfDefinedCommand } from '../model/command.js';
 import { describe, it, before, after } from 'node:test'
+import $metadataCmd from '../commands/$metadata.js';
+import { extractCommandMetadata } from '../metadata/command.js';
 
 describe('test jsonrpcws processing', function ()
 {
@@ -102,7 +104,7 @@ describe('test jsonrpcws processing', function ()
             const c2 = new Container('c2', {});
             c1.register(configure({ jsonrpc: { inject: ['connectionAsContainer'] } })(new SelfDefinedCommand(async function (container: Container<void>)
             {
-                const meta = await container.dispatch('$metadata');
+                const meta = await container.dispatch(extractCommandMetadata($metadataCmd));
                 meta.commands.forEach(cmd => container.register(cmd));
                 return await container.dispatch('b');
             }, 'a')));
