@@ -2,6 +2,7 @@ import assert from "assert";
 import { protobuf } from "../parsers/index.js"
 import { ProtobufMessage } from "../parsers/protobuf/index.js";
 import { Cursor, parserWrite } from "../parsers/_common.js"
+import { describe, it } from 'node:test'
 
 describe('protobuf', function ()
 {
