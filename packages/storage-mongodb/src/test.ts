@@ -25,7 +25,7 @@ describe('query', () =>
 
     it('should work', async () =>
     {
-        const client = new MongoClient('mongodb://172.17.0.5:27017');
+        const client = new MongoClient('mongodb://localhost:27017');
         const db = client.db('test');
 
         try
@@ -36,10 +36,10 @@ describe('query', () =>
             await pe.dbSet<ModelType>(model.name).createSingle({ name: 'b', prop1: 2, prop2: true })
             await pe.dbSet<ModelType>(model.name).createSingle({ name: 'c', prop1: 3, prop2: false });
             var translator = new MongoDbTranslator();
-            await translator.visit(
+            translator.visit(
                 new ApplySymbolExpression(pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).expression, QuerySymbols.count)
             )
-            assert.strictEqual(JSON.stringify(translator.pipelines, null, 4), JSON.stringify([{ $match: { $expr: { $eq: [{ $getField: 'prop2' }, true] } } }, { $group: { result: { $sum: 1 }, _id: null } }, { $project: { _id: 0 } }], null, 4));
+            assert.strictEqual(JSON.stringify(translator.pipelines, null, 4), JSON.stringify([{ $match: { $expr: { $eq: [{ $getField: 'Prop2' }, true] } } }, { $group: { result: { $sum: 1 }, _id: null } }, { $project: { _id: 0 } }], null, 4));
 
             assert.strictEqual(await pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).length(), 2);
         }
