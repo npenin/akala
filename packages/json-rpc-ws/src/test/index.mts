@@ -11,7 +11,6 @@ describe('json-rpc ws', () =>
 
   const server = JsonRpcWs.ws.createServer({ host: 'localhost', port: 8081 });
   const client = JsonRpcWs.ws.createClient();
-  //const delayBuffer = [];
 
   before(() =>
   {
@@ -314,8 +313,7 @@ describe('json-rpc ws', () =>
       await page.addScriptTag({ path: new URL('../../../browser_test._js', import.meta.url).toString() });
       var response = await page.evaluate(function ()
       {
-
-        var callback = arguments[arguments.length - 1];
+        const callback = arguments[arguments.length - 1];
         window['browserClient'].connect('ws://localhost:8081', function connected()
         {
 
