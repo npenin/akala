@@ -37,8 +37,7 @@ export default class Message<TMessage> implements ParserWithMessageWithoutKnownL
 
     public read(buffer: Buffer, cursor: Cursor, message?: Partial<TMessage>): TMessage
     {
-        if (typeof (message) == 'undefined')
-            message = {} as Partial<TMessage>;
+        message = {} as Partial<TMessage>;
         while (cursor.offset < buffer.length)
         {
             var parsedField = field.read(buffer, cursor);
