@@ -39,8 +39,6 @@ describe('uri-template-expansion', () =>
         for (const tc of e[1].testcases)
             it(`works with ${e[0]} (${tc[0]})`, () =>
             {
-                // if (tc[0] == '/{default-graph-uri}' || tc[0] == '/sparql{?query,default-graph-uri}')
-                //     return;
                 const parsed = tryParse(tc[0] as string)
 
                 function throws(f: () => void)
