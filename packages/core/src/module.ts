@@ -247,7 +247,7 @@ export class Module extends SimpleInjector
      * @param f - Handler function
      * @returns Self for chaining
      */
-    public activate<TArgs extends unknown[]>(toInject: string[], f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
+    public activate<TArgs extends unknown[]>(toInject: string[], f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>): this
     public activate<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this
     public activate<TArgs extends unknown[]>(toInject: string[], f?: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
     {
@@ -349,9 +349,13 @@ export class Module extends SimpleInjector
     {
         return new Promise<void>((resolve, reject) =>
         {
-            if (arguments.length > 0)
+            if (toInject?.length > 0)
                 Module.o.on('stop', this.injectWithName(toInject, f));
-            Module.o.on('stop', () => resolve());
+            Module.o.on('task_stop', (ev) =>
+            {
+                if (ev.taskName === this.name)
+                    resolve()
+            });
             Module.o.on('error', err => reject(err.error));
             Module.o.start(this.name);
         })
@@ -367,4 +371,14 @@ if (!moduleInjector)
 {
     moduleInjector = new SimpleInjector();
     defaultInjector.register('$modules', moduleInjector);
+}
+
+
+export function module(name: string, ...dependencies: string[]): Module
+export function module(name: string, ...dependencies: Module[]): Module
+export function module(name: string, ...dependencies: (Module | string)[]): Module
+{
+    if (dependencies && dependencies.length)
+        return new Module(name, dependencies.map(m => typeof (m) == 'string' ? module(m) : m));
+    return new Module(name);
 }
