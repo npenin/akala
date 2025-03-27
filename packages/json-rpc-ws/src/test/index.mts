@@ -311,7 +311,7 @@ describe('json-rpc ws', () =>
       const page = await driver.newPage();
       console.log(new URL('../../../browser_test._js', import.meta.url).toString());
       await page.addScriptTag({ path: new URL('../../../browser_test._js', import.meta.url).toString() });
-      var response = await page.evaluate(function ()
+      const response = await page.evaluate(function ()
       {
         const callback = arguments[arguments.length - 1];
         window['browserClient'].connect('ws://localhost:8081', function connected()
