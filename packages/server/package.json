@@ -2,11 +2,10 @@
     "name": "@akala/server",
     "version": "10.0.72",
     "description": "",
-    "main": "./dist/cjs/index.js",
+    "main": "./dist/esm/index.js",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 0",
-        "prepack": "../../makeCjs.sh",
         "generate": "ac generate dist/esm/commands commands.json --name @akala/server",
         "generate-metadata": "ac generate-metadata commands.json src/commands.ts"
     },
@@ -65,10 +64,6 @@
             "import": {
                 "types": "./dist/esm/index.d.ts",
                 "default": "./dist/esm/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/index.d.ts",
-                "default": "./dist/cjs/index.js"
             }
         },
         "./akala": "./dist/esm/akala.mjs",
