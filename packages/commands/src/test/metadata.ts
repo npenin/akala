@@ -1,5 +1,5 @@
 import { calculator } from './calculator/index.js'
-import * as assert from 'assert'
+import assert from 'assert'
 import { metadata, helper, commandList, fromObject } from '../generator.js';
 import { FileSystem } from '../processors/index.js';
 import { describe, it } from 'node:test'
@@ -129,10 +129,10 @@ describe('test helpers', function ()
 
     it('should interpret json properly', async function ()
     {
-        var cmds = await FileSystem.discoverMetaCommands(fileURLToPath(new URL('../../../commands.json', import.meta.url)));
+        const cmds = await FileSystem.discoverMetaCommands(fileURLToPath(new URL('../../../commands.json', import.meta.url)));
         assert.strictEqual(cmds.commands.length, 14);
         // debugger;
-        var cmds2 = await FileSystem.discoverMetaCommands(fileURLToPath(new URL('../../../src/test/metadata.json', import.meta.url)));
+        const cmds2 = await FileSystem.discoverMetaCommands(fileURLToPath(new URL('../../../src/test/metadata.json', import.meta.url)));
         assert.strictEqual(cmds2.commands.length, 36);
         assert.strictEqual(cmds2.commands.reduce((prev, current) => prev + (cmds.commands.some(cmd => cmd.name == current.name) ? '' : current.name), ''), 'dummy$initbridgenameproxyreadyreload-metadatarestartstartstatusstop$init-akalaconnectdiscoverinstalllinkloglsmapuninstallupdateversion')
     })
