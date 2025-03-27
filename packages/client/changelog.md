@@ -1,16 +1,10 @@
-#  (2025-03-20)
+#  (2025-03-27)
 
 
 ### Bug Fixes
 
-* CLI handle optional path cb6e421
-* edge cases when template is not defined 18add50
-* remove name option "mandatoryness" as we should already be in a valid node project 575e95a
-
-
-### Features
-
-* first CLI client generator working !!! 822b8ba
+* https://sonarcloud.io/project/issues?open=AZEYUJjLYoc5uOIAntgt&id=npenin_akala ac8c654
+* https://sonarcloud.io/project/issues?pullRequest=1552&open=AZW3SpoVXwCAWCXPixg0&id=npenin_akala d96e098
 
 
 
