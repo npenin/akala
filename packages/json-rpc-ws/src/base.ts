@@ -25,7 +25,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
 
   private requestHandlers: { [method: string]: Handler<TConnection, TStreamable, PayloadDataType<TStreamable>, PayloadDataType<TStreamable>> } = {};
 
-  protected connections: { [id: string]: Connection<TStreamable> } = {};
+  protected connections: { [id: string | number]: Connection<TStreamable> } = {};
 
 
   /**
@@ -111,7 +111,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @returns {Connection} - Connection
    * @public
    */
-  public getConnection(id: string): Connection<TStreamable>
+  public getConnection(id: string | number): Connection<TStreamable>
   {
     return this.connections[id];
   }
