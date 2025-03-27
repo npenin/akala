@@ -15,7 +15,7 @@ const logger = debug('json-rpc-ws');
 
 export interface ServerAdapter 
 {
-  close(): void;
+  close(): Promise<void>;
   onConnection(arg1: (socket: SocketAdapter) => void): void;
   once(event: 'listening', callback: () => void): void;
   start(): void;
@@ -71,16 +71,15 @@ export default class Server<TConnection extends Connection> extends Base<stream.
   /**
    * Stop the server
    *
-   * @todo param {function} callback - called after the server has stopped
    * @public
    */
-  public stop(): void
+  public async stop(): Promise<void>
   {
 
     logger('Server stop');
     this.hangup();
-    this.server?.close();
-    delete this.server;
+    await this.server?.close();
+    this.server = null;
   }
 
   /**
@@ -92,7 +91,7 @@ export default class Server<TConnection extends Connection> extends Base<stream.
    * @param {replyCallback} callback - optional reply handler
    * @public
    */
-  public send<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(id: string, method: string, params?: TParam, callback?: ReplyCallback<TReplyParam>): void
+  public send<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(id: string | number, method: string, params?: TParam, callback?: ReplyCallback<TReplyParam>): void
   {
     logger('Server send %s %s', id, method);
     const connection = this.getConnection(id);
