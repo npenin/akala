@@ -5,6 +5,7 @@ import './modelTest1.js';
 import { expressions } from '@akala/core';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { describe, it } from 'node:test'
 
 interface TestStore extends StoreDefinition
 {

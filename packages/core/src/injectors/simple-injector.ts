@@ -1,5 +1,6 @@
 import { isPromiseLike } from '../promiseHelpers.js';
-import { Event, EventEmitter } from '../event-emitter.js';
+import { EventEmitter } from '../events/event-emitter.js';
+import { Event } from '../events/shared.js';
 import "reflect-metadata";
 import { InjectMap, Injector, LocalInjector, Resolvable, injectorLog } from './shared.js';
 

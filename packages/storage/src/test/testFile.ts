@@ -7,10 +7,10 @@ mock('@akala/server', akala);
 import * as db from '../index.js'
 import { File } from '../providers/file.js';
 import { ModelTest1 } from './modelTest1.js';
-import * as assert from 'assert'
-import 'mocha';
+import assert from 'assert'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { describe, it } from 'node:test'
 
 interface TestStore extends db.StoreDefinition
 {

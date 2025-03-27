@@ -1,14 +1,15 @@
-import { Event, EventEmitter } from './event-emitter.js'
-import { eachAsync } from './helpers.js';
+import { EventEmitter } from './events/event-emitter.js'
+import { IEvent } from './events/shared.js';
+import { each as eachAsync } from './eachAsync.js';
 import sequencify, { Task } from './sequencify.js'
 
 interface EventMap
 {
-    start: Event<[string[]], void>
-    task_start: Event<[{ message: string, task: Task }], void>
-    task_stop: Event<[{ message: string }, Task], void>
-    error: Event<[{ error: Error, task: Task }], void>
-    stop: Event<[Error] | [], void>
+    start: IEvent<[string[]], void>
+    task_start: IEvent<[{ message: string, task: Task, taskName: string }], void>
+    task_stop: IEvent<[{ message: string, task: Task, taskName: string }, Task], void>
+    error: IEvent<[{ error: Error, task: Task }], void>
+    stop: IEvent<[Error] | [], void>
 }
 
 /**
@@ -49,7 +50,7 @@ export default class Orchestrator extends EventEmitter<EventMap>
         {
             await eachAsync(seq.sequence, async (task) =>
             {
-                this.emit('task_start', { message: `starting ${task}...`, task: this.tasks[task] });
+                this.emit('task_start', { message: `starting ${task}...`, task: this.tasks[task], taskName: task });
 
                 if (this.tasks[task].action)
                     try
@@ -61,7 +62,7 @@ export default class Orchestrator extends EventEmitter<EventMap>
                         this.emit('error', { error: e, task: this.tasks[task] });
                         throw e;
                     }
-                this.emit('task_stop', { message: `${task} finished.` }, this.tasks[task]);
+                this.emit('task_stop', { message: `${task} finished.`, task: this.tasks[task], taskName: task }, this.tasks[task]);
             })
             this.emit('stop');
         }

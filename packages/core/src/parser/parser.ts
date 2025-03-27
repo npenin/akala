@@ -54,7 +54,7 @@ export function getSetter<T = unknown>(expression: string, root: T): { expressio
 function parseBinaryOperator(op: string): BinaryOperator
 {
     if (op in BinaryOperator)
-        return BinaryOperator[op];
+        return op as BinaryOperator;
     return BinaryOperator.Unknown;
 }
 
@@ -107,7 +107,7 @@ function operatorLength(operator: BinaryOperator | TernaryOperator)
             return 3;
         case BinaryOperator.Unknown:
         case TernaryOperator.Unknown:
-            throw new Error('Unknown operator ');
+            throw new Error('Unknown operator ' + operator);
 
         default:
             let x: never = operator;
@@ -301,12 +301,12 @@ export class ParsedBoolean extends ConstantExpression<boolean> implements Parsed
  */
 export class ParsedCall extends CallExpression<any, any> implements ParsedAny
 {
-    constructor(argsLength: number, source: TypedExpression<any> & ParsedAny, method: any, args: (StrictExpressions & ParsedAny)[])
+    constructor(argsLength: number, source: TypedExpression<any> & ParsedAny, method: TypedExpression<any> & ParsedAny, args: (StrictExpressions & ParsedAny)[])
     {
         super(source, method, args as StrictExpressions[]);
         this.$$length = source.$$length + argsLength;
         if (method)
-            this.$$length
+            this.$$length += method.$$length;
     }
 
     public $$length: number;

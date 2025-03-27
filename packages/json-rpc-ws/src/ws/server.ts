@@ -6,10 +6,12 @@ import WsSocketAdapter from './ws-socket-adapter.js';
 export class Adapter implements ServerAdapter
 {
   public server?: ws.WebSocketServer;
+  closed: Promise<void>;
 
-  close(): void
+  close(): Promise<void>
   {
     this.server?.close();
+    return this.closed;
   }
 
   onConnection(handler: (socket: SocketAdapter<ws.WebSocket>) => void): void
@@ -28,6 +30,7 @@ export class Adapter implements ServerAdapter
   start(): void
   {
     this.server = new ws.WebSocketServer(this.options);
+    this.closed = new Promise<void>(resolve => this.server.once('close', resolve));
   }
 
   /**

@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import { basename, dirname, join, resolve } from 'path/posix';
-import glob from 'glob';
+import glob from 'fast-glob';
 import markdownLinkExtractor from 'markdown-link-extractor';
 
 // Function to create a blank file if it does not exist

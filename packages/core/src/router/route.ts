@@ -1,7 +1,6 @@
-import { UrlTemplate } from '../index.js';
 import { MiddlewareComposite } from '../middlewares/composite-sync.js';
 import { Middleware, MiddlewareResult, SpecialNextParam } from '../middlewares/shared.js';
-import { UriTemplate } from '../uri-template/index.js';
+import { match, parse, UriTemplate } from '../uri-template/index.js';
 
 export interface Routable
 {
@@ -22,7 +21,7 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]], TSpecialNextPar
         super(route.toString());
         // this.delimiter = options && options.delimiter || '/';
 
-        this.routePath = Array.isArray(route) ? route : UrlTemplate.parse(route);
+        this.routePath = Array.isArray(route) ? route : parse(route);
         // if ('keys' in routePath)
         //     this.params = routePath.keys;
 
@@ -39,7 +38,7 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]], TSpecialNextPar
     handle(...context: T): MiddlewareResult<TSpecialNextParam>
     {
         const req = context[0] as Routable;
-        const isMatch = UrlTemplate.match(req.path, this.routePath);
+        const isMatch = match(req.path, this.routePath);
 
         if (isMatch && (!this.isApplicable || this.isApplicable(req)))
         {

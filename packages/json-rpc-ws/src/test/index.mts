@@ -1,19 +1,16 @@
-const WS = require('ws');
-const JsonRpcWs = require('../');
+import WS from 'ws';
+import * as JsonRpcWs from '@akala/json-rpc-ws';
 // const Browserify = require('browserify');
 // const Webdriver = require('selenium-webdriver');
-const puppeteer = require('puppeteer');
-
-const { expect } = Code;
-
-Code.settings.truncateMessages = false;
+import puppeteer from 'puppeteer';
+import { describe, it, before, after } from 'node:test';
+import assert from 'assert'
 
 describe('json-rpc ws', () =>
 {
 
   const server = JsonRpcWs.ws.createServer({ host: 'localhost', port: 8081 });
   const client = JsonRpcWs.ws.createClient();
-  //const delayBuffer = [];
 
   before(() =>
   {
@@ -26,11 +23,10 @@ describe('json-rpc ws', () =>
     server.expose('error', function errorReply(params, reply)
     {
 
-      reply('error', null);
+      reply('error' as any, null);
     });
     server.expose('browserClient', function browserReply(params, reply)
     {
-
       reply(null, this.id);
     });
 
@@ -43,91 +39,73 @@ describe('json-rpc ws', () =>
     });
   });
 
-  after(() =>
+  after(async () =>
   {
-
-    return new Promise((resolve) =>
-    {
-
-      client.disconnect(function ()
-      {
-
-        server.stop();
-        resolve();
-      });
-    });
+    await client.disconnect();
+    await server.stop();
   });
 
   it('client has an id', () =>
   {
 
-    expect(client.id).to.exist();
+    assert.ok(client.id);
   });
 
   it('reflecting handler', () =>
-  {
-
-    return Promise.all([
-      new Promise((resolve) =>
+    Promise.all([
+      new Promise<void>((resolve) =>
       {
 
         client.send('reflect', ['test one'], function (error1, reply1)
         {
-
-          expect(error1).to.not.exist();
-          expect(reply1).to.have.length(1);
-          expect(reply1[0]).to.equal('test one');
+          assert.equal(error1, undefined);
+          assert.strictEqual((reply1 as [])?.length, 1);
+          assert.strict(reply1[0], 'test one');
           resolve();
         });
       }),
-      new Promise((resolve) =>
+      new Promise<void>((resolve) =>
       {
 
         client.send('reflect', ['test two'], function (error2, reply2)
         {
-
-          expect(error2).to.not.exist();
-          expect(reply2).to.have.length(1);
-          expect(reply2[0]).to.equal('test two');
+          assert.equal(error2, undefined);
+          assert.strictEqual((reply2 as [])?.length, 1);
+          assert.strict(reply2[0], 'test two');
           resolve();
         });
       }),
-      new Promise((resolve) =>
+      new Promise<void>((resolve) =>
       {
 
         client.send('reflect', null, function (error3, reply3)
         {
-
-          expect(error3).to.not.exist();
-          expect(reply3).to.equal('empty');
+          assert.equal(error3, undefined);
+          assert.strict(reply3, 'empty');
           resolve();
         });
       }),
-      new Promise((resolve) =>
+      new Promise<void>((resolve) =>
       {
-
         client.send('reflect', undefined, function (error4, reply4)
         {
-
-          expect(error4).to.not.exist();
-          expect(reply4).to.equal('empty');
+          assert.equal(error4, undefined);
+          assert.strict(reply4, 'empty');
           resolve();
         });
       })
-    ]);
-  });
+    ]) as unknown as Promise<void>);
 
   it('error reply', () =>
   {
 
-    return new Promise((resolve) =>
+    return new Promise<void>((resolve) =>
     {
 
       client.send('error', null, function (error, reply)
       {
-
-        expect(reply).to.not.exist();
-        expect(error).to.equal('error');
+        assert.equal(reply, undefined);
+        assert.strict(error, 'error');
         resolve();
       });
     });
@@ -142,17 +120,16 @@ describe('json-rpc ws', () =>
       server.expose('reflect', function (params, reply)
       {
 
-        reply();
+        reply(undefined, undefined);
       });
     };
-    expect(throws).to.throw(Error);
+    assert.throws(throws);
   });
 
   it('hasHandler', () =>
   {
-
-    expect(server.hasHandler('reflect')).to.equal(true);
-    expect(server.hasHandler('nonexistant')).to.equal(false);
+    assert.ok(server.hasHandler('reflect'));
+    assert.ok(!server.hasHandler('nonexistant'));
   });
 
 
@@ -162,31 +139,28 @@ describe('json-rpc ws', () =>
     let connectionId;
     server.expose('saveConnection', function saveConnectionReply(params, reply)
     {
-
-      expect(this.id).to.exist();
+      assert.ok(this.id);
       connectionId = this.id;
       reply(null, 'ok');
     });
 
     client.expose('info', function infoReply(params, reply)
     {
-
-      expect(params).to.not.exist();
+      assert.equal(params, undefined);
       reply(null, 'info ok');
     });
-    return new Promise((resolve) =>
+    return new Promise<void>((resolve) =>
     {
 
       client.send('saveConnection', null, function ()
       {
 
-        expect(connectionId).to.exist();
-        expect(server.getConnection(connectionId)).to.exist();
+        assert.ok(connectionId);
+        assert.ok(server.getConnection(connectionId));
         server.send(connectionId, 'info', null, function (err, result)
         {
-
-          expect(err).to.not.exist();
-          expect(result).to.equal('info ok');
+          assert.equal(err, undefined);
+          assert.equal(result, 'info ok');
           resolve();
         });
       });
@@ -195,28 +169,28 @@ describe('json-rpc ws', () =>
 
   it('invalid connection id', () =>
   {
-
     server.send(0, 'info', undefined); //No callback is ok
-    return new Promise((resolve) =>
+    return new Promise<void>((resolve) =>
     {
 
       server.send(0, 'info', undefined, function (err, result)
       {
 
-        expect(result).to.not.exist();
-        expect(err).to.include(['code', 'message']);
-        expect(err.code).to.equal(-32000);
+        assert.equal(result, undefined);
+        assert.ok('code' in err);
+        assert.ok('message' in err);
+        assert.equal(err.code, -32000);
         resolve();
       });
     });
   });
 
-  it('invalid payloads do not throw exceptions', () =>
+  it('invalid payloads do not throw exceptions', async () =>
   {
 
     //This is for code coverage in the message handler to make sure rogue messages won't take the server down.;
     const socket = new WS('ws://localhost:8081');
-    return new Promise((resolve) =>
+    await new Promise<void>((resolve) =>
     {
 
       socket.on('open', function ()
@@ -239,6 +213,7 @@ describe('json-rpc ws', () =>
         setTimeout(resolve, 100);
       });
     });
+    socket.close();
   });
 
   it('client.send', () =>
@@ -255,33 +230,33 @@ describe('json-rpc ws', () =>
     const throws = () =>
     {
 
-      client.send(1, null); //Invalid method
+      client.send(1 as unknown as string, null); //Invalid method
     };
-    expect(throws).to.throw(Error);
-    expect(doesNotThrow).to.not.throw();
+    assert.throws(throws);
+    assert.doesNotThrow(doesNotThrow);
   });
 
   it('client hangups', () =>
   {
-
     const clientA = JsonRpcWs.ws.createClient();
     const clientB = JsonRpcWs.ws.createClient();
-    return new Promise((resolve) =>
+    return new Promise<void>((resolve, reject) =>
     {
-
-      clientA.connect('ws://localhost:8081', function ()
+      clientA.connect('ws://localhost:8081', function (err)
       {
-
-        clientA.disconnect(function ()
-        {
-
-          clientB.connect('ws://localhost:8081', function ()
+        if (err)
+          reject(err);
+        else
+          clientA.disconnect().then(function ()
           {
-
-            clientB.disconnect();
-            resolve();
-          });
-        });
+            clientB.connect('ws://localhost:8081', function (err)
+            {
+              if (err)
+                reject(err);
+              else
+                clientB.disconnect().then(() => resolve(), reject);
+            });
+          }, reject);
       });
     });
   });
@@ -290,10 +265,11 @@ describe('json-rpc ws', () =>
   {
 
     const serverA = JsonRpcWs.ws.createServer();
-    serverA.start(new JsonRpcWs.ws.ServerAdapter({ port: 8082 }));
-    return new Promise((resolve) =>
+    const serverAserver = new JsonRpcWs.ws.ServerAdapter({ port: 8082 });
+    serverA.start(serverAserver);
+    return new Promise<void>((resolve) =>
     {
-      serverA.server.once('listening', resolve);
+      serverAserver.once('listening', resolve);
     }).then(() =>
     {
       serverA.stop()
@@ -305,23 +281,24 @@ describe('json-rpc ws', () =>
 
     let payload;
     payload = JsonRpcWs.Errors('parseError');
-    expect(payload.id).to.not.exist();
-    expect(payload.error).to.include(['code', 'message']);
-    expect(payload.error.data).to.not.exist();
+    assert.equal(payload.id, undefined);
+    assert.ok('code' in payload.error);
+    assert.ok('message' in payload.error);
+    assert.equal(payload.error.data, undefined);
     payload = JsonRpcWs.Errors('parseError', 'a');
-    expect(payload.id).to.equal('a');
-    expect(payload.error).to.include(['code', 'message']);
-    expect(payload.error.data).to.not.exist();
+    assert.equal(payload.id, 'a');
+    assert.ok('code' in payload.error);
+    assert.ok('message' in payload.error);
+    assert.equal(payload.error.data, undefined);
     payload = JsonRpcWs.Errors('parseError', 'b', { extra: 'data' });
-    expect(payload.id).to.equal('b');
-    expect(payload.error).to.include(['code', 'message']);
-    expect(payload.error.data).to.equal({ extra: 'data' });
+    assert.equal(payload.id, 'b');
+    assert.ok('code' in payload.error);
+    assert.ok('message' in payload.error);
+    assert.deepEqual(payload.error.data, { extra: 'data' });
   });
 
   describe('browser', () =>
   {
-
-    let script;
     before(() =>
     {
       // process.env.PATH = `${process.env.PATH}:./node_modules/.bin`;
@@ -332,17 +309,15 @@ describe('json-rpc ws', () =>
 
       const driver = await puppeteer.launch();
       const page = await driver.newPage();
-
-      let x = 0;
-      await page.addScriptTag({ path: 'file://' + require.resolve('../browser_test.js') });
-      var response = await page.evaluate(function ()
+      console.log(new URL('../../../browser_test._js', import.meta.url).toString());
+      await page.addScriptTag({ path: new URL('../../../browser_test._js', import.meta.url).toString() });
+      const response = await page.evaluate(function ()
       {
-
-        var callback = arguments[arguments.length - 1];
-        browserClient.connect('ws://localhost:8081', function connected()
+        const callback = arguments[arguments.length - 1];
+        window['browserClient'].connect('ws://localhost:8081', function connected()
         {
 
-          browserClient.send('browserClient', ['browser', 'client'], function sendReply(err, reply)
+          window['browserClient'].send('browserClient', ['browser', 'client'], function sendReply(err, reply)
           {
 
             callback([err, reply]);
@@ -352,15 +327,18 @@ describe('json-rpc ws', () =>
 
       const err = response[0];
       const browserId = response[1];
-      expect(browserId).to.not.not.exist();
-      expect(err).to.equal(null);
-      server.send(browserId, 'info', null, function (err, result)
+      assert.equal(browserId, undefined);
+      assert.equal(err, null);
+      await new Promise<void>(resolve =>
       {
+        server.send(browserId, 'info', null, function (err, result)
+        {
 
-        expect(err).to.not.exist();
-        expect(result).to.equal('browser');
-        driver.quit();
-        resolve();
+          assert.equal(err, undefined);
+          assert.equal(result, 'browser');
+          driver.close();
+          resolve();
+        });
       });
     });
 

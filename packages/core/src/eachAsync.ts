@@ -155,7 +155,7 @@ export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (el
 export function map(it: any, body: (element: any, i: any) => any, asArray?: boolean, waitForPrevious?: boolean)
 {
     if (isArrayLike(it))
-        return mapArray(it, body, waitForPrevious);
+        return mapArray(it, body, asArray);
     return mapObject(it, body, asArray, waitForPrevious);
 }
 

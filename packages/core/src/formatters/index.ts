@@ -4,7 +4,7 @@ import booleanize from './booleanize.js';
 export * from './date.js';
 export * from './common.js'
 export { identity, negate, booleanize };
-import { Module, module } from '../helpers.js';
+import { Module, module } from '../module.js';
 import json from './json.js';
 import date from './date.js';
 import { FormatterFactory, ReversibleFormatter, ReversibleFormatterFactory } from './common.js';

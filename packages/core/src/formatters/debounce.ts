@@ -1,4 +1,4 @@
-import { Event } from "../event-emitter.js";
+import { Event } from "../events/shared.js";
 import { debounce } from "../observables/shared.js";
 import { ReversibleFormatter } from "./common.js";
 

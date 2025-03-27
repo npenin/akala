@@ -12,7 +12,7 @@
     },
     "funding": "https://github.com/npenin/akala?sponsor=1",
     "scripts": {
-        "test": "mocha dist/esm/test/*.js",
+        "test": "node --test --enable-source-maps dist/esm/test/*.js",
         "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json",
         "cli": "node dist/esm/cli.js",
@@ -37,41 +37,23 @@
     "bin": {
         "ac": "dist/esm/cli.mjs"
     },
-    "mocha": {
-        "require": [
-            "source-map-support/register.js"
-        ],
-        "spec": [
-            "dist/test/*.js"
-        ],
-        "timeout": 0
-    },
-    "nyc": {
-        "reporter": [
-            "text-summary"
-        ],
-        "instrument": true
-    },
     "source": "src/index.ts",
     "dependencies": {
         "@akala/cli": "workspace:^",
         "@akala/core": "workspace:^",
         "@akala/json-rpc-ws": "workspace:^",
         "ajv": "^8.17.1",
-        "debug": "^4.3.7",
+        "debug": "^4.4.0",
         "reflect-metadata": "^0.2.2",
-        "ws": "^8.18.0"
+        "ws": "^8.18.1"
     },
     "devDependencies": {
         "@types/debug": "^4.1.12",
-        "@types/mocha": "^10.0.10",
-        "@types/node": "^20.17.7",
+        "@types/node": "^22.13.10",
         "@types/split2": "^4.2.3",
-        "@types/ws": "^8.5.13",
-        "mocha": "^10.8.2",
-        "nyc": "^17.1.0",
+        "@types/ws": "^8.18.0",
         "source-map-support": "^0.5.21",
-        "typescript": "^5.7.2",
+        "typescript": "^5.8.2",
         "typescript-json-schema": "^0.65.1"
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",

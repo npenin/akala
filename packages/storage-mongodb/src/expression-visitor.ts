@@ -223,6 +223,10 @@ export default class MongoDbTranslator extends ExpressionVisitor
     {
         if (typeof this.evaluating !== 'undefined')
             this.result = this.evaluating;
+
+        if (this.result instanceof ModelDefinition)
+            this.model = this.result;
+
         return arg0;
     }
     visitUnary(arg0: UnaryExpression)

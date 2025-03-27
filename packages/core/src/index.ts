@@ -20,26 +20,28 @@ export * from './service.js';
 import sequencify, { Task, Tasks } from './sequencify.js';
 export { sequencify, Task, Tasks }
 // export { Bound, PossiblyBound } from './binder.js';
-export * from './event-emitter.js';
+export * from './events/index.js';
 export * from './parser/parser.js';
 export * from './type-helper.js'
 export * from './helpers.js'
 export * from './router/index.js'
 export * from './queue.js'
+import * as base64 from './base64.js'
+export { base64 };
 
 export * from './observables/shared.js'
 export * from './observables/array.js'
 export * from './observables/object.js'
 
-import { Module, ExtendableEvent } from './module.js';
-export { Module, ExtendableEvent };
+export * from './module.js';
 import * as expressions from './parser/expressions/index.js';
 export { expressions };
 import * as parser from './parser/evaluator-as-function.js';
 export { parser };
 export * from './promiseHelpers.js';
-// export { each as eachAsync, NextFunction } from './eachAsync';
-// export { each, grep, map, Proxy } from './each';
+export { each as eachAsync, NextFunction, map as mapAsync, grep as grepAsync, AggregateErrors } from './eachAsync.js';
+export { each, grep, map, Proxy } from './each.js';
+export * from './distinct.js'
 export * from './interpolate.js';
 import * as introspect from './reflect.js';
 export { introspect };

@@ -12,12 +12,15 @@ import * as net from 'net';
 import { unlink } from 'fs';
 import { promisify } from 'util';
 import { SelfDefinedCommand } from '../model/command.js';
+import { describe, it, before, after } from 'node:test'
+import $metadataCmd from '../commands/$metadata.js';
+import { extractCommandMetadata } from '../metadata/command.js';
 
 describe('test jsonrpcws processing', function ()
 {
     let server: ws.WebSocketServer;
 
-    this.afterAll(function (done)
+    after(function (_, done)
     {
         if (client.isConnected())
             client.disconnect().then(function ()
@@ -28,7 +31,7 @@ describe('test jsonrpcws processing', function ()
                     done();
             }, done);
     })
-    this.beforeAll(function (done)
+    before(function (_, done)
     {
         server = new ws.WebSocketServer({ port: 8888 }, function ()
         {
@@ -99,15 +102,17 @@ describe('test jsonrpcws processing', function ()
         {
             const c1 = new Container('c1', {});
             const c2 = new Container('c2', {});
-            c1.register(configure({ jsonrpc: { inject: ['connectionAsContainer'] } })(new SelfDefinedCommand(function (container: Container<void>)
+            c1.register(configure({ jsonrpc: { inject: ['connectionAsContainer'] } })(new SelfDefinedCommand(async function (container: Container<void>)
             {
-                return container.dispatch('cmd');
-            }, 'cmd')));
+                const meta = await container.dispatch(extractCommandMetadata($metadataCmd));
+                meta.commands.forEach(cmd => container.register(cmd));
+                return await container.dispatch('b');
+            }, 'a')));
 
             c2.register(new SelfDefinedCommand(function ()
             {
                 return 'x';
-            }, 'cmd'));
+            }, 'b'));
 
             const server = new net.Server().listen({ path: socketPath }).on('connection', (socket) =>
             {
@@ -123,7 +128,7 @@ describe('test jsonrpcws processing', function ()
                 });
             })
 
-            assert.strictEqual(await c1Client.dispatch('cmd'), 'x');
+            assert.strictEqual(await c1Client.dispatch('a'), 'x');
 
             await promisify(socket.end).bind(socket)()
 

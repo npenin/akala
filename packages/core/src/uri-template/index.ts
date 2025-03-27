@@ -1,4 +1,4 @@
-import { ErrorWithStatus, HttpStatusCode } from "../index.js";
+import { ErrorWithStatus, HttpStatusCode } from "../errorWithStatus.js";
 
 /** 
  * Level 2 operators used in URI templates (RFC 6570).
@@ -826,7 +826,7 @@ export function tryParse(s: string): { template: UriTemplate, warnings: Error[] 
                         expansion = { ref: '' };
                         lastOffset = i;
                     }
-                    if (/[^a-z0-9_\-\}\*\:%]/i.test(char))
+                    if (/[^a-z0-9_\}\*\:%]/i.test(char))
                         warnings.push(new Error(`an invalid character (${char}) war found`));
                 }
 

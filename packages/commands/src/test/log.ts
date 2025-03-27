@@ -4,6 +4,7 @@ import { LogEventProcessor, Pipe } from '../processors/index.js';
 import { Container } from '../model/container.js';
 import { Command } from '../metadata/index.js';
 import { registerCommands } from '../generator.js';
+import { describe, it } from 'node:test'
 
 describe('test log processing', function ()
 {

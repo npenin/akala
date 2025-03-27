@@ -1,11 +1,11 @@
 import { FetchHttp, Http as coreHttp } from '@akala/core';
-import xml from 'fast-xml-parser'
+import { XMLParser } from 'fast-xml-parser'
 
 FetchHttp.prototype['getXML'] = function (this: FetchHttp, url: string)
 {
     return this.call({ url: url, method: 'get' }).then(r => r.text().then(text =>
     {
-        return new xml.XMLParser().parse(text);
+        return new XMLParser().parse(text);
     }))
 }
 

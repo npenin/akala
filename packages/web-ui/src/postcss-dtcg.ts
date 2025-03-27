@@ -60,7 +60,7 @@ const creator: PluginCreator<PluginOptions> = (options?: Partial<PluginOptions>)
         prepare(): Plugin
         {
             let tokens: Record<string, DTCGToken> = {};
-            let importedFiles = new Set<string>();
+            // let importedFiles = new Set<string>();
 
             const importer = postcssImport({
                 async load(fileName, importOptions)
@@ -84,7 +84,7 @@ const creator: PluginCreator<PluginOptions> = (options?: Partial<PluginOptions>)
                 OnceExit(): void
                 {
                     tokens = null
-                    importedFiles.clear();
+                    // importedFiles.clear();
                 },
                 async Once(root, postcssHelpers): Promise<void>
                 {

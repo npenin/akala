@@ -9,7 +9,7 @@ export default function (config, mainProgram)
 
     program.state<AkalaConfig>().command<{ name: string }>('install [name]').option<string, 'configFile'>('configFile', { normalize: true, needsValue: true }).action(async context =>
     {
-        const xpm = hasYarn() ? yarn : npm;
+        const xpm = await hasYarn() ? yarn : npm;
         const options = context.options;
         switch (context.options.name)
         {

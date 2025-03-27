@@ -2,6 +2,7 @@ import assert from "assert";
 import { protobuf } from "../parsers/index.js"
 import { ProtobufMessage } from "../parsers/protobuf/index.js";
 import { Cursor, parserWrite } from "../parsers/_common.js"
+import { describe, it } from 'node:test'
 
 describe('protobuf', function ()
 {
@@ -35,7 +36,6 @@ describe('protobuf', function ()
     it('should parse object with repeatable varint', function ()
     {
         const expected: Message4 = { d: [3, 270, 86942] };
-        debugger;
         var buffer = Buffer.concat(parserWrite(message, expected, expected));
         assert.deepStrictEqual(buffer, Buffer.from([0x22,
             0x06,

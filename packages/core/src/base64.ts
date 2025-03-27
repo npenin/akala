@@ -90,7 +90,10 @@ function uint6ToB64(nUint6)
  */
 export function base64UrlEncArr(aBytes: ArrayBuffer | Uint8Array): string
 {
-    return base64EncArr(aBytes).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    let s = base64EncArr(aBytes).replace(/\+/g, '-').replace(/\//g, '_');
+    while (s.endsWith('='))
+        s = s.slice(s.length - 2);
+    return s;
 }
 /** 
  * Decodes a Base64URL string into an ArrayBuffer/Uint8Array.

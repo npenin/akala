@@ -1,5 +1,6 @@
 import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
+import { describe, it } from 'node:test'
 
 describe('test local processing', function ()
 {

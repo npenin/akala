@@ -1,12 +1,10 @@
-import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
+import { Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
 import { ProxyConfiguration } from '@akala/config'
-import { connectByPreference, Container, helper } from '@akala/commands'
-import { ContainerProxy as PubSubProxy } from '@akala/pubsub'
+import { connectByPreference, Container } from '@akala/commands'
 import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
-import { Serializable, eachAsync, mapAsync, module } from '@akala/core';
+import { EventBus, Serializable, eachAsync, eventBuses, mapAsync, module } from '@akala/core';
 import { SerializableDefinition } from '@akala/storage'
 import { CliContext, OptionType } from '@akala/cli'
-import { connect as pubsubConnect, meta as MetaPubSub, Container as PubSubContainer } from '@akala/pubsub'
 
 export interface PubSubConfiguration
 {
@@ -24,7 +22,7 @@ export interface StoreConfiguration
 export interface Sidecar<T extends StoreDefinition = unknown>
 {
     sidecars: pmSidecar;
-    pubsub?: PubSubProxy
+    pubsub?: EventBus
     pm: Container<void> & pm;
     store?: StoreDefinition<T> & T;
 }
@@ -62,35 +60,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     module('@akala/pm').register('container', sidecar.pm, true);
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
-    var pubSubContainer: PubSubContainer & Container<void>;
-    switch (typeof pubsubConfig)
-    {
-        case 'string':
-            switch (pubsubConfig)
-            {
-                case 'default':
-                    pubSubContainer = pubsubConnect();
-                    break;
-                case 'in-memory':
-                    pubSubContainer = pubsubConnect();
-                    break;
-                default:
-                    var tmp = await connect(pubsubConfig);
-                    pubSubContainer = (await connectByPreference(await tmp.connect, { metadata: MetaPubSub })).container as PubSubContainer & Container<void>;
-                    break;
-            }
-            sidecar.pubsub = helper<PubSubProxy>(pubSubContainer, MetaPubSub)
-            break;
-        case 'object':
-            pubSubContainer = pubsubConnect();
-            await pubSubContainer.attach(pubsubConfig.transport, pubsubConfig.transportOptions);
-            sidecar.pubsub = helper<PubSubProxy>(pubSubContainer, MetaPubSub);
-            break;
-        case 'undefined':
-            break;
-        default:
-            throw new Error('Not support configuration type')
-    }
+    sidecar.pubsub = await eventBuses.process(new URL(pubsubConfig.transport), pubsubConfig.transportOptions);
     switch (typeof stateStoreConfig)
     {
         case 'string':
