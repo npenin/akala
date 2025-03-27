@@ -375,12 +375,15 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
                         // if (!parameter.optional)
                         if (!parameter.rest)
                         {
-                            let value = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
-                            // context.options[paramName] = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
-                            if (middleware._option?.config && middleware._option.config[paramName]?.normalize && value)
-                                value = normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, value as string) as (TOptions & TOptions2)[typeof parameter.name];
                             if (!context.options[paramName])
-                                context.options[paramName] = value;
+                            {
+                                let value = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
+                                // context.options[paramName] = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
+                                if (middleware._option?.config && middleware._option.config[paramName]?.normalize && value)
+                                    value = normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, value as string) as (TOptions & TOptions2)[typeof parameter.name];
+                                if (!context.options[paramName])
+                                    context.options[paramName] = value;
+                            }
                         }
                         // if (parameter.optional)
                         //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
