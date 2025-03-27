@@ -24,3 +24,5 @@ export enum BinaryOperator
     Format = '#',
     Unknown = 'x'
 }
+
+Object.entries(BinaryOperator).forEach(e => BinaryOperator[e[1]] = e[0]);
