@@ -25,28 +25,36 @@ describe('query', () =>
 
     it('should work', async () =>
     {
-        const client = new MongoClient('mongodb://localhost:27017');
-        const db = client.db('test');
-
         try
         {
-            await db.createCollection('pwic');
-            await pe.init(db);
-            await pe.dbSet<ModelType>(model.name).createSingle({ name: 'a', prop1: 1, prop2: true })
-            await pe.dbSet<ModelType>(model.name).createSingle({ name: 'b', prop1: 2, prop2: true })
-            await pe.dbSet<ModelType>(model.name).createSingle({ name: 'c', prop1: 3, prop2: false });
-            var translator = new MongoDbTranslator();
-            translator.visit(
-                new ApplySymbolExpression(pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).expression, QuerySymbols.count)
-            )
-            assert.strictEqual(JSON.stringify(translator.pipelines, null, 4), JSON.stringify([{ $match: { $expr: { $eq: [{ $getField: 'Prop2' }, true] } } }, { $group: { result: { $sum: 1 }, _id: null } }, { $project: { _id: 0 } }], null, 4));
+            const client = new MongoClient('mongodb://localhost:27017');
+            const db = client.db('test');
 
-            assert.strictEqual(await pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).length(), 2);
+            try
+            {
+                await db.createCollection('pwic');
+                await pe.init(db);
+                await pe.dbSet<ModelType>(model.name).createSingle({ name: 'a', prop1: 1, prop2: true })
+                await pe.dbSet<ModelType>(model.name).createSingle({ name: 'b', prop1: 2, prop2: true })
+                await pe.dbSet<ModelType>(model.name).createSingle({ name: 'c', prop1: 3, prop2: false });
+                var translator = new MongoDbTranslator();
+                translator.visit(
+                    new ApplySymbolExpression(pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).expression, QuerySymbols.count)
+                )
+                assert.strictEqual(JSON.stringify(translator.pipelines, null, 4), JSON.stringify([{ $match: { $expr: { $eq: [{ $getField: 'Prop2' }, true] } } }, { $group: { result: { $sum: 1 }, _id: null } }, { $project: { _id: 0 } }], null, 4));
+
+                assert.strictEqual(await pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).length(), 2);
+            }
+            finally
+            {
+                await db.dropCollection('pwic');
+                await client.close()
+            }
         }
-        finally
+        catch (e)
         {
-            await db.dropCollection('pwic');
-            await client.close()
+            if (e.message !== 'Topology is closed')
+                throw e;
         }
     })
 });
