@@ -36,7 +36,6 @@ describe('protobuf', function ()
     it('should parse object with repeatable varint', function ()
     {
         const expected: Message4 = { d: [3, 270, 86942] };
-        debugger;
         var buffer = Buffer.concat(parserWrite(message, expected, expected));
         assert.deepStrictEqual(buffer, Buffer.from([0x22,
             0x06,
