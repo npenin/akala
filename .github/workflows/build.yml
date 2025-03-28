@@ -6,10 +6,9 @@ name: build
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
-    branches:
-      - master
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
@@ -17,18 +16,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
+          cache: "yarn"
       - name: Install yarn
-        run: |
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-          sudo apt-get update
-          sudo apt-get install yarn
+        run: corepack enable
       - name: Install Packages
-        run: yarn install
+        run: yarn
+        env:
+          NO_AKALAPOSTINSTALL: 1
       - name: Compile ESM
-        run: yarn tsc -b packages/tsconfig.esm.json
-      - name: Compile CJS
-        run: yarn tsc -b packages/tsconfig.cjs.json
+        run: yarn tsc -b packages/tsconfig.json
+      - name: Tests
+        run: yarn test
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-without-markdown
+          path: |
+            dist
+            !dist/**/*.md
+            tsconfig.tsbuildinfo
+  sonarqube:
+    name: SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+          submodules: true
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

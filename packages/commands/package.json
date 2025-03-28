@@ -12,7 +12,7 @@
     },
     "funding": "https://github.com/npenin/akala?sponsor=1",
     "scripts": {
-        "test": "node --test --enable-source-maps dist/esm/test/*.js",
+        "test": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/commands.v8 --test-reporter-destination=../../coverage/commands.info --enable-source-maps dist/esm/test/*.js",
         "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json",
         "cli": "node dist/esm/cli.js",
