@@ -5,7 +5,7 @@
     "types": "./dist/esm/index.d.ts",
     "type": "module",
     "scripts": {
-        "test": "node --test --enable-source-maps dist/esm/test.js"
+        "test": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/mongodb.v8 --test-reporter-destination=../../coverage/mongodb.info --enable-source-maps dist/esm/test.js"
     },
     "source": "src/index.ts",
     "dependencies": {
