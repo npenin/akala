@@ -55,7 +55,7 @@ jobs:
           - --access
           - public
           - --tag
-          - "$(branch=='main' ? 'latest': branch)"
+          - "$(options.branch=='main' ? 'latest': options.branch)"
         retries: 3
         with:
           shell: true
