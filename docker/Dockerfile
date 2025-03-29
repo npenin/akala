@@ -7,8 +7,8 @@ COPY package.json package.json
 RUN mkdir /root/.yarn && ln -s /usr/src/akala/.yarn /root/.yarn
 VOLUME ["/usr/src/akala/build"]
 WORKDIR /usr/src/akala
-RUN ["apk", "--update", "add", "coreutils"]
 RUN ["adduser", "-S", "akala"]
+RUN ["chown", "-R", "akala", "."]
 USER akala
 RUN ["yarn", "set", "version", "berry"]
 RUN ["yarn", "config", "set", "nodeLinker", "node-modules"]
