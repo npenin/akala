@@ -3,8 +3,8 @@
 
 ### Bug Fixes
 
-* escape start string in parseString method to prevent regex errors 07d76a8
-* typescript:S4524 365d20a
+* https://sonarcloud.io/project/issues?open=AZEYUJYfYoc5uOIAntfT&id=npenin_akala a94a75f
+* https://sonarcloud.io/project/issues?open=AZEYUJYfYoc5uOIAntfX&id=npenin_akala b8b4fb4
 
 
 
