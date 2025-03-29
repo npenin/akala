@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* typescript:S4524 fd42ef6
+* typescript:S4524 d09b7d3
 
 
 
