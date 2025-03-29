@@ -67,6 +67,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build
+      - name: Install Packages
+        run: yarn
       - name: publish updates
         run: node packages/automate/dist/esm/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly --branch=${{github.ref_name}}
         env:
