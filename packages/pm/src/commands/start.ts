@@ -121,14 +121,14 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         switch (def?.type)
         {
-            default:
-                throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
             case 'worker':
                 cp = Worker.build(args, options);
                 break;
             case 'nodejs':
                 cp = ChildProcess.build(args, options);
                 break;
+            default:
+                throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
         }
 
         if (!container || !container.running)
