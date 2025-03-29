@@ -339,9 +339,9 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
             if (cli[2])
                 return this.command(cli[1].substring(0, cli[1].length - cli[2].length - 1)).command<TOptions2>(cli[2] + cli[3], description);
 
-            var args = cli[3];
-            var parameters: ({ name: keyof TOptions2 | keyof TOptions, rest?: boolean } & OptionOptions<TOptions[keyof TOptions] | TOptions2[keyof TOptions2]>)[] = [];
-            var parameter: RegExpExecArray;
+            let args = cli[3];
+            let parameters: ({ name: keyof TOptions2 | keyof TOptions, rest?: boolean } & OptionOptions<TOptions[keyof TOptions] | TOptions2[keyof TOptions2]>)[] = [];
+            let parameter: RegExpExecArray;
             const parameterParsing = / <([-\w]+)(?:\|[-\w]+)?>| \[([-\w]+)(?:\|[-\w]+)?\]| \[(?:\.{3})?([-\w]+)(?:\|[-\w]+)?\]/g;
             let position = 0;
             // eslint-disable-next-line no-cond-assign
@@ -363,37 +363,28 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
 
             middleware = new NamespaceMiddleware(cli[1], { usage: name, description }, convertToMiddleware(function (context)
             {
-                // if (!context.options.help)
-                {
-                    if (!context.options.help && context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
-                        throw new UsageError(name);
+                if (!context.options.help && context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
+                    throw new UsageError(name);
 
-                    for (let index = 0; index < parameters.length; index++)
+                for (const parameter of parameters)
+                {
+                    const paramName = parameter.name;
+                    if (!parameter.rest)
                     {
-                        const parameter = parameters[index];
-                        const paramName = parameter.name;
-                        // if (!parameter.optional)
-                        if (!parameter.rest)
+                        if (!context.options[paramName])
                         {
+                            let value = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
+                            if (middleware._option?.config && middleware._option.config[paramName]?.normalize && value)
+                                value = normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, value as string) as (TOptions & TOptions2)[typeof parameter.name];
                             if (!context.options[paramName])
-                            {
-                                let value = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
-                                // context.options[paramName] = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
-                                if (middleware._option?.config && middleware._option.config[paramName]?.normalize && value)
-                                    value = normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, value as string) as (TOptions & TOptions2)[typeof parameter.name];
-                                if (!context.options[paramName])
-                                    context.options[paramName] = value;
-                            }
+                                context.options[paramName] = value;
                         }
-                        // if (parameter.optional)
-                        //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
-                        else
-                        {
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            context.options[paramName] = context.args.splice(0, context.args.length) as (TOptions & TOptions2)[typeof paramName];;
-                            if (middleware._option?.config && middleware._option.config[paramName]?.normalize && context.options[paramName])
-                                context.options[paramName] = (context.options[paramName] as string[]).map(param => normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, param)) as (TOptions & TOptions2)[typeof paramName];
-                        }
+                    }
+                    else
+                    {
+                        context.options[paramName] = context.args.splice(0, context.args.length) as (TOptions & TOptions2)[typeof paramName];
+                        if (middleware._option?.config && middleware._option.config[paramName]?.normalize && context.options[paramName])
+                            context.options[paramName] = (context.options[paramName] as string[]).map(param => normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, param)) as (TOptions & TOptions2)[typeof paramName];
                     }
                 }
 
@@ -402,7 +393,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
         }
         else
             middleware = new NamespaceMiddleware(null);
-        super.useMiddleware(cli && cli[1] || name, middleware);
+        super.useMiddleware(cli?.[1] || name, middleware);
         return middleware;
     }
 
@@ -426,7 +417,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
     {
         this.use(convertToMiddleware((...args) =>
         {
-            var result = handler(...args);
+            const result = handler(...args);
             if (result && isPromiseLike(result))
                 return result;
             return Promise.resolve(result);
@@ -491,9 +482,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
             {
                 if (this._delegate instanceof NamespaceMiddleware && context.args[0] && this._delegate.index[context.args[0]])
                     return this._delegate.handle(context);
-                var usage = await this.usage(context);
-                // if (!usage && this._delegate)
-                //     return this._delegate.handle(context);
+                const usage = await this.usage(context);
                 return this.handleError(new ErrorMessage(formatUsageObject(usage), 200), context);
             }
             return super.handle(context).then(async err =>
