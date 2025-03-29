@@ -139,15 +139,15 @@ const arg = (argument: { ref: string } | boolean | string | SmithyRuleCondition<
     }
 }
 
-function deepObjectInterpolate(obj: unknown)
+function deepObjectInterpolate(obj: unknown, interpolator: Interpolate)
 {
     switch (typeof obj)
     {
         case 'object':
             if (Array.isArray(obj))
-                return `[${obj.map(e => deepObjectInterpolate(e))}]`;
-            return `{${Object.entries(obj).map(e => JSON.stringify(e[0]) + ':' + deepObjectInterpolate(e[1]))} } `;
-        case 'string':
+                return `[${obj.map(e => deepObjectInterpolate(e, interpolator))}]`;
+            return `{${Object.entries(obj).map(e => JSON.stringify(e[0]) + ':' + deepObjectInterpolate(e[1], interpolator))} } `;
+        case 'string': {
             let interpolateString: RegExpExecArray;
             let result = '';
             let lastOffset = 0;
@@ -171,6 +171,7 @@ function deepObjectInterpolate(obj: unknown)
                 return result;
             }
             return JSON.stringify(obj);
+        }
         case 'number':
         case 'boolean':
             return obj.toString();
@@ -203,7 +204,7 @@ const conditionRules = {
     'aws.partition': <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `import('@akala/aws-sdk').then(sdk => sdk.getPartition(${arg(condition.argv[0])}))`,
     isValidHostLabel: <TParameters extends string, TOutput extends string>(condition: SmithyRuleCondition<TParameters, TOutput>) => `/^ [A - Z0 - 9 -\.] + $ / i.test(${arg(condition.argv[0])})`,
 }
-
+const interpolator = new Interpolate();
 export function staticEndpointBuilder(ruleset: SmithyRuleSet<string, string>['rules'], parameters: Record<string, string | boolean>): string
 {
     return ruleset.map(rule =>
@@ -220,9 +221,9 @@ throw new Error(${JSON.stringify(rule.error)}); `;
 } `;
             case 'endpoint':
                 if (rule.conditions?.length == 0)
-                    return `return ${deepObjectInterpolate(rule.endpoint)}; `;
+                    return `return ${deepObjectInterpolate(rule.endpoint, interpolator)}; `;
                 return `if (${rule.conditions.map(arg).join(' && ') || true})
-return ${deepObjectInterpolate(rule.endpoint)}; `;
+return ${deepObjectInterpolate(rule.endpoint, interpolator)}; `;
         }
     }).join('  ');
 }
