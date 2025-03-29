@@ -50,7 +50,7 @@ export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends 
      */
     public use(...middlewares: ((...args: T) => unknown)[]): this
     {
-        return this.useMiddleware(...middlewares.map(m => convertToMiddleware<T, TSpecialNextParam>(m)) as Middleware<T, TSpecialNextParam>[]);
+        return this.useMiddleware(...middlewares.map(m => convertToMiddleware<T, TSpecialNextParam>(m)));
     }
 
     /**
