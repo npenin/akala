@@ -102,6 +102,8 @@ export function marshall<T>(value: T, options?: { removeUndefinedValues: boolean
                             return { L: value.map(v => marshall(v, options)) } as unknown as Marshall<T>
                     }
                 }
+                else
+                    return { L: value.map(v => marshall(v, options)) } as unknown as Marshall<T>
             }
             else
             {
