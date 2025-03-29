@@ -139,6 +139,8 @@ export function renderOuter(tag: Tag<string> | CompositeTag<string> | TextTag<st
                     result = tag.renderWithChildren(result, prefix) || result;
                 return result;
             }
+            else
+                throw new Error('Not supported');
         case 'html':
             let head = ''
             const html = tag as Document;
@@ -252,6 +254,8 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
                     Object.entries(tag.event).forEach(att => typeof att[1] == 'string' ? result.addEventListener(att[0], new Function('$event', att[1]) as EventListenerOrEventListenerObject) : result.addEventListener(att[0], att[1]));
                 return results;
             }
+            else
+                throw new Error('Not supported');
         case 'html':
             const html = tag as Document;
             if (html.head)
