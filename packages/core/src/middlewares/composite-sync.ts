@@ -179,7 +179,6 @@ export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends 
                     failed = err instanceof Error;
 
                 }
-                return;
             });
             return error;
         }
