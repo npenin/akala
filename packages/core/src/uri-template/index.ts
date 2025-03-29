@@ -359,9 +359,9 @@ export function joinOperator(operator: Operators | undefined, isMulti: boolean):
         case "&":
         case ";":
             return undefined;
-        default:
         case ",":
         case undefined:
+        default:
             return ','
     }
 }
@@ -381,9 +381,9 @@ export function prefixOperator(operator: Operators | undefined, isMulti: boolean
         case "#":
         case "?":
             return operator;
-        default:
         case ",":
         case undefined:
+        default:
             return undefined;
     }
 }
