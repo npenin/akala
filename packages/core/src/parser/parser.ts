@@ -508,7 +508,7 @@ export class Parser
      */
     public parseFormatter(expression: string, lhs: ExpressionsWithLength, reset: () => void): ExpressionsWithLength
     {
-        const item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
+        const item = /^ *# *([\w\.\$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
         // const formatter: FormatterFactory<unknown, ParsedOneOf> = module('$formatters').resolve('#' + item[1]);
         // if (!formatter)
