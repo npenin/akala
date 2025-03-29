@@ -285,7 +285,7 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
             {
                 document.body.replaceChildren(...renderOuterWithDomAPI(t, document));
             })
-
+            break;
         default:
             const result: Node[] = [];
             if (tag.preRender)
