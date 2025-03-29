@@ -8,6 +8,7 @@ import { TernaryExpression } from './expressions/ternary-expression.js';
 import type { ExpressionVisitor } from './expressions/visitors/expression-visitor.js';
 import { Formatter, FormatterFactory } from '../formatters/common.js';
 import { formatters } from '../formatters/index.js';
+import { escapeRegExp } from '../reflect.js';
 
 
 const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;
@@ -673,8 +674,9 @@ export class Parser
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @returns {ExpressionsWithLength} The parsed string expression.
      */
-    public parseString(expression: string, start: string, parseFormatter: boolean)
+    public parseString(expression: string, start: '"' | "'", parseFormatter: boolean)
     {
+        start = escapeRegExp(start) as '"' | "'";
         const evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)*)" + start).exec(expression);
         // console.log(arguments);
         const result = evaluatedRegex[1];
