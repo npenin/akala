@@ -1,9 +1,8 @@
 import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
 import State, { RunningContainer, SidecarMetadata } from '../state.js';
 import pmContainer from '../container.js';
-import { eachAsync, Event } from "@akala/core";
+import { eachAsync, Event, ErrorWithStatus } from "@akala/core";
 import { CliContext, unparseOptions } from "@akala/cli";
-import { ErrorWithStatus } from "@akala/core";
 import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
 import path from 'path'
@@ -25,11 +24,12 @@ export default async function start(this: State, pm: pmContainer.container & Con
         else if (!options.name)
             options.name = name;
 
+    let def: ProxyConfiguration<SidecarMetadata>;
+
     if (this.isDaemon)
     {
         var instanceConfig = this.config.mapping[options.name || name];
-        var def: ProxyConfiguration<SidecarMetadata>;
-        if (typeof instanceConfig == 'undefined' || !instanceConfig.container)
+        if (!instanceConfig?.container)
             def = this.config.containers[name];
         else
             def = this.config.containers[instanceConfig.container];
@@ -43,18 +43,14 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 await this.config.commit()
             }
 
-        // eslint-disable-next-line no-var
         var container = this.processes[options.name || name];
-        if (container && container.running)
+        if (container?.running)
             throw new Error(container.name + ' is already started');
 
         args = [];
 
         if (!def && name != 'pm')
-        {
-            // require.resolve(name);
             throw new ErrorWithStatus(404, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
-        }
 
         if (options.configFile)
             options.configFile += '#' + options.name
@@ -79,12 +75,12 @@ export default async function start(this: State, pm: pmContainer.container & Con
         args.unshift(path.resolve(_dirname, '../fork'))
     }
 
-    if (options && options.inspect)
+    if (options?.inspect)
         args.unshift('--inspect-brk');
 
     args.unshift(...process.execArgv);
 
-    if (options && options.verbose)
+    if (options?.verbose)
         args.push('-v')
 
     if (!this.isDaemon)
@@ -112,7 +108,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         if (!container && def.dependencies?.length)
         {
-            var missingDeps = def.dependencies.filter(d => !this.config.containers[d] && !this.config.mapping[d]);
+            const missingDeps = def.dependencies.filter(d => !this.config.containers[d] && !this.config.mapping[d]);
             if (missingDeps.length > 0)
                 throw new ErrorWithStatus(404, `Some dependencies are missing to start ${options.name}:\n\t-${missingDeps.join('\n\t-')}`);
 
@@ -131,13 +127,13 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
         }
 
-        if (!container || !container.running)
+        if (!container?.running)
         {
             container = new Container(options.name, null) as RunningContainer;
             const connection = Processors.JsonRpc.getConnection(cp.adapter, pm, (params) =>
             {
                 params.process = cp;
-                Object.defineProperty(params, 'connectionAsContainer', Object.assign({ value: container }));
+                Object.defineProperty(params, 'connectionAsContainer', { value: container });
             });
             container.processor.useMiddleware(20, new Processors.JsonRpc(connection));
 
@@ -165,7 +161,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
         {
             return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
-                // console.log(metaContainer);
                 updateCommands(metaContainer.commands, null, container);
                 container.stateless = metaContainer.stateless;
                 pm.register(name, container, true);
@@ -182,7 +177,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         cp.on('exit', function ()
         {
-            (container as RunningContainer).running = false;
+            container.running = false;
             if (!container.stateless)
             {
                 pm.unregister(container.name);
