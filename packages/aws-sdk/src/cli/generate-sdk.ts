@@ -151,7 +151,7 @@ function deepObjectInterpolate(obj: unknown)
             let interpolateString: RegExpExecArray;
             let result = '';
             let lastOffset = 0;
-            const regexp = /\{([A-Z][A-Z0-9]+)(?:#([A-Z][A-Z0-9]+)*)?\}/gi;
+            const regexp = /\{([A-Z][A-Z0-9]+?)(?:#([A-Z][A-Z0-9]+?)*)?\}/gi;
             while (interpolateString = regexp.exec(obj))
             {
                 if (result)
