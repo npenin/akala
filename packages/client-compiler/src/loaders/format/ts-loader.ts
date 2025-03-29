@@ -140,6 +140,8 @@ export async function parseWithoutCache(pathOrSpecifier: { path?: string, specif
                     if (node.modifiers && node.modifiers.find(x => x.kind == ts.SyntaxKind.ExportKeyword))
                         exports.push({ ...node, declarationList: { ...node.declarationList, declarations: Object.assign(node.declarationList.declarations.map(d => ({ ...d, type: undefined })), { end: node.declarationList.declarations.end, hasTrailingComma: node.declarationList.declarations.hasTrailingComma, pos: node.declarationList.declarations.pos }) } });
 
+                    break;
+
                 default:
                     // console.log(ts.SyntaxKind[node.kind])
                     // console.log(printer.printNode(ts.EmitHint.Unspecified, node, program));
