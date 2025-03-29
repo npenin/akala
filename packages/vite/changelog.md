@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* https://sonarcloud.io/organizations/npenin/rules?open=Web%3ATableHeaderHasIdOrScopeCheck&rule_key=Web%3ATableHeaderHasIdOrScopeCheck 666340d
+* https://sonarcloud.io/project/issues?open=AZTuPPyqWVPY8wORAfqc&id=npenin_akala beff5ae
 
 
 
