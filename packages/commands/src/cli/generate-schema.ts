@@ -262,7 +262,8 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
             if (defs.local[fullTypeName].$dynamicAnchor)
                 return { $dynamicRef: "#" + defs.local[fullTypeName].id };
             return { $ref: "#/$defs/" + defs.local[fullTypeName].id };
-        } if (fullTypeName in defs.global)
+        }
+        if (fullTypeName in defs.global)
             return { $ref: "#/$defs/" + defs.global[fullTypeName].id };
 
         if (/^"[^"/]+"\./.test(fullTypeName) || fullTypeName[0] != '"' && /^([^\.]+)\.?/.exec(fullTypeName)[1] == 'internal')
