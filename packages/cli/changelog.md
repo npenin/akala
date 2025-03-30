@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* handle already provided options 37f7aef
-* sonar issues d8fff97
+* sonar issues 7528b67
 
 
 
