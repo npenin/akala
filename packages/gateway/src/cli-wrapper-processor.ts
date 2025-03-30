@@ -1,27 +1,26 @@
 import { CliContext, unparseWithMeta } from '@akala/cli';
 import * as ac from '@akala/commands'
-import { MiddlewarePromise, MiddlewareResult } from '@akala/core';
-import { Deferred } from '@akala/core';
+import { MiddlewarePromise, MiddlewareResult, Deferred } from '@akala/core';
 import { spawn } from 'child_process'
 
 export default class CliGatewayProcessor extends ac.CommandProcessor
 {
-    constructor(private bin: string)
+    constructor(private readonly bin: string)
     {
         super("cli-gateway");
     }
 
     public handle(_origin: ac.Container<unknown>, cmd: ac.Metadata.Command, param: ac.StructuredParameters<[CliContext]>): MiddlewarePromise
     {
-        var args = unparseWithMeta(cmd.config.cli, param.param[0]);
+        const args = unparseWithMeta(cmd.config.cli, param.param[0]);
         if (cmd.config.cli.usage)
         {
             cmd.config.cli.usage
         }
-        var d = new Deferred<MiddlewareResult, unknown>();
-        var cp = spawn(this.bin, args, { stdio: ['inherit', 'pipe', 'pipe'], shell: true });
-        var stdout: Buffer[] = [];
-        var stderr: Buffer[] = [];
+        const d = new Deferred<MiddlewareResult, unknown>();
+        const cp = spawn(this.bin, args, { stdio: ['inherit', 'pipe', 'pipe'], shell: true });
+        const stdout: Buffer[] = [];
+        const stderr: Buffer[] = [];
         cp.stdout.on('data', chunk => stdout.push(chunk))
         cp.stderr.on('data', chunk => stderr.push(chunk))
         cp.on('exit', (code) =>

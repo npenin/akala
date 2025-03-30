@@ -247,7 +247,7 @@ export abstract class Connection<TStreamable>
     }
 
     protected abstract buildStream(id: string | number, result: PayloadDataType<TStreamable>): TStreamable;
-    protected abstract sendStream(id: string | number, result: TStreamable): void;
+    protected abstract sendStream(id: string | number, result: TStreamable): Promise<void> | void;
     protected abstract isStream(result: PayloadDataType<TStreamable>): result is TStreamable;
 
 

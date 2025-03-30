@@ -247,4 +247,4 @@ export class SimpleInjector extends LocalInjector
     }
 }
 
-export var defaultInjector = new SimpleInjector(null);
+export const defaultInjector = new SimpleInjector(null);

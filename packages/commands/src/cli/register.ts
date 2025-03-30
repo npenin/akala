@@ -21,7 +21,7 @@ export default async function register(commandsPath?: string, name?: string, for
     {
         let depth = process.cwd().length - process.cwd().replace('/', '').length;
         if (os.platform() != "win32")
-            depth - 1;
+            depth--;
         for (; depth > 0; depth--, packagePath = '../' + packagePath)
         {
             if (fs.existsSync(packagePath))

@@ -128,7 +128,7 @@ export class Container<TState> extends SimpleInjector implements MiddlewareAsync
         {
             if ('name' in cmd)
             {
-                override == !!value;
+                override = !!value;
                 value = cmd;
                 cmd = cmd.name;
             }

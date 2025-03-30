@@ -13,7 +13,7 @@ import { Connection } from '../browser.js'
 
 export class WebSocketAdapter implements SocketAdapter
 {
-    constructor(private socket: WebSocket)
+    constructor(private readonly socket: WebSocket)
     {
 
     }
@@ -39,13 +39,13 @@ export class WebSocketAdapter implements SocketAdapter
         this.socket.send(data);
     }
 
-    private messageListeners: [(ev: unknown) => void, (ev: unknown) => void][] = [];
+    private readonly messageListeners: [(ev: unknown) => void, (ev: unknown) => void][] = [];
 
     public off<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         switch (event)
         {
-            case 'message': Function
+            case 'message':
                 {
                     let listeners = this.messageListeners;
                     if (handler)

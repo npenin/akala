@@ -36,7 +36,6 @@ module.exports = {
             },
         ],
     },
-    plugins: [],
     devtool: 'source-map',
     mode: 'production',
     optimization: {
