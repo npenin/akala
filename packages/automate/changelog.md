@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* remove useless await 52d94b0
-* sonar issues 9b157ec
+* sonar issues 5bdc21e
 
 
 
