@@ -16,12 +16,12 @@ export class SimpleInjector extends LocalInjector
      */
     constructor(parent?: Injector | null)
     {
-        super(parent || defaultInjector);
+        super(parent === null ? null : defaultInjector);
         this.register('$injector', this as any);
         this.notifier = new EventEmitter();
     }
 
-    private notifier: EventEmitter<{ [key: string | symbol]: Event<[PropertyDescriptor]> }>;
+    private readonly notifier: EventEmitter<{ [key: string | symbol]: Event<[PropertyDescriptor]> }>;
 
     /**
      * Sets the injectables.
@@ -122,7 +122,7 @@ export class SimpleInjector extends LocalInjector
         {
             if (Array.isArray(param))
             {
-                return param.slice(1).reduce((previous, current) => previous && previous[current], this.resolve(param[0]))
+                return param.slice(1).reduce((previous, current) => previous?.[current], this.resolve(param[0]))
             }
             const x = Injector.collectMap(param);
 
@@ -158,14 +158,14 @@ export class SimpleInjector extends LocalInjector
                 {
                     return this.parent.resolve(key);
                 }
-                return result && result[key];
+                return result?.[key];
             }, this.injectables);
 
         }
         if (this.parent)
         {
             injectorLog.silly('trying parent injector');
-            return this.parent.resolve(param) as T;
+            return this.parent.resolve(param);
         }
         return null;
     }
