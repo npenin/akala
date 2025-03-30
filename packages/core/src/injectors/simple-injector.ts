@@ -16,7 +16,7 @@ export class SimpleInjector extends LocalInjector
      */
     constructor(parent?: Injector | null)
     {
-        super(parent === null ? null : defaultInjector);
+        super(parent === null ? null : parent || defaultInjector);
         this.register('$injector', this as any);
         this.notifier = new EventEmitter();
     }
