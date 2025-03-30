@@ -76,19 +76,21 @@ export function readLine()
     })
 }
 
-export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number> & { help: boolean }>(logger: Logger, ...args: string[]): CliContext<T, unknown>
+
+
+export function buildCliContext<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }>(logger: Logger, ...args: string[]): CliContext<T, unknown>
 {
     const result: Omit<CliContext<T>, 'logger'> = { abort: new AbortController(), args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined };
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result as CliContext<T>;
 }
-export function buildCliContextFromContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number> & { help: boolean }, TState = unknown>(context: CliContext<T, TState>, ...args: string[]): CliContext<T, TState>
+export function buildCliContextFromContext<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }, TState = unknown>(context: CliContext<T, TState>, ...args: string[]): CliContext<T, TState>
 {
     const result: Omit<CliContext<T, TState>, 'logger'> = { abort: context.abort, args: args, argv: context.argv, options: {} as T, currentWorkingDirectory: context.currentWorkingDirectory, state: context.state };
     Object.defineProperty(result, 'logger', { enumerable: false, value: context.logger });
     return result as CliContext<T, TState>;
 }
-export function buildCliContextFromProcess<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number> & { help: boolean }, TState = unknown>(logger?: Logger, state?: TState): CliContext<T, TState>
+export function buildCliContextFromProcess<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }, TState = unknown>(logger?: Logger, state?: TState): CliContext<T, TState>
 {
     if (process.env.NODE_ENV == 'production')
         logger = logger || LoggerBuilder(process.argv0, LogLevels.error);
@@ -126,14 +128,14 @@ export function unparse(context: CliContext): string[]
 
 export function unparseWithMeta(definition: { usage?: string, options?: { [key: string]: OptionOptions<OptionType> } }, context: CliContext): string[]
 {
-    var positionals = map(grep(definition.options, o => o.positional), (o, name) => ({ name, ...o }), true).sort((a, b) => a.position - b.position);
-    var args = positionals.map(o => context.options[o.name]).filter(f => typeof f !== 'undefined') as string[];
+    const positionals = map(grep(definition.options, o => o.positional), (o, name) => ({ name, ...o }), true).sort((a, b) => a.position - b.position);
+    const args = positionals.map(o => context.options[o.name]).filter(f => typeof f !== 'undefined') as string[];
 
     each(grep(definition.options, o => !o.positional), (option, name) =>
     {
         if (typeof (name) !== 'string')
             return;
-        var optionValue = context.options[name] as string;
+        const optionValue = context.options[name] as string;
         if (typeof (optionValue) !== 'undefined')
             if (typeof optionValue == 'boolean' && optionValue)
                 args.unshift("--" + name);

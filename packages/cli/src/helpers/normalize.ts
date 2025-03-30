@@ -33,8 +33,8 @@ export default function normalize(mode: 'import' | 'require' | 'requireMeta' | b
             return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value + '/package.json');
         case false:
             return value;
-        default:
         case true:
+        default:
             if (URL.canParse(value))
                 return value;
             else

@@ -164,31 +164,31 @@ function stringifyWithSourceMap(context: { file: string, content: string, line: 
     switch (typeof (nodes))
     {
         case 'object':
-
-            updateContext(context, '{', true);
-            if (location in nodes && nodes[location])
-                sourcemap.addMapping({
-                    source: context.file,
-                    original: { line: nodes[location].startLine, column: nodes[location].startCol },
-                    generated: { line: context.line, column: context.column }
-                })
-            let hasProperty = false;
-            Object.entries(nodes).forEach((e, i) =>
             {
+                updateContext(context, '{', true);
+                if (location in nodes && nodes[location])
+                    sourcemap.addMapping({
+                        source: context.file,
+                        original: { line: nodes[location].startLine, column: nodes[location].startCol },
+                        generated: { line: context.line, column: context.column }
+                    })
+                let hasProperty = false;
+                Object.entries(nodes).forEach((e, i) =>
+                {
 
-                if (e[0] == 'location' && e[1])
-                    return;
-                if (e[1] === undefined)
-                    return;
-                if (hasProperty)
-                    updateContext(context, ',', true)
-                hasProperty = true
-                updateContext(context, JSON.stringify(e[0]))
-                updateContext(context, ':', true)
-                stringifyWithSourceMap(context, e[1], sourcemap);
-            })
-            updateContext(context, '}', true);
-
+                    if (e[0] == 'location' && e[1])
+                        return;
+                    if (e[1] === undefined)
+                        return;
+                    if (hasProperty)
+                        updateContext(context, ',', true)
+                    hasProperty = true
+                    updateContext(context, JSON.stringify(e[0]))
+                    updateContext(context, ':', true)
+                    stringifyWithSourceMap(context, e[1], sourcemap);
+                })
+                updateContext(context, '}', true);
+            }
             break;
         default:
             updateContext(context, JSON.stringify(nodes));
@@ -243,15 +243,6 @@ export const load: Loader = async function (url, context, nextLoad)
                 shortCircuit: true,
                 source: maps[url]
             }
-        default:
-            if (context.format?.startsWith('html.module'))
-            {
-                const cacheItem = await ts.parse({ specifier: url }, maps[url]);
-                const result = await ts.supportedFormats[context.importAttributes.type as string || 'module'](cacheItem);
-                logger.data(result.source);
-                return result
-            };
-            break;
         case 'html':
             {
                 const content = await fs.readFile(fileURLToPath(url), 'utf-8');
@@ -297,7 +288,7 @@ export const load: Loader = async function (url, context, nextLoad)
                         maps[url + '/module' + i] = m;
                         return ts.parse({ specifier: url + '/module' + i }, m, cacheItem =>
                         {
-                            cacheItem.source = cacheItem.resources.reduce((source, r) => !path.isAbsolute(r) && !URL.canParse(r) ? (source as string).replace(r, '../' + r) : source, cacheItem.source as string)
+                            cacheItem.source = cacheItem.resources.reduce((source, r) => !path.isAbsolute(r) && !URL.canParse(r) ? source.replace(r, '../' + r) : source, cacheItem.source)
                             cacheItem.modules = cacheItem.modules.map(m => !path.isAbsolute(m) && !URL.canParse(m) ? '../' + m : m)
                         });
                     }))
@@ -321,6 +312,15 @@ export const load: Loader = async function (url, context, nextLoad)
                     return ts.supportedFormats[context.importAttributes?.type as string || 'module'](parsed);
                 }
             }
+        default:
+            if (context.format?.startsWith('html.module'))
+            {
+                const cacheItem = await ts.parse({ specifier: url }, maps[url]);
+                const result = await ts.supportedFormats[context.importAttributes.type as string || 'module'](cacheItem);
+                logger.data(result.source);
+                return result
+            };
+            break;
     }
 
     return nextLoad(url, context);

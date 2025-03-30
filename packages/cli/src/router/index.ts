@@ -57,7 +57,7 @@ export interface OptionOptions<TValue extends OptionType>
 class OptionMiddleware<TValue extends OptionType> implements MiddlewareAsync<[context: CliContext]>
 {
     matchers: { isFull: boolean; pattern: RegExp; }[] = []
-    constructor(private readonly name: string, private options?: OptionOptions<TValue>, private parseOptions: OptionParseOption = defaultOptionParseOption)
+    constructor(private readonly name: string, private readonly options?: OptionOptions<TValue>, private parseOptions: OptionParseOption = defaultOptionParseOption)
     {
         const names = [name, ...options?.aliases || []];
         names.forEach(n =>
@@ -84,15 +84,14 @@ class OptionMiddleware<TValue extends OptionType> implements MiddlewareAsync<[co
             let element = context.args[index];
             if (element == '--')
                 break;
-            for (let jndex = 0; jndex < this.matchers.length; jndex++)
+            for (const matcher of this.matchers)
             {
-                const matcher = this.matchers[jndex];
                 let match = matcher.pattern.exec(element);
                 if (!match)
                     continue;
                 do
                 {
-                    var value: string | boolean = '';
+                    let value: string | boolean = '';
                     if (matcher.isFull)
                     {
                         if (match[1])
@@ -158,7 +157,7 @@ class OptionMiddleware<TValue extends OptionType> implements MiddlewareAsync<[co
 
 function formatUsageObject(usage: UsageObject): string
 {
-    var result = '';
+    let result = '';
     if (usage.text)
         result += usage.text + '\n';
 
@@ -174,8 +173,8 @@ function formatUsageObject(usage: UsageObject): string
 function formatUsage(obj: Record<string, string>, indent?: number): string
 {
     indent = indent || 0;
-    var indentS = ''.padStart(indent, ' ');
-    var preparedNames = map(obj, (_option, optionName) =>
+    const indentS = ''.padStart(indent, ' ');
+    const preparedNames = map(obj, (_option, optionName) =>
     {
         if (typeof (optionName) != 'string')
             return null;
@@ -203,7 +202,7 @@ class OptionsMiddleware<TOptions extends Record<string, OptionType>> implements 
         {
             if (typeof (optionName) != 'string')
                 return null;
-            var usage = (optionName.length == 1 ? defaultOptionParseOption.flagStart : defaultOptionParseOption.fullOptionStart) + optionName;
+            let usage = (optionName.length == 1 ? defaultOptionParseOption.flagStart : defaultOptionParseOption.fullOptionStart) + optionName;
             if (option?.aliases?.length > 0)
             {
                 usage += ',' + option.aliases.map(v => (v.length == 1 ? defaultOptionParseOption.flagStart : defaultOptionParseOption.fullOptionStart) + v).join(', ');
@@ -219,8 +218,8 @@ class OptionsMiddleware<TOptions extends Record<string, OptionType>> implements 
         }, true));
     }
 
-    private options = new MiddlewareCompositeAsync<[CliContext]>();
-    private positionalArgs = new MiddlewareCompositeWithPriorityAsync<[CliContext]>();
+    private readonly options = new MiddlewareCompositeAsync<[CliContext]>();
+    private readonly positionalArgs = new MiddlewareCompositeWithPriorityAsync<[CliContext]>();
     public config: { [key in keyof TOptions]?: OptionOptions<TOptions[key]> } = {};
 
 
@@ -315,7 +314,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
             const error = await delegate._preAction.handle(context);
             if (error)
                 return usage;
-            var subUsage = await delegate.usage(context);
+            const subUsage = await delegate.usage(context);
             if (subUsage.commands)
                 Object.assign(usage.commands, subUsage.commands);
             if (subUsage.options)
@@ -462,12 +461,12 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
 
     async handle(context: CliContext<TOptions, TState>): MiddlewarePromise
     {
-        var args = context.args.slice(0);
+        const args = context.args.slice(0);
         if (this.name === null || context.args[0] == this.name)
         {
             if (this.name !== null)
                 context.args.shift();
-            var error = await this._option.handle(context);
+            let error = await this._option.handle(context);
             if (error)
                 return error;
             if (this._cli)
