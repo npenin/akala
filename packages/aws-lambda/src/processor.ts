@@ -1,5 +1,4 @@
-import { CommandProcessor, Container, StructuredParameters } from '@akala/commands';
-import { Metadata } from '@akala/commands';
+import { CommandProcessor, Container, StructuredParameters, Metadata } from '@akala/commands';
 import { ErrorWithStatus, MiddlewarePromise } from '@akala/core';
 import { LambdaClient, InvokeCommand, LambdaClientConfig } from '@aws-sdk/client-lambda';
 import { AwsConfiguration } from './trigger.js';
@@ -7,7 +6,7 @@ import { AwsConfiguration } from './trigger.js';
 export class Processor extends CommandProcessor
 {
     client: LambdaClient;
-    constructor(config: LambdaClientConfig, private prefix?: string)
+    constructor(config: LambdaClientConfig, private readonly prefix?: string)
     {
         super('aws:lambda');
         this.client = new LambdaClient(config);
@@ -15,23 +14,23 @@ export class Processor extends CommandProcessor
 
     public handle(origin: Container<unknown>, cmd: Metadata.Command & { config: Metadata.ExtendedConfigurations<AwsConfiguration, 'aws'> }, params: StructuredParameters<unknown[]>): MiddlewarePromise
     {
-        let param = params.param && params.param[0];
+        let param = params.param?.[0];
         if (cmd.config.aws)
         {
             const indexOfEvent = cmd.config.aws.inject?.indexOf('event');
-            if (typeof indexOfEvent !== 'undefined' && indexOfEvent > -1)
-                param = params.param && params.param[indexOfEvent];
+            if (indexOfEvent > -1)
+                param = params.param?.[indexOfEvent];
             else
             {
                 const indexOfEventDot = cmd.config.aws.inject?.findIndex(v => typeof v == 'string' && v.indexOf('event.') >= 0);
-                if (typeof indexOfEventDot !== 'undefined' && indexOfEventDot > -1)
+                if (indexOfEventDot > -1)
                 {
                     param = {};
                     for (let i = indexOfEventDot, j = 0; i < (cmd.config.aws.inject?.length || 0); i++, j++)
                     {
-                        if ((cmd.config.aws.inject![i] as string).indexOf('event.') == -1)
+                        if ((cmd.config.aws.inject[i] as string).indexOf('event.') == -1)
                             continue;
-                        (param as Record<string, unknown>)[(cmd.config.aws.inject![i] as string).substring('event.'.length)] = params.param[j];
+                        (param as Record<string, unknown>)[(cmd.config.aws.inject[i] as string).substring('event.'.length)] = params.param[j];
                     }
                 }
             }

@@ -5,7 +5,7 @@ export { trigger };
 
 const container = new Container('AWS-lambda', {});
 await Processors.FileSystem.discoverCommands(process.cwd(), container, { isDirectory: true });
-var initCmd = container.resolve('$init');
+const initCmd = container.resolve('$init');
 if (initCmd)
     await container.dispatch(initCmd);
 

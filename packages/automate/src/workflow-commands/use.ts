@@ -5,10 +5,12 @@ import { pathToFileURL, fileURLToPath } from 'url'
 
 export default async function use(this: CliContext, self: Container<CliContext>, name: string, pathToCommands: string | URL)
 {
+    let container: Container<CliContext>;
     if (!name)
-        var container = self;
+        container = self;
     else
-        var container = new Container(name, this);
+        container = new Container(name, this);
+
     if (pathToCommands instanceof URL || pathToCommands.startsWith('./') || isAbsolute(pathToCommands))
     {
         if (pathToCommands instanceof URL || pathToCommands.startsWith('file://'))
