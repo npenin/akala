@@ -102,13 +102,13 @@ export const StdioMiddleware = new MiddlewareRunner('with', (...[context, step, 
 }, true);
 
 export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<JobStepIf>('if',
-    async (context, step) =>
+    (context, step) =>
     {
         if (!step.if)
             return Promise.resolve();
         try
         {
-            if (!(await new parser.EvaluatorAsFunction().eval(new Parser().parse(step.if)))(context))
+            if (!(new parser.EvaluatorAsFunction().eval(new Parser().parse(step.if)))(context))
             {
                 if (step.outputAs)
                     return Promise.reject(false);
