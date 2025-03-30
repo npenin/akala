@@ -35,7 +35,7 @@ export default function (this: OIDCClientState, provider: string, code: string, 
 {
     const oidc = providers[provider];
     const endpoint = new URL(oidc.token_endpoint);
-    var x: OICDAuthMethods = oidc.token_endpoint_auth_methods_supported[0]
+    const x: OICDAuthMethods = oidc.token_endpoint_auth_methods_supported[0]
     const result: Request = {
         endpoint,
         query: {

@@ -21,7 +21,7 @@ export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class MiddlewareRunnerMiddleware<TSupportedJobSteps extends JobStepDef<string, any, any>> implements TMiddlewareRunner<TSupportedJobSteps>
 {
-    constructor(public readonly support: TSupportedJobSteps['type'], private handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => MiddlewarePromise, private doNotInterpolate?: boolean)
+    constructor(public readonly support: TSupportedJobSteps['type'], private readonly handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => MiddlewarePromise, private doNotInterpolate?: boolean)
     {
     }
 
@@ -62,12 +62,12 @@ export const WithInterpolater = new MiddlewareRunnerMiddleware('with', () => { r
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class ContainerMiddleware implements MiddlewareAsync<MiddlewareSignature<JobStepDef<string, any, any>>>
 {
-    constructor(private container: Container<unknown>) { }
+    constructor(private readonly container: Container<unknown>) { }
 
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
     async handle(...[context, step]: MiddlewareSignature<JobStepDef<string, any, any>>)
     {
-        var resolved = Object.keys(step).map(k => [k, this.container.resolve(k)]).filter(k => k[1] instanceof Container) as [string, Container<unknown>][];
+        let resolved = Object.keys(step).map(k => [k, this.container.resolve(k)]).filter(k => k[1] instanceof Container) as [string, Container<unknown>][];
         const errors = (await mapAsync(resolved, k =>
             this.container.handle(step[k[0]], { _trigger: 'automate', ...context, ...step.with, param: [] })
         )).filter(err => err && err instanceof Error) as Error[];
@@ -82,7 +82,7 @@ export class ContainerMiddleware implements MiddlewareAsync<MiddlewareSignature<
 //eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unused-vars
 export const StdioMiddleware = new MiddlewareRunner('with', (...[context, step, stdio]: MiddlewareSignature<JobStepDef<'with', any, any>>) =>
 {
-    if (step.with && step.with.stdio && step.with.stdio !== 'pipe' && step.with.stdio !== 'ignore' && step.with.stdio !== 'inherit')
+    if (step.with?.stdio && step.with.stdio !== 'pipe' && step.with.stdio !== 'ignore' && step.with.stdio !== 'inherit')
     {
         if (Array.isArray(step.with.stdio))
         {
@@ -136,9 +136,9 @@ export function ForeachMiddleware(runner: MiddlewareCompositeWithPriorityAsync<M
 export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (context, step) =>
 {
     if (Array.isArray(step.log))
-        context.logger[step.with && step.with['log-level'] || 'info'](...step.log);
+        context.logger[step.with?.['log-level'] || 'info'](...step.log);
     else
-        context.logger[step.with && step.with['log-level'] || 'info'](step.log);
+        context.logger[step.with?.['log-level'] || 'info'](step.log);
 });
 
 
@@ -188,7 +188,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
         // context.logger.silly(step.with.stdio)
         return new Promise((resolve, reject) =>
         {
-            var cmd: string[];
+            let cmd: string[];
             if (!Array.isArray(step.run))
                 cmd = [step.run];
             else
@@ -224,8 +224,8 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
                                     }, 0)
                                     return resolve(results);
                                 }
-                            default:
                             case 'string':
+                            default:
                                 return resolve(result.toString('utf-8', 0, result.length - 1));
                         }
                     }
@@ -233,10 +233,10 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
                 }
                 else
                 {
-                    if (step.with && step.with['ignore-failure'])
+                    if (step.with?.['ignore-failure'])
                         resolve(undefined);
                     else
-                        reject(new Error((cmd as string[]).join(' ') + ' failed with code ' + code + '\n' + Buffer.concat(errBuffers).toString('utf-8')));
+                        reject(new Error((cmd).join(' ') + ' failed with code ' + code + '\n' + Buffer.concat(errBuffers).toString('utf-8')));
                 }
             });
             if (step.with?.result)
@@ -261,7 +261,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
 export function simpleRunner(name: string)
 {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    var runner = new MiddlewareCompositeWithPriorityAsync<MiddlewareSignature<JobStepDef<string, any, any>>>(name);
+    const runner = new MiddlewareCompositeWithPriorityAsync<MiddlewareSignature<JobStepDef<string, any, any>>>(name);
     runner.useMiddleware(1, ForeachMiddleware(runner));
     runner.useMiddleware(2, IfMiddleware);
     runner.useMiddleware(3, WithInterpolater);
@@ -315,7 +315,7 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
             orchestrator.add(name + '-' + step.name, previousStepName && [previousStepName],
                 async function (): Promise<void>
                 {
-                    var err;
+                    let err;
                     const context = Object.assign({}, inputs, results);
                     logger.silly('%O', context);
                     try

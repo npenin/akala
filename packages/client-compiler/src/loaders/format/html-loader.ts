@@ -292,15 +292,15 @@ export const load: Loader = async function (url, context, nextLoad)
                     }
                     // console.log(modules);
 
-                    modules.map((m, i) =>
+                    await Promise.all(modules.map((m, i) =>
                     {
                         maps[url + '/module' + i] = m;
-                        ts.parse({ specifier: url + '/module' + i }, m, cacheItem =>
+                        return ts.parse({ specifier: url + '/module' + i }, m, cacheItem =>
                         {
                             cacheItem.source = cacheItem.resources.reduce((source, r) => !path.isAbsolute(r) && !URL.canParse(r) ? (source as string).replace(r, '../' + r) : source, cacheItem.source as string)
                             cacheItem.modules = cacheItem.modules.map(m => !path.isAbsolute(m) && !URL.canParse(m) ? '../' + m : m)
                         });
-                    })
+                    }))
 
                     const parsed = await ts.parse({ specifier: url }, resources.filter(r => r.src).map(r => `import '${r.src.value}'`).join('\n') + `
                 

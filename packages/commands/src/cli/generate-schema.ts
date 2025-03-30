@@ -351,11 +351,11 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
         case type.isUnion():
             if (type.types.every(t => t.isStringLiteral()))
             {
-                return { type: "string", enum: (type.types as ts.StringLiteralType[]).map(t => t.value) };
+                return { type: "string", enum: type.types.map(t => t.value) };
             }
             if (type.types.every(t => t.isNumberLiteral()))
             {
-                return { type: "number", enum: (type.types as ts.NumberLiteralType[]).map(t => t.value) };
+                return { type: "number", enum: type.types.map(t => t.value) };
             } {
                 const types = type.types.map(t => serializeType(checker, t, defs));
                 if (types.find(x => 'promise' in x))
@@ -373,8 +373,8 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
                 }
                 return { "allOf": types as JsonSchema[] }
             }
-        case checker.isArrayLikeType(type):
-            let tupleType = type.getNumberIndexType();
+        case checker.isArrayLikeType(type): {
+            const tupleType = type.getNumberIndexType();
             if (tupleType)
             {
                 const types = serializeType(checker, tupleType, defs);
@@ -386,66 +386,69 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
                 } as JsonSchema
             }
             else
-                debugger;
+                throw new Error();
+        }
         default:
-            if ('typeArguments' in type && type.typeArguments)
-                Object.assign(defs.local, Object.fromEntries(type.target.typeArguments.map((t, i) =>
-                {
-                    const name = checker.getFullyQualifiedName(t.symbol);
-                    if (t.symbol)
+            {
+                if ('typeArguments' in type && type.typeArguments)
+                    Object.assign(defs.local, Object.fromEntries(type.target.typeArguments.map((t, i) =>
                     {
-                        const typeI = serializeType(checker, type.typeArguments[i], defs);
-                        if ('promise' in typeI)
-                            return [name, typeI];
-                        if (typeI.$ref)
+                        const name = checker.getFullyQualifiedName(t.symbol);
+                        if (t.symbol)
                         {
-                            const anchorName = typeI.$ref.substring('#/$defs/'.length);
-                            return [name, { id: anchorName, $dynamicAnchor: anchorName }];
+                            const typeI = serializeType(checker, type.typeArguments[i], defs);
+                            if ('promise' in typeI)
+                                return [name, typeI];
+                            if (typeI.$ref)
+                            {
+                                const anchorName = typeI.$ref.substring('#/$defs/'.length);
+                                return [name, { id: anchorName, $dynamicAnchor: anchorName }];
+                            }
+                            return [name, { id: name, promise: Promise.resolve(typeI) }]
                         }
-                        return [name, { id: name, promise: Promise.resolve(typeI) }]
+                        debugger;
+                        return ['', null];
+                    })))
+                if ('typeArguments' in type && type.typeArguments || type.isClassOrInterface())
+                    return {
+                        id: friendlyId, promise: (async function ()
+                        {
+                            return {
+                                "$id": friendlyId,
+                                "$defs": Object.fromEntries(await Promise.all(Object.entries(defs.local).filter(x => x[0].startsWith(friendlyId)).map(e => 'promise' in e[1] ? e[1].promise.then(v => [e[0], v]) : Promise.resolve([e[0], e[1]])))),
+                                "type": "object",
+                                "properties": Object.fromEntries((await Promise.all(type.getProperties().filter(p => !checker.getTypeOfSymbol(p).getCallSignatures().length).map(p => ({ prop: p, type: serializeType(checker, checker.getTypeOfSymbol(p), defs) })).map(x => 'promise' in x.type ? x.type.promise.then(r => [x.prop.escapedName, r]) : Promise.resolve([x.prop.escapedName, x.type])))).filter(e => e[1])),
+                                // "items": { "$dynamicRef": "#T" }
+                            }
+                        })()
                     }
-                    debugger;
-                    return ['', null];
-                })))
-            if ('typeArguments' in type && type.typeArguments || type.isClassOrInterface())
-                return {
-                    id: friendlyId, promise: (async function ()
-                    {
-                        return {
-                            "$id": friendlyId,
-                            "$defs": Object.fromEntries(await Promise.all(Object.entries(defs.local).filter(x => x[0].startsWith(friendlyId)).map(e => 'promise' in e[1] ? e[1].promise.then(v => [e[0], v]) : Promise.resolve([e[0], e[1]])))),
-                            "type": "object",
-                            "properties": Object.fromEntries((await Promise.all(type.getProperties().filter(p => !checker.getTypeOfSymbol(p).getCallSignatures().length).map(p => ({ prop: p, type: serializeType(checker, checker.getTypeOfSymbol(p), defs) })).map(x => 'promise' in x.type ? x.type.promise.then(r => [x.prop.escapedName, r]) : Promise.resolve([x.prop.escapedName, x.type])))).filter(e => e[1])),
-                            // "items": { "$dynamicRef": "#T" }
-                        }
-                    })()
+                let baseType = type.getConstraint();
+                if (baseType)
+                {
+                    const serializedType = serializeType(checker, baseType, defs);
+                    if ('promise' in serializedType)
+                        defs.local[friendlyId] = serializedType as { id: string, promise: Promise<JsonSchema> };
+                    else
+                        (defs.local[friendlyId] = { id: friendlyId, promise: Promise.resolve(serializedType) });
+                    return { "$dynamicRef": "#/defs/" + friendlyId }
                 }
-            let baseType = type.getConstraint();
-            if (baseType)
-            {
-                const serializedType = serializeType(checker, baseType, defs);
-                if ('promise' in serializedType)
-                    defs.local[friendlyId] = serializedType as { id: string, promise: Promise<JsonSchema> };
-                else
-                    (defs.local[friendlyId] = { id: friendlyId, promise: Promise.resolve(serializedType) });
-                return { "$dynamicRef": "#/defs/" + friendlyId }
-            }
-            if (type.getConstructSignatures())
-            {
-                return {
-                    id: friendlyId, promise: (async function ()
-                    {
-                        return {
-                            "$id": friendlyId,
-                            // "$defs": Object.fromEntries(await Promise.all(Object.entries(defs.local).map(e => 'promise' in e[1] ? e[1].promise.then(v => [e[0], v]) : Promise.resolve([e[0], e[1]])))),
-                            "type": "object",
-                            "properties": Object.fromEntries((await Promise.all(type.getProperties().filter(p => !checker.getTypeOfSymbol(p).getCallSignatures().length).map(p => ({ prop: p, type: serializeType(checker, checker.getTypeOfSymbol(p), defs) })).map(x => 'promise' in x.type ? x.type.promise.then(r => [x.prop.escapedName, r]) : Promise.resolve([x.prop.escapedName, x.type])))).filter(e => e[1])),
-                            // "items": { "$dynamicRef": "#T" }
-                        }
-                    })()
+                if (type.getConstructSignatures())
+                {
+                    return {
+                        id: friendlyId, promise: (async function ()
+                        {
+                            return {
+                                "$id": friendlyId,
+                                // "$defs": Object.fromEntries(await Promise.all(Object.entries(defs.local).map(e => 'promise' in e[1] ? e[1].promise.then(v => [e[0], v]) : Promise.resolve([e[0], e[1]])))),
+                                "type": "object",
+                                "properties": Object.fromEntries((await Promise.all(type.getProperties().filter(p => !checker.getTypeOfSymbol(p).getCallSignatures().length).map(p => ({ prop: p, type: serializeType(checker, checker.getTypeOfSymbol(p), defs) })).map(x => 'promise' in x.type ? x.type.promise.then(r => [x.prop.escapedName, r]) : Promise.resolve([x.prop.escapedName, x.type])))).filter(e => e[1])),
+                                // "items": { "$dynamicRef": "#T" }
+                            }
+                        })()
+                    }
                 }
+                break;
             }
-            break;
     }
     if (ts.isCallSignatureDeclaration(type.symbol?.valueDeclaration))
     {

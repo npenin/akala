@@ -11,7 +11,7 @@ export async function hashPassword(state: State, password: string)
 
 export default async function (this: State, userName: string, password: string)
 {
-    var user = new User();
+    const user = new User();
     user.name = userName;
     Object.assign(user, await hashPassword(this, password));
     return await this.store.User.createSingle(user);
