@@ -375,7 +375,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
                         result.forEach(e =>
                         {
                             if (e.isDirectory())
-                                this[e.name] = new Proxy<FileSystemFolder & FileSystemContainer>(new FolderEntry(this[fspath], e.name, typeof this[model] == 'undefined' && null || ModelDefinition.definitionsAsArray.find(def => def.nameInStorage == e.name), this[fileEntryFactoryProperty]) as any, proxyHandler)
+                                this[e.name] = new Proxy<FileSystemFolder & FileSystemContainer>(new FolderEntry(this[fspath], e.name, (typeof this[model] == 'undefined') && ModelDefinition.definitionsAsArray.find(def => def.nameInStorage == e.name), this[fileEntryFactoryProperty]) as any, proxyHandler)
                             else if (e.isFile())
                                 this[e.name] = new Proxy<FileSystemFile>(this[fileEntryFactoryProperty](this[fspath], e.name, this[model]), proxyHandler)
                         });
