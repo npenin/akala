@@ -15,7 +15,7 @@ const { subtle } = globalThis.crypto;
 async function generateAesKey(length = 256)
 {
     const key = await subtle.generateKey({
-        name: 'AES-CBC',
+        name: 'AES-GCM',
         length,
     }, true, ['encrypt', 'decrypt']);
 
