@@ -80,7 +80,7 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
                 return;
             if (cmd.config.cli.inject.indexOf('options.' + name) > -1)
                 return;
-            if ((!opt || !opt.doc) && cmd.config.doc?.options?.[name])
+            if (!opt?.doc && cmd.config.doc?.options?.[name])
                 opt = { ...opt, doc: cmd.config.doc.options[name] };
 
             if (!opt?.positional)
