@@ -2,7 +2,6 @@ import { EvaluatorAsFunction } from './parser/evaluator-as-function.js';
 import { Parser } from './parser/parser.js';
 import { escapeRegExp } from './reflect.js';
 
-// type EvalFunction<T> = (value: unknown) => T;
 type InterpolateFn<T> = ((value: unknown) => T) & { expressions: string[] };
 
 /**
@@ -28,8 +27,8 @@ export class Interpolate
             replace(this.escapedEndRegexp, this.endSymbol);
     }
 
-    private escapedStartRegexp: RegExp;
-    private escapedEndRegexp: RegExp;
+    private readonly escapedStartRegexp: RegExp;
+    private readonly escapedEndRegexp: RegExp;
 
     /**
      * Recursively processes objects/arrays/values to create an interpolation function
@@ -58,13 +57,13 @@ export class Interpolate
                 return Object.assign(() => obj, { expressions: [] });
             case 'string':
                 return this.build(obj, mustHaveExpression, evaluator, allOrNothing);
-            default:
             case 'function':
+            default:
                 return Object.assign(() => obj, { expressions: [] });
         }
     }
 
-    public static Evaluator = (exp: string) => new EvaluatorAsFunction().eval(new Parser().parse(exp));
+    public static readonly Evaluator = (exp: string) => new EvaluatorAsFunction().eval(new Parser().parse(exp));
 
     /**
      * Creates an interpolation function from a template string

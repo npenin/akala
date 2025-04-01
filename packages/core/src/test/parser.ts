@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-import 'source-map-support/register.js';
-
 import { Parser, ParsedBinary, ParsedString } from '../parser/parser.js';
 import { BinaryOperator } from '../parser/expressions/binary-operator.js';
 import { Formatter, formatters } from '../formatters/index.js';
