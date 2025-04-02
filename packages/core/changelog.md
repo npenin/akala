@@ -1,11 +1,10 @@
-#  (2025-03-30)
+#  (2025-04-02)
 
 
 ### Bug Fixes
 
-* Injector inheritance d015db2
-* sonar issues 4640d90
-* test 9dcc33b
+* sonar coverage discovery 4d8a390
+* sonar issues 4065e6a
 
 
 
