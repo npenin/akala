@@ -100,7 +100,9 @@ jobs:
         with:
           name: build
       - name: Run coverage
-        run: yarn coverage
+        run: |
+          mkdir coverage
+          yarn coverage
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
