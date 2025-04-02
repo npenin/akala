@@ -6,7 +6,8 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "scripts": {
-        "test": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/protocolparser.v8 --test-reporter-destination=../../coverage/protocolparser.info --enable-source-maps dist/test/*.js",
+        "test": "node --test --enable-source-maps",
+        "coverage": "yarn test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/protocolparser.v8 --test-reporter-destination=../../coverage/protocolparser.info --enable-source-maps dist/test/*.js",
         "prepublishOnly": "tsc -p .",
         "build": "tsc -p ."
     },
