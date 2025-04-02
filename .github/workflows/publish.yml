@@ -85,6 +85,16 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
           submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "yarn"
+      - name: Install yarn
+        run: corepack enable
+      - name: Install Packages
+        run: yarn
+        env:
+          NO_AKALAPOSTINSTALL: 1
       - name: Download coverage artifacts
         uses: actions/download-artifact@v4
         with:
