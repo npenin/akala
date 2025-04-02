@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* sonar coverage discovery 4d8a390
-* sonar issues 4065e6a
+* sonar coverage discovery 3bc482a
 
 
 
