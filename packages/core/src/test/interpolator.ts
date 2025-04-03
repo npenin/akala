@@ -27,9 +27,10 @@ describe('interpolate', () =>
         assert.strictEqual(interpolator.buildObject(`{{options.branch=='main'?'latest':options.branch}}`)({ options: { branch: 'main' } }), 'latest')
         assert.strictEqual(interpolator.buildObject(`{{options.branch=='main'?'latest':options.branch}}`)({ options: { branch: 'dev' } }), 'dev')
 
-        const tag = interpolator.buildObject(['aa', `{{options.branch=='main'?'latest':options.branch}}`]);
+        const automateInterpolator = new Interpolate('$(', ')')
+        const tag = automateInterpolator.buildObject(['yarn', 'workspace', '$($.name)', 'npm', 'publish', '--access', 'public', '--tag', "$(options.branch=='main' ? 'latest': options.branch)"]);
 
-        console.log(tag({ options: { branch: 'main' } }))
-        console.log(tag({ options: { branch: 'dev' } }))
+        console.log(tag({ '$': { name: 'core' }, options: { branch: 'main' } }))
+        console.log(tag({ '$': { name: 'core' }, options: { branch: 'dev' } }))
     })
 })

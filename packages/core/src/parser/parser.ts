@@ -570,7 +570,7 @@ export class Parser
                     const tOperator = parseTernaryOperator(operator[1])
                     const second = this.parseAny(expression, parseFormatter, reset);
                     expression = expression.substring(second.$$length);
-                    const operator2 = /^ *(:)/.exec(expression);
+                    const operator2 = /^ *(:) */.exec(expression);
                     if (!operator2)
                         throw new Error('Invalid ternary operator');
                     const third = this.parseAny(expression.substring(operator2[0].length), parseFormatter, reset);
