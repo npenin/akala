@@ -1,6 +1,6 @@
 import glob from 'fast-glob';
 import { promises as fs } from 'fs';
-import path, { join } from 'path';
+import path, { dirname, join } from 'path';
 
 const REPORTS_DIR_NAME = 'coverage';
 const GREEN = '\x1b[32m%s\x1b[0m';
@@ -49,8 +49,8 @@ export default async function (inputs: string, output: string)
             {
                 console.log('file', file);
                 console.log('filePath', filePath);
-
-                return 'SF:' + join(output, file, filePath)
+                console.log('dirname', join(output, dirname(file), filePath));
+                return 'SF:' + join(output, dirname(file), filePath)
             })
         }
         ))).join('');

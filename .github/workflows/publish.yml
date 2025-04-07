@@ -93,6 +93,7 @@ jobs:
           name: build
       - name: Run coverage
         run: |
+          yarn
           mkdir coverage
           yarn coverage
           akala sdk merge-coverage 'packages/*/lcov.info' .
