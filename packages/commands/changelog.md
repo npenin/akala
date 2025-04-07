@@ -1,9 +1,9 @@
-#  (2025-04-03)
+#  (2025-04-07)
 
 
-### Bug Fixes
+### Features
 
-* sonar coverage discovery c70faa9
+* add merge-coverage to SDK bcd0cd4
 
 
 
