@@ -10,7 +10,7 @@ export default async function (this: State, container: Container<unknown>, name:
 {
     let workflow: Workflow;
     // console.log(arguments);
-    var extension = path.extname(workflowFile);
+    const extension = path.extname(workflowFile);
     switch (extension)
     {
         case '.json':

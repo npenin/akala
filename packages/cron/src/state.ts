@@ -59,7 +59,7 @@ export class Schedule
         waitInfo.promise.then(() =>
         {
             this._nextExecution = null;
-            this.jobs.map(j => j.trigger(this, waitInfo));
+            this.jobs.forEach(j => j.trigger(this, waitInfo));
             this.start();
         });
 

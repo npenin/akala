@@ -6,19 +6,20 @@ import { Container } from '../model/container.js'
 
 export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TState>, program: NamespaceMiddleware)
 {
+    let command: NamespaceMiddleware;
     if (cmd.config?.cli)
     {
         if (cmd.config.cli.usage)
         {
             if (cmd.name.lastIndexOf('.') > -1)
             {
-                var command = program.command(cmd.name.substring(0, cmd.name.lastIndexOf('.')).split('.').join(' ') + ' ' + cmd.config.cli.usage, cmd.config?.doc?.description);
+                command = program.command(cmd.name.substring(0, cmd.name.lastIndexOf('.')).split('.').join(' ') + ' ' + cmd.config.cli.usage, cmd.config?.doc?.description);
             }
             else
-                var command = program.command(cmd.config.cli.usage, cmd.config?.doc?.description);
+                command = program.command(cmd.config.cli.usage, cmd.config?.doc?.description);
         }
         else
-            var command = program.command(cmd.name.split('.').join(' '));
+            command = program.command(cmd.name.split('.').join(' '));
 
         addOptions(cmd, command);
 
@@ -47,9 +48,9 @@ export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TSta
 
 }
 
-export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
+export const processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
 {
-    var meta: Metadata.Container = await c.dispatch('$metadata', true);
+    const meta: Metadata.Container = await c.dispatch('$metadata', true);
     [...meta.commands, c.resolve('$metadata')].forEach(cmd => registerCommand(cmd, c, program));
 
     return program.option('help', { needsValue: false, doc: "displays this help message" });
@@ -62,11 +63,11 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
         if (typeof p == 'string' && p.startsWith('options.'))
         {
             const optionName = p.substring('options.'.length);
-            var option = cmd.config.cli.options && cmd.config.cli.options[optionName]
-            if ((!option || !option.doc) && cmd.config.doc && cmd.config.doc.options && cmd.config.doc.options[optionName])
-                option = Object.assign({}, option, { doc: cmd.config.doc.options[optionName] });
-            if ((!option || !option.doc) && cmd.config.doc && cmd.config.doc.inject)
-                option = Object.assign({}, option, { doc: cmd.config.doc.inject[i] });
+            let option = cmd.config.cli.options?.[optionName]
+            if ((!option?.doc) && cmd.config.doc?.options?.[optionName])
+                option = { ...option, doc: cmd.config.doc.options[optionName] };
+            if ((!option?.doc) && cmd.config.doc?.inject)
+                option = { ...option, doc: cmd.config.doc.inject[i]?.toString() };
 
             if (!option?.positional)
                 command.option(optionName, option)
@@ -79,8 +80,8 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
                 return;
             if (cmd.config.cli.inject.indexOf('options.' + name) > -1)
                 return;
-            if ((!opt || !opt.doc) && cmd.config.doc && cmd.config.doc.options && cmd.config.doc.options[name])
-                opt = Object.assign({}, opt, { doc: cmd.config.doc.options[name] });
+            if (!opt?.doc && cmd.config.doc?.options?.[name])
+                opt = { ...opt, doc: cmd.config.doc.options[name] };
 
             if (!opt?.positional)
                 command.option(name, opt)

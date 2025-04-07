@@ -1,6 +1,6 @@
 {
     "name": "@akala/json-rpc-ws",
-    "version": "11.0.28",
+    "version": "11.0.35",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/npenin/akala.git"
@@ -14,7 +14,8 @@
     "main": "./dist/cjs/browser.js",
     "type": "module",
     "scripts": {
-        "test": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/jsonrpcws.v8 --test-reporter-destination=../../coverage/jsonrpcws.info --enable-source-maps dist/esm/test/index.mjs",
+        "test": "node --test --enable-source-maps",
+        "coverage": "yarn test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/jsonrpcws.v8 --test-reporter-destination=lcov.info --enable-source-maps dist/esm/test/index.mjs",
         "validate": "npm ls",
         "jsdoc": "jsdoc",
         "docs": "jsdoc index.js lib -d docs",

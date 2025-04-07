@@ -332,6 +332,32 @@
             }
         },
         {
+            "name": "merge-coverage",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/esm/cli/merge-coverage.js",
+                    "source": "src/cli/merge-coverage.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "usage": "merge-coverage <inputGlob> <output>",
+                    "inject": [
+                        "options.inputGlob",
+                        "options.output"
+                    ]
+                }
+            }
+        },
+        {
             "name": "new.command",
             "config": {
                 "fs": {

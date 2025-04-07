@@ -111,7 +111,6 @@ export function marshall<T>(value: T, options?: { removeUndefinedValues: boolean
             }
         case "function":
             throw new Error('Not supported');
-            return;
     }
 }
 

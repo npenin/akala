@@ -186,7 +186,7 @@ export interface IQueryableProvider
     execute<TResult>(expression: Expressions): PromiseLike<TResult>;
 }
 
-export var QuerySymbols = {
+export const QuerySymbols = {
     where: Symbol('where'),
     any: Symbol('any'),
     select: Symbol('select'),

@@ -46,7 +46,7 @@ export function sign(accessKey: string, region: string, service: string)
             if (Array.isArray(request.headers))
             {
                 const header = request.headers.find(h => h[0] == name)
-                return header && header[1];
+                return header?.[1];
             }
             else if (request.headers instanceof Headers)
                 request.headers.get(name);
@@ -54,8 +54,8 @@ export function sign(accessKey: string, region: string, service: string)
                 return request.headers[name].toString();
         }
 
-        var now = new Date().toJSON();
-        const amz_date = now.replace(/[-:]/g, "").replace(/\.[0-9]*/, "");
+        const now = new Date().toJSON();
+        const amz_date = now.replace(/[-:]/g, "").replace(/\.\d*/, "");
         const date_stamp = now.replace(/-/g, "").replace(/T.*/, "");
         const key = await generateKey(amz_date);
         setHeader('x-amz-date', amz_date);

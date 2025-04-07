@@ -23,7 +23,7 @@ async function updateConfig(newConfig, key)
 }
 
 
-var updateConfigGetter = {
+const updateConfigGetter = {
     get: function (updateConfig, key)
     {
         return new Proxy(function (newConfig, subKey)
@@ -33,7 +33,7 @@ var updateConfigGetter = {
     }
 }
 
-var getConfigGetter = {
+const getConfigGetter = {
     get: function (getConfig: typeof getConfigWithKey, key: string)
     {
         return new Proxy(function (subKey?: string)
@@ -119,5 +119,5 @@ config.command<{ key: string, value?: string }>('set <key> [value]')
 config.command<{ key: string }>('get [key]')
     .action(function (context)
     {
-        return akala.defaultInjector.resolve<typeof getConfigWithKey>('$getConfig')(context.options.key as string);
+        return akala.defaultInjector.resolve<typeof getConfigWithKey>('$getConfig')(context.options.key);
     });

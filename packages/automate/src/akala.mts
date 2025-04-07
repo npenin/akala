@@ -31,7 +31,7 @@ export default function (config, cli: NamespaceMiddleware)
             }
         }
         const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', new URL('../../workflow.json', import.meta.url));
-        var loader: Container<CliContext>;
+        let loader: Container<CliContext>;
 
         if (context.options.loader)
             loader = await use.call(context, null, 'loader', context.options.loader as string);

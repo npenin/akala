@@ -24,11 +24,11 @@ export class Cardinality
     public get isMany() { return (this.value & CardinalityValues.FromMany) == CardinalityValues.FromMany; }
     public get isOne() { return !this.isMany; }
 
-    public static OneToOne = new Cardinality(CardinalityValues.OneToOne);
-    public static ManyToOne = new Cardinality(CardinalityValues.ManyToOne);
+    public static readonly OneToOne = new Cardinality(CardinalityValues.OneToOne);
+    public static readonly ManyToOne = new Cardinality(CardinalityValues.ManyToOne);
 
-    public static OneToMany = new Cardinality(CardinalityValues.OneToMany);
-    public static ManyToMany = new Cardinality(CardinalityValues.ManyToMany);
+    public static readonly OneToMany = new Cardinality(CardinalityValues.OneToMany);
+    public static readonly ManyToMany = new Cardinality(CardinalityValues.ManyToMany);
 }
 
 /* eslint-disable @typescript-eslint/no-namespace */
@@ -36,23 +36,23 @@ export namespace Cardinality
 {
     export namespace One
     {
-        export var ToOne = new Cardinality(CardinalityValues.OneToOne);
-        export var ToMany = new Cardinality(CardinalityValues.OneToMany);
+        export const ToOne = new Cardinality(CardinalityValues.OneToOne);
+        export const ToMany = new Cardinality(CardinalityValues.OneToMany);
     }
     export namespace Many
     {
-        export var ToOne = new Cardinality(CardinalityValues.ManyToOne);
-        export var ToMany = new Cardinality(CardinalityValues.ManyToMany);
+        export const ToOne = new Cardinality(CardinalityValues.ManyToOne);
+        export const ToMany = new Cardinality(CardinalityValues.ManyToMany);
     }
 
     export namespace ToOne
     {
-        export var One = new Cardinality(CardinalityValues.OneToOne);
-        export var Many = new Cardinality(CardinalityValues.ManyToOne);
+        export const One = new Cardinality(CardinalityValues.OneToOne);
+        export const Many = new Cardinality(CardinalityValues.ManyToOne);
     }
     export namespace ToMany
     {
-        export var One = new Cardinality(CardinalityValues.OneToMany);
-        export var Many = new Cardinality(CardinalityValues.ManyToMany);
+        export const One = new Cardinality(CardinalityValues.OneToMany);
+        export const Many = new Cardinality(CardinalityValues.ManyToMany);
     }
 }

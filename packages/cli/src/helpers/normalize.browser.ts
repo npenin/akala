@@ -7,8 +7,8 @@ export default function normalize(mode: 'require' | 'requireMeta' | true, curren
         case 'require':
         case 'requireMeta':
             throw new Error('require or requireMeta are not supported on client side');
-        default:
         case true:
+        default:
             return path.resolve(currentWorkingDirectory, value.toString());
     }
 }

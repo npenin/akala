@@ -7,7 +7,7 @@ import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/comma
 
 export class AuthHandler implements MiddlewareAsync<CommandMetadataProcessorSignature<unknown>>
 {
-    constructor(private authValidator: CommandProcessor['handle'])
+    constructor(private readonly authValidator: CommandProcessor['handle'])
     {
     }
 
@@ -23,7 +23,7 @@ export class AuthHandler implements MiddlewareAsync<CommandMetadataProcessorSign
 
 export class AuthPreProcessor extends CommandProcessor
 {
-    constructor(private inner: ICommandProcessor)
+    constructor(private readonly inner: ICommandProcessor)
     {
         super('auth');
     }
@@ -88,7 +88,7 @@ export class Local extends CommandProcessor
     {
         if (!container)
             throw new Error('container is undefined');
-        let config = cmd.config && cmd.config[''];
+        let config = cmd.config?.[''];
         let inject = config?.inject;
         const injector = new SimpleInjector(container);
         injector.register('$container', container);
@@ -97,7 +97,7 @@ export class Local extends CommandProcessor
         // console.log(param);
         if (param._trigger === 'proxy')
             inject = undefined;
-        if (param._trigger && cmd.config && cmd.config[param._trigger])
+        if (param._trigger && cmd.config?.[param._trigger])
         {
             config = cmd.config[param._trigger];
             if (config?.inject)
@@ -120,7 +120,7 @@ export class Local extends CommandProcessor
         {
             try
             {
-                var result = Local.execute(cmd, handler, container, param);
+                const result = Local.execute(cmd, handler, container, param);
                 if (isPromiseLike(result))
                     result.then(reject, resolve);
                 else
@@ -140,7 +140,7 @@ export class Local extends CommandProcessor
         return Promise.resolve();
     }
 
-    constructor(private handler: { [key: string]: (...args: unknown[]) => Promise<unknown> | unknown })
+    constructor(private readonly handler: { [key: string]: (...args: unknown[]) => unknown })
     {
         super('local');
     }

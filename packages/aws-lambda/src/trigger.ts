@@ -1,6 +1,5 @@
 import { Metadata, Processors, Trigger } from '@akala/commands'
 import { SimpleInjector, mapAsync } from '@akala/core';
-// import { HttpRouter, trigger as httpTrigger } from '@akala/server';
 import { APIGatewayEvent, Context } from 'aws-lambda'
 
 export interface AwsConfiguration extends Metadata.Configuration
@@ -26,7 +25,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
         {
             return mapAsync(event.Records, async (record) =>
             {
-                var cmdInjector = new SimpleInjector(ctxInjector);
+                const cmdInjector = new SimpleInjector(ctxInjector);
                 cmdInjector.register('event', record);
                 console.log(config);
                 console.log(cmdInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));

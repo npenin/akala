@@ -73,12 +73,12 @@ export default async function app<T extends StoreDefinition>(context: CliContext
         case 'object':
             if (Array.isArray(stateStoreConfig))
             {
-                var engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
+                const engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
                 {
                     await engine.init(Object.assign({}, store.providerOptions, { path: context.currentWorkingDirectory }));
                     return { engine, models: Object.entries(store.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model)) };
                 })(), true);
-                var obj = {};
+                const obj = {};
                 engines.forEach(config => Object.keys(config.models).forEach(model => obj[model] = config.engine));
                 sidecar.store = MultiStore.create(obj);
             }
@@ -86,7 +86,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
                 await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
                 {
                     await engine.init(Object.assign({}, stateStoreConfig.providerOptions, { path: context.currentWorkingDirectory }));
-                    Object.entries(stateStoreConfig.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model));
+                    Object.entries(stateStoreConfig.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).forEach(x => x.definition.fromJson(x.model));
                     sidecar.store = Store.create<T>(engine, ...Object.keys(stateStoreConfig.models) as (Exclude<keyof T, number | symbol>)[]);
                 })();
             break;
@@ -97,9 +97,9 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     }
 
     const plugins = context.state.get<{ sidecar: string, optional: true, command: string, parameters: Serializable }[]>('plugins');
-    if (plugins && plugins.length)
+    if (plugins?.length)
     {
-        var failedSidecars: string[] = [];
+        const failedSidecars: string[] = [];
 
         await eachAsync(plugins, async (plugin) =>
         {

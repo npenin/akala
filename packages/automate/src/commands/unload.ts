@@ -13,11 +13,11 @@ export default async function (this: State, container: Container<unknown>, name:
 
     if (workflow.on)
     {
-        Object.entries(workflow.on).map(async ([triggerName, value]) =>
+        await Promise.all(Object.entries(workflow.on).map(async ([triggerName, value]) =>
         {
             if (triggerName == 'cron')
             {
-                var stringValue: string;
+                let stringValue: string;
 
                 if (typeof (value) == 'string')
                     stringValue = value;
@@ -30,7 +30,7 @@ export default async function (this: State, container: Container<unknown>, name:
             }
             else if (triggerName in this.triggers)
                 await this.triggers[triggerName].dispatch('unsubscribe', container, value as string);
-        });
+        }));
     }
 
 }

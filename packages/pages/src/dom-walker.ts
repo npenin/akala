@@ -141,7 +141,7 @@ export function renderOuter(tag: Tag<string> | CompositeTag<string> | TextTag<st
             }
             else
                 throw new Error('Not supported');
-        case 'html':
+        case 'html': {
             let head = ''
             const html = tag as Document;
             if (tag.preRender)
@@ -167,8 +167,8 @@ export function renderOuter(tag: Tag<string> | CompositeTag<string> | TextTag<st
                 prefix = outdent(prefix);
             }
             return `<!doctype html><${tag.type}${renderAttributes(tag.attributes)}>${prefix}<head>${head}${prefix}</head>${prefix}<body>${html.body.map(v => renderOuter(v, indent(prefix))).join('')}${prefix}<body>${prefix}</${tag.type}>`;
-
-        default:
+        }
+        default: {
             let result: string = '';
             if (typeof tag.type == 'function')
             {
@@ -188,7 +188,7 @@ export function renderOuter(tag: Tag<string> | CompositeTag<string> | TextTag<st
                         Object.assign(tag.attributes, def.attributes)
                     return result + renderOuter(final)
                 }
-                return result + renderOuter({ ...tag, type: tag.type.type as string } as unknown as Tag<string>)
+                return result + renderOuter({ ...tag, type: tag.type.type } as unknown as Tag<string>)
             }
             if (tag.preRender)
             {
@@ -228,6 +228,7 @@ export function renderOuter(tag: Tag<string> | CompositeTag<string> | TextTag<st
                 return tag.renderWithChildren(result, prefix) || result;
 
             return result;
+        }
     }
 }
 
@@ -256,7 +257,7 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
             }
             else
                 throw new Error('Not supported');
-        case 'html':
+        case 'html': {
             const html = tag as Document;
             if (html.head)
             {
@@ -274,19 +275,20 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
                 {
                     for (let meta of head.getElementsByTagName('meta'))
                         head.removeChild(meta);
-                    Object.entries(html.head.meta).map(meta => renderOuterWithDomAPI({ type: 'meta', attributes: { name: { value: meta[0] }, content: meta[1] } }).forEach(m => head.appendChild(m)))
+                    Object.entries(html.head.meta).forEach(meta => renderOuterWithDomAPI({ type: 'meta', attributes: { name: { value: meta[0] }, content: meta[1] } }).forEach(m => head.appendChild(m)))
                 }
                 if (html.head.links)
-                    html.head.links.map(link => renderOuterWithDomAPI({ type: 'link', attributes: { rel: link.rel, href: link.src } }, document).forEach(m => head.appendChild(m)))
+                    html.head.links.forEach(link => renderOuterWithDomAPI({ type: 'link', attributes: { rel: link.rel, href: link.src } }, document).forEach(m => head.appendChild(m)))
                 if (html.head.jsInit)
-                    html.head.jsInit.map(v => renderOuterWithDomAPI(v, document).forEach(n => head.appendChild(n)));
+                    html.head.jsInit.forEach(v => renderOuterWithDomAPI(v, document).forEach(n => head.appendChild(n)));
             }
             html.body.forEach(t =>
             {
                 document.body.replaceChildren(...renderOuterWithDomAPI(t, document));
             })
+        }
             break;
-        default:
+        default: {
             const result: Node[] = [];
             if (tag.preRender)
             {
@@ -313,9 +315,10 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
                         self.textContent = tag.content;
                 }
                 else
-                    tag.content.map((v: Tag<any>) => renderOuterWithDomAPI(v).forEach(n => self.appendChild(n)));
+                    tag.content.forEach((v: Tag<any>) => renderOuterWithDomAPI(v).forEach(n => self.appendChild(n)));
             if (tag.event?.renderWithChildren)
                 tag.renderWithChildren(self);
             return result;
+        }
     }
 }

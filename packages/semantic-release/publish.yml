@@ -28,6 +28,7 @@ jobs:
         with:
           shell: true
       - name: tag
+        if: options.branch=='main'
         foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
         run:
@@ -38,6 +39,7 @@ jobs:
           - -m
           - tagging $($.name)@$($.version)
       - name: push2
+        if: options.branch=='main'
         run: git push origin --tags
         with:
           shell: true

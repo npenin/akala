@@ -1,5 +1,4 @@
-import { isProxy, base64 } from '@akala/core';
-import { Serializable, SerializableObject } from '@akala/core';
+import { isProxy, base64, Serializable, SerializableObject } from '@akala/core';
 import fs from 'fs/promises'
 import { inspect } from 'util'
 
@@ -15,7 +14,7 @@ const { subtle } = globalThis.crypto;
 async function generateAesKey(length = 256)
 {
     const key = await subtle.generateKey({
-        name: 'AES-CBC',
+        name: 'AES-GCM',
         length,
     }, true, ['encrypt', 'decrypt']);
 
@@ -130,13 +129,14 @@ export default class Configuration<T extends object = SerializableObject>
                 {
                     case 'then':
                         return undefined;
-                    default:
+                    default: {
                         if (typeof key == 'number' || typeof key == 'symbol')
                             throw new Error(`Unsupported key type: ${typeof key}, value: ${key}`);
-                        var result = target.get(key as Exclude<keyof T, number | symbol>);
+                        const result = target.get(key as Exclude<keyof T, number | symbol>);
                         if (typeof result == 'undefined' && Reflect.has(target, key) && typeof key == 'string')
                             return Reflect.get(target, key, receiver);
                         return result;
+                    }
                 }
             },
             set(target, p, value, receiver)
@@ -223,7 +223,7 @@ export default class Configuration<T extends object = SerializableObject>
     {
         if (key)
         {
-            var value = key.split('.').reduce(function (config, key)
+            const value = key.split('.').reduce(function (config, key)
             {
                 if (typeof (config) === 'undefined')
                     return config;
@@ -271,7 +271,7 @@ export default class Configuration<T extends object = SerializableObject>
     public set(key: string | Exclude<keyof T, symbol | number>, newConfig: unknown): void
     {
         const keys = key.split('.');
-        keys.reduce(function (config, key, i)
+        return keys.reduce(function (config, key, i)
         {
             if (keys.length == i + 1)
             {
@@ -300,7 +300,7 @@ export default class Configuration<T extends object = SerializableObject>
     public delete(key: string | Exclude<keyof T, symbol | number>): void
     {
         const keys = key.split('.');
-        keys.reduce(function (config, key, i)
+        return keys.reduce(function (config, key, i)
         {
             if (typeof config === 'undefined')
                 return;

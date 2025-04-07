@@ -10,9 +10,7 @@ import { Formatter, FormatterFactory } from '../formatters/common.js';
 import { formatters } from '../formatters/index.js';
 import { escapeRegExp } from '../reflect.js';
 
-
 const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;
-// var jsonSingleQuoteKeyRegex = /^ *'([^']+)'|([^\: ]+) *: */;
 
 export interface ParsedAny
 {
@@ -110,9 +108,10 @@ function operatorLength(operator: BinaryOperator | TernaryOperator)
         case TernaryOperator.Unknown:
             throw new Error('Unknown operator ' + operator);
 
-        default:
+        default: {
             let x: never = operator;
             throw new Error('Unhandled operator ' + x);
+        }
     }
 }
 
@@ -176,12 +175,10 @@ export class ParsedBinary extends BinaryExpression<ExpressionsWithLength> implem
                     case BinaryOperator.Div:
                     case BinaryOperator.And:
                     case BinaryOperator.Or:
-                        var left = operation.left;
-                        return new ParsedBinary(right.operator, new ParsedBinary(operation.operator, left, right.left), right.right);
+                        return new ParsedBinary(right.operator, new ParsedBinary(operation.operator, operation.left, right.left), right.right);
                     case BinaryOperator.QuestionDot:
                     case BinaryOperator.Dot:
-                        var left = operation.left;
-                        return new MemberExpression(new MemberExpression(left as TypedExpression<unknown>, right.left, operation.operator == BinaryOperator.QuestionDot), right.right, right.operator == BinaryOperator.QuestionDot);
+                        return new MemberExpression(new MemberExpression(operation.left as TypedExpression<unknown>, right.left, operation.operator == BinaryOperator.QuestionDot), right.right, right.operator == BinaryOperator.QuestionDot);
                 }
             }
             if (operation.right instanceof ParsedTernary)
@@ -318,7 +315,7 @@ export class ParsedCall extends CallExpression<any, any> implements ParsedAny
  */
 export class Parser
 {
-    public static parameterLess: Parser = new Parser();
+    public static readonly parameterLess: Parser = new Parser();
 
     private parameters: Record<string, ParameterExpression<unknown>>;
 
@@ -414,9 +411,10 @@ export class Parser
             expression = expression.substring(1);
         }
 
-        if (/^true|false|undefined/.exec(expression))
+        const boolMatch = /^(?:true|false|undefined)/.exec(expression)
+        if (boolMatch)
         {
-            const result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
+            const result = new ParsedBoolean(boolMatch[0]);
             if (formatter !== identity.instance)
             {
                 const newResult = new ParsedBoolean(formatter.format(result.value) as boolean);
@@ -455,15 +453,15 @@ export class Parser
     {
         let length = 0;
         let operator: UnaryOperator;
-        while (expression[0] == '!')
+        while (expression[0] === '!')
         {
-            if (expression[0] == '!')
+            if (expression[0] === '!')
             {
                 operator = UnaryOperator.Not;
                 expression = expression.substring(1);
                 length++;
             }
-            if (expression[0] == '!')
+            if (expression[0] === '!')
             {
                 operator = UnaryOperator.NotNot;
                 expression = expression.substring(1);
@@ -471,7 +469,7 @@ export class Parser
             }
         }
 
-        let item = /^[\w0-9\$_]*\??/.exec(expression)[0];
+        let item = /^[\w\$_]*\??/.exec(expression)[0];
         const itemLength = item.length;
         length += itemLength;
 
@@ -508,19 +506,14 @@ export class Parser
      */
     public parseFormatter(expression: string, lhs: ExpressionsWithLength, reset: () => void): ExpressionsWithLength
     {
-        const item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
+        const item = /^ *# *([\w\.\$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
-        // const formatter: FormatterFactory<unknown, ParsedOneOf> = module('$formatters').resolve('#' + item[1]);
-        // if (!formatter)
-        //     throw new Error(`filter not found: ${item[1]}`)
         reset?.();
         let settings: ExpressionsWithLength;
-        if (expression[0] == ':')
+        if (expression[0] === ':')
         {
             settings = this.parseAny(expression.substring(1), false);
             expression = expression.substring(settings.$$length + 1);
-
-            // settings = formatter.parse(expression.substring(1)) as ParsedObject;
         }
 
         const result = new FormatExpression(lhs, formatters.resolve<FormatterFactory<unknown>>('#' + item[1]), settings);
@@ -554,66 +547,45 @@ export class Parser
                 case '(':
                     reset?.();
                     return this.parseFunctionCall(expression.substring(operator[0].length - 1), lhs, parseFormatter)
-                case '[':
+                case '[': {
                     expression = expression.substring(operator[0].length);
                     rhs = this.parseAny(expression, parseFormatter, reset);
                     const member = new MemberExpression(lhs as TypedExpression<any>, rhs as TypedExpression<any>, false);
                     member.$$length = lhs.$$length + operator[0].length + rhs.$$length + operator[0].length;
                     return this.tryParseOperator(expression.substring(rhs.$$length + operator[0].length), member, parseFormatter, reset);
-
+                }
                 case '?.':
-                case '.':
+                case '.': {
                     expression = expression.substring(operator[0].length);
 
-                    this.parameters = Object.assign({}, this.parameters, { '': lhs });
+                    this.parameters = { ...this.parameters, '': lhs as ParameterExpression<unknown> };
                     const selfReset = (() => { this.parameters = oldParameters });
                     rhs = this.parseAny(expression, parseFormatter, reset || selfReset);
                     rhs.$$length += operator[0].length;
                     selfReset();
-                    // if (rhs.type == ExpressionType.MemberExpression)
-                    // {
-                    //     let me: MemberExpression<any, any, any> = rhs;
-                    //     const reverseStack = [me]
-
-                    //     while (me.source?.type == ExpressionType.MemberExpression)
-                    //     {
-                    //         me = me.source;
-                    //         reverseStack.unshift(me);
-                    //     }
-                    //     // lhs = new MemberExpression(lhs as TypedExpression<any>, me.member as TypedExpression<any>, parseOperator(operator[1]) == BinaryOperator.QuestionDot)
-                    //     let lhsLength = lhs.$$length + operator[0].length + rhs.$$length;
-                    //     for (let i = 0; reverseStack.length; i++)
-                    //     {
-                    //         me = reverseStack.shift();
-
-                    //         lhs = new MemberExpression(lhs as TypedExpression<any>, me.member, i == 0 && operator[1] == '?.' || i > 0 && me.optional);
-                    //     }
-                    //     lhs.$$length = lhsLength;
-                    //     return lhs;
-                    // }
-                    // var binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs);
-                    // binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
-                    // return ParsedBinary.applyPrecedence(binary);
                     return rhs;
-                case '?':
+                }
+                case '?': {
                     expression = expression.substring(operator[0].length);
                     const tOperator = parseTernaryOperator(operator[1])
                     const second = this.parseAny(expression, parseFormatter, reset);
                     expression = expression.substring(second.$$length);
-                    const operator2 = /^ *(:)/.exec(expression);
+                    const operator2 = /^ *(:) */.exec(expression);
                     if (!operator2)
                         throw new Error('Invalid ternary operator');
                     const third = this.parseAny(expression.substring(operator2[0].length), parseFormatter, reset);
-                    var ternary = new ParsedTernary(tOperator, lhs, second, third)
+                    const ternary = new ParsedTernary(tOperator, lhs, second, third)
                     ternary.$$length = lhs.$$length + operator[0].length + second.$$length + operator2[0].length + third.$$length;
                     return ternary;
-                default:
+                }
+                default: {
                     reset?.();
                     expression = expression.substring(operator[0].length);
                     rhs = this.parseAny(expression, parseFormatter);
-                    var binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs)
+                    const binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs)
                     binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
                     return ParsedBinary.applyPrecedence(binary);
+                }
             }
         }
         else
@@ -633,7 +605,6 @@ export class Parser
         const length = this.parseCSV(expression, (result) =>
         {
             let item = this.parseAny(result, parseFormatter);
-            // item = this.tryParseOperator(result.substring(item.$$length), item, parseFormatter);
             results.push(item as StrictExpressions & ParsedAny);
             return item;
         }, ')');
@@ -654,11 +625,9 @@ export class Parser
     {
         const results: ExpressionsWithLength[] & ParsedAny = [];
         Object.defineProperty(results, '$$length', { value: 0, enumerable: false, configurable: true, writable: true });
-        // const isFunction = false;
         const length = this.parseCSV(expression, (result) =>
         {
             let item = this.parseAny(result, parseFormatter);
-            // item = this.tryParseOperator(result.substring(item.$$length), item, parseFormatter);
             results.push(item);
             return item;
         }, ']');
@@ -693,11 +662,6 @@ export class Parser
      */
     public static operate(operator: BinaryOperator, left?: unknown, right?: unknown)
     {
-        // if (arguments.length == 1)
-        //     return function (left: unknown, right: unknown)
-        //     {
-        //         return this.operate(operator, left, right);
-        //     }
         switch (operator)
         {
             case BinaryOperator.Equal:
@@ -748,14 +712,11 @@ export class Parser
     {
         expression = expression.substring(1);
         let length = 1;
-        // let isFunction = false;
         do
         {
             const item = parseItem(expression);
 
             length += item.$$length;
-            // if (item instanceof Function || item instanceof ParsedBinary)
-            //     isFunction = true;
 
             expression = expression.substring(item.$$length);
             const next = /^ *, */.exec(expression);
@@ -785,22 +746,14 @@ export class Parser
         Object.defineProperty(parsedObject, '$$length', { value: 0, enumerable: false, writable: true, configurable: true });
         const result = this.parseCSV(expression, (expression) =>
         {
-            // var length = 0;
             const keyMatch = jsonKeyRegex.exec(expression);
 
             const key = keyMatch[1] || keyMatch[2] || keyMatch[3];
-            //console.log(keyMatch);
             let length = keyMatch[0].length + keyMatch.index;
             expression = expression.substring(length);
             const item = this.parseAny(expression, parseFormatter);
             length += item.$$length;
-            // if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
-            //     parsedObject[key] = item.value;
-            // else if (item instanceof ParsedBinary)
-            //     parsedObject[key] = item.evaluate.bind(item);
-            // else
             parsedObject.push({ key, value: item });
-            // expression = expression.substring(result[key].$$length);
             item.$$length = length;
             parsedObject.$$length += length;
             // console.log(expression);

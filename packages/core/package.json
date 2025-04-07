@@ -1,9 +1,10 @@
 {
     "name": "@akala/core",
-    "version": "24.0.3",
+    "version": "24.0.9",
     "description": "",
     "scripts": {
-        "test": "node --test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/core.v8 --test-reporter-destination=../../coverage/core.info --enable-source-maps dist/esm/test/*.js",
+        "test": "node --test --enable-source-maps",
+        "coverage": "yarn test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/core.v8 --test-reporter-destination=lcov.info --enable-source-maps dist/esm/test/**.js",
         "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json"
     },

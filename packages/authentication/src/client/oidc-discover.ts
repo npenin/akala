@@ -5,7 +5,7 @@ export default async function (url: string | URL): Promise<Metadata.Command[]>
 {
     const result: Metadata.Command[] = [];
 
-    const config = await fetch(new URL('./.well-known/openid-configuration', url)).then(r => r.ok ? r.json() : Promise.reject('The OIDC configuration could not be detected')) as OIDCDescriptionWithOptional;
+    const config = await fetch(new URL('./.well-known/openid-configuration', url)).then(r => r.ok ? r.json() : Promise.reject(new Error('The OIDC configuration could not be detected'))) as OIDCDescriptionWithOptional;
 
     if (config.authorization_endpoint)
     {
