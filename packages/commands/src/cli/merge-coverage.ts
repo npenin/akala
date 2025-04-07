@@ -47,9 +47,9 @@ export default async function (inputs: string, output: string)
             const contents = await fs.readFile(file, 'utf-8');
             return contents.replace(/^SF:(.+)$/mg, (_, filePath) =>
             {
-                console.log('file', file);
-                console.log('filePath', filePath);
-                console.log('dirname', join(output, dirname(file), filePath));
+                // console.log('file', file);
+                // console.log('filePath', filePath);
+                // console.log('dirname', join(output, dirname(file), filePath));
                 return 'SF:' + join(output, dirname(file), filePath)
             })
         }
