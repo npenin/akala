@@ -96,7 +96,7 @@ jobs:
           yarn
           mkdir coverage
           yarn coverage
-          akala sdk merge-coverage 'packages/*/lcov.info' .
+          node_modules/.bin/akala sdk merge-coverage 'packages/*/lcov.info' .
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
