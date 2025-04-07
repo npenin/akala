@@ -67,7 +67,7 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
             if ((!option?.doc) && cmd.config.doc?.options?.[optionName])
                 option = { ...option, doc: cmd.config.doc.options[optionName] };
             if ((!option?.doc) && cmd.config.doc?.inject)
-                option = { ...option, doc: cmd.config.doc.inject[i].toString() };
+                option = { ...option, doc: cmd.config.doc.inject[i]?.toString() };
 
             if (!option?.positional)
                 command.option(optionName, option)
