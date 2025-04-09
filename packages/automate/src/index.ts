@@ -227,6 +227,8 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
                                     }, 0)
                                     return resolve(results);
                                 }
+                            case '1stline':
+                                return resolve(result.toString('utf-8', 0, result.length - 1).split('\n')[0]);
                             case 'string':
                             default:
                                 return resolve(result.toString('utf-8', 0, result.length - 1));
@@ -449,7 +451,7 @@ export type JobStepLog = JobStepDef<'log', string | [string, ...unknown[]], { 'l
 export type JobStepIf = JobStepDef<'if', string, void>;
 export type JobStepForEach = JobStepDef<'foreach', string, void>;
 
-export type JobStepRun = JobStepDef<'run', string | string[], SpawnOptionsWithoutStdio & { result?: 'stdout' | 'stderr', format?: 'jsonnd' | 'raw' | 'string' | 'json', timeout?: number }>;
+export type JobStepRun = JobStepDef<'run', string | string[], SpawnOptionsWithoutStdio & { result?: 'stdout' | 'stderr', format?: 'jsonnd' | 'raw' | 'string' | 'json' | '1stline', timeout?: number }>;
 export type JobStepDispatch = JobStepDef<'dispatch'>;
 
 declare module '@akala/pm'
