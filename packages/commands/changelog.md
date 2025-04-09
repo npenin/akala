@@ -1,9 +1,10 @@
-#  (2025-04-07)
+#  (2025-04-09)
 
 
 ### Bug Fixes
 
-* remove extra logging 6b70092
+* default logging level 072212e
+* update commands 168670b
 
 
 
