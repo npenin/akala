@@ -1088,7 +1088,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
      */
     public static isWatched<T>(x: T): x is IWatched<T & object> 
     {
-        return typeof x == 'object' && (watcher in x);
+        return typeof x == 'object' && x && (watcher in x);
     }
 
     /**
