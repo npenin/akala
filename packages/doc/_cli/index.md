@@ -47,7 +47,7 @@ Here is a simple example of what's achievable. This example has been extracted f
 ```ts
 import { program } from '@akala/cli';
 
-type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
+type CliOptions = { output: string, verbose: number, pmSock: string | number, tls: boolean, help: boolean };
 
 const cli = program.options<CliOptions>({ 
     output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' }, 

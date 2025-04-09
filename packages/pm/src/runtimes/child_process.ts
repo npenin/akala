@@ -16,7 +16,7 @@ export type ChildProcessRuntimeEventMap = {
 
 } & RuntimeEventMap;
 
-export type ChildProcessRuntimeOptions = { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean, inheritStdio?: boolean }
+export type ChildProcessRuntimeOptions = { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean, inheritStdio?: boolean }
 
 export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> implements RuntimeInstance<ChildProcessRuntimeEventMap>
 {

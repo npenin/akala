@@ -9,6 +9,7 @@ import { Readable } from 'stream';
 import State, { StateConfiguration } from './state.js';
 import { program, buildCliContextFromProcess, ErrorMessage, supportInteract } from '@akala/cli';
 import { open } from 'fs/promises';
+import { LogLevels } from '@akala/core';
 
 const tableChars = {
     'top': '─'
@@ -29,7 +30,7 @@ const tableChars = {
 }
 const truncate = '…';
 
-type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
+type CliOptions = { output: string, verbose: number, pmSock: string | number, tls: boolean, help: boolean };
 
 const cli = program.options<CliOptions>({ output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' }, verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" }, pmSock: { aliases: ['pm-sock'], needsValue: true, doc: "path to the unix socket or destination in the form host:port" }, help: { doc: "displays this help message" } });
 cli.command('start pm')
@@ -194,7 +195,7 @@ cli.preAction(async c =>
 cli.format(async (result, context) => formatResult(result, context.options.output));
 cli.useError((err: Error, context) =>
 {
-    if (context.options.verbose)
+    if (context.options.verbose >= LogLevels.debug)
         console.error(err);
     else if (err instanceof ErrorMessage)
         console.log(err.message)

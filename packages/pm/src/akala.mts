@@ -7,7 +7,7 @@ import { Readable } from 'stream';
 import { spawnAsync } from '@akala/cli/cli-helper';
 import State, { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
-import { eachAsync, logger, ObservableObject, Parser } from '@akala/core';
+import { eachAsync, logger, LogLevels, ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 import commands from './container.js';
 
@@ -34,8 +34,8 @@ const tableChars = {
 }
 const truncate = '…';
 
-type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
-export default async function (_config, program: NamespaceMiddleware<{ configFile: string, verbose: boolean }>)
+type CliOptions = { output: string, verbose: number, pmSock: string | number, tls: boolean, help: boolean };
+export default async function (_config, program: NamespaceMiddleware<{ configFile: string, verbose: number }>)
 {
     const cli = program.command('pm').state<{ pm?: StateConfiguration }>().options<CliOptions>({
         output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' },
@@ -173,7 +173,7 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
     });
     program.useError((err: Error, context) =>
     {
-        if (context.options.verbose)
+        if (context.options.verbose >= LogLevels.debug)
             console.error(err);
         else if (err instanceof ErrorMessage)
             console.log(err.message)
