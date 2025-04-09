@@ -1167,7 +1167,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         if (typeof result == 'object')
             if (Array.isArray(result) || result instanceof ObservableArray)
                 return new ObservableArray(result) as T[TKey];
-            else
+            else if (result !== null)
                 return new ObservableObject(result).target as T[TKey];
         return result;
     }
