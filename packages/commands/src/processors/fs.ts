@@ -7,8 +7,7 @@ import { Container } from '../model/container.js';
 import { registerCommands } from '../generator.js';
 import { Local } from './local.js';
 import { jsonObject } from '../metadata/index.js';
-import { MiddlewarePromise } from '@akala/core';
-import { eachAsync } from '@akala/core';
+import { MiddlewarePromise, eachAsync } from '@akala/core';
 import { createRequire } from 'module';
 import { handlers, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
@@ -135,10 +134,10 @@ export interface DiscoveryOptions
     relativeTo?: string;
 }
 
-async function resolveFolder(require: NodeRequire, request: string)
+async function resolveFolder(require: NodeJS.Require, request: string)
 {
-    var paths = require.resolve.paths(request);
-    var result = null;
+    let paths = require.resolve.paths(request);
+    let result = null;
     await eachAsync(paths, async p =>
     {
         if (result)
@@ -190,10 +189,11 @@ export class FileSystem extends CommandProcessor
         if (!options)
             options = {};
 
+        let name: string;
         const indexOfColon = root.indexOf('#');
         if (indexOfColon > 1)
         {
-            var name = root.substring(indexOfColon + 1);
+            name = root.substring(indexOfColon + 1);
             root = root.substring(0, indexOfColon);
         }
 
@@ -234,20 +234,23 @@ export class FileSystem extends CommandProcessor
             const metacontainer: Metadata.Container & { extends?: string[] } = await importJson(path.resolve(root));
             metacontainer.commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
             let globalDefs = metacontainer.$defs;
-            if (metacontainer.extends && metacontainer.extends.length)
+            if (metacontainer.extends?.length)
             {
                 await eachAsync(metacontainer.extends, async subPath =>
                 {
                     const indexOfColon = subPath.indexOf(':');
+                    let name: string;
                     if (indexOfColon > 1)
                     {
-                        var name = subPath.substring(indexOfColon + 1);
+                        name = subPath.substring(indexOfColon + 1);
                         subPath = subPath.substring(0, indexOfColon);
                     }
+
+                    let parentCommands: Metadata.Container;
                     if (indexOfColon > 1)
-                        var parentCommands = await this.discoverMetaCommands(await resolveFolder(cmdRequire, subPath) + ':' + name, { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
+                        parentCommands = await this.discoverMetaCommands(await resolveFolder(cmdRequire, subPath) + ':' + name, { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
                     else
-                        var parentCommands = await this.discoverMetaCommands(await resolveFolder(cmdRequire, subPath), { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
+                        parentCommands = await this.discoverMetaCommands(await resolveFolder(cmdRequire, subPath), { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
                     if (parentCommands.stateless)
                         Object.defineProperty(metacontainer, 'stateless', { enumerable: false, value: parentCommands.stateless });
                     await eachAsync(parentCommands.commands, async c =>
@@ -353,7 +356,7 @@ export class FileSystem extends CommandProcessor
                     {
                         log.debug(`looking for fs default definition`)
                         params = [];
-                        if (cmd.config['']?.inject && cmd.config[''].inject.length)
+                        if (cmd.config['']?.inject?.length)
                         {
                             akala.each(cmd.config[''].inject, item =>
                             {
@@ -445,7 +448,7 @@ export class FileSystem extends CommandProcessor
                 }
             }
             else
-                if (f.isDirectory() && options && options.recursive)
+                if (f.isDirectory() && options?.recursive)
                     metacontainer.commands.push(...(await FileSystem.discoverMetaCommands(path.join(root, f.name), options)).commands.map(c => ({ name: (options.flatten ? '' : (f.name + '.')) + c.name, config: c.config })));
         }, false);
 
@@ -461,7 +464,7 @@ export class FileSystem extends CommandProcessor
     public async handle(origin: Container<unknown>, command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
     {
         let filepath: string;
-        if (command && command.config && command.config.fs && command.config.fs.path)
+        if (command && command.config && command.config.fs?.path)
             filepath = path.resolve(this.root || process.cwd(), command.config.fs.path);
         else
             filepath = path.resolve(this.root || process.cwd(), command.name);
