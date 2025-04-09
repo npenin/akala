@@ -366,7 +366,7 @@ Module['o'].on('task_start', ev => orchestratorLog.debug(ev.message))
 Module['o'].on('task_stop', ev => orchestratorLog.debug(ev.message))
 
 
-var moduleInjector = defaultInjector.resolve<SimpleInjector>('$modules');
+let moduleInjector = defaultInjector.resolve<SimpleInjector>('$modules');
 if (!moduleInjector)
 {
     moduleInjector = new SimpleInjector();
