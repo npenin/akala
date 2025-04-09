@@ -1,3 +1,6 @@
+---
+title: @akala/vite
+---
 # @akala/vite Documentation
 
 ## Overview
