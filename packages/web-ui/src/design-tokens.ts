@@ -1,7 +1,7 @@
 import { eachAsync, map } from "@akala/core";
 import { FileGenerator } from "@akala/commands";
 import { readFile } from 'fs/promises'
-import { fileURLToPath } from "url";
+// import { fileURLToPath } from "url";
 import { CssStyleHandler } from "./css.js";
 import { PassThrough, Writable } from "stream";
 
@@ -183,7 +183,7 @@ export async function generateCssFromTokens(tokens: DTCGTokenGroup<WebUI>, outpu
     await new Promise(resolve => generator.output.end(resolve));
 }
 
-await generateCss(fileURLToPath(import.meta.resolve('../../default-theme.tokens.json')), 'variables.css');
+// await generateCss(fileURLToPath(import.meta.resolve('../../default-theme.tokens.json')), 'variables.css');
 
 function isValidDesignFile(tokens: DTCGTokenGroup, errors: Error[] = []): tokens is DTCGTokenGroup<WebUI>
 {
