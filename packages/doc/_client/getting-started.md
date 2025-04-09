@@ -67,7 +67,7 @@ akala sdk new page <name of your page> [optional path where to create it]
     });
     ```
 
-3. Run any web server (like [../../vite](vite)) and open `index.html` in your browser to see your Akala client in action.
+3. Run any web server (like [vite](../vite)) and open `index.html` in your browser to see your Akala client in action.
 
 
 
