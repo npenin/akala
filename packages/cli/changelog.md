@@ -1,9 +1,11 @@
-#  (2025-04-07)
+#  (2025-04-09)
 
 
 ### Bug Fixes
 
-* handle already provided options d0b15c3
+* default logging level 072212e
+* merge issue 47c562f
+* positional parameters 4c7e6df
 
 
 
