@@ -128,7 +128,7 @@ export default async function updateFrontMatter(directory: string = 'packages/do
                 await updateFrontMatter(path.join(directory, otherFile.name), path.basename(directory).startsWith('_') ? undefined : currentTitle);
     }
     else
-        for (var file of files)
+        for (const file of files)
             if (file.isDirectory())
                 await updateFrontMatter(path.join(directory, file.name));
 }

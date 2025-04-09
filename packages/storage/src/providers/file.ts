@@ -17,7 +17,7 @@ export class File extends PersistenceEngine<FileOptions>
 {
     private store: FileSystemFolder & FileSystemContainer;
 
-    constructor(private fileEntryFactory: (path: string, name: string, def: ModelDefinition) => FileSystemFile)
+    constructor(private readonly fileEntryFactory: (path: string, name: string, def: ModelDefinition) => FileSystemFile)
     {
         super(new FileCommandProcessor(fileEntryFactory));
     }
@@ -36,7 +36,7 @@ export class File extends PersistenceEngine<FileOptions>
 
     public static async from(path: string, rootDbName: string, fileEntryFactory: (path: string, name: string, def: ModelDefinition) => FileSystemFile)
     {
-        var engine = new File(fileEntryFactory);
+        const engine = new File(fileEntryFactory);
         await engine.init({ path, rootDbName });
         return engine;
     }
@@ -61,7 +61,7 @@ export class File extends PersistenceEngine<FileOptions>
                 this.model = model;
                 this.result = (async () =>
                 {
-                    var folder = await Promise.resolve<FileSystemEntries>(store);
+                    let folder = await Promise.resolve<FileSystemEntries>(store);
                     folder = await store[model.namespace || 'db']
                     if (!folder)
                     {
@@ -115,7 +115,7 @@ interface FileOptions
 
 class FileCommandProcessor extends CommandProcessor<FileOptions>
 {
-    constructor(private fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
+    constructor(private readonly fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
     {
         super();
     }
@@ -131,8 +131,8 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
 
     private async getFileName<T>(record: T, model: ModelDefinition<T>)
     {
-        var fileName = '';
-        for (var key of model.key)
+        let fileName = '';
+        for (const key of model.key)
         {
             if (fileName)
                 fileName += this.engineOptions.multipleKeySeparator || '-'
@@ -147,13 +147,13 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
 
     async visitUpdate<T>(cmd: Commands<T>): Promise<CommandResult>
     {
-        var folder = await this.store[cmd.model.namespace || 'db'];
-        if (!folder || !folder[isDirectory])
+        let folder = await this.store[cmd.model.namespace || 'db'];
+        if (!folder?.[isDirectory])
             return Promise.reject(new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db')} is not a folder`));
         folder = await folder[cmd.model.nameInStorage]
-        if (!folder || !folder[isDirectory])
+        if (!folder?.[isDirectory])
             return Promise.reject(new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db', cmd.model.nameInStorage)} is not a folder`));
-        var fileName = await this.getFileName(cmd.record, cmd.model);
+        const fileName = await this.getFileName(cmd.record, cmd.model);
         if (typeof folder[fileName] == 'undefined')
             return Promise.reject(new Error(`the file ${fileName} does not exist`));
 
@@ -168,15 +168,15 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
 
     async visitDelete<T>(cmd: Commands<T>): Promise<CommandResult>
     {
-        var folder = await this.store[cmd.model.namespace || 'db'];
-        if (!folder || !folder[isDirectory])
+        let folder = await this.store[cmd.model.namespace || 'db'];
+        if (!folder?.[isDirectory])
             throw new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db')} is not a folder`);
         if (folder[isNew] && folder[isDirectory])
             await folder
         folder = await folder[cmd.model.nameInStorage]
-        if (!folder || !folder[isDirectory])
+        if (!folder?.[isDirectory])
             throw new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db', cmd.model.nameInStorage)} is not a folder`);
-        var fileName = await this.getFileName(cmd.record, cmd.model);
+        const fileName = await this.getFileName(cmd.record, cmd.model);
         if (typeof folder[fileName] == 'undefined')
             return { recordsAffected: 0 };
 
@@ -196,19 +196,19 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
     async visitInsert<T>(cmd: Create<T>): Promise<CommandResult>
     {
         await this.store;
-        var folder = await this.store[cmd.model.namespace || 'db'];
+        let folder = await this.store[cmd.model.namespace || 'db'];
         if (!folder)
             folder = await (this.store[cmd.model.namespace || 'db'] = createFolder(this.store[fspath], cmd.model.namespace || 'db', null, this.fileEntryFactory));
-        if (!folder || !folder[isDirectory])
+        if (!folder?.[isDirectory])
             return Promise.reject(new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db')} is not a folder`));
 
         if (!await folder[cmd.model.nameInStorage])
             folder[cmd.model.nameInStorage] = createFolder(folder[fspath], cmd.model.nameInStorage, cmd.model, this.fileEntryFactory);
         folder = await folder[cmd.model.nameInStorage]
-        if (!folder || !folder[isDirectory])
+        if (!folder?.[isDirectory])
             return Promise.reject(new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db', cmd.model.nameInStorage)} is not a folder`));
 
-        var fileName = await this.getFileName(cmd.record, cmd.model);
+        const fileName = await this.getFileName(cmd.record, cmd.model);
 
         if (!folder[fileName])
         {
@@ -275,7 +275,7 @@ type FileSystemEntries = FileSystemFile | (FileSystemFolder & FileSystemContaine
 
 function createFolder(path: string, name: string, model: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile): FileSystemFolder & FileSystemContainer
 {
-    var folder = new FolderEntry(path, name, model, fileEntryFactory);
+    const folder = new FolderEntry(path, name, model, fileEntryFactory);
     folder[isNew] = true;
     return new Proxy(folder as any, proxyHandler);
 }
@@ -328,7 +328,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
 
     *[Symbol.iterator]()
     {
-        for (var key of Object.keys(this))
+        for (const key of Object.keys(this))
         {
             if (typeof key == 'symbol')
                 continue;
@@ -433,7 +433,7 @@ export class JsonFileEntry implements FileSystemFile
 
 }
 
-var proxyHandler: ProxyHandler<FileSystemFile | FileSystemFolder> = {
+const proxyHandler: ProxyHandler<FileSystemFile | FileSystemFolder> = {
     get(target, name, receiver)
     {
         if (name === 'then')
@@ -494,7 +494,7 @@ var proxyHandler: ProxyHandler<FileSystemFile | FileSystemFolder> = {
     }
 }
 
-var fileContents: { [path: string]: { lastRead: Date, lastContent: any } } = {};
+const fileContents: { [path: string]: { lastRead: Date, lastContent: any } } = {};
 
 function readJson<T>(path: string, model: ModelDefinition<T>, multipleKeySeparator?: string)
 {
@@ -555,7 +555,7 @@ function writeJson(path: string, json: string, isNew: boolean, model: ModelDefin
 
 function parse<T>(model: ModelDefinition<T>, json: string): T
 {
-    var parsedData = JSON.parse(json);
+    const parsedData = JSON.parse(json);
     return Object.fromEntries(model.membersAsArray.map(f => [f['name'] || f.nameInStorage, parsedData[f.nameInStorage]]));
 }
 
@@ -579,9 +579,9 @@ function parseFileName<T>(model: ModelDefinition<T>, fileName: string, multipleK
                 record[key] = fileName;
                 return '';
             }
-            if (multipleKeySeparator && multipleKeySeparator.length == 1 && fileName[length] == multipleKeySeparator)
+            if (multipleKeySeparator?.length == 1 && fileName[length] == multipleKeySeparator)
                 return fileName.substring(length + 1);
-            if (multipleKeySeparator && multipleKeySeparator.length && fileName.substring(length, multipleKeySeparator.length) == multipleKeySeparator)
+            if (multipleKeySeparator?.length && fileName.substring(length, multipleKeySeparator.length) == multipleKeySeparator)
                 return fileName
             throw new Error('invalid file name')
         }
