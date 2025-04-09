@@ -28,7 +28,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
         args.unshift(fileURLToPath(new URL('../fork', import.meta.url)));
         if (options.inspect)
             args.unshift("--inspect-brk");
-        this.cp = spawn(process.execPath, [require.resolve('../fork')].concat(args), { cwd: process.cwd(), detached: !options.keepAttached, env: Object.assign({ DEBUG_COLORS: process.stdout.isTTY }, process.env), stdio: ['ignore', options.inheritStdio ? 'inherit' : 'pipe', options.inheritStdio ? 'inherit' : 'pipe', 'ipc'], shell: false, windowsHide: true });
+        this.cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !options.keepAttached, env: Object.assign({ DEBUG_COLORS: process.stdout.isTTY }, process.env), stdio: ['ignore', options.inheritStdio ? 'inherit' : 'pipe', options.inheritStdio ? 'inherit' : 'pipe', 'ipc'], shell: false, windowsHide: true });
         if (!options.inheritStdio)
         {
             this.cp.stderr?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stderr);
