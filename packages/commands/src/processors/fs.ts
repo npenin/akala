@@ -183,7 +183,7 @@ export class FileSystem extends CommandProcessor
 
     public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Container>
     {
-        const log = akala.logger('commands:fs:discovery', akala.LogLevels.verbose);
+        const log = akala.logger('commands:fs:discovery');
         log.info(`discovering commands in ${root}`)
 
         if (!options)

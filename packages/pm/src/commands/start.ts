@@ -15,7 +15,7 @@ import Worker from "../runtimes/worker.js";
 //@ts-ignore
 const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
 
-export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ configFile?: string, new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean, autostart?: boolean }>['options'], context?: Pick<CliContext<{}>, 'args'>): Promise<void | { execPath: string, args: string[], cwd: string, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ configFile?: string, new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean, autostart?: boolean }>['options'], context?: Pick<CliContext<{}>, 'args'>): Promise<void | { execPath: string, args: string[], cwd: string, shell: boolean, windowsHide: boolean }>
 {
     let args: string[];
     if (options)

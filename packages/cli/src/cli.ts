@@ -116,7 +116,7 @@ export function cli()
     program.option('verbose', {
         aliases: ['v'],
         needsValue: false,
-        default: akala.LogLevels.info as akala.LogLevels
+        default: akala.LogLevels.help as akala.LogLevels
     }).preAction(async context => { context.logger.level = context.options.verbose });
     program.
         option('configFile', { aliases: ['c', 'config-file'], needsValue: true, default: '' as string }).

@@ -13,7 +13,7 @@ export default function (config, cli: NamespaceMiddleware)
     const program = cli.command('run [file]').option('loader', { needsValue: true, normalize: 'requireMeta' }).
         option('runner', { needsValue: true, normalize: 'require' }).
         option('file', { needsValue: true, normalize: 'require' }).
-        option('verbose', { aliases: ['v'], default: 'info' })
+        option('verbose', { aliases: ['v'], default: 'help' })
     program.action(async context =>
     {
         if (context.options.verbose)

@@ -12,7 +12,7 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
     private readonly cp: Worker;
     public readonly adapter: MessagePortAdapter;
     private _running: boolean;
-    constructor(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean })
+    constructor(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean })
     {
         super();
         this.cp = new Worker(require.resolve('../fork'), { argv: args, stderr: true, stdout: true })
@@ -26,7 +26,7 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
         return this.cp.terminate();
     }
 
-    public static build(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean })
+    public static build(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean })
     {
         return new Runtime(args, options);
     }
