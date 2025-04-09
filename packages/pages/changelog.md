@@ -1,10 +1,11 @@
-#  (2025-03-29)
+#  (2025-04-09)
 
 
 ### Bug Fixes
 
-* https://sonarcloud.io/organizations/npenin/rules?open=typescript%3AS128&rule_key=typescript%3AS128 1989006
-* https://sonarcloud.io/organizations/npenin/rules?open=typescript%3AS128&rule_key=typescript%3AS128 b74756d
+* https://sonarcloud.io/organizations/npenin/rules?open=typescript%3AS128&rule_key=typescript%3AS128 223d2ba
+* https://sonarcloud.io/organizations/npenin/rules?open=typescript%3AS128&rule_key=typescript%3AS128 a58ea17
+* sonar issues 46f2771
 
 
 
