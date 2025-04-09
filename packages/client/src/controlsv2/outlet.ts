@@ -1,11 +1,11 @@
 import { webComponent } from "../behaviors/shared.js";
 import { OutletService } from "../outlet.js";
-import { DataContext, serviceModule } from "../common.js";
+import { bootstrapModule, DataContext, serviceModule } from "../common.js";
 
 @webComponent('kl-outlet')
 export class Outlet
 {
-    constructor(private element: HTMLElement)
+    constructor(private readonly element: HTMLElement)
     {
         if (!element.getAttribute('name'))
             element.setAttribute('name', 'main')
@@ -15,7 +15,7 @@ export class Outlet
     {
         serviceModule.ready(['$outlet'], (outletService: OutletService) => outletService.register(this.element.getAttribute('name'), {
             element: this.element,
-            get scope() { return DataContext.find(this.element)?.getValue()?.context }
+            get scope() { return DataContext.find(this.element)?.getValue()?.context || bootstrapModule.resolve('$rootScope') }
         }));
     }
 
