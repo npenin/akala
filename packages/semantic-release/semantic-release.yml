@@ -31,6 +31,20 @@ jobs:
           result: stdout
           shell: true
           ignore-failure: true
+      - name: tags2
+        if: "!build.tags"
+        outputAs: tags
+        run:
+          - git
+          - tag
+          - --list
+          - $(package.name)@*
+          - --sort=-version:refname
+        with:
+          result: stdout
+          format: 1stline
+          shell: true
+          ignore-failure: true
       - name: commits
         run:
           - git
