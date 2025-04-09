@@ -30,12 +30,12 @@ export default async function generate(options: Partial<DiscoveryOptions>, folde
     {
         if (exists)
         {
-            var existing: Metadata.Container = await importJson(path.resolve(process.cwd(), outputFile));
+            const existing: Metadata.Container = await importJson(path.resolve(process.cwd(), outputFile));
             Object.assign(meta, { ...existing, name: meta.name || existing.name, commands: meta.commands || existing.commands })
         }
     }));
 
-    var commands = await Processors.FileSystem.discoverMetaCommands(path.resolve(folder), Object.assign({ relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new Processors.FileSystem(outputFolder) }, options));
+    const commands = await Processors.FileSystem.discoverMetaCommands(path.resolve(folder), Object.assign({ relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new Processors.FileSystem(outputFolder) }, options));
     Object.assign(meta, commands);
     if (!commands.name && name)
         meta.name = name;

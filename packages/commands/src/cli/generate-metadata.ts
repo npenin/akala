@@ -12,9 +12,9 @@ export const generatorPlugin = new MiddlewareCompositeWithPriorityAsync<[options
 
 generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) =>
 {
-    const types = {};
+    const types: Record<string, string> = {};
 
-    if (!options || !options.noContainer)
+    if (!options?.noContainer)
     {
         await write(output, `\texport interface container \n\t{\n`);
 
@@ -23,7 +23,7 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
             if (cmd.config?.doc)
                 await writeDoc(output, 'args', cmd.config.doc);
 
-            if (cmd.config.fs && cmd.config.fs.disabled)
+            if (cmd.config.fs?.disabled)
                 return;
 
             await write(output, `\t\tdispatch (cmd:'${cmd.name}'`);
@@ -40,13 +40,9 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
                     const args: string[] = [];
                     config.inject.forEach((p, i) =>
                     {
-                        switch (typeof p)
-                        {
-                            case 'string':
-                                if (p.startsWith('param.'))
-                                    args.push(`Argument${i}<typeof import('./${filePath}').default>`)
-                                break;
-                        }
+                        if (typeof p === 'string')
+                            if (p.startsWith('param.'))
+                                args.push(`Argument${i}<typeof import('./${filePath}').default>`)
                     })
                     await write(output, args.join(', '));
                     await write(output, `]): ReturnType<typeof import('./${filePath}').default>\n`);
@@ -54,13 +50,13 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
                 else
                     await write(output, `, ...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
-            else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
+            else if (cmd.config.schema?.inject?.length)
             {
                 await write(output, ', ...args: [');
                 await write(output, (await Promise.all(cmd.config.schema.inject.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p as string | JsonSchema, { '#': cmd.config.schema as any }, types)}`))).join(', '));
                 await write(output, `]): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, types)}>\n`);
             }
-            else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
+            else if (cmd.config[""]?.inject?.length)
             {
                 await write(output, cmd.config[""]?.inject.filter(p => typeof p == 'string' && p.startsWith('param.')).map(() => `, unknown`).join(''));
                 await write(output, `): unknown\n`);
@@ -74,7 +70,7 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
     }
 
 
-    if ((!options || !options.noProxy) && !outputFile.endsWith('.d.ts'))
+    if ((!options?.noProxy) && !outputFile.endsWith('.d.ts'))
     {
         await write(output, `\texport interface proxy \n\t{\n`);
 
@@ -83,7 +79,7 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
             if (cmd.config?.doc)
                 await writeDoc(output, 'args', cmd.config.doc);
 
-            if (cmd.config.fs && cmd.config.fs.disabled)
+            if (cmd.config.fs?.disabled)
                 return;
 
             await write(output, `\t\t'${cmd.name}'`);
@@ -109,13 +105,13 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
                 else
                     await write(output, `(...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
-            else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
+            else if (cmd.config.schema?.inject?.length)
             {
                 await write(output, `(`);
                 await write(output, (await Promise.all(cmd.config.schema.inject.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p as string | JsonSchema, { '#': cmd.config.schema as any }, types)}`))).join(', '));
                 await write(output, `): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, types)}>\n`);
             }
-            else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
+            else if (cmd.config[""]?.inject?.length)
             {
                 await write(output, cmd.config[""]?.inject.filter(p => typeof p == 'string' && p.startsWith('param.')).map((p) => `arg${(p as string).substring(6)}:any`).join(', '));
                 await write(output, `): unknown\n`);
@@ -128,11 +124,11 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
         await write(output, '\t}\n');
     }
 
-    if (!options || !options.noMetadata)
+    if (!options?.noMetadata)
     {
         await write(output, `   export const meta=${JSON.stringify(meta)} as Metadata.Container;\n\n`);
 
-        if (!options || !options.noStandalone)
+        if (!options?.noStandalone)
         {
             await write(output, `   export function connect(processor?:ICommandProcessor) {
             const container = new Container<void>(${JSON.stringify(options.name || 'container')}, void 0);
@@ -211,7 +207,7 @@ async function writeDoc(output: Writable, argName: string, doc: DocConfiguration
     if (doc.inject?.length)
     {
         for (const i in doc.inject)
-            await write(output, `\n\t\t  * @typedef ${argName}${i} - ${doc.inject[i]}`)
+            await write(output, `\n\t\t  * @typedef ${argName}${i} - ${doc.inject[i] as string}`)
 
         await write(output, `\n\t\t  * @param {[${doc.inject.map((_, i) => argName + i).join(', ')}]} ${argName}`)
     }
