@@ -146,6 +146,7 @@
 * force set configFile path f22123d
 * forcing context build f5dfdbc
 * forcing context build b3fe873
+* generator bug when force=true ec5d977
 * git rev list command bbc7fa2
 * git rev list command cd73e5a
 * handle already provided options 37f7aef
@@ -329,6 +330,7 @@
 * strongly type built CliContext state 81df5e6
 * switch from try catch to URL.canParse e766f24
 * switch from try catch to URL.canParse 5d093f5
+* switch to xpm + add more logging 46e58e8
 * switching to working teme 8944649
 * switching to working teme 91a852a
 * ternary operator parsing 2deff53
@@ -396,6 +398,7 @@
 * update titles and parent attributes in markdown files for improved documentation clarity c562dc3
 * update titles and parent attributes in markdown files for improved documentation clarity 717dd51
 * use helpers from @akala/cli 74292f2
+* use proper selector 97fa6f9
 * using proper branch option 4136d01
 * using proper branch option 93a62fb
 * wrong bootstrap link 69bd482
@@ -441,6 +444,7 @@
 * add logo 2b3af22
 * add merge-coverage to SDK bcd0cd4
 * add more flexibility to aws configuration (used in generate tf) 1951d59
+* add name in xpm d8b9ad6
 * add NO_AKALAPOSTINSTALL support bb60b83
 * add NO_AKALAPOSTINSTALL support bebd6b1
 * add runtime concept 1993141
