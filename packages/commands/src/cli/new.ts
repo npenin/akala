@@ -24,7 +24,7 @@ export async function outputHelper(outputFile: string | Writable | undefined, na
         exists = true;
 
         if ((await fs.promises.lstat(outputFile)).isDirectory())
-            outputFile = outputFile + '/' + nameIfFolder;
+            return outputHelper(outputFile + '/' + nameIfFolder, nameIfFolder, force, actionIfExists);
         else if (!force)
             throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
 
