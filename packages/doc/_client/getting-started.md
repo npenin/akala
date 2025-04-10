@@ -25,13 +25,15 @@ akala install @akala/client
 
 Optionally before going further, you may set up your [preferences](preferences).
 
-Once done, you may then create your client application.
+Once done, you may then create your client application. 
 
 ```bash
 akala sdk new client <your project>
 ```
 
-## Creating Your First Page
+This command will create a boilerplate count application with all required dependencies and a default home page. You may just start it using the `vite` command. Please note that this command will leverage the default configuration from `@akala/web-ui` and use its theme as default. You are obviously free to change whatever was generated, this is **your** app !
+ 
+## Creating Your Second Page
 
 The easiest way to create a page is to leverage the CLI
 
@@ -39,37 +41,11 @@ The easiest way to create a page is to leverage the CLI
 akala sdk new page <name of your page> [optional path where to create it]
 ```
 
-1. Create an `index.html` file:
+Imagine you want to create your about page, then your command line might look like the following :
 
-    ```html
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Akala Client</title>
-    </head>
-    <body>
-        <script src="index.js"></script>
-    </body>
-    </html>
-    ```
-
-2. Create an `index.js` file:
-
-    ```javascript
-    import { Akala } from 'akala';
-
-    const app = new Akala();
-
-    app.start().then(() => {
-        console.log('Akala client started');
-    });
-    ```
-
-3. Run any web server (like [vite](../vite)) and open `index.html` in your browser to see your Akala client in action.
-
-
+```bash
+akala sdk new page about pages
+```
 
 ## Learn More
 
