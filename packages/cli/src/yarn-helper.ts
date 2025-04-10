@@ -21,6 +21,7 @@ if (platform() == 'win32')
 
 export default
     {
+        name: 'yarn',
         async setup(path?: string, options?: { production?: boolean }): Promise<void>
         {
             await spawnAsync(npm, { cwd: path, shell: true }, 'workspaces', 'focus', ...(options?.production ? ['--production'] : []));
