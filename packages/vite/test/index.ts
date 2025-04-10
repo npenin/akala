@@ -16,4 +16,4 @@ bootstrapModule.activate(['services.$outlet'], async (outlet: OutletService) =>
     outlet.use('/', 'main', Home);
 })
 
-bootstrap('app')
+bootstrap('#app')
