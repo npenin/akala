@@ -1,20 +1,15 @@
 {
     "name": "@akala/authentication",
-    "peerDependencies": {
-        "@akala/server": "*"
-    },
     "dependencies": {
-        "@akala/jwt": "workspace:^",
-        "@akala/storage": "workspace:^",
+        "accepts": "^2.0.0",
         "co-body": "^6.2.0",
-        "connect-ensure-login": "^0.1.1",
-        "oauth2orize": "^1.12.0",
-        "passport": "^0.7.0",
-        "passport-http": "^0.3.0",
-        "passport-http-bearer": "^1.0.1",
-        "passport-local": "^1.0.0",
-        "passport-oauth2-client-password": "^0.1.2",
+        "mime": "^4.0.7",
         "reflect-metadata": "^0.2.2"
+    },
+    "optionalDependencies": {
+        "@akala/jwt": "workspace:^",
+        "@akala/server": "workspace:^",
+        "@akala/storage": "workspace:^"
     },
     "source": "src/server/index.ts",
     "publishConfig": {
@@ -29,8 +24,6 @@
     "main": "./dist/cjs/index.js",
     "type": "module",
     "devDependencies": {
-        "@akala/commands": "workspace:^",
-        "@akala/server": "workspace:^",
         "@types/co-body": "^6.1.3",
         "@types/debug": "^4.1.12",
         "@types/node": "^22.13.14",
@@ -43,7 +36,6 @@
         "generate": "ac generate dist/esm/server/commands commands.json --name auth",
         "generate-metadata": "ac generate-metadata commands.json src/container.ts"
     },
-    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
         ".": {
             "import": {
@@ -55,6 +47,7 @@
                 "default": "./dist/cjs/index.js"
             }
         },
+        "./akala": "./dist/esm/akala.mjs",
         "./commands.json": "./commands.json"
     },
     "module": "./dist/esm/index.js",

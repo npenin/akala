@@ -4,7 +4,7 @@ import { AuthenticationStore } from '../authentication-store.js';
 import { PersistenceEngine, providers } from "@akala/storage";
 // import { webcrypto as crypto } from "crypto";
 import { sidecar } from "@akala/pm";
-import { ExchangeMiddleware, OAuthError } from "../master.js";
+import { ExchangeMiddleware, OAuthError } from "../index.js";
 import { BinaryOperator } from "@akala/core/expressions";
 import { Token } from "../../model/access-token.js";
 import { HttpRouter } from "@akala/server";

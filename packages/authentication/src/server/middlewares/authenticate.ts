@@ -1,12 +1,12 @@
 import { MiddlewareAsync, MiddlewarePromise } from '@akala/core';
-import { Request, Response } from '@akala/server'
 import { User } from '../../model/user.js';
+import { AuthRequest } from '../index.js';
 
-export abstract class AuthenticateMiddleware<T> implements MiddlewareAsync<[Request, Response]>
+export abstract class AuthenticateMiddleware<T> implements MiddlewareAsync<[AuthRequest<T>, ...unknown[]]>
 {
-    public abstract validate(req: Request): Promise<T>;
+    public abstract validate(req: AuthRequest<T>): Promise<T>;
 
-    handle(req: Request): MiddlewarePromise
+    handle(req: AuthRequest<T>): MiddlewarePromise
     {
         return this.validate(req).then((user) => { req.user = user; return Promise.resolve(); }, x => Promise.resolve(x));
     }
@@ -19,7 +19,7 @@ export class HeaderAuthenticateMiddleware<T> extends AuthenticateMiddleware<T>
         super();
     }
 
-    public validate(value: Request): Promise<T>
+    public validate(value): Promise<T>
     {
         return value?.headers?.[this.headerName] && this.validateHeader(value.headers[this.headerName]);
     }
