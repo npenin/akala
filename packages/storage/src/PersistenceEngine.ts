@@ -92,9 +92,12 @@ export abstract class PersistenceEngine<TOptions = string>
         return transaction;
     }
 
-    public commitTransaction()
+    public commitTransaction(transaction?: Transaction)
     {
-        var result = this.process(...this.transaction.commands);
+        if (!transaction && !this.transaction)
+            throw new Error('There is no pending transaction to commit');
+
+        const result = this.process(...(transaction || this.transaction).commands);
         this.transaction = undefined;
         return result;
     }
