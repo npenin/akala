@@ -11,7 +11,13 @@ function isRoot(indexOfSep: number): boolean
     return path.sep == '\\' ? indexOfSep == 2 : indexOfSep == 0
 }
 
-export type AkalaConfig = { plugins: string[], commit?: () => Promise<void> };
+export interface AkalaConfig
+{
+    plugins: string[],
+    commit?: () => Promise<void>
+}
+
+export type Plugin = (config: AkalaConfig, program: NamespaceMiddleware<{ help: boolean, configFile: string }>, context: CliContext<{ configFile: string }, AkalaConfig>) => Promise<void> | void;
 
 export async function loadConfig(context: CliContext<{ configFile: string }, AkalaConfig>)
 {
@@ -81,7 +87,7 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
     return loadedConfig;
 }
 
-export async function loadPlugins(context: CliContext<{ configFile: string }, AkalaConfig>, mainProgram: NamespaceMiddleware<{ help: boolean }>, plugins: string[])
+export async function loadPlugins(context: CliContext<{ configFile: string }, AkalaConfig>, mainProgram: NamespaceMiddleware<{ help: boolean, configFile: string }>, plugins: string[])
 {
 
     if (plugins)
@@ -99,7 +105,7 @@ export async function loadPlugins(context: CliContext<{ configFile: string }, Ak
             {
                 packageName = plugin;
             }
-            (await import(packageName)).default(context.state, mainProgram, context);
+            ((await import(packageName)).default as Plugin)(context.state, mainProgram, context);
         });
         context.logger.debug(`plugins loaded`);
     }
@@ -127,7 +133,7 @@ export function cli()
         }).
         preAction(async (context) =>
         {
-            await loadPlugins(context, mainProgram, plugins);
+            await loadPlugins(context, mainProgram as NamespaceMiddleware<{ help: true, configFile: string }>, plugins);
         })
 
     program.option('help', { needsValue: false });
