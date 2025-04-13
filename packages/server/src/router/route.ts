@@ -3,7 +3,7 @@ import { Request, Response } from './shared.js'
 
 export class HttpRouteMiddleware<T extends [Request, Response]> extends MiddlewareRouteAsync<T>
 {
-    constructor(private method: string, ...args: RouteBuilderArguments)
+    constructor(private readonly method: string, ...args: RouteBuilderArguments)
     {
         super(...args);
         this.method = this.method.toLowerCase();
@@ -16,15 +16,10 @@ export class HttpRouteMiddleware<T extends [Request, Response]> extends Middlewa
 
     public handle(...context: T): MiddlewarePromise
     {
-        let method = context[0].method && context[0].method.toLowerCase()
+        let method = context[0].method?.toLowerCase()
         if (method == 'options')
         {
             return Promise.resolve({ allow: [method] });
-        }
-
-        if (method === 'head')
-        {
-            method = 'get'
         }
 
         return super.handle(...context);
