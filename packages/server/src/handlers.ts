@@ -1,4 +1,4 @@
-import { serverHandlers } from "@akala/commands";
+import { serverHandlers as commandHandlers, Processors } from "@akala/commands";
 import { NetConnectOpts } from "net";
 import * as ws from 'ws'
 import * as jsonrpcws from '@akala/json-rpc-ws';
@@ -6,71 +6,85 @@ import * as jsonrpcws from '@akala/json-rpc-ws';
 import https from 'https';
 import http, { ServerOptions } from 'http';
 import { trigger } from "./triggers/http.js";
-import { Processors } from "@akala/commands";
-import http2, { Http2Server } from "http2";
+import http2 from "http2";
+import { UrlHandler } from "@akala/core";
 
-serverHandlers.useProtocol('http', async (url, container, options: (ServerOptions) & { signal: AbortSignal }) =>
+export const serverHandlers = new UrlHandler<[URL, (http.ServerOptions | http2.ServerOptions | https.ServerOptions | http2.SecureServerOptions) & { signal: AbortSignal }, void], http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server>(true);
+
+serverHandlers.useProtocol('http', async (url, options) =>
 {
-    const server: http.Server = http.createServer(options);
-
-    container.register('$webServer', server);
-    container.register('$masterRouter', container.attach(trigger, server));
+    const server: http.Server = http.createServer(options as http.ServerOptions);
 
     await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-
-        if (url.pathname)
-            server.listen(url.host + url.pathname, resolve);
+        server.listen(Number(url.port), url.hostname, resolve);
         options.signal.addEventListener('abort', () => { server.close(); server.closeAllConnections(); });
     });
-});
-serverHandlers.useProtocol('http2', async (url, container, options: (http2.ServerOptions) & { signal: AbortSignal }) =>
-{
-    const server: Http2Server = http2.createServer(options);
+    console.log(`server listening on http://${url.hostname}:${url.port}`);
 
-    container.register('$webServer', server);
-    container.register('$masterRouter', container.attach(trigger, server));
+    return server;
+});
+
+serverHandlers.useProtocol('http2', async (url, options) =>
+{
+    const server: http2.Http2Server = http2.createServer(options as http2.ServerOptions);
 
     await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-
-        if (url.pathname)
-            server.listen(url.host + url.pathname, resolve);
-        else
-            server.listen({ host: url.hostname, port: url.port }, resolve)
+        server.listen(Number(url.port), url.hostname, resolve);
         options.signal.addEventListener('abort', () => { server.close(); });
     });
+    console.log(`server listening on http2://${url.hostname}:${url.port}`);
+
+    return server;
 });
-
-serverHandlers.useProtocol<https.ServerOptions | http2.ServerOptions>('https', async (url, container, options,) =>
+serverHandlers.useProtocol('https', async (url, options) =>
 {
-    // let server: https.Server | Http2SecureServer | Http2Server;
-
-    const server = http2.createSecureServer(options)
-
-    container.register('$webServer', server);
-    container.register('$masterRouter', container.attach(trigger, server));
+    const server: https.Server = https.createServer(options as https.ServerOptions);
 
     await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-
-        if (url.pathname)
-            server.listen(url.host + url.pathname, resolve);
+        server.listen(Number(url.port), url.hostname, resolve);
         options.signal.addEventListener('abort', () => { server.close(); });
     });
+    console.log(`server listening on https://${url.hostname}:${url.port}`);
+
+    return server;
+});
+serverHandlers.useProtocol('http2s', async (url, options) =>
+{
+    const server: http2.Http2SecureServer = http2.createSecureServer(options as http2.SecureServerOptions);
+    await new Promise<void>((resolve, reject) =>
+    {
+        server.once('error', reject);
+        server.listen(Number(url.port), url.hostname, resolve);
+        options.signal.addEventListener('abort', () => { server.close(); });
+    });
+    console.log(`server listening on http2s://${url.hostname}:${url.port}`);
+
+    return server;
 });
 
-serverHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options) =>
+
+commandHandlers.protocol.use(async (url, container, options: (ServerOptions) & { signal: AbortSignal }) =>
+{
+    const server = await serverHandlers.process(url, options)
+
+    container.register('$webServer', server);
+    container.register('$masterRouter', container.attach(trigger, server));
+});
+
+commandHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options) =>
 {
     let server: http.Server | https.Server;// | Http2SecureServer | Http2Server;
 
     server = container.resolve('$webServer');
     if (server == null)
     {
-        await serverHandlers.process(new URL(url.toString().replace(/^ws:/, 'http:')), container, options);
+        await commandHandlers.process(new URL(url.toString().replace(/^ws:/, 'http:')), container, options);
         server = container.resolve('$webServer');
     }
 
@@ -83,14 +97,14 @@ serverHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options)
 });
 
 
-serverHandlers.useProtocol<NetConnectOpts>('wss', async (url, container, options) =>
+commandHandlers.useProtocol<NetConnectOpts>('wss', async (url, container, options) =>
 {
     let server: http.Server | https.Server;// | Http2SecureServer | Http2Server;
 
     server = container.resolve('$webServer');
     if (server == null)
     {
-        await serverHandlers.process(new URL(url.toString().replace(/^wss:/, 'https:')), container, options);
+        await commandHandlers.process(new URL(url.toString().replace(/^wss:/, 'https:')), container, options);
         server = container.resolve('$webServer');
     }
 
