@@ -3,7 +3,7 @@ import * as core from '@akala/core'
 
 export class Queue<T> extends core.Queue<T>
 {
-    private filePath: string;
+    private readonly filePath: string;
 
     constructor(handler: (message: T, next: (processed: boolean) => void) => void, queue?: T[] | string)
     {
