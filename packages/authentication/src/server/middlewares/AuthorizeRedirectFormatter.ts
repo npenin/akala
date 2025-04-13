@@ -17,7 +17,7 @@ export class AuthorizeRedirectFormatter implements ErrorMiddlewareAsync<[unknown
             if (typeof url === 'string')
                 url = new URL(url);
             if (this.redirectQueryParameter)
-                url.searchParams[this.redirectQueryParameter] = req.url;
+                url.searchParams[this.redirectQueryParameter] = req['returnUrl'] || req.url;
             return Promise.reject(response.redirect(url.toString()));
         }
         return Promise.resolve();
