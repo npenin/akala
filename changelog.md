@@ -1,4 +1,4 @@
-#  (2025-04-10)
+#  (2025-04-13)
 
 
 * chore : code cleanup eae1150
@@ -216,6 +216,7 @@
 * links e6a33ea
 * links 53c17f6
 * login page sonar issues e620328
+* many fixes (still not prod ready) a440f8a
 * mapAsync behavior 53a0ef7
 * merge issue 47c562f
 * merge run steps b508445
@@ -285,6 +286,7 @@
 * rename provider to processor f755ab3
 * rename provider to processor ee37f19
 * rename root project to prevent conflicts with new akala project fff5646
+* rest parameter overwriting default value a80f45c
 * restore proper regex from github autofix 154e05b
 * restructure CLI documentation and add new sections bf15ad8
 * restructure CLI documentation and add new sections d48e2cc
@@ -451,6 +453,9 @@
 * add version field to package.json for documentation package 42a4cc8
 * add version field to package.json for documentation package ac5b028
 * add xpm (but not leverage it yet) 84f1def
+* akala plugin implementation d050e1a
+* allow not assigning result as last parameter cbc28b4
+* allow providing transaction during commit a1460f9
 * code from akala helper to trigger akala install b95b3bb
 * code from akala helper to trigger akala install 003219e
 * disable comments 60901b4
@@ -469,6 +474,7 @@
 * export cli-helper, yarn-helper  and npm-helper ce23f8e
 * export Generator type and allow actionIfExists to prevent to generate a file if result ===false f58deab
 * export Generator type and allow actionIfExists to prevent to generate a file if result ===false 32ae777
+* export serverHandlers and new serve function to quickly build servers e6fc0ea
 * expose xpm f60e75a
 * first CLI client generator working !!! 822b8ba
 * first CLI client generator working !!! 2ab3f9e
@@ -482,6 +488,8 @@
 * make help accessible everywhere by any clicontext 9f5892a
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
+* provide serverHandlers in addition to the commandServerHandlers registration 0d4ee97
+* provide the Plugin interface to help providing better plugin typing 8e9d3a2
 * remove cjs support 145dc5f
 * remove cjs support c967b21
 * remove legacy global injector functions 29d5996
@@ -495,6 +503,7 @@
 
 ### BREAKING CHANGES
 
+* client redirectUri changed to redirectUris
 * configuration using secrets might be broken
 * remove cjs support
 * remove cjs support
