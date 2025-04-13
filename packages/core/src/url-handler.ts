@@ -30,7 +30,7 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
     /**
      * Creates a new URL handler instance
      */
-    constructor()
+    constructor(private readonly noAssign: boolean = false)
     {
         this.protocol = new MiddlewareCompositeAsync('protocols');
         this.host = new MiddlewareCompositeAsync('domains');
@@ -50,7 +50,7 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
      */
     public process(...context: T): Promise<TResult>
     {
-        return this.handle(...context).then(v => { throw v }, () => context[context.length - 1] as TResult);
+        return this.handle(...context).then(v => { throw v }, (result) => this.noAssign ? result : context[context.length - 1] as TResult);
     }
 
     /**
@@ -63,7 +63,13 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
     {
         const handler = new UrlHandler.Protocol<T>(protocol);
         this.protocol.useMiddleware(handler);
-        return handler.use((...context) => action(...context).then(result => { if (typeof result !== 'undefined') Object.assign(context[context.length - 1] || {}, result) }));
+        return handler.use((...context) => action(...context).then(result =>
+        {
+            if (!this.noAssign && typeof result !== 'undefined')
+                Object.assign(context[context.length - 1] || {}, result)
+            else if (this.noAssign)
+                return result;
+        }));
     }
 
     /**
@@ -76,7 +82,13 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
     {
         const handler = new UrlHandler.Host<T>(host);
         this.host.useMiddleware(handler);
-        return handler.use((...context) => action(...context).then(result => { if (typeof result !== 'undefined') Object.assign(context[context.length - 1] || {}, result) }));
+        return handler.use((...context) => action(...context).then(result =>
+        {
+            if (!this.noAssign && typeof result !== 'undefined')
+                Object.assign(context[context.length - 1] || {}, result)
+            else if (this.noAssign)
+                return result;
+        }));
     }
 
     /**
