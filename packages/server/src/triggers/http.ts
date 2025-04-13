@@ -16,17 +16,17 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
         {
             if (res.closed)
                 return;
-            if (res.headersSent)
-            {
-                const contentType = res.getHeaders()['content-type'];
-                if (typeof contentType == 'string')
-                    switch (mime.getExtension(contentType))
-                    {
-                        case 'json':
-                            res.json(result);
-                            break;
-                    }
-            }
+            // if (res.headersSent)
+            // {
+            const contentType = res.getHeaders()['content-type'];
+            if (typeof contentType == 'string')
+                switch (mime.getExtension(contentType))
+                {
+                    case 'json':
+                        res.json(result);
+                        break;
+                }
+            // }
         })
     }
 }
@@ -35,7 +35,7 @@ export async function processCommand<T>(container: Container<T>, c: Metadata.Com
 {
     const req = injected.$request;
     let bodyParsing: Promise<{ parsed: unknown, raw: Buffer }>;
-    container.handle(container, c, {
+    return container.handle(container, c, {
         param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
         {
             if (!bodyParsing)
@@ -72,7 +72,7 @@ export const trigger = new Trigger<[{ router: Router, meta?: Metadata.Container,
 
     meta.commands.forEach(command =>
     {
-        if (!command.config || !command.config.http)
+        if (!command.config?.http)
             return;
 
         const config = command.config.http;
