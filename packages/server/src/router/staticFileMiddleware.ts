@@ -15,7 +15,7 @@ export interface Options extends send.SendOptions
 
 export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]>
 {
-    private options: Options;
+    private readonly options: Options;
     onDirectory: (res: Request) => void;
 
     constructor(root?: string, options?: Options)
@@ -91,7 +91,7 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
             // forward errors
             stream.on('error', function error(err)
             {
-                if (forwardError || !(err.statusCode < 500))
+                if (forwardError || err.statusCode >= 400)
                 {
                     resolve(err)
                     return

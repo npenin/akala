@@ -1,6 +1,6 @@
-import * as http from 'http';
-import * as https from 'https';
-import * as http2 from 'http2';
+import http from 'http';
+import https from 'https';
+import http2 from 'http2';
 import { Socket } from 'net';
 import { Middleware, MiddlewareCompositeAsync, MiddlewarePromise, MiddlewareResult, Router2Async, RouterAsync, RouterOptions } from '@akala/core';
 import { UpgradeMiddleware } from './upgradeMiddleware.js';
@@ -12,7 +12,7 @@ import mime from 'mime-types'
 
 export class HttpRouter extends Router2Async<Request, Response>
 {
-    private upgradeRouter = new RouterAsync<[Request, Socket, Buffer]>();
+    private readonly upgradeRouter = new RouterAsync<[Request, Socket, Buffer]>();
     public readonly formatters = new MiddlewareCompositeAsync<[Request, Response, unknown]>();
 
     constructor(options?: RouterOptions)
@@ -143,7 +143,7 @@ export class HttpRouter extends Router2Async<Request, Response>
         {
             try
             {
-                console.warn(`no valid error formatter for ${req.headers.accept} thus sending as text`);
+                console.warn(`no valid error formatter for ${req.headers.accept} thus sending as text for path ${req.url}`);
                 let stringify = result !== null && result !== undefined ? result && result.toString() : '';
                 if (result instanceof Error)
                     stringify = `[${result.name}]: ${result.message}\n${result.stack}`;

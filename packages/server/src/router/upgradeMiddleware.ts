@@ -4,7 +4,7 @@ import { Socket } from "net";
 
 export class UpgradeMiddleware implements MiddlewareAsync<[Request, Socket, Buffer]>
 {
-    private handler: (args_0: Request, args_1: Socket, args_2: Buffer) => void;
+    private readonly handler: (args_0: Request, args_1: Socket, args_2: Buffer) => void;
     public readonly upgradeSupport: string;
 
     constructor(upgradeSupport: string, handler: (...args: [Request, Socket, Buffer]) => void)

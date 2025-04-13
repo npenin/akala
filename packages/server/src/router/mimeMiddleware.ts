@@ -4,7 +4,7 @@ import { Response } from './shared.js';
 
 export class MimeMiddleware<T extends [{ accepts: accept.Accepts, isLocal: boolean }, Response, unknown]> implements MiddlewareAsync<T>
 {
-    constructor(private type: string, private readonly serialize: (content: T[2]) => BufferSource | string, private options?: { showErrorDetails?: true | false | 'local' })
+    constructor(private readonly types: string[], private readonly serialize: (content: T[2]) => BufferSource | string, private readonly options?: { showErrorDetails?: true | false | 'local' })
     {
         if (!this.options)
             this.options = {};
@@ -14,17 +14,24 @@ export class MimeMiddleware<T extends [{ accepts: accept.Accepts, isLocal: boole
 
     handle(...context: T): MiddlewarePromise
     {
-        const contentType = context[0].accepts.type(this.type);
+        const contentType = context[0].accepts.type(this.types);
         if (!contentType)
             return Promise.resolve();
-        const serialized = this.serialize(context[2]);
-        context[1].writeHead(200, 'OK', { contentType, contentLength: typeof serialized == 'string' ? serialized.length : serialized.byteLength });
-        return new Promise((_, reject) => context[1].end(serialized, reject));
+        try
+        {
+            const serialized = this.serialize(context[2]);
+            context[1].writeHead(200, 'OK', { contentType, contentLength: typeof serialized == 'string' ? serialized.length : serialized.byteLength });
+            return new Promise((_, reject) => context[1].end(serialized, reject));
+        }
+        catch (e)
+        {
+            return e;
+        }
     }
 
     handleError?(error: Error, ...context: T): MiddlewarePromise
     {
-        const contentType = context[0].accepts.type(this.type);
+        const contentType = context[0].accepts.type(this.types);
         if (!contentType)
             return Promise.resolve();
         if (!this.options.showErrorDetails || this.options.showErrorDetails === 'local' && !context[0].isLocal)
