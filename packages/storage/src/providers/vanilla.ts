@@ -24,21 +24,21 @@ export class Vanilla extends PersistenceEngine<any>
     }
     public async load<T>(expression: StrictExpressions): Promise<T>
     {
-        var executor = new ExpressionExecutor();
-        var oldVisitContant = executor.visitConstant;
-        var store = this.store;
+        const executor = new ExpressionExecutor();
+        const oldVisitContant = executor.visitConstant;
+        const store = this.store;
         executor.visitConstant = function (cte)
         {
             if (cte.value instanceof ModelDefinition)
             {
-                this.result = store[cte.value.namespace] && store[cte.value.namespace][cte.value.nameInStorage] || [];
+                this.result = store[cte.value.namespace]?.[cte.value.nameInStorage] || [];
                 this.model = cte.value;
                 return cte;
             }
             return oldVisitContant.call(this, cte);
         }
         executor.result = store;
-        await executor.visit(expression);
+        executor.visit(expression);
         if (executor.model)
             if (Array.isArray(executor.result))
                 return this.dynamicProxy(executor.result, executor.model) as unknown as T;
@@ -72,7 +72,7 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
 
     async visitUpdate<T>(cmd: Commands<T>): Promise<CommandResult>
     {
-        var indexOfRecord = this.recordIndex(cmd);
+        const indexOfRecord = this.recordIndex(cmd);
         if (indexOfRecord == -1)
             return { recordsAffected: 0 };
         this.store[cmd.model.namespace][cmd.model.nameInStorage].splice(indexOfRecord, 1, cmd.model);
@@ -80,20 +80,20 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
 
     private modelStore<T>(model: ModelDefinition<T>)
     {
-        return this.store[model.namespace] && this.store[model.namespace][model.nameInStorage] || []
+        return this.store[model.namespace]?.[model.nameInStorage] || []
     }
 
     private recordIndex<T>(cmd: Commands<T>)
     {
-        if (!this.store[cmd.model.namespace] || !this.store[cmd.model.namespace][cmd.model.nameInStorage])
+        if (!this.store[cmd.model.namespace]?.[cmd.model.nameInStorage])
             return -1;
-        var indexOfRecord = this.modelStore(cmd.model).indexOf(cmd.record);
+        let indexOfRecord = this.modelStore(cmd.model).indexOf(cmd.record);
         if (indexOfRecord == -1)
         {
-            var recordEntried = Object.entries(cmd.record);
+            const recordEntries = Object.entries(cmd.record);
             indexOfRecord = this.modelStore(cmd.model).findIndex(v =>
             {
-                return recordEntried.reduce((prev, current) =>
+                return recordEntries.reduce((prev, current) =>
                 {
                     return prev && v[current[0]] === current[1];
                 }, true);
@@ -104,7 +104,7 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
 
     async visitDelete<T>(cmd: Commands<T>): Promise<CommandResult>
     {
-        var indexOfRecord = this.recordIndex(cmd);
+        const indexOfRecord = this.recordIndex(cmd);
         if (indexOfRecord == -1)
             return { recordsAffected: 0 };
         return { recordsAffected: this.store[cmd.model.namespace][cmd.model.nameInStorage].splice(indexOfRecord, 1).length };

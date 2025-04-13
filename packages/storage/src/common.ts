@@ -198,19 +198,19 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
             {
                 engine.beginTransaction();
                 engine.addCommand(this.update(record));
-                var result = await engine.commitTransaction();
+                const result = await engine.commitTransaction();
                 return result[0];
             }, async deleteSingle(record: TObject)
             {
                 engine.beginTransaction();
                 engine.addCommand(this.delete(record));
-                var result = await engine.commitTransaction();
+                const result = await engine.commitTransaction();
                 return result[0]
             }, async createSingle(record: TObject)
             {
                 engine.beginTransaction();
                 engine.addCommand(this.create(record));
-                var result = await engine.commitTransaction();
+                const result = await engine.commitTransaction();
                 return result[0]
             },
 
