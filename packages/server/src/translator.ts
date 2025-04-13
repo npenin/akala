@@ -6,7 +6,7 @@ defaultInjector.registerFactory('$translator', async function (): Promise<Transl
     const language = defaultInjector.resolve('$language');
     let translations: { [key: string]: string };
     if (language)
-        translations = await import(path.join(__dirname, 'i18n.' + defaultInjector.resolve('$language') + '.json'));
+        translations = await import(path.join(__dirname, 'i18n.' + defaultInjector.resolve<string>('$language') + '.json'));
     else
         translations = {};
 
