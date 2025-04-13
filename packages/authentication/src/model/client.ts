@@ -12,7 +12,7 @@ export class Client
     @db.Field(db.Types.boolean)
     signedClientSecret: boolean;
     @db.Field(db.Types.string(2048))
-    redirectUri: string;
+    redirectUris: string[];
     @db.Field(db.Types.boolean)
     isTrusted: boolean;
     @db.Field(db.Types.string(2048))

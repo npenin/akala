@@ -77,12 +77,12 @@ export class ExchangeMiddleware implements MiddlewareAsync<[Request, Response]>
 {
     basicAuthenticator: AuthenticateMiddleware<Client>;
 
-    constructor(private clientValidator: (clientId: string, clientSecret: string) => Promise<Client>)
+    constructor(private readonly clientValidator: (clientId: string, clientSecret: string) => Promise<Client>)
     {
         this.basicAuthenticator = new BasicAuthenticateMiddleware(clientValidator);
     }
 
-    static grants: { [key: string]: MiddlewareCompositeAsync<[string, string, Request]> } = {};
+    static readonly grants: { [key: string]: MiddlewareCompositeAsync<[string, string, Request]> } = {};
     public static register(grantType: string, codeValidator: (code: string, clientId: string, req: Request) => Promise<void>, tokenBuilder: (code: string, clientId: string, req: Request) => Promise<AccessTokenResponse>): void
     {
         this.grants[grantType] = this.grants[grantType] || new MiddlewareCompositeAsync<[string, string, Request]>(grantType);

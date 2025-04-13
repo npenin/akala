@@ -14,14 +14,14 @@ export abstract class AuthenticateMiddleware<T> implements MiddlewareAsync<[Requ
 
 export class HeaderAuthenticateMiddleware<T> extends AuthenticateMiddleware<T>
 {
-    constructor(private headerName: string, private validateHeader: (value: string | string[]) => Promise<T>)
+    constructor(private readonly headerName: string, private readonly validateHeader: (value: string | string[]) => Promise<T>)
     {
         super();
     }
 
     public validate(value: Request): Promise<T>
     {
-        return value && value.headers && value.headers[this.headerName] && this.validateHeader(value.headers[this.headerName]);
+        return value?.headers?.[this.headerName] && this.validateHeader(value.headers[this.headerName]);
     }
 }
 export class AuthorizationHeaderAuthenticateMiddleware<T> extends HeaderAuthenticateMiddleware<T>

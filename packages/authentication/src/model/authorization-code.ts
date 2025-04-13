@@ -13,4 +13,10 @@ export class AuthorizationCode
     public userId: string;
     @db.Field(db.Types.string(50))
     public scope: string;
+    @db.Field(db.Types.string(50))
+    public state: string;
+    @db.Field(db.Types.string(50))
+    public nonce: string;
+    @db.Field(db.Types.datetime)
+    public createdOn: Date;
 }

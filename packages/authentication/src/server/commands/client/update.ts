@@ -9,7 +9,7 @@ export default async function (this: State, id: string, clientUpdate: Partial<Om
         ...client,
         isTrusted: typeof clientUpdate.isTrusted == 'undefined' ? client.isTrusted : clientUpdate.isTrusted,
         name: typeof clientUpdate.name == 'undefined' ? client.name : clientUpdate.name,
-        redirectUri: typeof clientUpdate.redirectUri == 'undefined' ? client.redirectUri : clientUpdate.redirectUri,
+        redirectUris: typeof clientUpdate.redirectUris == 'undefined' ? client.redirectUris : clientUpdate.redirectUris,
         scope: typeof clientUpdate.scope == 'undefined' ? client.scope : clientUpdate.scope,
     })
 } 
