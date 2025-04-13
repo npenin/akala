@@ -25,7 +25,7 @@ export default async function authorize(this: OIDCClientState, provider: string,
     const result: X = { endpoint, state, query: { state, client_id: this.providers[provider].clientId, scope: scope, redirect_uri, response_type } };
 
     //PKCE
-    if (oidc.code_challenge_methods_supported && oidc.code_challenge_methods_supported.length)
+    if (oidc.code_challenge_methods_supported?.length)
     {
         if (oidc.code_challenge_methods_supported.indexOf('S256') > -1)
         {
