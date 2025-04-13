@@ -1,19 +1,21 @@
-import * as server from '@akala/server';
 import { NonPublicMiddleware } from './middlewares/authorize.js';
-import { module } from '@akala/core'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const moduleName = require('../../package.json').name;
+import { Request } from '@akala/server';
 
 export const isAuthorized = new NonPublicMiddleware();
 
-module(moduleName).ready(['$router'], function (router: server.HttpRouter)
+interface LoginOptions
 {
-    router.get('/api/me', function (req)
-    {
-        delete req.user.password;
-        delete req.user.id;
-        return Promise.resolve(req.user);
-    })
-    require('./master');
-});
+    session?: boolean;
+}
+
+export interface AuthRequest<T> extends Request
+{
+    login(user: T, options?: LoginOptions): Promise<unknown>;
+    user?: T;
+}
+
+export * from './middlewares/authenticate.js'
+export * from './middlewares/authorize.js'
+export * from './middlewares/Authorize401ChallengeFormatter.js'
+export * from './middlewares/AuthorizeRedirectFormatter.js'
+export * from './middlewares/grant.js'

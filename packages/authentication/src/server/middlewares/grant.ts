@@ -2,6 +2,7 @@ import { ErrorMiddlewareAsync, MiddlewareAsync, MiddlewareCompositeAsync, Middle
 import { Request, Response } from '@akala/server'
 import { Client } from '../../model/client.js';
 import { AuthenticateMiddleware, BasicAuthenticateMiddleware } from './authenticate.js';
+import { AuthRequest } from '../index.js';
 
 export const EINVREQ = 'invalid_request';
 export const EINVCLI = 'invalid_client';
@@ -73,7 +74,7 @@ export class OAuthErrorFormatter implements ErrorMiddlewareAsync<[unknown, Respo
     }
 }
 
-export class ExchangeMiddleware implements MiddlewareAsync<[Request, Response]>
+export class ExchangeMiddleware implements MiddlewareAsync<[AuthRequest<Client>, Response]>
 {
     basicAuthenticator: AuthenticateMiddleware<Client>;
 
@@ -99,7 +100,7 @@ export class ExchangeMiddleware implements MiddlewareAsync<[Request, Response]>
         });
     }
 
-    async handle(req: Request): MiddlewarePromise
+    async handle(req: AuthRequest<Client>): MiddlewarePromise
     {
         const grantType = req.query.get('grant_type');
         if (!ExchangeMiddleware.grants[grantType])
