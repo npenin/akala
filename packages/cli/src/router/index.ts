@@ -382,7 +382,10 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
                     }
                     else
                     {
-                        context.options[paramName] = context.args.splice(0, context.args.length) as (TOptions & TOptions2)[typeof paramName];
+                        if (context.args.length)
+                            context.options[paramName] = context.args.splice(0, context.args.length) as (TOptions & TOptions2)[typeof paramName];
+                        else if (!context.options[paramName])
+                            context.options[paramName] = [] as (TOptions & TOptions2)[typeof paramName];;
                         if (middleware._option?.config && middleware._option.config[paramName]?.normalize && context.options[paramName])
                             context.options[paramName] = (context.options[paramName] as string[]).map(param => normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, param)) as (TOptions & TOptions2)[typeof paramName];
                     }
