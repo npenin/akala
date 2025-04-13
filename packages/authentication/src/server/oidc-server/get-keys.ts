@@ -1,4 +1,5 @@
 import { OIDCResponseType } from "../../client/oidc-state.js";
+import { State } from "../state.js";
 
 export type X = {
     endpoint: URL;
@@ -15,7 +16,7 @@ export type X = {
     };
 }
 
-export default async function getKeys()
+export default async function getKeys(this: State)
 {
     // const state = crypto.randomUUID()
     // const endpoint = new URL(oidc.authorization_endpoint);

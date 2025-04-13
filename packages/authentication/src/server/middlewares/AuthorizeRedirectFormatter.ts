@@ -1,7 +1,5 @@
-import { ErrorMiddlewareAsync, MiddlewarePromise } from "@akala/core";
+import { ErrorMiddlewareAsync, ErrorWithStatus, HttpStatusCode, MiddlewarePromise } from "@akala/core";
 import { Response } from "@akala/server";
-import { AuthorizeErrorCode } from './authorize.js';
-
 
 export class AuthorizeRedirectFormatter implements ErrorMiddlewareAsync<[unknown, Response]>
 {
@@ -16,9 +14,9 @@ export class AuthorizeRedirectFormatter implements ErrorMiddlewareAsync<[unknown
             this.redirectUrl = redirectUrl;
     }
 
-    handleError(error: Error & { code?: string; }, req, response: Response): MiddlewarePromise
+    handleError(error: ErrorWithStatus, req, response: Response): MiddlewarePromise
     {
-        if (error && error.code === AuthorizeErrorCode && !response.headersSent)
+        if (error && error.statusCode === HttpStatusCode.Unauthorized && !response.headersSent)
         {
             const url = new URL(this.redirectUrl.toString());
             url.searchParams[this.redirectQueryParameter] = req.url;

@@ -38,7 +38,8 @@
     },
     "version": "2.0.91",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 0",
+        "test": "node --test --enable-source-maps",
+        "coverage": "yarn test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/core.v8 --test-reporter-destination=lcov.info --enable-source-maps dist/esm/test/**.js",
         "generate": "ac generate dist/esm/server/commands commands.json --name auth",
         "generate-metadata": "ac generate-metadata commands.json src/container.ts"
     },

@@ -1,17 +1,16 @@
-import { ErrorMiddlewareAsync, MiddlewarePromise } from "@akala/core";
+import { ErrorMiddlewareAsync, ErrorWithStatus, HttpStatusCode, MiddlewarePromise } from "@akala/core";
 import { Request, Response } from "@akala/server";
-import { AuthorizeErrorCode } from './authorize.js';
 
 
 export class Authorize401ChallengeFormatter implements ErrorMiddlewareAsync<[Request, Response]>
 {
-    constructor(private authenticateChallenges: string[])
+    constructor(private readonly authenticateChallenges: string[])
     {
     }
 
-    handleError(error: Error & { code?: string; }, _req, res: Response): MiddlewarePromise
+    handleError(error: ErrorWithStatus, _req, res: Response): MiddlewarePromise
     {
-        if (error && error.code === AuthorizeErrorCode)
+        if (error && error.statusCode === HttpStatusCode.Unauthorized)
         {
             res.writeHead(401, "Unauthorized", { 'www-authenticate': this.authenticateChallenges });
             res.end();
