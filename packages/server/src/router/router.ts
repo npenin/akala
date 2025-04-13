@@ -41,12 +41,12 @@ export class HttpRouter extends Router2Async<Request, Response>
     {
         server.on('upgrade', (msg: http.IncomingMessage, socket: Socket, head) =>
         {
-            const req = HttpRouter.makeRequest(msg);
+            const req = HttpRouter.extendRequest(msg);
             this.upgradeRouter.process(req, socket, head).catch(x => !x && socket.end());
         });
         server.on('request', (msg: http.IncomingMessage, res: Response) =>
         {
-            const req = HttpRouter.makeRequest(msg);
+            const req = HttpRouter.extendRequest(msg);
             msg.on('error', function (err)
             {
                 console.error(err);
@@ -118,7 +118,7 @@ export class HttpRouter extends Router2Async<Request, Response>
         return res as T & Response;
     }
 
-    static makeRequest(msg: http.IncomingMessage): Request
+    public static extendRequest(msg: http.IncomingMessage): Request
     {
         const uri = new URL('http://' + msg.headers.host + msg.url);
 
