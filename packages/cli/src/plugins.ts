@@ -1,7 +1,11 @@
 import { NamespaceMiddleware } from './index.js';
 import fs from 'fs/promises'
+import { Plugin } from './cli.js';
 
-export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
+const x: Plugin = plugin;
+export default x;
+
+function plugin(config, program: NamespaceMiddleware<{ configFile: string }>)
 {
     const plugins = program.command('plugins');
 
@@ -44,3 +48,4 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
             return context.state.plugins;
         });
 }
+
