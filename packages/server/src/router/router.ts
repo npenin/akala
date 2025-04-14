@@ -2,7 +2,7 @@ import http from 'http';
 import https from 'https';
 import http2 from 'http2';
 import { Socket } from 'net';
-import { Middleware, MiddlewareCompositeAsync, MiddlewarePromise, MiddlewareResult, Router2Async, RouterAsync, RouterOptions } from '@akala/core';
+import { ErrorWithStatus, MiddlewareAsync, MiddlewareCompositeWithPriorityAsync, MiddlewarePromise, MiddlewareResult, NotHandled, Router2Async, RouterAsync, RouterOptions } from '@akala/core';
 import { UpgradeMiddleware } from './upgradeMiddleware.js';
 import { Request, Response } from './shared.js';
 import accepts from 'accepts';
@@ -13,20 +13,20 @@ import mime from 'mime-types'
 export class HttpRouter extends Router2Async<Request, Response>
 {
     private readonly upgradeRouter = new RouterAsync<[Request, Socket, Buffer]>();
-    public readonly formatters = new MiddlewareCompositeAsync<[Request, Response, unknown]>();
+    public readonly formatters = new MiddlewareCompositeWithPriorityAsync<[Request, Response, unknown]>();
 
     constructor(options?: RouterOptions)
     {
         super(options);
     }
 
-    public registerJsonFormatter()
+    public registerJsonFormatter(priority: number = 100): void
     {
-        this.formatters.useMiddleware({
+        this.formatters.useMiddleware(priority, {
             handle(req, res, result)
             {
                 if (!res.headersSent || mime.extension(res.getHeader('content-type') as string) !== 'json')
-                    return Promise.resolve();
+                    return NotHandled;
                 if (!res.headersSent && req.accepts.type('json'))
                     res.setHeader('content-type', mime.contentType('json') as string);
                 result = JSON.stringify(result);
@@ -35,6 +35,20 @@ export class HttpRouter extends Router2Async<Request, Response>
                 return Promise.reject();
             }
         })
+    }
+    public registerErrorFormatter(priority: number = 100): void
+    {
+        this.formatters.useError(priority, async (err, _req, res) =>
+        {
+            if (err instanceof ErrorWithStatus)
+                return res.status(err.statusCode).json(err)
+            else if (err instanceof Error)
+                return res.status(500).json({ error: err.message, stack: err.stack })
+            else
+                return res.status(500).json({ error: err })
+        }
+        );
+
     }
 
     public attachTo(server: http.Server | https.Server | http2.Http2Server | http2.Http2SecureServer): void
@@ -46,7 +60,6 @@ export class HttpRouter extends Router2Async<Request, Response>
         });
         server.on('request', (msg: http.IncomingMessage, res: Response) =>
         {
-            const req = HttpRouter.extendRequest(msg);
             msg.on('error', function (err)
             {
                 console.error(err);
@@ -62,21 +75,32 @@ export class HttpRouter extends Router2Async<Request, Response>
             //     oldEnd.apply(this, args);
             // }
 
-            this.handle(req, HttpRouter.extendResponse(res)).then((err) =>
+            const req = HttpRouter.extendRequest(msg);
+            return this.handle(req, HttpRouter.extendResponse(res)).then(err =>
             {
-                if (err && err !== 'break')
+                if (!err && !res.headersSent)
                 {
-                    this.formatError(req, res, err);
-                    return;
+                    console.error('deadend');
+                    console.error({ url: req.url, headers: req.headers, ip: req.ip });
+                    res.writeHead(404, 'Not found').end();
+                    return res;
                 }
-                console.error('deadend');
-                console.error({ url: req.url, headers: req.headers, ip: req.ip });
-                res.writeHead(404, 'Not found').end();
-                return res;
-            },
-
-                (result) => result !== res ? this.format(req, res, result) : undefined);
+            });
         });
+    }
+
+    public handle(req: Request, res: Response)
+    {
+        return super.handle(req, res).then((err) =>
+        {
+            if (err && err !== 'break')
+            {
+                this.formatError(req, res, err);
+                return NotHandled;
+            }
+            return NotHandled;
+        },
+            (result) => result !== res ? this.format(req, res, result) : undefined);
     }
 
     public static extendResponse<T extends object>(res: T & Partial<Response>): Response & T
@@ -95,13 +119,68 @@ export class HttpRouter extends Router2Async<Request, Response>
                 return res as Response;
             };
 
+        if (!res.setCookie)
+            res.setCookie = function (name: string, value: string, options?: { [key: string]: string })
+            {
+                if (typeof value === 'object')
+                    value = JSON.stringify(value);
+                let optionsString: string;
+                if (typeof options === 'object')
+                    optionsString = Object.entries(options).map(([key, value]) => typeof value == 'boolean' ? value ? key : '' : `${key}=${value}`).join('; ');
+                else
+                    optionsString = '';
+
+                const cookies = res.getHeader('set-cookie');
+                if (Array.isArray(cookies))
+                {
+                    res.removeHeader('set-cookie');
+                    cookies.forEach(cookie =>
+                    {
+                        if (cookie.startsWith(`${name}=`))
+                            res.appendHeader('set-cookie', `${name}=${value}; ${optionsString}`);
+                        else
+                            res.appendHeader('set-cookie', cookie);
+                    });
+                }
+                else
+                    res.appendHeader('set-cookie', `${name}=${value}; ${optionsString}`);
+                return res as Response;
+            };
+
+        if (!res.clearCookie)
+            res.clearCookie = function (name: string)
+            {
+                const cookies = res.getHeader('set-cookie');
+                if (Array.isArray(cookies))
+                {
+                    res.removeHeader('set-cookie');
+                    cookies.forEach(cookie =>
+                    {
+                        if (cookie.startsWith(`${name}=`))
+                        {
+                            res.appendHeader('set-cookie', `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`);
+                        }
+                        else
+                            res.appendHeader('set-cookie', cookie);
+                    });
+                }
+                else
+                    res.setHeader('set-cookie', `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`);
+                return res as Response;
+            };
+
+
         if (!res.json)
             res.json = function (content: unknown)
             {
                 if (!res.headersSent)
                     res.setHeader('content-type', 'application/json');
                 if (typeof (content) != 'undefined')
+                {
+                    if (content instanceof Error)
+                        content = { error: content.message, stack: content.stack, cause: content.cause, name: content.name, ...content };
                     content = JSON.stringify(content);
+                }
                 res.write(content);
                 res.end();
                 return res as Response;
@@ -110,7 +189,7 @@ export class HttpRouter extends Router2Async<Request, Response>
         if (!res.redirect)
             res.redirect = function (uri, code: number)
             {
-                res.writeHead(code || 302, 'redirect', { location: uri });
+                res.writeHead(code || 302, 'redirect', { location: uri, ...res.getHeaders() });
                 res.end();
                 return res as Response;
             };
@@ -137,18 +216,18 @@ export class HttpRouter extends Router2Async<Request, Response>
         });
     }
 
-    formatError(req: Request, res: Response, result: MiddlewareResult): MiddlewarePromise
+    formatError(req: Request, res: Response, result: MiddlewareResult<never>): MiddlewarePromise
     {
         return this.formatters.handleError(result, req, res, null).then(() =>
         {
             try
             {
                 console.warn(`no valid error formatter for ${req.headers.accept} thus sending as text for path ${req.url}`);
-                let stringify = result !== null && result !== undefined ? result && result.toString() : '';
+                let stringified = result !== null && result !== undefined ? result && result.toString() : '';
                 if (result instanceof Error)
-                    stringify = `[${result.name}]: ${result.message}\n${result.stack}`;
-                res.writeHead(500, 'Failed', { 'Content-Type': 'text/plain', 'Content-Length': stringify.length }).
-                    end(stringify);
+                    stringified = `[${result.name}]: ${result.message}\n${result.stack}`;
+                res.writeHead(500, 'Failed', { 'Content-Type': 'text/plain', 'Content-Length': stringified.length }).
+                    end(stringified);
             }
             catch (e)
             {
@@ -156,7 +235,8 @@ export class HttpRouter extends Router2Async<Request, Response>
             }
         }, result =>
         {
-            console.log(result);
+            if (result !== res)
+                console.log(result);
         })
     }
 
@@ -173,8 +253,9 @@ export class HttpRouter extends Router2Async<Request, Response>
             }
             else
                 res.writeHead(204, 'OK', { contenttype: 'text/plain', contentLength: 0 }).end();
-            //eslint-disable-next-line @typescript-eslint/no-empty-function
-        }, () => { });
+
+            return NotHandled;
+        }, () => { return NotHandled });
     }
 
     public upgrade(path: string, upgradeSupport: string, handler: ((request: Request, socket: Socket, head: Buffer) => Promise<unknown>)): this
@@ -186,34 +267,34 @@ export class HttpRouter extends Router2Async<Request, Response>
 
 export interface HttpRouter
 {
-    'checkoutMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'connectMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'copyMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'deleteMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'getMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'headMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'lockMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'm-searchMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'mergeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'mkactivityMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'mkcalendarMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'mkcolMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'moveMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'notifyMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'optionsMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'patchMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'postMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'propMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'findMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'proppatchMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'purgeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'putMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'reportMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'searchMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'subscribeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'traceMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'unlockMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'unsubscribeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'checkoutMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'connectMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'copyMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'deleteMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'getMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'headMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'lockMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'm-searchMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'mergeMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'mkactivityMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'mkcalendarMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'mkcolMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'moveMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'notifyMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'optionsMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'patchMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'postMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'propMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'findMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'proppatchMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'purgeMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'putMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'reportMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'searchMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'subscribeMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'traceMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'unlockMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
+    'unsubscribeMiddleware'(path: string, ...middlewares: MiddlewareAsync<[Request, Response]>[]): this;
 
     'checkout'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
     'connect'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
