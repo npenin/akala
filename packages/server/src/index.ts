@@ -1,5 +1,5 @@
 import './translator.js';
-export { router, Request, Response, HttpRouter, CallbackResponse } from './router/index.js';
+export * from './router/index.js';
 
 import './http.js'
 export * from './http.js'
@@ -15,6 +15,7 @@ import { connectByPreference, ConnectionPreference, ICommandProcessor, ServeMeta
 import { HttpRouter } from './router/router.js';
 import { serverHandlers } from './handlers.js';
 import { StaticFileMiddleware } from './router/staticFileMiddleware.js';
+import { NotHandled } from '@akala/core';
 export { serverHandlers };
 
 declare module '@akala/pm'
@@ -45,7 +46,11 @@ export async function serve(options: { staticFolders?: string[], urls: string[],
     await Promise.all(options.urls.map(async url =>
     {
         const server = await serverHandlers.process(new URL(url), { signal: options.signal });
-        router.attachTo(server);
+        new HttpRouter({ name: url }).use((req) =>
+        {
+            req.uri = new URL(req.url, url);
+            throw NotHandled;
+        }).useMiddleware(router).attachTo(server)
     }));
 
     if (options.staticFolders)
