@@ -1,4 +1,4 @@
-import { MiddlewareAsync, MiddlewarePromise } from "@akala/core";
+import { MiddlewareAsync, MiddlewarePromise, NotHandled } from "@akala/core";
 import { Request, Response } from './shared.js'
 import { resolve } from 'path'
 import send from 'send'
@@ -46,7 +46,7 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
         {
             if (this.options.fallthrough)
             {
-                return Promise.resolve()
+                return NotHandled
             }
 
             // method not allowed
@@ -97,7 +97,7 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
                     return
                 }
 
-                resolve()
+                resolve(undefined)
             })
 
             // pipe

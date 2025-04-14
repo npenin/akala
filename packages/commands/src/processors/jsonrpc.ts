@@ -298,7 +298,7 @@ export class JsonRpc extends CommandProcessor
                             reject(result);
                     })
                 else
-                    resolve();
+                    resolve(undefined);
             });
         }
             , container, params);
@@ -306,7 +306,7 @@ export class JsonRpc extends CommandProcessor
 
     public get connectionId() { return this.client.id }
 
-    constructor(private client: jsonrpcws.BaseConnection<Readable>)
+    constructor(private readonly client: jsonrpcws.BaseConnection<Readable>)
     {
         super('jsonrpc');
     }

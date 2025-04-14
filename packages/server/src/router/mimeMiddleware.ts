@@ -1,4 +1,4 @@
-import { MiddlewareAsync, MiddlewarePromise } from "@akala/core";
+import { MiddlewareAsync, MiddlewarePromise, NotHandled } from "@akala/core";
 import accept from 'accepts'
 import { Response } from './shared.js';
 
@@ -16,7 +16,7 @@ export class MimeMiddleware<T extends [{ accepts: accept.Accepts, isLocal: boole
     {
         const contentType = context[0].accepts.type(this.types);
         if (!contentType)
-            return Promise.resolve();
+            return NotHandled;
         try
         {
             const serialized = this.serialize(context[2]);
@@ -33,7 +33,7 @@ export class MimeMiddleware<T extends [{ accepts: accept.Accepts, isLocal: boole
     {
         const contentType = context[0].accepts.type(this.types);
         if (!contentType)
-            return Promise.resolve();
+            return NotHandled;
         if (!this.options.showErrorDetails || this.options.showErrorDetails === 'local' && !context[0].isLocal)
         {
             context[1].writeHead(500, 'OK', { contentType, contentLength: error.message.length });

@@ -3,6 +3,7 @@ import { ModelDefinition, PersistenceEngine } from '@akala/storage'
 import { Collection, Db } from 'mongodb';
 import CommandProcessor from './command-processor.js';
 import MongoDbTranslator from './expression-visitor.js';
+import { NotHandled } from '../../core/dist/esm/middlewares/shared.js';
 
 
 export class MongoDb extends PersistenceEngine<Db>
@@ -18,12 +19,12 @@ export class MongoDb extends PersistenceEngine<Db>
     {
         this.processor.init(connection);
         this.db = connection;
-        return Promise.resolve();
+        return NotHandled;
     }
     async load<T>(expression: Expressions): Promise<T>
     {
         const executor = new MongoDbTranslator();
-        var oldVisitContant = executor.visitConstant;
+        const oldVisitContant = executor.visitConstant;
         const db = this.db;
         var collection: Collection;
         executor.visitConstant = function (cte)

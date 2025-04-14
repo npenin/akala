@@ -1,7 +1,8 @@
 import
 {
     convertToMiddleware, each, introspect, isPromiseLike, Logger, map, MiddlewareAsync, MiddlewareCompositeAsync,
-    MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, MiddlewarePromise
+    MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, MiddlewarePromise,
+    NotHandled
 } from '@akala/core';
 import normalize from '../helpers/normalize.js';
 
@@ -151,7 +152,7 @@ class OptionMiddleware<TValue extends OptionType> implements MiddlewareAsync<[co
                 while ((match = matcher.pattern.exec(element)));
             }
         }
-        return Promise.resolve();
+        return NotHandled;
     }
 }
 
@@ -237,7 +238,7 @@ class OptionsMiddleware<TOptions extends Record<string, OptionType>> implements 
                         context.options[name] = context.args.shift();
                     if (option.normalize)
                         context.options[name] = normalize(option.normalize, context.currentWorkingDirectory, context.options[name] as string);
-                    return Promise.resolve();
+                    return NotHandled;
                 }
             });
         }
