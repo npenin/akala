@@ -5,6 +5,7 @@ import { Container } from '../model/container.js';
 import { Command } from '../metadata/index.js';
 import { registerCommands } from '../generator.js';
 import { describe, it } from 'node:test'
+import { NotHandled } from '@akala/core';
 
 describe('test log processing', function ()
 {
@@ -13,11 +14,11 @@ describe('test log processing', function ()
         const processor = new LogEventProcessor(new Pipe(calculator), null, function (_, cmd)
         {
             processingCalled = cmd;
-            return Promise.resolve();
+            return NotHandled;
         }, function (_, cmd)
         {
             processedCalled = cmd;
-            return Promise.resolve();
+            return NotHandled;
         });
         const calculator2 = new Container(calculator.name, calculator.state);
         registerCommands((await calculator.dispatch('$metadata')).commands, null, calculator2);
