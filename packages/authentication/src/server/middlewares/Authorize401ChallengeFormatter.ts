@@ -1,4 +1,4 @@
-import { ErrorMiddlewareAsync, ErrorWithStatus, HttpStatusCode, MiddlewarePromise } from "@akala/core";
+import { ErrorMiddlewareAsync, ErrorWithStatus, HttpStatusCode, MiddlewarePromise, NotHandled } from "@akala/core";
 import { Request, Response } from "@akala/server";
 
 
@@ -16,6 +16,6 @@ export class Authorize401ChallengeFormatter implements ErrorMiddlewareAsync<[Req
             res.end();
             return Promise.reject(res);
         }
-        return Promise.resolve();
+        return NotHandled;
     }
 }
