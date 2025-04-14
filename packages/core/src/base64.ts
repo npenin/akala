@@ -92,7 +92,7 @@ export function base64UrlEncArr(aBytes: ArrayBuffer | Uint8Array): string
 {
     let s = base64EncArr(aBytes).replace(/\+/g, '-').replace(/\//g, '_');
     while (s.endsWith('='))
-        s = s.slice(s.length - 2);
+        s = s.substring(0, s.length - 1);
     return s;
 }
 /** 
@@ -156,9 +156,6 @@ export function base64EncArr(aBytes: ArrayBuffer | Uint8Array, nBlocksSize?: num
 {
     let nMod3 = 2;
     let sB64Enc = "";
-
-    if (aBytes instanceof ArrayBuffer)
-        aBytes = new Uint8Array(aBytes);
 
     const nLen = aBytes.byteLength;
     let nUint24 = 0;
