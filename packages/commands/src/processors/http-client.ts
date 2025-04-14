@@ -1,4 +1,4 @@
-import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus, HttpStatusCode, UrlTemplate, MiddlewareCompositeWithPriorityAsync } from '@akala/core';
+import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus, HttpStatusCode, UrlTemplate, MiddlewareCompositeWithPriority } from '@akala/core';
 import { CommandProcessor, StructuredParameters } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
 import { Container } from '../model/container.js';
@@ -74,7 +74,7 @@ export class HttpClient extends CommandProcessor
             config.http = Object.assign({}, config.http);
             config.http.type = undefined;
         }
-        const options: HttpOptions<unknown> = { method: config.http.method, url: '', type: config.http.type };
+        const options: HttpOptions<unknown> = { method: config.http.method, url: '', type: config.http.type, contentType: config.http.contentType };
 
         function inject(value: object, arg: object)
         {
@@ -95,7 +95,8 @@ export class HttpClient extends CommandProcessor
                             switch (key)
                             {
                                 case 'body':
-                                    options.contentType = options.type as HttpOptions<unknown>['contentType'];
+                                    if (!options.contentType)
+                                        options.contentType = options.type as HttpOptions<unknown>['contentType'];
                                     if (typeof subKey !== 'undefined')
                                     {
                                         options.body = options.body || {};
@@ -184,7 +185,7 @@ export class HttpClient extends CommandProcessor
                                     case 'body':
                                         options.contentType = options.type as HttpOptions<unknown>['contentType'];
                                         options.body = options.body || {};
-                                        options.body[subKey] = param && param[key];
+                                        options.body[subKey] = param?.[key];
                                         break;
                                     case 'header':
                                         if (!options.headers)
@@ -196,13 +197,13 @@ export class HttpClient extends CommandProcessor
                                             options.queryString = new URLSearchParams();
                                         if (typeof options.queryString == 'string')
                                             options.queryString = new URLSearchParams(options.queryString)
-                                        options.queryString.append(subKey, param && param[key] as string);
+                                        options.queryString.append(subKey, param?.[key] as string);
                                         break;
                                     case 'route':
                                         if (!route)
                                             route = {};
-                                        if (param && param[key])
-                                            route[subKey] = param && param[key] && param[key].toString();
+                                        if (param?.[key])
+                                            route[subKey] = param?.[key]?.toString();
                                         break;
                                 }
                                 break;
@@ -231,12 +232,19 @@ export class HttpClient extends CommandProcessor
     }
 }
 
-export const authMiddleware = new MiddlewareCompositeWithPriorityAsync<[{ mode: unknown }, HttpOptions<unknown>, unknown]>('auth');
+export const authMiddleware = new MiddlewareCompositeWithPriority<[{ mode: unknown } & Configuration, HttpOptions<unknown>, unknown]>('auth');
 
 authMiddleware.use(100, function (httpConfig, options, auth)
 {
     if (httpConfig.mode !== 'basic')
         throw undefined;
+
+    if (httpConfig.inject)
+    {
+        const inj = new SimpleInjector();
+        inj.register('auth', auth);
+        auth = inj.inject(httpConfig.inject, auth => auth)(this);
+    }
 
     if (typeof auth !== 'object' || !('username' in auth) || !('password' in auth) || typeof auth.username !== 'string' || typeof auth.password !== 'string')
         throw new Error('When using basic mode, the authentication has to be in form of {username:string, password:string}');
@@ -255,6 +263,80 @@ authMiddleware.use(100, function (httpConfig, options, auth)
         throw new Error('When using bearer mode, the authentication has to be a string')
 
     return authMiddleware.process({ mode: { type: 'header', name: 'authorization' } }, options, 'Bearer ' + auth);
+})
+
+authMiddleware.use(100, function (httpConfig, options, auth)
+{
+    if (httpConfig.mode !== 'body')
+        throw undefined;
+    // if (typeof options.body == 'undefined')
+
+    switch (options.contentType)
+    {
+        case 'json': {
+            const inj = new SimpleInjector();
+            inj.register('auth', auth);
+            if (!httpConfig.inject)
+                httpConfig.inject = [];
+            inj.injectWithName(httpConfig.inject, (auth) =>
+            {
+                switch (typeof options.body)
+                {
+                    case 'string':
+                        options.body = JSON.parse(options.body);
+                    case 'object':
+                        if (options.body === null)
+                            options.body = auth;
+                        else if (options.body instanceof URLSearchParams)
+                            options.body = Object.assign(Object.fromEntries(options.body.entries()), auth);
+                        else
+                            Object.assign(options.body, auth);
+                        break;
+                    case 'undefined':
+                        options.body = auth;
+                        break;
+                    default:
+                        throw new Error('The body is not an object and cannot be merged with the authentication object');
+                }
+            })(this);
+            break;
+        }
+        case 'form':
+        case 'form-urlencoded':
+            if (typeof options.body == 'string')
+                options.body = new URLSearchParams(options.body);
+            // if (options.body instanceof URLSearchParams)
+            {
+                const inj = new SimpleInjector();
+                inj.register('auth', auth);
+                if (!httpConfig.inject)
+                    httpConfig.inject = [];
+                inj.injectWithName(httpConfig.inject, (auth) =>
+                {
+                    switch (typeof options.body)
+                    {
+                        case 'string':
+                            options.body = new URLSearchParams(options.body);
+                        case 'object':
+                            if (options.body === null)
+                                options.body = auth;
+                            else if (options.body instanceof URLSearchParams)
+                                options.body = Object.assign(Object.fromEntries(options.body.entries()), auth);
+                            else
+                                Object.assign(options.body, auth);
+                            break;
+                        case 'undefined':
+                            options.body = auth;
+                            break;
+                        default:
+                            throw new Error('The body is not an object and cannot be merged with the authentication object');
+                    }
+                })(this);
+            }
+            break;
+        default:
+            throw new Error(`The body mode ${options.contentType} is not supported for this type of request`);
+    }
 })
 
 authMiddleware.use(1000, async function (httpConfig, options, auth)
@@ -297,9 +379,10 @@ export interface HttpConfiguration extends Configuration
 {
     method: string;
     route: string;
-    type?: 'json' | 'xml' | 'text' | 'raw';
+    contentType?: HttpOptions<unknown>['contentType'];
+    type?: HttpOptions<unknown>['type'];
     auth?: Configuration & {
-        mode: 'basic' | 'bearer' | { type: 'query' | 'header' | 'cookie', name: string }
+        mode: 'basic' | 'body' | 'bearer' | { type: 'query' | 'header' | 'cookie', name: string }
 
     }
 }
