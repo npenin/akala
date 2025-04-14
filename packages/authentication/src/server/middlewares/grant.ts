@@ -44,6 +44,12 @@ export interface AccessTokenResponse
     expires_in?: number;
     refresh_token?: string;
     scope: string[];
+    id_token?: string;
+}
+export interface ErrorResponse
+{
+    error: OAuthErrorCodes;
+    error_description: string;
 }
 
 export interface CodeResponse
