@@ -1,4 +1,4 @@
-import { MiddlewareAsync, MiddlewarePromise } from '@akala/core'
+import { MiddlewareAsync, MiddlewarePromise, NotHandled } from '@akala/core'
 import { Request, Response } from './shared.js'
 import cookie from 'cookie'
 
@@ -16,6 +16,6 @@ export class CookieMiddleware implements MiddlewareAsync<[Request, Response, ...
             request.cookies = cookie.parse(request.headers.cookie, this.options)
             Object.entries(request.cookies).forEach(c => response.appendHeader('set-cookie', cookie.serialize(c[0], c[1])))
         }
-        return Promise.resolve();
+        return NotHandled;
     }
 }

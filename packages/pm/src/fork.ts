@@ -187,6 +187,8 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
                     if (pm !== cliContainer)
                         await pm.dispatch('ready')
                 });
+
+                return undefined;
             }
         },
         initMiddleware));

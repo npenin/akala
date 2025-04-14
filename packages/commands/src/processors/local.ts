@@ -1,4 +1,4 @@
-import { Injectable, each, MiddlewarePromise, isPromiseLike, SpecialNextParam, MiddlewareAsync, SimpleInjector, Resolvable } from '@akala/core';
+import { Injectable, each, MiddlewarePromise, isPromiseLike, SpecialNextParam, MiddlewareAsync, SimpleInjector, Resolvable, NotHandled } from '@akala/core';
 import * as  Metadata from '../metadata/index.js';
 import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
@@ -114,7 +114,7 @@ export class Local extends CommandProcessor
         return injector.injectWithName(inject, handler)(container.state);
     }
 
-    public static handle<T, TArgs extends unknown[], U = unknown | PromiseLike<unknown>>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
+    public static handle<T, TArgs extends unknown[], U = unknown>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
     {
         return new Promise((resolve, reject) =>
         {
@@ -137,7 +137,7 @@ export class Local extends CommandProcessor
     {
         if (this.handler[command.name] && typeof this.handler[command.name] === 'function')
             return Local.handle(command, this.handler[command.name], container, param);
-        return Promise.resolve();
+        return NotHandled;
     }
 
     constructor(private readonly handler: { [key: string]: (...args: unknown[]) => unknown })
@@ -152,7 +152,7 @@ export class Self extends CommandProcessor
     {
         if ('handler' in command && typeof command.handler == 'function')
             return Local.handle(command, command.handler, container, param);
-        return Promise.resolve();
+        return NotHandled;
     }
 
     constructor()
@@ -167,7 +167,7 @@ export class CommandWithAffinityProcessor extends CommandProcessor
     {
         if ('processor' in command && typeof command.processor?.handle == 'function')
             return command.processor.handle(container, command, param);
-        return Promise.resolve();
+        return NotHandled;
     }
 
     constructor()

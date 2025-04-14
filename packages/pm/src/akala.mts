@@ -7,7 +7,7 @@ import { Readable } from 'stream';
 import { spawnAsync } from '@akala/cli/cli-helper';
 import State, { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
-import { eachAsync, logger, LogLevels, ObservableObject, Parser } from '@akala/core';
+import { eachAsync, logger, LogLevels, NotHandled, ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 import commands from './container.js';
 
@@ -179,7 +179,7 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
             console.log(err.message)
         else
             console.error('Error: ' + err.message);
-        return Promise.resolve();
+        return NotHandled;
     })
 }
 
