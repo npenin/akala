@@ -146,9 +146,11 @@ export class ErrorWithStatus extends Error
      * @param {HttpStatusCode | number} statusCode - The HTTP status code.
      * @param {string} [message] - Optional error message. If omitted, a default message is generated based on the statusCode.
      */
-    constructor(public readonly statusCode: HttpStatusCode | number, message?: string)
+    constructor(public readonly statusCode: HttpStatusCode | number, message?: string, name?: string)
     {
         super(message || getMessageFromStatusCode(statusCode));
+        if (name)
+            this.name = name;
     }
 }
 
