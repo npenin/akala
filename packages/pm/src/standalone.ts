@@ -4,7 +4,7 @@ sms.install();
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
-import { logger, Logger, MiddlewareCompositeAsync } from '@akala/core';
+import { convertToMiddleware, logger, Logger, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 
@@ -59,33 +59,31 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
             processor = new ac.Processors.FileSystem(c.options.program);
     }).
     useMiddleware(null, MiddlewareCompositeAsync.new(logMiddleware,
+        convertToMiddleware(async c =>
         {
-            handle: async c =>
+            cliContainer.name = c.options.name;
+            const init = cliContainer.resolve('$init');
+            if (init && init.config && init.config.cli && init.config.cli.options)
+                ac.Triggers.addCliOptions(init, initMiddleware);
+
+            process.on('unhandledRejection', (x) =>
             {
-                cliContainer.name = c.options.name;
-                const init = cliContainer.resolve('$init');
-                if (init && init.config && init.config.cli && init.config.cli.options)
-                    ac.Triggers.addCliOptions(init, initMiddleware);
+                controller.abort(x)
+                return false;
+            });
+            process.on('uncaughtException', (x) =>
+            {
+                controller.abort(x)
+                return false;
+            });
+            process.on('SIGINT', () => controller.abort(null));
 
-                process.on('unhandledRejection', (x) =>
-                {
-                    controller.abort(x)
-                    return false;
-                });
-                process.on('uncaughtException', (x) =>
-                {
-                    controller.abort(x)
-                    return false;
-                });
-                process.on('SIGINT', () => controller.abort(null));
-
-                initMiddleware.action(async c =>
-                {
-                    if (init)
-                        await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', context: c });
-                });
-            }
-        },
+            initMiddleware.action(async c =>
+            {
+                if (init)
+                    await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', context: c });
+            });
+        }),
         initMiddleware));
 
 controller.signal.addEventListener('abort', function () 
