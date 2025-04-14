@@ -9,6 +9,9 @@ export * from './route.js'
 export * from './router.js'
 export * from './shared.js'
 export * from './upgradeMiddleware.js'
+export * from './staticFileMiddleware.js'
+export * from './cookieMiddleware.js'
+export * from './mimeMiddleware.js'
 
 export interface Callback
 {
