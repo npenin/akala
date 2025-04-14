@@ -1,7 +1,7 @@
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container.js';
-import { SerializableObject, Interpolate, mapAsync, MiddlewareCompositeWithPriorityAsync, Parser, parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger, MiddlewareAsync } from '@akala/core';
+import { SerializableObject, Interpolate, mapAsync, MiddlewareCompositeWithPriorityAsync, Parser, parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger, MiddlewareAsync, NotHandled } from '@akala/core';
 import { Stream } from 'stream';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process.js';
@@ -21,14 +21,14 @@ export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class MiddlewareRunnerMiddleware<TSupportedJobSteps extends JobStepDef<string, any, any>> implements TMiddlewareRunner<TSupportedJobSteps>
 {
-    constructor(public readonly support: TSupportedJobSteps['type'], private readonly handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => MiddlewarePromise, private doNotInterpolate?: boolean)
+    constructor(public readonly support: TSupportedJobSteps['type'], private readonly handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => MiddlewarePromise, private readonly doNotInterpolate?: boolean)
     {
     }
 
     async handle(...[context, step, stdio]: MiddlewareSignature<TSupportedJobSteps>)
     {
         if (!step[this.support])
-            return Promise.resolve();
+            return NotHandled;
 
         if (!this.doNotInterpolate)
         {
@@ -60,7 +60,7 @@ export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
     }
 }
 
-export const WithInterpolater = new MiddlewareRunnerMiddleware('with', () => { return Promise.resolve(); });
+export const WithInterpolater = new MiddlewareRunnerMiddleware('with', () => NotHandled);
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class ContainerMiddleware implements MiddlewareAsync<MiddlewareSignature<JobStepDef<string, any, any>>>
@@ -108,7 +108,7 @@ export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<J
     (context, step) =>
     {
         if (!step.if)
-            return Promise.resolve();
+            return NotHandled;
         try
         {
             if (!(new parser.EvaluatorAsFunction().eval(new Parser().parse(step.if)))(context))
@@ -155,7 +155,7 @@ export function RetryMiddleware(runner: MiddlewareCompositeWithPriorityAsync<Mid
         {
             const err = await runner.handle(context, Object.assign({}, step, { retries: null, name: step.name + '#retry-' + index }), stdio);
             if (!err)
-                return;
+                return undefined;
         }
     });
 }
