@@ -54,6 +54,7 @@ export interface RequestBody
 
 export interface Request extends http.IncomingMessage, Routable
 {
+    uri?: URL;
     accepts: accepts.Accepts;
     ip: string;
     query: URLSearchParams;
@@ -68,4 +69,6 @@ export interface Response extends http.ServerResponse
     sendStatus(statusCode: number): Response;
     json(content: unknown): Response;
     redirect(url: string, redirectCode?: number): Response;
+    setCookie(name: string, value: string, options?: { [key: string]: unknown }): Response;
+    clearCookie(name: string, options?: { [key: string]: unknown }): Response;
 }
