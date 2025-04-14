@@ -7,7 +7,7 @@ import { ExtendableCompositeMiddleware } from './composite-sync.js';
  * @template T - The type of the arguments.
  * @template TSpecialNextParam - The type of the special next parameter.
  */
-export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> implements Middleware<T, TSpecialNextParam>, ExtendableCompositeMiddleware<T>
+export class MiddlewareCompositeWithPriority<T extends unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam> implements Middleware<T, TSpecialNextParam>, ExtendableCompositeMiddleware<T>
 {
     public readonly name?: string;
 

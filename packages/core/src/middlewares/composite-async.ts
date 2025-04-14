@@ -1,5 +1,5 @@
 import { each as eachAsync } from '../eachAsync.js';
-import { AnyAsyncMiddleware, MiddlewareAsync, MiddlewarePromise, MiddlewareResult, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import { AnyAsyncMiddleware, MiddlewareAsync, MiddlewarePromise, MiddlewareResult, NotHandled, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
 export interface ExtendableCompositeMiddlewareAsync<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> { }
@@ -7,7 +7,7 @@ export interface ExtendableCompositeMiddlewareAsync<T extends unknown[], TSpecia
 /**
  * A class representing a composite middleware that handles asynchronous operations.
  */
-export class MiddlewareCompositeAsync<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> implements MiddlewareAsync<T, TSpecialNextParam>, ExtendableCompositeMiddlewareAsync<T, TSpecialNextParam>
+export class MiddlewareCompositeAsync<T extends unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam> implements MiddlewareAsync<T, TSpecialNextParam>, ExtendableCompositeMiddlewareAsync<T, TSpecialNextParam>
 {
     public readonly name?: string
 
@@ -162,7 +162,7 @@ export class MiddlewareCompositeAsync<T extends unknown[], TSpecialNextParam ext
 
                     }).catch(e => Promise.reject({ success: e }))
                 }
-                return Promise.resolve();
+                return NotHandled;
             }, true);
             return error;
         }

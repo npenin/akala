@@ -3,7 +3,7 @@ import { MiddlewareCompositeAsync } from "./middlewares/composite-async.js";
 import { MiddlewareAsync, MiddlewarePromise } from "./middlewares/shared.js";
 import { Routable } from "./router/route.js";
 
-type MiddlewareError = 'break' | 'loop' | void;
+type MiddlewareError = 'break' | 'loop' | undefined;
 
 /**
  * Handles URL routing and middleware processing for different protocol, host, and path components
