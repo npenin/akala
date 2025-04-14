@@ -286,25 +286,41 @@ export class FetchHttp implements Http<Response>
     /**
      * Serializes an object into URL-encoded format.
      */
-    public static serialize(obj, prefix?: string): string
+    public static serialize(obj, prefix?: string): string | FormData
     {
+        if (obj instanceof URLSearchParams)
+            if (!prefix)
+                return obj.toString();
+            else
+                return this.serialize(Object.fromEntries(obj.entries()), prefix);
+        if (globalThis.FormData && obj instanceof globalThis.FormData)
+        {
+            if (!prefix)
+                return obj;
+            return this.serialize(Object.fromEntries(obj.entries()), prefix);
+        }
         return map(obj, function (value, key: string)
         {
-            if (typeof (value) == 'object')
+            switch (typeof (value))
             {
-                let keyPrefix = prefix;
-                if (prefix)
-                {
-                    if (typeof (key) == 'number')
-                        keyPrefix = prefix.substring(0, prefix.length - 1) + '[' + key + '].';
-                    else
-                        keyPrefix = prefix + encodeURIComponent(key) + '.';
-                }
-                return FetchHttp.serialize(value, keyPrefix);
-            }
-            else
-            {
-                return (prefix || '') + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+                case 'object':
+                    {
+                        if (value === null)
+                            return (prefix || '') + encodeURIComponent(key) + '=';
+                        let keyPrefix = prefix;
+                        if (prefix)
+                        {
+                            if (typeof (key) == 'number')
+                                keyPrefix = prefix.substring(0, prefix.length - 1) + '[' + key + '].';
+                            else
+                                keyPrefix = prefix + encodeURIComponent(key) + '.';
+                        }
+                        return FetchHttp.serialize(value, keyPrefix) as string;
+                    }
+                case 'undefined':
+                    return '';
+                default:
+                    return (prefix || '') + encodeURIComponent(key) + '=' + encodeURIComponent(value);
             }
         }, true).join('&');
     }
