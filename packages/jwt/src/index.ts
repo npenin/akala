@@ -1,19 +1,70 @@
 import { base64 } from '@akala/core'
 
-export interface JWT<T extends Record<string, string | number | string[] | number[]>> 
+export type JWTValues = string | number | string[] | number[]
+
+export type JWAlgorithms = 'RS256' | 'RS384' | 'RS512' | 'HS256' | 'HS384' | 'HS512' | 'PS256' | 'PS384' | 'PS512' | 'ES256' | 'ES384' | 'ES512' | 'EcDSA' | 'none';
+
+export interface JWT<T extends Record<string, JWTValues>> 
 {
     header: {
-        alg: 'RS256' | 'RS384' | 'RS512' | 'HS256' | 'HS384' | 'HS512' | 'PS256' | 'PS384' | 'PS512' | 'ES256' | 'ES384' | 'ES512' | 'EcDSA' | 'none',
-        typ: 'JWT'
+        alg: JWAlgorithms,
+        typ: 'JWT';
+        kid?: string;
     }
     payload: T
     signature?: string
 }
 
-export const jwt = {
-    getAlgorithm(jwt: JWT<Record<string, string | number>>): { prefix: 'RS' | 'HS' | 'PS' | 'ES' | 'EDDSA' | 'NONE', bits: number, subtle: Algorithm | RsaPssParams | EcdsaParams & EcKeyAlgorithm }
+export type KeyType = 'oct' | 'RSA' | 'EC' | 'OKP' | 'PEM'
+
+export interface JWK
+{
+    alg?: JWAlgorithms,
+    x5c?: string[]
+    kty: KeyType
+}
+
+type SubtleAglorithms = Algorithm | RsaPssParams | EcdsaParams & EcKeyAlgorithm;
+
+function mapKeyTypeToAlgorithm(keyType: KeyType): SubtleAglorithms
+{
+    switch (keyType)
     {
-        const [_, alg, bits] = /^(rs|hs|ps|es|EdDSA)(\d+)?$/i.exec(jwt.header.alg);
+        case 'RSA':
+            return { name: 'RSA-PSS', hash: 'SHA-256' }
+        case 'EC':
+            return {
+                name: "ECDSA",
+                namedCurve: 'P-521',
+                hash: { name: "SHA-512" },
+            }
+        case 'oct':
+        case 'OKP':
+        case 'PEM':
+        default:
+            throw new Error('Not support key type: ' + keyType)
+    }
+}
+
+export const jwt = {
+    getCryptoKeyFromWebKey(key: JWK)
+    {
+        if (key.alg)
+            return crypto.subtle.importKey('jwk', key, jwt.getAlgorithmFromWebKey(key as any).subtle, // Extractable and algorithm details
+                true,
+                ["verify"]);
+
+        if (key.x5c)
+        {
+            return crypto.subtle.importKey('spki', base64.base64DecToArr(key.x5c[0]), mapKeyTypeToAlgorithm(key.kty), // Extractable and algorithm details
+                true,
+                ["verify"]);
+        }
+    },
+    getAlgorithmFromWebKey(key: { alg: JWT<Record<string, JWTValues>>['header']['alg'] }): { prefix: 'RS' | 'HS' | 'PS' | 'ES' | 'EDDSA' | 'NONE', bits: number, subtle: SubtleAglorithms }
+    {
+        console.log(key.alg);
+        const [_, alg, bits] = /^(rs|hs|ps|es|EdDSA)(\d+)?$/i.exec(key.alg);
 
         switch (alg.toUpperCase())
         {
@@ -46,22 +97,32 @@ export const jwt = {
 
         }
     },
-    async serialize(jwts: JWT<Record<string, string | number>>, secret?: CryptoKey): Promise<string>
+    getAlgorithm<T extends Record<string, string | number | string[] | number[]>>(token: JWT<T>): { prefix: 'RS' | 'HS' | 'PS' | 'ES' | 'EDDSA' | 'NONE', bits: number, subtle: SubtleAglorithms }
     {
-        const signature = await jwt.sign(jwts, secret);
+        return jwt.getAlgorithmFromWebKey(token.header);
+    },
+    async serialize<T extends Record<string, JWTValues>>(jwts: JWT<T>, secret?: CryptoKey): Promise<string>
+    {
+        const signaturePayload = base64.base64UrlEncArr(base64.strToUTF8Arr(JSON.stringify(jwts.header))) + '.' +
+            base64.base64UrlEncArr(base64.strToUTF8Arr(JSON.stringify(jwts.payload)));
+        if (jwts.signature)
+            return signaturePayload + '.' + jwts.signature;
+
+        const signature = await jwt.sign(jwts, secret, jwts.signature);
         // console.log(signature)
         if (signature.signature)
             return signature.payload + '.' + signature.signature;
         else
             return signature.payload;
     },
-    async sign(jwts: JWT<Record<string, string | number>>, secret?: CryptoKey)
+    async sign<T extends Record<string, JWTValues>>(jwts: JWT<T>, secret?: CryptoKey, signaturePayload?: string)
     {
         const alg = jwt.getAlgorithm(jwts);
         if (alg.prefix == 'NONE' || secret)
         {
-            const signaturePayload = base64.base64UrlEncArr(base64.strToUTF8Arr(JSON.stringify(jwts.header))) + '.' +
-                base64.base64UrlEncArr(base64.strToUTF8Arr(JSON.stringify(jwts.payload)));
+            if (!signaturePayload)
+                signaturePayload = base64.base64UrlEncArr(base64.strToUTF8Arr(JSON.stringify(jwts.header))) + '.' +
+                    base64.base64UrlEncArr(base64.strToUTF8Arr(JSON.stringify(jwts.payload)));
 
 
             switch (alg.prefix.toUpperCase())
@@ -79,7 +140,7 @@ export const jwt = {
         }
         throw new Error('unsupported algorithm or key not provided');
     },
-    async verify(token: JWT<Record<string, string | number>> | string, secret?: CryptoKey)
+    async verify<T extends Record<string, JWTValues>>(token: JWT<T> | string, secret?: CryptoKey)
     {
         if (typeof token == 'string')
             token = jwt.deserialize(token);
@@ -87,7 +148,7 @@ export const jwt = {
         if (alg.prefix == 'NONE')
             return true;
         if (!token.signature)
-            return false;
+            return true;
 
         if (secret)
         {
@@ -108,10 +169,10 @@ export const jwt = {
         }
         throw new Error('unsupported algorithm or key not provided');
     },
-    deserialize(s: string): JWT<Record<string, string | number>>
+    deserialize<T extends Record<string, JWTValues>>(s: string): JWT<T>
     {
         const values = s.split('.');
-        const jwt: JWT<Record<string, string | number>> = {
+        const jwt: JWT<T> = {
             header: JSON.parse(base64.UTF8ArrToStr(base64.base64UrlDecToArr(values[0]))),
             payload: JSON.parse(base64.UTF8ArrToStr(base64.base64UrlDecToArr(values[1]))),
         };
