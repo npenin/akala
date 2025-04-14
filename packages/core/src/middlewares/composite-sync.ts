@@ -2,12 +2,12 @@ import { each } from '../each.js';
 import { process, AnySyncMiddleware, ErrorMiddleware, Middleware, MiddlewareResult, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
-export interface ExtendableCompositeMiddleware<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> { }
+export interface ExtendableCompositeMiddleware<T extends unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam> { }
 
 /**
  * A composite middleware class that allows for the composition of multiple middlewares.
  */
-export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> implements Middleware<T, TSpecialNextParam>, ExtendableCompositeMiddleware<T, TSpecialNextParam>
+export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam> implements Middleware<T, TSpecialNextParam>, ExtendableCompositeMiddleware<T, TSpecialNextParam>
 {
     public readonly name?: string
 

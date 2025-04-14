@@ -1,4 +1,4 @@
-import { convertToErrorMiddleware, isStandardMiddleware, isErrorMiddleware } from './shared.js';
+import { convertToErrorMiddleware, isStandardMiddleware, isErrorMiddleware, NotHandled } from './shared.js';
 import { AnyAsyncMiddleware, ErrorMiddleware, ErrorMiddlewareAsync, MiddlewareAsync, MiddlewarePromise, OptionsResponse, SpecialNextParam } from './shared.js';
 
 
@@ -100,12 +100,12 @@ export class MiddlewareIndexedAsync<T extends unknown[], TMiddleware extends Any
             if (this._delegate)
                 return this._delegate.handle(...req);
             else
-                return Promise.resolve();
+                return NotHandled;
 
         const middleware = this.index[key];
         if (isStandardMiddleware(middleware))
             return middleware.handle(...req).then(e => (typeof e === 'undefined') && this._delegate ? this._delegate.handle(...req) : e);
-        return Promise.resolve();
+        return NotHandled;
     }
 }
 

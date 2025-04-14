@@ -7,7 +7,7 @@ import { process, AnySyncMiddleware, ErrorMiddleware, Middleware, MiddlewareResu
  * @template TMiddleware
  * @template TSpecialNextParam
  */
-export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnySyncMiddleware<T, TSpecialNextParam>, TSpecialNextParam extends string | void = SpecialNextParam> implements Middleware<T, TSpecialNextParam>
+export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnySyncMiddleware<T, TSpecialNextParam>, TSpecialNextParam extends string | undefined = SpecialNextParam> implements Middleware<T, TSpecialNextParam>
 {
     public readonly name?: string
     protected _delegate: Middleware<T, TSpecialNextParam>;

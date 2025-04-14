@@ -1,12 +1,12 @@
 import { each as eachAsync } from '../eachAsync.js';
-import { AnyAsyncMiddleware, MiddlewareAsync, MiddlewarePromise, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import { AnyAsyncMiddleware, MiddlewareAsync, MiddlewarePromise, NotHandled, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
 
 /**
  * A composite middleware class with priority for asynchronous operations.
  * @template T - The type of the arguments.
  * @template TSpecialNextParam - The type of the special next parameter.
  */
-export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> implements MiddlewareAsync<T, TSpecialNextParam>//, ExtendableCompositeMiddleware<T>
+export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam> implements MiddlewareAsync<T, TSpecialNextParam>//, ExtendableCompositeMiddleware<T>
 {
     public readonly name?: string;
 
@@ -159,7 +159,7 @@ export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialN
                 }
 
                 else
-                    return Promise.resolve();
+                    return NotHandled;
             }, true);
             return error;
         }

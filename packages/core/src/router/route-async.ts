@@ -1,7 +1,6 @@
-import { MiddlewarePromise, SpecialNextParam } from '../middlewares/shared.js';
+import { MiddlewarePromise, NotHandled, SpecialNextParam, MiddlewareAsync } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
 import { Routable, RouteBuilderArguments } from "./route.js";
-import { MiddlewareAsync } from "../middlewares/shared.js";
 import { UriTemplate } from '../uri-template/index.js';
 import { UrlTemplate } from '../index.js';
 
@@ -71,7 +70,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]], TSpecialNe
             const oldPath = req.path;
             const c = oldPath[oldPath.length - isMatch.remainder.length];
             if (c && c !== '/')
-                return Promise.resolve(undefined);
+                return NotHandled;
             req.path = isMatch.remainder || '/';
 
             const oldParams = req.params;
@@ -87,7 +86,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]], TSpecialNe
                 req.path = oldPath;
             }
         }
-        return Promise.resolve(undefined);
+        return NotHandled;
     }
 
     /**
