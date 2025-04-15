@@ -32,15 +32,53 @@ Finally comes the helpers to help you leverage this big framework.
 ```mermaid
 %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
 flowchart TB
-    json-rpc-ws -.-> core
-    cli -.-> core
-    storage -.-> core
-    commands -.-> json-rpc-ws & cli
-    configuration -.-> commands
-    pm -.-> commands
-    server -.-> commands
-    client -.-> commands
-    web-ui -.-> client
+    authentication ---> commands & core
+   automate-yamlloader ---> automate & config & pm
+   automate ---> cli & commands & config & core & cron & json-rpc-ws & pm & pubsub & server
+   aws-lambda ---> commands & core
+   cli ---> core
+   client ---> commands & core
+   commands ---> cli & core & json-rpc-ws
+   config ---> commands & core
+   cron ---> commands & core & pubsub
+   gateway ---> cli & core & json-rpc-ws
+   json-rpc-ws ---> core
+   jwt ---> core
+   pm ---> cli & commands & config & core & json-rpc-ws
+   pubsub ---> commands & core & pm
+   semantic-release ---> cli & commands
+   server ---> commands & core & json-rpc-ws & pm
+   sidecar ---> cli & commands & config & core & pm & storage
+   storage ---> core
+   storage-mongodb ---> core & storage
+   vite ---> client & commands & core & json-rpc-ws
+   web-ui ---> client & commands & core
+    authentication -.-> jwt & pm & server & storage
+
+    click authentication "_authentication" "Go to authentication documentation"
+   click automate-yamlloader "_automate-yamlloader" "Go to automate-yamlloader documentation"
+   click automate "_automate" "Go to automate documentation"
+   click aws-lambda "_aws-lambda" "Go to aws-lambda documentation"
+   click cli "_cli" "Go to cli documentation"
+   click client "_client" "Go to client documentation"
+   click commands "_commands" "Go to commands documentation"
+   click config "_config" "Go to config documentation"
+   click core "_core" "Go to core documentation"
+   click cron "_cron" "Go to cron documentation"
+   click gateway "_gateway" "Go to gateway documentation"
+   click json-rpc-ws "_jsonrpc" "Go to json-rpc-ws documentation"
+   click jwt "_jwt" "Go to jwt documentation"
+   click pm "_pm" "Go to pm documentation"
+   click protocol-parser "_protocol-parser" "Go to protocol-parser documentation"
+   click pubsub "_pubsub" "Go to pubsub documentation"
+   click semantic-release "_semantic-release" "Go to semantic-release documentation"
+   click server "_server" "Go to server documentation"
+   click sidecar "_sidecar" "Go to sidecar documentation"
+   click storage "_storage" "Go to storage documentation"
+   click storage-mongodb "_storage-mongodb" "Go to storage-mongodb documentation"
+   click tacl "_tacl" "Go to tacl documentation"
+   click vite "_vite" "Go to vite documentation"
+   click web-ui "_web-ui" "Go to web-ui documentation"
 ```
 
 <!-- Place this tag in your head or just before your close body tag. -->
