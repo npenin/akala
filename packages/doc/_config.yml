@@ -12,25 +12,23 @@ cayman:
 collections:
   core:
     output: true
-  client:
-    output: true
-  cli:
-    output: true
-  server:
+  jsonrpc:
     output: true
   commands:
     output: true
   configuration:
     output: true
-  jsonrpc:
+  storage:
+    output: true
+  cli:
     output: true
   pm:
     output: true
-  storage:
+  server:
+    output: true
+  client:
     output: true
   web-ui:
-    output: true
-  vite:
     output: true
   cron:
     output: true
@@ -60,7 +58,7 @@ collections:
     output: true
   tacl:
     output: true
-  ui-shell:
+  vite:
     output: true
   webdav:
     output: true
@@ -70,14 +68,8 @@ just_the_docs:
     core:
       name: "@akala/core"
       nav_fold: true
-    client:
-      name: "@akala/client"
-      nav_fold: true
-    cli:
-      name: "@akala/cli"
-      nav_fold: true
-    server:
-      name: "@akala/server"
+    jsonrpc:
+      name: "@akala/jsonrpc"
       nav_fold: true
     commands:
       name: "@akala/commands"
@@ -85,20 +77,23 @@ just_the_docs:
     configuration:
       name: "@akala/config"
       nav_fold: true
-    jsonrpc:
-      name: "@akala/jsonrpc"
+    storage:
+      name: "@akala/storage"
+      nav_fold: true
+    cli:
+      name: "@akala/cli"
       nav_fold: true
     pm:
       name: "@akala/pm"
       nav_fold: true
-    storage:
-      name: "@akala/storage"
+    server:
+      name: "@akala/server"
+      nav_fold: true
+    client:
+      name: "@akala/client"
       nav_fold: true
     web-ui:
       name: "@akala/web-ui"
-      nav_fold: true
-    vite:
-      name: "@akala/vite"
       nav_fold: true
     cron:
       name: "@akala/cron"
@@ -111,9 +106,6 @@ just_the_docs:
       nav_fold: true
     dashboard:
       name: "@akala/dashboard"
-      nav_fold: true
-    doc:
-      name: "@akala/doc"
       nav_fold: true
     gateway:
       name: "@akala/gateway"
@@ -145,8 +137,8 @@ just_the_docs:
     tacl:
       name: "@akala/tacl"
       nav_fold: true
-    ui-shell:
-      name: "@akala/ui-shell"
+    vite:
+      name: "@akala/vite"
       nav_fold: true
     webdav:
       name: "@akala/webdav"
