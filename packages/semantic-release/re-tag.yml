@@ -45,8 +45,7 @@ jobs:
         run:
           - git
           - tag
-          - $($.name)
-          - $(build.taggedCommit.versions[$index])
+          - $($.name)@$($.version)
         with:
           path: $($)
-        foreach: $(build.tagged-commit)
+        foreach: $(build.versions)
