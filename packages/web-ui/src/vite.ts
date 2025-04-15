@@ -1,4 +1,4 @@
-import { Plugin } from 'vite';
+import type { Plugin } from 'vite';
 import { DTCGTokenGroup, mergeTokens, generateCssFromTokensToString, expandTokens, WebUI, GenerateCssOptions } from './design-tokens.js';
 
 export default function plugin(options?: { tokenPaths?: string[], includeDefaultTheme?: boolean, generateOptions?: GenerateCssOptions, tokens?: DTCGTokenGroup | Promise<DTCGTokenGroup> }): Plugin

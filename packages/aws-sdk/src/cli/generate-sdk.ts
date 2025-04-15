@@ -1,7 +1,7 @@
 import { Http, Interpolate } from '@akala/core'
 import { basename, extname, sep } from 'path'
 import { Metadata, Processors } from '@akala/commands'
-import { SchemaObject } from 'ajv';
+import type { SchemaObject } from 'ajv';
 import fs from 'fs/promises'
 
 function parseRoute(uri: string): { route: string, parameters: { name: string, multiple: boolean }[] }

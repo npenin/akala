@@ -1,6 +1,6 @@
 import { Metadata, Processors, Trigger } from '@akala/commands'
 import { SimpleInjector, mapAsync } from '@akala/core';
-import { APIGatewayEvent, Context } from 'aws-lambda'
+import type { APIGatewayEvent, Context } from 'aws-lambda'
 
 export interface AwsConfiguration extends Metadata.Configuration
 {
