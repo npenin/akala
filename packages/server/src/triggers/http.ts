@@ -4,7 +4,7 @@ import { Injector, logger } from '@akala/core';
 import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
-import mime from 'mime'
+import mime from 'mime-types'
 
 const log = logger('commands:trigger:http')
 
@@ -20,7 +20,7 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
             // {
             const contentType = res.getHeaders()['content-type'];
             if (typeof contentType == 'string')
-                switch (mime.getExtension(contentType))
+                switch (mime.extension(contentType))
                 {
                     case 'json':
                         res.json(result);
