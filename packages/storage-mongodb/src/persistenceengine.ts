@@ -3,7 +3,7 @@ import { ModelDefinition, PersistenceEngine } from '@akala/storage'
 import { Collection, Db } from 'mongodb';
 import CommandProcessor from './command-processor.js';
 import MongoDbTranslator from './expression-visitor.js';
-import { NotHandled } from '../../core/dist/esm/middlewares/shared.js';
+import { NotHandled } from '@akala/core';
 
 
 export class MongoDb extends PersistenceEngine<Db>
