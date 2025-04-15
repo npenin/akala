@@ -14,43 +14,7 @@ npm install @akala/automate
 ```
 
 ## Usage
-Import the module and define workflows as follows:
-
-```javascript
-import * as automate from '@akala/automate';
-
-// Example usage
-automate.defineWorkflow('exampleWorkflow', [
-    { trigger: 'event', action: 'log', params: { message: 'Workflow triggered!' } }
-]);
-```
-
-## API Reference
-
-| Method | Description |
-| --- | --- |
-| `defineWorkflow(name: string, steps: Array<Step>): void` | Defines a new workflow with the given name and steps. |
-| `executeWorkflow(name: string, context: any): Promise<void>` | Executes the specified workflow with the provided context. |
-
-## Examples
-
-### Define and Execute a Workflow
-```javascript
-import * as automate from '@akala/automate';
-
-// Define a workflow
-automate.defineWorkflow('exampleWorkflow', [
-    { trigger: 'event', action: 'log', params: { message: 'Workflow triggered!' } }
-]);
-
-// Execute the workflow
-async function runWorkflow() {
-    await automate.executeWorkflow('exampleWorkflow', {});
-    console.log('Workflow executed successfully');
-}
-
-runWorkflow();
-```
+The easiest way to see a usage example for now is to go to the [semantic release](../semantic-release/)
 
 ## Contributing
 Contributions are welcome! Please follow the guidelines in the main repository.
