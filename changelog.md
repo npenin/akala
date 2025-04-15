@@ -251,6 +251,7 @@
 * protobuf reading 007b724
 * provide proper logging 445a133
 * provide proper logging 2e02b06
+* re-tagging workflow 5539b6b
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
 * remove - as valid character 9a9f5b5
