@@ -33,26 +33,23 @@ Finally comes the helpers to help you leverage this big framework.
 %%{ init: { 'flowchart': { 'curve': 'linear' } } }%%
 flowchart TB
     authentication ---> commands & core
-   automate-yamlloader ---> automate & config & pm
-   automate ---> cli & commands & config & core & cron & json-rpc-ws & pm & pubsub & server
-   aws-lambda ---> commands & core
-   cli ---> core
-   client ---> commands & core
-   commands ---> cli & core & json-rpc-ws
-   config ---> commands & core
-   cron ---> commands & core & pubsub
-   gateway ---> cli & core & json-rpc-ws
-   json-rpc-ws ---> core
-   jwt ---> core
-   pm ---> cli & commands & config & core & json-rpc-ws
-   pubsub ---> commands & core & pm
-   semantic-release ---> cli & commands
-   server ---> commands & core & json-rpc-ws & pm
-   sidecar ---> cli & commands & config & core & pm & storage
-   storage ---> core
-   storage-mongodb ---> core & storage
-   vite ---> client & commands & core & json-rpc-ws
-   web-ui ---> client & commands & core
+    automate ---> cli & commands & config & core & cron & json-rpc-ws & pm & pubsub & server
+    aws-lambda ---> commands & core
+    cli ---> core
+    client ---> commands & core
+    commands ---> cli & core & json-rpc-ws
+    config ---> commands & core
+    gateway ---> cli & core & json-rpc-ws
+    json-rpc-ws ---> core
+    jwt ---> core
+    pm ---> cli & commands & config & core & json-rpc-ws
+    pubsub ---> commands & core & pm
+    semantic-release ---> cli & commands
+    server ---> commands & core & json-rpc-ws & pm
+    sidecar ---> cli & commands & config & core & pm & storage
+    storage ---> core
+    vite ---> client & commands & core & json-rpc-ws
+    web-ui ---> client & commands & core
     authentication -.-> jwt & pm & server & storage
 
     click authentication "_authentication" "Go to authentication documentation"
