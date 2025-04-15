@@ -36,7 +36,7 @@ jobs:
       #  with:
       #    eslint: true
       - name: Tests
-        run: yarn test
+        run: yarn coverage
       - name: Archive build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -44,6 +44,12 @@ jobs:
           path: |
             **/dist
             **/tsconfig.tsbuildinfo
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: |
+            **/lcov.info
   publish:
     runs-on: ubuntu-latest
     needs: build
@@ -91,11 +97,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
       - name: Run coverage
         run: |
-          yarn
-          mkdir coverage
-          yarn coverage
           node_modules/.bin/akala sdk merge-coverage 'packages/*/lcov.info' .
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5

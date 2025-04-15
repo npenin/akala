@@ -4,7 +4,7 @@
     "description": "",
     "scripts": {
         "test": "node --test --enable-source-maps",
-        "coverage": "yarn test --experimental-test-coverage --test-reporter=spec --test-reporter=lcov --test-reporter-destination=../../coverage/core.v8 --test-reporter-destination=lcov.info --enable-source-maps dist/esm/test/**.js",
+        "coverage": "yarn test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
         "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json"
     },
