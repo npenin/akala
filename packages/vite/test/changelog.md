@@ -1,8 +1,9 @@
-#  (2025-04-13)
+#  (2025-04-15)
 
 
 ### Bug Fixes
 
+* cleanup dependencies 7d25a0d
 * default logging level 072212e
 * https://sonarcloud.io/organizations/npenin/rules?open=Web%3ATableHeaderHasIdOrScopeCheck&rule_key=Web%3ATableHeaderHasIdOrScopeCheck ea8b3a2
 * https://sonarcloud.io/project/issues?open=AZTuPPyqWVPY8wORAfqc&id=npenin_akala 4b38813
