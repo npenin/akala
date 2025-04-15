@@ -80,7 +80,7 @@ const google = await auth.OidcFormatter.Google({
     clientId: '<your-client-id>',
     redirectUri: '/oauth/google',
     clientSecret: '<your-client-secret>',
-    scope: ['openid', 'profile', 'user.read'].join(' '),
+    scope: ['openid', 'profile', 'email'].join(' '),
 });
 
 google.attachTo(router, 10, keys => new auth.CookieAuthenticateMiddleware('session', new auth.StringSerializer(), { path: '/', HttpOnly: true, SameSite: 'Strict' }))
