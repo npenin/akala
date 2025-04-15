@@ -1,4 +1,4 @@
-#  (2025-04-13)
+#  (2025-04-15)
 
 
 * chore : code cleanup eae1150
@@ -77,6 +77,7 @@
 * artificially bump akala 0057047
 * artificially bump akala c6407f8
 * aws sdk generation and update services 7b922cf
+* base64UrlEncode properly strips = 54ca5ff
 * BinaryOperator parsing cb0abf0
 * bug when result is null b6a9828
 * build fbd741f
@@ -86,6 +87,7 @@
 * change vulnerable algorithm 7d5caa7
 * clean up _config.yml by removing redundant layout definitions for various collections aeb21af
 * clean up _config.yml by removing redundant layout definitions for various collections 664223e
+* cleanup dependencies 7d25a0d
 * cleanup imports b23f5de
 * cleanup script 2ae6f22
 * CLI handle optional path cb6e421
@@ -204,7 +206,10 @@
 * improper akala cli initialization 5ee0293
 * improper config init 70efb0d
 * improper config init 0f90955
+* improve discovery 3e0d64b
+* improve formatter behavior 30996cd
 * improve Router next param support + documentation 207c326
+* improve serialize on http af3373b
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
 * Injector inheritance d015db2
@@ -227,6 +232,7 @@
 * move all code to cli install 991eda8
 * move HttpStatusCode to be more "independent" of Http 0bcb3aa
 * multiple modules may be started simultaneously 3ea8a55
+* oidc discover properly returns options for authorize, token and keys b92665c
 * options setup 185ffa4
 * options setup 387b195
 * outlet root scope 3c0d3e6
@@ -248,6 +254,7 @@
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
 * remove - as valid character 9a9f5b5
+* remove cjs reference 2284b79
 * remove deprecated command documentation files and navigation exclusions 90bceca
 * remove deprecated command documentation files and navigation exclusions 69bc7d5
 * remove duplicated code c81dd54
@@ -356,6 +363,10 @@
 * update after akala cli refactoring f69a2f4
 * update after breaking change 78d6ba4
 * update after breaking change 0357943
+* update after core breaking change 64f8764
+* update after core breaking change 18048b8
+* update after core breaking change 6031965
+* update after core breaking change 78576ba
 * update after core breaking change 6379673
 * update after core breaking change 6ea3ca9
 * update after core Translator interface upgrade a6500a1
@@ -405,6 +416,7 @@
 * using proper branch option 93a62fb
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
+* wrong inferred dependency path 7a1f1ab
 * xpm init 0fb1f90
 * xpm init 37af8c5
 * xpm issues bd430af
@@ -417,6 +429,7 @@
 ### Code Refactoring
 
 * events to separate files af5211e
+* replace void with undefined as NextParam 34fcf2a
 
 
 ### Features
@@ -433,6 +446,8 @@
 * add close on FileGenerator db6fd88
 * add commands getting-started guide 5492118
 * add commands getting-started guide 1564b82
+* add cookie support + add IdStore and IdSerializer interfaces c5a5d6a
+* add dependency diagram builder ad6060b
 * add doc from gh-pages branch a024fed
 * add GitHub sponsorship and star buttons to documentation 45cdee0
 * add GitHub sponsorship and star buttons to documentation 457055f
@@ -442,6 +457,7 @@
 * add initial documentation for command processors and triggers 47506ce
 * add initial documentation for various modules and commands e3e5945
 * add initial documentation for various modules and commands 5f68588
+* add JWK and few more improvements 54d30ae
 * add logo e5bd83f
 * add logo 2b3af22
 * add merge-coverage to SDK bcd0cd4
@@ -449,7 +465,9 @@
 * add name in xpm d8b9ad6
 * add NO_AKALAPOSTINSTALL support bb60b83
 * add NO_AKALAPOSTINSTALL support bebd6b1
+* add oidc formatter factory fba4a73
 * add runtime concept 1993141
+* add uri on request to be able to know the full url of a request 3ed1dd0
 * add version field to package.json for documentation package 42a4cc8
 * add version field to package.json for documentation package ac5b028
 * add xpm (but not leverage it yet) 84f1def
@@ -468,6 +486,7 @@
 * enable opentofu/terraform generation for aws lambda deployment 667a77b
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing 08e5e24
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing def786c
+* errorWithStatus can be assigned a name 45c77e4
 * EventEmitter is now a TeardownManager e19c5d8
 * expand documentation with Observables and Events sections 725e8a5
 * expand documentation with Observables and Events sections 57abcf0
@@ -475,11 +494,15 @@
 * export Generator type and allow actionIfExists to prevent to generate a file if result ===false f58deab
 * export Generator type and allow actionIfExists to prevent to generate a file if result ===false 32ae777
 * export serverHandlers and new serve function to quickly build servers e6fc0ea
+* expose extendRequest 009dcb6
+* expose more middlewares 24e8e4a
 * expose xpm f60e75a
 * first CLI client generator working !!! 822b8ba
 * first CLI client generator working !!! 2ab3f9e
 * first version 409539e
+* formatters can be registered by priority 1204aa8
 * generalize signature to open it to $http options too 09eee3a
+* http-client now has body support d217cac
 * implement AWS4 signature as httpclient authentication ebb14c8
 * improve documentation titles and structure for middleware sections 34f33ad
 * improve documentation titles and structure for middleware sections 2395989
@@ -503,6 +526,9 @@
 
 ### BREAKING CHANGES
 
+* you need to provide priority when registering a formatter
+* NextParam cannot be void anymore. To compensate and help refactoring, a NotHandled const has been created.
+* discover returns  a fully typed metadata object
 * client redirectUri changed to redirectUris
 * configuration using secrets might be broken
 * remove cjs support
