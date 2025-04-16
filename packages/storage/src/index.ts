@@ -16,9 +16,9 @@ module('@akala/storage');
 export { ModelDefinition, ModelMode };
 
 import { providers } from './shared.js'
-import { File, JsonFileEntry } from './providers/file.js';
+import { File } from './providers/file.js';
 import { Vanilla } from './providers/vanilla.js';
+import { basename, dirname } from 'path/posix'
 
-providers.registerFactory('file', () => new File((path: string, name: string, def: ModelDefinition) => new JsonFileEntry(path, name, def)))
-providers.registerFactory('vanilla', () => new Vanilla())
-
+providers.useProtocol('file+json', (url) => File.fromJson(url.hostname + dirname(url.pathname), basename(url.pathname)))
+providers.useProtocol('memory', () => Promise.resolve(new Vanilla()))

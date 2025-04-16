@@ -6,7 +6,7 @@ import { ExpressionExecutor } from '../expression-executor.js';
 import { ModelDefinition, Generator } from '../shared.js';
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export class Vanilla extends PersistenceEngine<any>
+export class Vanilla extends PersistenceEngine<VanillaOptions>
 {
     constructor()
     {
