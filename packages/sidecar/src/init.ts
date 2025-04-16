@@ -1,9 +1,8 @@
 import { Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
 import { ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container } from '@akala/commands'
-import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
-import { EventBus, Serializable, eachAsync, eventBuses, mapAsync, module } from '@akala/core';
-import { SerializableDefinition } from '@akala/storage'
+import { SerializableDefinition, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
+import { EventBus, Serializable, eachAsync, eventBuses, module } from '@akala/core';
 import { CliContext, OptionType } from '@akala/cli'
 
 export interface PubSubConfiguration
@@ -64,36 +63,37 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     switch (typeof stateStoreConfig)
     {
         case 'string':
-            await providers.injectWithName([stateStoreConfig || 'file'], async (engine: PersistenceEngine<unknown>) =>
+            await providers.process(stateStoreConfig || 'file://./').then(async (engine: PersistenceEngine<unknown>) =>
             {
-                await engine.init(null)
                 sidecar.store = Store.create<T>(engine);
-            })();
+            });
             break;
         case 'object':
-            if (Array.isArray(stateStoreConfig))
-            {
-                const engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
-                {
-                    await engine.init(Object.assign({}, store.providerOptions, { path: context.currentWorkingDirectory }));
-                    return { engine, models: Object.entries(store.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model)) };
-                })(), true);
-                const obj = {};
-                engines.forEach(config => Object.keys(config.models).forEach(model => obj[model] = config.engine));
-                sidecar.store = MultiStore.create(obj);
-            }
-            else
-                await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
-                {
-                    await engine.init(Object.assign({}, stateStoreConfig.providerOptions, { path: context.currentWorkingDirectory }));
-                    Object.entries(stateStoreConfig.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).forEach(x => x.definition.fromJson(x.model));
-                    sidecar.store = Store.create<T>(engine, ...Object.keys(stateStoreConfig.models) as (Exclude<keyof T, number | symbol>)[]);
-                })();
-            break;
+            throw new Error('Unsupported configuration type')
+
+        // if (Array.isArray(stateStoreConfig))
+        // {
+        //     const engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
+        //     {
+        //         await engine.init(Object.assign({}, store.providerOptions, { path: context.currentWorkingDirectory }));
+        //         return { engine, models: Object.entries(store.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model)) };
+        //     })(), true);
+        //     const obj = {};
+        //     engines.forEach(config => Object.keys(config.models).forEach(model => obj[model] = config.engine));
+        //     sidecar.store = MultiStore.create(obj);
+        // }
+        // else
+        //     await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
+        //     {
+        //         await engine.init(Object.assign({}, stateStoreConfig.providerOptions, { path: context.currentWorkingDirectory }));
+        //         Object.entries(stateStoreConfig.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).forEach(x => x.definition.fromJson(x.model));
+        //         sidecar.store = Store.create<T>(engine, ...Object.keys(stateStoreConfig.models) as (Exclude<keyof T, number | symbol>)[]);
+        //     })();
+        // break;
         case 'undefined':
             break;
         default:
-            throw new Error('Not support configuration type')
+            throw new Error('Unsupported configuration type')
     }
 
     const plugins = context.state.get<{ sidecar: string, optional: true, command: string, parameters: Serializable }[]>('plugins');
