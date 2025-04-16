@@ -1,7 +1,7 @@
 import { Container } from "@akala/commands";
 import { State } from '../state.js';
 import { AuthenticationStore } from '../authentication-store.js';
-import { PersistenceEngine, providers } from "@akala/storage";
+import { providers } from "@akala/storage";
 // import { webcrypto as crypto } from "crypto";
 import { sidecar } from "@akala/pm";
 import { ExchangeMiddleware, OAuthError } from "../index.js";
@@ -10,11 +10,10 @@ import { Token } from "../../model/access-token.js";
 import { HttpRouter } from "@akala/server";
 import { base64 } from '@akala/core'
 
-export default async function (this: State, container: Container<State>, providerName: string, providerOptions: unknown, key: string)
+export default async function (this: State, container: Container<State>, providerName: string, key: string)
 {
     // console.log(arguments);
-    const provider = providers.resolve<PersistenceEngine<unknown>>(providerName)
-    await provider.init(providerOptions);
+    const provider = await providers.process(new URL(providerName))
 
     const store = container.state.store = await AuthenticationStore.create(provider);
     const cryptoKey = await crypto.subtle.importKey('raw', base64.base64DecToArr(key), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']);
