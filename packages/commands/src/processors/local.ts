@@ -50,7 +50,7 @@ export class Local extends CommandProcessor
     {
         const sourceParams = source.
             map((i, j) => [i, j]).
-            filter(x => typeof x[0] == 'string' && x[0].startsWith('param.')).
+            filter(x => typeof x[0] == 'string' && x[0].startsWith('param.') || Array.isArray(x[0]) && (x[0][0] == 'param' || x[0][0].startsWith('param.'))).
             map(x => [...x as [string, number], Number((x[0] as string).substring('param.'.length))] as const).
             sort((a, b) => a[2] - b[2])
             ;
