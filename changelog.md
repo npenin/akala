@@ -1,4 +1,4 @@
-#  (2025-04-15)
+#  (2025-04-16)
 
 
 * chore : code cleanup eae1150
@@ -144,6 +144,7 @@
 * exclude upcoming documentation from navigation 5e58959
 * exclude upcoming documentation from navigation 6a2cc0a
 * existing file generator detection ca3ad06
+* extract params considers when array is provided c5eb98b
 * force set configFile path c42e60b
 * force set configFile path f22123d
 * forcing context build f5dfdbc
@@ -371,6 +372,7 @@
 * update after core breaking change 6379673
 * update after core breaking change 6ea3ca9
 * update after core Translator interface upgrade a6500a1
+* update after storage breaking change on providers 91b6037
 * update aws services definition 9bb0b0b
 * update CLI plugin to get installed even within a multiple nodejs call 4680f4f
 * update CLI plugin to get installed even within a multiple nodejs call 6c194e6
@@ -435,6 +437,7 @@
 
 ### Features
 
+* `providers` uses UrlHandler instead of module b228f89
 * add 1stline as accept run format 8cc6945
 * add akala plugin as referenced in doc ef39d5c
 * add automate as plugin fedd6ad
@@ -512,6 +515,7 @@
 * make help accessible everywhere by any clicontext 9f5892a
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
+* provide akala plugin for registering mongodb provider. f776509
 * provide serverHandlers in addition to the commandServerHandlers registration 0d4ee97
 * provide the Plugin interface to help providing better plugin typing 8e9d3a2
 * remove cjs support 145dc5f
@@ -527,6 +531,7 @@
 
 ### BREAKING CHANGES
 
+* `providers` uses UrlHandler instead of module
 * you need to provide priority when registering a formatter
 * NextParam cannot be void anymore. To compensate and help refactoring, a NotHandled const has been created.
 * discover returns  a fully typed metadata object
