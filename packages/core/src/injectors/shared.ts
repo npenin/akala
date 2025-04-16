@@ -79,13 +79,44 @@ export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args:
 {
     return (...parameters: T) =>
     {
-        const args = [null];
-        for (let i = 0; i < parameters.length; i++)
-            args[i + 1] = parameters[i];
         return new ctor(...parameters);
     }
 }
 
+/**
+ * The `Injector` abstract class provides a framework for dependency injection, 
+ * allowing the resolution and injection of parameters, functions, and constructors.
+ * It supports synchronous and asynchronous resolution of dependencies, as well as 
+ * advanced features like nested property resolution and fallback mechanisms.
+ *
+ * Key Features:
+ * - Resolves parameters and injects them into functions or constructors.
+ * - Supports both synchronous and asynchronous dependency resolution.
+ * - Handles nested property resolution and fallback mechanisms for unresolved keys.
+ * - Provides utilities for merging arguments, collecting parameter maps, and applying them.
+ * - Allows injection of new instances of constructors or asynchronous functions.
+ *
+ * Usage:
+ * Extend this class to implement custom dependency injection logic by overriding 
+ * the abstract methods `resolve`, `onResolve`, and `inspect`.
+ *
+ * Example:
+ * ```typescript
+ * class MyInjector extends Injector {
+ *     resolve<T>(param: Resolvable): T {
+ *         // Custom resolution logic
+ *     }
+ *     onResolve<T>(name: Resolvable): PromiseLike<T> {
+ *         // Custom asynchronous resolution logic
+ *     }
+ *     inspect(): void {
+ *         // Custom inspection logic
+ *     }
+ * }
+ * ```
+ *
+ * @template T - The type of the resolved value.
+ */
 export abstract class Injector
 {
     /**
@@ -152,6 +183,37 @@ export abstract class Injector
     {
         return toInject.map((p, i) => ({ index: i, value: this.resolve(p) }));
     }
+
+
+    /**
+     * Resolves a series of keys on a given source object, traversing through nested properties.
+     * If the resolution encounters an `Injector` instance, it delegates the resolution to the `Injector`.
+     * If the resolution encounters a promise-like object, it resolves the promise and continues the resolution.
+     * If a key cannot be resolved and a fallback function is provided, the fallback is invoked with the remaining keys.
+     *
+     * @template T - The type of the resolved value.
+     * @param source - The initial object to resolve the keys from.
+     * @param keys - An array of keys (strings or symbols) to resolve on the source object.
+     * @param fallback - A function to handle unresolved keys, invoked with the remaining keys if resolution fails.
+     * @returns The resolved value of type `T`, or the result of the fallback function if provided.
+     */
+    public static resolveKeys<T>(source: unknown, keys: (string | symbol)[], fallback: (keys: Resolvable[]) => T): T
+    {
+        let result: unknown = source;
+        for (let i = 0; i < keys.length; i++)
+        {
+            const key = keys[i];
+            if (result instanceof Injector)
+                return result.resolve(keys.slice(i));
+            if (isPromiseLike(result))
+                return result.then((result) => this.resolveKeys(result, keys.slice(i), fallback)) as T;
+
+            if (result === source && (!result || typeof (result[key]) == 'undefined') && fallback)
+                return fallback(keys.slice(i));
+            result = result?.[key];
+        }
+    }
+
 
     // abstract setInjectables(value: TypeMap): void;
 
@@ -324,7 +386,7 @@ export abstract class Injector
     {
         if (toInject && toInject.length > 0)
         {
-            const paramNames = <string[]>getParamNames(a);
+            const paramNames = getParamNames(a);
             if (paramNames.length == toInject.length || paramNames.length == 0)
             {
                 if (toInject.length == paramNames.length && paramNames.length == 0)
@@ -425,7 +487,7 @@ export abstract class LocalInjector extends Injector
         if (typeof toInject == 'undefined')
             toInject = [];
 
-        if (typeof override == 'string')
+        if (typeof override !== 'boolean' && typeof override !== 'undefined')
         {
             toInject.unshift(override)
             override = false;
@@ -440,7 +502,7 @@ export abstract class LocalInjector extends Injector
                         return singleton;
                     return singleton = this.injectNewWithName(toInject, fact)();
                 }
-            })
+            }, override)
         }
     }
 
