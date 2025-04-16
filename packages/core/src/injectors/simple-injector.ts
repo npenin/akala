@@ -1,4 +1,3 @@
-import { isPromiseLike } from '../promiseHelpers.js';
 import { EventEmitter } from '../events/event-emitter.js';
 import { Event } from '../events/shared.js';
 import "reflect-metadata";
@@ -111,18 +110,7 @@ export class SimpleInjector extends LocalInjector
 
     private resolveKeys<T>(keys: (string | symbol)[]): T
     {
-        return keys.reduce((result, key) =>
-        {
-            if (result instanceof Injector)
-                return result.resolve(key);
-            if (isPromiseLike(result))
-                return result.then((result) => { return result[key] });
-            if (result === this.injectables && (!result || typeof (result[key]) == 'undefined') && this.parent)
-            {
-                return this.parent.resolve(key);
-            }
-            return result?.[key];
-        }, this.injectables);
+        return Injector.resolveKeys(this.injectables, keys, keys => this.parent?.resolve(keys));
     }
 
     /**
@@ -224,8 +212,8 @@ export class SimpleInjector extends LocalInjector
      */
     public registerDescriptor(name: string | symbol, value: PropertyDescriptor, override?: boolean)
     {
-        if (this.injectables == null)
-            this.injectables = {};
+        this.injectables ??= {};
+
         if (typeof name == 'string')
         {
             const indexOfDot = name.indexOf('.');
