@@ -14,14 +14,14 @@ export class Transaction
 
     public enlist<T>(cmd: Commands<T>)
     {
-        var indexOfCmd = this.commands.indexOf(cmd);
+        const indexOfCmd = this.commands.indexOf(cmd);
         if (indexOfCmd == -1)
             this.commands.push(cmd);
     }
 
     public delist<T>(cmd: Commands<T>)
     {
-        var indexOfCmd = this.commands.indexOf(cmd);
+        const indexOfCmd = this.commands.indexOf(cmd);
         if (indexOfCmd !== -1)
             this.commands.splice(indexOfCmd, 1);
     }
@@ -39,7 +39,7 @@ export abstract class PersistenceEngine<TOptions = string>
 
     protected async *dynamicProxy<T>(result: Iterable<T> | AsyncIterable<T>, model: ModelDefinition<T>)
     {
-        for await (var x of result)
+        for await (const x of result)
         {
             yield dynamicProxy(x, model);
         }
