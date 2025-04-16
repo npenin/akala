@@ -109,6 +109,22 @@ export class SimpleInjector extends LocalInjector
             this.parent.onResolve(name, handler);
     }
 
+    private resolveKeys<T>(keys: (string | symbol)[]): T
+    {
+        return keys.reduce((result, key) =>
+        {
+            if (result instanceof Injector)
+                return result.resolve(key);
+            if (isPromiseLike(result))
+                return result.then((result) => { return result[key] });
+            if (result === this.injectables && (!result || typeof (result[key]) == 'undefined') && this.parent)
+            {
+                return this.parent.resolve(key);
+            }
+            return result?.[key];
+        }, this.injectables);
+    }
+
     /**
      * Resolves a value.
      * @param {Resolvable} param - The parameter to resolve.
@@ -122,7 +138,7 @@ export class SimpleInjector extends LocalInjector
         {
             if (Array.isArray(param))
             {
-                return param.slice(1).reduce((previous, current) => previous?.[current], this.resolve(param[0]))
+                return this.resolveKeys(param);
             }
             const x = Injector.collectMap(param);
 
@@ -147,20 +163,7 @@ export class SimpleInjector extends LocalInjector
 
         if (~indexOfDot)
         {
-            const keys = (param as string).split('.')
-            return keys.reduce((result, key) =>
-            {
-                if (result instanceof Injector)
-                    return result.resolve(key);
-                if (isPromiseLike(result))
-                    return result.then((result) => { return result[key] });
-                if (result === this.injectables && (!result || typeof (result[key]) == 'undefined') && this.parent)
-                {
-                    return this.parent.resolve(key);
-                }
-                return result?.[key];
-            }, this.injectables);
-
+            return this.resolveKeys((param as string).split('.'));
         }
         if (this.parent)
         {
