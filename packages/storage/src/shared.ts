@@ -10,7 +10,7 @@ export { Cardinality } from './cardinality.js'
 export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
 export { PersistenceEngine, dynamicProxy } from './PersistenceEngine.js'
 
-export const providers = akala.module('db', '@akala/storage');
+export const providers = new akala.UrlHandler<[URL, void], PersistenceEngine<unknown>>(true);
 
 export interface DbSet<T> extends Query<T>
 {
@@ -41,7 +41,7 @@ export class Store<TStore extends StoreDefinition>
         return new Store<TStore>(engine, ...names) as any;
     }
 
-    private constructor(private engine: PersistenceEngine, ...names: ((Exclude<keyof TStore, number | symbol>) | (new () => DbSetType<TStore[keyof TStore]>))[])
+    private constructor(private readonly engine: PersistenceEngine, ...names: ((Exclude<keyof TStore, number | symbol>) | (new () => DbSetType<TStore[keyof TStore]>))[])
     {
         for (const name of names)
         {
@@ -82,7 +82,7 @@ export class MultiStore<TStore extends StoreDefinition>
     }
 
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private constructor(private mapping: Record<string, PersistenceEngine<any>>)
+    private constructor(private readonly mapping: Record<string, PersistenceEngine<any>>)
     {
         for (const name of Object.keys(mapping))
             Object.defineProperty(this, name, { value: mapping[name].dbSet(name) });
@@ -101,10 +101,10 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
 {
     if (typeof name !== 'string')
         return Model<TObject>(name.name)(name);
-    var name_s = name;
+    let name_s = name;
     return function <TObject>(cl: (new () => TObject))
     {
-        var model: ModelDefinition<TObject> = Reflect.getMetadata('db:model', cl.prototype)
+        let model: ModelDefinition<TObject> = Reflect.getMetadata('db:model', cl.prototype)
         if (typeof model == 'undefined')
         {
             if (!name_s && !cl.name)
