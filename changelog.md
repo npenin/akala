@@ -114,6 +114,7 @@
 * cwd a6dee22
 * cwd init 03ed2d1
 * cwd init fb44972
+* DataInjector inherits SimpleInjector cb22e64
 * date formatter parser d15e22b
 * default logging level 072212e
 * default logging level f8f9a2c
