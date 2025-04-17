@@ -39,14 +39,14 @@ export function connect(options: ServeMetadata, settings: ConnectionPreference, 
     return connectByPreference(options, { metadata: container.meta, ...settings }, ...orders);
 }
 
-export async function serve(options: { staticFolders?: string[], urls: string[], signal: AbortSignal })
+export async function serve(options: { staticFolders?: string[], urls: URL[], signal: AbortSignal })
 {
     const router = new HttpRouter();
 
     await Promise.all(options.urls.map(async url =>
     {
         const server = await serverHandlers.process(new URL(url), { signal: options.signal });
-        new HttpRouter({ name: url }).use((req) =>
+        new HttpRouter({ name: url.toString() }).use((req) =>
         {
             req.uri = new URL(req.url, url);
             throw NotHandled;
