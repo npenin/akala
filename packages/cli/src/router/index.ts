@@ -55,10 +55,14 @@ export interface OptionOptions<TValue extends OptionType>
     default?: TValue;
 }
 
+type OptionOptionsType<T extends OptionOptions<OptionType>> = T extends OptionOptions<infer X> ? X : never
+
+export type OptionsFromOptions<T extends { [key: string]: OptionOptions<OptionType> }> = { [key in keyof T]: OptionOptionsType<T[key]> }
+
 class OptionMiddleware<TValue extends OptionType> implements MiddlewareAsync<[context: CliContext]>
 {
     matchers: { isFull: boolean; pattern: RegExp; }[] = []
-    constructor(private readonly name: string, private readonly options?: OptionOptions<TValue>, private parseOptions: OptionParseOption = defaultOptionParseOption)
+    constructor(private readonly name: string, private readonly options?: OptionOptions<TValue>, private readonly parseOptions: OptionParseOption = defaultOptionParseOption)
     {
         const names = [name, ...options?.aliases || []];
         names.forEach(n =>
@@ -434,11 +438,13 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
         this._action = handler
     }
 
-    options<T extends { [key: string]: OptionType }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions<T[key]> }): NamespaceMiddleware<TOptions & T, TState>
+    options<TOptionOptions extends { [key: string]: OptionOptions<OptionType> }>(options: TOptionOptions): NamespaceMiddleware<TOptions & { [key in keyof TOptionOptions]: OptionType }, TState>
+    options<const T extends { [key: string]: OptionType }, const TOptionOptions extends { [key in keyof T]: OptionOptions<T[keyof T]> } = { [key in keyof T]: OptionOptions<T[key]> }>(options: TOptionOptions): NamespaceMiddleware<TOptions & T, TState>
+    options<const T extends { [key: string]: OptionType }, const TOptionOptions extends { [key in keyof T]: OptionOptions<T[keyof T]> } = { [key in keyof T]: OptionOptions<T[key]> }>(options: TOptionOptions): NamespaceMiddleware<TOptions & T, TState>
     {
         each(options, (o, key) =>
         {
-            this.option<T[typeof key], typeof key>(key, o);
+            this.option(key as string, o);
         });
         return this as unknown as NamespaceMiddleware<T & TOptions, TState>;
     }
