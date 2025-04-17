@@ -41,6 +41,7 @@
 * add more logs b90e354
 * add new documentation files for command processors and CLI usage 269c44d
 * add new documentation files for command processors and CLI usage 043d656
+* add options overload 7f35ab7
 * add parent 857a604
 * add parent 28bfabb
 * add parent and nav_order attributes to add-script.md for improved documentation structure f3d33e5
@@ -475,6 +476,7 @@
 * add raw query and custom resolvers 19a38cc
 * add raw query support 020975f
 * add runtime concept 1993141
+* add staticFolders to config 0106e9f
 * add uri on request to be able to know the full url of a request 3ed1dd0
 * add version field to package.json for documentation package 42a4cc8
 * add version field to package.json for documentation package ac5b028
@@ -535,6 +537,7 @@
 
 ### BREAKING CHANGES
 
+* `set-serve` has been replaced with `serve --set`
 * Persistence engines now need to support raw queries
 * `providers` uses UrlHandler instead of module
 * you need to provide priority when registering a formatter
