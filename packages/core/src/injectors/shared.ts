@@ -83,6 +83,18 @@ export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args:
     }
 }
 
+export const customResolve = Symbol('custom resolve symbol');
+
+export interface ICustomResolver
+{
+    [customResolve]<T>(param: Resolvable): T
+}
+
+function isCustomResolver(x: unknown): x is ICustomResolver
+{
+    return x && typeof x == 'object' && customResolve in x;
+}
+
 /**
  * The `Injector` abstract class provides a framework for dependency injection, 
  * allowing the resolution and injection of parameters, functions, and constructors.
@@ -117,8 +129,14 @@ export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args:
  *
  * @template T - The type of the resolved value.
  */
-export abstract class Injector
+export abstract class Injector implements ICustomResolver
 {
+    public static readonly customResolve = customResolve;
+
+    [customResolve]<T>(param: Resolvable): T
+    {
+        return this.resolve(param);
+    }
     /**
      * Applies a collected map to resolved values.
      * @param {InjectMap<T>} param - The parameter map.
@@ -203,8 +221,8 @@ export abstract class Injector
         for (let i = 0; i < keys.length; i++)
         {
             const key = keys[i];
-            if (result instanceof Injector)
-                return result.resolve(keys.slice(i));
+            if (isCustomResolver(result))
+                return result[customResolve](keys.slice(i));
             if (isPromiseLike(result))
                 return result.then((result) => this.resolveKeys(result, keys.slice(i), fallback)) as T;
 
