@@ -10,52 +10,22 @@ declare module '@akala/cli/cli'
 {
     interface AkalaConfig
     {
-        serve: { urls: string[] };
+        serve: { urls: string[], staticFolders: string[] };
     }
 }
 function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: string }>)
 {
-    program.command('set-serve [...urls]').options({
-        urls: {
-            needsValue: true,
-            default: [],
-        },
-        append: {
-            default: false,
-            aliases: ['a']
-        }
-    }).action(async context =>
-    {
-        switch (typeof context.options.urls)
-        {
-            case 'string':
-                context.options.urls = [context.options.urls];
-                break;
-            case 'object':
-                if (!Array.isArray(context.options.urls))
-                    throw new Error('Invalid urls provided');
-                break;
-            case 'undefined':
-                context.options.urls = config.serve.urls;
-                if (!Array.isArray(context.options.urls))
-                    throw new Error('Invalid urls provided');
-                break;
-            default:
-                throw new Error('Invalid urls provided');
-        }
-
-        if ((context.options.urls).length == 0)
-            throw new Error('No urls provided');
-
-        config.serve = config.serve || { urls: [] };
-        config.serve.urls = context.options.urls;
-    });
-
     program.command('serve [...staticFolders]').options({
         'staticFolders': {
             needsValue: true,
             normalize: true,
-            default: [fileURLToPath(new URL('../../views', import.meta.url))],
+            default: ['.', fileURLToPath(new URL('../../views', import.meta.url))],
+        },
+        set: {
+            needsValue: false
+        },
+        append: {
+            needsValue: false
         },
         'url': {
             needsValue: true,
@@ -68,7 +38,19 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
         if (typeof context.options.staticFolders == 'string')
             context.options.staticFolders = [context.options.staticFolders];
 
-        await serve({ staticFolders: context.options.staticFolders as string[], urls: context.options.url as string[], signal: context.abort.signal });
+        if (context.options.append)
+        {
+            context.options.url = [].concat(config.serve.urls || [], context.options.url);
+            context.options.staticFolders = [].concat(config.serve.staticFolders || [], context.options.staticFolders);
+        }
+        if (context.options.set)
+        {
+            config.serve.urls = context.options.url as string[];
+            config.serve.staticFolders = context.options.staticFolders as string[];
+            await config.commit();
+        }
+        else
+            await serve({ staticFolders: context.options.staticFolders as string[], urls: context.options.url as string[], signal: context.abort.signal });
 
         await new Promise((resolve) =>
         {
