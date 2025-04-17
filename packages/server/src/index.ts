@@ -54,7 +54,7 @@ export async function serve(options: { staticFolders?: string[], urls: string[],
     }));
 
     if (options.staticFolders)
-        options.staticFolders.forEach(folder => router.useMiddleware(new StaticFileMiddleware(folder)));
+        options.staticFolders.forEach((folder, i, folders) => router.useMiddleware(new StaticFileMiddleware(folder, { fallthrough: i < folders.length - 1 })));
 
     return router;
 }
