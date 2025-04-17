@@ -4,7 +4,7 @@ import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger } from '@akala/core';
-import { HandlerResult, handlers } from '../protocol-handler.js';
+import { HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 
 type OnlyArray<T> = Extract<T, unknown[]>;

@@ -12,7 +12,7 @@ import { CommandProcessor } from './model/processor.js'
 export { Processors, Metadata }
 export { ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import $metadata from './commands/$metadata.js'
-import { handlers } from './protocol-handler.js'
+import { protocolHandlers } from './protocol-handler.js'
 import { Container } from './model/container.js'
 import { registerCommands } from './generator.js'
 import $metadataCmd from './commands/$metadata.js'
@@ -31,7 +31,7 @@ export class Cli
 export async function connect(socketPath: string | URL, signal: AbortSignal, resolvedMetadata?: Metadata.Container): Promise<Container<unknown>>
 {
     const container = new Container('proxy', null);
-    const { processor, getMetadata } = await handlers.process(new URL(socketPath), { signal, container }, {})
+    const { processor, getMetadata } = await protocolHandlers.process(new URL(socketPath), { signal, container }, {})
 
     const meta = resolvedMetadata || await getMetadata();
     container.name = meta.name;

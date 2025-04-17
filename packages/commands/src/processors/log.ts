@@ -1,5 +1,5 @@
 import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor } from '../model/processor.js';
-import { handlers } from '../protocol-handler.js';
+import { protocolHandlers as handlers } from '../protocol-handler.js';
 import { EventProcessor } from './event.js';
 
 export class LogEventProcessor extends EventProcessor

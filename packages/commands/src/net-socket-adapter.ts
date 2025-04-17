@@ -2,7 +2,7 @@ import { Socket } from 'net';
 import { TLSSocket, connect as tlsconnect } from 'tls'
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { EventEmitter } from 'events';
-import { handlers } from './protocol-handler.js';
+import { protocolHandlers as handlers } from './protocol-handler.js';
 import { JsonRpc } from './processors/jsonrpc.js';
 import { Container } from './metadata/container.js';
 

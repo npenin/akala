@@ -3,7 +3,7 @@ import { StructuredParameters, ICommandProcessor, CommandMetadataProcessorSignat
 import { MiddlewarePromise, EventEmitter, MiddlewareResult, Event } from "@akala/core";
 import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
-import { handlers } from '../protocol-handler.js';
+import { protocolHandlers as handlers } from '../protocol-handler.js';
 
 handlers.useProtocol('event', async (_url, options, inner) => ({ processor: new EventProcessor(inner.processor, options.signal), getMetadata: inner.getMetadata }));
 

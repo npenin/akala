@@ -9,7 +9,7 @@ import { Local } from './local.js';
 import { jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise, eachAsync } from '@akala/core';
 import { createRequire } from 'module';
-import { handlers, parseQueryString } from '../protocol-handler.js';
+import { protocolHandlers as handlers, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
 import os from 'node:os'
 import { fileURLToPath, pathToFileURL } from 'url';
