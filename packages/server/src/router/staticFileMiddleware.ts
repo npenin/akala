@@ -91,7 +91,7 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
             // forward errors
             stream.on('error', function error(err)
             {
-                if (forwardError || err.statusCode >= 400)
+                if (forwardError || (err.statusCode >= 400 && err.statusCode != 404))
                 {
                     resolve(err)
                     return
