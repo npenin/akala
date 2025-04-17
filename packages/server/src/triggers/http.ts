@@ -4,7 +4,6 @@ import { Injector, logger } from '@akala/core';
 import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
-import mime from 'mime-types'
 
 const log = logger('commands:trigger:http')
 
@@ -12,20 +11,39 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
 {
     return function (req: Request, res: Response): Promise<unknown>
     {
-        return processCommand(container, command, { $request: req, $response: res, injector }).then(result =>
+        return processCommand(container, command, { $request: req, $response: res, injector }).then(async result =>
         {
             if (res.closed)
                 return;
             // if (res.headersSent)
             // {
-            const contentType = res.getHeaders()['content-type'];
-            if (typeof contentType == 'string')
-                switch (mime.extension(contentType))
-                {
-                    case 'json':
-                        res.json(result);
-                        break;
-                }
+            const contentType = command.config.http?.type;
+            switch (contentType)
+            {
+                case 'json':
+                    return res.json(result);
+                case 'text':
+                    await new Promise<void>((resolve, reject) => res.write(result.toString(), err => err ? reject(err) : resolve()));
+                case 'xml':
+                case 'raw':
+            }
+            // }
+        }, async result =>
+        {
+            if (res.closed)
+                return;
+            // if (res.headersSent)
+            // {
+            const contentType = command.config.http?.type;
+            switch (contentType)
+            {
+                case 'json':
+                    return res.json(result);
+                case 'text':
+                    await new Promise<void>((resolve, reject) => res.write(result.toString(), err => err ? reject(err) : resolve()));
+                case 'xml':
+                case 'raw':
+            }
             // }
         })
     }
@@ -64,7 +82,9 @@ export const trigger = new Trigger<[{ router: Router, meta?: Metadata.Container,
         commandRouter = router = router['router'];
     }
 
-    if (!(router instanceof Router) && commandRouter instanceof Router)
+    if (router instanceof Router && router !== commandRouter)
+        router.useMiddleware(commandRouter);
+    else if (!(router instanceof Router))
         commandRouter.attachTo(router as http.Server | https.Server | http2.Http2Server | http2.Http2SecureServer);
 
     if (!meta)
@@ -86,10 +106,7 @@ export const trigger = new Trigger<[{ router: Router, meta?: Metadata.Container,
                 throw new Error('Not supported');
         }
         else
-            if (router instanceof Router)
-                commandRouter[config.method.toLocaleLowerCase()](config.route, wrapHttp(container, command, injector));
-            else
-                throw new Error('Not supported');
+            commandRouter[config.method.toLocaleLowerCase()](config.route, wrapHttp(container, command, injector));
     });
 
     return commandRouter;
