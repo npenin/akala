@@ -14,7 +14,7 @@ declare module '@akala/cli/cli'
 {
     interface AkalaConfig
     {
-        serve: { urls: string[], staticFolders: string[] };
+        serve: { urls: string[], staticFolders: string[], api: string[] };
     }
 }
 function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: string }>)
@@ -42,42 +42,48 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
     {
         if (typeof context.options.url == 'string')
             context.options.url = [context.options.url];
+
         if (typeof context.options.staticFolders == 'string')
             context.options.staticFolders = [context.options.staticFolders];
 
+        let urls = (context.options.url as string[]).map(url => new URL(url));
         if (context.options.append)
         {
             context.options.url = [].concat(config.serve.urls || [], context.options.url);
             context.options.staticFolders = [].concat(config.serve.staticFolders || [], context.options.staticFolders);
         }
+        else if (!context.options.set)
+        {
+            if (!(context.options.url as string[]).length)
+                urls = config.serve.urls.map(url => new URL(url));
+            if (!context.options.staticFolders)
+                context.options.staticFolders = config.serve.staticFolders;
+            if (!context.options.api)
+                context.options.api = config.serve.api;
+        }
         if (context.options.set)
         {
-            config.serve = config.serve || { urls: [], staticFolders: [] };
-            config.serve.urls = context.options.url as string[];
+            config.serve = config.serve || { urls: [], staticFolders: [], api: [] };
+            config.serve.urls = urls.map(url => url.toString());
+            config.serve.api = context.options.api as string[];
             config.serve.staticFolders = (context.options.staticFolders as string[]).map(folder => './' + relative(dirname(context.options.configFile), folder));
             await config.commit();
             return;
         }
-        if (!context.options.append)
-        {
-            if (context.options.url)
-                context.options.url = config.serve.urls;
-            if (context.options.staticFolders)
-                context.options.staticFolders = config.serve.staticFolders;
-        }
-        const router = await serve({ staticFolders: context.options.staticFolders as string[], urls: context.options.url as string[], signal: context.abort.signal });
+
+        const router = await serve({ staticFolders: context.options.staticFolders as string[], urls: urls, signal: context.abort.signal });
         if (context.options.api)
         {
             if (typeof context.options.api !== 'string')
                 throw new ErrorWithStatus(400, 'Bad Api format provided');
 
             let containerName: string = context.options.api;
-            const indexOfAt = containerName.indexOf('@');
-            let listenUrls: string[] = context.options.url as string[];
+            const indexOfAt = containerName.indexOf('@', 1);
+            let listenUrls = urls;
             if (~indexOfAt)
             {
                 containerName = containerName.substring(0, indexOfAt);
-                listenUrls = context.options.api.substring(indexOfAt + 1).split(',');
+                listenUrls = context.options.api.substring(indexOfAt + 1).split(',').map(url => new URL(url));
             }
 
             let container = containers.resolve<Container<unknown>>(containerName);
@@ -94,10 +100,24 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
 
             if (container)
             {
-                await Promise.all(listenUrls.filter(url => !(context.options.url as string | string[]).includes(url)).map(url => serverHandlers.process(new URL(url), container, { signal: context.abort.signal })));
-                const alreadyListeningUrls = listenUrls.filter(url => (context.options.url as string | string[]).includes(url));
+                const alreadyListeningUrls = listenUrls.filter(url =>
+                {
+                    return urls.some(listenUrl => listenUrl.toString() == new URL("/", url).toString());
+                });
+                await Promise.all(listenUrls.filter(url => !alreadyListeningUrls.includes(url)).map(async url =>
+                {
+                    await serverHandlers.process(url, container, { signal: context.abort.signal });
+                    console.log(`${container.name} listening on ${url.toString()}`)
+
+                }));
                 if (alreadyListeningUrls.length)
-                    container.attach(trigger, router)
+                {
+                    if (alreadyListeningUrls.some(url => url.pathname.length > 1))
+                        container.attach(trigger, router.use(alreadyListeningUrls[0].pathname));
+                    else
+                        container.attach(trigger, router)
+                    console.log(`${container.name} listening on ${alreadyListeningUrls[0].pathname} on ${urls.map(url => url.toString()).join(', ')}`)
+                }
             }
             else
                 console.warn(`The container ${containerName} could not be found`);
