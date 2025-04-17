@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 import { ErrorWithStatus } from '@akala/core';
 import { containers } from '@akala/commands/akala';
 import { Container, protocolHandlers, registerCommands, serverHandlers } from '@akala/commands';
+import { dirname, relative } from 'path';
 
 const x: Plugin = plugin;
 export default x;
@@ -53,7 +54,7 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
         {
             config.serve = config.serve || { urls: [], staticFolders: [] };
             config.serve.urls = context.options.url as string[];
-            config.serve.staticFolders = context.options.staticFolders as string[];
+            config.serve.staticFolders = (context.options.staticFolders as string[]).map(folder => './' + relative(dirname(context.options.configFile), folder));
             await config.commit();
             return;
         }
