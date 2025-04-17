@@ -1,4 +1,4 @@
-#  (2025-04-16)
+#  (2025-04-17)
 
 
 * chore : code cleanup eae1150
@@ -295,6 +295,7 @@
 * rename provider to processor f755ab3
 * rename provider to processor ee37f19
 * rename root project to prevent conflicts with new akala project fff5646
+* resolveKeys 150e763
 * rest parameter overwriting default value a80f45c
 * restore proper regex from github autofix 154e05b
 * restructure CLI documentation and add new sections bf15ad8
@@ -451,6 +452,7 @@
 * add commands getting-started guide 5492118
 * add commands getting-started guide 1564b82
 * add cookie support + add IdStore and IdSerializer interfaces c5a5d6a
+* add customResolve and ICustomResolver to simplify injector and non injector chaining 93107ce
 * add dependency diagram builder ad6060b
 * add doc from gh-pages branch a024fed
 * add GitHub sponsorship and star buttons to documentation 45cdee0
@@ -470,6 +472,8 @@
 * add NO_AKALAPOSTINSTALL support bb60b83
 * add NO_AKALAPOSTINSTALL support bebd6b1
 * add oidc formatter factory fba4a73
+* add raw query and custom resolvers 19a38cc
+* add raw query support 020975f
 * add runtime concept 1993141
 * add uri on request to be able to know the full url of a request 3ed1dd0
 * add version field to package.json for documentation package 42a4cc8
@@ -531,6 +535,7 @@
 
 ### BREAKING CHANGES
 
+* Persistence engines now need to support raw queries
 * `providers` uses UrlHandler instead of module
 * you need to provide priority when registering a formatter
 * NextParam cannot be void anymore. To compensate and help refactoring, a NotHandled const has been created.
