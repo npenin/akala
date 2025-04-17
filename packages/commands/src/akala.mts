@@ -6,7 +6,7 @@ import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
 import { dirname, isAbsolute, resolve } from "node:path";
-import { handlers } from "./protocol-handler.js";
+import { protocolHandlers } from "./protocol-handler.js";
 import { pathToFileURL } from "node:url";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { with: { type: 'json' } }).then(x => x.default)
 
@@ -15,9 +15,10 @@ export default async function (_, program: NamespaceMiddleware<{ configFile: str
     return install(context, program)
 }
 
+export const containers: Container<unknown> = new Container('akala cli', undefined);
+
 export async function install(_context: CliContext<{ configFile: string }, object>, program: NamespaceMiddleware<{ configFile: string }>)
 {
-    let containers: Container<unknown> = new Container('akala cli', undefined);
 
     root.state<{ commands?: Record<string, string> & { extract?: () => Record<string, string> } }>().preAction(async (context) =>
     {
@@ -45,7 +46,7 @@ export async function install(_context: CliContext<{ configFile: string }, objec
                         uri = new URL('file://' + path);
                     }
                 }
-                const handler = await handlers.process(uri, null, {})
+                const handler = await protocolHandlers.process(uri, null, {})
 
                 cliContainer.processor.useMiddleware(51, handler.processor);
 
@@ -87,7 +88,7 @@ export async function install(_context: CliContext<{ configFile: string }, objec
         if (URL.canParse(context.options.path))
         {
             const url = new URL(context.options.path);
-            await handlers.protocol.process(url, { signal: context.abort.signal }, { processor: null, getMetadata: () => void 0 })
+            await protocolHandlers.protocol.process(url, { signal: context.abort.signal }, { processor: null, getMetadata: () => void 0 })
         }
         else
         {

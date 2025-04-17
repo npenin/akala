@@ -2,7 +2,7 @@ import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, 
 import { CommandProcessor, StructuredParameters } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
 import { Container } from '../model/container.js';
-import { HandlerResult, handlers } from '../protocol-handler.js';
+import { HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Local } from './local.js';
 import { Metadata } from '../index.browser.js';
 

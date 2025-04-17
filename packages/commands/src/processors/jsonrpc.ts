@@ -5,7 +5,7 @@ import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger } from '@akala/core';
-import { HandlerResult, handlers, serverHandlers } from '../protocol-handler.js';
+import { HandlerResult, protocolHandlers as handlers, serverHandlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 import { NetSocketAdapter } from '../net-socket-adapter.js';
 import { Socket, Server, ServerOpts } from 'net';

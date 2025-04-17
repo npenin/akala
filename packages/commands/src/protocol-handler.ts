@@ -24,11 +24,11 @@ import { Container } from "./model/container.js";
 export type HandlerResult<T> = { processor: T, getMetadata(): Promise<Metadata.Container> };
 export type handler<T> = (arg1: URL, arg2: HandlerResult<T>) => Promise<void>
 
-export const handlers = new UrlHandler<[URL, { signal: AbortSignal, container?: Container<unknown> }, Partial<HandlerResult<ICommandProcessor>>], HandlerResult<ICommandProcessor>>();
+export const protocolHandlers = new UrlHandler<[URL, { signal: AbortSignal, container?: Container<unknown> }, Partial<HandlerResult<ICommandProcessor>>], HandlerResult<ICommandProcessor>>();
 
 export type ServerHandler<T = { signal: AbortSignal }> = (container: Container<unknown>, options: T) => Promise<void>
 
-export const serverHandlers = new UrlHandler<[URL, Container<unknown>, { signal: AbortSignal }, void], void>() as UrlHandler<[URL, Container<unknown>, { signal: AbortSignal }, void], void> & { useProtocol<U>(protocol: string, handler: (url: URL, container: Container<unknown>, options: U & { signal: AbortSignal }) => Promise<void>) };
+export const serverHandlers = new UrlHandler<[URL, Container<unknown>, { signal: AbortSignal }, void], void>(false) as UrlHandler<[URL, Container<unknown>, { signal: AbortSignal }, void], void> & { useProtocol<U>(protocol: string, handler: (url: URL, container: Container<unknown>, options: U & { signal: AbortSignal }) => Promise<void>) };
 
 export function parseQueryString(url: URL)
 {

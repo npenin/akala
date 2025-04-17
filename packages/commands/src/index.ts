@@ -16,8 +16,7 @@ export { Triggers };
 
 export { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
 
-import { handlers, HandlerResult, serverHandlers, ServerHandler } from './protocol-handler.js';
-export { handlers as protocolHandlers, serverHandlers, ServerHandler, HandlerResult }
+export { protocolHandlers, HandlerResult, serverHandlers, ServerHandler } from './protocol-handler.js';
 
 // import * as cli from './cli'
 export { NetSocketAdapter } from './net-socket-adapter.js'

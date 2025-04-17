@@ -2,7 +2,7 @@ import { registerCommands } from './generator.js'
 import { ICommandProcessor } from './model/processor.js';
 import { ErrorWithStatus } from '@akala/core';
 import { Container } from './model/container.js';
-import { handlers } from './protocol-handler.js';
+import { protocolHandlers as handlers } from './protocol-handler.js';
 import { $metadataCmd, Metadata } from './index.browser.js';
 
 export type ServeMetadata = Record<string, object>
