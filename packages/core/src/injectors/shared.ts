@@ -230,6 +230,8 @@ export abstract class Injector implements ICustomResolver
                 return fallback(keys.slice(i));
             result = result?.[key];
         }
+
+        return result as T;
     }
 
 
