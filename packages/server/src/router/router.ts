@@ -205,6 +205,7 @@ export class HttpRouter extends Router2Async<Request, Response>
             ip: msg.socket.remoteAddress,
             path: uri.pathname,
             query: uri.searchParams,
+            uri: uri,
             params: {},
             body: {
                 json(options?) { return cobody.json(msg, options) },
