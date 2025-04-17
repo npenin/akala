@@ -8,6 +8,7 @@ import http, { ServerOptions } from 'http';
 import { trigger } from "./triggers/http.js";
 import http2 from "http2";
 import { UrlHandler } from "@akala/core";
+import { HttpRouter } from "./router/router.js";
 
 export const serverHandlers = new UrlHandler<[URL, (http.ServerOptions | http2.ServerOptions | https.ServerOptions | http2.SecureServerOptions) & { signal: AbortSignal }, void], http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server>(true);
 
@@ -74,7 +75,15 @@ commandHandlers.protocol.use(async (url, container, options: (ServerOptions) & {
     const server = await serverHandlers.process(url, options)
 
     container.register('$webServer', server);
-    container.register('$masterRouter', container.attach(trigger, server));
+    if (url.pathname.length > 1)
+    {
+        const router = new HttpRouter();
+        router.attachTo(server);
+        const containerRouter = router.useMiddleware(url.pathname, new HttpRouter());
+        container.register('$masterRouter', container.attach(trigger, containerRouter));
+    }
+    else
+        container.register('$masterRouter', container.attach(trigger, server));
 });
 
 commandHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options) =>
