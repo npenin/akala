@@ -1,19 +1,15 @@
-import { defaultInjector, ErrorWithStatus, HttpStatusCode, Injector, Resolvable } from "@akala/core";
+import { defaultInjector, ErrorWithStatus, HttpStatusCode, Resolvable, SimpleInjector } from "@akala/core";
 import { providers } from "./shared.js";
 
-class DataInjector extends Injector
+class DataInjector extends SimpleInjector
 {
-    constructor(private readonly connectionStrings: Record<string, URL> = {})
+    constructor(connectionStrings: Record<string, URL> = {})
     {
-        super();
+        super(null);
+        if (connectionStrings)
+            this.setInjectables(connectionStrings);
     }
 
-    onResolve<T = unknown>(name: Resolvable): PromiseLike<T>;
-    onResolve<T = unknown>(name: Resolvable, handler: (value: T) => void): void;
-    onResolve<T>(name: unknown, handler?: unknown): void | PromiseLike<T>
-    {
-        throw new Error("Method not implemented.");
-    }
     resolve<T>(param: Resolvable): T
     {
         switch (typeof param)
@@ -21,8 +17,8 @@ class DataInjector extends Injector
             case "string":
                 if (URL.canParse(param))
                     return providers.process(new URL(param)) as T;
-                else if (param in this.connectionStrings)
-                    return providers.process(new URL(this.connectionStrings[param])) as T;
+                else if (param in this.injectables)
+                    return providers.process(new URL(this.injectables[param])) as T;
                 throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'Malformed URL or non registered connection url:' + param?.toString())
             case "number":
             case "bigint":
@@ -34,15 +30,6 @@ class DataInjector extends Injector
                 throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'Malformed URL :' + param?.toString())
         }
     }
-    inspect(): void
-    {
-    }
-
-    register(name: string, connectionString: URL)
-    {
-        this.connectionStrings[name] = connectionString;
-    }
-
 }
 
 export default function (config: { storage: Record<string, string> })
