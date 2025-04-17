@@ -1,6 +1,11 @@
 #  (2025-04-17)
 
 
+### Bug Fixes
+
+* DataInjector inherits SimpleInjector cb22e64
+
+
 ### Features
 
 * `providers` uses UrlHandler instead of module b228f89
