@@ -1,4 +1,4 @@
-import { OptionType } from '@akala/cli';
+import { OptionOptions, OptionType } from '@akala/cli';
 import { FileSystemConfiguration, HttpConfiguration, SchemaConfiguration } from '../processors/index.js'
 import { Resolvable } from '@akala/core';
 
@@ -41,7 +41,7 @@ export interface Configurations extends Partial<ConfigurationMap>
 export interface CliConfiguration extends Configuration
 {
     usage?: string;
-    options?: { [key: string]: import('@akala/cli').OptionOptions<OptionType> };
+    options?: { [key: string]: OptionOptions<OptionType> };
 }
 
 export interface DocConfiguration extends Configuration, SimpleDocConfiguration
