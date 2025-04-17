@@ -179,11 +179,11 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
     }
 
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public dbSet(engine: PersistenceEngine<any>): DbSet<TObject>
+    public dbSet<TQuery>(engine: PersistenceEngine<any, TQuery>): DbSet<TObject, TQuery>
     {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
-        var model = this;
-        return Object.assign(new Query<TObject>(new PersistenceEngineQueryProvider(engine), new ConstantExpression(this)), {
+        const model = this;
+        return Object.assign(new Query<TObject, TQuery>(new PersistenceEngineQueryProvider(engine), new ConstantExpression(this)), {
             model, update(record: TObject)
             {
                 return new Update(record, model);
@@ -194,7 +194,11 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
             {
                 return new Create(record, model);
             },
-            async updateSingle(this: DbSet<TObject>, record: TObject)
+            raw<T>(query: TQuery)
+            {
+                return engine.rawQuery<T>(query);
+            },
+            async updateSingle(this: DbSet<TObject, TQuery>, record: TObject)
             {
                 engine.beginTransaction();
                 engine.addCommand(this.update(record));

@@ -1,4 +1,3 @@
-import * as akala from '@akala/core'
 import "reflect-metadata";
 import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField } from './common.js';
 import { Query } from './Query.js';
@@ -6,30 +5,34 @@ import { PersistenceEngine, Transaction } from './PersistenceEngine.js';
 import { Update, Create, Delete, CommandResult } from './commands/command.js';
 import { types } from 'util';
 
+import * as Enumerable from './Enumerable.js'
+import { ICustomResolver, UrlHandler } from "@akala/core";
+
 export { Cardinality } from './cardinality.js'
 export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
 export { PersistenceEngine, dynamicProxy } from './PersistenceEngine.js'
 
-export const providers = new akala.UrlHandler<[URL, void], PersistenceEngine<unknown>>(true);
+export const providers = new UrlHandler<[URL, void], PersistenceEngine<unknown>>(true);
 
-export interface DbSet<T> extends Query<T>
+export interface DbSet<T, TRawQuery = unknown> extends Query<T, TRawQuery>, ICustomResolver
 {
     model: ModelDefinition<T>;
     update(record: T): Update<T>;
     delete(record: T): Delete<T>;
     create(record: T): Create<T>;
+    raw<U>(query: TRawQuery): PromiseLike<U>
     updateSingle(record: T): PromiseLike<CommandResult>;
     deleteSingle(record: T): PromiseLike<CommandResult>;
     createSingle(record: T): PromiseLike<CommandResult>;
 }
 
-export type DbSetType<T> = T extends DbSet<infer X> ? X : never;
+export type DbSetType<T> = T extends DbSet<infer X, unknown> ? X : never;
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type StoreDefinition<T = any> =
     {
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        [key in keyof T]: T[key] extends DbSet<any> ? T[key] : never;
+        [key in keyof T]: T[key] extends DbSet<any, unknown> ? T[key] : never;
     }
 
 export class Store<TStore extends StoreDefinition>
@@ -126,7 +129,6 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
     }
 }
 
-import * as Enumerable from './Enumerable.js'
 export { Enumerable };
 
 export function Field(type?: FieldType | (() => FieldType), generator?: Generator)

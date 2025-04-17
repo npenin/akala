@@ -4,15 +4,22 @@ import { CommandProcessor } from '../commands/command-processor.js';
 import { Commands, CommandResult } from '../commands/command.js';
 import { ExpressionExecutor } from '../expression-executor.js';
 import { ModelDefinition, Generator } from '../shared.js';
+import { ErrorWithStatus, HttpStatusCode } from '@akala/core';
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export class Vanilla extends PersistenceEngine<VanillaOptions>
+export class Vanilla extends PersistenceEngine<VanillaOptions, void>
 {
     constructor()
     {
         super(new VanillaCommandProcessor())
     }
     store: VanillaStore;
+
+    public rawQuery<T>(query: void): PromiseLike<T>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.NotAcceptable, 'Raw queries are not supported for this provider');
+    }
+
     public async init(options?: VanillaOptions): Promise<void>
     {
         if (!options)
