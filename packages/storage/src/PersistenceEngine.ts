@@ -2,6 +2,7 @@ import { Expressions } from '@akala/core/expressions';
 import { CommandResult, Commands, CommandType, Create, Update, Delete } from './commands/command.js';
 import { CommandProcessor } from './commands/command-processor.js';
 import { ModelDefinition, DbSet } from './shared.js';
+import { customResolve, ICustomResolver, ErrorWithStatus, HttpStatusCode, Resolvable } from '@akala/core';
 
 const command = Symbol('command');
 
@@ -27,15 +28,36 @@ export class Transaction
     }
 }
 
-export abstract class PersistenceEngine<TOptions = string>
+export abstract class PersistenceEngine<TOptions = string, TRawQuery = unknown> implements ICustomResolver
 {
     constructor(protected processor: CommandProcessor<TOptions>)
     {
     }
 
+    public abstract rawQuery<T>(query: TRawQuery): PromiseLike<T>;
+
     public abstract init(connection: TOptions): Promise<void>;
 
     public abstract load<T>(expression: Expressions): PromiseLike<T>;
+
+
+    [customResolve]<T>(param: Resolvable): T
+    {
+        switch (typeof param)
+        {
+            case "string":
+                return this.dbSet(param) as T;
+            case "object":
+                return this.rawQuery(param as TRawQuery) as T;
+            case "number":
+            case "bigint":
+            case "boolean":
+            case "symbol":
+            case "undefined":
+            case "function":
+                throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'Malformed URL :' + param?.toString())
+        }
+    }
 
     protected async *dynamicProxy<T>(result: Iterable<T> | AsyncIterable<T>, model: ModelDefinition<T>)
     {
@@ -47,7 +69,7 @@ export abstract class PersistenceEngine<TOptions = string>
 
     private transaction: Transaction;
 
-    public dbSet<T = unknown>(name: string | ModelDefinition<T>): DbSet<T>
+    public dbSet<T = unknown>(name: string | ModelDefinition<T>): DbSet<T, TRawQuery>
     {
         if (typeof name == 'string')
         {
@@ -64,7 +86,7 @@ export abstract class PersistenceEngine<TOptions = string>
         this.transaction.enlist(cmd);
     }
 
-    public serialize<T>(obj: T | commandable<T>, set: DbSet<T>)
+    public serialize<T>(obj: T | commandable<T>, set: DbSet<T, TRawQuery>)
     {
         if (typeof obj[command] == 'undefined')
             Object.defineProperty(obj, command, { value: new Create(obj, set.model) });
