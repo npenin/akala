@@ -1,5 +1,5 @@
 import { program as root, ErrorMessage, NamespaceMiddleware, CliContext } from "@akala/cli"
-import { SimpleInjector, mapAsync } from "@akala/core"
+import { NotHandled, SimpleInjector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
 import { registerCommands, ServeOptions, Triggers } from "./index.js";
 import { Container } from "./model/container.js";
@@ -52,21 +52,23 @@ export async function install(_context: CliContext<{ configFile: string }, objec
 
                 const commands = await handler.getMetadata();
                 const init = commands.commands.find(c => c.name == '$init-akala');
+                let warmedup = false;
                 if (init)
                 {
                     cliContainer.processor.useMiddleware(1, {
                         handle: async (container, cmd, param) =>
                         {
-                            if (cmd !== init && cmd.name !== '$metadata' && param._trigger === 'cli')
+                            if (!warmedup && cmd !== init && cmd.name !== '$metadata')
                                 try
                                 {
-                                    await container.dispatch(init, { ...param, containers });
+                                    await container.handle(container, init, { ...param, containers, config: context.state, env: process.env });
+                                    warmedup = true;
                                 }
                                 catch (e)
                                 {
                                     return e;
                                 }
-                            return;
+                            return NotHandled;
                         }
                     });
                 }
