@@ -87,7 +87,7 @@ export const trigger = new Trigger<[{ router: Router, meta?: Metadata.Container,
         }
         else
             if (router instanceof Router)
-                commandRouter[config.method](config.route, wrapHttp(container, command, injector));
+                commandRouter[config.method.toLocaleLowerCase()](config.route, wrapHttp(container, command, injector));
             else
                 throw new Error('Not supported');
     });
