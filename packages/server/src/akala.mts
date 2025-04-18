@@ -1,6 +1,6 @@
 import { NamespaceMiddleware } from '@akala/cli';
 import { AkalaConfig, Plugin } from '@akala/cli/cli'
-import { serve, trigger } from './index.js';
+import { HttpRouter, serve, trigger } from './index.js';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { ErrorWithStatus } from '@akala/core';
 import { containers } from '@akala/commands/akala';
@@ -71,7 +71,7 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
             return;
         }
 
-        const router = await serve({ staticFolders: context.options.staticFolders as string[], urls: urls, signal: context.abort.signal });
+        const router = await serve({ staticFolders: context.options.staticFolders as string[], urls: urls, signal: context.abort.signal, fallthrough: true });
         if (context.options.api)
         {
             if (typeof context.options.api !== 'string')
@@ -113,7 +113,11 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                 if (alreadyListeningUrls.length)
                 {
                     if (alreadyListeningUrls.some(url => url.pathname.length > 1))
-                        container.attach(trigger, router.use(alreadyListeningUrls[0].pathname));
+                    {
+                        const subRouter = new HttpRouter();
+                        router.useMiddleware(alreadyListeningUrls[0].pathname, subRouter)
+                        container.attach(trigger, subRouter);
+                    }
                     else
                         container.attach(trigger, router)
                     console.log(`${container.name} listening on ${alreadyListeningUrls[0].pathname} on ${urls.map(url => url.toString()).join(', ')}`)
