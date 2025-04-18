@@ -39,7 +39,7 @@ export function connect(options: ServeMetadata, settings: ConnectionPreference, 
     return connectByPreference(options, { metadata: container.meta, ...settings }, ...orders);
 }
 
-export async function serve(options: { staticFolders?: string[], urls: URL[], signal: AbortSignal })
+export async function serve(options: { staticFolders?: string[], urls: URL[], signal: AbortSignal, fallthrough?: boolean })
 {
     const router = new HttpRouter();
 
@@ -54,7 +54,7 @@ export async function serve(options: { staticFolders?: string[], urls: URL[], si
     }));
 
     if (options.staticFolders)
-        options.staticFolders.forEach((folder, i, folders) => router.useMiddleware(new StaticFileMiddleware(folder, { fallthrough: i < folders.length - 1 })));
+        options.staticFolders.forEach((folder, i, folders) => router.useMiddleware(new StaticFileMiddleware(folder, { fallthrough: options.fallthrough || i < folders.length - 1 })));
 
     return router;
 }
