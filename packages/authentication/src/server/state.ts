@@ -2,6 +2,7 @@ import { AuthenticationStore } from './authentication-store.js';
 
 export interface State
 {
+    cryptoKey: CryptoKey;
     router: import("@akala/server").HttpRouter;
     getHash: (value: string, salt?: ArrayBufferLike) => Promise<string>;
     verifyHash: (value: string, signature: BufferSource, salt?: ArrayBufferLike) => Promise<boolean>;

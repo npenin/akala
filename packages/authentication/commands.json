@@ -228,33 +228,6 @@
             }
         },
         {
-            "name": "get-oidc-configuration",
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0",
-                        "$container"
-                    ],
-                    "path": "dist/esm/server/commands/get-oidc-configuration.js",
-                    "source": "src/server/commands/get-oidc-configuration.ts"
-                },
-                "http": {
-                    "inject": [
-                        "$request.uri",
-                        "$container"
-                    ],
-                    "method": "get",
-                    "route": "/.well-known/openid-configuration",
-                    "type": "json"
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                }
-            }
-        },
-        {
             "name": "getJWT",
             "config": {
                 "fs": {
@@ -414,7 +387,12 @@
                     "source": "src/server/commands/user/add-user.ts"
                 },
                 "http": {
-                    "inject": [],
+                    "inject": [
+                        "body.username",
+                        "body.password"
+                    ],
+                    "type": "json",
+                    "auth": {},
                     "route": "/signup",
                     "method": "post"
                 },

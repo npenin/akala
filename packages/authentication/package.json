@@ -27,6 +27,7 @@
     "main": "./dist/cjs/index.js",
     "type": "module",
     "devDependencies": {
+        "@akala/cli": "workspace:^",
         "@types/co-body": "^6.1.3",
         "@types/debug": "^4.1.12",
         "@types/mime-types": "^2.1.4",
@@ -37,8 +38,12 @@
     "scripts": {
         "test": "node --test --enable-source-maps",
         "coverage": "yarn test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
-        "generate": "ac generate dist/esm/server/commands commands.json --name auth",
-        "generate-metadata": "ac generate-metadata commands.json src/container.ts"
+        "generate": "yarn generate-server && yarn generate-oidc-server",
+        "generate-metadata": "yarn generate-metadata-server && yarn generate-metadata-oidc-server",
+        "generate-server": "ac generate dist/esm/server/commands commands.json --name auth",
+        "generate-metadata-server": "ac generate-metadata commands.json src/container.ts",
+        "generate-oidc-server": "akala sdk generate dist/esm/server/oidc-server oidc-server.json --name oidc-server",
+        "generate-metadata-oidc-server": "akala sdk generate-metadata oidc-server.json src/oidc-server.ts --name oidc-server"
     },
     "exports": {
         ".": {
@@ -50,7 +55,8 @@
             "default": "./dist/esm/server/index.js"
         },
         "./akala": "./dist/esm/akala.mjs",
-        "./commands.json": "./commands.json"
+        "./commands.json": "./commands.json",
+        "./oidc-server.json": "./oidc-server.json"
     },
     "module": "./dist/esm/index.js",
     "types": "./dist/esm/index.d.ts",
