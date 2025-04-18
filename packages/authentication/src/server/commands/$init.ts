@@ -9,14 +9,18 @@ import { BinaryOperator } from "@akala/core/expressions";
 import { Token } from "../../model/access-token.js";
 import { HttpRouter } from "@akala/server";
 import { base64 } from '@akala/core'
+import { readFile } from "fs/promises";
 
-export default async function (this: State, container: Container<State>, providerName: string, key: string)
+export default async function (this: State, container: Container<State>, providerName: string, keyPath: string)
 {
     // console.log(arguments);
     const provider = await providers.process(new URL(providerName))
 
     const store = container.state.store = await AuthenticationStore.create(provider);
-    const cryptoKey = await crypto.subtle.importKey('raw', base64.base64DecToArr(key), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']);
+    const key = await readFile(keyPath);
+
+    const cryptoKey = this.cryptoKey = await crypto.subtle.importKey('raw', key, { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']);
+
     this.getHash = async (value: string, salt?: ArrayBuffer) => base64.base64EncArr(await crypto.subtle.sign('HMAC', cryptoKey, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value)));
     this.verifyHash = async (value: string, signature: BufferSource, salt?: ArrayBuffer) => await crypto.subtle.verify('HMAC', cryptoKey, signature, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value));
     this.session = { slidingExpiration: 300 };

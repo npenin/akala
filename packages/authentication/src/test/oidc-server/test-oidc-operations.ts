@@ -23,6 +23,7 @@ describe('OIDC Operations', () =>
     // Mock State and Store
     const mockState = {
         router: new HttpRouter(),
+        cryptoKey: null,
         getHash: async () => 'mockHash',
         verifyHash: async () => true,
         session: {},

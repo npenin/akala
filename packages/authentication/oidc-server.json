@@ -1,0 +1,256 @@
+{
+    "name": "oidc-server",
+    "commands": [
+        {
+            "name": "authenticate",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/authenticate.js",
+                    "source": "src/server/oidc-server/authenticate.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7",
+                        "param.8",
+                        "param.9",
+                        "param.10",
+                        "param.11",
+                        "param.12"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7",
+                        "param.8",
+                        "param.9",
+                        "param.10",
+                        "param.11",
+                        "param.12"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "authorize",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/authorize.js",
+                    "source": "src/server/oidc-server/authorize.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7",
+                        "param.8",
+                        "param.9",
+                        "param.10",
+                        "param.11",
+                        "param.12",
+                        "param.13"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7",
+                        "param.8",
+                        "param.9",
+                        "param.10",
+                        "param.11",
+                        "param.12",
+                        "param.13"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "discover",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "$container"
+                    ],
+                    "path": "dist/esm/server/oidc-server/discover.js",
+                    "source": "src/server/oidc-server/discover.ts"
+                },
+                "http": {
+                    "inject": [
+                        "$request.uri",
+                        "$container"
+                    ],
+                    "method": "get",
+                    "route": "/.well-known/openid-configuration",
+                    "type": "json"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "get-code",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/get-code.js",
+                    "source": "src/server/oidc-server/get-code.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "get-keys",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/get-keys.js",
+                    "source": "src/server/oidc-server/get-keys.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "get-token",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/get-token.js",
+                    "source": "src/server/oidc-server/get-token.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "introspect",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/introspect.js",
+                    "source": "src/server/oidc-server/introspect.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "login",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/login.js",
+                    "source": "src/server/oidc-server/login.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "remove-token",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/remove-token.js",
+                    "source": "src/server/oidc-server/remove-token.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "http": {
+                    "route": "/logout",
+                    "method": "post",
+                    "inject": [
+                        "auth.token"
+                    ],
+                    "auth": {
+                        "type": "bearer"
+                    }
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "userinfo",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/oidc-server/userinfo.js",
+                    "source": "src/server/oidc-server/userinfo.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
+}

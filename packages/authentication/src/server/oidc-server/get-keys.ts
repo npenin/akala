@@ -18,6 +18,7 @@ export type X = {
 
 export default async function getKeys(this: State)
 {
+    return crypto.subtle.exportKey('spki', this.cryptoKey);
     // const state = crypto.randomUUID()
     // const endpoint = new URL(oidc.authorization_endpoint);
     // const client=await store.Client.where('id', BinaryOperator.Equal, client_id).firstOrDefault();
