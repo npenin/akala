@@ -23,7 +23,7 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
                 case 'json':
                     return res.json(result);
                 case 'text':
-                    await new Promise<void>((resolve, reject) => res.write(result.toString(), err => err ? reject(err) : resolve()));
+                    return await new Promise<void>((resolve, reject) => res.write(result.toString(), err => err ? reject(err) : resolve()));
                 case 'xml':
                 case 'raw':
             }
@@ -40,7 +40,7 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
                 case 'json':
                     return res.json(result);
                 case 'text':
-                    await new Promise<void>((resolve, reject) => res.write(result.toString(), err => err ? reject(err) : resolve()));
+                    return await new Promise<void>((resolve, reject) => res.write(result.toString(), err => err ? reject(err) : resolve()));
                 case 'xml':
                 case 'raw':
             }
