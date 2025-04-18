@@ -21,7 +21,7 @@ export default async function (this: State, container: Container<void>, url: str
         response_types_supported: [OIDCResponseType.Code],
         issuer: root,
         subject_types_supported: ['public'],
-        grant_types_supported: [OICDGrantTypes.authorization_code, OICDGrantTypes.refresh_token, OICDGrantTypes["urn:ietf:params:oauth:grant-type:device_code"]],
+        grant_types_supported: [OICDGrantTypes[OICDGrantTypes.authorization_code], OICDGrantTypes[OICDGrantTypes.refresh_token], OICDGrantTypes[OICDGrantTypes["urn:ietf:params:oauth:grant-type:device_code"]]] as (keyof typeof OICDGrantTypes)[],
         token_endpoint: new URL(authenticate.config.http.route, root).toString(),
         token_endpoint_auth_methods_supported: [OICDAuthMethods.ClientSecretBasic, OICDAuthMethods.ClientSecretPost, OICDAuthMethods.ClientSecretJwt]
     }

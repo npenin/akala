@@ -1,7 +1,8 @@
 import { Container } from "@akala/commands";
 import { ensureOptionals, JWAlgorithms, OICDAuthMethods, OIDCDescription, OIDCResponseType } from "../../client/oidc-state.js";
+import { State } from "../state.js";
 
-export default async function (url: string | URL, container: Container<void>): Promise<OIDCDescription>
+export default async function (this: State, url: string | URL, container: Container<void>): Promise<OIDCDescription>
 {
     const metadata = await container.dispatch('$metadata');
 
@@ -9,18 +10,18 @@ export default async function (url: string | URL, container: Container<void>): P
 
     const authorize = metadata.commands.find(c => c.name == 'authorize');
     const authenticate = metadata.commands.find(c => c.name == 'authenticate');
-    const discover = metadata.commands.find(c => c.name == 'discover');
+    const discover = metadata.commands.find(c => c.name == 'get-oidc-configuration');
     const revoke = metadata.commands.find(c => c.name == 'remove-token');
     const jwks = metadata.commands.find(c => c.name == 'get-keys');
-    const root = url.substring(0, url.length - discover.config.http.route.length);
+    const root = url.substring(0, url.length - discover.config?.http?.route?.length);
 
     return ensureOptionals(
         {
-            issuer: url.toString(),
-            authorization_endpoint: new URL(authorize.config.http.route, root).toString(),
-            token_endpoint: new URL(authenticate.config.http.route, root).toString(),
-            revocation_endpoint: new URL(revoke.config.http.route, root).toString(),
-            jwks_uri: new URL(jwks.config.http.route, root).toString(),
+            issuer: root,
+            authorization_endpoint: authorize?.config?.http?.route && new URL(authorize.config.http.route, root).toString(),
+            token_endpoint: authenticate?.config?.http?.route && new URL(authenticate.config.http.route, root).toString(),
+            revocation_endpoint: revoke?.config?.http?.route && new URL(revoke.config.http.route, root).toString(),
+            jwks_uri: jwks?.config?.http?.route && new URL(jwks.config.http.route, root).toString(),
             response_types_supported: [
                 OIDCResponseType.Code,
                 OIDCResponseType.Token,
