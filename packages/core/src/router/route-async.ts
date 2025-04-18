@@ -62,7 +62,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]], TSpecialNe
      */
     async handle(...context: T): MiddlewarePromise<TSpecialNextParam>
     {
-        const req = context[0] as Routable;
+        const req = context[0];
         const isMatch = UrlTemplate.match(req.path, this.routePath);
 
         if (isMatch && (!this.isApplicable || this.isApplicable(req)))
@@ -78,7 +78,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]], TSpecialNe
 
             try
             {
-                return super.handle(...context);
+                return await super.handle(...context);
             }
             finally
             {
