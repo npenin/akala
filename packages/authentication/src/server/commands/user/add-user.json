@@ -7,7 +7,12 @@
         ]
     },
     "http": {
-        "inject": [],
+        "inject": [
+            "body.username",
+            "body.password"
+        ],
+        "type": "json",
+        "auth": {},
         "route": "/signup",
         "method": "post"
     },
