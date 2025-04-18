@@ -14,6 +14,35 @@
                 }
             ]
         },
+        "resolvable": {
+            "$id": "#/resolvable",
+            "anyOf": [
+                {
+                    "type": "string",
+                    "examples": [
+                        "param.0",
+                        "$container",
+                        "$injector",
+                        "options.name (if the provider provides options)",
+                        "connectionAsContainer"
+                    ]
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/resolvable"
+                    }
+                },
+                {
+                    "type": "object",
+                    "patternProperties": {
+                        ".+": {
+                            "$ref": "#/definitions/resolvable"
+                        }
+                    }
+                }
+            ]
+        },
         "inject": {
             "$id": "#/inject",
             "type": "object",
@@ -26,14 +55,7 @@
                 "inject": {
                     "type": "array",
                     "items": {
-                        "type": "string",
-                        "examples": [
-                            "param.0",
-                            "$container",
-                            "$injector",
-                            "options.name (if the provider provides options)",
-                            "connectionAsContainer"
-                        ]
+                        "$ref": "#/definitions/resolvable"
                     }
                 }
             }
