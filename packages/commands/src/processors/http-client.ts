@@ -1,6 +1,6 @@
 import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus, HttpStatusCode, UrlTemplate, MiddlewareCompositeWithPriority } from '@akala/core';
 import { CommandProcessor, StructuredParameters } from '../model/processor.js';
-import { Command, Configuration } from '../metadata/index.js';
+import { Command, Configuration, ConfigurationWithAuth } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Local } from './local.js';
@@ -176,6 +176,9 @@ export class HttpClient extends CommandProcessor
                                 inject(value, param[key] as object);
                                 break;
                             }
+                            if (typeof value == 'symbol')
+                                throw new ErrorWithStatus(HttpStatusCode.PreconditionFailed, 'Symbols are not allowed in http client');
+
                             const indexOfDot = value.indexOf('.');
                             if (~indexOfDot)
                             {
@@ -375,14 +378,18 @@ authMiddleware.use(1000, async function (httpConfig, options, auth)
 handlers.useProtocol('http', HttpClient.handler('http'));
 handlers.useProtocol('https', HttpClient.handler('https'));
 
-export interface HttpConfiguration extends Configuration
+export interface HttpConfiguration extends ConfigurationWithAuth<HttpAuthConfiguration>
 {
     method: string;
     route: string;
     contentType?: HttpOptions<unknown>['contentType'];
     type?: HttpOptions<unknown>['type'];
-    auth?: Configuration & {
-        mode: 'basic' | 'body' | 'bearer' | { type: 'query' | 'header' | 'cookie', name: string }
+}
 
+interface HttpAuthConfiguration extends Configuration
+{
+    required?: boolean;
+    mode: 'basic' | 'body' | 'bearer' | {
+        type: 'query' | 'header' | 'cookie', name: string
     }
 }

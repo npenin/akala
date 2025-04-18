@@ -28,12 +28,12 @@ export class SelfDefinedCommand<TArgs extends unknown[], T = unknown> implements
         this.inject = inject || [];
     }
 
-    public get inject(): Exclude<Resolvable, symbol>[] 
+    public get inject(): Resolvable[] 
     {
         return this.config[''].inject;
     }
 
-    public set inject(value: Exclude<Resolvable, symbol>[] | undefined)
+    public set inject(value: Resolvable[] | undefined)
     {
         this.config[''].inject = value;
     }
