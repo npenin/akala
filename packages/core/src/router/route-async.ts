@@ -129,6 +129,8 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]], TSpecialNe
     public use(...handlers: ((...args: T) => Promise<unknown>)[]): this;
     public use(routeOrHandler: string | UriTemplate | ((...args: T) => Promise<unknown>), ...handlers: ((...args: T) => Promise<unknown>)[]): this
     {
+        if (typeof routeOrHandler == 'undefined')
+            throw new Error('At least 1 route or middleware needs to be provided.');
         if (typeof routeOrHandler === 'string' || Array.isArray(routeOrHandler))
         {
             const routed = new MiddlewareRouteAsync<T, TSpecialNextParam>(routeOrHandler);
