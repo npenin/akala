@@ -232,14 +232,16 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "$container"
                     ],
                     "path": "dist/esm/server/commands/get-oidc-configuration.js",
                     "source": "src/server/commands/get-oidc-configuration.ts"
                 },
                 "http": {
                     "inject": [
-                        "headers.host"
+                        "$request.uri",
+                        "$container"
                     ],
                     "method": "get",
                     "route": "/.well-known/openid-configuration",

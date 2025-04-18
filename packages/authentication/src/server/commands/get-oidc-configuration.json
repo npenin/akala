@@ -2,12 +2,14 @@
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
     "fs": {
         "inject": [
-            "param.0"
+            "param.0",
+            "$container"
         ]
     },
     "http": {
         "inject": [
-            "headers.host"
+            "$request.uri",
+            "$container"
         ],
         "method": "get",
         "route": "/.well-known/openid-configuration",
