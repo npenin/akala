@@ -8,6 +8,7 @@ import $metadata from '../commands/$metadata.js'
 import { UnknownCommandError } from './error-unknowncommand.js';
 import * as Metadata from '../metadata/index.js'
 import { ErrorWithStatus, Injector, MiddlewareAsync, MiddlewareCompositeWithPriorityAsync, MiddlewarePromise, SimpleInjector } from '@akala/core';
+import { BindingProcessor } from '../processors/binding.js';
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];
 export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
@@ -39,6 +40,7 @@ export class Container<TState> extends SimpleInjector implements MiddlewareAsync
         this.processor = new MiddlewareCompositeWithPriorityAsync(name);
         if (processor)
             this.processor.useMiddleware(20, processor);
+        this.processor.useMiddleware(5, new BindingProcessor());
         this.processor.useMiddleware(19, new Self());
         this.processor.useMiddleware(10, new CommandWithAffinityProcessor());
         this.processor.useMiddleware(50, defaultCommands);
