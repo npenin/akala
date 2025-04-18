@@ -46,7 +46,7 @@ export class Local extends CommandProcessor
         return new Local(o as any);
     }
 
-    public static extractParams(source: Exclude<Resolvable, symbol>[])
+    public static extractParams(source: Resolvable[])
     {
         const sourceParams = source.
             map((i, j) => [i, j]).

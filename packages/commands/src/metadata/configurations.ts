@@ -11,12 +11,11 @@ export type GenericConfiguration = Configuration & jsonObject;
 
 export interface Configuration
 {
-    inject?: Exclude<Resolvable, symbol>[];
+    inject?: Resolvable[];
 }
 
-export interface ConfigurationWithAuth<T extends Configuration>
+export interface ConfigurationWithAuth<T extends Configuration & { required?: boolean }> extends Configuration
 {
-    inject?: string[];
     auth?: T
 }
 
@@ -30,6 +29,7 @@ export interface ConfigurationMap //extends Record<string, Configuration>
     doc: DocConfiguration;
     schema: SchemaConfiguration
     jsonrpc: Configuration
+    bindings: BindingConfiguration,
     auth: { required?: boolean }// & { [key in Exclude<keyof ConfigurationMap, 'auth'>]?: ConfigurationMap[key] extends ConfigurationWithAuth<infer X> ? X : ConfigurationMap[key] }
 }
 
@@ -53,4 +53,11 @@ interface SimpleDocConfiguration
 {
     description?: string;
     options?: { [key: string]: string };
+}
+
+export interface BindingConfiguration extends Record<string, {
+    source: Resolvable,
+    where: Resolvable
+}>
+{
 }
