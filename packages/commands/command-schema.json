@@ -1,5 +1,19 @@
 {
     "definitions": {
+        "config": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/inject"
+                },
+                {
+                    "properties": {
+                        "auth": {
+                            "$ref": "#/definitions/inject"
+                        }
+                    }
+                }
+            ]
+        },
         "inject": {
             "$id": "#/inject",
             "type": "object",
@@ -60,7 +74,7 @@
         "cli": {
             "allOf": [
                 {
-                    "$ref": "#/definitions/inject"
+                    "$ref": "#/definitions/config"
                 },
                 {
                     "$id": "#/cli",
@@ -117,7 +131,7 @@
         "http": {
             "allOf": [
                 {
-                    "$ref": "#/definitions/inject"
+                    "$ref": "#/definitions/config"
                 },
                 {
                     "$id": "#/http",
@@ -160,18 +174,58 @@
                                 "raw"
                             ],
                             "title": "The http type Schema"
+                        },
+                        "auth": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/config"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "mode": {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "basic",
+                                                        "body",
+                                                        "bearer"
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "query",
+                                                                "header",
+                                                                "cookie"
+                                                            ]
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
             ]
         },
         "": {
-            "$ref": "#/definitions/inject"
+            "$ref": "#/definitions/config"
         },
         "doc": {
             "allOf": [
                 {
-                    "$ref": "#/definitions/inject"
+                    "$ref": "#/definitions/config"
                 },
                 {
                     "$ref": "#/definitions/doc"
@@ -196,7 +250,7 @@
         "schema": {
             "allOf": [
                 {
-                    "$ref": "#/definitions/inject"
+                    "$ref": "#/definitions/config"
                 },
                 {
                     "$id": "#/schema",
