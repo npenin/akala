@@ -151,7 +151,7 @@ export type SupportedEncryption<T extends string> = { [key in keyof SupportedEnc
 export type Endpoint<T extends string> = { [key in T as `${T}_endpoint`]: string }
 
 export type EndpointWithAuth<T extends string> = Endpoint<T> &
-    { [key in T as `${T}_endpoint_auth_methods_supported`]: OICDAuthMethods[] } &
+{ [key in T as `${T}_endpoint_auth_methods_supported`]: OICDAuthMethods[] } &
     SupportedSignature<`${T}_endpoint_auth`>
     ;
 
@@ -181,7 +181,7 @@ export interface OIDCDescription extends
     claims_types_supported?: ('aggregated' | 'distributed' | 'normal')[],
     claims_supported: string[],
     code_challenge_methods_supported?: ("plain" | "S256")[],
-    grant_types_supported: OICDGrantTypes[],
+    grant_types_supported: (keyof typeof OICDGrantTypes)[],
     display_values_supported?: ('page' | 'popup' | 'touch' | 'wap')[],
     service_documentation?: string,
     claims_locales_supported?: string[],
@@ -199,7 +199,7 @@ export type OIDCDescriptionWithOptional = Partialize<OIDCDescription, 'grant_typ
 export function ensureOptionals(config: OIDCDescriptionWithOptional): OIDCDescription
 {
     if (!config.grant_types_supported)
-        config.grant_types_supported = [OICDGrantTypes.authorization_code, OICDGrantTypes.implicit]
+        config.grant_types_supported = [OICDGrantTypes.authorization_code, OICDGrantTypes.implicit].map(x => OICDGrantTypes[x] as keyof typeof OICDGrantTypes)
     if (!config.response_modes_supported)
         config.response_modes_supported = ['fragment', 'query'];
     if (!config.token_endpoint_auth_methods_supported)
