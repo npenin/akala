@@ -1,7 +1,7 @@
 import { program as root, ErrorMessage, NamespaceMiddleware, CliContext } from "@akala/cli"
 import { NotHandled, SimpleInjector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
-import { registerCommands, ServeOptions, Triggers } from "./index.js";
+import { CommandProcessor, Metadata, registerCommands, ServeOptions, Triggers } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
@@ -13,6 +13,42 @@ const serveDefinition: Configurations = await import('../' + '../src/commands/$s
 export default async function (_, program: NamespaceMiddleware<{ configFile: string }>, context: CliContext<{ configFile: string }, object>)
 {
     return install(context, program)
+}
+
+export class InitAkala<T> extends CommandProcessor
+{
+    private warmedup = false;
+
+    constructor(private init: Metadata.Command, private readonly context: T)
+    {
+        super('initAkala');
+    }
+
+    async handle(container, cmd, param)
+    {
+        if (!this.warmedup)
+        {
+            this.init ??= container.resolve('$init-akala');
+            if (this.init)
+            {
+                if (!this.warmedup && cmd !== this.init && cmd.name !== '$metadata')
+                    try
+                    {
+                        const err = await container.handle(container, this.init, { ...param, containers, ...this.context, param: [], env: process.env });
+                        if (err)
+                            return err;
+                    }
+                    catch (e)
+                    {
+                        this.warmedup = true;
+                        return e;
+                    }
+            }
+            else
+                this.warmedup = true;
+        }
+        return NotHandled;
+    }
 }
 
 export const containers: Container<unknown> = new Container('akala cli', undefined);
@@ -52,26 +88,8 @@ export async function install(_context: CliContext<{ configFile: string }, objec
 
                 const commands = await handler.getMetadata();
                 const init = commands.commands.find(c => c.name == '$init-akala');
-                let warmedup = false;
                 if (init)
-                {
-                    cliContainer.processor.useMiddleware(1, {
-                        handle: async (container, cmd, param) =>
-                        {
-                            if (!warmedup && cmd !== init && cmd.name !== '$metadata')
-                                try
-                                {
-                                    await container.handle(container, init, { ...param, containers, config: context.state, env: process.env });
-                                    warmedup = true;
-                                }
-                                catch (e)
-                                {
-                                    return e;
-                                }
-                            return NotHandled;
-                        }
-                    });
-                }
+                    cliContainer.processor.useMiddleware(1, new InitAkala(init, { config: context.state }));
 
                 registerCommands(commands.commands, handler.processor, cliContainer);
                 await cliContainer.attach(Triggers.cli, program.command(name));
