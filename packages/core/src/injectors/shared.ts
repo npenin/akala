@@ -143,14 +143,28 @@ export abstract class Injector implements ICustomResolver
      * @param {{ [k: string | symbol]: any }} resolved - The resolved values.
      * @returns {T} The applied map.
      */
-    static applyCollectedMap<T>(param: InjectMap<T>, resolved: { [k: string | symbol]: any }): T
+    static applyCollectedMap<T>(param: InjectMap<T>, resolved: { [k: string | symbol]: any }): T | Promise<T>
     {
-        return map(param, (value, key) =>
+        let promises: PromiseLike<void>[] = [];
+        const result = map(param, (value, key) =>
         {
             if (typeof value == 'object')
-                return Injector.applyCollectedMap<T[keyof T]>(value as any, resolved);
-            return resolved[value as keyof typeof resolved];
+            {
+                const subResult = Injector.applyCollectedMap<T[keyof T]>(value as any, resolved);
+                if (isPromiseLike(subResult))
+                    promises.push(subResult.then(r => { result[key] = r }));
+                return subResult;
+            }
+            const subResult = resolved[value as keyof typeof resolved];
+
+            if (isPromiseLike(subResult))
+                promises.push(subResult.then(r => { result[key] = r }));
+
+            return subResult;
         });
+        if (promises.length)
+            return Promise.all(promises).then(() => result);
+        return result;
     }
 
     /**
