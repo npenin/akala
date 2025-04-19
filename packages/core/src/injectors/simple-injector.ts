@@ -130,7 +130,7 @@ export class SimpleInjector extends LocalInjector
             }
             const x = Injector.collectMap(param);
 
-            return Injector.applyCollectedMap(param as InjectMap<T>, Object.fromEntries(x.map(x => [x, this.resolve(x)])));
+            return Injector.applyCollectedMap(param as InjectMap<T>, Object.fromEntries(x.map(x => [x, this.resolve(x)]))) as T;
         }
 
         if (this.injectables && param in this.injectables)
