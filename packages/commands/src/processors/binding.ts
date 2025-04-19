@@ -1,4 +1,4 @@
-import { customResolve, each, ICustomResolver, lazy, MiddlewarePromise, NotHandled, Resolvable } from "@akala/core";
+import { customResolve, each, ICustomResolver, isPromiseLike, lazy, MiddlewarePromise, NotHandled, Resolvable } from "@akala/core";
 import { CommandProcessor, Container, StructuredParameters } from "../index.browser.js";
 import { Command } from "../metadata/command.js";
 import { Local } from "./local.js";
@@ -12,13 +12,14 @@ export class BindingProcessor extends CommandProcessor
 
     public handle(origin: Container<unknown>, cmd: Command, param: StructuredParameters): MiddlewarePromise
     {
-        if (cmd.config?.bindings)
+        const bindings = cmd.config?.[param._trigger || ""]?.bindings;
+        if (bindings)
         {
             param.bindings = {};
             const lockedParams = { ...param };
-            each(cmd.config.bindings, (binding, name) =>
+            each(bindings, (binding, name) =>
             {
-                Object.defineProperty(param.binding, name, {
+                Object.defineProperty(param.bindings, name, {
                     get: lazy(() =>
                     {
                         return Local.execute({
@@ -30,8 +31,10 @@ export class BindingProcessor extends CommandProcessor
                                     ]
                                 }
                             }
-                        }, (source: ICustomResolver, where: Resolvable) =>
+                        }, (source: ICustomResolver, where: Resolvable | Promise<Resolvable>) =>
                         {
+                            if (isPromiseLike(where))
+                                return where.then(where => source[customResolve](where));
                             return source[customResolve](where)
                         }, origin, lockedParams);
                     })
