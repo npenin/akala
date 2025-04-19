@@ -1,0 +1,38 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1",
+            "param.2"
+        ]
+    },
+    "server": {
+        "inject": [
+            "$container",
+            "config.auth.provider",
+            "config.auth.providerOptions",
+            "config.keyPath"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "$container",
+            "options.provider",
+            "options.providerOptions",
+            "options.key"
+        ],
+        "options": {
+            "provider": {
+                "needsValue": true
+            },
+            "providerOptions": {
+                "needsValue": true
+            },
+            "key": {
+                "needsValue": true
+            }
+        }
+    }
+}
