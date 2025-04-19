@@ -194,10 +194,6 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
             {
                 return new Create(record, model);
             },
-            raw<T>(query: TQuery)
-            {
-                return engine.rawQuery<T>(query);
-            },
             async updateSingle(this: DbSet<TObject, TQuery>, record: TObject)
             {
                 engine.beginTransaction();
@@ -218,7 +214,13 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
                 return result[0]
             },
 
-        });
+        },
+            engine.rawQuery ? {
+                raw<T>(query: TQuery)
+                {
+                    return engine.rawQuery<T>(query);
+                },
+            } : undefined);
     }
 
     fromJson(data: string | SerializableDefinition<TObject>)

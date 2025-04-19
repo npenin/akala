@@ -32,7 +32,8 @@ class DataInjector extends SimpleInjector
     }
 }
 
-export default function (config: { storage: Record<string, string> })
+export default async function (config: { storage: Record<string, string> })
 {
-    defaultInjector.register('data', new DataInjector(Object.fromEntries(Object.entries(config.storage).map(e => [e[0], new URL(e[1])] as const))))
+    await import('./index.js')
+    defaultInjector.register('data', new DataInjector(Object.fromEntries(Object.entries(config.storage || {}).map(e => [e[0], new URL(e[1])] as const))))
 }

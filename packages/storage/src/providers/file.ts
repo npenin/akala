@@ -11,7 +11,7 @@ import { ModelDefinition } from '../shared.js';
 import { promisify } from "util";
 import { Generator } from '../common.js';
 import { NotSupportedException } from '../exceptions.js';
-import { ErrorWithStatus, HttpStatusCode, isPromiseLike } from '@akala/core';
+import { isPromiseLike } from '@akala/core';
 
 export class File extends PersistenceEngine<FileOptions, void>
 {
@@ -20,11 +20,6 @@ export class File extends PersistenceEngine<FileOptions, void>
     constructor(private readonly fileEntryFactory: (path: string, name: string, def: ModelDefinition) => FileSystemFile)
     {
         super(new FileCommandProcessor(fileEntryFactory));
-    }
-
-    public rawQuery<T>(query: void): PromiseLike<T>
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotAcceptable, 'Raw queries are not supported for this provider');
     }
 
     public async init(options?: { path: string, rootDbName?: string, store?: FileSystemFolder & FileSystemContainer })
