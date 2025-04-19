@@ -94,7 +94,7 @@ export default class Configuration<T extends object = SerializableObject>
                         case isProxy:
                             return true;
                         default:
-                            throw new Error('Not supported');
+                            return false;
                     }
                 }
                 return Reflect.has(target, key);
