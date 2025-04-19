@@ -1,6 +1,6 @@
 import { Trigger, Container, metadata, Metadata } from '@akala/commands';
 import { HttpRouter as Router, Request, Response } from '../router/index.js';
-import { Injector, logger } from '@akala/core';
+import { HttpStatusCode, Injector, logger } from '@akala/core';
 import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
@@ -35,6 +35,9 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
             // if (res.headersSent)
             // {
             const contentType = command.config.http?.type;
+            if (typeof result == 'undefined')
+                return res.sendStatus(HttpStatusCode.NoContent);
+
             switch (contentType)
             {
                 case 'json':
@@ -68,24 +71,27 @@ export async function processCommand<T>(container: Container<T>, c: Metadata.Com
     });
 }
 
-export const trigger = new Trigger<[{ router: Router, meta?: Metadata.Container, injector?: Injector } | Router | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server], Router>(
+export const trigger = new Trigger<[void | { router: Router, meta?: Metadata.Container, injector?: Injector } | Router | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server], Router>(
     'http', function register<T>(container: Container<T>, router: { router: Router, meta?: Metadata.Container, injector?: Injector } | Router | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server)
 {
-    let commandRouter: Router = new Router();
+    let commandRouter = new Router({ name: 'commandRouter (' + container.name + ')' });
+
+    if (!router)
+        router = commandRouter;
 
     let meta: Metadata.Container;
     let injector: Injector | undefined;
-    if (router['router'])
+    if ('router' in router)
     {
-        meta = router['meta'];
-        injector = router['injector]']
-        commandRouter = router = router['router'];
+        meta = router.meta;
+        injector = router.injector
+        commandRouter = router = router.router;
     }
 
     if (router instanceof Router && router !== commandRouter)
         router.useMiddleware(commandRouter);
     else if (!(router instanceof Router))
-        commandRouter.attachTo(router as http.Server | https.Server | http2.Http2Server | http2.Http2SecureServer);
+        commandRouter.attachTo(router);
 
     if (!meta)
         meta = metadata(container);
