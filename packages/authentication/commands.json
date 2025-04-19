@@ -64,6 +64,56 @@
             }
         },
         {
+            "name": "$init-akala",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/$init-akala.js",
+                    "source": "src/server/commands/$init-akala.ts",
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "server": {
+                    "inject": [
+                        "$container",
+                        "config.auth.provider",
+                        "config.auth.providerOptions",
+                        "config.keyPath"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.provider",
+                        "options.providerOptions",
+                        "options.key"
+                    ],
+                    "options": {
+                        "provider": {
+                            "needsValue": true
+                        },
+                        "providerOptions": {
+                            "needsValue": true
+                        },
+                        "key": {
+                            "needsValue": true
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "$request",
             "config": {
                 "fs": {
@@ -418,15 +468,44 @@
                     "source": "src/server/commands/user/change-password.ts",
                     "inject": [
                         "param.0",
-                        "param.1",
-                        "param.2"
+                        "param.1"
                     ]
                 },
                 "": {
                     "inject": [
                         "param.0",
-                        "param.1",
-                        "param.2"
+                        "param.1"
+                    ]
+                },
+                "http": {
+                    "bindings": {
+                        "user": {
+                            "source": "$state.store.User",
+                            "where": {
+                                "id": "body.username"
+                            }
+                        }
+                    },
+                    "inject": [
+                        "bindings.user",
+                        "body.password"
+                    ],
+                    "type": "json",
+                    "auth": {
+                        "mode": "body",
+                        "inject": [
+                            "body.username",
+                            "body.oldPassword"
+                        ]
+                    },
+                    "route": "/update-password",
+                    "method": "post"
+                },
+                "html": {
+                    "inject": [
+                        "form.username",
+                        "form.password",
+                        "form.oldPassword"
                     ]
                 }
             }
