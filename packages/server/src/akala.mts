@@ -1,11 +1,12 @@
 import { NamespaceMiddleware } from '@akala/cli';
 import { AkalaConfig, Plugin } from '@akala/cli/cli'
-import { HttpRouter, serve, trigger } from './index.js';
+import { serve, trigger } from './index.js';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { ErrorWithStatus } from '@akala/core';
-import { containers } from '@akala/commands/akala';
+import { containers, InitAkala } from '@akala/commands/akala';
 import { Container, protocolHandlers, registerCommands, serverHandlers } from '@akala/commands';
 import { dirname, relative } from 'path';
+import { Processors } from '@akala/commands';
 
 const x: Plugin = plugin;
 export default x;
@@ -93,7 +94,12 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                 {
                     const result = await protocolHandlers.process(new URL(containerName, pathToFileURL(context.currentWorkingDirectory) + '/'), { signal: context.abort.signal }, {});
                     const metaContainer = await result.getMetadata();
-                    container = new Container(metaContainer.name, {})
+                    container = new Container(metaContainer.name, {});
+                    container.processor.useMiddleware(1, new InitAkala(undefined, { config: context.state, _trigger: 'server' }))
+                    container.processor.useMiddleware(2, new Processors.AuthHandler(() =>
+                    {
+
+                    }))
                     registerCommands(metaContainer.commands, result.processor, container);
                 }
             }
@@ -108,18 +114,15 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                 {
                     await serverHandlers.process(url, container, { signal: context.abort.signal });
                     console.log(`${container.name} listening on ${url.toString()}`)
-
                 }));
                 if (alreadyListeningUrls.length)
                 {
                     if (alreadyListeningUrls.some(url => url.pathname.length > 1))
                     {
-                        const subRouter = new HttpRouter();
-                        router.useMiddleware(alreadyListeningUrls[0].pathname, subRouter)
-                        container.attach(trigger, subRouter);
+                        router.useMiddleware(alreadyListeningUrls[0].pathname, container.attach(trigger));
                     }
                     else
-                        container.attach(trigger, router)
+                        container.attach(trigger, { router })
                     console.log(`${container.name} listening on ${alreadyListeningUrls[0].pathname} on ${urls.map(url => url.toString()).join(', ')}`)
                 }
             }
