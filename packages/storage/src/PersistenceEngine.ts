@@ -34,7 +34,7 @@ export abstract class PersistenceEngine<TOptions = string, TRawQuery = unknown> 
     {
     }
 
-    public abstract rawQuery<T>(query: TRawQuery): PromiseLike<T>;
+    public rawQuery?<T>(query: TRawQuery): PromiseLike<T>;
 
     public abstract init(connection: TOptions): Promise<void>;
 
