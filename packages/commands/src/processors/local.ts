@@ -1,21 +1,33 @@
-import { Injectable, each, MiddlewarePromise, isPromiseLike, SpecialNextParam, MiddlewareAsync, SimpleInjector, Resolvable, NotHandled } from '@akala/core';
+import { Injectable, each, MiddlewarePromise, SpecialNextParam, MiddlewareAsync, SimpleInjector, Resolvable, NotHandled, map, ErrorWithStatus, HttpStatusCode } from '@akala/core';
 import * as  Metadata from '../metadata/index.js';
 import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
 import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command.js';
 
 
-export class AuthHandler implements MiddlewareAsync<CommandMetadataProcessorSignature<unknown>>
+export class AuthHandler<T extends (...args: unknown[]) => unknown> implements MiddlewareAsync<CommandMetadataProcessorSignature<unknown>>
 {
-    constructor(private readonly authValidator: CommandProcessor['handle'])
+    constructor(private readonly authValidator: T)
     {
     }
 
     async handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
-        if (param._trigger && cmd.config?.auth)
+        if (param._trigger && cmd.config?.[param._trigger].auth)
         {
-            return this.authValidator(origin, cmd, param);
+            try
+            {
+                param.auth = await Local.execute({ name: cmd.name, config: Object.fromEntries(map(cmd.config, (c, proc) => [proc, c.auth], true).filter(e => e[1])) },
+                    this.authValidator,
+                    origin,
+                    param)
+                if (cmd.config?.[param._trigger].auth?.required && !param.auth)
+                    return new ErrorWithStatus(HttpStatusCode.Forbidden, 'Unauthorized action');
+            }
+            catch (e)
+            {
+                return e;
+            }
         }
         return undefined;
     }
@@ -105,6 +117,7 @@ export class Local extends CommandProcessor
         }
         each(Object.getOwnPropertyDescriptors(param), ((descriptor, key) => injector.registerDescriptor(key as string | symbol, descriptor)));
         injector.register('$param', param);
+        injector.register('$state', container.state);
         injector.register('$config', config);
         injector.register('$command', cmd);
         if (!inject)
@@ -114,23 +127,17 @@ export class Local extends CommandProcessor
         return injector.injectWithName(inject, handler)(container.state);
     }
 
-    public static handle<T, TArgs extends unknown[], U = unknown>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
+    public static async handle<T, TArgs extends unknown[], U = unknown>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
     {
-        return new Promise((resolve, reject) =>
+        try
         {
-            try
-            {
-                const result = Local.execute(cmd, handler, container, param);
-                if (isPromiseLike(result))
-                    result.then(reject, resolve);
-                else
-                    reject(result);
-            }
-            catch (e)
-            {
-                resolve(e);
-            }
-        })
+            const result = await Local.execute(cmd, handler, container, param);
+            return Promise.reject(result);
+        }
+        catch (e)
+        {
+            return Promise.resolve(e);
+        }
     }
 
     public override handle(container: Container<unknown>, command: Metadata.Command, param: StructuredParameters): MiddlewarePromise

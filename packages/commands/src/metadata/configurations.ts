@@ -12,6 +12,7 @@ export type GenericConfiguration = Configuration & jsonObject;
 export interface Configuration
 {
     inject?: Resolvable[];
+    auth?: Configuration & { required?: boolean };
 }
 
 export interface ConfigurationWithAuth<T extends Configuration & { required?: boolean }> extends Configuration
@@ -29,12 +30,11 @@ export interface ConfigurationMap //extends Record<string, Configuration>
     doc: DocConfiguration;
     schema: SchemaConfiguration
     jsonrpc: Configuration
-    bindings: BindingConfiguration,
-    auth: { required?: boolean }// & { [key in Exclude<keyof ConfigurationMap, 'auth'>]?: ConfigurationMap[key] extends ConfigurationWithAuth<infer X> ? X : ConfigurationMap[key] }
 }
 
 export interface Configurations extends Partial<ConfigurationMap>
 {
+    bindings?: BindingConfiguration
 }
 
 
