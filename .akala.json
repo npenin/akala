@@ -5,7 +5,8 @@
         "@akala/server/akala",
         "@akala/pm/akala",
         "@akala/client/akala",
-        "@akala/automate/akala"
+        "@akala/automate/akala",
+        "@akala/storage/akala"
     ],
     "pm": {
         "containers": {
@@ -59,5 +60,8 @@
             "./packages/server/views"
         ],
         "api": "packages/authentication/oidc-server.json@http://localhost:8080/api"
+    },
+    "auth": {
+        "provider": "file+json://."
     }
 }
