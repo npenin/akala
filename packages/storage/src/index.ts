@@ -20,5 +20,5 @@ import { File } from './providers/file.js';
 import { Vanilla } from './providers/vanilla.js';
 import { basename, dirname } from 'path/posix'
 
-providers.useProtocol('file+json', (url) => File.fromJson(url.hostname + dirname(url.pathname), basename(url.pathname)))
+providers.useProtocol('file+json', (url) => File.fromJson(url.hostname + url.pathname ? '' : dirname(url.pathname), basename(url.pathname)))
 providers.useProtocol('memory', () => Promise.resolve(new Vanilla()))
