@@ -95,7 +95,7 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                     const result = await protocolHandlers.process(new URL(containerName, pathToFileURL(context.currentWorkingDirectory) + '/'), { signal: context.abort.signal }, {});
                     const metaContainer = await result.getMetadata();
                     container = new Container(metaContainer.name, {});
-                    container.processor.useMiddleware(1, new InitAkala(undefined, { config: context.state, _trigger: 'server' }))
+                    container.processor.useMiddleware(1, new InitAkala(undefined, { config: context.state, _trigger: 'server', router }))
                     container.processor.useMiddleware(2, new Processors.AuthHandler(() =>
                     {
 
@@ -117,12 +117,12 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                 }));
                 if (alreadyListeningUrls.length)
                 {
+                    const containerRouter = container.attach(trigger);
+                    container.register('$mainRouter', containerRouter);
                     if (alreadyListeningUrls.some(url => url.pathname.length > 1))
-                    {
-                        router.useMiddleware(alreadyListeningUrls[0].pathname, container.attach(trigger));
-                    }
+                        router.useMiddleware(alreadyListeningUrls[0].pathname, containerRouter);
                     else
-                        container.attach(trigger, { router })
+                        router.useMiddleware(containerRouter);
                     console.log(`${container.name} listening on ${alreadyListeningUrls[0].pathname} on ${urls.map(url => url.toString()).join(', ')}`)
                 }
             }
