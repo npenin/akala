@@ -47,7 +47,7 @@ export class HttpClient extends CommandProcessor
         const injector = param.injector || this.injector;
         return injector.injectWithNameAsync(['$http', '$resolveUrl'], async function (http: Http, resolveUrl: (url: string) => string)
         {
-            const res = await http.call(Local.execute(command, (...args) => HttpClient.buildCall(command.config, resolveUrl, param.auth, ...args), origin, param));
+            const res = await http.call(await Local.execute(command, (...args) => HttpClient.buildCall(command.config, resolveUrl, param.auth, ...args), origin, param));
             switch (config.type)
             {
                 case 'raw':
@@ -60,7 +60,7 @@ export class HttpClient extends CommandProcessor
                         return res.json();
                     return null;
             }
-        }).then(result => { throw result }, err => err);
+        })().then(result => { throw result }, err => err);
     }
 
     public static buildCall(config: Metadata.Configurations, resolveUrl: (s: string) => string, auth: unknown, ...param: unknown[]): HttpOptions<unknown>
