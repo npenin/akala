@@ -84,7 +84,7 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
      * @param handler - Handler function to add
      * @returns Self for chaining
      */
-    public addListener(handler: Listener<[this], void | Promise<void>>)
+    public addListener(handler: Listener<[this], void | PromiseLike<void>>)
     {
         if (this._done || this._triggered)
         {
@@ -236,7 +236,7 @@ export class Module extends SimpleInjector
     {
         if (!f)
             return (f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>) => this.readyAsync(toInject, f);
-        this.readyEvent.addListener(ev => this.injectWithNameAsync(toInject, f.bind(ev)));
+        this.readyEvent.addListener(this.injectWithNameAsync(toInject, f));
         return this;
     }
 
@@ -270,7 +270,7 @@ export class Module extends SimpleInjector
     {
         if (!f)
             return (f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>) => this.activateAsync(toInject, f);
-        this.activateEvent.addListener(() => this.injectWithNameAsync(toInject, f.bind(this.activateEvent)));
+        this.activateEvent.addListener(() => this.injectWithNameAsync(toInject, f)(this.activateEvent));
         return this;
     }
 

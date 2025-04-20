@@ -151,7 +151,7 @@ export function injectable<TInstance, TClass extends { new(...args: unknown[]): 
             }
             let injected = injections && injections.map(f => f(injector)) || [];
             injected = injected.filter(p => typeof p.index == 'number');
-            super(...SimpleInjector.mergeArrays(injected, injector, ...args))
+            super(...SimpleInjector.mergeArrays(injected, injector, ...args).args)
             // Reflect.deleteMetadata(injectSymbol, new.target);
             // Object.setPrototypeOf(this, Object.create(ctor.prototype));
             // if (new.target == result)

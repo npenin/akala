@@ -330,7 +330,7 @@ type SettingsType = { method?: keyof Http } & Omit<HttpOptions<undefined>, 'url'
 
 export class HttpCallFormatter implements Formatter<PromiseLike<Response>>
 {
-    constructor(private settings: SettingsType) { }
+    constructor(private readonly settings: SettingsType) { }
 
     public format(scope: unknown)
     {
