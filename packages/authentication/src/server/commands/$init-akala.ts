@@ -5,8 +5,10 @@ import { providers } from "@akala/storage";
 // import { webcrypto as crypto } from "crypto";
 import { base64 } from '@akala/core'
 import { readFile } from "fs/promises";
+import { HttpRouter } from "@akala/server";
+import { AuthorizeRedirectFormatter } from "../middlewares/AuthorizeRedirectFormatter.js";
 
-export default async function (this: State, container: Container<State>, providerName: string, keyPath: string)
+export default async function (this: State, container: Container<State>, providerName: string, keyPath: string, loginUrl: string, router?: HttpRouter)
 {
     // console.log(arguments);
     container.state = this;
@@ -20,4 +22,5 @@ export default async function (this: State, container: Container<State>, provide
     this.verifyHash = async (value: string, signature: BufferSource, salt?: ArrayBuffer) => await crypto.subtle.verify('HMAC', cryptoKey, signature, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value));
     this.session = { slidingExpiration: 300 };
 
+    router?.formatters.useMiddleware(1, new AuthorizeRedirectFormatter(loginUrl, 'return_url'))
 }

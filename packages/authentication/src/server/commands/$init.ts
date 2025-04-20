@@ -7,9 +7,9 @@ import { Token } from "../../model/access-token.js";
 import { HttpRouter } from "@akala/server";
 import initAkala from './$init-akala.js'
 
-export default async function (this: State, container: Container<State>, providerName: string, keyPath: string)
+export default async function (this: State, container: Container<State>, providerName: string, keyPath: string, loginUrl: string, router?: HttpRouter)
 {
-    await initAkala.call(this, container, providerName, keyPath);
+    await initAkala.call(this, container, providerName, keyPath, loginUrl, router);
     const store = this.store;
 
     ExchangeMiddleware.register('code', async (code, clientId, req) =>
