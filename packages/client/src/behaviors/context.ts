@@ -10,12 +10,6 @@ type Scope = IScope<object>;
 export type IDataContext<TController extends Partial<Disposable> = Partial<Disposable>> = { context: Scope, controller: TController };
 
 /**
- * @file DataContext.ts
- * @description This file contains the definition of the DataContext class, which implements the Composer interface for IDataContext.
- * The DataContext class is responsible for managing and propagating data contexts within a DOM tree.
- */
-
-/**
  * @class DataContext
  * @implements {Composer<IDataContext>}
  * @description Manages and propagates data contexts within a DOM tree.
@@ -210,12 +204,6 @@ export interface DataBindPlugin
      */
     getBindings<const TKey extends PropertyKey>(item: Element, binding: Binding<unknown>, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): Subscription;
 }
-
-/**
- * @fileoverview This file contains the implementation of the DataBind class, which extends the AttributeComposer class
- * and implements the Composer interface. The DataBind class provides methods for extending objects, binding data to elements,
- * and applying bindings to elements.
- */
 
 /**
  * Represents a DataBind class that extends AttributeComposer and implements Composer.

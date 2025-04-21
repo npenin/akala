@@ -1,5 +1,10 @@
 import { Binding, Injectable, ObservableObject, Parser, SimpleInjector, Subscription, each } from "@akala/core";
 
+/** 
+ * The IScope interface defines the contract for a scope object in the application.
+ * It provides methods for managing variables, dependency injection, and binding to observables.
+ * @template T The type of the scope's data object.
+ */
 export interface IScope<T extends object>
 {
     $new<U extends object>(): IScope<U>;
@@ -15,14 +20,28 @@ export type Scope<T extends object> = T & IScope<T>;
 
 const ScopeInjectionToken = Symbol('scope injection token');
 
+/** 
+ * Core implementation of the IScope interface providing variable management, dependency injection, and observable binding capabilities.
+ * @template T The type of the scope's data object.
+ */
 export class ScopeImpl<T extends object> implements IScope<T>
 {
     public static readonly injectionToken = ScopeInjectionToken;
     public get $root() { return this; }
 
+    /** 
+     * Dependency injection resolver for this scope 
+     */
     private $$resolver: SimpleInjector;
+
+    /** 
+     * Map of active bindings for observable properties 
+     */
     public $$watchers: Partial<{ [key in keyof T]: Binding<T[key]> }> = {};
 
+    /** 
+     * Creates a new child scope inheriting from this scope
+     */
     public $new<U extends object>(): IScope<U>
     {
         const root = this['$root'] || this;
@@ -46,7 +65,12 @@ export class ScopeImpl<T extends object> implements IScope<T>
         return new ObservableObject(new newScope()).target;
     }
 
-    public $inject<T, TArgs extends unknown[]>(f: Injectable<T, TArgs>, params?: { [key: string]: unknown })
+    /** 
+     * Injects a service into the scope using dependency injection
+     * @param f Injectable service constructor
+     * @param params Optional parameters to override dependencies
+     */
+    public $inject<T, TArgs extends unknown[]>(f: Injectable<T, TArgs>, params?: { [key: string]: unknown }): T
     {
         if (!Object.getOwnPropertyDescriptor(this, '$$resolver'))
         {
@@ -64,15 +88,31 @@ export class ScopeImpl<T extends object> implements IScope<T>
         return inj.inject(f)(this);
     }
 
+    /** 
+     * Sets the value of an expression in the scope
+     * @param expression Property path (e.g. "user.name")
+     * @param value New value
+     */
     public $set(expression: string, value: unknown)
     {
         ObservableObject.setValue(this, new Parser().parse(expression), value);
     }
+
+    /** 
+     * Sets the value of an expression asynchronously
+     * @param expression Property path
+     * @param value Promise resolving to new value
+     */
     public $setAsync(expression: string, value: Promise<unknown>)
     {
-        value.then(value => ObservableObject.setValue(this, new Parser().parse(expression), value));
+        value.then(v => ObservableObject.setValue(this, new Parser().parse(expression), v));
     }
 
+    /** 
+     * Creates or retrieves a binding for an observable expression
+     * @param expression Property path to bind
+     * @returns Binding instance
+     */
     public $bind(expression: string): Binding<unknown>
     {
         let binding = this.$$watchers[expression];
@@ -84,7 +124,13 @@ export class ScopeImpl<T extends object> implements IScope<T>
         return binding;
     }
 
-    public $watch(expression: string, handler: (value: unknown) => void)
+    /** 
+     * Watches for changes to an expression and calls handler when value changes
+     * @param expression Property path to watch
+     * @param handler Callback to execute on change
+     * @returns Subscription to remove the watcher
+     */
+    public $watch(expression: string, handler: (value: unknown) => void): Subscription
     {
         const binding = this.$bind(expression);
         if (!binding['handlers'])
