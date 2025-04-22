@@ -6,7 +6,6 @@ import { ErrorWithStatus } from '@akala/core';
 import { containers, InitAkala } from '@akala/commands/akala';
 import { Container, protocolHandlers, registerCommands, serverHandlers } from '@akala/commands';
 import { dirname, relative } from 'path';
-import { Processors } from '@akala/commands';
 
 const x: Plugin = plugin;
 export default x;
@@ -95,12 +94,10 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                     const result = await protocolHandlers.process(new URL(containerName, pathToFileURL(context.currentWorkingDirectory) + '/'), { signal: context.abort.signal }, {});
                     const metaContainer = await result.getMetadata();
                     container = new Container(metaContainer.name, {});
-                    container.processor.useMiddleware(1, new InitAkala(undefined, { config: context.state, _trigger: 'server', router }))
-                    container.processor.useMiddleware(2, new Processors.AuthHandler(() =>
-                    {
-
-                    }))
+                    container.processor.useMiddleware(4, new InitAkala(undefined, { config: context.state, _trigger: 'server', router }))
                     registerCommands(metaContainer.commands, result.processor, container);
+                    if (metaContainer.commands.find(c => c.name == '$init-akala'))
+                        await container.dispatch('$init-akala', { param: [], _trigger: 'server', config: context.state, router });
                 }
             }
 

@@ -27,6 +27,7 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
                 case 'xml':
                 case 'raw':
             }
+            throw result;
             // }
         }, async result =>
         {
@@ -47,6 +48,8 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
                 case 'xml':
                 case 'raw':
             }
+
+            return result;
             // }
         })
     }
