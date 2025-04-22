@@ -13,7 +13,7 @@ export default async function (this: State, username: string, password: string, 
     if (!user)
         throw new ErrorWithStatus(401, 'Invalid Username (or password).');
 
-    if (!await this.verifyHash(password, base64.base64DecToArr(user.password), base64.base64DecToArr(user.salt).buffer))
+    if (!await this.verifyHash(password, base64.base64DecToArr(user.password), base64.base64DecToArr(user.salt)))
         throw new ErrorWithStatus(401, 'Invalid (Username or) password).');
 
     if (user.disabled)
@@ -27,7 +27,7 @@ export default async function (this: State, username: string, password: string, 
 
     session.userId = user.id;
 
-    return { id: user.id, sessionId: session.id, sessionSignature: await this.getHash(session.id, base64.base64DecToArr(user.salt).buffer) }
+    return { id: user.id, sessionId: session.id, sessionSignature: await this.getHash(session.id, base64.base64DecToArr(user.salt)) }
 }
 
 export async function validateSessionOwner(state: State, sessionId: string, sessionSignature: string): Promise<Session | null>
@@ -43,7 +43,7 @@ export async function validateSessionOwner(state: State, sessionId: string, sess
     session = await extendSession.call(this, sessionId);
 
     const user = await state.store.User.where('id', BinaryOperator.Equal, session.userId).firstOrDefault();
-    if (!await state.verifyHash(sessionId, base64.base64DecToArr(sessionSignature), base64.base64DecToArr(user.salt).buffer))
+    if (!await state.verifyHash(sessionId, base64.base64DecToArr(sessionSignature), base64.base64DecToArr(user.salt)))
         throw new ErrorWithStatus(401, 'Invalid session signature.');
 
     return session;

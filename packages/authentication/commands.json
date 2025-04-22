@@ -91,7 +91,7 @@
                     "inject": [
                         "$container",
                         "config.auth.provider",
-                        "config.keyPath",
+                        "config.auth.keyPath",
                         "config.auth.loginUrl",
                         "router"
                     ]
@@ -490,16 +490,17 @@
                         "user": {
                             "source": "$state.store.User",
                             "where": {
-                                "id": "body.username"
+                                "name": "body.username"
                             }
                         }
                     },
                     "inject": [
-                        "bindings.user",
+                        "auth",
                         "body.password"
                     ],
                     "type": "json",
                     "auth": {
+                        "required": true,
                         "mode": "body",
                         "inject": [
                             "bindings.user",
