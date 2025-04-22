@@ -22,7 +22,7 @@ export class AuthHandler<T extends (...args: unknown[]) => unknown> implements M
                     origin,
                     param)
                 if (cmd.config?.[param._trigger].auth?.required && !param.auth)
-                    return new ErrorWithStatus(HttpStatusCode.Forbidden, 'Unauthorized action');
+                    return new ErrorWithStatus(HttpStatusCode.Unauthorized, 'Unauthorized action');
             }
             catch (e)
             {
