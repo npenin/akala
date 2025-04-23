@@ -1,9 +1,12 @@
-#  (2025-04-17)
+#  (2025-04-23)
 
 
 ### Bug Fixes
 
 * DataInjector inherits SimpleInjector cb22e64
+* handle case when url pathname is empty b44a1dc
+* make rawQuery support optional 6050617
+* update file command processor to generate UUID only when record key is absent 4c5ff85
 
 
 ### Features
