@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from '@akala/core';
 import { Cursor, Parser } from './_common.js';
 import Uint16 from './uint16.js';
 import Uint8 from './uint8.js';
@@ -13,11 +14,11 @@ export default class Uint32LE implements Parser<number>
 
     readonly length = length;
 
-    public read(buffer: Buffer, cursor: Cursor): number
+    public read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
         if (cursor.subByteOffset > 0)
         {
-            let tmpBuffer = Buffer.alloc(4);
+            let tmpBuffer = new IsomorphicBuffer(4);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 0);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 1);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 2);
@@ -29,11 +30,11 @@ export default class Uint32LE implements Parser<number>
         return value;
     }
 
-    public write(buffer: Buffer, cursor: Cursor, value: number)
+    public write(buffer: IsomorphicBuffer, cursor: Cursor, value: number)
     {
         if (cursor.subByteOffset > 0)
         {
-            let tmpBuffer = Buffer.alloc(4);
+            let tmpBuffer = new IsomorphicBuffer(4);
             tmpBuffer.writeUInt32LE(value, 0);
             Uint16.prototype.write(buffer, cursor, tmpBuffer.readUInt16LE(0));
             Uint16.prototype.write(buffer, cursor, tmpBuffer.readUInt16LE(2));

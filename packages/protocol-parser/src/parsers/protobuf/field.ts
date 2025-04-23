@@ -1,13 +1,14 @@
 import Uint3 from "../uint3.js";
 import Uint5 from "../uint5.js";
 import { Cursor, Parser } from "../_common.js";
+import { IsomorphicBuffer } from "@akala/core";
 
 export type WireType = 'varint' | '64-bit' | 'length-delimited' | 'start-group' | 'end-group' | '32-bit';
 
 export class Field implements Parser<{ fieldId: number; type: WireType; }>
 {
     length: 1 = 1;
-    read(buffer: Buffer, cursor: Cursor): { fieldId: number; type: WireType; }
+    read(buffer: IsomorphicBuffer, cursor: Cursor): { fieldId: number; type: WireType; }
     {
         var wireType = Uint3.prototype.read(buffer, cursor);
         var fieldId = Uint5.prototype.read(buffer, cursor);
@@ -37,7 +38,7 @@ export class Field implements Parser<{ fieldId: number; type: WireType; }>
         return { fieldId, type: wireTypeString };
 
     }
-    write(buffer: Buffer, cursor: Cursor, value: { fieldId: number; type: WireType; }): void
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: { fieldId: number; type: WireType; }): void
     {
         switch (value.type)
         {

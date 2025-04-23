@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from "@akala/core";
 import { AnyParser, Cursor, ParserWithMessage, parserWrite } from "./_common.js";
 
 export class Ignore<T, TMessage> implements ParserWithMessage<T, TMessage>
@@ -7,11 +8,11 @@ export class Ignore<T, TMessage> implements ParserWithMessage<T, TMessage>
 
     }
     get length() { return this.inner.length };
-    read(buffer: Buffer, cursor: Cursor, partial: TMessage): T
+    read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T
     {
         return this.inner.read(buffer, cursor, undefined);
     }
-    write(buffer: Buffer, cursor: Cursor, value: T, message: TMessage): void
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
     {
         return parserWrite(this.inner, buffer, cursor, value);
     }

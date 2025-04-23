@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from "@akala/core";
 import { Cursor, AnyParser, ParserWithMessage, parserWrite } from "../_common.js";
 import { WireType } from './field.js';
 import { ArrayItem } from './property.js';
@@ -11,7 +12,7 @@ export default class PackedProperty<T, TKey extends keyof T> implements ParserWi
 
     length: number;
 
-    read(buffer: Buffer, cursor: Cursor, message: T): ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>
     {
         var result: ArrayItem<T[TKey]>[] = message[this.name] as any;
         if (typeof result == 'undefined')
@@ -26,13 +27,13 @@ export default class PackedProperty<T, TKey extends keyof T> implements ParserWi
         return message[this.name] as ArrayItem<T[TKey]>;
     }
 
-    write(value: ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, message: T): Buffer[]
-    write(buffer: Buffer, cursor: Cursor, value: ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, message: T): void
-    write(buffer: Buffer | ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, cursor?: Cursor | T, value?: ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, message?: T)
+    write(value: ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, message: T): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, message: T): void
+    write(buffer: IsomorphicBuffer | ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, cursor?: Cursor | T, value?: ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, message?: T)
     {
         if (!(cursor instanceof Cursor))
             message = cursor;
-        if (!Buffer.isBuffer(buffer))
+        if (!(buffer instanceof IsomorphicBuffer))
             value = buffer;
         if (typeof value === 'undefined')
             return null;

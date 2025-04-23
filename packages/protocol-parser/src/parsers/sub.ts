@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from '@akala/core';
 import { ParserWithMessageWithoutKnownLength, Cursor, parserWrite, AnyParser } from './_common.js';
 
 
@@ -14,7 +15,7 @@ export class Sub<TResult, TMessage> implements ParserWithMessageWithoutKnownLeng
 
     length: -1 = -1;
 
-    read(buffer: Buffer, cursor: Cursor, message: TMessage): TResult
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): TResult
     {
         const initialOffset = cursor.offset;
         var length = this.lengthParser.read(buffer, cursor, message);
@@ -23,14 +24,14 @@ export class Sub<TResult, TMessage> implements ParserWithMessageWithoutKnownLeng
             cursor.offset = initialOffset;
             return null;
         }
-        var result = this.inner.read(buffer.slice(cursor.offset, cursor.offset + length), new Cursor(), message);
+        var result = this.inner.read(buffer.subarray(cursor.offset, cursor.offset + length), new Cursor(), message);
         cursor.offset += length;
         return result;
     }
 
-    write(value: TResult, message: TMessage): Buffer[];
-    write(buffer: Buffer, cursor: Cursor, value: TResult, message: TMessage): void;
-    write(buffer: Buffer | TResult, cursor?: Cursor | TMessage, value?: TResult, message?: TMessage)
+    write(value: TResult, message: TMessage): IsomorphicBuffer[];
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: TResult, message: TMessage): void;
+    write(buffer: IsomorphicBuffer | TResult, cursor?: Cursor | TMessage, value?: TResult, message?: TMessage)
     {
         if (!(cursor instanceof Cursor))
         {

@@ -1,5 +1,6 @@
 import PrefixedBuffer from "../buffer-prefixed.js";
 import { Cursor, Parsers } from "../_common.js";
+import { IsomorphicBuffer } from "@akala/core";
 
 export class TLVBuffer extends PrefixedBuffer
 {
@@ -8,7 +9,7 @@ export class TLVBuffer extends PrefixedBuffer
         super(length)
     }
 
-    write(value: Buffer): Buffer[]
+    write(value: IsomorphicBuffer): IsomorphicBuffer[]
     {
         var result = []
         const cursor = new Cursor();

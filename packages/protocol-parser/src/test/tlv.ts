@@ -2,24 +2,25 @@ import assert from "assert";
 import { parsers, tlv } from "../index.js"
 import { Cursor } from "../parsers/_common.js"
 import { describe, it } from 'node:test'
+import { IsomorphicBuffer } from "@akala/core";
 
 const tlv8 = tlv(parsers.uint8, 0xFF, 'utf8');
 
 type PairMessage = {
     method: PairMethod;
     username: string;
-    salt: Buffer;
-    publicKey: Buffer;
-    passwordProof: Buffer;
-    encryptedData: Buffer;
+    salt: IsomorphicBuffer;
+    publicKey: IsomorphicBuffer;
+    passwordProof: IsomorphicBuffer;
+    encryptedData: IsomorphicBuffer;
     state: PairState;
     error: PairErrorCode;
     retryDelay: number;
-    certificate: Buffer;
-    signature: Buffer;
-    permissions: Buffer;
-    fragmentData: Buffer;
-    fragmentLast: Buffer;
+    certificate: IsomorphicBuffer;
+    signature: IsomorphicBuffer;
+    permissions: IsomorphicBuffer;
+    fragmentData: IsomorphicBuffer;
+    fragmentLast: IsomorphicBuffer;
 }
 
 enum PairMethod
@@ -67,7 +68,7 @@ describe('tlv', function ()
 
     it('should encode properly', function ()
     {
-        const actual = Buffer.concat(pairMessage.write({
+        const actual = IsomorphicBuffer.concat(pairMessage.write({
             state: PairState.M1,
             method: PairMethod.Setup,
         }));
@@ -83,25 +84,25 @@ describe('tlv', function ()
             method: PairMethod.Setup,
         };
 
-        const actual = pairMessage.read(Buffer.concat(pairMessage.write(expected)), new Cursor());
+        const actual = pairMessage.read(IsomorphicBuffer.concat(pairMessage.write(expected)), new Cursor());
 
         assert.deepStrictEqual(expected, actual);
     })
 })
 
-type TLVEncodable = Buffer | number | string;
+type TLVEncodable = IsomorphicBuffer | number | string;
 
-function encode(type: number, data: TLVEncodable | TLVEncodable[], ...args: any[]): Buffer
+function encode(type: number, data: TLVEncodable | TLVEncodable[], ...args: any[]): IsomorphicBuffer
 {
-    const encodedTLVBuffers: Buffer[] = [];
+    const encodedTLVBuffers: IsomorphicBuffer[] = [];
 
-    // coerce data to Buffer if needed
+    // coerce data to IsomorphicBuffer if needed
     if (typeof data === "number")
     {
-        data = Buffer.from([data]);
+        data = new IsomorphicBuffer(new Uint8Array([data]));
     } else if (typeof data === "string")
     {
-        data = Buffer.from(data);
+        data = IsomorphicBuffer.from(data);
     }
 
     if (Array.isArray(data))
@@ -111,7 +112,7 @@ function encode(type: number, data: TLVEncodable | TLVEncodable[], ...args: any[
         {
             if (!first)
             {
-                encodedTLVBuffers.push(Buffer.from([0, 0])); // push delimiter
+                encodedTLVBuffers.push(new IsomorphicBuffer(new Uint8Array([0, 0]))); // push delimiter
             }
 
             first = false;
@@ -120,11 +121,11 @@ function encode(type: number, data: TLVEncodable | TLVEncodable[], ...args: any[
 
         if (first)
         { // we have a zero length array!
-            encodedTLVBuffers.push(Buffer.from([type, 0]));
+            encodedTLVBuffers.push(new IsomorphicBuffer(new Uint8Array([type, 0])));
         }
     } else if (data.length <= 255)
     {
-        encodedTLVBuffers.push(Buffer.concat([Buffer.from([type, data.length]), data]));
+        encodedTLVBuffers.push(IsomorphicBuffer.concat([new IsomorphicBuffer(new Uint8Array([type, data.length])), data]));
     } else
     { // otherwise it doesn't fit into one tlv entry, thus we push multiple
         let leftBytes = data.length;
@@ -134,12 +135,12 @@ function encode(type: number, data: TLVEncodable | TLVEncodable[], ...args: any[
         {
             if (leftBytes >= 255)
             {
-                encodedTLVBuffers.push(Buffer.concat([Buffer.from([type, 0xFF]), data.slice(currentIndex, currentIndex + 255)]));
+                encodedTLVBuffers.push(IsomorphicBuffer.concat([new IsomorphicBuffer(new Uint8Array([type, 0xFF])), data.subarray(currentIndex, currentIndex + 255)]));
                 leftBytes -= 255;
                 currentIndex += 255;
             } else
             {
-                encodedTLVBuffers.push(Buffer.concat([Buffer.from([type, leftBytes]), data.slice(currentIndex)]));
+                encodedTLVBuffers.push(IsomorphicBuffer.concat([new IsomorphicBuffer(new Uint8Array([type, leftBytes])), data.subarray(currentIndex)]));
                 leftBytes -= leftBytes;
             }
         }
@@ -157,5 +158,5 @@ function encode(type: number, data: TLVEncodable | TLVEncodable[], ...args: any[
         encodedTLVBuffers.push(remainingTLVBuffer);
     }
 
-    return Buffer.concat(encodedTLVBuffers);
+    return IsomorphicBuffer.concat(encodedTLVBuffers);
 }

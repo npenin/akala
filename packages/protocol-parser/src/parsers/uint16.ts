@@ -1,6 +1,7 @@
 import { Cursor, Parser } from './_common.js';
 import Uint8 from './uint8.js';
 import { uint16 } from "../core.js";
+import { IsomorphicBuffer } from '@akala/core';
 
 const length = 2;
 
@@ -13,11 +14,11 @@ export default class Uint16 implements Parser<uint16>
 
     readonly length = length;
 
-    public read(buffer: Buffer, cursor: Cursor): uint16
+    public read(buffer: IsomorphicBuffer, cursor: Cursor): uint16
     {
         if (cursor.subByteOffset > 0)
         {
-            let tmpBuffer = Buffer.alloc(2);
+            let tmpBuffer = new IsomorphicBuffer(2);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 0);
             tmpBuffer.writeUInt8(Uint8.prototype.read(buffer, cursor), 1);
             return tmpBuffer.readUInt16BE(0);
@@ -27,7 +28,7 @@ export default class Uint16 implements Parser<uint16>
         return value;
     }
 
-    public write(buffer: Buffer, cursor: Cursor, value: uint16)
+    public write(buffer: IsomorphicBuffer, cursor: Cursor, value: uint16)
     {
         if (cursor.subByteOffset > 0)
         {

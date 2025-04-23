@@ -2,6 +2,7 @@ import Uint32 from "../uint32.js";
 import Uint64 from "../uint64.js";
 import { Cursor, parserWrite, ParserWithoutKnownLength, ParserWithMessageWithoutKnownLength, AnyParser } from "../_common.js";
 import { Field, WireType } from './field.js';
+import { IsomorphicBuffer } from "@akala/core";
 
 // const varint = new Varint();
 // const prefixedBuffer = new PrefixedBuffer(varint);
@@ -35,7 +36,7 @@ export default class Message<TMessage> implements ParserWithMessageWithoutKnownL
 
     length: -1 = -1;
 
-    public read(buffer: Buffer, cursor: Cursor, message?: Partial<TMessage>): TMessage
+    public read(buffer: IsomorphicBuffer, cursor: Cursor, message?: Partial<TMessage>): TMessage
     {
         message = {} as Partial<TMessage>;
         while (cursor.offset < buffer.length)
@@ -69,9 +70,9 @@ export default class Message<TMessage> implements ParserWithMessageWithoutKnownL
         // return message;
     }
 
-    public write(value: TMessage): Buffer[]
+    public write(value: TMessage): IsomorphicBuffer[]
     {
-        var result: Buffer[] = [];
+        var result: IsomorphicBuffer[] = [];
         for (let fieldId = 0; fieldId < this.parsers.length; fieldId++)
         {
 
@@ -79,12 +80,12 @@ export default class Message<TMessage> implements ParserWithMessageWithoutKnownL
             var valueBuffers = parserWrite(fieldParser, value, value);
             if (valueBuffers !== null)
             {
-                var fieldDefinition = Buffer.alloc(1);
+                var fieldDefinition = new IsomorphicBuffer(1);
                 result.push(fieldDefinition);
                 field.write(fieldDefinition, new Cursor(), { fieldId: fieldId + 1, type: fieldParser.wireType });
                 result.push(...valueBuffers);
             }
-            // let buffer: Buffer;
+            // let buffer: IsomorphicBuffer;
             // if (typeof (value) !== 'undefined')
             // {
             //     switch (fieldParser.wireType)
@@ -93,17 +94,17 @@ export default class Message<TMessage> implements ParserWithMessageWithoutKnownL
             //             result.push(...varint.write(value[field.name] as any));
             //             break;
             //         case '64-bit':
-            //             buffer = Buffer.alloc(8);
+            //             buffer = new IsomorphicBuffer(8);
             //             Uint64LE.prototype.write(buffer, new Cursor(), value[field.name] as any);
             //             break;
             //         case 'length-delimited':
-            //             if (!Buffer.isBuffer(value[field.name]))
+            //             if (!value[field.name] instanceof IsomorphicBuffer)
             //                 prefixedBuffer.write(Buffer.from(value[field.name] as any));
             //             else
             //                 prefixedBuffer.write(value[field.name] as any);
             //             break;
             //         case '32-bit':
-            //             buffer = Buffer.alloc(4);
+            //             buffer = new IsomorphicBuffer(4);
             //             Uint64LE.prototype.write(buffer, new Cursor(), value[field.name] as any);
             //             break;
             //     }
@@ -124,7 +125,7 @@ export class UnknownMessage implements ParserWithMessageWithoutKnownLength<Recor
 
     length: -1 = -1;
 
-    public read(buffer: Buffer, cursor: Cursor, message?: Record<number, unknown | unknown[]>): Record<number, unknown | unknown[]>
+    public read(buffer: IsomorphicBuffer, cursor: Cursor, message?: Record<number, unknown | unknown[]>): Record<number, unknown | unknown[]>
     {
         if (typeof (message) == 'undefined')
             message = {};
@@ -162,9 +163,9 @@ export class UnknownMessage implements ParserWithMessageWithoutKnownLength<Recor
         return message;
     }
 
-    public write(value: Record<number, unknown | unknown[]>): Buffer[]
+    public write(value: Record<number, unknown | unknown[]>): IsomorphicBuffer[]
     {
-        var result: Buffer[] = [];
+        var result: IsomorphicBuffer[] = [];
         // for (let fieldId = 0; fieldId < this.parsers.length; fieldId++)
         // {
 
@@ -172,12 +173,12 @@ export class UnknownMessage implements ParserWithMessageWithoutKnownLength<Recor
         //     var valueBuffers = parserWrite(fieldParser, value, value);
         //     if (valueBuffers !== null)
         //     {
-        //         var fieldDefinition = Buffer.alloc(1);
+        //         var fieldDefinition = new IsomorphicBuffer(1);
         //         result.push(fieldDefinition);
         //         field.write(fieldDefinition, new Cursor(), { fieldId: fieldId + 1, type: fieldParser.wireType });
         //         result.push(...valueBuffers);
         //     }
-        //     // let buffer: Buffer;
+        //     // let buffer: IsomorphicBuffer;
         //     // if (typeof (value) !== 'undefined')
         //     // {
         //     //     switch (fieldParser.wireType)
@@ -186,17 +187,17 @@ export class UnknownMessage implements ParserWithMessageWithoutKnownLength<Recor
         //     //             result.push(...varint.write(value[field.name] as any));
         //     //             break;
         //     //         case '64-bit':
-        //     //             buffer = Buffer.alloc(8);
+        //     //             buffer = new IsomorphicBuffer(8);
         //     //             Uint64LE.prototype.write(buffer, new Cursor(), value[field.name] as any);
         //     //             break;
         //     //         case 'length-delimited':
-        //     //             if (!Buffer.isBuffer(value[field.name]))
+        //     //             if (!value[field.name] instanceof IsomorphicBuffer)
         //     //                 prefixedBuffer.write(Buffer.from(value[field.name] as any));
         //     //             else
         //     //                 prefixedBuffer.write(value[field.name] as any);
         //     //             break;
         //     //         case '32-bit':
-        //     //             buffer = Buffer.alloc(4);
+        //     //             buffer = new IsomorphicBuffer(4);
         //     //             Uint64LE.prototype.write(buffer, new Cursor(), value[field.name] as any);
         //     //             break;
         //     //     }

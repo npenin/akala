@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from "@akala/core";
 import { Cursor, Parser, Parsers, parserWrite } from "../_common.js";
 
 export class TLVNumber implements Parser<number>
@@ -11,13 +12,13 @@ export class TLVNumber implements Parser<number>
 
     public readonly length: number;
 
-    read(buffer: Buffer, cursor: Cursor): number
+    read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
         this.lengthParser.read(buffer, cursor);
         return this.lengthParser.read(buffer, cursor);
     }
 
-    write(buffer: Buffer, cursor: Cursor, value: number): void
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: number): void
     {
         parserWrite(this.lengthParser, buffer, cursor, this._length);
         parserWrite(this.lengthParser, buffer, cursor, value);

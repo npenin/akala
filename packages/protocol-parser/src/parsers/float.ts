@@ -1,6 +1,7 @@
 import { Cursor, Parser } from './_common.js';
 import { float } from "../core.js";
 import Uint32 from './uint32.js';
+import { IsomorphicBuffer } from '@akala/core';
 
 const length = 4;
 
@@ -13,12 +14,12 @@ export default class Float implements Parser<float>
 
     readonly length = length;
 
-    public read(buffer: Buffer, cursor: Cursor): float
+    public read(buffer: IsomorphicBuffer, cursor: Cursor): float
     {
         if (cursor.subByteOffset > 0)
         {
-            let tmpBuffer = Buffer.alloc(length);
-            tmpBuffer.writeUint32BE(Uint32.prototype.read(buffer, cursor));
+            let tmpBuffer = new IsomorphicBuffer(length);
+            tmpBuffer.writeUInt32BE(0, Uint32.prototype.read(buffer, cursor));
             return tmpBuffer.readFloatBE(0);
         }
         const value = buffer.readFloatBE(cursor.offset);
@@ -26,11 +27,11 @@ export default class Float implements Parser<float>
         return value;
     }
 
-    public write(buffer: Buffer, cursor: Cursor, value: float)
+    public write(buffer: IsomorphicBuffer, cursor: Cursor, value: float)
     {
         if (cursor.subByteOffset > 0)
         {
-            let tmpBuffer = Buffer.alloc(length);
+            let tmpBuffer = new IsomorphicBuffer(length);
             tmpBuffer.writeFloatBE(value);
             Uint32.prototype.write(buffer, cursor, tmpBuffer.readUInt32BE())
         }

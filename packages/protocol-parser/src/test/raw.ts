@@ -3,6 +3,7 @@ import 'source-map-support/register.js'
 import { array, bit, string, uint16, uint16LE, uint2, uint3, uint32, uint32LE, uint4, uint5, uint6, uint64, uint7, uint8 } from '../parsers/index.js'
 import { Cursor, Parser, parserWrite } from '../parsers/_common.js'
 import { describe, it } from 'node:test'
+import { IsomorphicBuffer } from '@akala/core'
 
 function readType(name: string, type: Parser<number>, length: number)
 {
@@ -22,8 +23,8 @@ function readType(name: string, type: Parser<number>, length: number)
             // if (length >= 16)
             //     this.timeout(0);
 
-            var buffer = Buffer.allocUnsafe(Math.ceil(length / 8) + 1);
-            var expectedBuffer = Buffer.allocUnsafe(Math.ceil(length / 8) + 1);
+            var buffer = new IsomorphicBuffer(Buffer.allocUnsafe(Math.ceil(length / 8) + 1));
+            var expectedBuffer = new IsomorphicBuffer(Buffer.allocUnsafe(Math.ceil(length / 8) + 1));
             for (let x = 0; x < expected; x++)
             {
                 if (length == 32 && x != 0b1001100110011001)
@@ -88,7 +89,7 @@ function readArrayType(name: string, type: Parser<number>, length: number)
                 expected.push(expectedValue);
             }
 
-            var buffer: Buffer = Buffer.alloc(length * type.length + 1);
+            var buffer: IsomorphicBuffer = new IsomorphicBuffer(length * type.length + 1);
 
             parserWrite(arrayType, buffer, new Cursor(), expected);
             assert.deepStrictEqual(arrayType.read(buffer, new Cursor()), expected, 'reading array in buffer');
@@ -125,7 +126,7 @@ describe('read', function ()
         it('should read from buffer', function ()
         {
             var expected = 'string'
-            var buffer: Buffer = Buffer.alloc(expected.length + 1);
+            var buffer: IsomorphicBuffer = new IsomorphicBuffer(expected.length + 1);
             parserWrite(s, buffer, new Cursor(), expected);
             assert.strictEqual(s.read(buffer, new Cursor()), 'string', 'reading in buffer');
         })
@@ -140,7 +141,7 @@ describe('read', function ()
         it('should read from buffer', function ()
         {
             var expected = BigInt(1234567890);
-            var buffer = Buffer.alloc(8);
+            var buffer = new IsomorphicBuffer(8);
 
             uint64.write(buffer, new Cursor(), expected)
             assert.strictEqual(uint64.read(buffer, new Cursor()), expected, 'reading in buffer');

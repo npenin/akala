@@ -57,6 +57,7 @@ import { Conditional } from './conditional-parser.js'
 import * as types from '../core.js'
 import { Ignore } from './ignore-message.js'
 import PreparsedLengthBuffer from './buffer-preparsed.js'
+import { IsomorphicBuffer } from '@akala/core'
 
 export { protobuf };
 
@@ -161,7 +162,7 @@ export function string<T, TString extends string = string>(length: Parsers<numbe
         return new PreparsedLengthString<T, typeof length, TString>(length, encoding);
     return new PrefixedString<TString>(length as Parsers<number>, encoding);
 }
-export function buffer<T = unknown>(length: Parser<number> | ParserWithoutKnownLength<number> | number | keyof T): AnyParser<Buffer, T>
+export function buffer<T = unknown>(length: Parser<number> | ParserWithoutKnownLength<number> | number | keyof T): AnyParser<IsomorphicBuffer, T>
 {
     if (typeof length == 'number')
         return new BufferRaw(length);

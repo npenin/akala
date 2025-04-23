@@ -1,13 +1,14 @@
+import { IsomorphicBuffer } from '@akala/core';
 import { Cursor, Parser } from './_common.js';
 
-export default class FixedBuffer implements Parser<Buffer>
+export default class FixedBuffer implements Parser<IsomorphicBuffer>
 {
     constructor(public readonly length: number)
     {
 
     }
 
-    read(buffer: Buffer, cursor: Cursor): Buffer
+    read(buffer: IsomorphicBuffer, cursor: Cursor): IsomorphicBuffer
     {
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
@@ -18,10 +19,10 @@ export default class FixedBuffer implements Parser<Buffer>
             return buffer;
         }
 
-        return buffer.slice(cursor.offset, cursor.offset += this.length);
+        return buffer.subarray(cursor.offset, cursor.offset += this.length);
     }
 
-    write(buffer: Buffer, cursor: Cursor, value: Buffer)
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: IsomorphicBuffer)
     {
         value.copy(buffer, cursor.offset, 0, this.length);
     }
