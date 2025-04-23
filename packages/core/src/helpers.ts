@@ -100,7 +100,7 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
                 }
             case "utf8":
             case "utf-8":
-                return IsomorphicBuffer.fromArrayBuffer(base64.strToUTF8Arr(s));
+                return new IsomorphicBuffer(base64.strToUTF8Arr(s));
             case "base64":
                 return new IsomorphicBuffer(base64.base64DecToArr(s));
             case "hex":
