@@ -26,9 +26,9 @@ describe('test http processing', function ()
             const indexOfSecondSlash = url.indexOf('/', 1);
             if (indexOfSecondSlash > 0)
             {
-                var cmdName = url.substr(1, indexOfSecondSlash - 1);
+                var cmdName = url.substring(1, indexOfSecondSlash);
                 const cmd = calculator.resolve(cmdName);
-                if (cmd && cmd.config && cmd.config.http && cmd.config.http.inject)
+                if (cmd?.config?.http?.inject)
                 {
                     const config = cmd.config.http;
                     const template = UrlTemplate.parse(config.route);
@@ -78,7 +78,7 @@ describe('test http processing', function ()
         {
             return new URL(url, 'http://localhost:8887/');
         })
-        const container = metadata(calculator);
+        const container = metadata(calculator, false, true);
         const calculatorProxy = proxy(container, new HttpClient(akala.defaultInjector.resolve('$injector')));
         assert.strictEqual(calculator.state.value, 0)
         await calculatorProxy.dispatch('increment');

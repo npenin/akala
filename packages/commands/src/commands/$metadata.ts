@@ -6,7 +6,7 @@ import { configure } from '../decorators.js';
 export function $metadata(container: Container<unknown>, deep: boolean): meta.Container
 {
     // console.log(container.name);
-    return metadata(container, deep);
+    return metadata(container, deep, true);
 }
 
 const $metadataCmd = configure({

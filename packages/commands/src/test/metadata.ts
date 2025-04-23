@@ -92,7 +92,7 @@ describe('test helpers', function ()
         })
     })
 
-    it('should handle basics from object', function ()
+    it('should handle basics from object', async function ()
     {
         const container = fromObject({
             value: 0, increment(step?: number | string)
@@ -115,13 +115,13 @@ describe('test helpers', function ()
 
         container.dispatch('reset');
         assert.equal(container.state.value, 0)
-        container.dispatch('increment');
+        await container.dispatch('increment');
         assert.equal(container.state.value, 1)
-        container.dispatch('increment');
+        await container.dispatch('increment');
         assert.equal(container.state.value, 2)
-        container.dispatch('decrement');
+        await container.dispatch('decrement');
         assert.equal(container.state.value, 1)
-        container.dispatch('decrement');
+        await container.dispatch('decrement');
         assert.equal(container.state.value, 0)
 
     })
