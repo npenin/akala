@@ -10,7 +10,7 @@ describe('testing each async', function ()
     it('should support mixing promises and callback return', function (_, done)
     {
         const result = [];
-        each(array, (x) => delay(Math.random() * 1000).then(() => { result.push(x + 1) })).then(done, e =>
+        each(array, (x) => delay(Math.random() * 100).then(() => { result.push(x + 1) })).then(done, e =>
         {
             try
             {
@@ -29,7 +29,7 @@ describe('testing each async', function ()
     it('should support mixing callbacks and promise return', async function ()
     {
         const result = [];
-        await each(array, (x, _i) => delay(Math.random() * 1000).then(() =>
+        await each(array, (x, _i) => delay(Math.random() * 100).then(() =>
         {
             result.push(x + 1);
         }));
@@ -41,7 +41,7 @@ describe('testing each async', function ()
     it('should accept promises', async function ()
     {
         const result = [];
-        await each(array, (x) => delay(Math.random() * 1000).then(() => { result.push(x + 1) }))
+        await each(array, (x) => delay(Math.random() * 100).then(() => { result.push(x + 1) }))
         assert.strictEqual(result.length, array.length);
         assert.strictEqual(result.reduce((p, c) => p + c, 0), array.reduce((p, c) => p + 1 + c, 0));
     })
@@ -51,7 +51,7 @@ describe('testing each async', function ()
         const result = [];
         await assert.rejects(new Promise((resolve, reject) =>
         {
-            each(array, (x) => delay(Math.random() * 1000).then(() =>
+            each(array, (x) => delay(Math.random() * 100).then(() =>
             {
                 result.push(x + 1)
                 if (x > 7)

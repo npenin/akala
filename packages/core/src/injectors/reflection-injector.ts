@@ -19,8 +19,16 @@ export interface InjectableObject
  * @param name - Optional dependency name. If omitted, uses the property name as the dependency key.
  * @returns Decorator function to apply injection metadata.
  */
-export function inject(name?: string)
+export function inject(names: string[]): <T>(target: T, propertyKey?: keyof T) => void
+export function inject(name?: string): (target: object | (new (...args: unknown[]) => unknown), propertyKey: string, parameterIndex?: number) => void
+export function inject(name?: string | string[])
 {
+    if (Array.isArray(name))
+        return function (target: (new (...args: unknown[]) => unknown) | object, propertyKey: string)
+        {
+            name.forEach((name, i) => inject(name)(target, propertyKey, i));
+        }
+
     return function (target: object | (new (...args: unknown[]) => unknown), propertyKey: string, parameterIndex?: number)
     {
         if (typeof parameterIndex == 'number')
@@ -73,7 +81,7 @@ export function applyInjector(injector: SimpleInjector, obj: object, prototype?:
 
     for (const property in injections)
     {
-        if (property && property.length)
+        if (property?.length)
         {
             let descriptor = Reflect.getOwnPropertyDescriptor(obj, property);
             if (!descriptor && prototype)
@@ -108,7 +116,8 @@ export function applyInjector(injector: SimpleInjector, obj: object, prototype?:
                 Object.defineProperty(obj, property, {
                     value: function injected(...args: unknown[]) 
                     {
-                        return oldFunction.apply(this, SimpleInjector.mergeArrays(injections[property].map(p => (p as ParameterInjection)(injector)), ...args));
+                        const mergedArgs = SimpleInjector.mergeArrays(injections[property].map(p => (p as ParameterInjection)(injector)), ...args);
+                        return oldFunction.apply(this, mergedArgs.args);
                     }
                 })
             }
