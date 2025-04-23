@@ -38,7 +38,7 @@ export type InjectableWithTypedThis<T, U, TArgs extends unknown[]> = (this: U, .
  * @template T - The resolved type of the promise.
  * @template TArgs - The argument types of the function.
  */
-export type InjectableAsync<T, TArgs extends unknown[]> = (...args: TArgs) => PromiseLike<T>;
+export type InjectableAsync<T, TArgs extends unknown[]> = Injectable<Promise<T>, TArgs>;
 
 /**
  * Type representing an injectable asynchronous function with a typed 'this' context.
@@ -195,15 +195,19 @@ export abstract class Injector implements ICustomResolver
     {
         const args = [];
         let unknownArgIndex = 0;
+        let hasPromise: PromiseLike<void>[] = [];
         for (const arg of resolvedArgs.sort((a, b) => a.index - b.index))
         {
+            if (isPromiseLike(arg.value))
+                hasPromise.push(arg.value.then(v => { args[arg.index] = v }));
             if (arg.index === args.length)
                 args[args.length] = arg.value;
             else if (typeof (otherArgs[unknownArgIndex]) != 'undefined')
                 args[args.length] = otherArgs[unknownArgIndex++];
         }
-
-        return args.concat(otherArgs.slice(unknownArgIndex));
+        if (hasPromise.length)
+            return { promisedArgs: Promise.all(hasPromise).then(() => args.concat(otherArgs.slice(unknownArgIndex))), args: args.concat(otherArgs.slice(unknownArgIndex)) };
+        return { args: args.concat(otherArgs.slice(unknownArgIndex)) };
     }
 
     /**
@@ -340,16 +344,6 @@ export abstract class Injector implements ICustomResolver
     abstract resolve<T>(param: Resolvable): T;
 
     /**
-     * Resolves a parameter asynchronously.
-     * @param {Resolvable} name - The name of the parameter to resolve.
-     * @returns {PromiseLike<T>} The resolved parameter.
-     */
-    public resolveAsync<T>(name: Resolvable): PromiseLike<T>
-    {
-        return this.onResolve(name);
-    }
-
-    /**
      * Inspects the injector.
      */
     abstract inspect(): void
@@ -371,43 +365,18 @@ export abstract class Injector implements ICustomResolver
      * @param {InjectableAsync<T, TArgs> | Injectable<T, TArgs>} a - The function to inject.
      * @returns {Promise<T>} The injected function.
      */
-    public async injectWithNameAsync<T, TArgs extends unknown[]>(toInject: (Resolvable)[], a: InjectableAsync<T, TArgs> | Injectable<T, TArgs>): Promise<T>
+    public injectWithNameAsync<T, TArgs extends unknown[]>(toInject: (Resolvable)[], a: Injectable<T | PromiseLike<T>, TArgs>): Injected<T | PromiseLike<T>>
     {
         if (!toInject || toInject.length == 0)
-            return Promise.resolve<T>((a as Injectable<T, []>)());
-        const paramNames = getParamNames(a);
-        let wait = false;
+            return instance => (a as Injectable<T, []>).call(instance);
 
-        if (paramNames.length == toInject.length || paramNames.length == 0)
+        return (instance?: unknown, ...otherArgs: unknown[]) =>
         {
-            if (toInject.length == paramNames.length && paramNames.length == 0)
-                // eslint-disable-next-line @typescript-eslint/ban-types
-                return await (a as Function).call(globalThis);
-            else
-            {
-                const args = [] as TArgs;
-                for (const param of toInject)
-                {
-                    args[args.length] = this.resolveAsync(param);
-                    if (isPromiseLike(args[args.length - 1]))
-                        wait = true;
-                }
-                if (wait)
-                {
-                    const args2 = await Promise.all(args.map(function (v)
-                    {
-                        if (isPromiseLike(v))
-                            return v;
-                        return Promise.resolve(v);
-                    })) as TArgs;
-                    return a(...args2);
-                }
-                else
-                    return a(...args);
-            }
+            const args = Injector.mergeArrays(this.getArguments(toInject), ...otherArgs);
+            if (args.promisedArgs)
+                return args.promisedArgs.then(args => a.apply(instance, args));
+            return a.apply(instance, args.args);
         }
-        else
-            throw new Error('the number of arguments does not match the number of injected parameters');
     }
 
     /**
@@ -418,18 +387,13 @@ export abstract class Injector implements ICustomResolver
      */
     public injectWithName<T, TArgs extends unknown[]>(toInject: Resolvable[], a: Injectable<T, TArgs>): Injected<T>
     {
-        if (toInject && toInject.length > 0)
-        {
-            const paramNames = getParamNames(a);
-            if (paramNames.length == toInject.length || paramNames.length == 0)
-            {
-                if (toInject.length == paramNames.length && paramNames.length == 0)
-                    return <Injectable<T, []>>a;
-            }
-        }
+        if (toInject?.length === 0)
+            return (instance) => (a as Injectable<T, []>).call(instance);
+
         return (instance?: unknown, ...otherArgs: unknown[]) =>
         {
-            return a.apply(instance, Injector.mergeArrays(this.getArguments(toInject), ...otherArgs));
+            const args = Injector.mergeArrays(this.getArguments(toInject), ...otherArgs);
+            return a.apply(instance, args.args);
         }
     }
 

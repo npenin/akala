@@ -26,7 +26,7 @@ describe('test log processing', function ()
         let processingCalled: Command;
         let processedCalled: Command;
         await calculator2.dispatch('reset');
-        assert.strictEqual(processingCalled.name, 'reset', 'processing was not called')
-        assert.strictEqual(processedCalled.name, 'reset', 'processed was not called')
+        assert.strictEqual(processingCalled?.name, 'reset', 'processing was not called')
+        assert.strictEqual(processedCalled?.name, 'reset', 'processed was not called')
     })
 })

@@ -43,6 +43,8 @@ export class InitAkala<T> extends CommandProcessor
                         this.warmedup = true;
                         return e;
                     }
+                else if (cmd === this.init)
+                    this.warmedup = true;
             }
             else
                 this.warmedup = true;

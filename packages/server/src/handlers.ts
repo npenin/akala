@@ -70,7 +70,7 @@ serverHandlers.useProtocol('http2s', async (url, options) =>
 });
 
 
-commandHandlers.protocol.use(async (url, container, options: (ServerOptions) & { signal: AbortSignal }) =>
+commandHandlers.protocol.use(async (url, container, options: (ServerOptions) & { router?: HttpRouter, signal: AbortSignal }) =>
 {
     const server = await serverHandlers.process(url, options)
 
@@ -80,10 +80,10 @@ commandHandlers.protocol.use(async (url, container, options: (ServerOptions) & {
         const router = new HttpRouter();
         router.attachTo(server);
         const containerRouter = router.useMiddleware(url.pathname, new HttpRouter());
-        container.register('$masterRouter', container.attach(trigger, containerRouter));
+        container.register('$mainRouter', container.attach(trigger, containerRouter));
     }
     else
-        container.register('$masterRouter', container.attach(trigger, server));
+        container.register('$mainRouter', container.attach(trigger, server));
 });
 
 commandHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options) =>

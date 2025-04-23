@@ -104,7 +104,7 @@ it('injector should work', () =>
     assert.strictEqual(a.os, i.resolve('os'), 'named injection does not work');
     assert.strictEqual(a.vendor, i.resolve('vendor'), 'implicit injection does not work');
     assert.strictEqual(a.otherVendor, i.resolve('otherVendor'), 'constructor injection does not work');
-    assert.strictEqual(a.do('likes'), `${i.resolve('vendor')} ${i.resolve('action')} ${i.resolve('os')}`, 'parameter injection does not work');
+    assert.strictEqual(a.do('likes'), `${i.resolve<string>('vendor')} ${i.resolve<string>('action')} ${i.resolve<string>('os')}`, 'parameter injection does not work');
 
 
     class B extends A

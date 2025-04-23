@@ -9,7 +9,7 @@ import { Local } from "./processors/local.js";
 
 export const ignoredCommands = ['$serve', '$metadata', '$attach']
 
-export function metadata(container: Container<unknown>, deep?: boolean): meta.Container
+export function metadata(container: Container<unknown>, deep?: boolean, extract?: boolean): meta.Container
 {
     // console.log(deep);
     const metacontainer: meta.Container = { name: container.name || 'unnamed', commands: [] };
@@ -19,13 +19,16 @@ export function metadata(container: Container<unknown>, deep?: boolean): meta.Co
             return;
         const cmd = container.resolve<meta.Command>(key);
         if (cmd && isCommand(cmd) && ignoredCommands.indexOf(cmd.name) == -1)
-            metacontainer.commands.push(cmd);
+            metacontainer.commands.push(extract ? meta.extractCommandMetadata(cmd) : cmd);
         else if (cmd instanceof Container && deep)
         {
             // console.log(cmd);
             const subContainer = metadata(cmd as Container<unknown>, deep);
             subContainer.commands.forEach(c => c.name = key + '.' + c.name)
-            metacontainer.commands.push(...subContainer.commands);
+            if (extract)
+                metacontainer.commands.push(...subContainer.commands.map(meta.extractCommandMetadata));
+            else
+                metacontainer.commands.push(...subContainer.commands);
         }
     });
     return metacontainer;
@@ -101,5 +104,5 @@ export function fromObject<T extends Record<string, unknown>>(o: T, name: string
 
 export function metadataFromObject<T extends object>(o: T, name: string): meta.Container
 {
-    return { name, commands: Object.entries(o).filter(e => typeof e[1] === 'function').map(e => ({ name: e[0], config: {}, inject: e[1].$inject })) };
+    return { name, commands: Object.entries(o).filter(e => typeof e[1] === 'function').map(e => ({ name: e[0], config: { "": { inject: e[1].$inject } } })) };
 }

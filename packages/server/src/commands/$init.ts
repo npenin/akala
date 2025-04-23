@@ -29,7 +29,7 @@ export default async function $init(container: Container<State>, options: Record
 
     // init = false;
 
-    container.onResolve('$masterRouter', function (masterRouter: HttpRouter)
+    container.onResolve('$mainRouter', function (mainRouter: HttpRouter)
     {
         log.info('router registered, initializing web server...');
         const lateBoundRoutes = router();
@@ -39,19 +39,19 @@ export default async function $init(container: Container<State>, options: Record
         container.register('$preAuthenticationRouter', preAuthenticatedRouter);
         container.register('$authenticationRouter', authenticationRouter);
         container.register('$router', lateBoundRoutes);
-        masterRouter.useMiddleware(preAuthenticatedRouter);
-        masterRouter.useMiddleware(authenticationRouter);
-        masterRouter.useMiddleware(lateBoundRoutes);
-        masterRouter.useMiddleware(app);
+        mainRouter.useMiddleware(preAuthenticatedRouter);
+        mainRouter.useMiddleware(authenticationRouter);
+        mainRouter.useMiddleware(lateBoundRoutes);
+        mainRouter.useMiddleware(app);
 
-        container.state.masterRouter = masterRouter
+        container.state.mainRouter = mainRouter
         container.state.preAuthenticatedRouter = preAuthenticatedRouter;
         container.state.authenticationRouter = authenticationRouter;
         container.state.lateBoundRoutes = lateBoundRoutes;
         container.state.app = app;
 
         preAuthenticatedRouter.useMiddleware('/', new StaticFileMiddleware(null, { root: join(process.cwd(), './build'), fallthrough: true }));
-        // masterRouter.use('/api', function (_req, res)
+        // mainRouter.use('/api', function (_req, res)
         // {
         //     res.writeHead(404, 'Not found');
         //     return new Promise((resolve) =>

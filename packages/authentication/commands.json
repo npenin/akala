@@ -31,7 +31,8 @@
                         "$container",
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "param.2",
+                        "ignore"
                     ]
                 },
                 "": {
@@ -39,15 +40,17 @@
                         "$container",
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "param.2",
+                        "$container.$mainRouter"
                     ]
                 },
                 "cli": {
                     "inject": [
                         "$container",
                         "options.provider",
-                        "options.providerOptions",
-                        "options.key"
+                        "options.key",
+                        "options.loginUrl",
+                        "$container.$mainRouter"
                     ],
                     "options": {
                         "provider": {
@@ -88,16 +91,18 @@
                     "inject": [
                         "$container",
                         "config.auth.provider",
-                        "config.auth.providerOptions",
-                        "config.keyPath"
+                        "config.auth.keyPath",
+                        "config.auth.loginUrl",
+                        "router"
                     ]
                 },
                 "cli": {
                     "inject": [
                         "$container",
                         "options.provider",
-                        "options.providerOptions",
-                        "options.key"
+                        "options.key",
+                        "options.loginUrl",
+                        "router"
                     ],
                     "options": {
                         "provider": {
@@ -107,6 +112,9 @@
                             "needsValue": true
                         },
                         "key": {
+                            "needsValue": true
+                        },
+                        "loginUrl": {
                             "needsValue": true
                         }
                     }
@@ -482,19 +490,20 @@
                         "user": {
                             "source": "$state.store.User",
                             "where": {
-                                "id": "body.username"
+                                "name": "body.username"
                             }
                         }
                     },
                     "inject": [
-                        "bindings.user",
+                        "auth",
                         "body.password"
                     ],
                     "type": "json",
                     "auth": {
+                        "required": true,
                         "mode": "body",
                         "inject": [
-                            "body.username",
+                            "bindings.user",
                             "body.oldPassword"
                         ]
                     },

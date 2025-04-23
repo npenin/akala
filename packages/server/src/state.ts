@@ -7,7 +7,7 @@ export interface State
     pm: Container<void>
     mode?: 'production' | 'development';
     assets: Injector;
-    masterRouter?: HttpRouter
+    mainRouter?: HttpRouter
     preAuthenticatedRouter?: HttpRouter;
     authenticationRouter?: HttpRouter;
     lateBoundRoutes?: HttpRouter;

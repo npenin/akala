@@ -22,7 +22,7 @@ export class AuthHandler<T extends (...args: unknown[]) => unknown> implements M
                     origin,
                     param)
                 if (cmd.config?.[param._trigger].auth?.required && !param.auth)
-                    return new ErrorWithStatus(HttpStatusCode.Forbidden, 'Unauthorized action');
+                    return new ErrorWithStatus(HttpStatusCode.Unauthorized, 'Unauthorized action');
             }
             catch (e)
             {
@@ -96,7 +96,7 @@ export class Local extends CommandProcessor
         }
     }
 
-    public static execute<T, U, TArgs extends unknown[]>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): U
+    public static execute<T, U, TArgs extends unknown[]>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): U | PromiseLike<U>
     {
         if (!container)
             throw new Error('container is undefined');
@@ -124,7 +124,7 @@ export class Local extends CommandProcessor
             inject = param.param.map((a, i) => 'param.' + i);
         // console.log(inject);
         // injector.inspect();
-        return injector.injectWithName(inject, handler)(container.state);
+        return injector.injectWithNameAsync(inject, handler)(container.state);
     }
 
     public static async handle<T, TArgs extends unknown[], U = unknown>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): MiddlewarePromise

@@ -68,7 +68,7 @@ export function base64DecToArr(sBase64: string, nBlocksSize?: number): Uint8Arra
  * @param {number} nUint6 The 6-bit value (0-63) to convert.
  * @returns The character code of the Base64 character.
  */
-function uint6ToB64(nUint6)
+function uint6ToB64(nUint6: number)
 {
     return nUint6 < 26
         ? nUint6 + 65
@@ -88,7 +88,7 @@ function uint6ToB64(nUint6)
  * @param aBytes The byte array to encode.
  * @returns The Base64URL encoded string.
  */
-export function base64UrlEncArr(aBytes: ArrayBuffer | Uint8Array): string
+export function base64UrlEncArr(aBytes: Uint8Array): string
 {
     let s = base64EncArr(aBytes).replace(/\+/g, '-').replace(/\//g, '_');
     while (s.endsWith('='))
@@ -100,7 +100,7 @@ export function base64UrlEncArr(aBytes: ArrayBuffer | Uint8Array): string
  * @param s The Base64URL encoded string.
  * @returns The decoded byte array.
  */
-export function base64UrlDecToArr(s: string): ArrayBuffer | Uint8Array
+export function base64UrlDecToArr(s: string): Uint8Array
 {
     s = s.replace(/-/g, '+').replace(/_/g, '/');
     switch (s.length % 3)
@@ -152,7 +152,7 @@ export function extractPublicKey(pem: string)
  * @param nBlocksSize Optional size for line breaks in the output.
  * @returns The Base64 encoded string.
  */
-export function base64EncArr(aBytes: ArrayBuffer | Uint8Array, nBlocksSize?: number): string
+export function base64EncArr(aBytes: Uint8Array, nBlocksSize?: number): string
 {
     let nMod3 = 2;
     let sB64Enc = "";
@@ -185,17 +185,57 @@ export function base64EncArr(aBytes: ArrayBuffer | Uint8Array, nBlocksSize?: num
     );
 }
 
+/** 
+ * Encodes an ArrayBuffer/Uint8Array to Base64 string.
+ * @param aBytes The byte array to encode.
+ * @param nBlocksSize Optional size for line breaks in the output.
+ * @returns The Base64 encoded string.
+ */
+export function base64EncArrBuff(aBytes: ArrayBuffer, nBlocksSize?: number): string
+{
+    let nMod3 = 2;
+    let sB64Enc = "";
+
+    const nLen = aBytes.byteLength;
+    const aView = new DataView(aBytes);
+    let nUint24 = 0;
+    for (let nIdx = 0; nIdx < nLen; nIdx++)
+    {
+        nMod3 = nIdx % 3;
+        if (typeof (nBlocksSize) !== 'undefined' && nIdx > 0 && ((nIdx * 4) / 3) % nBlocksSize === 0)
+        {
+            sB64Enc += "\r\n";
+        }
+
+        nUint24 |= aView.getUint8(nIdx) << ((16 >>> nMod3) & 24);
+        if (nMod3 === 2 || aView.byteLength - nIdx === 1)
+        {
+            sB64Enc += String.fromCodePoint(
+                uint6ToB64((nUint24 >>> 18) & 63),
+                uint6ToB64((nUint24 >>> 12) & 63),
+                uint6ToB64((nUint24 >>> 6) & 63),
+                uint6ToB64(nUint24 & 63)
+            );
+            nUint24 = 0;
+        }
+    }
+    return (
+        sB64Enc.substring(0, sB64Enc.length - 2 + nMod3) +
+        (nMod3 === 2 ? "" : nMod3 === 1 ? "=" : "==")
+    );
+}
+
 /* UTF-8 array to JS string and vice versa */
 /** 
  * Converts a UTF-8 encoded byte array to a JavaScript string.
  * @param aBytes The UTF-8 encoded byte array.
  * @returns The decoded string.
  */
-export function UTF8ArrToStr(aBytes: ArrayBuffer | Uint8Array): string
+export function UTF8ArrToStr(aBytes: Uint8Array): string
 {
     let sView = "";
     let nPart;
-    const nLen = aBytes instanceof ArrayBuffer ? aBytes.byteLength : aBytes.length;
+    const nLen = aBytes.length;
     for (let nIdx = 0; nIdx < nLen; nIdx++)
     {
         nPart = aBytes[nIdx];
@@ -241,7 +281,7 @@ export function UTF8ArrToStr(aBytes: ArrayBuffer | Uint8Array): string
  * @param sDOMStr The input string to encode.
  * @returns The UTF-8 encoded ArrayBuffer.
  */
-export function strToUTF8Arr(sDOMStr: string): ArrayBuffer 
+export function strToUTF8Arr(sDOMStr: string): Uint8Array 
 {
     let nChr;
     const nStrLen = sDOMStr.length;
@@ -271,7 +311,7 @@ export function strToUTF8Arr(sDOMStr: string): ArrayBuffer
                                 : 6;
     }
 
-    const aBytes = new ArrayBuffer(nArrLen);
+    const aBytes = new Uint8Array(nArrLen);
 
     /* transcription… */
     let nIdx = 0;

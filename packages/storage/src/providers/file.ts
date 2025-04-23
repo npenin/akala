@@ -136,7 +136,7 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
         {
             if (fileName)
                 fileName += this.engineOptions.multipleKeySeparator || '-'
-            if (model.members[key].generator)
+            if (!record[key] && model.members[key].generator == Generator.uuid)
                 record[key] = crypto.randomUUID();
             fileName += await record[key];
         }

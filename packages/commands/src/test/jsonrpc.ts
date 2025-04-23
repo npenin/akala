@@ -67,7 +67,7 @@ describe('test jsonrpcws processing', function ()
 
     it('should work with proxy commands', async function ()
     {
-        const container = metadata(calculator);
+        const container = metadata(calculator, false, true);
         const calculatorProxy = proxy(container, new LogEventProcessor(new JsonRpc(client.getConnection()), null, function (container, cmd, args)
         {
             console.log(args);
@@ -85,7 +85,7 @@ describe('test jsonrpcws processing', function ()
 
     it('should generate correct proxy', async function ()
     {
-        const container = metadata(calculator);
+        const container = metadata(calculator, false, true);
         const meta = helper(proxy(container, new JsonRpc(client.getConnection())), container);
         assert.ok(meta);
         await meta.reset();
@@ -124,7 +124,7 @@ describe('test jsonrpcws processing', function ()
             {
                 socket.connect({ path: socketPath }, function ()
                 {
-                    resolve(proxy(metadata(c1), new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), c2))));
+                    resolve(proxy(metadata(c1, false, true), new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), c2))));
                 });
             })
 

@@ -273,9 +273,9 @@ export class JsonRpc extends CommandProcessor
         return connection;
     }
 
-    public handle(container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
+    public async handle(container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
-        return Local.execute(command, (...args: SerializableObject[]) => 
+        return await Local.execute(command, (...args: SerializableObject[]) => 
         {
             // if ((inject.length != 1 || inject[0] != '$param') && !params._trigger)
             // {

@@ -6,10 +6,10 @@ import { Event, Listener } from "./shared.js";
  * AsyncEvent class to manage asynchronous events.
  * @template T
  * @template TReturnType
- * @extends {Event<T, TReturnType | Promise<TReturnType>>}
+ * @extends {Event<T, TReturnType | PromiseLike<TReturnType>>}
  */
 
-export class AsyncEvent<T extends unknown[] = unknown[], TReturnType = void> extends Event<T, TReturnType | Promise<TReturnType>>
+export class AsyncEvent<T extends unknown[] = unknown[], TReturnType = void> extends Event<T, TReturnType | PromiseLike<TReturnType>>
 {
     /**
      * Creates an instance of AsyncEvent.
@@ -27,7 +27,7 @@ export class AsyncEvent<T extends unknown[] = unknown[], TReturnType = void> ext
      * @param {{ once?: boolean }} [options] - The event options.
      * @returns {Subscription} - The subscription.
      */
-    addListener(listener: Listener<T, TReturnType | Promise<TReturnType>>, options?: { once?: boolean; }): Subscription
+    addListener(listener: Listener<T, TReturnType | PromiseLike<TReturnType>>, options?: { once?: boolean; }): Subscription
     {
         if (options?.once)
         {

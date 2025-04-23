@@ -1,4 +1,4 @@
-#  (2025-04-17)
+#  (2025-04-23)
 
 
 * chore : code cleanup eae1150
@@ -22,8 +22,10 @@
 * add front matter attributes to index.md for improved documentation structure cacdb9a
 * add front matter title and parent attributes to markdown files for consistency cb199f6
 * add front matter title and parent attributes to markdown files for consistency 995d102
+* add InitAkala and AuthHandler on server 54f96ca
 * add initial documentation files for Akala client and set navigation exclusions c3f96e5
 * add initial documentation files for Akala client and set navigation exclusions 0b59055
+* add loginUrl and keyPath to auth configuration 9751a94
 * add missing case in marshall 598c8c0
 * add missing case in marshall 8c814f2
 * add missing dependencies 1104b8d
@@ -32,6 +34,7 @@
 * add missing dependency 4435ab1
 * add missing link targets a2dae65
 * add missing link targets 2fc6516
+* add missing storage provider 67a9a14
 * add more logging 1cca136
 * add more logging 1bc54b5
 * add more logging in automate ebd2397
@@ -80,6 +83,8 @@
 * aws sdk generation and update services 7b922cf
 * base64UrlEncode properly strips = 54ca5ff
 * BinaryOperator parsing cb0abf0
+* bindings implementation 8362190
+* broken `has` behavior de026d0
 * bug when result is null b6a9828
 * build fbd741f
 * build 88b29f4
@@ -132,13 +137,16 @@
 * enable navigation folding for all Akala documentation sections cfd5444
 * enable navigation folding for all Akala documentation sections 2f46058
 * enable tag lookup if current version is not tagged 6fd51df
+* enforce handlers with use 3cf35ac
 * enforce type on Parsed call ed0964e
+* enhance HTTP response handling for different content types 4bc375e
 * enhance parent attribute handling in updateFrontMatter function for improved logic 2cc5c3e
 * enhance parent attribute handling in updateFrontMatter function for improved logic 6706e76
 * enhance updateFrontMatter function to manage parent and nav_order attributes in markdown files dc3f6b0
 * enhance updateFrontMatter function to manage parent and nav_order attributes in markdown files 989c23d
 * ensure akala is not postinstalled ccfb8fa
 * ensure akala is not postinstalled 272b1ee
+* ensure InitAkala warms up correctly when handling the init command c7dd7a2
 * ensure postinstall completes 135afa8
 * ensure postinstall completes 10c4a72
 * escape start string in parseString method to prevent regex errors 7be1a8e
@@ -147,6 +155,8 @@
 * exclude upcoming documentation from navigation 6a2cc0a
 * existing file generator detection ca3ad06
 * extract params considers when array is provided c5eb98b
+* fallthrough on 404 a8d70b5
+* force run init-akala only once (no matter the trigger) 1acbe99
 * force set configFile path c42e60b
 * force set configFile path f22123d
 * forcing context build f5dfdbc
@@ -156,10 +166,13 @@
 * git rev list command cd73e5a
 * handle already provided options 37f7aef
 * handle already provided options d0b15c3
+* handle case when url pathname is empty b44a1dc
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
+* handle upper case methods b915081
 * hasYarn detection to prevent it to crash 6980e95
 * hasYarn detection to prevent it to crash 2aff971
+* http support on `add user` function 23bf973
 * https://sonarcloud.io/organizations/npenin/rules?open=typescript%3AS128&rule_key=typescript%3AS128 223d2ba
 * https://sonarcloud.io/organizations/npenin/rules?open=typescript%3AS128&rule_key=typescript%3AS128 a58ea17
 * https://sonarcloud.io/organizations/npenin/rules?open=typescript%3AS128&rule_key=typescript%3AS128 1989006
@@ -201,6 +214,7 @@
 * https://sonarcloud.io/project/issues?pullRequest=1552&open=AZXBiU-Vh4iXFpU85dQG&id=npenin_akala 8c5d05b
 * https://sonarcloud.io/project/issues?pullRequest=1552&open=AZXBljQ3ciQ1C4Z5WWTj&id=npenin_akala 91da7af
 * i18n uses the core Translator interface 6dd0a83
+* implements the discover function b400c4d
 * import dependencies db62996
 * import dependencies 91b332a
 * import dependencies a18ca48
@@ -210,12 +224,15 @@
 * improper config init 70efb0d
 * improper config init 0f90955
 * improve discovery 3e0d64b
+* improve error handling in HTTP command wrapping 42daa25
 * improve formatter behavior 30996cd
+* improve resolvable wrintings 6be2301
 * improve Router next param support + documentation 207c326
 * improve serialize on http af3373b
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
 * Injector inheritance d015db2
+* injectWithNameAsync behaves as its sync counterpart but awaits for args to be resolved before call the injectable dc7f00c
 * install command should now handle any package (as long as it contains an akala plugin) 7bec66f
 * install command should now handle any package (as long as it contains an akala plugin) cad421f
 * leverage core case converters 63bcf6b
@@ -224,10 +241,14 @@
 * links e6a33ea
 * links 53c17f6
 * login page sonar issues e620328
+* make rawQuery support optional 6050617
 * many fixes (still not prod ready) a440f8a
 * mapAsync behavior 53a0ef7
 * merge issue 47c562f
+* merge promises into a uniform object 66d8a54
 * merge run steps b508445
+* metadata generation when provided invalid names b9b828e
+* metatadata to return original commands 27a9049
 * mimeMiddleware to properly handle serialization 052ba0e
 * missing reverse enum mapping f66d206
 * mongodb storage aee06bc
@@ -302,10 +323,12 @@
 * restore proper regex from github autofix 154e05b
 * restructure CLI documentation and add new sections bf15ad8
 * restructure CLI documentation and add new sections d48e2cc
+* return 204 when no content 5f4185c
 * revert options copy on buildCliContextFromContext 084cf1a
 * revert options copy on buildCliContextFromContext 1cbbd3e
 * revert to cayman cf3e496
 * revert to cayman b7cd5e2
+* routing 0bd2fdd
 * run as user instead of root f06cbb8
 * semantic release based on branch e4668c7
 * semantic release based on branch 8b7d109
@@ -335,13 +358,16 @@
 * sonar issues 08efb9b
 * sonar issues d8fff97
 * sonar issues 9b4e3c4
+* sonarqube warning 4b5de76
 * standardize parent attribute casing in documentation for consistency 99b4952
 * standardize parent attribute casing in documentation for consistency b5ce37c
 * standardize section titles in documentation for consistency d8b067b
 * standardize section titles in documentation for consistency b2026f2
 * stop re-exporting spawnAsync from cli 2c2e894
+* store relative staticFolders 30863ce
 * strongly type built CliContext state ce294ef
 * strongly type built CliContext state 81df5e6
+* subpath api routing 2f6623e
 * switch from try catch to URL.canParse e766f24
 * switch from try catch to URL.canParse 5d093f5
 * switch to xpm + add more logging 46e58e8
@@ -349,6 +375,7 @@
 * switching to working teme 91a852a
 * ternary operator parsing 2deff53
 * test 9dcc33b
+* testing command bindings and auth 96220e8
 * testing nav_order without parent e2dd071
 * testing nav_order without parent 3fcd008
 * try to fix links 048b05f
@@ -362,12 +389,15 @@
 * typo and enforce type 935051c
 * typo in filename 5ad48f8
 * typo in filename 098f7a1
+* unit tests 5ea6752
+* unit tests ddef0ab
 * update add-script command to work with node 22+ 1500158
 * update add-script command to work with node 22+ 701b5d4
 * update after akala cli refactoring 0187052
 * update after akala cli refactoring f69a2f4
 * update after breaking change 78d6ba4
 * update after breaking change 0357943
+* update after core breaking change 2eae6b4
 * update after core breaking change 64f8764
 * update after core breaking change 18048b8
 * update after core breaking change 6031965
@@ -396,12 +426,17 @@
 * update documentation structure by adding parent and nav_order for components and forms 756410f
 * update documentation titles and structure for clarity and organization 581ae20
 * update documentation titles and structure for clarity and organization cad4d78
+* update error status code for unauthorized actions in AuthHandler 663f8b9
+* update file command processor to generate UUID only when record key is absent 4c5ff85
+* update grant_types_supported to use keyof for compatibility 49f93de
+* update keyPath references and improve password handling in authentication commands 9e74b5b
 * update link and introduce companion term 28cbbf0
 * update link and introduce companion term fd23c14
 * update link to CLI documentation for consistency 0d52e5e
 * update link to CLI documentation for consistency cd855e9
 * update links in documentation to remove file extensions 41271f9
 * update links in documentation to remove file extensions 17391c9
+* update output_hash calculation to use base64.base64EncArrBuff for consistency 70cf535
 * update parent and title attributes in documentation for improved clarity and consistency 2fac4a4
 * update parent and title attributes in documentation for improved clarity and consistency 64eb3b6
 * update parent attributes in markdown files for improved documentation structure c202c71
@@ -414,8 +449,11 @@
 * update path configuration in documentation settings 96f60ec
 * update permalink structure and footer content in documentation 872e25c
 * update permalink structure and footer content in documentation 01f1715
+* update serve function to accept URL objects instead of strings 51f45ec
 * update titles and parent attributes in markdown files for improved documentation clarity c562dc3
 * update titles and parent attributes in markdown files for improved documentation clarity 717dd51
+* update to support login redirect d2e8e6e
+* update type annotations for Base64 encoding functions and improve handling of ArrayBuffer d2157f1
 * use helpers from @akala/cli 74292f2
 * use proper selector 97fa6f9
 * using proper branch option 4136d01
@@ -432,6 +470,11 @@
 * yarn and npm not discovered in spawnAsync 3ecd24e
 
 
+### chore
+
+* rename from master to main f0da297
+
+
 ### Code Refactoring
 
 * events to separate files af5211e
@@ -443,7 +486,11 @@
 * `providers` uses UrlHandler instead of module b228f89
 * add 1stline as accept run format 8cc6945
 * add akala plugin as referenced in doc ef39d5c
+* add api serving on akala CLI b649800
+* add auth to all configurations f48da73
 * add automate as plugin fedd6ad
+* add bindings (as in azure function bindings) as configuration 69067b9
+* add bindings (as in azure function bindings) as configuration 12850c1
 * add bootstrap functions which registers all web-ui control with a predefined naming dd2ae8f
 * add branch parameter eaa94d6
 * add case converters + tests ab359d1
@@ -454,13 +501,17 @@
 * add commands getting-started guide 5492118
 * add commands getting-started guide 1564b82
 * add cookie support + add IdStore and IdSerializer interfaces c5a5d6a
+* add cryptokey to state 4337e56
 * add customResolve and ICustomResolver to simplify injector and non injector chaining 93107ce
 * add dependency diagram builder ad6060b
 * add doc from gh-pages branch a024fed
+* add fallthrough option to cover additional registration in router feb46b4
 * add GitHub sponsorship and star buttons to documentation 45cdee0
 * add GitHub sponsorship and star buttons to documentation 457055f
 * add helper to identify deadlinks and ran it 36188c8
 * add helper to identify deadlinks and ran it d9101ac
+* add http auth in schema and auth in general 4cf5e55
+* add InitAkala command processor 652270a
 * add initial documentation for command processors and triggers 8bb8685
 * add initial documentation for command processors and triggers 47506ce
 * add initial documentation for various modules and commands e3e5945
@@ -508,6 +559,7 @@
 * expose extendRequest 009dcb6
 * expose more middlewares 24e8e4a
 * expose xpm f60e75a
+* extend AkalaConfig to include API URLs and enhance URL handling in plugin efbebca
 * first CLI client generator working !!! 822b8ba
 * first CLI client generator working !!! 2ab3f9e
 * first version 409539e
@@ -515,9 +567,11 @@
 * generalize signature to open it to $http options too 09eee3a
 * http-client now has body support d217cac
 * implement AWS4 signature as httpclient authentication ebb14c8
+* implement dynamic routing based on URL pathname in server handlers f73ea99
 * improve documentation titles and structure for middleware sections 34f33ad
 * improve documentation titles and structure for middleware sections 2395989
 * improve translator interface d3884d0
+* include URI in request logging for improved traceability 6e4418a
 * make help accessible everywhere by any clicontext e18be04
 * make help accessible everywhere by any clicontext 9f5892a
 * plugins can now be installed with the current cli "program" f535bc0
@@ -538,6 +592,8 @@
 
 ### BREAKING CHANGES
 
+* $masterRouter becomes $mainRouter
+* injectWithNameAsync behaves as its sync counterpart, hence returns a function expecting an instance parameter
 * `set-serve` has been replaced with `serve --set`
 * Persistence engines now need to support raw queries
 * `providers` uses UrlHandler instead of module
