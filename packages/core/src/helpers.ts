@@ -30,9 +30,11 @@ export interface Translator
 export class IsomorphicBuffer implements Iterable<number, number, number>
 {
     private readonly buffer: Uint8Array<ArrayBufferLike>
-    constructor(buffer: Uint8Array<ArrayBufferLike> | number, private readonly offset?: number, private readonly end?: number)
+    constructor(buffer: Uint8Array<ArrayBufferLike> | number | number[], private readonly offset?: number, private readonly end?: number)
     {
         if (typeof buffer == 'number')
+            this.buffer = new Uint8Array(buffer);
+        else if (Array.isArray(buffer))
             this.buffer = new Uint8Array(buffer);
         else
             this.buffer = buffer;
@@ -72,6 +74,11 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
     toArray(): ArrayLike<number>
     {
         return this.buffer.slice(this.offset, this.end);
+    }
+
+    public indexOf(value: number, offset: number = 0)
+    {
+        return this.buffer.indexOf(value, offset + this.offset) - this.offset;
     }
 
     public static concat(buffers: IsomorphicBuffer[])
@@ -235,6 +242,16 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
         end = this.ensureOffset(end, 1);
         start = this.ensureOffset(start, 1);
         this.buffer.fill(value, start, end)
+    }
+
+    public readInt8(index?: number): number
+    {
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+    }
+
+    public writeInt8(value: number, index?: number)
+    {
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
     }
 
     public readUInt8(index?: number)
