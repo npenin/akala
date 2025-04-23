@@ -1,4 +1,4 @@
-#  (2025-04-17)
+#  (2025-04-23)
 
 
 ### Bug Fixes
@@ -14,6 +14,7 @@
 * sonar issues 9b157ec
 * update aws services definition 9bb0b0b
 * update commands 168670b
+* update output_hash calculation to use base64.base64EncArrBuff for consistency 70cf535
 
 
 ### Features
