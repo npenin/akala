@@ -8,7 +8,7 @@ import { IsomorphicBuffer } from "@akala/core";
 
 export default class UnsignedLEB128<T extends number | bigint> implements ParserWithoutKnownLength<T>
 {
-    constructor(private maxBytes: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 = 8)
+    constructor(private readonly maxBytes: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 = 8)
     {
 
     }

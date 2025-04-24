@@ -8,7 +8,7 @@ import { IsomorphicBuffer } from "@akala/core";
 
 export default class SignedLEB128<T extends number | bigint> implements ParserWithoutKnownLength<T>
 {
-    constructor(private maxBytes: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 = 8)
+    constructor(private readonly maxBytes: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 = 8)
     {
 
     }
@@ -19,7 +19,7 @@ export default class SignedLEB128<T extends number | bigint> implements ParserWi
     {
         let tmpBuffer = new IsomorphicBuffer(4);
         let value: number;
-        var innerCursor = new Cursor();
+        const innerCursor = new Cursor();
         if ((value = Uint8.prototype.read(buffer, cursor)) >= 0x7f)
         {
             Uint7.prototype.write(tmpBuffer, innerCursor, value & 0x7f);
@@ -74,11 +74,11 @@ export default class SignedLEB128<T extends number | bigint> implements ParserWi
                     else
                         Int32LE.prototype.write(tmpBuffer, innerCursor, Number(value));
                 innerCursor = new Cursor();
-                for (var i = 16; i <= maxBits; i += 8)
+                for (let i = 16; i <= maxBits; i += 8)
                 {
                     if (value <= (1n << BigInt(i - 1)) && value >= (-1n << BigInt(i - 1)))
                     {
-                        for (var j = i / 8; j > 0; j--)
+                        for (let j = i / 8; j > 0; j--)
                         {
                             tmpValue = Uint7.prototype.read(tmpBuffer, innerCursor);
                             if (j === 1)
