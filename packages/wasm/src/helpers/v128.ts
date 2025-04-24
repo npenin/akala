@@ -12,31 +12,63 @@ import { mergeUInt8Arrays } from './types.js';
 import { IsomorphicBuffer } from '@akala/core';
 
 
+/**
+ * Represents a 128-bit vector (SIMD) value in WebAssembly
+ * Provides basic vector operations and serves as the base class for specific vector types
+ */
 export class v128 implements wasmtypeInstance<v128>
 {
+    /**
+     * Creates a new v128 instance
+     * @param initialOp - Buffer containing the initial operations
+     */
     public constructor(protected readonly initialOp: IsomorphicBuffer) { }
 
+    /**
+     * Converts the vector operations to WebAssembly opcodes
+     * @returns The operation buffer as opcodes
+     */
     toOpCodes(): IsomorphicBuffer
     {
         return this.initialOp.subarray(0);
     }
 
-    public static readonly type = transpiler.type
+    /** WebAssembly type code for v128 */
+    public static readonly type = transpiler.type;
     public static readonly transpiler = transpiler;
-    public readonly type = v128
+    public readonly type = v128;
+
+    /**
+     * Creates an empty v128 instance
+     * @returns A new v128 instance with empty operation buffer
+     */
     public static pop()
     {
         return new v128(new IsomorphicBuffer(0));
     }
 
+    /**
+     * Stores a vector value to memory
+     * @param m - Memory arguments
+     * @returns Buffer containing the store operation
+     */
     public static store<TNative extends bigint | number>(m: memarg<TNative>) { return [0xfd, 11, m]; }
 
+    /**
+     * Creates a new vector by shuffling lanes
+     * @param values - Array of lane indices specifying the shuffle pattern
+     * @returns Buffer containing the shuffle operation
+     */
     public static shuffle(values: indexes.lane[])
     {
-        return [0xfd, 13,
-            values];
+        return [0xfd, 13, values];
     }
 
+    /**
+     * Performs bitwise NOT operation
+     * @param rhs - Right-hand side operand
+     * @returns A new v128 instance with the result
+     */
     public not(rhs: v128)
     {
         return new v128(mergeUInt8Arrays(
@@ -45,6 +77,12 @@ export class v128 implements wasmtypeInstance<v128>
             transpiler.not
         ))
     }
+
+    /**
+     * Performs bitwise AND operation
+     * @param rhs - Right-hand side operand
+     * @returns A new v128 instance with the result
+     */
     public and(rhs: v128)
     {
         return new v128(mergeUInt8Arrays(
@@ -53,6 +91,12 @@ export class v128 implements wasmtypeInstance<v128>
             transpiler.and
         ))
     }
+
+    /**
+     * Performs bitwise AND NOT operation
+     * @param rhs - Right-hand side operand
+     * @returns A new v128 instance with the result
+     */
     public andnot(rhs: v128)
     {
         return new v128(mergeUInt8Arrays(
@@ -61,6 +105,12 @@ export class v128 implements wasmtypeInstance<v128>
             transpiler.andnot
         ))
     }
+
+    /**
+     * Performs bitwise OR operation
+     * @param rhs - Right-hand side operand
+     * @returns A new v128 instance with the result
+     */
     public or(rhs: v128)
     {
         return new v128(mergeUInt8Arrays(
@@ -69,6 +119,12 @@ export class v128 implements wasmtypeInstance<v128>
             transpiler.or
         ))
     }
+
+    /**
+     * Performs bitwise XOR operation
+     * @param rhs - Right-hand side operand
+     * @returns A new v128 instance with the result
+     */
     public xor(rhs: v128)
     {
         return new v128(mergeUInt8Arrays(
@@ -77,6 +133,12 @@ export class v128 implements wasmtypeInstance<v128>
             transpiler.xor
         ))
     }
+
+    /**
+     * Performs bit selection operation
+     * @param rhs - Right-hand side operand
+     * @returns A new v128 instance with the result
+     */
     public bitselect(rhs: v128)
     {
         return new v128(mergeUInt8Arrays(
@@ -85,6 +147,11 @@ export class v128 implements wasmtypeInstance<v128>
             transpiler.bitselect
         ))
     }
+
+    /**
+     * Tests if any lane is non-zero
+     * @returns A new v128 instance with the test result
+     */
     public any_true()
     {
         return new v128(mergeUInt8Arrays(
@@ -98,8 +165,16 @@ export class v128 implements wasmtypeInstance<v128>
 export const type = v128.type
 
 
+/**
+ * Namespace containing specific vector types and operations
+ * Each subtype represents a different interpretation of the 128-bit vector
+ */
 export namespace v128
 {
+    /**
+     * 8-bit integer vector operations
+     * Represents a vector of sixteen 8-bit integers
+     */
     export class i8 extends v128
     {
         constructor(initialOp: IsomorphicBuffer)
@@ -354,6 +429,10 @@ export namespace v128
 
     };
 
+    /**
+     * 16-bit integer vector operations
+     * Represents a vector of eight 16-bit integers
+     */
     export class i16 extends v128
     {
         constructor(initialOp: IsomorphicBuffer)
@@ -717,6 +796,10 @@ export namespace v128
         }
     };
 
+    /**
+     * 32-bit integer vector operations
+     * Represents a vector of four 32-bit integers
+     */
     export class i32 extends v128
     {
         public readonly type = i32
@@ -1065,6 +1148,10 @@ export namespace v128
 
     };
 
+    /**
+     * 64-bit integer vector operations
+     * Represents a vector of two 64-bit integers
+     */
     export class i64 extends v128 implements wasmtypeInstance<i64>
     {
         public readonly type = i64
@@ -1288,6 +1375,10 @@ export namespace v128
         }
     };
 
+    /**
+     * 32-bit floating-point vector operations
+     * Represents a vector of four 32-bit floating-point numbers
+     */
     export class f32 extends v128
     {
         public readonly type = f32
@@ -1507,6 +1598,10 @@ export namespace v128
 
     };
 
+    /**
+     * 64-bit floating-point vector operations
+     * Represents a vector of two 64-bit floating-point numbers
+     */
     export class f64 extends v128
     {
         public readonly type = f64

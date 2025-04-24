@@ -8,6 +8,7 @@ import { func, func as funcType } from './func.js'
 import { indexes, wasmtype } from './wasmtype.js'
 import { IsomorphicBuffer } from '@akala/core'
 
+// Type re-exports for convenience
 export
 {
     i32Type as i32,
@@ -19,18 +20,33 @@ export
     funcType as func,
 }
 
+/**
+ * WebAssembly value types
+ * Represents the basic value types available in WebAssembly
+ */
 export enum valtype
 {
+    /** 32-bit integer */
     i32 = i32Type.type,
+    /** 64-bit integer */
     i64 = i64Type.type,
+    /** 32-bit floating point */
     f32 = f32Type.type,
+    /** 64-bit floating point */
     f64 = f64Type.type,
+    /** 128-bit vector */
     v128 = v128Type.type,
+    /** External reference */
     externref = externrefType.type,
+    /** Function reference */
     func = funcType.type,
 }
-// export type valtype = typeof i32.type | typeof i64.type | typeof f32.type | typeof f64.type | typeof v128.type | typeof func.type | typeof externref.type;
 
+/**
+ * Gets the WebAssembly type instance for a given value type
+ * @param type - The value type to convert
+ * @returns The corresponding WebAssembly type instance
+ */
 export function getValType(type: valtype): wasmtype<unknown>
 {
     switch (type)
@@ -45,15 +61,36 @@ export function getValType(type: valtype): wasmtype<unknown>
     }
 }
 
+/**
+ * Block type utilities for WebAssembly
+ * Used for defining types in control flow structures
+ */
 export class blocktype
 {
+    /** Empty block type */
     public static readonly empty = 0x40;
+
+    /**
+     * Creates a block type from a value type
+     * @param type - The value type for the block
+     * @returns The block type encoding
+     */
     public static value(type: valtype) { return type; }
+
+    /**
+     * Creates a block type from a type index
+     * @param type - The type index for the block
+     * @returns The block type encoding
+     */
     public static type(type: indexes.type) { return type; }
 }
 
+/**
+ * Merges multiple Uint8Arrays or IsomorphicBuffers into a single buffer
+ * @param arrays - Arrays to merge
+ * @returns A new IsomorphicBuffer containing all the arrays concatenated
+ */
 export function mergeUInt8Arrays(...arrays: (IsomorphicBuffer | ArrayLike<number>)[])
 {
     return IsomorphicBuffer.concat(arrays.map(a => a instanceof IsomorphicBuffer ? a : new IsomorphicBuffer(new Uint8Array(a))));
-
 }
