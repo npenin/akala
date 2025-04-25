@@ -1,5 +1,5 @@
 import ErrorWithStatus, { HttpStatusCode } from "./errorWithStatus.js";
-import { base64 } from "./index.js";
+import * as base64 from "./base64.js";
 
 export type Remote<T> = { [key in keyof T]: T[key] extends (...args) => infer X ? X extends Promise<unknown> ? X : Promise<X> : (T[key] | undefined) }
 export type Serializable = string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[];

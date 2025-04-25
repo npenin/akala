@@ -22,7 +22,7 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
      * Create an ExtendableEvent
      * @param once - Whether the event should only trigger once
      */
-    constructor(private once: boolean)
+    constructor(private readonly once: boolean)
     {
         super(Event.maxListeners, noop);
         this.reset();
@@ -141,7 +141,7 @@ export class Module extends SimpleInjector
     {
         super(moduleInjector);
         const existingModule = moduleInjector.resolve<Module>(name);
-        if (existingModule && typeof (existingModule.dep) != 'undefined' && existingModule.dep.length && typeof (dep) != 'undefined' && dep.length)
+        if (existingModule?.dep?.length && dep?.length)
             throw new Error('the module ' + existingModule.name + ' can be registered only once with dependencies');
         if (existingModule)
         {
@@ -159,7 +159,7 @@ export class Module extends SimpleInjector
         Module.registerModule(this);
     }
 
-    private static o = new orchestrator();
+    private static readonly o = new orchestrator();
 
     /** Event triggered when module activates */
     public readonly activateEvent = new ExtendableEvent(true);
@@ -270,7 +270,7 @@ export class Module extends SimpleInjector
     {
         if (!f)
             return (f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>) => this.activateAsync(toInject, f);
-        this.activateEvent.addListener(() => this.injectWithNameAsync(toInject, f)(this.activateEvent));
+        this.activateEvent.addListener(this.injectWithNameAsync(toInject, f));
         return this;
     }
 

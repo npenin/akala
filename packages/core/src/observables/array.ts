@@ -422,7 +422,7 @@ export class AsyncArrayFormatter<T> implements Formatter<ObservableArray<T>>
 {
     private promise: PromiseLike<T[] | ObservableArray<T>>;
     private value: T[] | ObservableArray<T>;
-    private result: ObservableArray<T> = new ObservableArray([]);
+    private readonly result: ObservableArray<T> = new ObservableArray([]);
 
     /**
      * Formats the value.

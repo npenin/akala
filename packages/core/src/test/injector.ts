@@ -109,10 +109,6 @@ it('injector should work', () =>
 
     class B extends A
     {
-        constructor()
-        {
-            super();
-        }
     }
 
     const b = new B();

@@ -1,10 +1,10 @@
 import { each, map } from './each.js';
-import { module } from './module.js';
 import { service } from './service.js';
 import { Formatter } from './formatters/common.js';
+import { formatters } from './formatters/index.js'
 import type { MiddlewareAsync } from './middlewares/shared.js';
 import { defaultInjector } from './injectors/simple-injector.js';
-import { MiddlewareCompositeAsync } from './index.js';
+import { MiddlewareCompositeAsync } from './middlewares/composite-async.js';
 import { TypedSerializableObject } from './helpers.js';
 
 /**
@@ -350,4 +350,4 @@ export class HttpCallFormatter implements Formatter<PromiseLike<Response>>
     }
 }
 
-module('$formatters').register('#http', HttpCallFormatter);
+formatters.register('#http', HttpCallFormatter);

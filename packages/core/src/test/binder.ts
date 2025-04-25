@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import { Parser } from '../index.js';
 import { Binding, ObservableObject } from '../observables/object.js';
-import * as assert from 'assert';
+import assert from 'assert';
 import { it } from 'node:test'
 
 // import 'source-map-support/register.js'
