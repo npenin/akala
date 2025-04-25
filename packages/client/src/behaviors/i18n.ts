@@ -1,15 +1,21 @@
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
 import { DataContext } from "./context.js";
-import { Binding, ExpressionsWithLength, ParsedString, Parser, Translator } from "@akala/core";
+import { Binding, ExpressionsWithLength, ParsedString, Parser, StringCursor, Translator } from "@akala/core";
 import { ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
 
 export class I18nParser extends Parser
 {
-    parseAny(expression: string, parseFormatter: boolean): ExpressionsWithLength
+    parseAny(expression: StringCursor, parseFormatter: boolean): ExpressionsWithLength
     {
-        if (expression.startsWith('@@'))
-            return new ParsedString(expression.substring(2));
+        if (expression.char == '@')
+        {
+            expression.offset++;
+            if (expression.char == '@')
+                return new ParsedString(expression.string);
+            else
+                expression.offset--;
+        }
         return super.parseAny(expression, parseFormatter);
     }
 }
