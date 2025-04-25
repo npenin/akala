@@ -67,11 +67,12 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
     public copy(source: IsomorphicBuffer, offset: number, sourceOffset: number = 0, length?: number)
     {
         offset = this.ensureOffset(offset);
-        if (sourceOffset == 0 && (typeof length == undefined || length == source.length))
+        if (sourceOffset == 0 && (typeof length == 'undefined' || length == source.length))
             this.buffer.set(source.toArray(), offset);
-        this.buffer.set(source.subarray(sourceOffset, sourceOffset + length).toArray(), offset);
+        else
+            this.buffer.set(source.subarray(sourceOffset, sourceOffset + length).toArray(), offset);
     }
-    toArray(): ArrayLike<number>
+    toArray(): Uint8Array
     {
         return this.buffer.slice(this.offset, this.end);
     }
@@ -215,7 +216,10 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
 
     public toJSON()
     {
-        return { data: this.buffer.slice(this.offset, this.end) }
+        return {
+            type: 'Buffer' as const,
+            data: Array.from(this.buffer.subarray(this.offset, this.end))
+        };
     }
 
     public write(s: string, offset: number, length?: number, encoding?: BufferEncoding)
@@ -229,8 +233,10 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
         this.copy(IsomorphicBuffer.from(s, encoding), offset);
     }
 
-    private ensureOffset(offset: number, length: number = 1)
+    private ensureOffset(offset?: number, length: number = 1)
     {
+        if (typeof offset == 'undefined')
+            offset = 0;
         offset += this.offset;
         if (offset < this.offset || offset + length > this.end)
             throw new Error('Out of limits')
@@ -239,204 +245,623 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
 
     public fill(value: number, start?: number, end?: number)
     {
-        end = this.ensureOffset(end, 1);
-        start = this.ensureOffset(start, 1);
+        start = this.ensureOffset(start, end - start);
+        end = this.ensureOffset(typeof end === 'undefined' ? this.length : end, 0);
         this.buffer.fill(value, start, end)
     }
 
-    public readInt8(index?: number): number
+    public readInt8(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index);
+        const val = this.buffer[index];
+        return val & 0x80 ? val - 0x100 : val;
     }
 
-    public writeInt8(value: number, index?: number)
+    public writeInt8(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index);
+        this.buffer[index] = value & 0xff;
     }
 
-    public readUInt8(index?: number)
+    public readUInt8(index: number = 0)
     {
         index = this.ensureOffset(index);
         return this.buffer[index];
     }
 
-    public writeUInt8(value: number, index?: number)
+    public writeUInt8(value: number, index: number = 0)
     {
-        index = this.ensureOffset(index)
-        this.buffer[index] = value;
+        index = this.ensureOffset(index);
+        this.buffer[index] = value & 0xff;
     }
 
-    public readDoubleBE(index?: number): number
+    public readDoubleBE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 8);
+
+        const highWord = (this.buffer[index] << 24) |
+            (this.buffer[index + 1] << 16) |
+            (this.buffer[index + 2] << 8) |
+            this.buffer[index + 3];
+
+        const lowWord = (this.buffer[index + 4] << 24) |
+            (this.buffer[index + 5] << 16) |
+            (this.buffer[index + 6] << 8) |
+            this.buffer[index + 7];
+
+        // Combine into 64-bit value
+        const bits = BigInt(highWord) * BigInt(0x100000000) + BigInt(lowWord >>> 0);
+
+        // Handle special cases
+        if (bits === BigInt(0)) return 0;
+
+        const sign = ((highWord >>> 31) & 0x1) ? -1 : 1;
+        const exponent = ((highWord >>> 20) & 0x7FF) - 1023;
+        const fraction = Number((bits & BigInt(0xFFFFFFFFFFFFF)) | BigInt(0x10000000000000));
+
+        return sign * fraction * Math.pow(2, exponent - 52);
     }
 
-    public writeDoubleBE(value: number, index?: number)
+    public writeDoubleBE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 8);
+
+        // Handle special cases
+        if (value === 0)
+        {
+            for (let i = 0; i < 8; i++)
+            {
+                this.buffer[index + i] = 0;
+            }
+            return;
+        }
+        if (!Number.isFinite(value))
+        {
+            if (value === Infinity)
+            {
+                this.buffer[index] = 0x7F;
+                this.buffer[index + 1] = 0xF0;
+                this.buffer[index + 2] = 0;
+                this.buffer[index + 3] = 0;
+                this.buffer[index + 4] = 0;
+                this.buffer[index + 5] = 0;
+                this.buffer[index + 6] = 0;
+                this.buffer[index + 7] = 0;
+                return;
+            }
+            if (value === -Infinity)
+            {
+                this.buffer[index] = 0xFF;
+                this.buffer[index + 1] = 0xF0;
+                this.buffer[index + 2] = 0;
+                this.buffer[index + 3] = 0;
+                this.buffer[index + 4] = 0;
+                this.buffer[index + 5] = 0;
+                this.buffer[index + 6] = 0;
+                this.buffer[index + 7] = 0;
+                return;
+            }
+            // NaN
+            this.buffer[index] = 0x7F;
+            this.buffer[index + 1] = 0xF8;
+            this.buffer[index + 2] = 0;
+            this.buffer[index + 3] = 0;
+            this.buffer[index + 4] = 0;
+            this.buffer[index + 5] = 0;
+            this.buffer[index + 6] = 0;
+            this.buffer[index + 7] = 0;
+            return;
+        }
+
+        const sign = value < 0 ? 1 : 0;
+        value = Math.abs(value);
+
+        let exponent = Math.floor(Math.log2(value));
+        let fraction = value * Math.pow(2, -exponent) - 1;
+
+        exponent += 1023;
+        fraction = Math.round(fraction * 0x10000000000000);
+
+        const low = Number(BigInt.asIntN(32, BigInt(fraction)));
+        const high = Number(BigInt.asIntN(32, BigInt(fraction) >> BigInt(32))) | (exponent << 20) | (sign << 31);
+
+        this.buffer[index] = (high >>> 24) & 0xFF;
+        this.buffer[index + 1] = (high >>> 16) & 0xFF;
+        this.buffer[index + 2] = (high >>> 8) & 0xFF;
+        this.buffer[index + 3] = high & 0xFF;
+        this.buffer[index + 4] = (low >>> 24) & 0xFF;
+        this.buffer[index + 5] = (low >>> 16) & 0xFF;
+        this.buffer[index + 6] = (low >>> 8) & 0xFF;
+        this.buffer[index + 7] = low & 0xFF;
     }
 
-    public readDoubleLE(index?: number): number
+    public readDoubleLE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 8);
+
+        const lowWord = this.buffer[index] |
+            (this.buffer[index + 1] << 8) |
+            (this.buffer[index + 2] << 16) |
+            (this.buffer[index + 3] << 24);
+
+        const highWord = this.buffer[index + 4] |
+            (this.buffer[index + 5] << 8) |
+            (this.buffer[index + 6] << 16) |
+            (this.buffer[index + 7] << 24);
+
+        // Combine into 64-bit value
+        const bits = BigInt(highWord) * BigInt(0x100000000) + BigInt(lowWord >>> 0);
+
+        // Handle special cases
+        if (bits === BigInt(0)) return 0;
+
+        const sign = ((highWord >>> 31) & 0x1) ? -1 : 1;
+        const exponent = ((highWord >>> 20) & 0x7FF) - 1023;
+        const fraction = Number((bits & BigInt(0xFFFFFFFFFFFFF)) | BigInt(0x10000000000000));
+
+        return sign * fraction * Math.pow(2, exponent - 52);
     }
 
-    public writeDoubleLE(value: number, index?: number)
+    public writeDoubleLE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 8);
+
+        // Handle special cases
+        if (value === 0)
+        {
+            for (let i = 0; i < 8; i++)
+            {
+                this.buffer[index + i] = 0;
+            }
+            return;
+        }
+        if (!Number.isFinite(value))
+        {
+            if (value === Infinity)
+            {
+                this.buffer[index] = 0;
+                this.buffer[index + 1] = 0;
+                this.buffer[index + 2] = 0;
+                this.buffer[index + 3] = 0;
+                this.buffer[index + 4] = 0;
+                this.buffer[index + 5] = 0;
+                this.buffer[index + 6] = 0xF0;
+                this.buffer[index + 7] = 0x7F;
+                return;
+            }
+            if (value === -Infinity)
+            {
+                this.buffer[index] = 0;
+                this.buffer[index + 1] = 0;
+                this.buffer[index + 2] = 0;
+                this.buffer[index + 3] = 0;
+                this.buffer[index + 4] = 0;
+                this.buffer[index + 5] = 0;
+                this.buffer[index + 6] = 0xF0;
+                this.buffer[index + 7] = 0xFF;
+                return;
+            }
+            // NaN
+            this.buffer[index] = 0;
+            this.buffer[index + 1] = 0;
+            this.buffer[index + 2] = 0;
+            this.buffer[index + 3] = 0;
+            this.buffer[index + 4] = 0;
+            this.buffer[index + 5] = 0;
+            this.buffer[index + 6] = 0xF8;
+            this.buffer[index + 7] = 0x7F;
+            return;
+        }
+
+        const sign = value < 0 ? 1 : 0;
+        value = Math.abs(value);
+
+        let exponent = Math.floor(Math.log2(value));
+        let fraction = value * Math.pow(2, -exponent) - 1;
+
+        exponent += 1023;
+        fraction = Math.round(fraction * 0x10000000000000);
+
+        const low = Number(BigInt.asIntN(32, BigInt(fraction)));
+        const high = Number(BigInt.asIntN(32, BigInt(fraction) >> BigInt(32))) | (exponent << 20) | (sign << 31);
+
+        this.buffer[index] = low & 0xFF;
+        this.buffer[index + 1] = (low >>> 8) & 0xFF;
+        this.buffer[index + 2] = (low >>> 16) & 0xFF;
+        this.buffer[index + 3] = (low >>> 24) & 0xFF;
+        this.buffer[index + 4] = high & 0xFF;
+        this.buffer[index + 5] = (high >>> 8) & 0xFF;
+        this.buffer[index + 6] = (high >>> 16) & 0xFF;
+        this.buffer[index + 7] = (high >>> 24) & 0xFF;
     }
 
-    public readFloatBE(index?: number): number
+    public readFloatBE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        const bytes = (this.buffer[index] << 24) |
+            (this.buffer[index + 1] << 16) |
+            (this.buffer[index + 2] << 8) |
+            this.buffer[index + 3];
+
+        // Handle special cases
+        if (bytes === 0) return 0;
+        if (bytes === 0x7F800000) return Infinity;
+        if (bytes === 0xFF800000) return -Infinity;
+        if ((bytes & 0x7F800000) === 0x7F800000) return NaN;
+
+        const sign = bytes >>> 31 ? -1 : 1;
+        const exponent = ((bytes >>> 23) & 0xFF) - 127;
+        const fraction = (bytes & 0x7FFFFF) | 0x800000;
+
+        return sign * fraction * Math.pow(2, exponent - 23);
     }
 
-    public writeFloatBE(value: number, index?: number)
+    public writeFloatBE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readFloatLE(index?: number): number
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+
+        // Handle special cases
+        if (value === 0)
+        {
+            this.buffer[index] = 0;
+            this.buffer[index + 1] = 0;
+            this.buffer[index + 2] = 0;
+            this.buffer[index + 3] = 0;
+            return;
+        }
+        if (!Number.isFinite(value))
+        {
+            if (value === Infinity)
+            {
+                this.buffer[index] = 0x7F;
+                this.buffer[index + 1] = 0x80;
+                this.buffer[index + 2] = 0;
+                this.buffer[index + 3] = 0;
+                return;
+            }
+            if (value === -Infinity)
+            {
+                this.buffer[index] = 0xFF;
+                this.buffer[index + 1] = 0x80;
+                this.buffer[index + 2] = 0;
+                this.buffer[index + 3] = 0;
+                return;
+            }
+            // NaN
+            this.buffer[index] = 0x7F;
+            this.buffer[index + 1] = 0xC0;
+            this.buffer[index + 2] = 0;
+            this.buffer[index + 3] = 0;
+            return;
+        }
+
+        const sign = value < 0 ? 1 : 0;
+        value = Math.abs(value);
+        let exponent = Math.floor(Math.log2(value));
+        let fraction = value * Math.pow(2, -exponent) - 1;
+
+        exponent += 127;
+        fraction = Math.round(fraction * 0x800000);
+
+        const bytes = (sign << 31) | (exponent << 23) | fraction;
+
+        this.buffer[index] = (bytes >>> 24) & 0xFF;
+        this.buffer[index + 1] = (bytes >>> 16) & 0xFF;
+        this.buffer[index + 2] = (bytes >>> 8) & 0xFF;
+        this.buffer[index + 3] = bytes & 0xFF;
     }
 
-    public writeFloatLE(value: number, index?: number)
+    public readFloatLE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        const bytes = this.buffer[index] |
+            (this.buffer[index + 1] << 8) |
+            (this.buffer[index + 2] << 16) |
+            (this.buffer[index + 3] << 24);
+
+        // Handle special cases
+        if (bytes === 0) return 0;
+        if (bytes === 0x7F800000) return Infinity;
+        if (bytes === 0xFF800000) return -Infinity;
+        if ((bytes & 0x7F800000) === 0x7F800000) return NaN;
+
+        const sign = bytes >>> 31 ? -1 : 1;
+        const exponent = ((bytes >>> 23) & 0xFF) - 127;
+        const fraction = (bytes & 0x7FFFFF) | 0x800000;
+
+        return sign * fraction * Math.pow(2, exponent - 23);
     }
 
-    public readUInt16LE(index?: number): number
+    public writeFloatLE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+
+        // Handle special cases
+        if (value === 0)
+        {
+            this.buffer[index] = 0;
+            this.buffer[index + 1] = 0;
+            this.buffer[index + 2] = 0;
+            this.buffer[index + 3] = 0;
+            return;
+        }
+        if (!Number.isFinite(value))
+        {
+            if (value === Infinity)
+            {
+                this.buffer[index] = 0;
+                this.buffer[index + 1] = 0;
+                this.buffer[index + 2] = 0x80;
+                this.buffer[index + 3] = 0x7F;
+                return;
+            }
+            if (value === -Infinity)
+            {
+                this.buffer[index] = 0;
+                this.buffer[index + 1] = 0;
+                this.buffer[index + 2] = 0x80;
+                this.buffer[index + 3] = 0xFF;
+                return;
+            }
+            // NaN
+            this.buffer[index] = 0;
+            this.buffer[index + 1] = 0;
+            this.buffer[index + 2] = 0xC0;
+            this.buffer[index + 3] = 0x7F;
+            return;
+        }
+
+        const sign = value < 0 ? 1 : 0;
+        value = Math.abs(value);
+        let exponent = Math.floor(Math.log2(value));
+        let fraction = value * Math.pow(2, -exponent) - 1;
+
+        exponent += 127;
+        fraction = Math.round(fraction * 0x800000);
+
+        const bytes = (sign << 31) | (exponent << 23) | fraction;
+
+        this.buffer[index] = bytes & 0xFF;
+        this.buffer[index + 1] = (bytes >>> 8) & 0xFF;
+        this.buffer[index + 2] = (bytes >>> 16) & 0xFF;
+        this.buffer[index + 3] = (bytes >>> 24) & 0xFF;
     }
 
-    public writeUInt16LE(value: number, index?: number)
+    public readUInt16LE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readUInt16BE(index?: number): number
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 2);
+        return this.buffer[index] | (this.buffer[index + 1] << 8);
     }
 
-    public writeUInt16BE(value: number, index?: number)
+    public writeUInt16LE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readInt16BE(index?: number): number
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 2);
+        this.buffer[index] = value & 0xff;
+        this.buffer[index + 1] = (value >>> 8) & 0xff;
     }
 
-    public writeInt16BE(value: number, index?: number)
+    public readUInt16BE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readInt16LE(index?: number): number
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 2);
+        return (this.buffer[index] << 8) | this.buffer[index + 1];
     }
 
-    public writeInt16LE(value: number, index?: number)
+    public writeUInt16BE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 2);
+        this.buffer[index] = (value >>> 8) & 0xff;
+        this.buffer[index + 1] = value & 0xff;
     }
 
-
-    public readUInt32LE(index?: number): number
+    public readInt16LE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 2);
+        const val = this.buffer[index] | (this.buffer[index + 1] << 8);
+        return val & 0x8000 ? val - 0x10000 : val;
     }
 
-    public writeUInt32LE(value: number, index?: number)
+    public writeInt16LE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readUInt32BE(index?: number): number
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 2);
+        this.buffer[index] = value & 0xff;
+        this.buffer[index + 1] = (value >>> 8) & 0xff;
     }
 
-    public writeUInt32BE(value: number, index?: number)
+    public readInt16BE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readInt32BE(index?: number): number
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 2);
+        const val = (this.buffer[index] << 8) | this.buffer[index + 1];
+        return val & 0x8000 ? val - 0x10000 : val;
     }
 
-    public writeInt32BE(value: number, index?: number)
+    public writeInt16BE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readInt32LE(index?: number): number
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 2);
+        this.buffer[index] = (value >>> 8) & 0xff;
+        this.buffer[index + 1] = value & 0xff;
     }
 
-    public writeInt32LE(value: number, index?: number)
+    public readUInt32LE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        return ((this.buffer[index + 3] << 24) >>> 0) +
+            ((this.buffer[index + 2] << 16) |
+                (this.buffer[index + 1] << 8) |
+                this.buffer[index]);
     }
 
-    public readBigUInt64LE(index?: number): bigint
+    public writeUInt32LE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        this.buffer[index + 3] = (value >>> 24) & 0xff;
+        this.buffer[index + 2] = (value >>> 16) & 0xff;
+        this.buffer[index + 1] = (value >>> 8) & 0xff;
+        this.buffer[index] = value & 0xff;
     }
 
-    public writeBigUInt64LE(value: bigint, index?: number)
+    public readUInt32BE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readBigUInt64BE(index?: number): bigint
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-
-    public writeBigUInt64BE(value: bigint, index?: number)
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readBigInt64BE(index?: number): bigint
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        return ((this.buffer[index] << 24) >>> 0) +
+            ((this.buffer[index + 1] << 16) |
+                (this.buffer[index + 2] << 8) |
+                this.buffer[index + 3]);
     }
 
-    public writeBigInt64BE(value: bigint, index?: number)
+    public writeUInt32BE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-    public readBigInt64LE(index?: number): bigint
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
-    }
-
-    public writeBigInt64LE(value: bigint, index?: number)
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        this.buffer[index] = (value >>> 24) & 0xff;
+        this.buffer[index + 1] = (value >>> 16) & 0xff;
+        this.buffer[index + 2] = (value >>> 8) & 0xff;
+        this.buffer[index + 3] = value & 0xff;
     }
 
-    public readUIntBE(index: number, length: number): number
+    public readInt32BE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        return (this.buffer[index] << 24) |
+            (this.buffer[index + 1] << 16) |
+            (this.buffer[index + 2] << 8) |
+            this.buffer[index + 3];
     }
 
-    public writeUIntBE(value: number, index: number, length: number)
+    public writeInt32BE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        this.buffer[index] = (value >>> 24) & 0xff;
+        this.buffer[index + 1] = (value >>> 16) & 0xff;
+        this.buffer[index + 2] = (value >>> 8) & 0xff;
+        this.buffer[index + 3] = value & 0xff;
     }
 
-    public readUIntLE(index: number, length: number): number
+    public readInt32LE(index: number = 0): number
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        return this.buffer[index] |
+            (this.buffer[index + 1] << 8) |
+            (this.buffer[index + 2] << 16) |
+            (this.buffer[index + 3] << 24);
     }
 
-    public writeUIntLE(value: number, index: number, length: number)
+    public writeInt32LE(value: number, index: number = 0)
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
+        index = this.ensureOffset(index, 4);
+        this.buffer[index] = value & 0xff;
+        this.buffer[index + 1] = (value >>> 8) & 0xff;
+        this.buffer[index + 2] = (value >>> 16) & 0xff;
+        this.buffer[index + 3] = (value >>> 24) & 0xff;
     }
 
+    public readBigUInt64LE(index: number = 0): bigint
+    {
+        index = this.ensureOffset(index, 8);
+        const lo = this.readUInt32LE(index);
+        const hi = this.readUInt32LE(index + 4);
+        return (BigInt(hi) << BigInt(32)) | BigInt(lo);
+    }
+
+    public writeBigUInt64LE(value: bigint, index: number = 0)
+    {
+        index = this.ensureOffset(index, 8);
+        const lo = Number(value & BigInt(0xFFFFFFFF));
+        const hi = Number(value >> BigInt(32));
+        this.writeUInt32LE(lo, index);
+        this.writeUInt32LE(hi, index + 4);
+    }
+
+    public readBigUInt64BE(index: number = 0): bigint
+    {
+        index = this.ensureOffset(index, 8);
+        const hi = this.readUInt32BE(index);
+        const lo = this.readUInt32BE(index + 4);
+        return (BigInt(hi) << BigInt(32)) | BigInt(lo);
+    }
+
+    public writeBigUInt64BE(value: bigint, index: number = 0)
+    {
+        index = this.ensureOffset(index, 8);
+        const lo = Number(value & BigInt(0xFFFFFFFF));
+        const hi = Number(value >> BigInt(32));
+        this.writeUInt32BE(hi, index);
+        this.writeUInt32BE(lo, index + 4);
+    }
+
+    public readBigInt64LE(index: number = 0): bigint
+    {
+        const val = this.readBigUInt64LE(index);
+        return BigInt.asIntN(64, val);
+    }
+
+    public writeBigInt64LE(value: bigint, index: number = 0)
+    {
+        this.writeBigUInt64LE(BigInt.asUintN(64, value), index);
+    }
+
+    public readBigInt64BE(index: number = 0): bigint
+    {
+        const val = this.readBigUInt64BE(index);
+        return BigInt.asIntN(64, val);
+    }
+
+    public writeBigInt64BE(value: bigint, index: number = 0)
+    {
+        this.writeBigUInt64BE(BigInt.asUintN(64, value), index);
+    }
+
+    public readUIntLE(index: number, byteLength: number): number
+    {
+        index = this.ensureOffset(index, byteLength);
+        let val = this.buffer[index];
+        let mul = 1;
+
+        for (let i = 0; i < byteLength - 1; i++)
+        {
+            mul *= 0x100;
+            val += this.buffer[index + i + 1] * mul;
+        }
+
+        return val;
+    }
+
+    public writeUIntLE(value: number, index: number, byteLength: number): void
+    {
+        index = this.ensureOffset(index, byteLength);
+        let remaining = value;
+
+        for (let i = 0; i < byteLength; i++)
+        {
+            this.buffer[index + i] = remaining & 0xFF;
+            remaining = Math.floor(remaining / 256);
+        }
+    }
+
+    public readUIntBE(index: number, byteLength: number): number
+    {
+        index = this.ensureOffset(index, byteLength);
+        let val = this.buffer[index + byteLength - 1];
+        let mul = 1;
+
+        for (let i = byteLength - 1; i > 0; i--)
+        {
+            mul *= 0x100;
+            val += this.buffer[index + i - 1] * mul;
+        }
+
+        return val;
+    }
+
+    public writeUIntBE(value: number, index: number, byteLength: number): void
+    {
+        index = this.ensureOffset(index, byteLength);
+        let remaining = value;
+
+        for (let i = byteLength - 1; i >= 0; i--)
+        {
+            this.buffer[index + i] = remaining & 0xFF;
+            remaining = Math.floor(remaining / 256);
+        }
+    }
 
     public subarray(start: number, end?: number)
     {
@@ -456,4 +881,48 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
         return this.buffer[Symbol.iterator]();
     }
 
+    [Symbol.for('nodejs.util.inspect.custom')](): { type: 'Buffer'; data: number[] }
+    {
+        return {
+            type: 'Buffer',
+            data: Array.from(this.buffer.subarray(this.offset, this.end))
+        };
+    }
+
+    // This is used by util.inspect and assert.deepStrictEqual
+    inspect()
+    {
+        return this[Symbol.for('nodejs.util.inspect.custom')]();
+    }
+
+    // This is used by assert.deepStrictEqual for comparison
+    [Symbol.for('nodejs.util.inspect.custom.primitive')]()
+    {
+        return this.toJSON()
+    }
+
+    valueOf(): { type: 'Buffer'; data: number[] }
+    {
+        return this.toJSON()
+    }
+
+    equals(other: IsomorphicBuffer): boolean
+    {
+        if (!(other instanceof IsomorphicBuffer))
+        {
+            return false;
+        }
+        if (this.length !== other.length)
+        {
+            return false;
+        }
+        for (let i = 0; i < this.length; i++)
+        {
+            if (this.buffer[this.offset + i] !== other.buffer[other.offset + i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
