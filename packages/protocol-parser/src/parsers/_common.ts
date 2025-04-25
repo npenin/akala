@@ -74,7 +74,7 @@ export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage
             if (!(cursor instanceof Cursor))
                 throw new Error('no cursor was provided');
 
-            parser.write(value, message).forEach(b => { b.copy(buffer as IsomorphicBuffer, cursor.offset); cursor.offset += b.length });
+            parser.write(value, message).forEach(b => { (buffer as IsomorphicBuffer).copy(b, cursor.offset); cursor.offset += b.length });
         }
         else
         {

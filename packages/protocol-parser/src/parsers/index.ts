@@ -194,13 +194,13 @@ export function string<T, TString extends string = string>(length: Parsers<numbe
         return new PreparsedLengthString<T, typeof length, TString>(length, encoding);
     return new PrefixedString<TString>(length as Parsers<number>, encoding);
 }
-export function buffer<T = unknown>(length: Parser<number> | ParserWithoutKnownLength<number> | number | keyof T): AnyParser<IsomorphicBuffer, T>
+export function buffer<T = unknown>(length: Parser<number> | ParserWithoutKnownLength<number> | number | keyof T, dismissMainBuffer?: boolean): AnyParser<IsomorphicBuffer, T>
 {
     if (typeof length == 'number')
-        return new BufferRaw(length);
+        return new BufferRaw(length, dismissMainBuffer);
     if (typeof (length) === 'string' || typeof (length) === 'symbol')
-        return new PreparsedLengthBuffer<T, typeof length>(length);
-    return new PrefixedBuffer(length);
+        return new PreparsedLengthBuffer<T, typeof length>(length, dismissMainBuffer);
+    return new PrefixedBuffer(length, dismissMainBuffer);
 }
 export function array<T, TMessage>(length: Parser<number>, value: AnyParser<T, TMessage>): TMessage extends Cursor ? Parser<T[]> : ParserWithMessage<T[], TMessage>
 export function array<T, TMessage>(length: ParserWithoutKnownLength<number>, value: AnyParser<T, TMessage>): ParserWithoutKnownLength<T[]>

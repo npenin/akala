@@ -3,7 +3,7 @@ import { AnyParser, Cursor, ParserWithoutKnownLength, parserWrite } from './_com
 
 export default class PrefixedBuffer implements ParserWithoutKnownLength<IsomorphicBuffer>
 {
-    constructor(private prefix: AnyParser<number, unknown>)
+    constructor(private prefix: AnyParser<number, unknown>, private readonly dismissMainBuffer: boolean = false)
     {
 
     }
@@ -13,9 +13,12 @@ export default class PrefixedBuffer implements ParserWithoutKnownLength<Isomorph
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
 
-        var length = this.prefix.read(buffer, cursor, null);
-        const result = buffer.subarray(cursor.offset, cursor.offset + length);
-        cursor.offset += length;
+        const length = this.prefix.read(buffer, cursor, null);
+        const offset = cursor.offset;
+        const result = buffer.subarray(offset, cursor.offset += length);
+        if (this.dismissMainBuffer)
+            return new IsomorphicBuffer(result.toArray());
+
         return result;
     }
 

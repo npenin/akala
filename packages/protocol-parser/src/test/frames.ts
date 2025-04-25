@@ -31,7 +31,7 @@ var frame = object<TestType>(
     property('length', uint8),
     property('type', uint16),
     property('sequenceNumber', uint8),
-    property('raw', buffer(uint8)),
+    property('raw', buffer(uint8, true)),
 )
 var frame2 = object<TestType2>(
     property('length', uint8),

@@ -3,7 +3,7 @@ import { Cursor, Parser } from './_common.js';
 
 export default class FixedBuffer implements Parser<IsomorphicBuffer>
 {
-    constructor(public readonly length: number)
+    constructor(public readonly length: number, private readonly dismissMainBuffer: boolean = false)
     {
 
     }
@@ -19,7 +19,14 @@ export default class FixedBuffer implements Parser<IsomorphicBuffer>
             return buffer;
         }
 
-        return buffer.subarray(cursor.offset, cursor.offset += this.length);
+        const offset = cursor.offset;
+        const result = buffer.subarray(offset, cursor.offset += this.length);
+
+        if (this.dismissMainBuffer)
+            return new IsomorphicBuffer(result.toArray());
+
+        return result;
+
     }
 
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: IsomorphicBuffer)
