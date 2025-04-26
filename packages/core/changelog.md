@@ -3,6 +3,8 @@
 
 ### Bug Fixes
 
+* allow line breaks and tabs in parser a5bb001
+* allow optional spaces 951a42d
 * base64UrlEncode properly strips = 8a9274d
 * bug when result is null 4596a13
 * case when x is null 4631c51
