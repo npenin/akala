@@ -10,7 +10,7 @@ import { Formatter, FormatterFactory } from '../formatters/common.js';
 import { formatters } from '../formatters/index.js';
 import { escapeRegExp } from '../reflect.js';
 
-const jsonKeyRegex = /\s(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([a-zA-Z0-9_$]+))\s):\s/;
+const jsonKeyRegex = /\s*(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([a-zA-Z0-9_$]+)) *):\s*/;
 
 
 export interface Cursor
@@ -475,7 +475,7 @@ export class Parser
      */
     public parseFormatter(expression: StringCursor, lhs: ExpressionsWithLength, reset: () => void): ExpressionsWithLength
     {
-        const item = expression.exec(/\s([\w\.\$]+)\s/);
+        const item = expression.exec(/\s*([\w\.\$]+)\s*/);
         reset?.();
         let settings: ExpressionsWithLength;
         if (expression.char === ':')
@@ -499,7 +499,7 @@ export class Parser
      */
     public tryParseOperator(expression: StringCursor, lhs: ExpressionsWithLength, parseFormatter: boolean, reset?: () => void)
     {
-        const operator = expression.exec(/\s*([<>=!+\-/*&|\?\.#\[\(]+)\s/);
+        const operator = expression.exec(/\s*([<>=!+\-/*&|\?\.#\[\(]+)\s*/);
         if (operator)
         {
             let rhs: ExpressionsWithLength;
@@ -533,7 +533,7 @@ export class Parser
                     const tOperator = parseTernaryOperator(operator[1]);
                     const second = this.parseAny(expression, parseFormatter, reset);
 
-                    const operator2 = expression.exec(/\s(:)\s/);
+                    const operator2 = expression.exec(/\s*(:)\s*/);
                     if (!operator2)
                         throw new Error('Invalid ternary operator');
 
