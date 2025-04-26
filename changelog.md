@@ -192,6 +192,7 @@
 * handle init lifecycle stage 54a8169
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
+* handle undefined each source 823b7cd
 * handle upper case methods 974659f
 * handle upper case methods b915081
 * hasYarn detection to prevent it to crash 6980e95
@@ -423,6 +424,7 @@
 * store relative staticFolders 30863ce
 * strongly type built CliContext state ce294ef
 * strongly type built CliContext state 81df5e6
+* style for non-input, but inputs ab463b2
 * subpath api routing 82d6670
 * subpath api routing 2f6623e
 * switch from try catch to URL.canParse e766f24
