@@ -75,6 +75,7 @@
 * add web-ui connection to client in documentation flowchart 47abc33
 * add web-ui connection to client in documentation flowchart e43978b
 * allow line breaks and tabs in parser a5bb001
+* allow optional spaces 002c4a2
 * allow optional spaces 951a42d
 * allow using npx/yarn dlx 21e2024
 * allow using npx/yarn dlx 2b7f40e
