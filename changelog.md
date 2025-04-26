@@ -74,6 +74,8 @@
 * add user options 85802c8
 * add web-ui connection to client in documentation flowchart 47abc33
 * add web-ui connection to client in documentation flowchart e43978b
+* allow line breaks and tabs in parser a5bb001
+* allow optional spaces 951a42d
 * allow using npx/yarn dlx 21e2024
 * allow using npx/yarn dlx 2b7f40e
 * allow using npx/yarn dlx e308778
@@ -258,6 +260,7 @@
 * improve Router next param support + documentation 207c326
 * improve serialize on http ca89683
 * improve serialize on http af3373b
+* improve typing in vite.config.mts 11e538a
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
 * Injector inheritance d015db2
@@ -271,6 +274,7 @@
 * links e6a33ea
 * links 53c17f6
 * login page sonar issues e620328
+* make fs private for now 6e84b29
 * make rawQuery support optional 3be8917
 * make rawQuery support optional 6050617
 * many fixes (still not prod ready) d4f40d2
@@ -315,6 +319,7 @@
 * protocol-parser tests after IsomorphicBuffer implementation 338a64d
 * provide proper logging 445a133
 * provide proper logging 2e02b06
+* publicize fs module 97c3471
 * re-tagging workflow bc599dc
 * re-tagging workflow 5539b6b
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
@@ -584,6 +589,8 @@
 * add doc from gh-pages branch a024fed
 * add fallthrough option to cover additional registration in router 19652e5
 * add fallthrough option to cover additional registration in router feb46b4
+* add fs package 1df97d4
+* add fs package 9751886
 * add GitHub sponsorship and star buttons to documentation 45cdee0
 * add GitHub sponsorship and star buttons to documentation 457055f
 * add helper to identify deadlinks and ran it 36188c8
@@ -620,6 +627,7 @@
 * add uri on request to be able to know the full url of a request 3ed1dd0
 * add version field to package.json for documentation package 42a4cc8
 * add version field to package.json for documentation package ac5b028
+* add wasm and fs to build e5177d6
 * add xpm (but not leverage it yet) 84f1def
 * akala plugin implementation f99043a
 * akala plugin implementation d050e1a
@@ -687,6 +695,7 @@
 * remove cjs support 145dc5f
 * remove cjs support c967b21
 * remove legacy global injector functions 29d5996
+* start using new akala fs module 008cbb0
 * switch client http authentication from hard coded to dynamic with middleware. 1d01a5c
 * switch to eventBuses impl f483b10
 * switch to IsomorphicBuffer 18d9aa2

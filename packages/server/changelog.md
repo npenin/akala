@@ -28,6 +28,7 @@
 * extend AkalaConfig to include API URLs and enhance URL handling in plugin efbebca
 * implement dynamic routing based on URL pathname in server handlers f73ea99
 * include URI in request logging for improved traceability 6e4418a
+* start using new akala fs module 008cbb0
 
 
 ### BREAKING CHANGES
