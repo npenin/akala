@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from '@akala/core';
 import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from './_common.js';
 
 export default class Switch<T extends { [key in TKey]: TValue }, TKey extends keyof T, TResult, TValue extends string | number> implements ParserWithMessageWithoutKnownLength<TResult, T>
@@ -16,7 +17,7 @@ export default class Switch<T extends { [key in TKey]: TValue }, TKey extends ke
     }
 
     length: -1 = -1;
-    read(buffer: Buffer, cursor: Cursor, message: T): TResult
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): TResult
     {
         var parser = this.parsers[message[this.name]];
         if (!parser)
@@ -24,7 +25,7 @@ export default class Switch<T extends { [key in TKey]: TValue }, TKey extends ke
 
         return parser.read(buffer, cursor, message);
     }
-    write(value: TResult, message: T): Buffer[]
+    write(value: TResult, message: T): IsomorphicBuffer[]
     {
         if (typeof (message) == 'undefined')
             throw new Error('no message was provided');

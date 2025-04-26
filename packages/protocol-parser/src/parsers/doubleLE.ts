@@ -1,6 +1,7 @@
 import { Cursor, Parser } from './_common.js';
 import { double } from "../core.js";
 import Uint64 from './uint64.js';
+import { IsomorphicBuffer } from '@akala/core';
 
 const length = 8;
 
@@ -13,26 +14,26 @@ export default class DoubleLE implements Parser<double>
 
     readonly length = length;
 
-    public read(buffer: Buffer, cursor: Cursor): double
+    public read(buffer: IsomorphicBuffer, cursor: Cursor): double
     {
         if (cursor.subByteOffset > 0)
         {
-            let tmpBuffer = Buffer.alloc(length);
-            tmpBuffer.writeBigUint64BE(Uint64.prototype.read(buffer, cursor));
-            return tmpBuffer.readDoubleLE(0);
+            let tmpBuffer = new IsomorphicBuffer(length);
+            tmpBuffer.writeBigUInt64BE(Uint64.prototype.read(buffer, cursor));
+            return tmpBuffer.readDoubleLE();
         }
         const value = buffer.readDoubleLE(cursor.offset);
         cursor.offset += length;
         return value;
     }
 
-    public write(buffer: Buffer, cursor: Cursor, value: double)
+    public write(buffer: IsomorphicBuffer, cursor: Cursor, value: double)
     {
         if (cursor.subByteOffset > 0)
         {
-            let tmpBuffer = Buffer.alloc(length);
-            tmpBuffer.writeDoubleLE(value);
-            Uint64.prototype.write(buffer, cursor, tmpBuffer.readBigUint64BE())
+            let tmpBuffer = new IsomorphicBuffer(length);
+            tmpBuffer.writeDoubleLE(0, value);
+            Uint64.prototype.write(buffer, cursor, tmpBuffer.readBigUInt64BE())
         }
         else
         {

@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from '@akala/core';
 import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from './_common.js';
 
 export default class Sequence<T extends unknown[], TMessage = unknown> implements ParserWithMessageWithoutKnownLength<T, TMessage>
@@ -17,7 +18,7 @@ export default class Sequence<T extends unknown[], TMessage = unknown> implement
         }
     }
     length: -1 = -1;
-    read(buffer: Buffer, cursor: Cursor, message: TMessage): T
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T
     {
         var result = [];
         for (const parser of this.parsers)
@@ -28,7 +29,7 @@ export default class Sequence<T extends unknown[], TMessage = unknown> implement
     }
     write(value: T, message: TMessage)
     {
-        var buffers: Buffer[] = [];
+        var buffers: IsomorphicBuffer[] = [];
         for (let index = 0; index < value.length; index++)
             buffers.push(...parserWrite(this.parsers[index], value[index], message));
         return buffers;

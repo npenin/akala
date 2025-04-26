@@ -1,5 +1,6 @@
 import PrefixedString from "../string-prefixed.js";
 import { Cursor, Parsers } from "../_common.js";
+import { IsomorphicBuffer } from "@akala/core";
 
 export class TLVString extends PrefixedString
 {
@@ -8,7 +9,7 @@ export class TLVString extends PrefixedString
         super(parser, encoding)
     }
 
-    write(value: string): Buffer[]
+    write(value: string): IsomorphicBuffer[]
     {
         var result = []
         const cursor = new Cursor();

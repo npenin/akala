@@ -10,6 +10,6 @@ export default async function (this: State, user: User, password: string, oldPas
         return new ErrorWithStatus(HttpStatusCode.NotFound, 'This user does not exist');
     // const user = await this.store.User.where('name', BinaryOperator.Equal, userName).firstOrDefault();
 
-    Object.assign(user, await hashPassword(this, password));
+    Object.assign(user, await hashPassword(this, await password));
     return await this.store.User.updateSingle(user);
 }

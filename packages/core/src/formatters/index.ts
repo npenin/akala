@@ -4,7 +4,7 @@ import booleanize from './booleanize.js';
 export * from './date.js';
 export * from './common.js'
 export { identity, negate, booleanize };
-import { Module, module } from '../module.js';
+import { Module } from '../module.js';
 import json from './json.js';
 import date from './date.js';
 import { FormatterFactory, ReversibleFormatter, ReversibleFormatterFactory } from './common.js';
@@ -32,12 +32,13 @@ export function reverseFormatter<TResult, TOrigin, TSettings extends unknown[]>(
     }
 }
 
-module('$formatters').register('#not', negate);
-module('$formatters').register('#bool', booleanize);
-module('$formatters').register('#json', json);
-module('$formatters').register('#date', date);
-module('$formatters').register('#toDate', reverseFormatter(date));
-module('$formatters').register('#debounce', Debounce);
+export const formatters: Module & { resolve<T>(formatter: string extends `#${infer X}` ? `#${X} ` : never): FormatterFactory<T> } = new Module('$formatters');
 
-export const formatters: Module & { resolve<T>(formatter: string extends `#${infer X}` ? `#${X} ` : never): FormatterFactory<T> } = module('$formatters');
+formatters.register('#not', negate);
+formatters.register('#bool', booleanize);
+formatters.register('#json', json);
+formatters.register('#date', date);
+formatters.register('#toDate', reverseFormatter(date));
+formatters.register('#debounce', Debounce);
+
 

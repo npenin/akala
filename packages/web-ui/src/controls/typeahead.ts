@@ -181,7 +181,8 @@ export class Typeahead<T> extends Control<{ 'aria-controls': string, multiple: b
         {
             this.teardown(textInput.onChanged((ev) =>
             {
-                options.setValue(search(ev.value));
+                if (search)
+                    options.setValue(search(ev.value));
             }, true))
         }, true))
 

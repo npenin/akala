@@ -1,6 +1,7 @@
 import Bit from './bit.js';
 import { Cursor, Parser } from './_common.js';
 import Uint2 from './uint2.js';
+import { IsomorphicBuffer } from '@akala/core';
 
 const length = .375;
 
@@ -13,7 +14,7 @@ export default class Uint3 implements Parser<number>
 
     readonly length = length;
 
-    public read(buffer: Buffer, cursor: Cursor): number
+    public read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
         var currentValue = buffer.readUInt8(cursor.floorOffset);
         var value: number;
@@ -55,7 +56,7 @@ export default class Uint3 implements Parser<number>
         return value;
     }
 
-    public write(buffer: Buffer, cursor: Cursor, value: number)
+    public write(buffer: IsomorphicBuffer, cursor: Cursor, value: number)
     {
         switch (cursor.subByteOffset)
         {

@@ -7,6 +7,13 @@ import Uint5 from './uint5.js'
 import Uint6 from './uint6.js'
 import Uint7 from './uint7.js'
 import Uint8 from './uint8.js'
+import Int2 from './int2.js'
+import Int3 from './int3.js'
+import Int4 from './int4.js'
+import Int5 from './int5.js'
+import Int6 from './int6.js'
+import Int7 from './int7.js'
+import Int8 from './int8.js'
 import Uint16 from './uint16.js'
 import Uint24 from './uint24.js'
 import Uint32 from './uint32.js'
@@ -57,6 +64,10 @@ import { Conditional } from './conditional-parser.js'
 import * as types from '../core.js'
 import { Ignore } from './ignore-message.js'
 import PreparsedLengthBuffer from './buffer-preparsed.js'
+import { IsomorphicBuffer } from '@akala/core'
+import SignedLEB128 from './LEB128.signed.js'
+import UnsignedLEB128 from './LEB128.unsigned.js'
+import Cache from './cache.js'
 
 export { protobuf };
 
@@ -68,6 +79,13 @@ export const uint5: Parser<number> = new Uint5();
 export const uint6: Parser<number> = new Uint6();
 export const uint7: Parser<number> = new Uint7();
 export const uint8: Parser<number> = new Uint8();
+export const int2: Parser<number> = new Int2();
+export const int3: Parser<number> = new Int3();
+export const int4: Parser<number> = new Int4();
+export const int5: Parser<number> = new Int5();
+export const int6: Parser<number> = new Int6();
+export const int7: Parser<number> = new Int7();
+export const int8: Parser<number> = new Int8();
 export const uint16: Parser<number> = new Uint16();
 export const uint24: Parser<number> = new Uint24();
 export const uint32: Parser<number> = new Uint32();
@@ -86,6 +104,8 @@ export const int32LE: Parser<number> = new Int32LE();
 export const int64LE: Parser<bigint> = new Int64LE();
 export const vuint: ParserWithoutKnownLength<number> = new Vuint();
 export const vuintLE: ParserWithoutKnownLength<number> = new VuintLE();
+export const signedLEB128: ParserWithoutKnownLength<number> = new SignedLEB128();
+export const unsignedLEB128: ParserWithoutKnownLength<number> = new UnsignedLEB128();
 
 export const floatLE: Parser<types.float> = new FloatLE();
 export const float: Parser<types.float> = new Float();
@@ -132,7 +152,12 @@ export
     Float,
     FloatLE,
     Double,
-    DoubleLE
+    DoubleLE,
+    PrefixedBuffer,
+    BufferRaw as FixedBuffer,
+    SignedLEB128,
+    UnsignedLEB128,
+    Cache,
 };
 
 export function skip<TMessage>(length: number | AnyParser<number, TMessage>): ParsersWithMessage<never, TMessage>
@@ -149,6 +174,14 @@ export function boolean(parser?: Parser<number>): Parser<boolean>
 {
     return new Boolean(parser || bit);
 }
+export function cache<T extends number | string | symbol>(parser: Parser<T>): Parser<T>
+export function cache<T extends number | string | symbol>(parser: ParserWithoutKnownLength<T>): ParserWithoutKnownLength<T>
+export function cache<T extends number | string | symbol, TMessage>(parser: ParserWithMessage<T, TMessage>): ParserWithMessage<T, TMessage>
+export function cache<T extends number | string | symbol, TMessage>(parser: ParserWithMessageWithoutKnownLength<T, TMessage>): ParserWithMessageWithoutKnownLength<T, TMessage>
+export function cache<T extends number | string | symbol, TMessage>(parser: AnyParser<T, TMessage>): AnyParser<T, TMessage>
+{
+    return new Cache(parser);
+}
 
 export function string<TString extends string = string>(length: number, encoding?: BufferEncoding): Parser<TString>
 export function string<TString extends string = string>(length: Parsers<number>, encoding?: BufferEncoding): ParserWithoutKnownLength<TString>
@@ -161,13 +194,13 @@ export function string<T, TString extends string = string>(length: Parsers<numbe
         return new PreparsedLengthString<T, typeof length, TString>(length, encoding);
     return new PrefixedString<TString>(length as Parsers<number>, encoding);
 }
-export function buffer<T = unknown>(length: Parser<number> | ParserWithoutKnownLength<number> | number | keyof T): AnyParser<Buffer, T>
+export function buffer<T = unknown>(length: Parser<number> | ParserWithoutKnownLength<number> | number | keyof T, dismissMainBuffer?: boolean): AnyParser<IsomorphicBuffer, T>
 {
     if (typeof length == 'number')
-        return new BufferRaw(length);
+        return new BufferRaw(length, dismissMainBuffer);
     if (typeof (length) === 'string' || typeof (length) === 'symbol')
-        return new PreparsedLengthBuffer<T, typeof length>(length);
-    return new PrefixedBuffer(length);
+        return new PreparsedLengthBuffer<T, typeof length>(length, dismissMainBuffer);
+    return new PrefixedBuffer(length, dismissMainBuffer);
 }
 export function array<T, TMessage>(length: Parser<number>, value: AnyParser<T, TMessage>): TMessage extends Cursor ? Parser<T[]> : ParserWithMessage<T[], TMessage>
 export function array<T, TMessage>(length: ParserWithoutKnownLength<number>, value: AnyParser<T, TMessage>): ParserWithoutKnownLength<T[]>
@@ -240,6 +273,16 @@ export function prefixedSeries<T extends object>(length: Parsers<number>, ...map
 {
     return new PrefixedLengthSeries(length, series<T>(...maps as any));
 }
+export const noop: Parser<void> = {
+    length: 0,
+    read(buffer, cursor)
+    {
+    },
+    write(buffer, cursor, value)
+    {
+    },
+}
+
 
 export function choose<T extends { [key in TKey]: number | string }, const TKey extends keyof T, TResult>(name: TKey, parsers: { [key in T[TKey]]: AnyParser<TResult, T> })
 {

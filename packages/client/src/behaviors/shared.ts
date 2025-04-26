@@ -1,4 +1,4 @@
-import { Binding, ExpressionsWithLength, ParsedAny, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, parser, toCamelCase, toKebabCase } from "@akala/core";
+import { Binding, ExpressionsWithLength, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, parser, toCamelCase, toKebabCase } from "@akala/core";
 import { Composer } from "../template.js";
 import { Control } from '../controlsv2/shared.js';
 
@@ -119,7 +119,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
     {
         let bindings: Record<string, Binding<unknown>>;
 
-        const properties: ParsedAny | undefined = (item.getAttribute(this.attribute) || undefined) && this.parser.parse(item.getAttribute(this.attribute)) as ParsedObject;
+        const properties: ExpressionsWithLength | undefined = (item.getAttribute(this.attribute) || undefined) && this.parser.parse(item.getAttribute(this.attribute)) as ParsedObject;
 
         const otherProperties = item.getAttributeNames().filter(att => att.startsWith(this.attribute + '-') && item.getAttribute(att)).map(att => [AttributeComposer.toCamelCase(att.substring(this.attribute.length + 1)), this.parser.parse(item.getAttribute(att))] as const);
 

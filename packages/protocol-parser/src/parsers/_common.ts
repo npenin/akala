@@ -1,26 +1,28 @@
+import { IsomorphicBuffer } from "@akala/core";
+
 export interface Parser<T>
 {
     length: number;
-    read(buffer: Buffer, cursor: Cursor): T;
-    write(buffer: Buffer, cursor: Cursor, value: T): void;
+    read(buffer: IsomorphicBuffer, cursor: Cursor): T;
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T): void;
 }
 export interface ParserWithMessage<T, TMessage>
 {
     length: number;
-    read(buffer: Buffer, cursor: Cursor, partial: TMessage): T;
-    write(buffer: Buffer, cursor: Cursor, value: T, message: TMessage): void;
+    read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T;
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void;
 }
 export interface ParserWithoutKnownLength<T>
 {
     length: -1;
-    read(buffer: Buffer, cursor: Cursor, message?: unknown): T;
-    write(value: T): Buffer[];
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message?: unknown): T;
+    write(value: T): IsomorphicBuffer[];
 }
 export interface ParserWithMessageWithoutKnownLength<T, TMessage>
 {
     length: -1;
-    read(buffer: Buffer, cursor: Cursor, partial: TMessage): T;
-    write(value: T, message: TMessage): Buffer[];
+    read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T;
+    write(value: T, message: TMessage): IsomorphicBuffer[];
 }
 
 
@@ -61,18 +63,18 @@ export function hasUnknownLength<T, TMessage = unknown>(p: AnyParser<T, TMessage
     return p.length == -1;
 }
 
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: Buffer, cursor: Cursor, value: T, message?: TMessage): void
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, value: T, message?: TMessage): Buffer[]
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: Buffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): Buffer[] | void
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: Buffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): Buffer[] | void
+export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: IsomorphicBuffer, cursor: Cursor, value: T, message?: TMessage): void
+export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, value: T, message?: TMessage): IsomorphicBuffer[]
+export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: IsomorphicBuffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): IsomorphicBuffer[] | void
+export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: IsomorphicBuffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): IsomorphicBuffer[] | void
 {
-    if (Buffer.isBuffer(buffer) && cursor instanceof Cursor)
+    if (buffer instanceof IsomorphicBuffer && cursor instanceof Cursor)
         if (hasUnknownLength(parser))
         {
             if (!(cursor instanceof Cursor))
                 throw new Error('no cursor was provided');
 
-            parser.write(value as T, message as TMessage).forEach(b => { b.copy(buffer as Buffer, cursor.offset); cursor.offset += b.length });
+            parser.write(value, message).forEach(b => { (buffer as IsomorphicBuffer).copy(b, cursor.offset); cursor.offset += b.length });
         }
         else
         {
@@ -90,7 +92,7 @@ export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage
             return parser.write(value, message);
         else
         {
-            buffer = Buffer.alloc(Math.ceil(parser.length));
+            buffer = new IsomorphicBuffer(Math.ceil(parser.length));
             parser.write(buffer, new Cursor(), value, message);
             return [buffer];
         }

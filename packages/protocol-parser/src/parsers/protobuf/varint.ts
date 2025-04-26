@@ -5,6 +5,7 @@ import Uint32LE from "../uint32LE.js";
 import Uint24LE from "../uint24LE.js";
 import Uint16LE from "../uint16LE.js";
 import { WireType } from './field.js';
+import { IsomorphicBuffer } from "@akala/core";
 
 export default class Varint implements ParserWithoutKnownLength<number>
 {
@@ -17,9 +18,9 @@ export default class Varint implements ParserWithoutKnownLength<number>
 
     length: -1 = -1;
 
-    public read(buffer: Buffer, cursor: Cursor): number
+    public read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
-        let tmpBuffer = Buffer.alloc(4);
+        let tmpBuffer = new IsomorphicBuffer(4);
         let value: number;
         let tmpOffset = 0;
         var innerCursor = new Cursor();
@@ -38,19 +39,19 @@ export default class Varint implements ParserWithoutKnownLength<number>
         }
     }
 
-    public write(value: number): Buffer[]
+    public write(value: number): IsomorphicBuffer[]
     {
         if (typeof value == 'undefined')
             return null;
-        const buffer = Buffer.alloc(4);
+        const buffer = new IsomorphicBuffer(4);
         if (value <= 0x7f)
         {
             Uint8.prototype.write(buffer, new Cursor(), value);
-            return [buffer.slice(0, 1)];
+            return [buffer.subarray(0, 1)];
         }
         else
         {
-            const tmpBuffer = Buffer.alloc(4);
+            const tmpBuffer = new IsomorphicBuffer(4);
             let innerCursor = new Cursor();
             let cursor = new Cursor();
             if (value <= 0x7fff)
@@ -88,7 +89,7 @@ export default class Varint implements ParserWithoutKnownLength<number>
             }
             else
                 throw new Error('invalid value for varint');
-            return [buffer.slice(0, cursor.offset)];
+            return [buffer.subarray(0, cursor.offset)];
         }
     }
 }

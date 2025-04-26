@@ -1,0 +1,30 @@
+{
+    "name": "@akala/wasm",
+    "version": "0.0.0",
+    "type": "module",
+    "private": true,
+    "main": "dist/esm/index.js",
+    "types": "dist/esm/index.d.ts",
+    "dependencies": {
+        "@akala/core": "workspace:^",
+        "@akala/protocol-parser": "workspace:^"
+    },
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        }
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    },
+    "peerDependencies": {
+        "typescript": "^5.1.6"
+    }
+}

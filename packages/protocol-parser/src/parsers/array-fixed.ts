@@ -1,5 +1,6 @@
 import { AnyParser, ParserWithMessage } from "./index.js";
 import { Cursor, parserWrite } from './_common.js';
+import { IsomorphicBuffer } from "@akala/core";
 
 export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<T[], TMessage>
 {
@@ -7,7 +8,7 @@ export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<
     {
     }
 
-    read(buffer: Buffer, cursor: Cursor, message: TMessage): T[]
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T[]
     {
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
@@ -28,15 +29,15 @@ export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<
         return result;
     }
 
-    write(value: T[], message: TMessage): Buffer[]
-    write(buffer: Buffer, cursor: Cursor, value: T[], message: TMessage): void
-    write(buffer: Buffer | T[], cursor: Cursor | TMessage, value?: T[], message?: TMessage): void | Buffer[]
+    write(value: T[], message: TMessage): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T[], message: TMessage): void
+    write(buffer: IsomorphicBuffer | T[], cursor: Cursor | TMessage, value?: T[], message?: TMessage): void | IsomorphicBuffer[]
     {
-        if (!Buffer.isBuffer(buffer))
+        if (!(buffer instanceof IsomorphicBuffer))
         {
-            var buffers: Buffer[] = []
-            for (let index = 0; index < buffer.length; index++)
-                buffers.push(...parserWrite(this.valueParser, buffer[index], cursor));
+            const buffers: IsomorphicBuffer[] = []
+            for (const subbuffer of buffer)
+                buffers.push(...parserWrite(this.valueParser, subbuffer, cursor));
             return buffers;
         }
         else

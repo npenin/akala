@@ -1,3 +1,4 @@
+import { IsomorphicBuffer } from '@akala/core';
 import { Cursor, ParserWithMessageWithoutKnownLength } from './_common.js';
 
 export default class PreparsedString<T, TKey extends keyof T, TString extends string = string> implements ParserWithMessageWithoutKnownLength<TString, T>
@@ -7,7 +8,7 @@ export default class PreparsedString<T, TKey extends keyof T, TString extends st
 
     }
     length: -1 = -1;
-    read(buffer: Buffer, cursor: Cursor, message: T): TString
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): TString
     {
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
@@ -16,10 +17,10 @@ export default class PreparsedString<T, TKey extends keyof T, TString extends st
         cursor.offset += value.length;
         return value as TString;
     }
-    write(value: TString, message: T): Buffer[]
+    write(value: TString, message: T): IsomorphicBuffer[]
     {
-        var buffers: Buffer[] = [];
-        buffers.push(Buffer.from(value, this.encoding).slice(0, Number(message[this.lengthProperty])));
+        var buffers: IsomorphicBuffer[] = [];
+        buffers.push(IsomorphicBuffer.from(value, this.encoding).subarray(0, Number(message[this.lengthProperty])));
         return buffers
     }
 
