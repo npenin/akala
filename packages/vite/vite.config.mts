@@ -57,6 +57,8 @@ export default {
 
                     }
                 }
+
+                return undefined;
                 // console.log(params);
             })
         }])
