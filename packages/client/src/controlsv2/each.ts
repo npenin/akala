@@ -1,8 +1,7 @@
-import { Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray, Subscription } from "@akala/core";
+import { TeardownManager, Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray, Subscription } from "@akala/core";
 import { Control } from "./shared.js";
 import { Template } from "../template.js";
 import { DataContext } from "../common.js";
-import { TeardownManager } from '@akala/core';
 import { a } from "../dom-helpers.js";
 
 export type Bound<T> = { [key in keyof T]: Binding<T[key]> };
@@ -28,7 +27,7 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
         return (a(this.element, Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName) as keyof TOption;
     }
 
-    private options = new ObservableArray<Bound<TOption>>([]);
+    private readonly options = new ObservableArray<Bound<TOption>>([]);
 
     connectedCallback()
     {
@@ -75,7 +74,7 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
             {
                 observableArray.replaceArray(ev.value);
             }
-            if (!observableArray)
+            if (!observableArray && ev.value)
             {
                 observableArray = Array.isArray(ev.value) ? new ObservableArray(ev.value) : ev.value;
 
