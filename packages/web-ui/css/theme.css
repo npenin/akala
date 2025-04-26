@@ -378,7 +378,9 @@ button.link {
     composes: akala-button;
 }
 
-input:not([type="button"], [type="submit"], [type="reset"]) {
+input:not([type="button"], [type="submit"], [type="reset"]),
+textarea,
+select {
     composes: form-control from './form/form.css'
 }
 
