@@ -1,22 +1,52 @@
-import { MiddlewareAsync, MiddlewarePromise, NotHandled } from "@akala/core";
+import { EventEmitter, MiddlewareAsync, MiddlewarePromise, NotHandled, Event, HttpStatusCode, ErrorWithStatus } from "@akala/core";
 import { Request, Response } from './shared.js'
 import { resolve } from 'path'
-import send from 'send'
 import escapeHtml from 'escape-html';
+import { pathToFileURL } from "url";
+import fsHandler, { FileSystemProvider } from '@akala/fs'
 
-
-export interface Options extends send.SendOptions
+export interface Options 
 {
     fallthrough?: boolean;
     redirect?: boolean;
     setHeaders?(): void;
-    maxage?: string | number;
+    maxAge?: string | number;
+    root?: string;
+    fs?: Promise<FileSystemProvider<unknown>>
+}
+
+export class SendFileStream extends EventEmitter<{ error: Event<[ErrorWithStatus]>, directory: Event<[Request]>, headers: Event<[Request['headers']]>, file: Event<[]>, close: Event<[]> }>
+{
+    constructor(private readonly request: Request, private readonly path: string, private readonly options: Options)
+    {
+        super();
+    }
+
+    public async pipe(response: Response)
+    {
+        switch (typeof this.options.maxAge)
+        {
+            case 'string':
+                break;
+            case 'number':
+                if (this.options.maxAge > 0)
+                {
+                    const stat = await (await this.options.fs).stat(this.path);
+                    if (this.request.headers["last-modified"] && stat.mtime > new Date(this.request.headers["last-modified"]))
+                        return response.sendStatus(HttpStatusCode.NotModified);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]>
 {
     private readonly options: Options;
     onDirectory: (res: Request) => void;
+    fs: Promise<FileSystemProvider<unknown>>;
 
     constructor(root?: string, options?: Options)
     {
@@ -29,9 +59,11 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
             throw new TypeError('option setHeaders must be function')
 
         // setup options for send
-        options.maxAge = options.maxage || options.maxAge || 0
+        options.maxAge = options.maxAge || 0
         if (!options.root)
-            options.root = root && resolve(root)
+            options.root = root && resolve(root);
+        if (options.root && !this.fs)
+            options.fs = fsHandler.process(typeof (options.root) !== 'string' || URL.canParse(options.root) ? new URL(options.root) : pathToFileURL(options.root))
 
         // construct directory listener
         this.onDirectory = options.redirect
@@ -68,7 +100,7 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
         }
 
         // create send stream
-        const stream = send(req, path, this.options)
+        const stream = new SendFileStream(req, path, this.options)
 
         // add directory handler
         stream.on('directory', this.onDirectory)
@@ -101,7 +133,9 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
             })
 
             // pipe
-            stream.pipe(res).on('close', () => reject(res));
+            stream.pipe(res);
+
+            stream.on('close', () => reject(res));
         })
     }
 }
@@ -111,7 +145,7 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
  * Collapse all leading slashes into a single slash
  * @private
  */
-function collapseLeadingSlashes(str)
+function collapseLeadingSlashes(str: string)
 {
     // eslint-disable-next-line no-var
     for (var i = 0; i < str.length; i++)
@@ -123,7 +157,7 @@ function collapseLeadingSlashes(str)
     }
 
     return i > 1
-        ? '/' + str.substr(i)
+        ? '/' + str.substring(i)
         : str
 }
 
