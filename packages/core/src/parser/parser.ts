@@ -720,10 +720,7 @@ export class Parser
 
             // Check for comma
             if (expression.char === ',')
-            {
-                expression.offset++;
                 continue;
-            }
 
             // If no comma, must be end character
             if (expression.char === end)
