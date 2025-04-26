@@ -700,7 +700,7 @@ export class Parser
         for (; expression.offset < expression.length && expression.char !== end; expression.offset++)
         {
             // Skip whitespace
-            while (expression.char === ' ' && expression.offset < expression.length)
+            while ((expression.char === ' ' || expression.char == '\n' || expression.char == '\t') && expression.offset < expression.length)
                 expression.offset++;
 
             if (expression.offset >= expression.length)
@@ -715,7 +715,7 @@ export class Parser
             parseItem(); // Remove unused assignment
 
             // Skip whitespace
-            while (expression.char === ' ')
+            while (expression.char === ' ' || expression.char == '\n' || expression.char == '\t')
                 expression.offset++;
 
             // Check for comma
