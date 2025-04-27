@@ -193,6 +193,7 @@
 * handle init lifecycle stage 54a8169
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
+* handle setting a binding a boundproperty value aec03f6
 * handle undefined each source 823b7cd
 * handle upper case methods 974659f
 * handle upper case methods b915081
@@ -327,6 +328,8 @@
 * re-tagging workflow 5539b6b
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
+* release tagging 61cb1e1
+* release tagging b7cf1aa
 * remove - as valid character 9a9f5b5
 * remove cjs reference e501923
 * remove cjs reference 2284b79
