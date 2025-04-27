@@ -1,4 +1,4 @@
-#  (2025-04-26)
+#  (2025-04-27)
 
 
 * chore : code cleanup eae1150
@@ -169,6 +169,7 @@
 * ensure postinstall completes 10c4a72
 * escape start string in parseString method to prevent regex errors 7be1a8e
 * escape start string in parseString method to prevent regex errors 07d76a8
+* event datacontext 560847c
 * exclude upcoming documentation from navigation 5e58959
 * exclude upcoming documentation from navigation 6a2cc0a
 * existing file generator detection ca3ad06
