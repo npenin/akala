@@ -28,7 +28,6 @@ jobs:
         with:
           shell: true
       - name: tag
-        if: options.branch=='main'
         foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
         run:
