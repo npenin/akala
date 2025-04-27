@@ -708,13 +708,27 @@ export class Binding<T> extends EventEmitter<{
             }
         }
 
+        let bindingValueSubscription: Subscription;
+
         Object.defineProperty(target, property, {
             get()
             {
                 return value;
             }, set(newValue: T)
             {
-                binding.setValue(newValue);
+                if (newValue instanceof Binding)
+                {
+                    bindingValueSubscription?.();
+
+                    bindingValueSubscription = newValue.onChanged(ev =>
+                    {
+                        binding.setValue(ev.value);
+                    }, true);
+
+                    binding.teardown(bindingValueSubscription);
+                }
+                else
+                    binding.setValue(newValue);
             }
         });
 
