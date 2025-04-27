@@ -532,6 +532,7 @@
 * using proper branch option 93a62fb
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
+* wrong csv parsing f9359c6
 * wrong inferred dependency path baed476
 * wrong inferred dependency path 7a1f1ab
 * xpm init 0fb1f90

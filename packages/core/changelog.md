@@ -26,6 +26,7 @@
 * unit tests 5ea6752
 * update after StringCursor switch 5031902
 * update type annotations for Base64 encoding functions and improve handling of ArrayBuffer d2157f1
+* wrong csv parsing f9359c6
 
 
 ### Code Refactoring
