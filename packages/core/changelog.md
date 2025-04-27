@@ -12,6 +12,7 @@
 * cleanup dependencies d4f9ef0
 * enforce handlers with use 5fc57bc
 * enforce handlers with use 3cf35ac
+* handle setting a binding a boundproperty value aec03f6
 * improve isomorphicbuffer usability e0ff541
 * improve parser performances 158b46d
 * improve serialize on http ca89683
