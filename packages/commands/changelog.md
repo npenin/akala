@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* metadata on subcontainers altering commands 0bdc1ea
+* metadata on subcontainers altering commands bd96367
 
 
 
