@@ -73,13 +73,25 @@
                     "default": "./dist/cjs/index.js"
                 }
             },
-            "import": {
-                "types": "./dist/esm/index.browser.d.ts",
-                "default": "./dist/esm/index.browser.js"
+            "browser": {
+                "import": {
+                    "types": "./dist/esm/index.browser.d.ts",
+                    "default": "./dist/esm/index.browser.js"
+                },
+                "require": {
+                    "types": "./dist/cjs/index.browser.d.ts",
+                    "default": "./dist/cjs/index.browser.js"
+                }
             },
-            "require": {
-                "types": "./dist/cjs/index.browser.d.ts",
-                "default": "./dist/cjs/index.browser.js"
+            "default": {
+                "import": {
+                    "types": "./dist/esm/index.browser.d.ts",
+                    "default": "./dist/esm/index.browser.js"
+                },
+                "require": {
+                    "types": "./dist/cjs/index.browser.d.ts",
+                    "default": "./dist/cjs/index.browser.js"
+                }
             }
         },
         "./browser": {
