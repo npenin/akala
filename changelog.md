@@ -112,6 +112,7 @@
 * CLI handle optional path 26605aa
 * cli returns mainprogram (to prevent multiple init if processing multiple times 2979e96
 * cli returns mainprogram (to prevent multiple init if processing multiple times d14f9f0
+* commands exports resolution d8d5fc0
 * config as akala plugin 211cc6b
 * configFile init 79f7467
 * configFile init abcfad1
