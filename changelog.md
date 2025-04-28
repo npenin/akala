@@ -291,6 +291,7 @@
 * merge run steps b508445
 * metadata generation when provided invalid names 633262e
 * metadata generation when provided invalid names b9b828e
+* metadata on subcontainers altering commands bd96367
 * metadata on subcontainers altering commands 0bdc1ea
 * metatadata to return original commands 8188738
 * metatadata to return original commands 27a9049
