@@ -822,14 +822,15 @@ export class Binding<T> extends EventEmitter<{
             let value: T;
             this.watcher.on('change', (x) =>
             {
+                const oldValue = value;
                 if (x)
                 {
                     // this.watcher[Symbol.dispose]();
                     // this.watcher = new EventEmitter();
                     value = watcherAndSetter.watcher(target, this.watcher);
                 }
-                const oldValue = value;
-                value = watcherAndSetter.watcher(this.target, null);
+                else
+                    value = watcherAndSetter.watcher(this.target, null);
                 // value = this.getValue();
                 if (isPromiseLike(value))
                     value.then(v => this.emit('change', { value: v, oldValue }))
