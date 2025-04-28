@@ -25,7 +25,7 @@ export function metadata(container: Container<unknown>, deep?: boolean, extract?
             // console.log(cmd);
             const subContainer = metadata(cmd as Container<unknown>, deep);
             if (extract)
-                metacontainer.commands.push(...subContainer.commands.map(c => ({ name: key + '.' + c.name, ...meta.extractCommandMetadata(c) })));
+                metacontainer.commands.push(...subContainer.commands.map(c => ({ ...meta.extractCommandMetadata(c), name: key + '.' + c.name })));
             else
                 metacontainer.commands.push(...subContainer.commands);
         }
