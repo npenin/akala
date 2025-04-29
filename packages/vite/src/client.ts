@@ -68,12 +68,12 @@ if (import.meta.hot)
         rootScope.$set('container', container)
         rootScope.$set('$commandEvents', commandEvents)
         rootScope.$set('$authProcessor', authProcessor)
-    })
 
-    processor.handle(container, Metadata.extractCommandMetadata(container.resolve('$metadata')), { param: [true] }).
-        catch((metadata: Metadata.Container) =>
-        {
-            console.log(metadata);
-            registerCommands(metadata.commands, new LocalAfterRemoteProcessor(authProcessor, commandEvents), container);
-        });
+        processor.handle(container, Metadata.extractCommandMetadata(container.resolve('$metadata')), { param: [true] }).
+            catch((metadata: Metadata.Container) =>
+            {
+                console.log(metadata);
+                registerCommands(metadata.commands, new LocalAfterRemoteProcessor(authProcessor, commandEvents), container);
+            });
+    })
 }
