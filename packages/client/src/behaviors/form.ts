@@ -1,4 +1,4 @@
-import { Container } from "@akala/commands";
+import { Container } from "@akala/commands/browser";
 import { Composer } from "../template.js";
 import { Binding, ExpressionsWithLength, Injector, Subscription } from "@akala/core";
 import { DataBind, DataBindPlugin } from "./context.js";

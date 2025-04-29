@@ -1,5 +1,5 @@
 
-import { Container, Trigger } from '@akala/commands'
+import { Container, Trigger } from '@akala/commands/browser'
 
 /** 
  * Creates a keybinding trigger that maps keyboard shortcuts to commands.

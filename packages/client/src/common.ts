@@ -51,7 +51,7 @@ export function service(name: string, ...toInject: string[])
 }
 
 // import component, { webComponent } from './decorators/component.js';
-import { Container, ICommandProcessor, Metadata, StructuredParameters } from '@akala/commands';
+import { Container, ICommandProcessor, Metadata, StructuredParameters } from '@akala/commands/browser';
 // export { component, webComponent };
 export { AttributeComposer, WebComponent, webComponent, wcObserve, databind, HtmlControlElement } from './behaviors/shared.js';
 
