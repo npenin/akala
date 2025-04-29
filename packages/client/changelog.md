@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* first binding definition eb24595
+* handle null options during datacontext extension 8d1a88b
 
 
 
