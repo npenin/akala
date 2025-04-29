@@ -63,14 +63,14 @@ if (import.meta.hot)
     const commandEvents = new EventEmitter<Record<string, Event<[any, StructuredParameters<unknown[]>, Metadata.Command]>>>();
     const processor = new Processors.JsonRpcBrowser(Processors.JsonRpcBrowser.getConnection(new ViteSocketAdapter(), container));
     const authProcessor = new Processors.AuthPreProcessor(processor)
-    bootstrapModule.activate(['$rootScope'], (rootScope: IScope<object>) =>
+    bootstrapModule.activateAsync(['$rootScope'], async (rootScope: IScope<object>) =>
     {
         rootScope.$set('container', container)
         rootScope.$set('$commandEvents', commandEvents)
         rootScope.$set('$authProcessor', authProcessor)
 
-        processor.handle(container, Metadata.extractCommandMetadata(container.resolve('$metadata')), { param: [true] }).
-            catch((metadata: Metadata.Container) =>
+        await processor.handle(container, Metadata.extractCommandMetadata(container.resolve('$metadata')), { param: [true] }).
+            then(err => Promise.reject(err), (metadata: Metadata.Container) =>
             {
                 console.log(metadata);
                 registerCommands(metadata.commands, new LocalAfterRemoteProcessor(authProcessor, commandEvents), container);
