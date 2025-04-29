@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove Buffer reference for non-node runtimes 18ea445
+* introduce BufferEncoding to stop node dependency and add missing implementation in IsomorphicBuffer e2ee6b4
 
 
 

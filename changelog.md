@@ -191,6 +191,7 @@
 * handle already provided options 37f7aef
 * handle already provided options d0b15c3
 * handle case when url pathname is empty b44a1dc
+* handle container metadata in the activate stage fedf680
 * handle init lifecycle stage 54a8169
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
@@ -274,6 +275,7 @@
 * injectWithNameAsync behaves as its sync counterpart but awaits for args to be resolved before call the injectable dc7f00c
 * install command should now handle any package (as long as it contains an akala plugin) 7bec66f
 * install command should now handle any package (as long as it contains an akala plugin) cad421f
+* introduce BufferEncoding to stop node dependency and add missing implementation in IsomorphicBuffer e2ee6b4
 * IsomorphicBuffer 1885b99
 * leverage core case converters 63bcf6b
 * link to pm source 27aad27
@@ -480,6 +482,7 @@
 * update after core breaking change 78576ba
 * update after core breaking change 6379673
 * update after core breaking change 6ea3ca9
+* update after core BufferEncoding introduction 298da96
 * update after core Translator interface upgrade a6500a1
 * update after storage breaking change on providers b7492a2
 * update after storage breaking change on providers 91b6037
