@@ -47,7 +47,7 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
 
     public readonly length: number;
 
-    public static fromBuffer(buffer: Buffer | Uint8Array)
+    public static fromBuffer(buffer: Uint8Array)
     {
         return new IsomorphicBuffer(buffer)
     }
