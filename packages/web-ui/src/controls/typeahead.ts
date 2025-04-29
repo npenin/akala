@@ -15,7 +15,7 @@ export class Typeahead<T> extends Control<{ 'aria-controls': string, multiple: b
             const popover = this.popover;
             const currentItem = popover.querySelector('[role="option"][aria-activedescendant="true"]');
             if (currentItem == null)
-                popover.querySelector('[role="option"]').setAttribute('aria-activedescendant', 'true');
+                popover.querySelector('[role="option"]')?.setAttribute('aria-activedescendant', 'true');
             else
             {
                 const options = Array.from(popover.querySelectorAll('[role="option"]'));
@@ -30,7 +30,7 @@ export class Typeahead<T> extends Control<{ 'aria-controls': string, multiple: b
             const popover = this.popover;
             const currentItem = popover.querySelector('[role="option"][aria-activedescendant="true"]');
             if (currentItem == null)
-                popover.querySelector('[role="option"]').setAttribute('aria-activedescendant', 'true');
+                popover.querySelector('[role="option"]')?.setAttribute('aria-activedescendant', 'true');
             else
             {
                 const options = Array.from(popover.querySelectorAll('[role="option"]'));
