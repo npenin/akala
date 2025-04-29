@@ -180,6 +180,7 @@
 * extract params considers when array is provided c5eb98b
 * fallthrough on 404 a81cd29
 * fallthrough on 404 a8d70b5
+* first binding definition eb24595
 * force run init-akala only once (no matter the trigger) 2827d75
 * force run init-akala only once (no matter the trigger) 1acbe99
 * force set configFile path c42e60b
