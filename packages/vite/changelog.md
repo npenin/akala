@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle container metadata in the activate stage fedf680
+* await for container to be ready 064a452
 
 
 
