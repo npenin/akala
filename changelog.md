@@ -86,6 +86,7 @@
 * artificial bump 51ca8e8
 * artificially bump akala 0057047
 * artificially bump akala c6407f8
+* await for container to be ready 064a452
 * aws sdk generation and update services 7b922cf
 * base64UrlEncode properly strips = 8a9274d
 * base64UrlEncode properly strips = 54ca5ff
