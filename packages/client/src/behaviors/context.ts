@@ -1,4 +1,4 @@
-import { Binding, ExpressionsWithLength, ObservableObject, Parser, Subscription, each } from "@akala/core";
+import { Binding, EmptyBinding, ExpressionsWithLength, ObservableObject, Parser, Subscription, each } from "@akala/core";
 import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
@@ -128,7 +128,7 @@ export class DataContext implements Composer<IDataContext>
             if (closest)
                 binding = DataContext.extend(closest, options, item.dataset.context);
             else
-                binding = new Binding(options, Parser.parameterLess.parse(item.dataset.context));
+                binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
 
             item['dataContext']?.[Symbol.dispose]();
 
