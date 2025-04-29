@@ -1,4 +1,4 @@
-import { IsomorphicBuffer } from '@akala/core';
+import { IsomorphicBuffer, BufferEncoding } from '@akala/core';
 import { Cursor, Parsers, ParserWithoutKnownLength, parserWrite } from './_common.js';
 
 export default class PrefixedString<TString extends string = string> implements ParserWithoutKnownLength<TString>

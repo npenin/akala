@@ -10,6 +10,7 @@ import Message, { UnknownMessage } from './message.js';
 import { Sub } from './sub.js';
 import Varint from './varint.js';
 import { ZeroOrOne } from "../zero-or-one.js";
+import { BufferEncoding } from "@akala/core";
 
 export const varint = new Varint();
 export const raw: PrefixedBuffer & { wireType: WireType } = Object.assign(new PrefixedBuffer(varint), { wireType: 'length-delimited' } as { wireType: 'length-delimited' });

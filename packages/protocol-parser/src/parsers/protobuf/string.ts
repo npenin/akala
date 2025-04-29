@@ -1,6 +1,7 @@
 import PrefixedString from "../string-prefixed.js";
 import { Parsers } from "../_common.js";
 import { WireType } from './field.js';
+import { BufferEncoding } from "@akala/core";
 
 export default class String extends PrefixedString
 {

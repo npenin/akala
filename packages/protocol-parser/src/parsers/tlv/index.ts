@@ -1,4 +1,4 @@
-import { IsomorphicBuffer } from '@akala/core';
+import { IsomorphicBuffer, BufferEncoding } from '@akala/core';
 import * as parsers from '../index.js';
 import { TLVBuffer } from './buffer.js';
 import { TLVNumber } from './number.js';
