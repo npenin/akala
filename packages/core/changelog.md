@@ -1,9 +1,9 @@
-#  (2025-04-28)
+#  (2025-04-29)
 
 
 ### Bug Fixes
 
-* nested bindings change detection and oldValue assignment 8f373ca
+* remove Buffer reference for non-node runtimes 18ea445
 
 
 
