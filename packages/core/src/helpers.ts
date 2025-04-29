@@ -27,6 +27,16 @@ export interface Translator
     (obj: { key: string, fallback: string }, ...parameters: unknown[]): string;
 }
 
+
+export type BufferEncoding =
+    | "ascii"
+    | "utf8"
+    | "utf-8"
+    | "base64"
+    | "base64url"
+    | "binary"
+    | "hex";
+
 export class IsomorphicBuffer implements Iterable<number, number, number>
 {
     private readonly buffer: Uint8Array<ArrayBufferLike>
@@ -175,13 +185,10 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
                         }
                     return new IsomorphicBuffer(result)
                 }
-            case "utf16le":
-            case "utf-16le":
-            case "ucs2":
-            case "ucs-2":
             case "base64url":
-            case "latin1":
+                return new IsomorphicBuffer(base64.base64UrlDecToArr(s));
             case "binary":
+                return new IsomorphicBuffer(base64.strToUTF8Arr(s));
         }
     }
 
@@ -204,13 +211,10 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
                 return base64.base64EncArr(this.buffer);
             case "hex":
                 return (Array.prototype.map.call(this.buffer, v => v.toString('x')) as string[]).join('')
-            case "binary":
-            case "utf16le":
-            case "utf-16le":
-            case "ucs2":
-            case "ucs-2":
             case "base64url":
-            case "latin1":
+                return base64.base64UrlEncArr(this.buffer);
+            case "binary":
+                return base64.UTF8ArrToStr(this.buffer);
         }
     }
 
