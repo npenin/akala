@@ -1,6 +1,6 @@
 import { Control, HtmlControlElement, wcObserve, HotKeyTrigger, Each, ClientBindings, DataContext, Bound, fromEvent } from '@akala/client';
 import { Popover } from './popover.js';
-import { fromObject } from '@akala/commands';
+import { fromObject } from '@akala/commands/browser';
 import { Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray, Subscription } from '@akala/core';
 
 @wcObserve('options')
@@ -9,7 +9,7 @@ import { Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray
 @wcObserve('renderToText')
 export class Typeahead<T> extends Control<{ 'aria-controls': string, multiple: boolean, options?: ((needle: string) => T[]), renderToText?: ((item: T) => string), 'option-template'?: string }, HTMLInputElement>
 {
-    private hotKeys = fromObject({
+    private readonly hotKeys = fromObject({
         'ArrowUp': () =>
         {
             const popover = this.popover;
@@ -281,92 +281,86 @@ export class Typeahead<T> extends Control<{ 'aria-controls': string, multiple: b
             })
 
         }
+        else if (popover.childElementCount > 1)
+        {
+            const template = popover.querySelector<HTMLTemplateElement>('>template');
+            if (!template)
+                throw new Error('When no option-template is provided, the popover has to contain a single child element or a direct <template> element');
+
+            if (Array.from(template.content.childNodes).filter(c => c instanceof HTMLElement).length > 1)
+                throw new Error('Typeahead control can only reference a popover with a single child element');
+
+            template.remove();
+
+
+            Each.applyTemplate({
+                each: options,
+                container: popover,
+                root: null,
+                indexPropertyName: Each.defaultIndexPropertyName,
+                itemPropertyName: Each.defaultItemPropertyName,
+                optionsExtend: (option: Bound<{ [Each.defaultIndexPropertyName]: number, [Each.defaultItemPropertyName]: T, needle: string, active: boolean }>) =>
+                {
+                    if (!option.needle)
+                        option.needle = textInput;
+                    if (!option.active)
+                        option.active = new EmptyBinding(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]));
+                    else
+                        option.active.setValue(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]))
+                },
+                teardownManager: this,
+                template: template.content
+            })
+        }
+        else if (popover.firstElementChild instanceof HTMLTemplateElement)
+        {
+            const template = popover.firstElementChild;
+            template.remove();
+
+            Each.applyTemplate({
+                each: options,
+                container: popover,
+                root: null,
+                indexPropertyName: Each.defaultIndexPropertyName,
+                itemPropertyName: Each.defaultItemPropertyName,
+                optionsExtend: (option: Bound<{ [Each.defaultIndexPropertyName]: number, [Each.defaultItemPropertyName]: T, needle: string, active: boolean }>) =>
+                {
+                    if (!option.needle)
+                        option.needle = textInput;
+                    if (!option.active)
+                        option.active = new EmptyBinding(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]));
+                    else
+                        option.active.setValue(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]))
+                },
+                teardownManager: this,
+                template: template.content
+            })
+
+
+        }
         else
         {
-            if (popover.childElementCount > 1)
-            {
-                const template = popover.querySelector<HTMLTemplateElement>('>template');
-                if (!template)
-                    throw new Error('When no option-template is provided, the popover has to contain a single child element or a direct <template> element');
+            const template = popover.firstElementChild;
+            template.remove();
 
-                if (Array.from(template.content.childNodes).filter(c => c instanceof HTMLElement).length > 1)
-                    throw new Error('Typeahead control can only reference a popover with a single child element');
-
-                template.remove();
-
-
-                Each.applyTemplate({
-                    each: options,
-                    container: popover,
-                    root: null,
-                    indexPropertyName: Each.defaultIndexPropertyName,
-                    itemPropertyName: Each.defaultItemPropertyName,
-                    optionsExtend: (option: Bound<{ [Each.defaultIndexPropertyName]: number, [Each.defaultItemPropertyName]: T, needle: string, active: boolean }>) =>
-                    {
-                        if (!option.needle)
-                            option.needle = textInput;
-                        if (!option.active)
-                            option.active = new EmptyBinding(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]));
-                        else
-                            option.active.setValue(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]))
-                    },
-                    teardownManager: this,
-                    template: template.content
-                })
-            }
-            else
-            {
-                if (popover.firstElementChild instanceof HTMLTemplateElement)
+            Each.applyTemplate({
+                each: options,
+                container: popover,
+                root: null,
+                indexPropertyName: Each.defaultIndexPropertyName,
+                itemPropertyName: Each.defaultItemPropertyName,
+                optionsExtend: (option: Bound<{ [Each.defaultIndexPropertyName]: number, [Each.defaultItemPropertyName]: T, needle: string, active: boolean }>) =>
                 {
-                    const template = popover.firstElementChild;
-                    template.remove();
-
-                    Each.applyTemplate({
-                        each: options,
-                        container: popover,
-                        root: null,
-                        indexPropertyName: Each.defaultIndexPropertyName,
-                        itemPropertyName: Each.defaultItemPropertyName,
-                        optionsExtend: (option: Bound<{ [Each.defaultIndexPropertyName]: number, [Each.defaultItemPropertyName]: T, needle: string, active: boolean }>) =>
-                        {
-                            if (!option.needle)
-                                option.needle = textInput;
-                            if (!option.active)
-                                option.active = new EmptyBinding(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]));
-                            else
-                                option.active.setValue(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]))
-                        },
-                        teardownManager: this,
-                        template: template.content
-                    })
-
-
-                }
-                else
-                {
-                    const template = popover.firstElementChild;
-                    template.remove();
-
-                    Each.applyTemplate({
-                        each: options,
-                        container: popover,
-                        root: null,
-                        indexPropertyName: Each.defaultIndexPropertyName,
-                        itemPropertyName: Each.defaultItemPropertyName,
-                        optionsExtend: (option: Bound<{ [Each.defaultIndexPropertyName]: number, [Each.defaultItemPropertyName]: T, needle: string, active: boolean }>) =>
-                        {
-                            if (!option.needle)
-                                option.needle = textInput;
-                            if (!option.active)
-                                option.active = new EmptyBinding(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]));
-                            else
-                                option.active.setValue(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]))
-                        },
-                        teardownManager: this,
-                        template: template
-                    })
-                }
-            }
+                    if (!option.needle)
+                        option.needle = textInput;
+                    if (!option.active)
+                        option.active = new EmptyBinding(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]));
+                    else
+                        option.active.setValue(!!this.selectedValues.array.find(sv => sv.item === option[this.attribute(Each.itemPropertyNameAttribute) || Each.defaultItemPropertyName]))
+                },
+                teardownManager: this,
+                template: template
+            })
         }
     }
 }
