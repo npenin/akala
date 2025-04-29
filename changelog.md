@@ -196,6 +196,7 @@
 * handle case when url pathname is empty b44a1dc
 * handle container metadata in the activate stage fedf680
 * handle init lifecycle stage 54a8169
+* handle null options during datacontext extension 8d1a88b
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
 * handle setting a binding a boundproperty value aec03f6
