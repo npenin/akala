@@ -1,9 +1,15 @@
-#  (2025-04-29)
+#  (2025-04-30)
 
 
 ### Bug Fixes
 
-* introduce BufferEncoding to stop node dependency and add missing implementation in IsomorphicBuffer e2ee6b4
+* use combineSubscriptions helper e569526
+
+
+### Features
+
+* add combineSubscriptions helper f569432
+* add TopDown and BottomUp namespace event emitters d8e148e
 
 
 
