@@ -61,7 +61,7 @@ export { AttributeComposer, WebComponent, webComponent, wcObserve, databind, Htm
 export class LocalAfterRemoteProcessor implements ICommandProcessor
 {
     constructor(
-        private inner: ICommandProcessor,
+        private readonly inner: ICommandProcessor,
         public readonly eventEmitter: EventEmitter<Record<string, klEvent<[any, StructuredParameters<unknown[]>, Metadata.Command]>>> = new EventEmitter()
     ) { }
 
@@ -84,10 +84,15 @@ export class LocalAfterRemoteProcessor implements ICommandProcessor
         }
         catch (e)
         {
-            if (!this.eventEmitter.emit(cmd.name, e, param, cmd))
+            try
             {
-                throw e;
+                this.eventEmitter.emit(cmd.name, e, param, cmd);
             }
+            catch (e)
+            {
+                return e;
+            }
+            throw e;
         }
     }
 }
