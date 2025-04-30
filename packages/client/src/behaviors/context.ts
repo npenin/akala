@@ -1,4 +1,4 @@
-import { Binding, EmptyBinding, ExpressionsWithLength, ObservableObject, Parser, Subscription, each } from "@akala/core";
+import { Binding, EmptyBinding, ExpressionsWithLength, ObservableObject, Parser, Subscription, combineSubscriptions, each } from "@akala/core";
 import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
@@ -304,7 +304,7 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
 
             return [sub].concat(subs);
         });
-        return () => subs.forEach(sub => sub && sub());
+        return combineSubscriptions(...subs);
     }
 
     /**
@@ -337,7 +337,7 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
         const result = super.getBindings(item, options, context, member, source);
 
         const subs = DataBind.plugins.map(plugin => plugin.getBindings(item, result[1], context, member, source));
-        result[1].on(Symbol.dispose, () => subs.forEach(s => s?.()));
+        result[1].on(Symbol.dispose, combineSubscriptions(...subs));
 
         return result;
     }
