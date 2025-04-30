@@ -1,4 +1,4 @@
-#  (2025-04-29)
+#  (2025-04-30)
 
 
 ### Bug Fixes
@@ -8,7 +8,13 @@
 * https://sonarcloud.io/organizations/npenin/rules?open=Web%3ATableHeaderHasIdOrScopeCheck&rule_key=Web%3ATableHeaderHasIdOrScopeCheck ea8b3a2
 * https://sonarcloud.io/project/issues?open=AZTuPPyqWVPY8wORAfqc&id=npenin_akala 4b38813
 * https://sonarcloud.io/project/issues?open=AZTuPPyqWVPY8wORAfqG&id=npenin_akala cbee85e
+* leverage EventProcessor to allow for more use cases 6e85fc6
 * use proper selector 97fa6f9
+
+
+### BREAKING CHANGES
+
+* $rootScope.$commandEvents is now expecting events like processed.XXX, processing.XXX, ...
 
 
 
