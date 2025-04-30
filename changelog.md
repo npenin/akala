@@ -549,6 +549,7 @@
 * use helpers from @akala/cli 74292f2
 * use proper selector 562b53a
 * use proper selector 97fa6f9
+* using $metadata instead of $metadataCmd 453d4fd
 * using proper branch option 4136d01
 * using proper branch option 93a62fb
 * wrong bootstrap link 69bd482
@@ -573,6 +574,7 @@
 ### Code Refactoring
 
 * events to separate files af5211e
+* make proper use of index.browser c297379
 * replace void with undefined as NextParam 76398ea
 * replace void with undefined as NextParam 34fcf2a
 
@@ -735,6 +737,7 @@
 
 ### BREAKING CHANGES
 
+* remove duplicated $metadataCmd export. Please use $metadata instead
 * $rootScope.$commandEvents is now expecting events like processed.XXX, processing.XXX, ...
 * introduce StringCursor to prevent substringing all the time
 * switch to IsomorphicBuffer
