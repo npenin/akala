@@ -8,7 +8,7 @@ import { IpcAdapter } from "./ipc-adapter.js";
 import { logger, Logger, module as coreModule, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
-import { Processors, Triggers, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, StructuredParameters, Container, CommandProcessor, serveMetadata, connectByPreference, Metadata, $metadataCmd } from '@akala/commands';
+import { Processors, Triggers, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, StructuredParameters, Container, CommandProcessor, serveMetadata, connectByPreference, Metadata, $metadata } from '@akala/commands';
 import { fileURLToPath } from 'url';
 import commands from './container.js';
 import Configuration from '@akala/config';
@@ -157,8 +157,8 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
                             pmConnectInfo = await pm.dispatch('connect', 'pm');
                         var pm2 = await connectByPreference(pmConnectInfo, { metadata: await cliContainer.dispatch('$metadata'), container: cliContainer });
                         pm2.container.processor.useMiddleware(20, pm2.processor);
-                        pm2.container.unregister($metadataCmd.name);
-                        pm2.container.register($metadataCmd);
+                        pm2.container.unregister($metadata.name);
+                        pm2.container.register($metadata);
                         pm2.container.register(Metadata.extractCommandMetadata(pm.resolve('bridge')));
                         if (!await pm2.container.dispatch('bridge', connectionId))
                             throw new Error('connection could not be established');

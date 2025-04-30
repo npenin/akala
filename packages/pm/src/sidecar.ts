@@ -1,5 +1,5 @@
 import { module } from '@akala/core'
-import { $metadataCmd, connectByPreference, ConnectionPreference, Container, updateCommands } from "@akala/commands";
+import { $metadata, connectByPreference, ConnectionPreference, Container, updateCommands } from "@akala/commands";
 import { SideCarConnectionPreference, Sidecar, defaultOrders, connect } from "./index.js";
 import pm from './container.js'
 
@@ -47,8 +47,8 @@ export function sidecar(options?: { pm?: pm.container & Container<void>, contain
                                 {
                                     const c = await connectByPreference(await meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
                                     await c.container.dispatch('proxy', property);
-                                    c.container.unregister($metadataCmd.name);
-                                    c.container.register(Object.assign($metadataCmd, { processor: c.processor }));
+                                    c.container.unregister($metadata.name);
+                                    c.container.register(Object.assign($metadata, { processor: c.processor }));
                                     updateCommands((await c.container.dispatch('$metadata', true)).commands, c.processor, c.container);
                                     return c.container;
                                 });
