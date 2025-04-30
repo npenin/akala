@@ -1,9 +1,9 @@
 import { Scope as IScope, Page, LocationService, ScopeImpl, page } from '@akala/client'
 import { Container, Metadata, Processors } from '@akala/commands';
-import { EventEmitter, Event, ObservableObject, Parser } from '@akala/core';
+import { ObservableObject, Parser } from '@akala/core';
 import { Login } from './login/login.js';
 
-type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
+type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: Processors.EventProcessor }>;
 
 class HomePage extends Page
 {

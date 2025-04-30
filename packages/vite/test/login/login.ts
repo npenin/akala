@@ -1,8 +1,7 @@
 import { Scope as IScope, Page, page, LocationService, ScopeImpl } from '@akala/client'
 import { Container, Processors } from '@akala/commands';
-import { EventEmitter, Event } from '@akala/core';
 
-type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
+type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: Processors.EventProcessor }>;
 
 @page({
     template: 'test/login/login.html',
@@ -26,7 +25,7 @@ export class Login extends Page
     constructor(scope: Scope, location: LocationService)
     {
         super();
-        this.teardown(scope.$commandEvents.on('auth.login', (result: any) =>
+        this.teardown(scope.$commandEvents.on('processed.auth.login', (result: any) =>
         {
             if ((document.getElementsByName('remember-me')[0] as HTMLInputElement).checked)
                 localStorage.setItem('akala.authState', JSON.stringify(result))

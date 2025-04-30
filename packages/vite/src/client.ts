@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
-import { Container, Metadata, Processors, StructuredParameters, registerCommands } from "@akala/commands";
+import { Container, Metadata, Processors, registerCommands } from "@akala/commands";
 import { SocketAdapter, SocketAdapterEventMap } from "@akala/json-rpc-ws";
-import { bootstrapModule, IScope, LocalAfterRemoteProcessor, templateCache, templateFunction } from "@akala/client";
-import { Event, EventEmitter, isPromiseLike } from "@akala/core";
+import { bootstrapModule, IScope, templateCache, templateFunction } from "@akala/client";
+import { isPromiseLike } from "@akala/core";
 
 const container = new Container('akala', null);
 
@@ -60,20 +60,21 @@ if (import.meta.hot)
                 f.hotReplace(data.content);
     });
 
-    const commandEvents = new EventEmitter<Record<string, Event<[any, StructuredParameters<unknown[]>, Metadata.Command]>>>();
     const processor = new Processors.JsonRpcBrowser(Processors.JsonRpcBrowser.getConnection(new ViteSocketAdapter(), container));
     const authProcessor = new Processors.AuthPreProcessor(processor)
+    const eventProcessor = new Processors.EventProcessor(authProcessor);
+
     bootstrapModule.activateAsync(['$rootScope'], async (rootScope: IScope<object>) =>
     {
         rootScope.$set('container', container)
-        rootScope.$set('$commandEvents', commandEvents)
+        rootScope.$set('$commandEvents', eventProcessor)
         rootScope.$set('$authProcessor', authProcessor)
 
         await processor.handle(container, Metadata.extractCommandMetadata(container.resolve('$metadata')), { param: [true] }).
             then(err => Promise.reject(err), (metadata: Metadata.Container) =>
             {
                 console.log(metadata);
-                registerCommands(metadata.commands, new LocalAfterRemoteProcessor(authProcessor, commandEvents), container);
+                registerCommands(metadata.commands, eventProcessor, container);
             });
     })
 }
