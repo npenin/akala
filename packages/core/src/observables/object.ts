@@ -16,7 +16,7 @@ import { ParameterExpression } from "../parser/expressions/parameter-expression.
 import { TernaryExpression } from "../parser/expressions/ternary-expression.js";
 import { TernaryOperator } from "../parser/expressions/ternary-operator.js";
 import { ExpressionSimplifyer } from "../parser/expressions/visitors/expression-simplifyer.js";
-import { Subscription } from "../teardown-manager.js";
+import { combineSubscriptions, Subscription } from "../teardown-manager.js";
 import { watcher, Watcher, WatcherFormatter } from './shared.js'
 
 export interface ObjectEvent<T>
@@ -648,10 +648,7 @@ export class Binding<T> extends EventEmitter<{
             return Binding.prototype.onChanged.call(combinedBinding, handler, triggerOnRegister);
         }
 
-        combinedBinding.on(Symbol.dispose, () =>
-        {
-            subs.forEach(sub => sub?.());
-        })
+        combinedBinding.on(Symbol.dispose, combineSubscriptions(...subs))
 
         return combinedBinding;
     }
