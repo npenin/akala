@@ -3,6 +3,21 @@
  */
 export type Subscription = () => boolean
 
+export function combineSubscriptions(...subs: (void | undefined | Subscription)[]): Subscription
+{
+    let unsubscribed = false;
+    return () =>
+    {
+        if (unsubscribed)
+            return false;
+
+        for (const sub of subs)
+            sub && sub();
+
+        return unsubscribed = true;
+    };
+}
+
 /**
  * Manages cleanup of subscriptions and disposable resources
  */
