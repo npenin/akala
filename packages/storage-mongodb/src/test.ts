@@ -10,13 +10,14 @@ describe('query', () =>
 {
     var pe = new MongoDb();
     var model = new ModelDefinition('pwet', 'pwic', null);
+    const models = {};
     model.fromJson({
         members: {
             name: { generator: null, name: 'name', nameInStorage: 'Name', isKey: true, type: 'string' },
             prop1: { generator: null, name: 'prop1', nameInStorage: 'Prop1', isKey: false, type: 'int' },
             prop2: { generator: null, name: 'prop2', nameInStorage: 'Prop2', isKey: false, type: 'boolean' }
         }
-    });
+    }, models);
     type ModelType = {
         name: string;
         prop1: number;
