@@ -6,7 +6,6 @@ export type StructuredParameters<T extends unknown[] = unknown[]> = { param: T, 
 
 export abstract class CommandProcessor implements ICommandProcessor
 {
-    public readonly requiresCommandName = false;
     constructor(public name: string) { }
     public abstract handle(origin: Container<unknown>, cmd: Command, param: StructuredParameters): MiddlewarePromise;
 }
