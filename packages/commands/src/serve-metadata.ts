@@ -6,7 +6,7 @@ import { ICommandProcessor } from './model/processor.js';
 import { ErrorWithStatus } from '@akala/core';
 import { Container } from './model/container.js';
 import { ConnectionPreference, connectWith } from './serve-metadata.browser.js';
-import { $metadataCmd } from './index.browser.js';
+import { $metadata } from './index.browser.js';
 
 export type ServeMetadata = Record<string, object>
 
@@ -50,7 +50,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
         registerCommands(settings.metadata.commands, processor, container);
     else
     {
-        await processor.handle(container, $metadataCmd, { param: [] }).then(e => { throw e }, metaContainer =>
+        await processor.handle(container, $metadata, { param: [] }).then(e => { throw e }, metaContainer =>
             registerCommands(metaContainer.commands, processor, container))
         // var metaContainer = await container.dispatch('$metadata');
     }

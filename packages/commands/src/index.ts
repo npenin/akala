@@ -1,22 +1,17 @@
+/**
+ * 
+ * CONSIDER index.browser !!!
+ * 
+ */
+
 export * from './index.browser.js'
-export * from './serve-metadata.js'
-import serveMetadata, { ServeMetadata, connectByPreference } from './serve-metadata.js'
-export { ServeMetadata, connectByPreference, serveMetadata };
-import * as Triggers from './triggers/index.js'
-import * as Metadata from './metadata/index.js'
-import { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations } from './metadata/index.js'
 import { program, buildCliContext, buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
 import { Container } from './model/container.js'
 import { ICommandProcessor } from './model/processor.js'
 import { registerCommands } from './generator.js'
-import { DiscoveryOptions, FileSystem } from './processors/index.js'
 import * as Processors from './processors/index.js'
-export { Processors }
-export { Triggers };
-
-export { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
-
-export { protocolHandlers, HandlerResult, serverHandlers, ServerHandler } from './protocol-handler.js';
+import * as Triggers from './triggers/index.js'
+export { Processors, Triggers }
 
 // import * as cli from './cli'
 export { NetSocketAdapter } from './net-socket-adapter.js'
@@ -28,6 +23,7 @@ import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
 export { default as serve, ServeOptions } from './cli/serve.js'
 import * as FileGenerator from './cli/new.js';
 import { Readable } from 'stream';
+import { Metadata } from './index.browser.js'
 
 export { generatorPlugin as tsPluginHandler } from './cli/generate-metadata.js'
 export { generatorPlugin as metadataPluginHandler } from './cli/generate.js'
@@ -56,7 +52,7 @@ export class Cli
         this.promise = cliContainer.attach(Triggers.cli, this.program = program);
     }
 
-    public static async fromFileSystem(commandsPath: string, options?: string | DiscoveryOptions): Promise<Cli>
+    public static async fromFileSystem(commandsPath: string, options?: string | Processors.DiscoveryOptions): Promise<Cli>
     {
         const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
 
@@ -78,12 +74,12 @@ export class Cli
                     options.relativeTo = commandsPath;
             }
 
-            options.processor = new FileSystem(options.relativeTo);
+            options.processor = new Processors.FileSystem(options.relativeTo);
         }
 
         cliContainer.processor.useMiddleware(51, options.processor);
 
-        const container = await FileSystem.discoverMetaCommands(commandsPath, options);
+        const container = await Processors.FileSystem.discoverMetaCommands(commandsPath, options);
         return new Cli(cliContainer, container, options.processor, program);
 
     }

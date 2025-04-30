@@ -7,26 +7,25 @@ export * from './model/processor.js'
 export * from './model/error-unknowncommand.js'
 import * as Processors from './processors/index.browser.js'
 import * as Metadata from './metadata/index.js'
-import { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata.browser.js'
+export * from './serve-metadata.js'
+import serveMetadata, { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata.browser.js'
+export { ServeMetadata, connectByPreference, connectWith, ConnectionPreference, serveMetadata };
+import { ConfigurationMap, Configurations, Configuration, GenericConfiguration, ExtendedConfigurations } from './metadata/index.js'
+
 import { CommandProcessor } from './model/processor.js'
 export { Processors, Metadata }
-export { ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import $metadata from './commands/$metadata.js'
 import { protocolHandlers } from './protocol-handler.js'
 import { Container } from './model/container.js'
 import { registerCommands } from './generator.js'
-import $metadataCmd from './commands/$metadata.js'
 export { CommandProcessor };
-export { $metadataCmd, $metadata };
+export { $metadata };
 
-export { ConfigurationMap } from './metadata/configurations.js'
+export { ConfigurationMap, Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
 
-export const Triggers = {};
+export { protocolHandlers, HandlerResult, serverHandlers, ServerHandler } from './protocol-handler.js';
 
-export class Cli
-{
-    public static Metadata = $metadata;
-}
+export const Triggers = {}
 
 export async function connect(socketPath: string | URL, signal: AbortSignal, resolvedMetadata?: Metadata.Container): Promise<Container<unknown>>
 {
