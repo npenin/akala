@@ -1,4 +1,4 @@
-#  (2025-04-29)
+#  (2025-04-30)
 
 
 * chore : code cleanup eae1150
@@ -282,6 +282,7 @@
 * introduce BufferEncoding to stop node dependency and add missing implementation in IsomorphicBuffer e2ee6b4
 * IsomorphicBuffer 1885b99
 * leverage core case converters 63bcf6b
+* leverage EventProcessor to allow for more use cases 6e85fc6
 * link to pm source 27aad27
 * link to pm source fc73c95
 * links e6a33ea
@@ -331,6 +332,7 @@
 * pre-create config file if it does not exist 0c72d08
 * pre-create config file if it does not exist 46d5f72
 * prevent tag creation 49c9302
+* properly handle event emitters failure a24cafe
 * protobuf reading 007b724
 * protocol-parser tests after IsomorphicBuffer implementation 338a64d
 * provide proper logging 445a133
@@ -543,6 +545,7 @@
 * update titles and parent attributes in markdown files for improved documentation clarity 717dd51
 * update to support login redirect d2e8e6e
 * update type annotations for Base64 encoding functions and improve handling of ArrayBuffer d2157f1
+* use combineSubscriptions helper e569526
 * use helpers from @akala/cli 74292f2
 * use proper selector 562b53a
 * use proper selector 97fa6f9
@@ -598,6 +601,7 @@
 * add client install support 63a020d
 * add client install support 02b05eb
 * add close on FileGenerator db6fd88
+* add combineSubscriptions helper f569432
 * add commands getting-started guide 5492118
 * add commands getting-started guide 1564b82
 * add cookie support + add IdStore and IdSerializer interfaces 2e3b84d
@@ -634,6 +638,7 @@
 * add more flexibility to aws configuration (used in generate tf) 1951d59
 * add name in xpm 2082639
 * add name in xpm d8b9ad6
+* add namespaced event on EventProcessor 719726f
 * add NO_AKALAPOSTINSTALL support bb60b83
 * add NO_AKALAPOSTINSTALL support bebd6b1
 * add oidc formatter factory 11b2d52
@@ -645,6 +650,7 @@
 * add runtime concept 1993141
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
+* add TopDown and BottomUp namespace event emitters d8e148e
 * add uri on request to be able to know the full url of a request a189409
 * add uri on request to be able to know the full url of a request 3ed1dd0
 * add version field to package.json for documentation package 42a4cc8
@@ -729,6 +735,7 @@
 
 ### BREAKING CHANGES
 
+* $rootScope.$commandEvents is now expecting events like processed.XXX, processing.XXX, ...
 * introduce StringCursor to prevent substringing all the time
 * switch to IsomorphicBuffer
 * `set-serve` has been replaced with `serve --set`
