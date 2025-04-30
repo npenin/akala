@@ -1,4 +1,4 @@
-import { Subscription, TeardownManager } from "../teardown-manager.js";
+import { combineSubscriptions, Subscription, TeardownManager } from "../teardown-manager.js";
 import { AllEventKeys, EventBus, SpecialEvents } from "./event-bus.js";
 import { AsEvent, Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType } from "./shared.js";
 
@@ -183,4 +183,41 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
                 this.events[prop][Symbol.dispose]();
         }
     }
+}
+
+export class TopDownNamespaceEventEmitter<T extends object = Record<string, Event<unknown[]>>> extends EventEmitter<T>
+{
+    on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Subscription
+    {
+        if (typeof event === "string")
+        {
+            const namespaces = event.split('.').map((n, i, array) => array.slice(array.length - i).join('.'));
+            const subs: Subscription[] = []
+            for (const namespace in namespaces)
+                subs.push(super.on(namespace as TEvent, handler, options));
+
+            return combineSubscriptions(...subs);
+        }
+        else
+            return super.on(event, handler, options);
+    }
+}
+
+export class BottomUpNamespaceEventEmitter<T extends object = Record<string, Event<unknown[]>>> extends EventEmitter<T>
+{
+    emit<const TEvent extends EventKeys<T>>(event: TEvent, ...args: EventArgs<T[TEvent]>): false | EventReturnType<T[TEvent]>
+    {
+        if (typeof event === "string")
+        {
+            const namespaces = event.split('.').map((n, i, array) => array.slice(array.length - i).join('.'));
+            let result: false | EventReturnType<T[TEvent]>;
+            for (const namespace in namespaces)
+                result = result || super.emit(namespace as TEvent, ...args);
+            return result;
+        }
+        else
+            return super.emit(event, ...args);
+    }
+
+
 }
