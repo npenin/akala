@@ -43,38 +43,6 @@ export class SelfDefinedCommand<TArgs extends unknown[], T = unknown> implements
 
 }
 
-// export class CommandProxy<TState = unknown> extends Command<TState>
-// {
-//     constructor(public processor: Processor, name: string, inject?: string[])
-//     {
-//         super((_trigger, ...args) =>
-//         {
-//             if (this.inject && this.inject.length == 1 && this.inject[0] == '$param')
-//             {
-//                 if (processor.requiresCommandName)
-//                     return processor.handle(name, args[0]).then(err => { throw err }, result => result);
-//                 else
-//                     return processor.handle(this, args[0]).then(err => { throw err }, result => result);
-//             }
-
-//             if (processor.requiresCommandName)
-//                 return processor.handle(name, { param: args }).then(err => { throw err }, result => result);
-//             else
-//                 return processor.handle(this, { _trigger: 'proxy', param: args }).then(err => { throw err }, result => result);
-//         }, name, inject);
-//     }
-
-//     public get inject(): string[]
-//     {
-//         return super.inject || this.config[this.processor.name] && this.config[this.processor.name]?.inject;
-//     }
-
-//     public set inject(value: string[] | undefined)
-//     {
-//         super.inject = ['_trigger'].concat(value);
-//     }
-// }
-
 // export class MapCommand extends Command<unknown>
 // {
 //     constructor(public container: Container<unknown>, commandToTrigger: string, name: string, inject?: string[])
