@@ -9,7 +9,7 @@ import { CommandProcessor } from '../commands/command-processor.js';
 import { CommandResult, Commands, Create } from '../commands/command.js';
 import { ModelDefinition } from '../shared.js';
 import { promisify } from "util";
-import { Generator } from '../common.js';
+import { Generator, ModelDefinitions } from '../common.js';
 import { NotSupportedException } from '../exceptions.js';
 import { isPromiseLike } from '@akala/core';
 
@@ -19,7 +19,8 @@ export class File extends PersistenceEngine<FileOptions, void>
 
     constructor(private readonly fileEntryFactory: (path: string, name: string, def: ModelDefinition) => FileSystemFile)
     {
-        super(new FileCommandProcessor(fileEntryFactory));
+        const modelDefinitions = {};
+        super(new FileCommandProcessor(fileEntryFactory, modelDefinitions), modelDefinitions);
     }
 
     public async init(options?: { path: string, rootDbName?: string, store?: FileSystemFolder & FileSystemContainer })
@@ -29,7 +30,7 @@ export class File extends PersistenceEngine<FileOptions, void>
         if (!options.rootDbName)
             options.rootDbName = '.';
         if (!options.store)
-            options.store = await new FolderEntry(options.path, options.rootDbName, undefined, this.fileEntryFactory) as FileSystemFolder & FileSystemContainer;
+            options.store = await new FolderEntry(options.path, options.rootDbName, undefined, this.fileEntryFactory, this.definitions) as FileSystemFolder & FileSystemContainer;
         this.store = options.store;
         this.processor.init(options);
     }
@@ -52,6 +53,7 @@ export class File extends PersistenceEngine<FileOptions, void>
         const visitConstant = executor.visitConstant;
         const store = this.store;
         const fileEntryFactory = this.fileEntryFactory;
+        const modelDefinitions = this.definitions;
         executor.visitConstant = function <TCte>(this: ExpressionExecutor, cte: ConstantExpression<TCte>)
         {
             // console.log(cte.value)
@@ -65,7 +67,7 @@ export class File extends PersistenceEngine<FileOptions, void>
                     folder = await store[model.namespace || 'db']
                     if (!folder)
                     {
-                        folder = new Proxy(new FolderEntry(store[fspath], model.namespace || 'db', null, fileEntryFactory), proxyHandler);
+                        folder = new Proxy(new FolderEntry(store[fspath], model.namespace || 'db', null, fileEntryFactory, modelDefinitions), proxyHandler);
                         folder[isNew] = true;
                     }
                     if (folder[isFile])
@@ -73,7 +75,7 @@ export class File extends PersistenceEngine<FileOptions, void>
 
                     if (!folder[model.nameInStorage])
                     {
-                        folder = new Proxy(new FolderEntry(folder[fspath], model.nameInStorage, model, fileEntryFactory), proxyHandler);
+                        folder = new Proxy(new FolderEntry(folder[fspath], model.nameInStorage, model, fileEntryFactory, modelDefinitions), proxyHandler);
                         folder[isNew] = true;
                     }
                     else
@@ -115,7 +117,7 @@ interface FileOptions
 
 class FileCommandProcessor extends CommandProcessor<FileOptions>
 {
-    constructor(private readonly fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
+    constructor(private readonly fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile, private readonly modelDefinitions: ModelDefinitions)
     {
         super();
     }
@@ -198,12 +200,12 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
         await this.store;
         let folder = await this.store[cmd.model.namespace || 'db'];
         if (!folder)
-            folder = await (this.store[cmd.model.namespace || 'db'] = createFolder(this.store[fspath], cmd.model.namespace || 'db', null, this.fileEntryFactory));
+            folder = await (this.store[cmd.model.namespace || 'db'] = createFolder(this.store[fspath], cmd.model.namespace || 'db', null, this.fileEntryFactory, this.modelDefinitions));
         if (!folder?.[isDirectory])
             return Promise.reject(new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db')} is not a folder`));
 
         if (!await folder[cmd.model.nameInStorage])
-            folder[cmd.model.nameInStorage] = createFolder(folder[fspath], cmd.model.nameInStorage, cmd.model, this.fileEntryFactory);
+            folder[cmd.model.nameInStorage] = createFolder(folder[fspath], cmd.model.nameInStorage, cmd.model, this.fileEntryFactory, this.modelDefinitions);
         folder = await folder[cmd.model.nameInStorage]
         if (!folder?.[isDirectory])
             return Promise.reject(new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db', cmd.model.nameInStorage)} is not a folder`));
@@ -273,9 +275,9 @@ interface FileSystemContainer extends PromiseFileSystem
 
 type FileSystemEntries = FileSystemFile | (FileSystemFolder & FileSystemContainer);
 
-function createFolder(path: string, name: string, model: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile): FileSystemFolder & FileSystemContainer
+function createFolder(path: string, name: string, model: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile, definitions: ModelDefinitions): FileSystemFolder & FileSystemContainer
 {
-    const folder = new FolderEntry(path, name, model, fileEntryFactory);
+    const folder = new FolderEntry(path, name, model, fileEntryFactory, definitions);
     folder[isNew] = true;
     return new Proxy(folder as any, proxyHandler);
 }
@@ -315,7 +317,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
     [model]: ModelDefinition<any>
     [fileEntryFactoryProperty]: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile;
 
-    constructor(path: string, name: string, def: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
+    constructor(path: string, name: string, def: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile, private modelDefinitions: ModelDefinitions)
     {
         this[fspath] = join(path, name);
         this[fsName] = name;
@@ -375,7 +377,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
                         result.forEach(e =>
                         {
                             if (e.isDirectory())
-                                this[e.name] = new Proxy<FileSystemFolder & FileSystemContainer>(new FolderEntry(this[fspath], e.name, (typeof this[model] == 'undefined') && ModelDefinition.definitionsAsArray.find(def => def.nameInStorage == e.name), this[fileEntryFactoryProperty]) as any, proxyHandler)
+                                this[e.name] = new Proxy<FileSystemFolder & FileSystemContainer>(new FolderEntry(this[fspath], e.name, (typeof this[model] == 'undefined') && Object.values(this.modelDefinitions).find(def => def.nameInStorage == e.name), this[fileEntryFactoryProperty], this.modelDefinitions) as any, proxyHandler)
                             else if (e.isFile())
                                 this[e.name] = new Proxy<FileSystemFile>(this[fileEntryFactoryProperty](this[fspath], e.name, this[model]), proxyHandler)
                         });

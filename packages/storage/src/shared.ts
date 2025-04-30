@@ -122,7 +122,6 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
             model.name = name_s;
             model.nameInStorage = nameInStorage || name_s;
             model.namespace = namespace || null;
-            ModelDefinition.definitions[name_s] = model;
         }
         // Object.setPrototypeOf(model, cl.prototype);
         // cl.prototype = model;

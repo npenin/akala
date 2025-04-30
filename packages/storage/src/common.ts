@@ -164,16 +164,15 @@ export interface SerializableDefinition<TObject extends Record<string, any>>
     relationships?: { [key: string]: SerializedRelationship<TObject, Extract<keyof TObject, string>> };
 }
 
+export type ModelDefinitions = Record<string, ModelDefinition<unknown>>;
+
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class ModelDefinition<TObject extends { [key: string]: any } = { [key: string]: any }>
 {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    static definitions: { [key: string]: ModelDefinition<any> } = {};
-    static get definitionsAsArray() { return Object.keys(this.definitions).map((name) => this.definitions[name]); }
-    constructor(public name: string, public nameInStorage: string, public namespace: string)
+
+    constructor(public name: string, public namespace: string, public nameInStorage?: string)
     {
-        if (name)
-            ModelDefinition.definitions[name] = this;
         if (!nameInStorage)
             this.nameInStorage = name;
     }
@@ -223,7 +222,7 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
             } : undefined);
     }
 
-    fromJson(data: string | SerializableDefinition<TObject>)
+    fromJson(data: string | SerializableDefinition<TObject>, modelHolder: Record<string, ModelDefinition<unknown>>)
     {
         if (typeof data == 'string')
             data = JSON.parse(data);
@@ -235,7 +234,7 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
         if (definition.fields)
             Object.entries(definition.fields).forEach(fieldEntry => this.defineStorageMember(fieldEntry[0], fieldEntry[1].isKey, Object.assign({}, fieldEntry[1].type, { type: StorageFieldType[fieldEntry[1].type] }) as FieldType, Generator[fieldEntry[1].generator] as Generator));
         if (definition.relationships)
-            Object.entries(definition.relationships).forEach(relationship => this.defineRelationship(relationship[0] as Extract<keyof TObject, string>, ModelDefinition.definitions[relationship[1].target], relationship[1].mapping));
+            Object.entries(definition.relationships).forEach(relationship => this.defineRelationship(relationship[0] as Extract<keyof TObject, string>, modelHolder[relationship[1].target], relationship[1].mapping));
         if (definition.members)
             Object.entries(definition.members).forEach(member => this.defineMember(member[0] as Extract<keyof TObject, string>, member[1].isKey, Object.assign({}, member[1].type, { type: StorageFieldType[member[1].type] }) as FieldType, Generator[member[1].generator] as Generator, member[1].nameInStorage));
     }

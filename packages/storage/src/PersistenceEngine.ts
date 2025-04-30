@@ -3,6 +3,7 @@ import { CommandResult, Commands, CommandType, Create, Update, Delete } from './
 import { CommandProcessor } from './commands/command-processor.js';
 import { ModelDefinition, DbSet } from './shared.js';
 import { customResolve, ICustomResolver, ErrorWithStatus, HttpStatusCode, Resolvable } from '@akala/core';
+import { ModelDefinitions } from './common.js';
 
 const command = Symbol('command');
 
@@ -30,9 +31,17 @@ export class Transaction
 
 export abstract class PersistenceEngine<TOptions = string, TRawQuery = unknown> implements ICustomResolver
 {
-    constructor(protected processor: CommandProcessor<TOptions>)
+    constructor(protected processor: CommandProcessor<TOptions>, public readonly definitions: ModelDefinitions = {})
     {
     }
+
+    public useModel(...modelDefinitions: ModelDefinition<unknown>[])
+    {
+        for (const modelDefinition of modelDefinitions)
+            this.definitions[modelDefinition.name] = modelDefinition;
+    }
+
+    public get definitionsAsArray() { return Object.keys(this.definitions).map((name) => this.definitions[name]); }
 
     public rawQuery?<T>(query: TRawQuery): PromiseLike<T>;
 
@@ -73,9 +82,9 @@ export abstract class PersistenceEngine<TOptions = string, TRawQuery = unknown> 
     {
         if (typeof name == 'string')
         {
-            if (!ModelDefinition.definitions[name])
+            if (!this.definitions[name])
                 throw new Error('There is no model for name ' + name)
-            return ModelDefinition.definitions[name].dbSet(this);
+            return this.definitions[name].dbSet(this) as unknown as DbSet<T, TRawQuery>;
         }
         else
             return name.dbSet(this);
