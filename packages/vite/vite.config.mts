@@ -19,7 +19,7 @@ export default {
         akala({
             auth: {
                 path: 'npm:///@akala/authentication/commands.json',
-                init: ['file', null, 'my-very-secret-key']
+                init: ['file+json://./db', 'auth.priv']
             },
         }, [{
             priority: 0, processor: new Processors.AuthHandler(async (container, command, params) =>

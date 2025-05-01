@@ -25,7 +25,7 @@ export class Login extends Page
     constructor(scope: Scope, location: LocationService)
     {
         super();
-        this.teardown(scope.$commandEvents.on('processed.auth.login', (result: any) =>
+        this.teardown(scope.$commandEvents.once('processed.auth.login', (result: any) =>
         {
             if ((document.getElementsByName('remember-me')[0] as HTMLInputElement).checked)
                 localStorage.setItem('akala.authState', JSON.stringify(result))

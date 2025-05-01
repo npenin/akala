@@ -12,9 +12,15 @@
     <span id="debug" data-bind="{innerText:controller#json}"></span>
     <span id="debug3" data-bind="{innerText:controller.commands#async#json}"></span>
 
-    <ul is="ul-each" each="controller.commands" item-property-name="command">
-        <template>
-            <li data-bind data-bind-inner-text="command.name"></li>
-        </template>
-    </ul>
+    <kl-master-detail>
+        <ul is="ul-each" each="controller.commands" item-property-name="command">
+            <template>
+                <li on on-click="item=command" data-bind data-bind-inner-text="command.name" klass
+                    klass-active="item==command"></li>
+            </template>
+        </ul>
+        <div slot="detail">
+            <span data-bind data-bind-inner-text="item.name"></span>
+        </div>
+    </kl-master-detail>
 </main>
