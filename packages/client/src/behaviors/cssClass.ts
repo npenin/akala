@@ -1,4 +1,4 @@
-import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, Subscription, map, each } from '@akala/core';
+import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, Subscription, map, each, combineSubscriptions } from '@akala/core';
 import { AttributeComposer, databind } from './shared.js';
 import { DataContext } from './context.js';
 import { MaybeBound } from '../clientify.js';
@@ -113,11 +113,7 @@ export class CssClass extends TeardownManager
                 else
                     return CssClass.remove(element, key as string);
             }, true);
-            return (): boolean => 
-            {
-                subscriptions.forEach(s => s && s?.());
-                return true;
-            };
+            return combineSubscriptions(...subscriptions)
         }
     }
 
