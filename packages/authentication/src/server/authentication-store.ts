@@ -16,7 +16,7 @@ export class AuthenticationStore implements StoreDefinition
 
     public static async create(engine: PersistenceEngine<unknown>)
     {
-        return Store.create<AuthenticationStore>(engine, AuthorizationCode, Token, Client, User, Session);
+        return Store.create<AuthenticationStore>(engine, { AuthorizationCode, Token, Client, User, Session });
     }
 }
 
