@@ -13,7 +13,7 @@ export class AuthHandler<T extends (...args: unknown[]) => unknown> implements M
 
     async handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
-        if (param._trigger && cmd.config?.[param._trigger].auth)
+        if (param._trigger && cmd.config?.[param._trigger]?.auth)
         {
             try
             {
