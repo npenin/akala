@@ -32,6 +32,13 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
     protected readonly attributeBindings: { [key in keyof TBindings]: Binding<string> } = {} as any;
     protected readonly bindings: { [key in keyof TBindings]: Binding<TBindings[key]> } = {} as any;
 
+    protected shadowWithStyles(options: ShadowRootInit): ShadowRoot
+    {
+        const shadow = this.element.attachShadow(options);
+        this.inheritStylesheets(shadow);
+        return shadow;
+    }
+
     protected inheritStylesheets(shadow: ShadowRoot)
     {
         shadow.adoptedStyleSheets = Array.from(document.styleSheets).map(sheet =>
