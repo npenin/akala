@@ -1,5 +1,4 @@
-import { CommandMetadataProcessorSignature, protocolHandlers, registerCommands } from '@akala/commands';
-import { Container, Processors } from '@akala/commands'
+import { CommandMetadataProcessorSignature, protocolHandlers, registerCommands, Container, Processors } from '@akala/commands'
 import { SocketAdapter, SocketAdapterEventMap } from '@akala/json-rpc-ws';
 import { MiddlewareAsync } from '@akala/core'
 import { readFile } from 'fs/promises';
@@ -112,7 +111,7 @@ export function plugin(options: Record<string, { path: string, init?: unknown[],
                 if (init)
                 {
                     // console.log('init', init);
-                    await subContainer.dispatch('$init', { param: init })
+                    await subContainer.dispatch('$init', { param: init, _trigger: 'vite' })
                 }
             })).then(async () =>
             {
