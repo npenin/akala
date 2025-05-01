@@ -52,7 +52,7 @@ export function a<T extends Element>(el: T, name: string | string[] | Record<str
     else if (Array.isArray(name))
         return name.map(n => el.getAttribute(n));
     else
-        Object.entries(name).forEach(([name, value]) => this.attribute(name, value));
+        Object.entries(name).forEach(([name, value]) => el.setAttribute(name, value));
 
     return el;
 }
