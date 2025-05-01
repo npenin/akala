@@ -1,8 +1,8 @@
-import { Binding, EmptyBinding, ExpressionsWithLength, ObservableObject, Parser, Subscription, combineSubscriptions, each } from "@akala/core";
+import { Binding, EmptyBinding, ObservableObject, Parser, Subscription, combineSubscriptions, each } from "@akala/core";
 import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
-import { ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
+import { ConstantExpression, Expressions, MemberExpression, NewExpression } from "@akala/core/expressions";
 // import { MemberExpression, NewExpression } from "@akala/core/expressions";
 
 type Scope = IScope<object>;
@@ -29,9 +29,11 @@ export class DataContext implements Composer<IDataContext>
      * @param {Element | ShadowRoot} item - The DOM element or shadow root to define the context for.
      * @param {object} context - The context to define.
      */
-    static define(item: Element | ShadowRoot, context: object): void
+    static define(item: Element | ShadowRoot, context: object, newContextPath?: string): Binding<IDataContext>
     {
-        DataContext.defineDirect(item, DataContext.extend(DataContext.find(item), context))
+        const dataContext = DataContext.extend(DataContext.find(item), context, newContextPath);
+        DataContext.defineDirect(item, dataContext);
+        return dataContext;
     }
 
     /**
@@ -60,12 +62,20 @@ export class DataContext implements Composer<IDataContext>
     {
         if (sourceContext.expression?.type == 'new' && sourceContext.expression.newType == '{')
         {
-            return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
-                ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
-                    new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
-                ...sourceContext.expression.init,
-                new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
-            ));
+            if (options && typeof options == 'object')
+                return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
+                    ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
+                        new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
+                    ...sourceContext.expression.init,
+                    new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
+                ));
+            else if (newContextPath)
+                return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
+                    ...sourceContext.expression.init,
+                    new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
+                ));
+            else
+                return sourceContext;
         }
         if (options && typeof options == 'object')
             return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
@@ -75,11 +85,14 @@ export class DataContext implements Composer<IDataContext>
                     new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
                 new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
             ));
-        return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
-            ...DataContext.propagateProperties.map(e =>
-                new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
-            new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
-        ));
+        else if (newContextPath)
+            sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
+                ...DataContext.propagateProperties.map(e =>
+                    new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
+                new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
+            ));
+        else
+            return sourceContext;
     }
 
     /**
@@ -208,7 +221,7 @@ export interface DataBindPlugin
      * @param source - The source expressions with length.
      * @returns A subscription to the bindings.
      */
-    getBindings<const TKey extends PropertyKey>(item: Element, binding: Binding<unknown>, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): Subscription;
+    getBindings<const TKey extends PropertyKey>(item: Element, binding: Binding<unknown>, context: Binding<unknown>, member: TKey, source: Expressions): Subscription;
 }
 
 /**
@@ -332,7 +345,7 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
      * @param {ExpressionsWithLength} source - The source expressions.
      * @returns {readonly [TKey, Binding<Record<string, (...args: unknown[]) => unknown> | ((...args: unknown[]) => unknown)>]} - The bindings for the specified element.
      */
-    getBindings<const TKey extends PropertyKey>(item: Element, options: T, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): readonly [TKey, Binding<Record<string, (...args: unknown[]) => unknown> | ((...args: unknown[]) => unknown)>]
+    getBindings<const TKey extends PropertyKey>(item: Element, options: T, context: Binding<unknown>, member: TKey, source: Expressions): readonly [TKey, Binding<Record<string, (...args: unknown[]) => unknown> | ((...args: unknown[]) => unknown)>]
     {
         const result = super.getBindings(item, options, context, member, source);
 
