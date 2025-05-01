@@ -16,6 +16,7 @@ export default async function (this: State, container: Container<State>, provide
     const provider = await providers.process(new URL(providerName))
 
     this.store = await AuthenticationStore.create(provider);
+    // this.session = { slidingExpiration: 30 };
 
     let key: BufferSource;
     try
@@ -39,7 +40,7 @@ export default async function (this: State, container: Container<State>, provide
 
     this.getHash = async (value: string, salt?: Uint8Array) => base64.base64EncArrBuff(await crypto.subtle.sign({ name: 'HMAC', hash: 'SHA-256' }, cryptoKey, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value)));
     this.verifyHash = async (value: string, signature: Uint8Array, salt?: Uint8Array) => await crypto.subtle.verify({ name: 'HMAC', hash: 'SHA-256' }, cryptoKey, signature, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value));
-    this.session = { slidingExpiration: 300 };
+    this.session = { slidingExpiration: 300000 };
 
     router?.formatters.useMiddleware(1, new AuthorizeRedirectFormatter(loginUrl, 'return_url'))
 
