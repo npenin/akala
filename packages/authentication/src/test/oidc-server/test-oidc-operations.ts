@@ -27,7 +27,7 @@ describe('OIDC Operations', () =>
         getHash: async () => 'mockHash',
         verifyHash: async () => true,
         session: {},
-        store: Store.create<AuthenticationStore>(engine, Token, User, Client, AuthorizationCode, Session)
+        store: Store.create<AuthenticationStore>(engine, { Token, User, Client, AuthorizationCode, Session })
     };
     let user: User;
     let client: Client;
