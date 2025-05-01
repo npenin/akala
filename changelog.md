@@ -1,4 +1,4 @@
-#  (2025-04-30)
+#  (2025-05-01)
 
 
 * chore : code cleanup eae1150
@@ -133,6 +133,7 @@
 * cwd a6dee22
 * cwd init 03ed2d1
 * cwd init fb44972
+* DataContext extension considering newContextPath and null options 27fbc10
 * DataInjector inherits SimpleInjector 5d1c018
 * DataInjector inherits SimpleInjector cb22e64
 * date formatter parser d15e22b
@@ -194,6 +195,7 @@
 * handle already provided options 37f7aef
 * handle already provided options d0b15c3
 * handle case when url pathname is empty b44a1dc
+* handle cases when no auth is configured for the current trigger a4ac9a0
 * handle container metadata in the activate stage fedf680
 * handle init lifecycle stage 54a8169
 * handle null options during datacontext extension 8d1a88b
@@ -272,6 +274,7 @@
 * improve Router next param support + documentation 207c326
 * improve serialize on http ca89683
 * improve serialize on http af3373b
+* improve session default expiration to 5min instead of 300ms 9bfe110
 * improve typing in vite.config.mts 11e538a
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
@@ -407,6 +410,7 @@
 * semantic release based on branch e4668c7
 * semantic release based on branch 8b7d109
 * server.close returns a promise a2a8a5f
+* setAttribute when provided object a3eff3d
 * simplify titles and remove unnecessary metadata in CLI documentation f331a8e
 * simplify titles and remove unnecessary metadata in CLI documentation 7702b95
 * sonar coverage discovery 505f9b3
@@ -490,6 +494,9 @@
 * update after core breaking change 6ea3ca9
 * update after core BufferEncoding introduction 298da96
 * update after core Translator interface upgrade a6500a1
+* update after storage breaking change 87b037a
+* update after storage breaking change 06b7d59
+* update after storage breaking change cad8a62
 * update after storage breaking change on providers b7492a2
 * update after storage breaking change on providers 91b6037
 * update after StringCursor switch 583bac9
@@ -545,6 +552,7 @@
 * update titles and parent attributes in markdown files for improved documentation clarity 717dd51
 * update to support login redirect d2e8e6e
 * update type annotations for Base64 encoding functions and improve handling of ArrayBuffer d2157f1
+* update vite tests and vite config b8e8524
 * use combineSubscriptions helper e569526
 * use helpers from @akala/cli 74292f2
 * use proper selector 562b53a
@@ -574,7 +582,9 @@
 ### Code Refactoring
 
 * events to separate files af5211e
+* improve store creation flexibility 957b83e
 * make proper use of index.browser c297379
+* remove ModelDefinition.definitions fd11999
 * replace void with undefined as NextParam 76398ea
 * replace void with undefined as NextParam 34fcf2a
 
@@ -632,6 +642,7 @@
 * add initial documentation for various modules and commands e3e5945
 * add initial documentation for various modules and commands 5f68588
 * add int, cache and leb128 parsers 0fb8868
+* add invoke formatter 2ea1311
 * add JWK and few more improvements 7672b7e
 * add JWK and few more improvements 54d30ae
 * add logo e5bd83f
@@ -650,6 +661,7 @@
 * add raw query support 940f72e
 * add raw query support 020975f
 * add runtime concept 1993141
+* add shadowWithStyles helper function 2c8e6b8
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
 * add TopDown and BottomUp namespace event emitters d8e148e
@@ -703,6 +715,7 @@
 * generalize signature to open it to $http options too 09eee3a
 * http-client now has body support 9895032
 * http-client now has body support d217cac
+* implement assignment expressions and related operators f3e6fe5
 * implement AWS4 signature as httpclient authentication ebb14c8
 * implement dynamic routing based on URL pathname in server handlers e16592f
 * implement dynamic routing based on URL pathname in server handlers f73ea99
@@ -711,7 +724,11 @@
 * improve translator interface d3884d0
 * include URI in request logging for improved traceability 16891b5
 * include URI in request logging for improved traceability 6e4418a
+* introduce allowSubProperties on attributecomposer 8b3efac
+* introduce if composer 5fdfd35
 * introduce IsomorphicBuffer dfa275f
+* introduce master detail, entity and if by default f1c5d91
+* introduce vite as trigger in vite plugin 43d9826
 * make help accessible everywhere by any clicontext e18be04
 * make help accessible everywhere by any clicontext 9f5892a
 * plugins can now be installed with the current cli "program" f535bc0
@@ -737,6 +754,9 @@
 
 ### BREAKING CHANGES
 
+* names are extracted from the object given as the modelRegistration
+* remove ParsedBinary and ParsedTernary
+* remove ModelDefinition.definitions and definitionsAsArray. Replaced with PersistenceEngine.useModel
 * remove duplicated $metadataCmd export. Please use $metadata instead
 * $rootScope.$commandEvents is now expecting events like processed.XXX, processing.XXX, ...
 * introduce StringCursor to prevent substringing all the time

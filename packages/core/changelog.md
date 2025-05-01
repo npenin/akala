@@ -1,15 +1,14 @@
-#  (2025-04-30)
-
-
-### Bug Fixes
-
-* use combineSubscriptions helper e569526
+#  (2025-05-01)
 
 
 ### Features
 
-* add combineSubscriptions helper f569432
-* add TopDown and BottomUp namespace event emitters d8e148e
+* implement assignment expressions and related operators f3e6fe5
+
+
+### BREAKING CHANGES
+
+* remove ParsedBinary and ParsedTernary
 
 
 

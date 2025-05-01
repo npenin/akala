@@ -1,4 +1,4 @@
-#  (2025-04-30)
+#  (2025-05-01)
 
 
 ### Bug Fixes
@@ -9,6 +9,7 @@
 * https://sonarcloud.io/project/issues?open=AZTuPPyqWVPY8wORAfqc&id=npenin_akala 4b38813
 * https://sonarcloud.io/project/issues?open=AZTuPPyqWVPY8wORAfqG&id=npenin_akala cbee85e
 * leverage EventProcessor to allow for more use cases 6e85fc6
+* update vite tests and vite config b8e8524
 * use proper selector 97fa6f9
 
 

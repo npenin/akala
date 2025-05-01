@@ -1,14 +1,9 @@
-#  (2025-04-30)
+#  (2025-05-01)
 
 
-### Code Refactoring
+### Bug Fixes
 
-* make proper use of index.browser c297379
-
-
-### BREAKING CHANGES
-
-* remove duplicated $metadataCmd export. Please use $metadata instead
+* handle cases when no auth is configured for the current trigger a4ac9a0
 
 
 
