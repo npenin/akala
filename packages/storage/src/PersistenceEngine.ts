@@ -1,8 +1,8 @@
 import { Expressions } from '@akala/core/expressions';
 import { CommandResult, Commands, CommandType, Create, Update, Delete } from './commands/command.js';
 import { CommandProcessor } from './commands/command-processor.js';
-import { ModelDefinition, DbSet } from './shared.js';
-import { customResolve, ICustomResolver, ErrorWithStatus, HttpStatusCode, Resolvable } from '@akala/core';
+import type { ModelDefinition, DbSet } from './shared.js';
+import { customResolve, ICustomResolver, ErrorWithStatus, HttpStatusCode, Resolvable, UrlHandler } from '@akala/core';
 import { ModelDefinitions } from './common.js';
 
 const command = Symbol('command');
@@ -159,3 +159,5 @@ export const dynamicProxy = function <T extends Object>(target: T, model: ModelD
         }
     })
 };
+
+export const providers = new UrlHandler<[URL, void], PersistenceEngine<unknown>>(true);

@@ -1,5 +1,5 @@
 import { defaultInjector, ErrorWithStatus, HttpStatusCode, Resolvable, SimpleInjector } from "@akala/core";
-import { providers } from "./shared.js";
+import { providers } from "./PersistenceEngine.js";
 
 class DataInjector extends SimpleInjector
 {

@@ -42,10 +42,10 @@ export class StringBuilder
                 else
                     this.chunks.push(String.raw(format, ...rest));
                 break;
+            case 'undefined':
+                break;
             default:
                 this.chunks.push(format.toString());
-                break;
-            case 'undefined':
                 break;
         }
         return this;
@@ -65,7 +65,7 @@ export class StringBuilder
 
     public get(offset: number, length: number = 1)
     {
-        var index = this.chunkAt(offset);
+        const index = this.chunkAt(offset);
         if (~index)
         {
             return this.chunks[index[0]].substr(index[1], length);
@@ -75,8 +75,8 @@ export class StringBuilder
 
     private chunkAt(offset: number): [number, number]
     {
-        var index = 0;
-        for (var i = 0; i < this.chunks.length; i++)
+        let index = 0;
+        for (let i = 0; i < this.chunks.length; i++)
         {
             if (this.chunks[i].length + index > offset)
                 return [i, index];
@@ -88,8 +88,8 @@ export class StringBuilder
     public remove(offset: number, length: number = 1)
     {
         this.renderedString = null;
-        var index = this.chunkAt(offset);
-        var chunk = this.chunks[index[0]];
+        const index = this.chunkAt(offset);
+        const chunk = this.chunks[index[0]];
         this.chunks[index[0]] = chunk.substr(0, index[1]);
         if (index[1] + length < chunk.length)
             this.chunks.splice(index[0] + 1, 0, chunk.substr(index[1] + length));
@@ -99,8 +99,8 @@ export class StringBuilder
     public insert(offset: number, content: string)
     {
         this.renderedString = null;
-        var index = this.chunkAt(offset);
-        var chunk = this.chunks[index[0]];
+        const index = this.chunkAt(offset);
+        const chunk = this.chunks[index[0]];
         this.chunks[index[0]] = chunk.substr(0, index[1]);
         this.chunks.splice(index[0] + 1, 0, content);
         if (index[1] + length < chunk.length)
