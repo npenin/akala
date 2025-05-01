@@ -1,9 +1,14 @@
 #  (2025-04-30)
 
 
-### Features
+### Code Refactoring
 
-* add namespaced event on EventProcessor 719726f
+* make proper use of index.browser c297379
+
+
+### BREAKING CHANGES
+
+* remove duplicated $metadataCmd export. Please use $metadata instead
 
 
 
