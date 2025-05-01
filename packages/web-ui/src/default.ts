@@ -1,7 +1,9 @@
 import { Container, Processors } from '@akala/commands/browser'
 import { Argument0, Translator } from '@akala/core';
-import { Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, EventComposer, I18nComposer, webComponent, Each, CssClassComposer } from '@akala/client'
+import { Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, EventComposer, I18nComposer, webComponent, Each, CssClassComposer, IfComposer } from '@akala/client'
 import { Dropdown, Mark, Popover, Table, TablePager, Tooltip, TooltipComposer, Typeahead } from './index.js';
+import { MasterDetail } from './controls/master-detail.js';
+import { Entity } from './controls/crud.js';
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: Processors.EventProcessor }>;
 
@@ -15,6 +17,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
         Template.composers.push(new FormComposer(rootScope.container))
         Template.composers.push(new DataContext());
         Template.composers.push(new DataBind());
+        Template.composers.push(new IfComposer());
         Template.composers.push(new EventComposer());
         Template.composers.push(new CssClassComposer());
         Template.composers.push(new I18nComposer());
@@ -28,6 +31,8 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
         webComponent('kl-mark')(Mark);
         webComponent('kl-table')(Table);
         webComponent('kl-table-pager')(TablePager);
+        webComponent('kl-master-detail')(MasterDetail);
+        webComponent('kl-entity')(Entity);
 
         serviceModule.register('templateOptions', {
             $rootScope: rootScope, i18n: {
