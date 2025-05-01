@@ -1,8 +1,9 @@
 import { Container } from "@akala/commands/browser";
 import { Composer } from "../template.js";
-import { Binding, ExpressionsWithLength, Injector, Subscription } from "@akala/core";
+import { Binding, Injector, Subscription } from "@akala/core";
 import { DataBind, DataBindPlugin } from "./context.js";
 import { subscribe } from "../common.js";
+import { Expressions } from "@akala/core/expressions";
 
 export class FormInjector extends Injector
 {
@@ -73,7 +74,7 @@ export class FormComposer implements Composer<Container<void>>
 export class InputValueComposer implements DataBindPlugin
 {
     readonly selector: string = 'input';
-    getBindings<const TKey extends PropertyKey>(item: HTMLInputElement, binding: Binding<unknown>, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength): Subscription
+    getBindings<const TKey extends PropertyKey>(item: HTMLInputElement, binding: Binding<unknown>, context: Binding<unknown>, member: TKey, source: Expressions): Subscription
     {
         if (member == 'value')
         {

@@ -1,6 +1,7 @@
-import { Binding, ExpressionsWithLength, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, parser, toCamelCase, toKebabCase } from "@akala/core";
+import { Binding, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, combineSubscriptions, parser, toCamelCase, toKebabCase } from "@akala/core";
 import { Composer } from "../template.js";
 import { Control } from '../controlsv2/shared.js';
+import { Expressions } from "@akala/core/expressions";
 
 const databound = new SimpleInjector();
 
@@ -82,6 +83,8 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
 
     protected readonly parser: Parser
 
+    protected allowSubProperties = true;
+
     constructor(protected readonly attribute: string, parser?: Parser)
     {
         this.selector = '[' + attribute + ']';
@@ -119,9 +122,9 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
     {
         let bindings: Record<string, Binding<unknown>>;
 
-        const properties: ExpressionsWithLength | undefined = (item.getAttribute(this.attribute) || undefined) && this.parser.parse(item.getAttribute(this.attribute)) as ParsedObject;
+        const properties: Expressions | undefined = (item.getAttribute(this.attribute) || undefined) && this.parser.parse(item.getAttribute(this.attribute)) as ParsedObject;
 
-        const otherProperties = item.getAttributeNames().filter(att => att.startsWith(this.attribute + '-') && item.getAttribute(att)).map(att => [AttributeComposer.toCamelCase(att.substring(this.attribute.length + 1)), this.parser.parse(item.getAttribute(att))] as const);
+        const otherProperties = this.allowSubProperties ? item.getAttributeNames().filter(att => att.startsWith(this.attribute + '-') && item.getAttribute(att)).map(att => [AttributeComposer.toCamelCase(att.substring(this.attribute.length + 1)), this.parser.parse(item.getAttribute(att))] as const) : [];
 
         const context = this.getContext(item, options);
         switch (true)
@@ -152,7 +155,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
         }
     }
 
-    getBindings<const TKey extends PropertyKey>(item: Element, options: T, context: Binding<unknown>, member: TKey, source: ExpressionsWithLength)
+    getBindings<const TKey extends PropertyKey>(item: Element, options: T, context: Binding<unknown>, member: TKey, source: Expressions)
     {
         const binding = context.pipe<((...args: unknown[]) => unknown) | Record<string, (...args: unknown[]) => unknown>>(source);
         const subs: Subscription[] = [];
@@ -163,6 +166,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
                 subs.push(sub);
         }, true);
 
+        binding.teardown(combineSubscriptions(...subs));
         return [member, binding] as const
 
     }
