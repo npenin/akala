@@ -17,7 +17,7 @@ describe('where builder', function ()
     it('generates', async function ()
     {
         var fpe = await File.fromJson(dirname(fileURLToPath(import.meta.url)));
-        var store = Store.create<TestStore>(fpe, 'ModelTest1');
+        var store = Store.create<TestStore>(fpe, { ModelTest1 });
 
         var where = store.ModelTest1.where('s1=="test"');
         assert.ok(where);

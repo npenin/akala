@@ -6,7 +6,7 @@ import { Update, Create, Delete, CommandResult } from './commands/command.js';
 import { types } from 'util';
 
 import * as Enumerable from './Enumerable.js'
-import { ICustomResolver, UrlHandler } from "@akala/core";
+import { each, ErrorWithStatus, ICustomResolver, UrlHandler } from "@akala/core";
 
 export { Cardinality } from './cardinality.js'
 export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
@@ -38,24 +38,37 @@ export type StoreDefinition<T = any> =
 export class Store<TStore extends StoreDefinition>
 {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: ((Exclude<keyof TStore, number | symbol>) | (new () => DbSetType<TStore[keyof TStore]>))[]): Store<TStore> & StoreDefinition<TStore> & TStore
+    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...models: ((Exclude<keyof TStore, number | symbol>) | { [key in keyof TStore]: ModelDefinition | (new () => DbSetType<TStore[key]>) })[]): Store<TStore> & StoreDefinition<TStore> & TStore
     {
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return new Store<TStore>(engine, ...names) as any;
+        return new Store<TStore>(engine, ...models) as any;
     }
 
-    private constructor(private readonly engine: PersistenceEngine, ...names: ((Exclude<keyof TStore, number | symbol>) | (new () => DbSetType<TStore[keyof TStore]>))[])
+    private constructor(private readonly engine: PersistenceEngine, ...models: ((Exclude<keyof TStore, number | symbol>) | { [key in keyof TStore]: ModelDefinition | (new () => DbSetType<TStore[key]>) })[])
     {
-        for (const name of names)
+        for (const modelRegistration of models)
         {
-            if (typeof name == 'string')
-                Object.defineProperty(this, name, { value: this.set(name as string) });
+            let model: ModelDefinition<unknown>;
+            if (typeof modelRegistration === 'string')
+            {
+                model = this.engine.definitions[modelRegistration];
+                if (!model)
+                    throw new ErrorWithStatus(404, `The model with name ${modelRegistration} is not (yet ?) registered in the engine`);
+
+                Object.defineProperty(this, model.name, { value: model.dbSet(this.engine) });
+                // this.engine.useModel(model);
+            }
             else
             {
-                const model: ModelDefinition<unknown> = Reflect.getMetadata('db:model', name.prototype);
-                Object.defineProperty(this, model.name, { value: model.dbSet(this.engine) });
-            }
+                each(modelRegistration, (model, name) =>
+                {
+                    if (!(model instanceof ModelDefinition))
+                        model = Reflect.getMetadata('db:model', model.prototype) as ModelDefinition<unknown>;
 
+                    Object.defineProperty(this, name, { value: model.dbSet(this.engine) });
+                    this.engine.useModel(model);
+                })
+            }
         }
     }
 
