@@ -12,6 +12,7 @@ import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 import { IVisitable } from './visitable.js';
 import { FormatExpression } from '../parser.js';
 import { TernaryExpression } from './ternary-expression.js';
+import { AssignmentExpression } from './assignment-expression.js';
 
 export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Expressions };
 
@@ -52,7 +53,9 @@ export type StrictExpressions = (ApplySymbolExpression<any, any> |
     MemberExpression<any, any, any> |
     UnaryExpression |
     ConstantExpression<any> |
-    NewExpression<any>) & IVisitable<ExpressionVisitor, StrictExpressions>;
+    NewExpression<any>) & IVisitable<ExpressionVisitor, StrictExpressions> |
+    AssignmentExpression<any>
+    ;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 export type Expressions = StrictExpressions | UnknownExpression | UnaryExpression | BinaryExpression | TernaryExpression;

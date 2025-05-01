@@ -1,9 +1,8 @@
 import { isPromiseLike } from '../promiseHelpers.js';
 import { ConstantExpression } from '../parser/expressions/constant-expression.js';
 import { ExpressionVisitor } from '../parser/expressions/visitors/expression-visitor.js';
-import { StrictExpressions, TypedExpression } from '../parser/expressions/expression.js';
+import { Expressions, StrictExpressions, TypedExpression } from '../parser/expressions/expression.js';
 import { MemberExpression } from '../parser/expressions/member-expression.js';
-import { ExpressionsWithLength } from '../parser/parser.js';
 import { Injector } from './shared.js';
 
 /**
@@ -29,7 +28,7 @@ export class InjectorEvaluator extends ExpressionVisitor
      * @param expression - The expression tree to evaluate.
      * @returns The resolved value after traversing and computing the expression.
      */
-    public eval<T>(expression: ExpressionsWithLength): T
+    public eval<T>(expression: Expressions): T
     {
         // console.log(expression);
         this.result = this.injector;

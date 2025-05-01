@@ -1,6 +1,5 @@
 import { BuildWatcherAndSetter } from "../observables/object.js";
 import { Expressions, TypedLambdaExpression } from "./expressions/index.js";
-import { ExpressionsWithLength } from "./parser.js";
 
 export type ParsedFunction<T> = (context?: unknown) => T;
 
@@ -28,7 +27,7 @@ export class EvaluatorAsFunction
      * @param {ExpressionsWithLength} expression - The expression with length to evaluate.
      * @returns {ParsedFunction<T>} The evaluated function.
      */
-    public eval<T = unknown>(expression: ExpressionsWithLength): ParsedFunction<T>
+    public eval<T = unknown>(expression: Expressions): ParsedFunction<T>
     public eval<T = unknown>(
         expression: Expressions | TypedLambdaExpression<(...args: unknown[]) => T>
     ): ParsedFunction<T> | T

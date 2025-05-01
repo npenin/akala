@@ -1,7 +1,9 @@
 import { BinaryOperator } from './binary-operator.js';
-import { Expression, Expressions, StrictExpressions } from './expression.js';
+import { Expression, Expressions, StrictExpressions, TypedExpression } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';
+import { MemberExpression } from './member-expression.js';
+import { TernaryExpression } from './ternary-expression.js';
 
 /**
  * Represents a binary expression.
@@ -34,5 +36,46 @@ export class BinaryExpression<T extends Expressions = StrictExpressions> extends
     public accept(visitor: ExpressionVisitor)
     {
         return visitor.visitBinary(this);
+    }
+
+
+    /**
+     * Applies precedence to a parsed binary expression.
+     * @param {ParsedBinary} operation - The parsed binary expression.
+     * @returns {ParsedBinary} The parsed binary expression with applied precedence.
+     */
+    public static applyPrecedence<T extends Expressions = StrictExpressions>(operation: BinaryExpression<T>)
+    {
+        if (operation.operator != BinaryOperator.Plus && operation.operator != BinaryOperator.Minus)
+        {
+            if (operation.right instanceof BinaryExpression)
+            {
+                const right = BinaryExpression.applyPrecedence(operation.right);
+                switch (right.operator)
+                {
+                    case BinaryOperator.Plus:
+                    case BinaryOperator.Minus:
+                        break;
+                    case BinaryOperator.Times: // b*c+d ==> (b*c)+d
+                    case BinaryOperator.Div:
+                    case BinaryOperator.And:
+                    case BinaryOperator.Or:
+                        return new BinaryExpression(new BinaryExpression(operation.left, operation.operator, right.left), right.operator, right.right);
+                    case BinaryOperator.QuestionDot:
+                    case BinaryOperator.Dot:
+                        return new MemberExpression(new MemberExpression(operation.left as TypedExpression<unknown>, right.left, operation.operator == BinaryOperator.QuestionDot), right.right, right.operator == BinaryOperator.QuestionDot);
+                }
+            }
+            if (operation.right instanceof TernaryExpression)
+            {
+                return new TernaryExpression(new BinaryExpression(operation.left, operation.operator, operation.right.first), operation.right.operator, operation.right.second, operation.right.third)
+            }
+        }
+        return operation;
+    }
+
+    public toString()
+    {
+        return `( ${this.left} ${this.operator} ${this.right} )`
     }
 }

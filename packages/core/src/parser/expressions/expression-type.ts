@@ -16,5 +16,6 @@ export enum ExpressionType
     ApplySymbolExpression = 'applySymbol',
     NewExpression = 'new',
     Format = 'format',
+    AssignmentExpression = 'assign',
     Unknown = 'unknown',
 }

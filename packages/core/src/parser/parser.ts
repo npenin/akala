@@ -1,4 +1,4 @@
-import { BinaryOperator, BinaryExpression, CallExpression, ConstantExpression, Expression, Expressions, ExpressionType, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, UnaryExpression, UnaryOperator } from './expressions/index.js';
+import { BinaryOperator, BinaryExpression, ConstantExpression, Expression, Expressions, ExpressionType, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, UnaryExpression, UnaryOperator, CallExpression } from './expressions/index.js';
 
 import identity from '../formatters/identity.js';
 import negate from '../formatters/negate.js';
@@ -9,6 +9,8 @@ import type { ExpressionVisitor } from './expressions/visitors/expression-visito
 import { Formatter, FormatterFactory } from '../formatters/common.js';
 import { formatters } from '../formatters/index.js';
 import { escapeRegExp } from '../reflect.js';
+import { AssignmentOperator } from './expressions/assignment-operator.js';
+import { AssignmentExpression } from './expressions/assignment-expression.js';
 
 const jsonKeyRegex = /\s*(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([a-zA-Z0-9_$]+)) *):\s*/;
 
@@ -58,10 +60,7 @@ export class StringCursor implements Cursor
     }
 }
 
-/** @deprecated */
-export type ParsedOneOf = ParsedObject | ParsedArray | ParsedString | ParsedBoolean | ParsedNumber | ParsedBinary;
-
-export type ExpressionsWithLength = (TypedExpression<unknown> | Expressions);
+export type ParsedOneOf = ParsedObject | ParsedArray | ParsedString | ParsedBoolean | ParsedNumber;
 
 /**
  * @deprecated Please use ObservableObject.setValue instead which more versatile
@@ -98,6 +97,13 @@ function parseBinaryOperator(op: string): BinaryOperator
     return BinaryOperator.Unknown;
 }
 
+function parseAssignmentOperator(op: string): AssignmentOperator
+{
+    if (op in AssignmentOperator)
+        return op as AssignmentOperator;
+    return AssignmentOperator.Unknown;
+}
+
 /**
  * Parses a ternary operator from a string.
  * @param {string} op - The operator string.
@@ -118,7 +124,7 @@ function parseTernaryOperator(op: string): TernaryOperator
  */
 export class FormatExpression<TOutput> extends Expression 
 {
-    constructor(public readonly lhs: ExpressionsWithLength | (TypedExpression<unknown>), public readonly formatter: new (...args: unknown[]) => Formatter<TOutput>, public readonly settings: Expressions)
+    constructor(public readonly lhs: Expressions | (TypedExpression<unknown>), public readonly formatter: new (...args: unknown[]) => Formatter<TOutput>, public readonly settings: Expressions)
     {
         super();
     }
@@ -133,75 +139,6 @@ export class FormatExpression<TOutput> extends Expression
         return visitor.visitFormat(this);
     }
 
-}
-
-/**
- * Represents a parsed binary expression.
- * @extends BinaryExpression
- */
-export class ParsedBinary extends BinaryExpression<ExpressionsWithLength> 
-{
-    constructor(operator: BinaryOperator, left: ExpressionsWithLength, public right: ExpressionsWithLength)
-    {
-        super(left, operator, right);
-    }
-
-    /**
-     * Applies precedence to a parsed binary expression.
-     * @param {ParsedBinary} operation - The parsed binary expression.
-     * @returns {ParsedBinary} The parsed binary expression with applied precedence.
-     */
-    public static applyPrecedence(operation: ParsedBinary)
-    {
-        if (operation.operator != BinaryOperator.Plus && operation.operator != BinaryOperator.Minus)
-        {
-            if (operation.right instanceof ParsedBinary)
-            {
-                const right = ParsedBinary.applyPrecedence(operation.right);
-                switch (right.operator)
-                {
-                    case BinaryOperator.Plus:
-                    case BinaryOperator.Minus:
-                        break;
-                    case BinaryOperator.Times: // b*c+d ==> (b*c)+d
-                    case BinaryOperator.Div:
-                    case BinaryOperator.And:
-                    case BinaryOperator.Or:
-                        return new ParsedBinary(right.operator, new ParsedBinary(operation.operator, operation.left, right.left), right.right);
-                    case BinaryOperator.QuestionDot:
-                    case BinaryOperator.Dot:
-                        return new MemberExpression(new MemberExpression(operation.left as TypedExpression<unknown>, right.left, operation.operator == BinaryOperator.QuestionDot), right.right, right.operator == BinaryOperator.QuestionDot);
-                }
-            }
-            if (operation.right instanceof ParsedTernary)
-            {
-                return new ParsedTernary(operation.right.operator, new ParsedBinary(operation.operator, operation.left, operation.right.first), operation.right.second, operation.right.third)
-            }
-        }
-        return operation;
-    }
-
-    public toString()
-    {
-        return `( ${this.left} ${this.operator} ${this.right} )`;
-    }
-}
-
-/**
- * Represents a parsed ternary expression.
- * @extends TernaryExpression
- */
-export class ParsedTernary extends TernaryExpression<ExpressionsWithLength> 
-{
-    constructor(operator: TernaryOperator, first: ExpressionsWithLength, public second: ExpressionsWithLength, public third: ExpressionsWithLength)
-    {
-        super(first, operator, second, third);
-    }
-
-    public toString()
-    {
-        return `( ${this.first} ${this.operator[0]} ${this.second} ${this.operator[1]} ${this.third} )`;
-    }
 }
 
 /**
@@ -273,19 +210,6 @@ export class ParsedBoolean extends ConstantExpression<boolean>
 }
 
 /**
- * Represents a parsed call expression.
- * @extends CallExpression
- */
-export class ParsedCall extends CallExpression<any, any> 
-{
-    constructor(source: TypedExpression<any>, method: TypedExpression<any>, args: (StrictExpressions)[])
-    {
-        super(source, method, args);
-    }
-
-}
-
-/**
  * Represents a parser.
  */
 export class Parser
@@ -311,9 +235,9 @@ export class Parser
      * @param {string} expression - The expression to parse.
      * @param {boolean} [parseFormatter=true] - Whether to parse formatters.
      * @param {() => void} [reset] - The reset function.
-     * @returns {ExpressionsWithLength} The parsed expression.
+     * @returns {Expressions} The parsed expression.
      */
-    public parse(expression: string, parseFormatter?: boolean, reset?: () => void): ExpressionsWithLength
+    public parse(expression: string, parseFormatter?: boolean, reset?: () => void): Expressions
     {
         expression = expression.trim();
         return this.parseAny(new StringCursor(expression), (typeof parseFormatter !== 'boolean') || parseFormatter, reset);
@@ -325,9 +249,9 @@ export class Parser
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {() => void} [reset] - The reset function.
      * @param {StringCursor} cursor - The cursor tracking the current position.
-     * @returns {ExpressionsWithLength} The parsed expression.
+     * @returns {Expressions} The parsed expression.
      */
-    public parseAny(expression: StringCursor, parseFormatter: boolean, reset?: () => void): ExpressionsWithLength
+    public parseAny(expression: StringCursor, parseFormatter: boolean, reset?: () => void): Expressions
     {
         switch (expression.char)
         {
@@ -360,7 +284,7 @@ export class Parser
      * @param {string} expression - The expression to parse.
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {StringCursor} cursor - The cursor tracking the current position.
-     * @returns {ExpressionsWithLength} The parsed number expression.
+     * @returns {Expressions} The parsed number expression.
      */
     public parseNumber(expression: StringCursor, parseFormatter: boolean)
     {
@@ -410,7 +334,7 @@ export class Parser
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {() => void} [reset] - The reset function.
      * @param {StringCursor} cursor - The cursor tracking the current position.
-     * @returns {ExpressionsWithLength} The parsed evaluation expression.
+     * @returns {Expressions} The parsed evaluation expression.
      */
     public parseEval(expression: StringCursor, parseFormatter: boolean, reset?: () => void)
     {
@@ -426,9 +350,9 @@ export class Parser
      * @param {string} expression - The expression to parse.
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {() => void} [reset] - The reset function.
-     * @returns {ExpressionsWithLength} The parsed function expression.
+     * @returns {Expressions} The parsed function expression.
      */
-    public parseFunction(expression: StringCursor, parseFormatter: boolean, reset?: () => void): ParsedBinary
+    public parseFunction(expression: StringCursor, parseFormatter: boolean, reset?: () => void): BinaryExpression
     {
         let operator: UnaryOperator;
         while (expression.char === '!')
@@ -453,7 +377,7 @@ export class Parser
             item = item.substring(0, item.length - 1);
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let result: ExpressionsWithLength;
+        let result: Expressions;
         if (this.parameters)
             result = new MemberExpression(this.parameters[''] as TypedExpression<any>, new ParsedString(item), optional) as TypedExpression<any>
         else
@@ -469,15 +393,15 @@ export class Parser
     /**
      * Parses a formatter expression.
      * @param {string} expression - The expression to parse.
-     * @param {ExpressionsWithLength} lhs - The left-hand side expression.
+     * @param {Expressions} lhs - The left-hand side expression.
      * @param {() => void} reset - The reset function.
-     * @returns {ExpressionsWithLength} The parsed formatter expression.
+     * @returns {Expressions} The parsed formatter expression.
      */
-    public parseFormatter(expression: StringCursor, lhs: ExpressionsWithLength, reset: () => void): ExpressionsWithLength
+    public parseFormatter(expression: StringCursor, lhs: Expressions, reset: () => void): Expressions
     {
         const item = expression.exec(/\s*([\w\.\$]+)\s*/);
         reset?.();
-        let settings: ExpressionsWithLength;
+        let settings: Expressions;
         if (expression.char === ':')
         {
             expression.offset++;
@@ -491,18 +415,18 @@ export class Parser
     /**
      * Tries to parse an operator expression.
      * @param {string} expression - The expression to parse.
-     * @param {ExpressionsWithLength} lhs - The left-hand side expression.
+     * @param {Expressions} lhs - The left-hand side expression.
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {() => void} [reset] - The reset function.
      * @param {StringCursor} cursor - The cursor tracking the current position.
-     * @returns {ExpressionsWithLength} The parsed operator expression.
+     * @returns {Expressions} The parsed operator expression.
      */
-    public tryParseOperator(expression: StringCursor, lhs: ExpressionsWithLength, parseFormatter: boolean, reset?: () => void)
+    public tryParseOperator(expression: StringCursor, lhs: Expressions, parseFormatter: boolean, reset?: () => void)
     {
         const operator = expression.exec(/\s*([<>=!+\-/*&|\?\.#\[\(]+)\s*/);
         if (operator)
         {
-            let rhs: ExpressionsWithLength;
+            let rhs: Expressions;
             const oldParameters = this.parameters;
 
             switch (operator[1])
@@ -538,14 +462,21 @@ export class Parser
                         throw new Error('Invalid ternary operator');
 
                     const third = this.parseAny(expression, parseFormatter, reset);
-                    const ternary = new ParsedTernary(tOperator, lhs, second, third);
+                    const ternary = new TernaryExpression(lhs, tOperator, second, third);
                     return ternary;
                 }
                 default: {
                     reset?.();
                     rhs = this.parseAny(expression, parseFormatter);
-                    const binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs);
-                    return ParsedBinary.applyPrecedence(binary);
+                    const binaryOperator = parseBinaryOperator(operator[1]);
+                    if (binaryOperator !== BinaryOperator.Unknown)
+                    {
+                        const binary = new BinaryExpression(lhs, binaryOperator, rhs);
+                        return BinaryExpression.applyPrecedence(binary);
+                    }
+                    const assignmentOperator = parseAssignmentOperator(operator[1]);
+                    if (assignmentOperator !== AssignmentOperator.Unknown)
+                        return new AssignmentExpression(lhs, assignmentOperator, rhs);
                 }
             }
         }
@@ -555,12 +486,12 @@ export class Parser
     /**
      * Parses a function call expression.
      * @param {string} expression - The expression to parse.
-     * @param {ExpressionsWithLength} lhs - The left-hand side expression.
+     * @param {Expressions} lhs - The left-hand side expression.
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {StringCursor} cursor - The cursor tracking the current position.
-     * @returns {ExpressionsWithLength} The parsed function call expression.
+     * @returns {Expressions} The parsed function call expression.
      */
-    parseFunctionCall(expression: StringCursor, lhs: ExpressionsWithLength, parseFormatter: boolean)
+    parseFunctionCall(expression: StringCursor, lhs: Expressions, parseFormatter: boolean)
     {
         const results: (StrictExpressions)[] = [];
 
@@ -574,8 +505,8 @@ export class Parser
         if (lhs?.type == ExpressionType.MemberExpression)
             return this.tryParseOperator(
                 expression,
-                new ParsedCall(
-                    lhs.source as ExpressionsWithLength & TypedExpression<any>,
+                new CallExpression(
+                    lhs.source as Expressions & TypedExpression<any>,
                     lhs.member,
                     results
                 ),
@@ -584,8 +515,8 @@ export class Parser
 
         return this.tryParseOperator(
             expression,
-            new ParsedCall(
-                lhs as ExpressionsWithLength & TypedExpression<any>,
+            new CallExpression(
+                lhs as Expressions & TypedExpression<any>,
                 null,
                 results
             ),
@@ -599,11 +530,11 @@ export class Parser
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {StringCursor} cursor - The cursor tracking the current position.
      * @param {() => void} [reset] - The reset function.
-     * @returns {ExpressionsWithLength} The parsed array expression.
+     * @returns {Expressions} The parsed array expression.
      */
     public parseArray(expression: StringCursor, parseFormatter: boolean, reset?: () => void)
     {
-        const results: ExpressionsWithLength[] = [];
+        const results: Expressions[] = [];
         this.parseCSV(expression, () =>
         {
             let item = this.parseAny(expression, parseFormatter);
@@ -621,7 +552,7 @@ export class Parser
      * @param {string} start - The starting character of the string.
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {StringCursor} cursor - The cursor tracking the current position.
-     * @returns {ExpressionsWithLength} The parsed string expression.
+     * @returns {Expressions} The parsed string expression.
      */
     public parseString(expression: StringCursor, start: '"' | "'", parseFormatter: boolean)
     {
@@ -687,12 +618,12 @@ export class Parser
     /**
      * Parses a CSV expression.
      * @param {string} expression - The expression to parse.
-     * @param {(expression: string) => ExpressionsWithLength} parseItem - The function to parse each item.
+     * @param {(expression: string) => Expressions} parseItem - The function to parse each item.
      * @param {string} end - The ending character of the CSV.
      * @param {StringCursor} cursor - The cursor tracking the current position.
      * @returns {number} The length of the parsed CSV expression.
      */
-    public parseCSV(expression: StringCursor, parseItem: () => ExpressionsWithLength, end: string): number
+    public parseCSV(expression: StringCursor, parseItem: () => Expressions, end: string): number
     {
         const startOffset = expression.offset;
         expression.offset++; // Skip opening character
@@ -738,11 +669,11 @@ export class Parser
      * @param {string} expression - The expression to parse.
      * @param {boolean} parseFormatter - Whether to parse formatters.
      * @param {StringCursor} cursor - The cursor tracking the current position.
-     * @returns {ExpressionsWithLength} The parsed object expression.
+     * @returns {Expressions} The parsed object expression.
      */
     public parseObject(expression: StringCursor, parseFormatter: boolean)
     {
-        const parsedObject: { key: string, value: ExpressionsWithLength }[] = [];
+        const parsedObject: { key: string, value: Expressions }[] = [];
         this.parseCSV(expression, () =>
         {
             const keyMatch = expression.exec(jsonKeyRegex);

@@ -18,6 +18,9 @@ import { TernaryOperator } from "../parser/expressions/ternary-operator.js";
 import { ExpressionSimplifyer } from "../parser/expressions/visitors/expression-simplifyer.js";
 import { combineSubscriptions, Subscription } from "../teardown-manager.js";
 import { watcher, Watcher, WatcherFormatter } from './shared.js'
+import { AssignmentExpression } from "../parser/expressions/assignment-expression.js";
+import { AssignmentOperator } from "../parser/expressions/assignment-operator.js";
+import { ExpressionType } from "../parser/expressions/expression-type.js";
 
 export interface ObjectEvent<T>
 {
@@ -323,6 +326,55 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
         let setter: Setter<T, TValue>;
         switch (expression.type)
         {
+            case 'assign':
+                if (expression.left.type == ExpressionType.MemberExpression)
+                {
+                    this.getter = getter;
+                    setter = null;
+                    if (expression.left.source)
+                        this.visit(expression.left.source);
+                    const upToBeforeLastGetter = this.getter;
+                    this.getter = getter;
+                    this.visit(expression.right);
+                    const rhs = this.getter;
+                    const internalSetter: WatchGetter<unknown, void> = function (target, watcher)
+                    {
+                        switch (expression.operator)
+                        {
+                            case AssignmentOperator.Equal:
+                                ObservableObject.setValue(upToBeforeLastGetter(target, null) as object, expression.left.member, rhs(target, watcher));
+                                break;
+                            case AssignmentOperator.NullCoaleasce:
+                            case AssignmentOperator.Unknown:
+                                throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Not implemented/supported ' + expression.operator);
+
+                        }
+                    }
+                    this.getter = (target, watcher) =>
+                    {
+                        return internalSetter(target, watcher)
+                    };
+                }
+                else if (expression.left.type == ExpressionType.ConstantExpression)
+                {
+                    if (expression.left.value instanceof Binding)
+                    {
+                        setter = null;
+                        this.visit(expression.right);
+                        const rhs = this.getter;
+                        this.getter = function (target, watcher)
+                        {
+                            const value = rhs(target, watcher);
+                            if (value instanceof Binding)
+                                return function () { (expression.left.value as Binding<unknown>).setValue(value.getValue()) };
+
+                            return function () { (expression.left.value as Binding<unknown>).setValue(value) };
+                        }
+                    }
+                    else
+                        throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'Cannot set a constant value ' + expression.left.value);
+                }
+                break;
             case 'member':
                 this.visit(expression.member);
                 const member = this.getter as WatchGetter<unknown, PropertyKey>;
@@ -384,7 +436,20 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
      */
     visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
     {
-        this.getter = () => arg0.value;
+        let sub;
+        this.getter = (target, watcher) =>
+        {
+            if (arg0.value instanceof Binding)
+            {
+                if (!sub)
+                {
+                    sub = arg0.value.onChanged(ev => watcher.emit('change', arg0.value as object));
+                    watcher.on(Symbol.dispose, sub);
+                }
+                return arg0.value.getValue();
+            }
+            return arg0.value;
+        };
         return arg0;
     }
 
@@ -534,6 +599,35 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
     }
 
 
+
+
+    /**
+     * Visits a binary expression.
+     * @param {BinaryExpression<T>} expression - The binary expression.
+     * @returns {BinaryExpression<Expressions>} The visited expression.
+     */
+    visitAssign<T extends Expressions = StrictExpressions>(expression: AssignmentExpression<T>): AssignmentExpression<Expressions>
+    {
+        const source = this.getter;
+        this.visit(expression.left);
+        const left = this.getter;
+        this.getter = source;
+        this.visit(expression.right);
+        const right = this.getter;
+        switch (expression.operator)
+        {
+            case AssignmentOperator.Equal: this.getter = (target, watcher) => left(target, watcher) == right(target, watcher); break;
+            case AssignmentOperator.NullCoaleasce: this.getter = (target, watcher) => left(target, watcher) == right(target, watcher); break;
+            case AssignmentOperator.Unknown:
+            default:
+                throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Not implemented/supported ' + expression.operator);
+        }
+        return expression;
+    }
+
+
+
+
     /**
      * Visits a binary expression.
      * @param {BinaryExpression<T>} expression - The binary expression.
@@ -569,7 +663,7 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
             case BinaryOperator.QuestionDot: this.getter = (target, watcher) => left(target, watcher)?.[right(target, watcher) as PropertyKey]; break;
             case BinaryOperator.Format:
             case BinaryOperator.Unknown:
-                throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Not implemented/supported');
+                throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Not implemented/supported ' + expression.operator);
         }
         return expression;
     }
@@ -772,7 +866,7 @@ export class Binding<T> extends EventEmitter<{
             expression = Parser.parameterLess.parse(expression);
         else if (typeof expression != 'object')
             expression = new MemberExpression(null, new ConstantExpression(expression), true);
-        const binding = new Binding<U>(this, expression);
+        const binding = new Binding<U>(this, expression as Expressions);
 
         const sub = this.onChanged(ev =>
         {
@@ -830,8 +924,12 @@ export class Binding<T> extends EventEmitter<{
                     value = watcherAndSetter.watcher(this.target, null);
                 // value = this.getValue();
                 if (isPromiseLike(value))
-                    value.then(v => this.emit('change', { value: v, oldValue }))
-                else
+                    value.then(v =>
+                    {
+                        if (oldValue !== v)
+                            this.emit('change', { value: v, oldValue })
+                    })
+                else if (value !== oldValue)
                     this.emit('change', { value, oldValue });
             })
             const watcherAndSetter = new BuildWatcherAndSetter().eval<T>(expression);

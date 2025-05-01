@@ -1,4 +1,4 @@
-import { Parser, ParsedBinary, ParsedString, StringCursor } from '../parser/parser.js';
+import { Parser, ParsedString, StringCursor } from '../parser/parser.js';
 import { BinaryOperator } from '../parser/expressions/binary-operator.js';
 import { Formatter, formatters } from '../formatters/index.js';
 import { EvaluatorAsFunction } from '../parser/evaluator-as-function.js';
@@ -6,6 +6,8 @@ import { ObservableArray } from '../observables/array.js';
 import { it, describe } from 'node:test'
 import assert from 'assert/strict'
 import { delay } from '../promiseHelpers.js';
+import { BinaryExpression } from '../parser/expressions/binary-expression.js';
+import { Expressions } from '../parser/expressions/index.js';
 
 //b*(c+d) ==> (b*c)+d
 
@@ -16,7 +18,7 @@ describe('parser tests', () =>
     it('should do math', () =>
     {
         const cursor = new StringCursor('b*c+d');
-        const result = <ParsedBinary>parser.parseEval(cursor, false);
+        const result = parser.parseEval(cursor, false);
         console.log(result);
         assert.strictEqual('b*c+d'.length, cursor.offset)
         assert.strictEqual((evaluator.eval(result))({ b: 1, c: 2, d: 3 }), 5);
@@ -25,8 +27,8 @@ describe('parser tests', () =>
     it('should apply precedence', () =>
     {
 
-        const test = new ParsedBinary(BinaryOperator.Times, new ParsedString('b'), new ParsedBinary(BinaryOperator.Plus, new ParsedString('c'), new ParsedString('d')));
-        ParsedBinary.applyPrecedence(test);
+        const test = new BinaryExpression<Expressions>(new ParsedString('b'), BinaryOperator.Times, new BinaryExpression(new ParsedString('c'), BinaryOperator.Plus, new ParsedString('d')));
+        BinaryExpression.applyPrecedence(test);
 
         assert.strictEqual(test.toString(), '( b * ( c + d ) )');
     })

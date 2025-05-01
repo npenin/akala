@@ -20,6 +20,7 @@ import { NewExpression } from '../new-expression.js';
 import { IVisitable } from '../visitable.js';
 import { FormatExpression } from '../../parser.js';
 import { TernaryExpression } from '../ternary-expression.js';
+import { AssignmentExpression } from '../assignment-expression.js';
 
 /** 
  * Defines a comparison function between two values of type T.
@@ -32,6 +33,23 @@ export type EqualityComparer<T> = (a: T, b: T) => boolean;
  */
 export class ExpressionVisitor
 {
+    /**
+     * Processes an assignment expression by visiting its left and right operands.
+     * @template T - The expression's value type
+     * @param {AssignmentExpression<T>} expression - The assignment expression to process.
+     * @returns {AssignmentExpression<Expressions>} The processed assignment expression.
+     */
+    visitAssign<T extends Expressions = StrictExpressions>(
+        expression: AssignmentExpression<T>
+    ): AssignmentExpression<Expressions>
+    {
+        const left = this.visit(expression.left);
+        const right = this.visit(expression.right);
+        return left !== expression.left || right !== expression.right
+            ? new AssignmentExpression<Expressions>(left, expression.operator, right)
+            : expression;
+    }
+
     /**
      * Visits an expression and returns the processed result.
      * @template T - The type of the expression's output value
