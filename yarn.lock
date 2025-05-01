@@ -303,9 +303,9 @@ __metadata:
   resolution: "@akala/nocode@workspace:packages/nocode"
   dependencies:
     "@akala/client": "workspace:^"
+    "@akala/core": "workspace:^"
     "@akala/pages": "workspace:^"
-    "@floating-ui/core": "npm:^1.6.9"
-    "@floating-ui/dom": "npm:^1.6.13"
+    "@akala/web-ui": "workspace:^"
     esbuild: "npm:^0.25.2"
     sass: "npm:^1.86.3"
   languageName: unknown
@@ -530,6 +530,11 @@ __metadata:
     sass: "npm:^1.86.3"
     style-dictionary: "npm:^4.3.3"
     vite: "npm:^6.3.3"
+  peerDependencies:
+    "@akala/storage": "workspace:^"
+  peerDependenciesMeta:
+    "@akala/storage":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -1664,7 +1669,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/core@npm:^1.6.0, @floating-ui/core@npm:^1.6.9":
+"@floating-ui/core@npm:^1.6.0":
   version: 1.6.9
   resolution: "@floating-ui/core@npm:1.6.9"
   dependencies:
