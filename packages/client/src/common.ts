@@ -98,6 +98,7 @@ export class LocalAfterRemoteProcessor implements ICommandProcessor
 }
 
 export { FormInjector, FormComposer } from './behaviors/form.js';
+export { IfComposer } from './behaviors/if.js';
 export { DataBind, DataContext } from './behaviors/context.js';
 export { EventComposer } from './behaviors/events.js';
 export { CssClass, CssClassComposer } from './behaviors/cssClass.js';
