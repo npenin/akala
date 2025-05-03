@@ -86,7 +86,7 @@ export class DataContext implements Composer<IDataContext>
                 new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
             ));
         else if (newContextPath)
-            sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
+            return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
                 ...DataContext.propagateProperties.map(e =>
                     new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
                 new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
