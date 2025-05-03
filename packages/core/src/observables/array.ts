@@ -71,6 +71,8 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
         {
             Object.defineProperty(this, i, {
                 get: () => this.array[i],
+                set: (value) => this.array[i] = value,
+                configurable: true,
             })
         }
     }
@@ -96,13 +98,16 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
      */
     public push(...items: T[])
     {
+        const arrayLength = this.array.length;
         this.array.push(...items);
 
-        const finalLength = this.array.length + items.length;
-        for (let i = this.array.length; i < finalLength; i++)
+        const finalLength = arrayLength + items.length;
+        for (let i = arrayLength; i < finalLength; i++)
         {
             Object.defineProperty(this, i, {
                 get: () => this.array[i],
+                set: (value) => this.array[i] = value,
+                configurable: true,
             })
         }
         this.emit({
@@ -140,9 +145,10 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
      */
     public pop(count: number = 1)
     {
+        const arrayLength = this.array.length;
         const items = this.array.splice(this.array.length - count, count);
 
-        for (let i = this.array.length - count; i < this.array.length; i++)
+        for (let i = arrayLength - count; i < arrayLength; i++)
         {
             delete this[i];
         }
@@ -158,7 +164,7 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
      * @param {...T[]} items - The items to unshift.
      * @returns {number} The new length of the array.
      */
-    public unshift = function (...items)
+    public unshift(...items: T[])
     {
         this.array.unshift(...items);
 
@@ -167,6 +173,8 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
         {
             Object.defineProperty(this, i, {
                 get: () => this.array[i],
+                set: (value) => this.array[i] = value,
+                configurable: true,
             })
         }
         this.emit({
