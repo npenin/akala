@@ -315,15 +315,13 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
                 switch (ev.action)
                 {
                     case "pop":
-                        for (let i = 0; i < ev.oldItems.length; i++)
-                            this.pop()
+                        this.pop(ev.oldItems.length)
                         break;
                     case "push":
                         this.push(...ev.newItems)
                         break;
                     case "shift":
-                        for (let i = 0; i < ev.oldItems.length; i++)
-                            this.shift()
+                        this.shift(ev.oldItems.length)
                         break;
                     case "unshift":
                         this.unshift(...ev.newItems)
