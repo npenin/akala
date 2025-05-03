@@ -1,11 +1,14 @@
-#  (2025-05-01)
+#  (2025-05-03)
 
 
 ### Bug Fixes
 
-* improve session default expiration to 5min instead of 300ms 9bfe110
-* update after storage breaking change 87b037a
-* update after storage breaking change 06b7d59
+* exclude views and fix login template cff89b9
+
+
+### Features
+
+* add auth views c5238de
 
 
 

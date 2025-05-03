@@ -1,14 +1,10 @@
-#  (2025-05-01)
+#  (2025-05-03)
 
 
-### Features
+### Bug Fixes
 
-* implement assignment expressions and related operators f3e6fe5
-
-
-### BREAKING CHANGES
-
-* remove ParsedBinary and ParsedTernary
+* obersavable array array mimicking d310c55
+* simplify and smoother observablearray "piping" 18f75b2
 
 
 
