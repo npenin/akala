@@ -1,4 +1,4 @@
-#  (2025-05-01)
+#  (2025-05-03)
 
 
 * chore : code cleanup eae1150
@@ -37,6 +37,7 @@
 * add missing link targets 2fc6516
 * add missing storage provider ff28469
 * add missing storage provider 67a9a14
+* add missing tsconfig dependency acc3c15
 * add more logging 1cca136
 * add more logging 1bc54b5
 * add more logging in automate ebd2397
@@ -176,6 +177,7 @@
 * event datacontext 560847c
 * exclude upcoming documentation from navigation 5e58959
 * exclude upcoming documentation from navigation 6a2cc0a
+* exclude views and fix login template cff89b9
 * existing file generator detection ca3ad06
 * extract params considers when array is provided 96c7644
 * extract params considers when array is provided c5eb98b
@@ -316,6 +318,7 @@
 * move HttpStatusCode to be more "independent" of Http 0bcb3aa
 * multiple modules may be started simultaneously 3ea8a55
 * nested bindings change detection and oldValue assignment 8f373ca
+* obersavable array array mimicking d310c55
 * oidc discover properly returns options for authorize, token and keys 0934291
 * oidc discover properly returns options for authorize, token and keys b92665c
 * options setup 185ffa4
@@ -411,6 +414,7 @@
 * semantic release based on branch 8b7d109
 * server.close returns a promise a2a8a5f
 * setAttribute when provided object a3eff3d
+* simplify and smoother observablearray "piping" 18f75b2
 * simplify titles and remove unnecessary metadata in CLI documentation f331a8e
 * simplify titles and remove unnecessary metadata in CLI documentation 7702b95
 * sonar coverage discovery 505f9b3
@@ -600,6 +604,7 @@
 * add api serving on akala CLI b649800
 * add auth to all configurations 6dd7780
 * add auth to all configurations f48da73
+* add auth views c5238de
 * add automate as plugin 0da9a74
 * add automate as plugin fedd6ad
 * add bindings (as in azure function bindings) as configuration 8cf7076
