@@ -1,3 +1,6 @@
+import { Event, EventEmitter } from '@akala/core'
+import { WebComponent } from '@akala/client'
+
 type RecordValueType<T> = T extends Record<any, infer X> ? X : never;
 
 export interface Document<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> extends Tag<'html', TAttributes>
@@ -137,9 +140,6 @@ export type THTMLElements = 'HTMLAnchorElement'
     | 'HTMLTableCellElement'
     | 'HTMLTemplateElement'
     | 'HTMLTextAreaElement'
-    | 'HTMLTableSectionElement'
-    | 'HTMLTableCellElement'
-    | 'HTMLTableSectionElement'
     | 'HTMLTimeElement'
     | 'HTMLTitleElement'
     | 'HTMLTableRowElement'
@@ -152,44 +152,42 @@ export type THTMLElements = 'HTMLAnchorElement'
 
 export type THTMLElement<T extends THTMLElements> = HTMLElements[T] extends HTMLElement ? HTMLElements[T] : never;
 
-export const customElementRegistry: Record<string, { component: CustomTagDefinition<string, any>, options?: ElementDefinitionOptions, parent: THTMLElements, observedAttributes: (string | symbol | number)[] }> = {};
+type CustomElementRegistryItem = { component: CustomTagDefinition<string, any>, options?: ElementDefinitionOptions, parent: THTMLElements, observedAttributes: (string | symbol | number)[] };
 
-export function customElement<T extends string, TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>>(tag: T, observedAttributes?: (keyof TAttributes)[], parent: THTMLElements = 'HTMLDivElement', options?: ElementDefinitionOptions): <U extends CustomTagDefinition<T, V>, V extends CustomTagInstance>(c: U) => U 
+export const customElementRegistry: Record<string, CustomElementRegistryItem> = {};
+
+const customElementRegistryEmitter = new EventEmitter<Record<string, Event<[CustomElementRegistryItem]>>>();
+
+if (!globalThis.customElements)
 {
-    return function (c)
-    {
-        if ('customElements' in globalThis && customElements.define)
-            customElements.define(tag, class extends (globalThis[parent] as typeof HTMLElement)
+    globalThis.customElements = {
+        define: (name: string, constructor: CustomTagDefinition<string, any>, options?: ElementDefinitionOptions) =>
+        {
+            customElementRegistry[name] = { component: constructor, options, parent: 'HTMLElement', observedAttributes: [] };
+            customElementRegistryEmitter.emit(name, customElementRegistry[name]);
+        },
+        get: (name: string) =>
+        {
+            return customElementRegistry[name]?.component;
+        },
+        whenDefined: (name: string) =>
+        {
+            return new Promise<CustomElementConstructor>((resolve) =>
             {
-                private component = new c();
-                static get observedAttributes()
-                {
-                    return observedAttributes || [];
-                }
-                constructor()
-                {
-                    super();
+                customElementRegistryEmitter.once(name, (el) => resolve(el.component));
+            });
+        },
+        getName: (element: CustomTagDefinition<string, any>) =>
+        {
+            for (const [name, registryItem] of Object.entries(customElementRegistry))
+                if (registryItem.component === element)
+                    return name;
 
-                    return new Proxy(this, {
-                        get(target, prop)
-                        {
-                            if (Reflect.has(target.component, prop) && typeof target.component[prop] == 'function')
-                                return target.component[prop].bind(target.component);
-                            return target[prop];
-                        }
-                    });
-                }
-
-                // connectedCallback?: () => void;
-                // disconnectedCallback?: () => void;
-                // adoptedCallback?: () => void;
-                // attributeChangedCallback?: (...args: unknown[]) => void;
-
-            }, options);
-        else
-            customElementRegistry[tag] = { component: c, options, parent, observedAttributes };
-
-        return c;
+            return null;
+        },
+        upgrade: (root: Node) =>
+        {
+        }
     }
 }
 
@@ -446,15 +444,8 @@ export type WebComponentTags<TAttributes extends Record<string, { value: string 
     Slot<TAttributes> | Template<TAttributes>
 
 export type CustomTagDefinition<T extends string, U extends CustomTagInstance> = (new () => U) & { type: T, parentRender?(): Partial<Tag<string>>, preRender?: Tag<string>['preRender'] }
-export interface CustomTagInstance extends Omit<Tag<unknown>, 'type'> 
+export interface CustomTagInstance extends Omit<Tag<unknown>, 'type'>, Partial<WebComponent>
 {
-    connectedCallback?(): void;
-
-    disconnectedCallback?(): void;
-
-    adoptedCallback?(): void;
-
-    attributeChangedCallback?(name: string, oldValue, newValue): void;
 }
 
 
