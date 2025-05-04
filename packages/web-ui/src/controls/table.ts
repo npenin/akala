@@ -1,5 +1,5 @@
 import { Bound, c, content, Control, CssClass, DataContext, e, Each, s, subscribe, t } from "@akala/client";
-import { Binding, EmptyBinding, ErrorWithStatus, Event, formatters, HttpStatusCode, isPromiseLike, ObservableArray, ObservableObject, Parser, Subscription, Watcher, WatcherFormatter } from "@akala/core";
+import { Binding, each, EmptyBinding, ErrorWithStatus, Event, formatters, HttpStatusCode, isPromiseLike, map, ObservableArray, ObservableObject, Parser, Subscription, Watcher, WatcherFormatter } from "@akala/core";
 import { BinaryExpression, BinaryOperator, ConstantExpression, MemberExpression, TypedExpression } from "@akala/core/expressions";
 import tableCss from './table.css?inline'
 
@@ -26,8 +26,11 @@ export interface TableConfig<T>
     sortAscClasses?: string[]
     sortDescClasses?: string[];
     pageSize?: number;
-    columns?: ColumnConfig<T>[]
+    columns?: ColumnConfig<T>[];
+    row?: { [key in keyof HTMLElementEventMap]?: (ev: HTMLElementEventMap[key]) => void | Promise<void> }
 }
+
+type RowSubs = { [key in keyof TableConfig<unknown>['row']]: Subscription };
 
 const localSort = Symbol('local sort subscription');
 const localPage = Symbol('local page subscription');
@@ -530,7 +533,23 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
             template: (itemOption) =>
             {
                 const row = e('tr');
-                DataContext.defineDirect(row, DataContext.extend(DataContext.find(this.element), { ...itemOption, config: this.bind('config') }));
+                const config = this.bind('config');
+                const subs: RowSubs = {};
+                let unsubRow = false;
+                this.teardown(() =>
+                {
+                    if (unsubRow)
+                        return false;
+                    unsubRow = true;
+                    each(subs, sub => sub?.());
+                })
+                this.teardown(config.pipe('row').onChanged(ev =>
+                {
+                    each(subs, sub => sub?.());
+                    if (ev.value)
+                        Object.assign(subs, map(ev.value, (handler, key) => subscribe(row, key, handler)));
+                }, true));
+                DataContext.defineDirect(row, DataContext.extend(DataContext.find(this.element), { ...itemOption, config: config }));
                 Each.applyTemplate({
                     container: row,
                     each: columnsBinding,
