@@ -315,9 +315,10 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
     [fspath]: string;
     [isNew]?: boolean;
     [model]: ModelDefinition<any>
+    modelDefinitions: ModelDefinitions;
     [fileEntryFactoryProperty]: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile;
 
-    constructor(path: string, name: string, def: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile, private modelDefinitions: ModelDefinitions)
+    constructor(path: string, name: string, def: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile, modelDefinitions: ModelDefinitions)
     {
         this[fspath] = join(path, name);
         this[fsName] = name;
@@ -325,6 +326,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
         if (!def)
             this[isNew] = true;
         Object.defineProperty(this, 'promise', { enumerable: false, writable: true });
+        Object.defineProperty(this, 'modelDefinitions', { value: modelDefinitions, enumerable: false, writable: true });
         this[fileEntryFactoryProperty] = fileEntryFactory;
     }
 
