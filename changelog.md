@@ -1,4 +1,4 @@
-#  (2025-05-03)
+#  (2025-05-04)
 
 
 * chore : code cleanup eae1150
@@ -294,6 +294,7 @@
 * links 53c17f6
 * login page sonar issues e620328
 * make fs private for now 6e84b29
+* make modelDefinitions readonly f797208
 * make rawQuery support optional 3be8917
 * make rawQuery support optional 6050617
 * many fixes (still not prod ready) d4f40d2
@@ -313,6 +314,7 @@
 * mimeMiddleware to properly handle serialization 052ba0e
 * missing return keyword 545fb14
 * missing reverse enum mapping f66d206
+* modelDefinitions intruding in db 1d2fefc
 * mongodb storage aee06bc
 * move all code to cli install ad7249d
 * move all code to cli install 991eda8
@@ -683,6 +685,7 @@
 * allow not assigning result as last parameter cbc28b4
 * allow providing transaction during commit 271f464
 * allow providing transaction during commit a1460f9
+* attempt to improve the nocode base 44684fd
 * code from akala helper to trigger akala install b95b3bb
 * code from akala helper to trigger akala install 003219e
 * disable comments 60901b4
@@ -723,6 +726,7 @@
 * http-client now has body support d217cac
 * implement assignment expressions and related operators f3e6fe5
 * implement AWS4 signature as httpclient authentication ebb14c8
+* implement customElement polyfill for server rendering 94bfb96
 * implement dynamic routing based on URL pathname in server handlers e16592f
 * implement dynamic routing based on URL pathname in server handlers f73ea99
 * improve documentation titles and structure for middleware sections 34f33ad
