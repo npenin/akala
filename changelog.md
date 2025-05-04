@@ -672,6 +672,7 @@
 * add shadowWithStyles helper function 2c8e6b8
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
+* add table row event handlers 392d906
 * add TopDown and BottomUp namespace event emitters d8e148e
 * add uri on request to be able to know the full url of a request a189409
 * add uri on request to be able to know the full url of a request 3ed1dd0
@@ -681,6 +682,7 @@
 * add xpm (but not leverage it yet) 84f1def
 * akala plugin implementation f99043a
 * akala plugin implementation d050e1a
+* allow customizing the context name with the name attribute a9d0353
 * allow not assigning result as last parameter c93f78c
 * allow not assigning result as last parameter cbc28b4
 * allow providing transaction during commit 271f464
