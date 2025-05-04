@@ -311,6 +311,7 @@
 * metatadata to return original commands 8188738
 * metatadata to return original commands 27a9049
 * mimeMiddleware to properly handle serialization 052ba0e
+* missing return keyword 545fb14
 * missing reverse enum mapping f66d206
 * mongodb storage aee06bc
 * move all code to cli install ad7249d
