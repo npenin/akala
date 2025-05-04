@@ -1,6 +1,7 @@
+import { webComponent } from "@akala/client";
 import { dom } from "@akala/pages";
 
-@dom.customElement('kl-test', [], 'HTMLElement')
+@webComponent('kl-test')
 export class Test implements dom.CustomTagInstance
 {
     static readonly type = 'kl-test';
