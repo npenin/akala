@@ -15,7 +15,9 @@ export type PartInstance = { scope: Scope<object>, element: HTMLElement | Shadow
  */
 export const outletDefinition = Symbol();
 
-@service('$outlet', '$template', '$router', '$location')
+const OutletInjectionToken = Symbol();
+
+@service(OutletInjectionToken, '$template', '$router', '$location')
 /**
  * The `OutletService` class provides functionality for managing outlet parts,
  * routing, and applying templates and controllers to specific parts of a web application.
@@ -37,6 +39,8 @@ export const outletDefinition = Symbol();
  */
 export class OutletService
 {
+    public static readonly InjectionToken = OutletInjectionToken;
+
     private routers: { [key: string]: Router } = {};
 
     /**
