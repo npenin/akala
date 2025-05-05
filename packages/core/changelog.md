@@ -1,10 +1,10 @@
-#  (2025-05-03)
+#  (2025-05-05)
 
 
-### Bug Fixes
+### Features
 
-* obersavable array array mimicking d310c55
-* simplify and smoother observablearray "piping" 18f75b2
+* allow CustomResolver as Resolvable b1cfa93
+* module accept Resolvable instead of just strings 0c95374
 
 
 
