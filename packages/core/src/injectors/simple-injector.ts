@@ -125,11 +125,8 @@ export class SimpleInjector extends LocalInjector
         if (typeof param == 'object')
         {
             if (Array.isArray(param))
-            {
-                if (isCustomResolver(param[0]))
-                    return param[0][customResolve](param);
                 return this.resolveKeys(param);
-            }
+
             const x = Injector.collectMap(param);
 
             return Injector.applyCollectedMap(param as InjectMap<T>, Object.fromEntries(x.map(x => [x, this.resolve(x)]))) as T;
