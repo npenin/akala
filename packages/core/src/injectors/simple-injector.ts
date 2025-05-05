@@ -1,7 +1,7 @@
 import { EventEmitter } from '../events/event-emitter.js';
 import { Event } from '../events/shared.js';
 import "reflect-metadata";
-import { InjectMap, Injector, LocalInjector, Resolvable, injectorLog } from './shared.js';
+import { InjectMap, Injector, LocalInjector, Resolvable, ResolvableArray, customResolve, injectorLog, isCustomResolver } from './shared.js';
 
 /** 
  * A simple dependency injection container that provides basic resolution capabilities.
@@ -108,7 +108,7 @@ export class SimpleInjector extends LocalInjector
             this.parent.onResolve(name, handler);
     }
 
-    private resolveKeys<T>(keys: (string | symbol)[]): T
+    private resolveKeys<T>(keys: ResolvableArray<object>): T
     {
         return Injector.resolveKeys(this.injectables, keys, keys => this.parent?.resolve(keys));
     }
@@ -126,6 +126,8 @@ export class SimpleInjector extends LocalInjector
         {
             if (Array.isArray(param))
             {
+                if (isCustomResolver(param[0]))
+                    return param[0][customResolve](param);
                 return this.resolveKeys(param);
             }
             const x = Injector.collectMap(param);

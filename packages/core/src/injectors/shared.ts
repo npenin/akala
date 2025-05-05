@@ -64,7 +64,10 @@ export type InjectMap<T = object> = T extends object ? { [key in keyof T]: Resol
  * Type representing a resolvable parameter value.
  * @template T - The type of the resolved value.
  */
-export type Resolvable<T = object> = string | symbol | InjectMap<T> | (string | symbol)[];
+type SimpleResolvable<T> = InjectMap<T> | string | symbol;
+
+export type ResolvableArray<T> = SimpleResolvable<T>[] | [ICustomResolver, ...SimpleResolvable<T>[]];
+export type Resolvable<T = object> = ResolvableArray<T> | SimpleResolvable<T>;
 
 export const injectorLog = logger('akala:core:injector');
 
@@ -90,7 +93,7 @@ export interface ICustomResolver
     [customResolve]<T>(param: Resolvable): T
 }
 
-function isCustomResolver(x: unknown): x is ICustomResolver
+export function isCustomResolver(x: unknown): x is ICustomResolver
 {
     return x && typeof x == 'object' && customResolve in x;
 }
@@ -172,9 +175,9 @@ export abstract class Injector implements ICustomResolver
      * @param {InjectMap} param - The parameter map.
      * @returns {(string | symbol)[]} The collected map.
      */
-    static collectMap(param: InjectMap): (string | symbol)[]
+    static collectMap(param: InjectMap): Resolvable<object>[]
     {
-        let result: (string | symbol)[] = [];
+        let result: Resolvable<object>[] = [];
         each(param, value =>
         {
             if (typeof value == 'object')
@@ -233,20 +236,29 @@ export abstract class Injector implements ICustomResolver
      * @param fallback - A function to handle unresolved keys, invoked with the remaining keys if resolution fails.
      * @returns The resolved value of type `T`, or the result of the fallback function if provided.
      */
-    public static resolveKeys<T>(source: unknown, keys: (string | symbol)[], fallback: (keys: Resolvable[]) => T): T
+    public static resolveKeys<T>(source: unknown, keys: ResolvableArray<object>, fallback: (keys: Resolvable[]) => T): T
     {
         let result: unknown = source;
         for (let i = 0; i < keys.length; i++)
         {
             const key = keys[i];
+            if (isCustomResolver(key))
+                return key[customResolve](keys.slice(i));
             if (isCustomResolver(result))
                 return result[customResolve](keys.slice(i));
             if (isPromiseLike(result))
                 return result.then((result) => this.resolveKeys(result, keys.slice(i), fallback)) as T;
 
-            if (result === source && (!result || typeof (result[key]) == 'undefined') && fallback)
+            if (result === source && (result === null || typeof key !== 'object' && typeof (result[key]) == 'undefined') && fallback)
                 return fallback(keys.slice(i));
-            result = result?.[key];
+            if (typeof key !== 'object')
+                result = result?.[key];
+            else
+            {
+                const x = Injector.collectMap(key)
+
+                result = Injector.applyCollectedMap<object>(key, Object.fromEntries(x.map(x => [x, this.resolveKeys(source, [x], fallback)])));
+            }
         }
 
         return result as T;
@@ -445,9 +457,10 @@ export abstract class LocalInjector extends Injector
      * @param {boolean} [override] - Whether to override the existing value.
      * @returns {(() => unknown)} The registered factory function.
      */
-    public registerFactory(name: string, value: (() => unknown), override?: boolean): (() => unknown)
+    public registerFactory(name: string | symbol, value: (() => unknown), override?: boolean): (() => unknown)
     {
-        this.register(name + 'Factory', value, override);
+        if (typeof name == 'string')
+            this.register(name + 'Factory', value, override);
         this.registerDescriptor(name, {
             get: function ()
             {
