@@ -243,7 +243,7 @@ export abstract class Injector implements ICustomResolver
         {
             const key = keys[i];
             if (isCustomResolver(key))
-                return key[customResolve](keys.slice(i));
+                return key[customResolve](keys.slice(i + 1));
             if (isCustomResolver(result))
                 return result[customResolve](keys.slice(i));
             if (isPromiseLike(result))
