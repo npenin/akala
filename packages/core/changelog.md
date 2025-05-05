@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* build e6cbc6d
-* simple injector resolution with resolvable arrays 8411f99
+* resolution with custom resolver as first item e53e5da
 
 
 
