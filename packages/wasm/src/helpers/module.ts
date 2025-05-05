@@ -74,7 +74,7 @@ export class Module<TNative extends bigint | number>
                     module.exports.push(...s.section.map(xp => ({ name: xp.name, desc: module.funcs[xp.index].func })))
                     break;
                 case 10:
-                    s.section.map((c, i) =>
+                    s.section.forEach((c, i) =>
                     {
                         module.funcs[i].func.expr = c.expr;
                         module.funcs[i].func.offset = c.offset;
@@ -275,14 +275,14 @@ export class Module<TNative extends bigint | number>
 function compress(v: number[]): [number, number][]
 {
     const result = [];
-    for (let i = 0; i < v.length; i++)
+    for (const x of v)
     {
         if (result.length == 0)
-            result.push([1, v[i]]);
-        else if (result[result.length - 1][1] == v[i])
+            result.push([1, x]);
+        else if (result[result.length - 1][1] == x)
             result[result.length - 1][0]++;
         else
-            result.push([1, v[i]]);
+            result.push([1, x]);
     }
 
     return result;
