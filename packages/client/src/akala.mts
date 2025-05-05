@@ -142,7 +142,7 @@ import Home from './pages/home.js';
 import { bootstrap } from '@akala/web-ui';
 
 
-bootstrapModule.activate(['services.$outlet'], async (outlet: OutletService) =>
+bootstrapModule.activate([[serviceModule, OutletService.InjectionToken]], async (outlet: OutletService) =>
 {
     outlet.use('/', 'main', Home[outletDefinition]);
 })

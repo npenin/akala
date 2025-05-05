@@ -13,7 +13,7 @@ export class Outlet
 
     connectedCallback()
     {
-        serviceModule.ready(['$outlet'], (outletService: OutletService) => outletService.register(this.element.getAttribute('name'), {
+        serviceModule.ready([OutletService.InjectionToken], (outletService: OutletService) => outletService.register(this.element.getAttribute('name'), {
             element: this.element,
             get scope() { return DataContext.find(this.element)?.getValue()?.context || bootstrapModule.resolve('$rootScope') }
         }));
@@ -21,6 +21,6 @@ export class Outlet
 
     disconnectedCallback()
     {
-        serviceModule.injectWithName(['$outlet'], (outletService: OutletService) => outletService.unregister(this.element.getAttribute('name')))();
+        serviceModule.injectWithName([OutletService.InjectionToken], (outletService: OutletService) => outletService.unregister(this.element.getAttribute('name')))();
     }
 }
