@@ -61,16 +61,14 @@ export default function evaluate<TNative extends number | bigint>(module: Module
                 func.results.map(_ => stack.push(params.pop()));
                 break;
             case control.call_indirect:
-
             case control.empty_block:
             case control.unreachable:
             case control.nop:
-            case control.end:
             case control.return:
-
                 break;
             case control.drop:
                 stack.pop();
+                break;
             case i32.const:
                 stack.push(hi32.parser.read(buffer, cursor));
                 break;
