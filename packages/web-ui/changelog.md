@@ -1,10 +1,9 @@
 #  (2025-05-05)
 
 
-### Bug Fixes
+### Features
 
-* dependencies b90de68
-* void options plugin invocation 0112f3e
+* vite plugin to auto-import required webui css plugins d89aafd
 
 
 

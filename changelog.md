@@ -490,6 +490,8 @@
 * update after akala cli refactoring f69a2f4
 * update after breaking change 78d6ba4
 * update after breaking change 0357943
+* update after client breaking change ffa91c6
+* update after client breaking change d8abf32
 * update after core breaking change f571a17
 * update after core breaking change 21b0ad6
 * update after core breaking change 5bec499
@@ -686,10 +688,12 @@
 * akala plugin implementation f99043a
 * akala plugin implementation d050e1a
 * allow customizing the context name with the name attribute a9d0353
+* allow CustomResolver as Resolvable b1cfa93
 * allow not assigning result as last parameter c93f78c
 * allow not assigning result as last parameter cbc28b4
 * allow providing transaction during commit 271f464
 * allow providing transaction during commit a1460f9
+* allow service to be given as symbol aa0cbf3
 * attempt to improve the nocode base 44684fd
 * code from akala helper to trigger akala install b95b3bb
 * code from akala helper to trigger akala install 003219e
@@ -717,6 +721,7 @@
 * expose extendRequest 009dcb6
 * expose more middlewares b750c8f
 * expose more middlewares 24e8e4a
+* expose outlet as symbol b7a49ec
 * expose xpm f60e75a
 * extend AkalaConfig to include API URLs and enhance URL handling in plugin 5e28461
 * extend AkalaConfig to include API URLs and enhance URL handling in plugin efbebca
@@ -746,6 +751,7 @@
 * introduce vite as trigger in vite plugin 43d9826
 * make help accessible everywhere by any clicontext e18be04
 * make help accessible everywhere by any clicontext 9f5892a
+* module accept Resolvable instead of just strings 0c95374
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
 * provide akala plugin for registering mongodb provider. a120302
@@ -765,10 +771,12 @@
 * switch to nodejs postinstall script 2128399
 * update documentation with usage examples for parsing and formatters 3970fc6
 * update documentation with usage examples for parsing and formatters 293bbae
+* vite plugin to auto-import required webui css plugins d89aafd
 
 
 ### BREAKING CHANGES
 
+* $outlet should be replaced with OutletService.InjectionToken
 * names are extracted from the object given as the modelRegistration
 * remove ParsedBinary and ParsedTernary
 * remove ModelDefinition.definitions and definitionsAsArray. Replaced with PersistenceEngine.useModel
