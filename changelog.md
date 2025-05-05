@@ -399,6 +399,7 @@
 * rename provider to processor f755ab3
 * rename provider to processor ee37f19
 * rename root project to prevent conflicts with new akala project fff5646
+* resolution with custom resolver as first item e53e5da
 * resolveKeys c5a4c8e
 * resolveKeys 150e763
 * rest parameter overwriting default value 6c22dc2
@@ -574,6 +575,7 @@
 * using proper branch option 4136d01
 * using proper branch option 93a62fb
 * void options plugin invocation 0112f3e
+* wasm duplicate code 0cc73de
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
 * wrong csv parsing f9359c6
