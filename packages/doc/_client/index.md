@@ -38,7 +38,7 @@ To get started, just follow the [instructions](getting-started)
   | --- | --- |
   | [$http](services/http) | provides an easy way to do http requests |
   | [$template](services/template) | service allowing the template feature |
-  | [$outlet](services/outlet) | service for the part control. Can be used to create controls with templates |
+  | [outlet](services/outlet) | service for the part control. Can be used to create controls with templates |
   | [$router](services/router) | service that binds on the location service and run the code of the most appropriate route. The routing is provided using a *browserified* version of [expressjs](https://expressjs.com) |
   | [$location](services/location) | service binding on location changes |
   

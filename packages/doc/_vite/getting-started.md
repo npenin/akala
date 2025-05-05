@@ -42,7 +42,9 @@ Ensure you have the following installed:
    import { bootstrap } from '@akala/web-ui';
    import { DesignKit } from './design-kit/index.js';
 
-   bootstrapModule.activate(['services.$outlet'], async (outlet: OutletService) => {
+   
+   bootstrapModule.activate([[serviceModule, OutletService.InjectionToken]], async (outlet: OutletService) =>
+   {
        outlet.use('/signup', 'main', Signup[outletDefinition]);
        outlet.use('/design-kit', 'main', DesignKit[outletDefinition]);
        outlet.use('/login', 'main', Login[outletDefinition]);
