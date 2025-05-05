@@ -1,10 +1,10 @@
-#  (2025-05-04)
+#  (2025-05-05)
 
 
-### Features
+### Bug Fixes
 
-* add table row event handlers 392d906
-* allow customizing the context name with the name attribute a9d0353
+* dependencies b90de68
+* void options plugin invocation 0112f3e
 
 
 
