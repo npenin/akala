@@ -4,7 +4,7 @@ import { logger } from './logger.js';
 import { Event, Listener } from './events/shared.js';
 import { AsyncEvent, } from './events/async.js';
 import { noop } from './helpers.js';
-import { Injectable, InjectableAsyncWithTypedThis, InjectableWithTypedThis } from './injectors/shared.js';
+import { Injectable, InjectableAsyncWithTypedThis, InjectableWithTypedThis, Resolvable } from './injectors/shared.js';
 
 const orchestratorLog = logger('akala:module:orchestrator');
 
@@ -213,9 +213,9 @@ export class Module extends SimpleInjector
      * @param f - Handler function
      * @returns Self for chaining
      */
-    public ready<TArgs extends unknown[]>(toInject: string[], f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
-    public ready<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this
-    public ready<TArgs extends unknown[]>(toInject: string[], f?: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
+    public ready<TArgs extends unknown[]>(toInject: Resolvable[], f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
+    public ready<TArgs extends unknown[]>(toInject: Resolvable[]): (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this
+    public ready<TArgs extends unknown[]>(toInject: Resolvable[], f?: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
     {
         if (!f)
             return (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this.ready(toInject, f);
@@ -230,9 +230,9 @@ export class Module extends SimpleInjector
      * @param f - Async handler function
      * @returns Self for chaining
      */
-    public readyAsync<TArgs extends unknown[]>(toInject: string[], f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
-    public readyAsync<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void, ExtendableEvent, TArgs>) => this
-    public readyAsync<TArgs extends unknown[]>(toInject: string[], f?: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
+    public readyAsync<TArgs extends unknown[]>(toInject: Resolvable[], f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
+    public readyAsync<TArgs extends unknown[]>(toInject: Resolvable[]): (f: InjectableWithTypedThis<void, ExtendableEvent, TArgs>) => this
+    public readyAsync<TArgs extends unknown[]>(toInject: Resolvable[], f?: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
     {
         if (!f)
             return (f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>) => this.readyAsync(toInject, f);
@@ -247,9 +247,9 @@ export class Module extends SimpleInjector
      * @param f - Handler function
      * @returns Self for chaining
      */
-    public activate<TArgs extends unknown[]>(toInject: string[], f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>): this
-    public activate<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this
-    public activate<TArgs extends unknown[]>(toInject: string[], f?: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
+    public activate<TArgs extends unknown[]>(toInject: Resolvable[], f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>): this
+    public activate<TArgs extends unknown[]>(toInject: Resolvable[]): (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this
+    public activate<TArgs extends unknown[]>(toInject: Resolvable[], f?: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>)
     {
         if (!f)
             return (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent, TArgs>) => this.activate(toInject, f);
@@ -264,9 +264,9 @@ export class Module extends SimpleInjector
      * @param f - Async handler function
      * @returns Self for chaining
      */
-    public activateAsync<TArgs extends unknown[]>(toInject: string[], f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
-    public activateAsync<TArgs extends unknown[]>(toInject: string[]): (f: InjectableWithTypedThis<void, ExtendableEvent, TArgs>) => this
-    public activateAsync<TArgs extends unknown[]>(toInject: string[], f?: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
+    public activateAsync<TArgs extends unknown[]>(toInject: Resolvable[], f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
+    public activateAsync<TArgs extends unknown[]>(toInject: Resolvable[]): (f: InjectableWithTypedThis<void, ExtendableEvent, TArgs>) => this
+    public activateAsync<TArgs extends unknown[]>(toInject: Resolvable[], f?: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>)
     {
         if (!f)
             return (f: InjectableAsyncWithTypedThis<void, ExtendableEvent, TArgs>) => this.activateAsync(toInject, f);
@@ -279,7 +279,7 @@ export class Module extends SimpleInjector
      * @param toInject - Names of dependencies to inject
      * @returns Decorator function for class constructor
      */
-    public activateNew(...toInject: string[])
+    public activateNew(...toInject: Resolvable[])
     {
         return <T>(ctor: new (...args: unknown[]) => T) =>
         {
@@ -295,7 +295,7 @@ export class Module extends SimpleInjector
      * @param toInject - Names of dependencies to inject
      * @returns Decorator function for class constructor
      */
-    public activateNewAsync(...toInject: string[])
+    public activateNewAsync(...toInject: Resolvable[])
     {
         return function <T>(ctor: new (...args: unknown[]) => T)
         {
@@ -311,7 +311,7 @@ export class Module extends SimpleInjector
      * @param toInject - Names of dependencies to inject
      * @returns Decorator function for class constructor
      */
-    public readyNew(...toInject: string[])
+    public readyNew(...toInject: Resolvable[])
     {
         return <T>(ctor: new (...args: unknown[]) => T) =>
         {
@@ -327,7 +327,7 @@ export class Module extends SimpleInjector
      * @param toInject - Names of dependencies to inject
      * @returns Decorator function for class constructor
      */
-    public readyNewAsync(...toInject: string[])
+    public readyNewAsync(...toInject: Resolvable[])
     {
         return function <T>(ctor: new (...args: unknown[]) => T)
         {
