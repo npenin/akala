@@ -9,7 +9,7 @@ export default function plugin(options?: { tokenPaths?: string[], includeDefault
 
     const defaultTheme = import('../' + '../default-theme.tokens.json', { with: { type: 'json' } }).then(x => x.default);
 
-    if (options.includeDefaultTheme)
+    if (options?.includeDefaultTheme)
     {
         if (!options.tokens)
             options.tokens = defaultTheme
