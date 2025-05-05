@@ -30,7 +30,7 @@ defaultInjector.register('$resolveUrl', resolveUrl);
  * @param name The service identifier.
  * @param toInject Dependency names to inject into the service constructor.
  */
-export function service(name: string, ...toInject: string[])
+export function service(name: string | symbol, ...toInject: string[])
 {
     return function (target: new (...args: unknown[]) => unknown)
     {
