@@ -1,10 +1,12 @@
 import { plugin as akala } from '@akala/vite';
 import { GenericConfiguration, Processors } from '@akala/commands';
 import { ObservableObject, Parser, each } from '@akala/core';
+import { defineConfig } from 'vite';
+import webui from '@akala/web-ui/vite'
 
 const connectionMap: Record<string, { sessionId: string, sessionSignature: string }> = {}
 
-export default {
+export default defineConfig({
     build: {
         // generate .vite/manifest.json in outDir
         manifest: true,
@@ -61,6 +63,7 @@ export default {
                 return undefined;
                 // console.log(params);
             })
-        }])
+        }]),
+        webui(),
     ],
-} as import('vite').UserConfig
+})
