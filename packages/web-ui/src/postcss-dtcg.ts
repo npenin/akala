@@ -44,7 +44,7 @@ function transform<U extends keyof T, T extends Node & { [key in U]: string }>(t
 
 const pluginName = '@akala/web-ui/postcss'
 
-const creator: PluginCreator<PluginOptions> = (options?: Partial<PluginOptions>) =>
+const creator: PluginCreator<Partial<PluginOptions>> = (options?: Partial<PluginOptions>) =>
 {
     if (!options)
         options = {};

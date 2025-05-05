@@ -1,5 +1,8 @@
-import type { Plugin } from 'vite';
+import type { Plugin, UserConfig } from 'vite';
 import { DTCGTokenGroup, mergeTokens, generateCssFromTokensToString, expandTokens, WebUI, GenerateCssOptions } from './design-tokens.js';
+import webui from './postcss-dtcg.js'
+import contrast from './postcss-contrast.js'
+import fullCompose from './postcss-compose-full.js'
 
 export default function plugin(options?: { tokenPaths?: string[], includeDefaultTheme?: boolean, generateOptions?: GenerateCssOptions, tokens?: DTCGTokenGroup | Promise<DTCGTokenGroup> }): Plugin
 {
@@ -20,6 +23,17 @@ export default function plugin(options?: { tokenPaths?: string[], includeDefault
     return {
         name: 'akala-web-ui',
         enforce: 'pre',
+        config(config, helper)
+        {
+            if (!config.css?.postcss || typeof config.css.postcss !== 'string' && !config.css.postcss.plugins)
+            {
+                config.css = { ...(config.css || {}), postcss: { ...(config.css?.postcss as object || {}), plugins: [] } };
+                (config.css.postcss as Exclude<UserConfig['css']['postcss'], string>).plugins.push(
+                    webui({ includeDefaultTheme: true, generateOptions: { customMedia: true } }),
+                    fullCompose(),
+                    contrast(),)
+            }
+        },
         resolveId(source, importer, options)
         {
             if (virtualModuleId == source)
