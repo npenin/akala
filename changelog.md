@@ -1,4 +1,4 @@
-#  (2025-05-04)
+#  (2025-05-05)
 
 
 * chore : code cleanup eae1150
@@ -142,6 +142,7 @@
 * default logging level 072212e
 * default logging level f8f9a2c
 * default logging level f820f7a
+* dependencies b90de68
 * **deps:** update dependency mime-types to v3 5cfe8d4
 * **deps:** update dependency mime-types to v3 0d181d4
 * disable nav folding for all documentation sections 6bc5e4d
@@ -473,6 +474,7 @@
 * try to fix links db045fd
 * trying to fix akala cli 35fedc0
 * trying to fix akala cli 315af97
+* tsconfig in watch mode 385abdb
 * typescript:S4524 d09b7d3
 * typescript:S4524 0985abf
 * typescript:S4524 fd42ef6
@@ -567,6 +569,7 @@
 * using $metadata instead of $metadataCmd 453d4fd
 * using proper branch option 4136d01
 * using proper branch option 93a62fb
+* void options plugin invocation 0112f3e
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
 * wrong csv parsing f9359c6
