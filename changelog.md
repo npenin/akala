@@ -98,6 +98,7 @@
 * broken `has` behavior de026d0
 * bug when result is null 4596a13
 * bug when result is null b6a9828
+* build e6cbc6d
 * build fbd741f
 * build 88b29f4
 * busbox compatibility by switching from env -S to env and enabling sourcemap in js a510d42
@@ -418,6 +419,7 @@
 * semantic release based on branch 8b7d109
 * server.close returns a promise a2a8a5f
 * setAttribute when provided object a3eff3d
+* simple injector resolution with resolvable arrays 8411f99
 * simplify and smoother observablearray "piping" 18f75b2
 * simplify titles and remove unnecessary metadata in CLI documentation f331a8e
 * simplify titles and remove unnecessary metadata in CLI documentation 7702b95

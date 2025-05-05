@@ -1,10 +1,10 @@
 #  (2025-05-05)
 
 
-### Features
+### Bug Fixes
 
-* allow CustomResolver as Resolvable b1cfa93
-* module accept Resolvable instead of just strings 0c95374
+* build e6cbc6d
+* simple injector resolution with resolvable arrays 8411f99
 
 
 
