@@ -43,7 +43,7 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
         }
         this.element.firstElementChild.remove();
 
-        this.teardown(Each.applyTemplate({ indexPropertyName: this.indexPropertyName, options: this.options, itemPropertyName: this.itemPropertyName, each: this.each, template: this.template, root: this.element, container: this.element, teardownManager: this }));
+        this.teardown(Each.applyTemplate({ indexPropertyName: this.indexPropertyName, options: this.options, itemPropertyName: this.itemPropertyName, each: this.each, template: this.template, root: null, container: this.element, teardownManager: this }));
 
     }
     public static applyTemplate<T, TOption extends { [key in TOptionIndex]: number } & { [key in TOptionItem]: T }, const TOptionIndex extends PropertyKey = typeof Each.defaultIndexPropertyName, const TOptionItem extends PropertyKey = typeof Each.defaultItemPropertyName>(self: {
