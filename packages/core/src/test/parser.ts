@@ -15,7 +15,7 @@ const parser = new Parser();
 const evaluator = new EvaluatorAsFunction();
 describe('parser tests', () =>
 {
-    [['b*c+d', 10] as const, ['b*(c+d)', 14] as const, ['b*(c+d)+1', 15] as const].forEach(([operation, expectedResult]) =>
+    [['b*c+d', 10] as const, ['b*(c+d)', 14] as const, ['b*(c+d)+1', 15] as const, ['(b*c+d)+1', 11] as const].forEach(([operation, expectedResult]) =>
         it('should do math ' + operation, () =>
         {
             const cursor = new StringCursor(operation);

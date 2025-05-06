@@ -378,17 +378,22 @@ export class Parser
             item = item.substring(0, item.length - 1);
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let result: Expressions;
-        if (this.parameters)
-            result = new MemberExpression(this.parameters[''] as TypedExpression<any>, new ParsedString(item), optional) as TypedExpression<any>
-        else
-            result = new MemberExpression(null as any, new ParsedString(item), optional) as TypedExpression<any>
-
-        if (typeof operator != 'undefined')
+        if (item)
         {
-            result = new UnaryExpression(result, operator);
+            let result: Expressions;
+            if (this.parameters)
+                result = new MemberExpression(this.parameters[''] as TypedExpression<any>, new ParsedString(item), optional) as TypedExpression<any>
+            else
+                result = new MemberExpression(null as any, new ParsedString(item), optional) as TypedExpression<any>
+
+            if (typeof operator != 'undefined')
+            {
+                result = new UnaryExpression(result, operator);
+            }
+            return this.tryParseOperator(expression, result, parseFormatter, reset);
         }
-        return this.tryParseOperator(expression, result, parseFormatter, reset);
+
+        return this.tryParseOperator(expression, null, parseFormatter, reset);
     }
 
     /**
@@ -442,8 +447,17 @@ export class Parser
                     return this.parseFormatter(expression, lhs, reset);
                 case '(':
                     reset?.();
-                    expression.offset--;
-                    return this.parseFunctionCall(expression, lhs, parseFormatter);
+                    if (lhs)
+                    {
+                        expression.offset--;
+                        return this.parseFunctionCall(expression, lhs, parseFormatter);
+                    }
+                    else
+                    {
+                        lhs = this.parseAny(expression, parseFormatter, reset);
+                        expression.offset++;
+                        return this.tryParseOperator(expression, lhs, parseFormatter, reset);
+                    }
                 case '[': {
                     rhs = this.parseAny(expression, parseFormatter, reset);
                     const member = new MemberExpression(lhs as TypedExpression<any>, rhs as TypedExpression<any>, false);
