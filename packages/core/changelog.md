@@ -3,11 +3,14 @@
 
 ### Bug Fixes
 
-* binary operation precedences 542911b
-* binary operation precedences 58c2960
-* build from scratch issue b2f5bde
-* parsing on first parenthesis e3c07e4
-* restore string rendering 0bf0efa
+* dependency loop b1e483b
+* dependency loop 1de99cd
+* prevent http formatter infinite calls e8f33c1
+
+
+### Features
+
+* add sort and parse formatters 5b06cdd
 
 
 
