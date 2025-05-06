@@ -156,6 +156,7 @@
 * don't publish style updates c21f66b
 * duplicate akala.mts to support yarn dlx dbf2f5e
 * duplicate akala.mts to support yarn dlx a665a56
+* each databinding 89c07e8
 * edge cases when template is not defined 18add50
 * edge cases when template is not defined 412b6f6
 * enable navigation folding for all Akala documentation sections cfd5444
