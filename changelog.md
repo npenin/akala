@@ -91,6 +91,8 @@
 * aws sdk generation and update services 7b922cf
 * base64UrlEncode properly strips = 8a9274d
 * base64UrlEncode properly strips = 54ca5ff
+* binary operation precedences 542911b
+* binary operation precedences 58c2960
 * BinaryOperator parsing cb0abf0
 * bindings implementation 69b3e3f
 * bindings implementation 8362190
@@ -101,6 +103,7 @@
 * build e6cbc6d
 * build fbd741f
 * build 88b29f4
+* build from scratch issue b2f5bde
 * busbox compatibility by switching from env -S to env and enabling sourcemap in js a510d42
 * case when x is null 4631c51
 * case when x is null 8c0dd0d
@@ -331,6 +334,7 @@
 * options setup 387b195
 * outlet root scope fb5cfd1
 * outlet root scope 3c0d3e6
+* parsing on first parenthesis e3c07e4
 * positional parameters 0839d7d
 * positional parameters 4c7e6df
 * postinstall after cli update 6e53e1f
@@ -406,6 +410,7 @@
 * rest parameter overwriting default value 6c22dc2
 * rest parameter overwriting default value a80f45c
 * restore proper regex from github autofix 154e05b
+* restore string rendering 0bf0efa
 * restructure CLI documentation and add new sections bf15ad8
 * restructure CLI documentation and add new sections d48e2cc
 * return 204 when no content 3e5f2b9
