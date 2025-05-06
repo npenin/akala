@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* formatter parsing within objects 98c53c9
+* handle null in sort formatter 5c27a43
 
 
 
