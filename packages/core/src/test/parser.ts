@@ -15,14 +15,16 @@ const parser = new Parser();
 const evaluator = new EvaluatorAsFunction();
 describe('parser tests', () =>
 {
-    it('should do math', () =>
-    {
-        const cursor = new StringCursor('b*c+d');
-        const result = parser.parseEval(cursor, false);
-        console.log(result);
-        assert.strictEqual('b*c+d'.length, cursor.offset)
-        assert.strictEqual((evaluator.eval(result))({ b: 1, c: 2, d: 3 }), 5);
-    });
+    [['b*c+d', 10] as const, ['b*(c+d)', 14] as const, ['b*(c+d)+1', 15] as const].forEach(([operation, expectedResult]) =>
+        it('should do math ' + operation, () =>
+        {
+            const cursor = new StringCursor(operation);
+            const result = parser.parseAny(cursor, false);
+            console.log(result.toString());
+            assert.strictEqual(operation.length, cursor.offset);
+            assert.strictEqual((evaluator.eval(result))({ b: 2, c: 3, d: 4 }), expectedResult);
+        })
+    );
 
     it('should apply precedence', () =>
     {

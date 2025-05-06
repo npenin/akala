@@ -51,15 +51,11 @@ export class BinaryExpression<T extends Expressions = StrictExpressions> extends
             if (operation.right instanceof BinaryExpression)
             {
                 const right = BinaryExpression.applyPrecedence(operation.right);
-                switch (right.operator)
+                switch (operation.operator)
                 {
-                    case BinaryOperator.Plus:
-                    case BinaryOperator.Minus:
-                        break;
                     case BinaryOperator.Times: // b*c+d ==> (b*c)+d
                     case BinaryOperator.Div:
                     case BinaryOperator.And:
-                    case BinaryOperator.Or:
                         return new BinaryExpression(new BinaryExpression(operation.left, operation.operator, right.left), right.operator, right.right);
                     case BinaryOperator.QuestionDot:
                     case BinaryOperator.Dot:
