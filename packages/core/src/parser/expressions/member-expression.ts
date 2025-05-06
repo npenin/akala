@@ -42,4 +42,11 @@ export class MemberExpression<T, TMember extends keyof T, U extends T[TMember]> 
     {
         return visitor.visitMember(this) as TypedExpression<U>;
     }
+
+    public toString()
+    {
+        if (this.source)
+            return this.source.toString() + '.' + this.member.toString();
+        return this.member.toString();
+    }
 }
