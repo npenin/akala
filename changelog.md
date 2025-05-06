@@ -147,6 +147,8 @@
 * default logging level f8f9a2c
 * default logging level f820f7a
 * dependencies b90de68
+* dependency loop b1e483b
+* dependency loop 1de99cd
 * **deps:** update dependency mime-types to v3 5cfe8d4
 * **deps:** update dependency mime-types to v3 0d181d4
 * disable nav folding for all documentation sections 6bc5e4d
@@ -348,6 +350,7 @@
 * postinstall to leverage config 4d2cbbe
 * pre-create config file if it does not exist 0c72d08
 * pre-create config file if it does not exist 46d5f72
+* prevent http formatter infinite calls e8f33c1
 * prevent tag creation 49c9302
 * properly handle event emitters failure a24cafe
 * protobuf reading 007b724
@@ -686,6 +689,7 @@
 * add raw query support 020975f
 * add runtime concept 1993141
 * add shadowWithStyles helper function 2c8e6b8
+* add sort and parse formatters 5b06cdd
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
 * add table row event handlers 392d906
