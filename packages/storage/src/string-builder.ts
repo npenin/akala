@@ -108,7 +108,7 @@ export class StringBuilder
         return this;
     }
 
-    public toString()
+    public toString(): string
     {
         if (this.renderedString)
             return this.renderedString;
