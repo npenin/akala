@@ -1,4 +1,4 @@
-#  (2025-05-05)
+#  (2025-05-06)
 
 
 * chore : code cleanup eae1150
@@ -722,6 +722,7 @@
 * export Generator type and allow actionIfExists to prevent to generate a file if result ===false 32ae777
 * export serverHandlers and new serve function to quickly build servers 8a1bb74
 * export serverHandlers and new serve function to quickly build servers e6fc0ea
+* expose directly theme.css 1d83e0b
 * expose extendRequest 86d2793
 * expose extendRequest 009dcb6
 * expose more middlewares b750c8f
