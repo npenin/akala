@@ -11,6 +11,7 @@ import { formatters } from '../formatters/index.js';
 import { escapeRegExp } from '../reflect.js';
 import { AssignmentOperator } from './expressions/assignment-operator.js';
 import { AssignmentExpression } from './expressions/assignment-expression.js';
+import ErrorWithStatus, { HttpStatusCode } from '../errorWithStatus.js';
 
 const jsonKeyRegex = /\s*(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([a-zA-Z0-9_$]+)) *):\s*/;
 
@@ -428,6 +429,10 @@ export class Parser
         {
             let rhs: Expressions;
             const oldParameters = this.parameters;
+            let binaryOperator = parseBinaryOperator(operator[1]);
+            let assignmentOperator = parseAssignmentOperator(operator[1]);
+            let ternaryOperator = parseTernaryOperator(operator[1]);
+            let group = 0;
 
             switch (operator[1])
             {
@@ -454,7 +459,6 @@ export class Parser
                     return rhs;
                 }
                 case '?': {
-                    const tOperator = parseTernaryOperator(operator[1]);
                     const second = this.parseAny(expression, parseFormatter, reset);
 
                     const operator2 = expression.exec(/\s*(:)\s*/);
@@ -462,19 +466,35 @@ export class Parser
                         throw new Error('Invalid ternary operator');
 
                     const third = this.parseAny(expression, parseFormatter, reset);
-                    const ternary = new TernaryExpression(lhs, tOperator, second, third);
+                    const ternary = new TernaryExpression(lhs, ternaryOperator, second, third);
                     return ternary;
                 }
                 default: {
                     reset?.();
+                    if (ternaryOperator == TernaryOperator.Unknown && assignmentOperator == AssignmentOperator.Unknown && binaryOperator == BinaryOperator.Unknown)
+                    {
+                        while (operator[1][operator[1].length - 1] == '(')
+                        {
+                            group++;
+                            operator[1] = operator[1].substring(0, operator[1].length - 1);
+                        }
+                        binaryOperator = parseBinaryOperator(operator[1]);
+                        assignmentOperator = parseAssignmentOperator(operator[1]);
+                        if (assignmentOperator == AssignmentOperator.Unknown && binaryOperator == BinaryOperator.Unknown)
+                        {
+                            throw new ErrorWithStatus(HttpStatusCode.BadRequest, `Invalid expression at offset ${expression.offset} (${expression.char})`)
+                        }
+                    }
                     rhs = this.parseAny(expression, parseFormatter);
-                    const binaryOperator = parseBinaryOperator(operator[1]);
+                    expression.offset += group;
                     if (binaryOperator !== BinaryOperator.Unknown)
                     {
                         const binary = new BinaryExpression(lhs, binaryOperator, rhs);
-                        return BinaryExpression.applyPrecedence(binary);
+                        if (group == 0)
+                            return BinaryExpression.applyPrecedence(binary);
+
+                        return this.tryParseOperator(expression, binary, parseFormatter, reset);
                     }
-                    const assignmentOperator = parseAssignmentOperator(operator[1]);
                     if (assignmentOperator !== AssignmentOperator.Unknown)
                         return new AssignmentExpression(lhs, assignmentOperator, rhs);
                 }
