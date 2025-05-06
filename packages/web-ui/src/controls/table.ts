@@ -1,9 +1,7 @@
 import { Bound, c, content, Control, CssClass, DataContext, e, Each, s, subscribe, t } from "@akala/client";
-import { Binding, each, EmptyBinding, ErrorWithStatus, Event, formatters, HttpStatusCode, isPromiseLike, map, ObservableArray, ObservableObject, Parser, Subscription, Watcher, WatcherFormatter } from "@akala/core";
+import { Binding, each, EmptyBinding, ErrorWithStatus, Event, formatters, HttpStatusCode, isPromiseLike, map, ObservableArray, ObservableObject, Parser, Sort, SortDirection, Subscription, Watcher, WatcherFormatter } from "@akala/core";
 import { BinaryExpression, BinaryOperator, ConstantExpression, MemberExpression, TypedExpression } from "@akala/core/expressions";
 import tableCss from './table.css?inline'
-
-export type SortDirection = 'asc' | 'desc' | 'none';
 
 export type SortEventArg<T> = { columnIndex: number, direction: SortDirection, field: false | keyof T };
 export type SortEventArgs<T> = ObservableArray<SortEventArg<T>>;
@@ -134,164 +132,6 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
     public readonly page: Binding<PageEventArg> = new EmptyBinding();
     tableElement: HTMLTableElement;
 
-    public static compare<T>(a: T, b: T): number
-    {
-        switch (typeof a)
-        {
-            case "string":
-                switch (typeof b)
-                {
-                    case "string":
-                        return a.localeCompare(b);
-                    case "number":
-                    case "bigint":
-                    case "boolean":
-                    case "symbol":
-                        return a.localeCompare(b.toString());
-                    case "object":
-                        if (b === null)
-                            return 1;
-                        break;
-                    case "undefined":
-                        return 1;
-                    case "function":
-                        return 0;
-
-                }
-                break;
-            case "number":
-
-                switch (typeof b)
-                {
-                    case "string":
-                        return -b.localeCompare(a.toString());
-                    case "number":
-                        return a - b;
-                    case "bigint":
-                        if (a > b)
-                            return 1;
-                        if (a < b)
-                            return -1;
-                        return 0;
-                    case "boolean":
-                        if (a)
-                            return b ? 0 : 1
-                        else
-                            return b ? -1 : 0;
-                    case "symbol":
-                        return 0;
-                    case "object":
-                        if (b === null)
-                            return a ? 1 : 0;
-                        return 0;
-                    case "undefined":
-                        return a ? 1 : 0;
-                    case "function":
-                        return 0;
-
-                }
-            case "bigint":
-                switch (typeof b)
-                {
-                    case "string":
-                        return a.toString().padStart(b.length, '0').localeCompare(b);
-                    case "number":
-                    case "bigint":
-                        if (a > b)
-                            return 1;
-                        if (a < b)
-                            return -1;
-                        return 0;
-                    case "boolean":
-                        if (a)
-                            return b ? 0 : 1
-                        else
-                            return b ? -1 : 0;
-                    case "symbol":
-                        return 0;
-                    case "undefined":
-                        return a ? 1 : 0;
-                    case "object":
-                        if (b === null)
-                            return a ? 1 : 0;
-                        return 0;
-                    case "function":
-                        return 0;
-                }
-            case "boolean":
-                switch (typeof b)
-                {
-                    case "string":
-                        if (a)
-                            return 1;
-                        else if (b)
-                            return -1;
-                        return 0;
-                    case "number":
-                        return Number(a) - b;
-                    case "bigint":
-                        return Number(BigInt(a) - b);
-                    case "undefined":
-                    case "boolean":
-                    case "object":
-                        if (a)
-                            return b ? 0 : 1;
-                        else if (b)
-                            return -1;
-                        return 0;
-                    case "symbol":
-                    case "function":
-                        return 0;
-
-                }
-            case "symbol":
-                switch (typeof b)
-                {
-                    case "string":
-                        return a.toString().localeCompare(b);
-                    case "number":
-                    case "bigint":
-                    case "boolean":
-                        return 0;
-                    case "symbol":
-                        return a.toString().localeCompare(b.toString());
-                    case "undefined":
-                        return 1;
-                    case "object":
-                    case "function":
-                        return 0;
-
-                }
-            case "undefined":
-
-                switch (typeof b)
-                {
-                    case "string":
-                    case "number":
-                    case "bigint":
-                    case "boolean":
-                    case "symbol":
-                        return -1;
-                    case "undefined":
-                        return 0;
-                    case "object":
-                        if (b === null)
-                            return 0;
-                        return -1
-                    case "function":
-                        return -1;
-                }
-            case "object":
-                if (a === null)
-                    return -1;
-                return 0;
-            case "function":
-                return 0;
-
-        }
-        return 0;
-    }
-
     public localSort(data: T[] | ObservableArray<T>): ObservableArray<T>
     {
         data = new ObservableArray(data);
@@ -314,9 +154,9 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
                             switch (current.direction)
                             {
                                 case "asc":
-                                    return Table.compare(a[current.field], b[current.field]);
+                                    return Sort.compare(a[current.field], b[current.field]);
                                 case "desc":
-                                    return Table.compare(b[current.field], a[current.field]);
+                                    return Sort.compare(b[current.field], a[current.field]);
                             }
                         else if (typeof current.columnIndex == "number")
                         {
@@ -336,9 +176,9 @@ export class Table<T> extends Control<{ data: T[] | ObservableArray<T>, config: 
                                         switch (current.direction)
                                         {
                                             case "asc":
-                                                return Table.compare(a[columnIndices[current.columnIndex].sort as keyof T], b[columnIndices[current.columnIndex].sort as keyof T]);
+                                                return Sort.compare(a[columnIndices[current.columnIndex].sort as keyof T], b[columnIndices[current.columnIndex].sort as keyof T]);
                                             case "desc":
-                                                return Table.compare(b[columnIndices[current.columnIndex].sort as keyof T], a[columnIndices[current.columnIndex].sort as keyof T]);
+                                                return Sort.compare(b[columnIndices[current.columnIndex].sort as keyof T], a[columnIndices[current.columnIndex].sort as keyof T]);
                                         }
                                     case "function":
                                         switch (current.direction)
