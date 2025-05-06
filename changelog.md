@@ -209,6 +209,7 @@
 * handle cases when no auth is configured for the current trigger a4ac9a0
 * handle container metadata in the activate stage fedf680
 * handle init lifecycle stage 54a8169
+* handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
