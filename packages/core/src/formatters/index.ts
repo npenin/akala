@@ -10,7 +10,6 @@ import date from './date.js';
 import { FormatterFactory, ReversibleFormatter, ReversibleFormatterFactory } from './common.js';
 import { Debounce } from './debounce.js';
 import Sort, { SortDirection } from './array.js';
-import { Parse } from './parse.js';
 
 export function reverseFormatter<TResult, TOrigin, TSettings extends unknown[]>(formatter: ReversibleFormatterFactory<TResult, TOrigin, TSettings>): ReversibleFormatterFactory<TOrigin, TResult, TSettings>
 {
@@ -43,6 +42,5 @@ formatters.register('#date', date);
 formatters.register('#toDate', reverseFormatter(date));
 formatters.register('#debounce', Debounce);
 formatters.register('#sort', Sort);
-formatters.register('#parse', Parse);
 
 export { Sort, SortDirection }

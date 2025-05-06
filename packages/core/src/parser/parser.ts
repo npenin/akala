@@ -6,7 +6,7 @@ import booleanize from '../formatters/booleanize.js';
 import { TernaryOperator } from './expressions/ternary-operator.js';
 import { TernaryExpression } from './expressions/ternary-expression.js';
 import type { ExpressionVisitor } from './expressions/visitors/expression-visitor.js';
-import { Formatter, FormatterFactory } from '../formatters/common.js';
+import { Formatter, FormatterFactory, ReversibleFormatter } from '../formatters/common.js';
 import { formatters } from '../formatters/index.js';
 import { escapeRegExp } from '../reflect.js';
 import { AssignmentOperator } from './expressions/assignment-operator.js';
@@ -21,6 +21,22 @@ export interface Cursor
     offset: number;
     freeze(): Cursor;
 }
+
+
+export class ParserFormatter implements ReversibleFormatter<Expressions, string>
+{
+    unformat(value: Expressions): string
+    {
+        return value.toString();
+    }
+    format(value: string): Expressions
+    {
+        return Parser.parameterLess.parse(value);
+    }
+
+}
+
+formatters.register('#parse', ParserFormatter);
 
 
 export class StringCursor implements Cursor
