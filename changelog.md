@@ -198,6 +198,7 @@
 * force set configFile path f22123d
 * forcing context build f5dfdbc
 * forcing context build b3fe873
+* formatter parsing within objects 98c53c9
 * generator bug when force=true 0817c02
 * generator bug when force=true ec5d977
 * git rev list command bbc7fa2
