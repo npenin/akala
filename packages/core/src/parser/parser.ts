@@ -588,13 +588,13 @@ export class Parser
         const results: Expressions[] = [];
         this.parseCSV(expression, () =>
         {
-            let item = this.parseAny(expression, parseFormatter);
+            let item = this.parseAny(expression, true);
             results.push(item);
             return item;
         }, ']');
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return this.tryParseOperator(expression, new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()), false))), true);
+        return this.tryParseOperator(expression, new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()), false))), parseFormatter, reset);
     }
 
     /**
@@ -731,7 +731,7 @@ export class Parser
 
             const key = keyMatch[1] || keyMatch[2] || keyMatch[3];
 
-            const item = this.parseAny(expression, parseFormatter);
+            const item = this.parseAny(expression, true);
             parsedObject.push({ key, value: item });
             // console.log(expression);
             //console.log(length);
