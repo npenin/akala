@@ -184,12 +184,12 @@ export default class Sort<T> implements Formatter<T[]>
      * @param a - The value to convert to boolean
      * @returns Boolean representation of the input value
      */
-    format(a: Array<T>): T[]
+    format(a: Array<T> | undefined | null): T[]
     {
-        if (!Array.isArray(a))
+        if (a && !Array.isArray(a))
             a = Array.from(a as any);
 
-        return a.sort((a, b) =>
+        return a?.sort((a, b) =>
         {
             return this.sortSettings.reduce((previous, current) =>
             {
