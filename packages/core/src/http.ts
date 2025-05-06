@@ -330,13 +330,21 @@ type SettingsType = { method?: keyof Http } & Omit<HttpOptions<undefined>, 'url'
 
 export class HttpCallFormatter implements Formatter<PromiseLike<Response>>
 {
+    private previousValue: unknown;
+    private previousCall: PromiseLike<Response>;
+
     constructor(private readonly settings: SettingsType) { }
 
     public format(scope: unknown)
     {
         const settings = this.settings;
 
-        return defaultInjector.injectWithName(['$http'], function (http: Http)
+        if (this.previousValue === scope)
+            return this.previousCall;
+
+        this.previousValue = scope;
+
+        return this.previousCall = defaultInjector.injectWithName(['$http'], function (http: Http)
         {
             const formattedValue = scope;
             if (typeof (formattedValue) == 'string' || formattedValue instanceof URL)
