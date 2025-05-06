@@ -23,11 +23,13 @@
         "./postcss-contrast": "./dist/esm/postcss-contrast.js",
         "./default-theme.tokens.json": "./default-theme.tokens.json",
         "./scss/*.scss": "./scss/*.scss",
-        "./css/*.css": "./css/*.css"
+        "./css/*.css": "./css/*.css",
+        "./theme.min.css": "./dist/theme.min.css"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "sass": "sass scss:dist/css"
+        "sass": "sass scss:dist/css",
+        "bundle": "vite build bundle-helper; mv dist/assets/index-*.css dist/theme.min.css"
     },
     "devDependencies": {
         "lightningcss": "^1.29.3",
