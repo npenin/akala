@@ -33,7 +33,7 @@ export class ConstantExpression<const T> extends Expression
         return visitor.visitConstant(this);
     }
 
-    public toString()
+    public toString(): string
     {
         return this.value.toString();
     }

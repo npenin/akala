@@ -70,7 +70,7 @@ export class BinaryExpression<T extends Expressions = StrictExpressions> extends
         return operation;
     }
 
-    public toString()
+    public toString(): string
     {
         return `( ${this.left} ${this.operator} ${this.right} )`
     }

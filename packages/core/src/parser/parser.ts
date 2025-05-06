@@ -180,7 +180,7 @@ export class ParsedString extends ConstantExpression<string>
         super(value);
     }
 
-    public toString()
+    public toString(): string
     {
         return this.value;
     }

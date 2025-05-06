@@ -61,7 +61,7 @@ export class TernaryExpression<T extends Expressions = StrictExpressions> extend
         return visitor.visitTernary(this);
     }
 
-    public toString()
+    public toString(): string
     {
         return `( ${this.first} ${this.operator[0]} ${this.second} ${this.operator[1]} ${this.third} )`;
     }

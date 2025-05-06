@@ -43,7 +43,7 @@ export class MemberExpression<T, TMember extends keyof T, U extends T[TMember]> 
         return visitor.visitMember(this) as TypedExpression<U>;
     }
 
-    public toString()
+    public toString(): string
     {
         if (this.source)
             return this.source.toString() + '.' + this.member.toString();
