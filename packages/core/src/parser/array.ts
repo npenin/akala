@@ -1,6 +1,7 @@
-import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
-import { Expressions } from "../parser/expressions/index.js";
-import { Formatter } from "./common.js";
+import { EvaluatorAsFunction } from "./evaluator-as-function.js";
+import { Expressions } from "./expressions/index.js";
+import { Formatter } from "../formatters/common.js";
+import { formatters } from "../formatters/index.js";
 
 export type SortDirection = 'asc' | 'desc' | 'none';
 
@@ -208,3 +209,5 @@ export default class Sort<T> implements Formatter<T[]>
         })
     }
 }
+
+formatters.register('#sort', Sort);

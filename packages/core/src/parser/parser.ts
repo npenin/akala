@@ -13,6 +13,7 @@ import { AssignmentOperator } from './expressions/assignment-operator.js';
 import { AssignmentExpression } from './expressions/assignment-expression.js';
 import ErrorWithStatus, { HttpStatusCode } from '../errorWithStatus.js';
 
+
 const jsonKeyRegex = /\s*(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([a-zA-Z0-9_$]+)) *):\s*/;
 
 
