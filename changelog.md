@@ -18,6 +18,7 @@
 * add documentation files and update links for navigation 8803fe6
 * add final line break to files to match with https://github.com/yarnpkg/yarn/issues/2675 4389cad
 * add final line break to files to match with https://github.com/yarnpkg/yarn/issues/2675 623cec5
+* add format as typed expression 4aa192d
 * add front matter attributes to index.md for improved documentation structure 19f6f29
 * add front matter attributes to index.md for improved documentation structure cacdb9a
 * add front matter title and parent attributes to markdown files for consistency cb199f6
