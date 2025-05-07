@@ -215,6 +215,7 @@ export class ExpressionVisitor
             expression.type === ExpressionType.MemberExpression ||
             expression.type === ExpressionType.ApplySymbolExpression ||
             expression.type === ExpressionType.NewExpression ||
+            expression.type === ExpressionType.Format ||
             expression.type === ExpressionType.UnaryExpression ||
             (expression.type === ExpressionType.TernaryExpression &&
                 this.isTypedExpression(expression.second) &&
