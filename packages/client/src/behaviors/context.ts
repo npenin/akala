@@ -29,9 +29,11 @@ export class DataContext implements Composer<IDataContext>
      * @param {Element | ShadowRoot} item - The DOM element or shadow root to define the context for.
      * @param {object} context - The context to define.
      */
-    static define(item: Element | ShadowRoot, context: object, newContextPath?: string): Binding<IDataContext>
+    static define(item: Element | ShadowRoot): Binding<IDataContext>
+    static define<T = unknown>(item: Element | ShadowRoot, context?: T, newContextPath?: string): Binding<IDataContext & T>
+    static define<T = unknown>(item: Element | ShadowRoot, context?: T, newContextPath?: string): Binding<IDataContext & T>
     {
-        const dataContext = DataContext.extend(DataContext.find(item), context, newContextPath);
+        const dataContext = DataContext.extend<T>(DataContext.find(item), context, newContextPath);
         DataContext.defineDirect(item, dataContext);
         return dataContext;
     }
@@ -58,7 +60,9 @@ export class DataContext implements Composer<IDataContext>
      * @param {string} [newContextPath] - The new context path.
      * @returns {Binding<IDataContext>} The extended context.
      */
-    static extend(sourceContext: Binding<IDataContext>, options: object, newContextPath?: string): Binding<IDataContext>
+    static extend<T>(sourceContext: Binding<IDataContext>): Binding<IDataContext>
+    static extend<T = unknown>(sourceContext: Binding<IDataContext>, options?: T, newContextPath?: string): Binding<IDataContext & T>
+    static extend<T = unknown>(sourceContext: Binding<IDataContext>, options?: object, newContextPath?: string): Binding<IDataContext & T> | Binding<IDataContext>
     {
         if (sourceContext.expression?.type == 'new' && sourceContext.expression.newType == '{')
         {
@@ -75,7 +79,7 @@ export class DataContext implements Composer<IDataContext>
                     new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
                 ));
             else
-                return sourceContext;
+                return sourceContext as Binding<IDataContext>;
         }
         if (options && typeof options == 'object')
             return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
@@ -171,7 +175,7 @@ export class DataContext implements Composer<IDataContext>
         if (selfContext)
             return selfContext;
         if (alwaysDefined)
-            return Binding.defineProperty<IDataContext & T>(element, 'dataContext')
+            return DataContext.define<T>(element);
     }
 
     /**
