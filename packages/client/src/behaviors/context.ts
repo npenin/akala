@@ -3,6 +3,7 @@ import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
 import { ConstantExpression, Expressions, MemberExpression, NewExpression } from "@akala/core/expressions";
+import { a } from "../dom-helpers.js";
 // import { MemberExpression, NewExpression } from "@akala/core/expressions";
 
 type Scope = IScope<object>;
@@ -48,8 +49,8 @@ export class DataContext implements Composer<IDataContext>
     {
         if (!item['dataContext'])
             item['dataContext'] = context;
-        if (item instanceof HTMLElement)
-            item.setAttribute('data-context', '');
+        if (item instanceof HTMLElement && !a(item, 'data-context'))
+            a(item, 'data-context', '');
     }
 
     /**
