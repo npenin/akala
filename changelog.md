@@ -355,6 +355,7 @@
 * pre-create config file if it does not exist 0c72d08
 * pre-create config file if it does not exist 46d5f72
 * prevent http formatter infinite calls e8f33c1
+* prevent overwriting data-context attribute 1cd19e0
 * prevent tag creation 49c9302
 * properly handle event emitters failure a24cafe
 * protobuf reading 007b724
