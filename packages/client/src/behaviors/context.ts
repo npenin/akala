@@ -175,7 +175,11 @@ export class DataContext implements Composer<IDataContext>
         if (selfContext)
             return selfContext;
         if (alwaysDefined)
-            return DataContext.define<T>(element);
+        {
+            const binding = new EmptyBinding<IDataContext & T>();
+            DataContext.defineDirect(element, binding);
+            return binding;
+        }
     }
 
     /**
