@@ -1,9 +1,9 @@
-#  (2025-05-06)
+#  (2025-05-07)
 
 
 ### Bug Fixes
 
-* handle null in sort formatter 5c27a43
+* add format as typed expression 4aa192d
 
 
 
