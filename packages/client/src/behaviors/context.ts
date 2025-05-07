@@ -147,12 +147,22 @@ export class DataContext implements Composer<IDataContext>
         }
         else
         {
-            let binding: Binding<{ context: Scope }>;
+            let binding: Binding<IDataContext> = item['dataContext'];
             const closest = DataContext.find(item.parentElement || root);
-            if (closest)
-                binding = DataContext.extend(closest, options, item.dataset.context);
+            if (binding)
+                if (closest)
+                {
+                    const oldBinding = binding;
+                    binding = DataContext.extend(closest, options, item.dataset.context);
+                    binding.onChanged(ev => oldBinding.setValue(ev.value), true);
+                }
+                else
+                    binding = DataContext.extend(binding, options, item.dataset.context);
             else
-                binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
+                if (closest)
+                    binding = DataContext.extend(closest, options, item.dataset.context);
+                else
+                    binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
 
             item['dataContext']?.[Symbol.dispose]();
 
