@@ -1,4 +1,4 @@
-#  (2025-05-06)
+#  (2025-05-07)
 
 
 * chore : code cleanup eae1150
@@ -208,6 +208,7 @@
 * handle case when url pathname is empty b44a1dc
 * handle cases when no auth is configured for the current trigger a4ac9a0
 * handle container metadata in the activate stage fedf680
+* handle edge case on datacontext definition 50c0275
 * handle init lifecycle stage 54a8169
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
@@ -290,6 +291,7 @@
 * improve typing in vite.config.mts 11e538a
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
+* inifinite loop ccf7416
 * Injector inheritance d015db2
 * injectWithNameAsync behaves as its sync counterpart but awaits for args to be resolved before call the injectable dc7f00c
 * install command should now handle any package (as long as it contains an akala plugin) 7bec66f
