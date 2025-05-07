@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* handle edge case on datacontext definition 50c0275
-* inifinite loop ccf7416
+* prevent overwriting data-context attribute 1cd19e0
 
 
 
