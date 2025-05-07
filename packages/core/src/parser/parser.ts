@@ -319,17 +319,17 @@ export class Parser
      * @param {string} expression - The expression to parse.
      * @returns {ParsedBoolean} The parsed boolean expression.
      */
-    public parseBoolean(expression: StringCursor): ParsedBoolean
+    public parseBoolean(expression: StringCursor): ParsedBoolean | FormatExpression<boolean>
     {
-        let formatter: Formatter<unknown> = identity.instance;
+        let formatter: FormatterFactory<boolean> & { instance: Formatter<boolean> } = identity as any;
         if (expression.char == '!')
         {
-            formatter = negate.instance;
+            formatter = negate;
             expression.offset++;
         }
         if (expression.char == '!')
         {
-            formatter = booleanize.instance;
+            formatter = booleanize;
             expression.offset++;
         }
 
@@ -337,11 +337,15 @@ export class Parser
         if (boolMatch)
         {
             const result = new ParsedBoolean(boolMatch[0]);
-            if (formatter !== identity.instance)
+            if (formatter !== identity)
             {
-                return new ParsedBoolean(formatter.format(result.value) as boolean);
+                return new ParsedBoolean(formatter.instance.format(result.value));
             }
             return result;
+        }
+        else if (formatter !== identity)
+        {
+            return new FormatExpression(this.parseAny(expression, true), formatter, null);
         }
         return null;
     }
