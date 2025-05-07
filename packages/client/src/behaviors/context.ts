@@ -154,21 +154,21 @@ export class DataContext implements Composer<IDataContext>
                 {
                     const oldBinding = binding;
                     binding = DataContext.extend(closest, options, item.dataset.context);
-                    binding.onChanged(ev => oldBinding.setValue(ev.value), true);
+                    if (oldBinding.hasListener('change'))
+                        binding.set('change', oldBinding.get('change'))
                 }
                 else
                 {
                     const oldBinding = binding;
                     binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
-                    binding.onChanged(ev => oldBinding.setValue(ev.value), true);
+                    if (oldBinding.hasListener('change'))
+                        binding.set('change', oldBinding.get('change'))
                 }
             else
                 if (closest)
                     binding = DataContext.extend(closest, options, item.dataset.context);
                 else
                     binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
-
-            item['dataContext']?.[Symbol.dispose]();
 
             ObservableObject.setValue(item, DataContext.dataContextExpression, binding);
 
