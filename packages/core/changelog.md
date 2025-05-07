@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add format as typed expression 4aa192d
+* parsing ! expressions 0115a31
 
 
 
