@@ -60,10 +60,11 @@ describe('parser tests', () =>
     {
         const formatter = new DummyHttpFormatter();
         assert.strictEqual((evaluator.eval(parser.parse("'/my/url' # http")))(), formatter.format('/my/url'));
-        assert.strictEqual((evaluator.eval(parser.parse("'2018-03-12' # toDate")))({}).valueOf(), new Date(2018, 2, 12).valueOf());
-        assert.strictEqual((evaluator.eval(parser.parse("'12/03/18' #toDate:'dd/MM/yy'")))({}).valueOf(), new Date(2018, 2, 12).valueOf());
-        assert.strictEqual((evaluator.eval(parser.parse("'03/12/18' #toDate:'MM/dd/yy'")))({}).valueOf(), new Date(2018, 2, 12).valueOf());
-        assert.strictEqual((evaluator.eval(parser.parse("'3/12/18' #toDate:'MM/dd/yy'")))({}).valueOf(), new Date(2018, 2, 12).valueOf());
+        assert.strictEqual((evaluator.eval(parser.parse("'2018-03-12' # toDate")))({}).valueOf(), new Date(Date.UTC(2018, 2, 12, 0, 0, 0, 0)).valueOf());
+        assert.strictEqual((evaluator.eval(parser.parse("'12/03/18' #toDate:'dd/MM/yy'")))({}).valueOf(), new Date(Date.UTC(2018, 2, 12)).valueOf());
+        assert.strictEqual((evaluator.eval(parser.parse("'03/12/18' #toDate:'MM/dd/yy'")))({}).valueOf(), new Date(Date.UTC(2018, 2, 12)).valueOf());
+        assert.strictEqual((evaluator.eval(parser.parse("'3/12/18' #toDate:'MM/dd/yy'")))({}).valueOf(), new Date(Date.UTC(2018, 2, 12)).valueOf());
+        assert.strictEqual((evaluator.eval(parser.parse("'2018-03-12' #toDate #date:'dd'")))({}), '12');
         assert.deepStrictEqual((evaluator.eval(parser.parse("{options:{in:'/api/@domojs/zigate/pending' # http, text:internalName, value:address}}"))({})), { options: { in: formatter.format('/api/@domojs/zigate/pending'), text: undefined, value: undefined } });
         assert.deepStrictEqual((evaluator.eval(parser.parse("{options:{in:'/api/@domojs/zigate/pending' # http, text:internalName, value:address}}")))({})['options'], { in: formatter.format('/api/@domojs/zigate/pending'), text: undefined, value: undefined });
     })
