@@ -6,7 +6,7 @@ import booleanize from '../formatters/booleanize.js';
 import { TernaryOperator } from './expressions/ternary-operator.js';
 import { TernaryExpression } from './expressions/ternary-expression.js';
 import type { ExpressionVisitor } from './expressions/visitors/expression-visitor.js';
-import { Formatter, FormatterFactory, ReversibleFormatter } from '../formatters/common.js';
+import { Formatter, FormatterFactory } from '../formatters/common.js';
 import { formatters } from '../formatters/index.js';
 import { escapeRegExp } from '../reflect.js';
 import { AssignmentOperator } from './expressions/assignment-operator.js';
@@ -304,7 +304,7 @@ export class Parser
      */
     public parseBoolean(expression: StringCursor): ParsedBoolean | FormatExpression<boolean>
     {
-        let formatter: FormatterFactory<boolean> & { instance: Formatter<boolean> } = identity as any;
+        let formatter = identity as FormatterFactory<boolean> & { instance: Formatter<boolean> };
         if (expression.char == '!')
         {
             formatter = negate;
