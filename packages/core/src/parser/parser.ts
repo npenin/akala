@@ -440,20 +440,23 @@ export class Parser
             const oldParameters = this.parameters;
             let binaryOperator = parseBinaryOperator(operator[1]);
             let assignmentOperator = parseAssignmentOperator(operator[1]);
-            let ternaryOperator = parseTernaryOperator(operator[1]);
+            const ternaryOperator = parseTernaryOperator(operator[1]);
             let group = 0;
 
             switch (operator[1])
             {
                 case '#':
                     if (!parseFormatter)
+                    {
+                        expression.offset -= operator[0].length;
                         return lhs;
+                    }
                     return this.parseFormatter(expression, lhs, reset);
                 case '(':
                     reset?.();
                     if (lhs)
                     {
-                        expression.offset--;
+                        expression.offset -= operator[0].length;
                         return this.parseFunctionCall(expression, lhs, parseFormatter);
                     }
                     else
