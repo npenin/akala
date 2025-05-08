@@ -22,7 +22,7 @@ export { sequencify, Task, Tasks }
 // export { Bound, PossiblyBound } from './binder.js';
 export * from './events/index.js';
 export * from './parser/parser.js';
-export { default as Sort, SortDirection } from './parser/array.js'
+export { default as Sort, SortDirection, ParserFormatter } from './parser/formatters.js'
 export * from './type-helper.js'
 export * from './helpers.js'
 export * from './router/index.js'
