@@ -1,7 +1,8 @@
 import { EvaluatorAsFunction } from "./evaluator-as-function.js";
 import { Expressions } from "./expressions/index.js";
-import { Formatter } from "../formatters/common.js";
+import { Formatter, ReversibleFormatter } from "../formatters/common.js";
 import { formatters } from "../formatters/index.js";
+import { Parser } from "./parser.js";
 
 export type SortDirection = 'asc' | 'desc' | 'none';
 
@@ -211,3 +212,19 @@ export default class Sort<T> implements Formatter<T[]>
 }
 
 formatters.register('#sort', Sort);
+
+export class ParserFormatter implements ReversibleFormatter<Expressions, string>
+{
+    unformat(value: Expressions): string
+    {
+        return value.toString();
+    }
+    format(value: string): Expressions
+    {
+        return Parser.parameterLess.parse(value);
+    }
+
+}
+
+formatters.register('#parse', ParserFormatter);
+

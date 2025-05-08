@@ -23,23 +23,6 @@ export interface Cursor
     freeze(): Cursor;
 }
 
-
-export class ParserFormatter implements ReversibleFormatter<Expressions, string>
-{
-    unformat(value: Expressions): string
-    {
-        return value.toString();
-    }
-    format(value: string): Expressions
-    {
-        return Parser.parameterLess.parse(value);
-    }
-
-}
-
-formatters.register('#parse', ParserFormatter);
-
-
 export class StringCursor implements Cursor
 {
     get length(): number { return this.string.length };
