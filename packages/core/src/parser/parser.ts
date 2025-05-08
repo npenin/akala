@@ -386,9 +386,10 @@ export class Parser
         {
             let result: Expressions;
             if (this.parameters)
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 result = new MemberExpression(this.parameters[''] as TypedExpression<any>, new ParsedString(item), optional) as TypedExpression<any>
             else
-                result = new MemberExpression(null as any, new ParsedString(item), optional) as TypedExpression<any>
+                result = new MemberExpression(null, new ParsedString(item), optional)
 
             if (typeof operator != 'undefined')
             {
@@ -409,7 +410,7 @@ export class Parser
      */
     public parseFormatter(expression: StringCursor, lhs: Expressions, reset: () => void): Expressions
     {
-        const item = expression.exec(/\s*([\w\.\$]+)\s*/);
+        const item = expression.exec(/\s*([\w.$]+)\s*/);
         reset?.();
         let settings: Expressions;
         if (expression.char === ':')
@@ -433,7 +434,7 @@ export class Parser
      */
     public tryParseOperator(expression: StringCursor, lhs: Expressions, parseFormatter: boolean, reset?: () => void)
     {
-        const operator = expression.exec(/\s*([<>=!+\-/*&|\?\.#\[\(]+)\s*/);
+        const operator = expression.exec(/\s*([<>=!+\-/*&|?.#[(]+)\s*/);
         if (operator)
         {
             let rhs: Expressions;
@@ -467,6 +468,7 @@ export class Parser
                     }
                 case '[': {
                     rhs = this.parseAny(expression, parseFormatter, reset);
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     const member = new MemberExpression(lhs as TypedExpression<any>, rhs as TypedExpression<any>, false);
                     expression.offset++; // Skip closing bracket
                     return this.tryParseOperator(expression, member, parseFormatter, reset);
@@ -547,6 +549,7 @@ export class Parser
             return this.tryParseOperator(
                 expression,
                 new CallExpression(
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     lhs.source as Expressions & TypedExpression<any>,
                     lhs.member,
                     results
@@ -557,7 +560,7 @@ export class Parser
         return this.tryParseOperator(
             expression,
             new CallExpression(
-                lhs as Expressions & TypedExpression<any>,
+                lhs as Expressions & TypedExpression<unknown>,
                 null,
                 results
             ),
@@ -578,7 +581,7 @@ export class Parser
         const results: Expressions[] = [];
         this.parseCSV(expression, () =>
         {
-            let item = this.parseAny(expression, true);
+            const item = this.parseAny(expression, true);
             results.push(item);
             return item;
         }, ']');
