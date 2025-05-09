@@ -187,7 +187,7 @@ export default class DateFormatter implements Formatter<string>, ReversibleForma
         if (typeof dateFormat == 'string')
             this.dateFormat = formatParser(dateFormat, undefined);
         else
-            this.dateFormat = formatParser(dateFormat.format, dateFormat.locale);
+            this.dateFormat = formatParser(dateFormat?.format, dateFormat?.locale);
     }
 
     /**
