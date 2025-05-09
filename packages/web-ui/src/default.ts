@@ -36,7 +36,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
 
         serviceModule.register('templateOptions', {
             $rootScope: rootScope, i18n: {
-                translate: (obj: Argument0<Translator>) =>
+                translate: (obj: Argument0<Translator['translate']>) =>
                 {
                     let fallback: string;
                     let key: string;
@@ -50,8 +50,9 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
 
                     console.log(fallback);
                     return '@@' + key;
-                }
-            }
+                },
+                locale: undefined,
+            } as Translator
             , ...init
         })
     })
