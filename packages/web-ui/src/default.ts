@@ -57,7 +57,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
         })
     })
 
-    bootstrapModule.ready(['services.$location', '$rootScope'], async function (location: LocationService, rootScope: IScope<any>)
+    bootstrapModule.ready(['services.$location', '$rootScope'], async function (location: LocationService, rootScope: IScope<object>)
     {
         this.whenDone.then(async () =>
         {
