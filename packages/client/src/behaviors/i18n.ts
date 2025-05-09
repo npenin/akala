@@ -70,7 +70,7 @@ export class I18nComposer<T extends Partial<Disposable> & { translate: Translato
 
     getContext(item: HTMLElement, options?: T)
     {
-        return new Binding(DataContext.find(item), new NewExpression<{ context: any, controller: any, translator: T }>(
+        return new Binding(DataContext.find(item), new NewExpression<{ context: unknown, controller: unknown, translator: T }>(
             new MemberExpression(new MemberExpression(undefined, new ConstantExpression('context'), false), new ConstantExpression('context'), false),
             new MemberExpression(new MemberExpression(undefined, new ConstantExpression('controller'), false), new ConstantExpression('controller'), false),
             new MemberExpression(new ConstantExpression(options) as any, new ConstantExpression('translator'), false),
