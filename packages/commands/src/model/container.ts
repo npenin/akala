@@ -1,4 +1,4 @@
-import { Trigger } from './trigger.js';
+import { Trigger, TriggerArgs, TriggerReturnType } from './trigger.js';
 import { StructuredParameters, CommandMetadataProcessorSignature, CommandProcessor } from './processor.js';
 import { CommandWithAffinityProcessor, Local, Self } from '../processors/index.js';
 import { Pipe } from '../processors/pipe.js';
@@ -17,7 +17,7 @@ export const defaultCommands = new Local({ $attach, $serve });
 
 export class Container<TState> extends SimpleInjector implements MiddlewareAsync<[origin: Container<unknown>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
 {
-    attach<T extends Trigger<unknown[], unknown>>(trigger: T, ...server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown[], infer B> ? B : never
+    attach<const T extends Trigger<U, V>, U extends unknown[], V>(trigger: T, ...server: U): V
     attach<TResult>(trigger: string, ...server: unknown[]): TResult
     attach<TResult, X extends unknown[], T extends Trigger<X, TResult>>(trigger: T | string, ...args: X): TResult
     {

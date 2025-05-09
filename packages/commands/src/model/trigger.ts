@@ -2,6 +2,10 @@ import * as akala from '@akala/core'
 import { Container } from './container.js';
 
 const triggers: Trigger<unknown[], unknown>[] = akala.module('@akala/commands').register('triggers', [])
+
+export type TriggerArgs<T> = T extends Trigger<infer U, unknown> ? U : never;
+export type TriggerReturnType<T> = T extends Trigger<unknown[], infer V> ? V : never;
+
 export class Trigger<U extends unknown[], V>
 {
     constructor(public name: string, public register: (container: Container<unknown>, ...args: U) => V)
