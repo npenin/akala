@@ -25,7 +25,7 @@ const formats = {
     sss: Date.prototype.getUTCMilliseconds,
 }
 
-const formatsFormatter = {
+const formatsFormatter = (locale: string | Intl.Locale) => ({
     h: function (this: Date) { return formats.h.call(this).toString() },
     m: function (this: Date) { return formats.m.call(this).toString() },
     M: function (this: Date) { return formats.M.call(this).toString() },
@@ -49,8 +49,10 @@ const formatsFormatter = {
     {
         return formats.y.call(this).toString().substring(2);
     },
-    MMM: function (this: Date) { return new Intl.DateTimeFormat().formatToParts(this).find(x => x.type == "month").value },
-    ddd: function (this: Date) { return new Intl.DateTimeFormat().formatToParts(this).find(x => x.type == "weekday").value },
+    MMM: function (this: Date) { return new Intl.DateTimeFormat(locale, { month: 'narrow' }).formatToParts(this).find(x => x.type == "month").value },
+    MMMM: function (this: Date) { return new Intl.DateTimeFormat(locale, { month: 'long' }).formatToParts(this).find(x => x.type == "month").value },
+    ddd: function (this: Date) { return new Intl.DateTimeFormat(locale, { weekday: 'narrow' }).formatToParts(this).find(x => x.type == "weekday").value },
+    dddd: function (this: Date) { return new Intl.DateTimeFormat(locale, { weekday: 'long' }).formatToParts(this).find(x => x.type == "weekday").value },
     yyy: function (this: Date)
     {
         return formats.y.call(this).toString();
@@ -66,7 +68,7 @@ const formatsFormatter = {
             return s;
         }
     }
-}
+});
 
 function readUpToNDigits(s: StringCursor, n: number)
 {
@@ -111,7 +113,7 @@ const formatsParser = {
  * @param format - The date format string (e.g., 'yyyy-MM-dd').
  * @returns An object with format and parse functions for date conversion.
  */
-export function formatParser(format: string)
+export function formatParser(format: string, locale: string | Intl.Locale)
 {
     if (!format)
         format = 'yyyy-MM-dd';
@@ -121,12 +123,13 @@ export function formatParser(format: string)
         const formatters: ((this: Date) => string)[] = [];
         const parsers: ((s: StringCursor, date: Date) => void)[] = [];
         let offset = 0;
+        const localeFormatters = formatsFormatter(locale);
         for (let i = offset; i < format.length; i++)
         {
             if (i > 0 && format[i - 1] != format[i] || i == format.length - 1)
             {
                 const f = format.substring(offset, i)
-                formatters.push(formatsFormatter[f] ?? formatsFormatter.char(f));
+                formatters.push(localeFormatters[f] ?? localeFormatters.char(f));
                 parsers.push(formatsParser[f] ?? formatsParser.skip);
                 offset = i;
             }
@@ -179,9 +182,12 @@ export default class DateFormatter implements Formatter<string>, ReversibleForma
      * 
      * @param dateFormat - The format string (e.g., 'yyyy-MM-dd').
      */
-    constructor(dateFormat: string)
+    constructor(dateFormat: string | { format: string, locale: string | Intl.Locale })
     {
-        this.dateFormat = formatParser(dateFormat);
+        if (typeof dateFormat == 'string')
+            this.dateFormat = formatParser(dateFormat, undefined);
+        else
+            this.dateFormat = formatParser(dateFormat.format, dateFormat.locale);
     }
 
     /**
