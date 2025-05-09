@@ -21,10 +21,11 @@ export function lazy<T>(factory: () => T)
 
 export interface Translator
 {
-    (key: string): string;
-    (format: string, ...parameters: unknown[]): string;
-    (obj: { key: string, fallback: string }): string;
-    (obj: { key: string, fallback: string }, ...parameters: unknown[]): string;
+    locale: string | Intl.Locale;
+    translate(key: string): string;
+    translate(format: string, ...parameters: unknown[]): string;
+    translate(obj: { key: string, fallback: string }): string;
+    translate(obj: { key: string, fallback: string }, ...parameters: unknown[]): string;
 }
 
 
