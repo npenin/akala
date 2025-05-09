@@ -61,11 +61,11 @@ export class I18nComposer<T extends Partial<Disposable> & { translate: Translato
             subItem = 'innerText';
         // const camelCased = AttributeComposer.toCamelCase(subItem.toString());
         if (Reflect.has(Object.getPrototypeOf(item), subItem))
-            item[subItem] = options.translate({ key: prefix + value, fallback: item[subItem == 'innerText' ? 'innerHTML' : subItem] });
+            item[subItem] = options.translate.translate({ key: prefix + value, fallback: item[subItem == 'innerText' ? 'innerHTML' : subItem] });
         else
             item.setAttribute(subItem.toString(), value ?
-                options.translate({ key: prefix, fallback: item.getAttribute(subItem.toString()) }) :
-                options.translate({ key: prefix + value, fallback: item.getAttribute(subItem.toString()) }));
+                options.translate.translate({ key: prefix, fallback: item.getAttribute(subItem.toString()) }) :
+                options.translate.translate({ key: prefix + value, fallback: item.getAttribute(subItem.toString()) }));
     }
 
     getContext(item: HTMLElement, options?: T)
