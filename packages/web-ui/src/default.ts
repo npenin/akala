@@ -7,7 +7,7 @@ import { Entity } from './controls/crud.js';
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: Processors.EventProcessor }>;
 
-export default async function bootstrap(rootElement: string | Element, init?: { rootScope: Scope, i18n?: { tranlate: Translator } })
+export default async function bootstrap(rootElement: string | Element, init?: { rootScope: Scope, i18n?: Translator })
 {
     bootstrapModule.register('services', serviceModule);
 
