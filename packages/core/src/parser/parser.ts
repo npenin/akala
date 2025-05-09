@@ -381,7 +381,6 @@ export class Parser
         if (optional)
             item = item.substring(0, item.length - 1);
 
-        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (item)
         {
             let result: Expressions;
