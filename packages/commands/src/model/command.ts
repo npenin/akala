@@ -38,7 +38,7 @@ export class SelfDefinedCommand<TArgs extends unknown[], T = unknown> implements
         this.config[''].inject = value;
     }
 
-    public readonly name: string;
+    public name: string;
     public config: Configurations = { '': {} };
 
 }

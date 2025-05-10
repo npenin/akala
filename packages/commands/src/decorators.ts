@@ -45,13 +45,17 @@ export function configure<T extends Configurations>(config: T): extendF<T>
 export function configure<T extends Configurations>(nameOrConfig: T | string, config?: GenericConfiguration): extendF<Configurations>
 {
     if (typeof nameOrConfig == 'string')
-        return function <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmd: TCommand | Injectable<unknown, TArgs>)
+        return function <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmd: TCommand | Injectable<unknown, TArgs>, name?: string)
         {
-            return extend(cmd, { [nameOrConfig]: config });
+            const extendedCmd = extend(cmd, { [nameOrConfig]: config });
+            extendedCmd.name = name;
+            return extendedCmd;
         }
     else
-        return function <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmd: TCommand | Injectable<unknown, TArgs>)
+        return function <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmd: TCommand | Injectable<unknown, TArgs>, name?: string)
         {
-            return extend(cmd, nameOrConfig);
+            const extendedCmd = extend(cmd, nameOrConfig);
+            extendedCmd.name = name;
+            return extendedCmd;
         }
 }
