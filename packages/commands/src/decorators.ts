@@ -48,14 +48,16 @@ export function configure<T extends Configurations>(nameOrConfig: T | string, co
         return function <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmd: TCommand | Injectable<unknown, TArgs>, name?: string)
         {
             const extendedCmd = extend(cmd, { [nameOrConfig]: config });
-            extendedCmd.name = name;
+            if (name)
+                extendedCmd.name = name;
             return extendedCmd;
         }
     else
         return function <TCommand extends ModelCommand<TArgs>, TArgs extends unknown[]>(cmd: TCommand | Injectable<unknown, TArgs>, name?: string)
         {
             const extendedCmd = extend(cmd, nameOrConfig);
-            extendedCmd.name = name;
+            if (name)
+                extendedCmd.name = name;
             return extendedCmd;
         }
 }
