@@ -27,19 +27,25 @@ export type HtmlControlElement<T extends Partial<WebComponent> & Control, TEleme
 // Feature detect support for customized built-in elements
 const supportsCustomBuiltIn = (() =>
 {
+    const iframe = document.createElement('iframe');
     try
     {
-        const iframe = document.createElement('iframe');
-        const win = iframe.contentWindow;
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        const win = iframe.contentWindow as Window & typeof globalThis;
         const doc = win.document;
 
-        class Test extends HTMLUListElement { }
+        class Test extends win.HTMLUListElement { }
         win.customElements.define('test-element', Test, { extends: 'ul' });
         return doc.createElement('ul', { is: 'test-element' }) instanceof Test;
     }
     catch
     {
         return false;
+    }
+    finally
+    {
+        iframe.remove();
     }
 })();
 
