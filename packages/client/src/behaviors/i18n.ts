@@ -1,8 +1,8 @@
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
 import { DataContext } from "./context.js";
-import { Binding, ParsedString, Parser, StringCursor, Translator } from "@akala/core";
-import { ConstantExpression, Expressions, MemberExpression, NewExpression } from "@akala/core/expressions";
+import { ParsedString, Parser, StringCursor, Translator } from "@akala/core";
+import { Expressions } from "@akala/core/expressions";
 
 export class I18nParser extends Parser
 {
@@ -20,7 +20,7 @@ export class I18nParser extends Parser
     }
 }
 
-export class I18nComposer<T extends Partial<Disposable> & { translate: Translator }> extends AttributeComposer<T> implements Composer<T>
+export class I18nComposer<T extends Partial<Disposable> & Translator> extends AttributeComposer<T> implements Composer<T>
 {
     // apply(item: HTMLElement, options: T, root: Element | ShadowRoot): { [Symbol.dispose](): void; }
     // {
@@ -61,20 +61,16 @@ export class I18nComposer<T extends Partial<Disposable> & { translate: Translato
             subItem = 'innerText';
         // const camelCased = AttributeComposer.toCamelCase(subItem.toString());
         if (Reflect.has(Object.getPrototypeOf(item), subItem))
-            item[subItem] = options.translate.translate({ key: prefix + value, fallback: item[subItem == 'innerText' ? 'innerHTML' : subItem] });
+            item[subItem] = options.translate({ key: prefix + value, fallback: item[subItem == 'innerText' ? 'innerHTML' : subItem] });
         else
             item.setAttribute(subItem.toString(), value ?
-                options.translate.translate({ key: prefix, fallback: item.getAttribute(subItem.toString()) }) :
-                options.translate.translate({ key: prefix + value, fallback: item.getAttribute(subItem.toString()) }));
+                options.translate({ key: prefix, fallback: item.getAttribute(subItem.toString()) }) :
+                options.translate({ key: prefix + value, fallback: item.getAttribute(subItem.toString()) }));
     }
 
     getContext(item: HTMLElement, options?: T)
     {
-        return new Binding(DataContext.find(item), new NewExpression<{ context: unknown, controller: unknown, translator: T }>(
-            new MemberExpression(new MemberExpression(undefined, new ConstantExpression('context'), false), new ConstantExpression('context'), false),
-            new MemberExpression(new MemberExpression(undefined, new ConstantExpression('controller'), false), new ConstantExpression('controller'), false),
-            new MemberExpression(new ConstantExpression(options) as any, new ConstantExpression('translator'), false),
-        ));
+        return DataContext.extend(DataContext.find(item), { translator: options });
     }
 
     constructor()
