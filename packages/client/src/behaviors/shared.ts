@@ -132,43 +132,43 @@ export function webComponent(tagName: string, options?: ElementDefinitionOptions
                 console.warn(`Customized built-in elements are not supported in this browser. Using polyfill for ${tagName}.`);
                 // Start observing when the first custom built-in element is registered
                 builtinObserver().observe(tagName, target);
-                parent = window[options.extends.toUpperCase()] as typeof HTMLElement || HTMLElement;
+            }
+        }
+
+        customElements.define(tagName, class extends parent
+        {
+            public readonly akala: T;
+            constructor()
+            {
+                super();
+                this.akala = new target(this);
             }
 
-            customElements.define(tagName, class extends parent
+            connectedCallback()
             {
-                public readonly akala: T;
-                constructor()
-                {
-                    super();
-                    this.akala = new target(this);
-                }
+                this.akala.connectedCallback?.();
+            }
 
-                connectedCallback()
-                {
-                    this.akala.connectedCallback?.();
-                }
+            disconnectedCallback()
+            {
+                this.akala.disconnectedCallback?.();
+            }
 
-                disconnectedCallback()
-                {
-                    this.akala.disconnectedCallback?.();
-                }
+            adoptedCallback()
+            {
+                this.akala.adoptedCallback?.();
+            }
 
-                adoptedCallback()
-                {
-                    this.akala.adoptedCallback?.();
-                }
+            attributeChangedCallback(name: string, oldValue: string, newValue: string)
+            {
+                this.akala.attributeChangedCallback?.(name, oldValue, newValue);
+            }
 
-                attributeChangedCallback(name: string, oldValue: string, newValue: string)
-                {
-                    this.akala.attributeChangedCallback?.(name, oldValue, newValue);
-                }
+            static readonly observedAttributes = target.observedAttributes;
 
-                static readonly observedAttributes = target.observedAttributes;
-
-            }, options);
-        }
+        }, options);
     }
+}
 }
 export function wcObserve(name: string)
 {
