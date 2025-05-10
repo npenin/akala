@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* attach signature c8722b0
+* command extension to provide name a47159f
+* prevent overriding command name to undefined 9fe0d0d
 
 
 
