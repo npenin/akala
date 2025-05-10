@@ -1,19 +1,41 @@
 
-import { Container, Trigger } from '@akala/commands/browser'
+import { Configuration, Container, Metadata, Trigger } from '@akala/commands/browser'
+
+export interface KeyboardShortcutConfiguration extends Configuration
+{
+    shortcuts: string[];
+}
+
+declare module '@akala/commands/browser'
+{
+    interface ConfigurationMap
+    {
+        keyboard: KeyboardShortcutConfiguration;
+    }
+}
 
 /** 
  * Creates a keybinding trigger that maps keyboard shortcuts to commands.
  * @param {Partial<{ element: HTMLElement, warnOnUnknownCommand?: boolean }>} [options] - Configuration options.
  * @description Listens for keydown events and resolves command sequences from pressed keys.
  */
-export default new Trigger<[options?: Partial<{ element: HTMLElement, warnOnUnknownCommand?: boolean }>], void>('keybinding', (container, options) =>
+export default new Trigger<[options?: Partial<{ element: HTMLElement, warnOnUnknownCommand?: boolean }>], void>('keybinding', async (container, options) =>
 {
-    let chord = container;
+    const meta: Metadata.Container = await container.dispatch('$metadata', true);
+    [...meta.commands, container.resolve('$metadata')].forEach(cmd => registerCommand(cmd, container, options?.element || document));
+})
+function registerCommand(cmd: Metadata.Command, container: Container<unknown>, element: HTMLElement | Document): void
+{
+    if (!cmd?.config?.keyboard)
+        return;
+
+    let activeChord: string[];
+
     /**
      * Attach keydown event listener to specified element (or document)
      * @param {HTMLElement} targetElement - Element to attach listener to
      */
-    (options?.element ?? document).addEventListener('keydown', (ev: KeyboardEvent) =>
+    element.addEventListener('keydown', (ev: KeyboardEvent) =>
     {
         let sequence = '';
         if (ev.ctrlKey)
@@ -29,22 +51,21 @@ export default new Trigger<[options?: Partial<{ element: HTMLElement, warnOnUnkn
 
         sequence += ev.key || ev.code;
 
-        const cmd = container.resolve(sequence);
-        if (chord !== container && !cmd)
+        if (activeChord.length)
         {
-            if (options?.warnOnUnknownCommand)
-                console.error(`No command matches ${chord.name}, ${sequence}`);
-            return;
+            activeChord = activeChord.flatMap(chord =>
+                cmd.config.keyboard.shortcuts.filter(s => s.startsWith(chord + ',' + sequence))
+            ).filter(x => x.length);
         }
-        if (!cmd)
-        {
-            if (options?.warnOnUnknownCommand)
-                console.error(`No command matches ${sequence}`);
-            return;
-        }
-        if (cmd instanceof Container)
-            chord = cmd;
         else
-            container.dispatch(cmd, ev);
+        {
+            activeChord = cmd.config.keyboard.shortcuts.filter(s => s.startsWith(sequence))
+        }
+
+        if (activeChord.length == 1 && activeChord[0].endsWith(sequence))
+        {
+            container.dispatch(cmd, { event: ev, shortcut: activeChord[0], _trigger: 'keyboard' });
+        }
     });
-})
+}
+
