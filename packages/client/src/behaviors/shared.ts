@@ -169,7 +169,6 @@ export function webComponent(tagName: string, options?: ElementDefinitionOptions
         }, options);
     }
 }
-}
 export function wcObserve(name: string)
 {
     return function <T>(target: (new (element: HTMLElement) => T) & { observedAttributes?: string[] })
