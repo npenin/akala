@@ -52,7 +52,7 @@ const supportsCustomBuiltIn = (() =>
 
 declare global
 {
-    interface HTMLElement
+    interface Element
     {
         akala?: Partial<WebComponent>;
     }
@@ -60,7 +60,13 @@ declare global
 // Create an observer instance that handles both built-in elements and detachment
 const builtinObserver = lazy(() =>
 {
-    const observed: Record<string, (new (element: HTMLElement) => Partial<WebComponent>) & { observedAttributes?: string[] }> = {};
+    const observed: Record<string, (new (element: Element) => Partial<WebComponent>) & { observedAttributes?: string[] }> = {};
+    const builtins: Record<string, string[]> = {};
+
+    function builtinSelector()
+    {
+        return Object.entries(builtins).flatMap(([builtin, children]) => children.map((child) => `${builtin}[is="${child}"]`)).join(',');
+    }
 
     const observer = new MutationObserver((mutations) =>
     {
@@ -69,7 +75,7 @@ const builtinObserver = lazy(() =>
             switch (mutation.type)
             {
                 case "attributes":
-                    if (mutation.target instanceof HTMLElement && mutation.target.getAttribute('is') in observed)
+                    if (mutation.target instanceof Element && mutation.target.getAttribute('is') in observed)
                     {
                         const target = observed[mutation.target.getAttribute('is')];
                         if (target.observedAttributes?.includes(mutation.attributeName))
@@ -80,13 +86,19 @@ const builtinObserver = lazy(() =>
                     // Handle removed nodes for cleanup
                     mutation.removedNodes.forEach((node) =>
                     {
-                        if (node instanceof HTMLElement && node.getAttribute('is') in observed)
+                        if (node instanceof Element && node.getAttribute('is') in observed)
                             node.akala?.disconnectedCallback?.();
+                        else if (node instanceof Element)
+                            node.querySelectorAll(builtinSelector()).forEach((child) =>
+                            {
+                                if (child instanceof Element)
+                                    child.akala?.disconnectedCallback?.();
+                            });
                     });
                     // Handle added nodes for initialization
                     mutation.addedNodes.forEach((node) =>
                     {
-                        if (node instanceof HTMLElement && node.getAttribute('is') in observed)
+                        if (node instanceof Element && node.getAttribute('is') in observed)
                         {
                             if (node.akala)
                             {
@@ -95,6 +107,13 @@ const builtinObserver = lazy(() =>
                                     node.akala?.connectedCallback?.();
                             }
                         }
+                        else if (node instanceof Element)
+                            node.querySelectorAll(builtinSelector()).forEach((child) =>
+                            {
+                                child.akala = new observed[child.getAttribute('is')](child);
+                                if (child instanceof Element)
+                                    child.akala?.connectedCallback?.();
+                            });
                     });
                     break;
             }
@@ -110,10 +129,13 @@ const builtinObserver = lazy(() =>
     });
 
     return {
-        observe: (tagName: string, target: (new (element: HTMLElement) => Partial<WebComponent>) & { observedAttributes?: string[] }) =>
+        observe: (tagName: string, builtin: string, target: (new (element: HTMLElement) => Partial<WebComponent>) & { observedAttributes?: string[] }) =>
         {
             if (!observed[tagName])
                 observed[tagName] = target;
+            if (!builtins[builtin])
+                builtins[builtin] = [];
+            builtins[builtin].push(tagName);
         }
     }
 });
@@ -131,7 +153,7 @@ export function webComponent(tagName: string, options?: ElementDefinitionOptions
             {
                 console.warn(`Customized built-in elements are not supported in this browser. Using polyfill for ${tagName}.`);
                 // Start observing when the first custom built-in element is registered
-                builtinObserver().observe(tagName, target);
+                builtinObserver().observe(tagName, options.extends, target);
             }
         }
 
