@@ -17,7 +17,7 @@ export const defaultCommands = new Local({ $attach, $serve });
 
 export class Container<TState> extends SimpleInjector implements MiddlewareAsync<[origin: Container<unknown>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
 {
-    attach<const T extends Trigger<U, V>, U extends unknown[], V>(trigger: T, ...server: U): V
+    attach<T extends Trigger<unknown[], unknown>>(trigger: T, ...server: TriggerArgs<T>): TriggerReturnType<T>
     attach<TResult>(trigger: string, ...server: unknown[]): TResult
     attach<TResult, X extends unknown[], T extends Trigger<X, TResult>>(trigger: T | string, ...args: X): TResult
     {
