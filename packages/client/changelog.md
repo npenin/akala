@@ -3,9 +3,8 @@
 
 ### Bug Fixes
 
-* build b92d150
-* feature detection cba1075
-* webcomponent registration 5661065
+* i18n composer 711eddd
+* webkit workaround #1624 a2ad462
 
 
 
