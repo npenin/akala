@@ -13,7 +13,7 @@
     <span id="debug3" data-bind="{innerText:controller.commands#async#json}"></span>
 
     <kl-master-detail>
-        <ul is="ul-each" each="controller.commands" item-property-name="command">
+        <ul is="ul-each" each="controller.commands#async" item-property-name="command">
             <template>
                 <li on on-click="item=command" data-bind data-bind-inner-text="command.name" klass
                     klass-active="item==command"></li>
