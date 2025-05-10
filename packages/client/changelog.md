@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* i18n composer 711eddd
-* webkit workaround #1624 a2ad462
+* handle hotkey when no previous key was pressed a5f3b71
 
 
 
