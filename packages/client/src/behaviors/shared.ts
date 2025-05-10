@@ -1,4 +1,4 @@
-import { Binding, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, combineSubscriptions, parser, toCamelCase, toKebabCase } from "@akala/core";
+import { Binding, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, combineSubscriptions, lazy, parser, toCamelCase, toKebabCase } from "@akala/core";
 import { Composer } from "../template.js";
 import { Control } from '../controlsv2/shared.js';
 import { Expressions } from "@akala/core/expressions";
@@ -7,7 +7,7 @@ const databound = new SimpleInjector();
 
 export function databind(name: string)
 {
-    return function <T>(target: new (element: Element, value: any) => T)
+    return function <T>(target: new (element: Element, value: unknown) => T)
     {
         databound.register(name, target);
     }
@@ -23,46 +23,145 @@ export interface WebComponent
 
 export type HtmlControlElement<T extends Partial<WebComponent> & Control, TElement extends HTMLElement = HTMLElement> = TElement & { control: T };
 
+
+// Feature detect support for customized built-in elements
+const supportsCustomBuiltIn = (() =>
+{
+    try
+    {
+        const iframe = document.createElement('iframe');
+        const win = iframe.contentWindow;
+        const doc = win.document;
+
+        class Test extends HTMLUListElement { }
+        win.customElements.define('test-element', Test, { extends: 'ul' });
+        return doc.createElement('ul', { is: 'test-element' }) instanceof Test;
+    }
+    catch
+    {
+        return false;
+    }
+})();
+
+
+declare global
+{
+    interface HTMLElement
+    {
+        akala?: Partial<WebComponent>;
+    }
+}
+// Create an observer instance that handles both built-in elements and detachment
+const builtinObserver = lazy(() =>
+{
+    const observed: Record<string, (new (element: HTMLElement) => Partial<WebComponent>) & { observedAttributes?: string[] }> = {};
+
+    const observer = new MutationObserver((mutations) =>
+    {
+        mutations.forEach((mutation) =>
+        {
+            switch (mutation.type)
+            {
+                case "attributes":
+                    if (mutation.target instanceof HTMLElement && mutation.target.getAttribute('is') in observed)
+                    {
+                        const target = observed[mutation.target.getAttribute('is')];
+                        if (target.observedAttributes?.includes(mutation.attributeName))
+                            mutation.target.akala?.attributeChangedCallback?.(mutation.attributeName, mutation.oldValue, mutation.target.getAttribute(mutation.attributeName));
+                    }
+                    break;
+                case "childList":
+                    // Handle removed nodes for cleanup
+                    mutation.removedNodes.forEach((node) =>
+                    {
+                        if (node instanceof HTMLElement && node.getAttribute('is') in observed)
+                            node.akala?.disconnectedCallback?.();
+                    });
+                    // Handle added nodes for initialization
+                    mutation.addedNodes.forEach((node) =>
+                    {
+                        if (node instanceof HTMLElement && node.getAttribute('is') in observed)
+                        {
+                            if (node.akala)
+                            {
+                                node.akala = new observed[node.getAttribute('is')](node);
+                                if (node.isConnected)
+                                    node.akala?.connectedCallback?.();
+                            }
+                        }
+                    });
+                    break;
+            }
+        });
+    });
+
+    // Start observing
+    observer.observe(document.body, {
+        attributes: true,
+        attributeOldValue: true,
+        childList: true,
+        subtree: true
+    });
+
+    return {
+        observe: (tagName: string, target: (new (element: HTMLElement) => Partial<WebComponent>) & { observedAttributes?: string[] }) =>
+        {
+            if (!observed[tagName])
+                observed[tagName] = target;
+        }
+    }
+});
+
+
 export function webComponent(tagName: string, options?: ElementDefinitionOptions)
 {
     return function <T extends Partial<WebComponent>>(target: (new (element: HTMLElement) => T) & { observedAttributes?: string[] })
     {
         let parent = HTMLElement;
         if (options?.extends)
-            parent = window[Object.getPrototypeOf(document.createElement(options.extends)).constructor.name] as any;
-
-        customElements.define(tagName, class extends parent
         {
-            public readonly control: T;
-            constructor()
+            parent = window[Object.getPrototypeOf(document.createElement(options.extends)).constructor.name] as unknown as typeof HTMLElement;
+            if (!supportsCustomBuiltIn)
             {
-                super();
-                this.control = new target(this);
+                console.warn(`Customized built-in elements are not supported in this browser. Using polyfill for ${tagName}.`);
+                // Start observing when the first custom built-in element is registered
+                builtinObserver().observe(tagName, target);
+                parent = window[options.extends.toUpperCase()] as typeof HTMLElement || HTMLElement;
             }
 
-            connectedCallback()
+            customElements.define(tagName, class extends parent
             {
-                this.control.connectedCallback?.();
-            }
+                public readonly akala: T;
+                constructor()
+                {
+                    super();
+                    this.akala = new target(this);
+                }
 
-            disconnectedCallback()
-            {
-                this.control.disconnectedCallback?.();
-            }
+                connectedCallback()
+                {
+                    this.akala.connectedCallback?.();
+                }
 
-            adoptedCallback()
-            {
-                this.control.adoptedCallback?.();
-            }
+                disconnectedCallback()
+                {
+                    this.akala.disconnectedCallback?.();
+                }
 
-            attributeChangedCallback(name: string, oldValue: string, newValue: string)
-            {
-                this.control.attributeChangedCallback?.(name, oldValue, newValue);
-            }
+                adoptedCallback()
+                {
+                    this.akala.adoptedCallback?.();
+                }
 
-            static readonly observedAttributes = target.observedAttributes;
+                attributeChangedCallback(name: string, oldValue: string, newValue: string)
+                {
+                    this.akala.attributeChangedCallback?.(name, oldValue, newValue);
+                }
 
-        }, options);
+                static readonly observedAttributes = target.observedAttributes;
+
+            }, options);
+        }
     }
 }
 export function wcObserve(name: string)
@@ -118,7 +217,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
 
     abstract applyInternal<const TKey extends PropertyKey>(item: Element, options: T, subItem: TKey, value: unknown): Subscription | void;
 
-    apply(item: Element, options: T, root: Element | ShadowRoot)
+    apply(item: Element, options: T, _futureParent?: Element | DocumentFragment)
     {
         let bindings: Record<string, Binding<unknown>>;
 

@@ -23,8 +23,8 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
         let parent: Element = this.element;
         while ((parent = parent.parentElement))
         {
-            if ('control' in parent && parent.control instanceof ctor)
-                return parent.control;
+            if ('akala' in parent && parent.akala instanceof ctor)
+                return parent.akala;
         }
         return null;
     }
