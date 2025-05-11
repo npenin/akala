@@ -64,7 +64,7 @@ function registerCommand(cmd: Metadata.Command, container: Container<unknown>, e
 
         if (activeChord.length == 1 && activeChord[0].endsWith(sequence))
         {
-            container.dispatch(cmd, { event: ev, shortcut: activeChord[0], _trigger: 'keyboard' });
+            container.dispatch(cmd.name, { event: ev, shortcut: activeChord[0], _trigger: 'keyboard' });
         }
     });
 }
