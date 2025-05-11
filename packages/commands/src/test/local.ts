@@ -6,7 +6,7 @@ describe('test local processing', function ()
 {
     it('should handle basics', async function ()
     {
-        calculator.dispatch('reset');
+        await calculator.dispatch('reset');
         assert.equal(calculator.state.value, 0)
         await calculator.dispatch('increment');
         assert.equal(calculator.state.value, 1)

@@ -32,7 +32,7 @@ describe('test helpers', function ()
     {
         const meta = helper(calculator)
         assert.ok(meta);
-        meta.reset();
+        await meta.reset();
         await meta.increment();
         assert.strictEqual(calculator.state.value, 1);
         await meta.decrement();

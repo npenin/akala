@@ -157,12 +157,12 @@ export class Self extends CommandProcessor
 {
     public override handle<TArgs extends unknown[]>(container: Container<unknown>, command: Metadata.Command & Partial<SelfDefinedCommand<TArgs>>, param: StructuredParameters): MiddlewarePromise
     {
-        if (command.name == this.cmdName)
-            return Local.handle(command, this.handler, container, param);
+        if ('handler' in command && typeof command.handler == 'function')
+            return Local.handle(command, command.handler, container, param);
         return NotHandled;
     }
 
-    constructor(private cmdName: string, private handler?: (...args: unknown[]) => unknown)
+    constructor()
     {
         super('self');
     }

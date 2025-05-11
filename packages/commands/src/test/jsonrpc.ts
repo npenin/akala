@@ -95,9 +95,9 @@ describe('test jsonrpcws processing', function ()
         assert.strictEqual(calculator.state.value, 0);
     })
 
-    it('should be able to call incoming container', async function ()
+    it('should be able to call incoming container', async function (x)
     {
-        const socketPath = './' + this.test.title + '.sock';
+        const socketPath = './' + x.fullName + '.sock';
         try
         {
             const c1 = new Container('c1', {});
