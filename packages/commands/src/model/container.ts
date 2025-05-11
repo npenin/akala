@@ -9,6 +9,7 @@ import { UnknownCommandError } from './error-unknowncommand.js';
 import * as Metadata from '../metadata/index.js'
 import { ErrorWithStatus, Injector, MiddlewareAsync, MiddlewareCompositeWithPriorityAsync, MiddlewarePromise, SimpleInjector } from '@akala/core';
 import { BindingProcessor } from '../processors/binding.js';
+import { SelfDefinedCommand } from './command.js';
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];
 export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
@@ -41,7 +42,6 @@ export class Container<TState> extends SimpleInjector implements MiddlewareAsync
         if (processor)
             this.processor.useMiddleware(20, processor);
         this.processor.useMiddleware(5, new BindingProcessor());
-        this.processor.useMiddleware(19, new Self());
         this.processor.useMiddleware(10, new CommandWithAffinityProcessor());
         this.processor.useMiddleware(50, defaultCommands);
         this.register({ name: '$serve', config: { '': { inject: $serve.$inject } } })
@@ -142,26 +142,27 @@ export class Container<TState> extends SimpleInjector implements MiddlewareAsync
         if (value instanceof Container)
             return super.register(cmd, value, override);
         if (typeof value != 'undefined')
+        {
+            if (value instanceof SelfDefinedCommand)
+                this.processor.useMiddleware(20, new Self(cmd, value.handler));
             return super.register(cmd, value, override);
+        }
         else
             throw new Error('value cannot be undefined');
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function lazy<T extends object>(factory: () => T): T
 {
     let instance: T | null = null;
     return new Proxy<T>({} as T,
         {
-            // eslint-disable-next-line @typescript-eslint/ban-types
             getPrototypeOf(): object | null
             {
                 if (!instance)
                     instance = factory();
                 return Reflect.getPrototypeOf(instance);
             },
-            // eslint-disable-next-line @typescript-eslint/ban-types
             setPrototypeOf(_target: unknown, v: object): boolean
             {
                 if (!instance)
@@ -226,15 +227,12 @@ export function lazy<T extends object>(factory: () => T): T
             {
                 if (!instance)
                     instance = factory();
-                // eslint-disable-next-line @typescript-eslint/ban-types
                 return Reflect.apply(instance as unknown as Function, thisArg, argArray);
             },
-            // eslint-disable-next-line @typescript-eslint/ban-types
             construct(_target: unknown, argArray: unknown[], newTarget?: Function): object
             {
                 if (!instance)
                     instance = factory();
-                // eslint-disable-next-line @typescript-eslint/ban-types
                 return Reflect.construct(instance as unknown as Function, argArray, newTarget);
             }
         });
