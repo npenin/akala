@@ -1,10 +1,15 @@
-#  (2025-05-10)
+#  (2025-05-11)
 
 
 ### Bug Fixes
 
-* command extension to provide name a47159f
-* prevent overriding command name to undefined 9fe0d0d
+* cancel breaking change e5ab02a
+* handle Self during registration 9cdbd4c
+
+
+### BREAKING CHANGES
+
+* Self is not registered by default and the constructor expects the command name and its handler
 
 
 
