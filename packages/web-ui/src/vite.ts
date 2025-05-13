@@ -23,18 +23,18 @@ export default function plugin(options?: { tokenPaths?: string[], includeDefault
     return {
         name: 'akala-web-ui',
         enforce: 'pre',
-        config(config, helper)
+        config(config)
         {
             if (!config.css?.postcss || typeof config.css.postcss !== 'string' && !config.css.postcss.plugins)
             {
                 config.css = { ...(config.css || {}), postcss: { ...(config.css?.postcss as object || {}), plugins: [] } };
                 (config.css.postcss as Exclude<UserConfig['css']['postcss'], string>).plugins.push(
-                    webui({ includeDefaultTheme: true, generateOptions: { customMedia: true } }),
+                    webui(options),
                     fullCompose(),
                     contrast(),)
             }
         },
-        resolveId(source, importer, options)
+        resolveId(source, importer)
         {
             if (virtualModuleId == source)
             {
@@ -45,7 +45,7 @@ export default function plugin(options?: { tokenPaths?: string[], includeDefault
                 //     return resolvedVirtualModuleId.js;
             }
         },
-        async transform(code, id, viteOptions)
+        async transform(code, id)
         {
             if (id == resolvedVirtualModuleId.css)
                 return {
