@@ -5,7 +5,7 @@ import { readFile } from 'fs/promises'
 import { CssStyleHandler } from "./css.js";
 import { PassThrough, Writable } from "stream";
 
-export type DTCGToken = { $value: string, $type?: string, $description?: string, $extensions?: any, $deprecated?: boolean | string };
+export type DTCGToken = { $value: string, $type?: string, $description?: string, $extensions?: unknown, $deprecated?: boolean | string };
 export type DTCGTokenGroup<T = Record<string, string | object>> = T extends string ? DTCGToken : { [key in keyof T]: T[key] extends string ? DTCGToken : (DTCGTokenGroup<T[key]> & Omit<DTCGToken, '$value'>) }
 // export type DTCGTokenGroup = { [key in string]: key extends keyof Omit<DTCGToken, '$value'> ? DTCGToken[key] : DTCGToken | DTCGTokenGroup | string }
 export type DTCG = DTCGTokenGroup<Record<string, string | object>>;
@@ -69,7 +69,7 @@ export function expandTokens<T>(input: FlattenDTCG): DTCGTokenGroup<T>
     return result;
 }
 
-export type GenerateCssOptions = Partial<{ customMedia: boolean }>
+export type GenerateCssOptions = Partial<{ customMedia: boolean, grid: boolean }>
 
 export async function generateCssToString(inputFile: string, options?: GenerateCssOptions)
 {
@@ -121,8 +121,12 @@ export async function generateCssFromTokens(tokens: DTCGTokenGroup<WebUI>, outpu
         await eachAsync(tokens.breakpoints, async (breakpoint, name) =>
         {
             if (name[0] != '$')
-                await FileGenerator.write(generator.output, `@custom-media --breakpoints-${CssStyleHandler.normalize(name)} (max-width:${breakpoint.$value});`);
+            {
+                await FileGenerator.write(generator.output, `@custom-media --breakpoints-max-${CssStyleHandler.normalize(name)} (max-width:${breakpoint.$value});`);
+                await FileGenerator.write(generator.output, `@custom-media --breakpoints-min-${CssStyleHandler.normalize(name)} (min-width:${breakpoint.$value});`);
+            }
         });
+
     }
 
     await FileGenerator.write(generator.output, ':root{\n');
@@ -179,6 +183,22 @@ export async function generateCssFromTokens(tokens: DTCGTokenGroup<WebUI>, outpu
     })
 
 
+    if (options.grid)
+    {
+        await eachAsync(tokens.breakpoints, async (breakpoint, name) =>
+        {
+            if (name[0] != '$')
+                if (options.customMedia)
+                    for (let i = 1; i <= 12; i++)
+                        await FileGenerator.write(generator.output, `@media (--breakpoints-min-${CssStyleHandler.normalize(name)}) { .col-${CssStyleHandler.normalize(name)}-${i} { max-width: ${i / 12 * 100}%; width: ${i / 12 * 100}%; } }\n`);
+                else
+                    for (let i = 1; i <= 12; i++)
+                        await FileGenerator.write(generator.output, `@media (min-width:${breakpoint.$value}) { .col-${CssStyleHandler.normalize(name)}-${i} { max-width: ${i / 12 * 100}%; width: ${i / 12 * 100}%; } }\n`);
+        });
+
+        for (let i = 1; i <= 12; i++)
+            await FileGenerator.write(generator.output, `.col-${i} {  width: ${i / 12 * 100}%; max-width: ${i / 12 * 100}%; }\n`);
+    }
 
     await new Promise(resolve => generator.output.end(resolve));
 }
