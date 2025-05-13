@@ -1,9 +1,9 @@
 #  (2025-05-13)
 
 
-### Features
+### Bug Fixes
 
-* add grid option f3c24aa
+* vite plugin to leverage provided options b6427eb
 
 
 
