@@ -1,15 +1,9 @@
-#  (2025-05-11)
+#  (2025-05-14)
 
 
 ### Bug Fixes
 
-* cancel breaking change e5ab02a
-* handle Self during registration 9cdbd4c
-
-
-### BREAKING CHANGES
-
-* Self is not registered by default and the constructor expects the command name and its handler
+* overriding serveMetadata and connectByPreference in non browser dc2ade3
 
 
 
