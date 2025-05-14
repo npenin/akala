@@ -29,7 +29,7 @@ function registerCommand(cmd: Metadata.Command, container: Container<unknown>, e
     if (!cmd?.config?.keyboard)
         return;
 
-    let activeChord: string[];
+    let activeChords: string[];
 
     /**
      * Attach keydown event listener to specified element (or document)
@@ -51,20 +51,20 @@ function registerCommand(cmd: Metadata.Command, container: Container<unknown>, e
 
         sequence += ev.key || ev.code;
 
-        if (activeChord?.length)
+        if (activeChords?.length)
         {
-            activeChord = activeChord.flatMap(chord =>
-                cmd.config.keyboard.shortcuts.filter(s => s.startsWith(chord + ',' + sequence))
+            activeChords = activeChords.flatMap(chord =>
+                cmd.config.keyboard.shortcuts.filter(s => s.startsWith(chord + ',' + sequence)).map(s => chord + ',' + s.substring(chord.length + 1) + ',' + sequence)
             ).filter(x => x.length);
         }
         else
         {
-            activeChord = cmd.config.keyboard.shortcuts.filter(s => s.startsWith(sequence))
+            activeChords = cmd.config.keyboard.shortcuts.filter(s => s.startsWith(sequence)).map(() => sequence)
         }
 
-        if (activeChord.length == 1 && activeChord[0].endsWith(sequence))
+        if (activeChords.length == 1 && activeChords[0].endsWith(sequence))
         {
-            container.dispatch(cmd.name, { event: ev, shortcut: activeChord[0], _trigger: 'keyboard' });
+            container.dispatch(cmd.name, { event: ev, shortcut: activeChords[0], _trigger: 'keyboard' });
         }
     });
 }
