@@ -49,7 +49,7 @@ function registerCommand(cmd: Metadata.Command, container: Container<unknown>, e
         if (['Alt', 'Shift', 'Ctrl', 'Meta'].includes(ev.key))
             return;
 
-        sequence += ev.key || ev.code;
+        sequence += ev.code || ev.key;
 
         if (activeChords?.length)
         {
