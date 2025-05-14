@@ -54,7 +54,7 @@ function registerCommand(cmd: Metadata.Command, container: Container<unknown>, e
         if (activeChords?.length)
         {
             activeChords = activeChords.flatMap(chord =>
-                cmd.config.keyboard.shortcuts.filter(s => s.startsWith(chord + ',' + sequence)).map(s => chord + ',' + s.substring(chord.length + 1) + ',' + sequence)
+                cmd.config.keyboard.shortcuts.filter(s => s.startsWith(chord + ',' + sequence)).map(() => chord + ',' + sequence)
             ).filter(x => x.length);
         }
         else
