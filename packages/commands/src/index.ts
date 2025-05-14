@@ -24,6 +24,8 @@ export { default as serve, ServeOptions } from './cli/serve.js'
 import * as FileGenerator from './cli/new.js';
 import { Readable } from 'stream';
 import { Metadata } from './index.browser.js'
+export { default as serveMetadata, connectByPreference } from './serve-metadata.js'
+
 
 export { generatorPlugin as tsPluginHandler } from './cli/generate-metadata.js'
 export { generatorPlugin as metadataPluginHandler } from './cli/generate.js'
