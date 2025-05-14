@@ -1,9 +1,9 @@
-#  (2025-05-11)
+#  (2025-05-14)
 
 
 ### Bug Fixes
 
-* forcing command trigger through name b327d25
+* chord support 751f7f7
 
 
 
