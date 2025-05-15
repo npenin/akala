@@ -81,29 +81,30 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                 if (connectMapping)
                     if (connectMapping instanceof Configuration)
                         connectMapping = connectMapping.extract();
-                await eachAsync(connectMapping, async (config, connectionString) =>
-                {
-                    if (container)
-                        return;
-                    try
+                if (connectMapping)
+                    await eachAsync(connectMapping, async (config, connectionString) =>
                     {
-                        log.verbose('trying to connect to ' + connectionString);
-                        const url = new URL(connectionString);
-                        if (url.hostname == '0.0.0.0')
-                            url.hostname = 'localhost';
-                        container = await connect(url, c.abort.signal, metaContainer);
-                    }
-                    catch (e)
-                    {
-                        log.silly('failed to connect to ' + connectionString);
-                        log.silly(e)
-                        if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
+                        if (container)
                             return;
-                        log.error(e);
-                        throw e;
-                    }
+                        try
+                        {
+                            log.verbose('trying to connect to ' + connectionString);
+                            const url = new URL(connectionString);
+                            if (url.hostname == '0.0.0.0')
+                                url.hostname = 'localhost';
+                            container = await connect(url, c.abort.signal, metaContainer);
+                        }
+                        catch (e)
+                        {
+                            log.silly('failed to connect to ' + connectionString);
+                            log.silly(e)
+                            if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
+                                return;
+                            log.error(e);
+                            throw e;
+                        }
 
-                })
+                    })
             }
             if (container)
             {
