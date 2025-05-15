@@ -1,9 +1,9 @@
-#  (2025-05-14)
+#  (2025-05-15)
 
 
 ### Bug Fixes
 
-* overriding serveMetadata and connectByPreference in non browser dc2ade3
+* improve reliability 8fc7212
 
 
 
