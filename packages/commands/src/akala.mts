@@ -91,7 +91,7 @@ export async function install(_context: CliContext<{ configFile: string }, objec
                 const commands = await handler.getMetadata();
                 const init = commands.commands.find(c => c.name == '$init-akala');
                 if (init)
-                    cliContainer.processor.useMiddleware(1, new InitAkala(init, { config: context.state }));
+                    cliContainer.processor.useMiddleware(1, new InitAkala(init, { config: context.state, options: context.options, args: context.args }));
 
                 registerCommands(commands.commands, handler.processor, cliContainer);
                 await cliContainer.attach(Triggers.cli, program.command(name));
