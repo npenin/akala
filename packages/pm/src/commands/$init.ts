@@ -150,8 +150,13 @@ export default async function (this: State, container: RunningContainer & pmCont
         if (!context.options.keepAttached)
         {
             if (process.send)
-                process.send('disconnecting daemon');
+                await new Promise<void>((resolve, reject) => process.send('disconnecting daemon', err => err ? reject(err) : resolve()));
             process.disconnect();
         }
     }
+
+    context.abort.signal.addEventListener('abort', async () =>
+    {
+        await container.dispatch('stop', { param: ['pm'] });
+    });
 }
