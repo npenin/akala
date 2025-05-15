@@ -13,7 +13,7 @@
                 },
                 "cli": {
                     "inject": [
-                        "options.pmSock"
+                        "context"
                     ],
                     "options": {
                         "pmSock": {
@@ -255,14 +255,12 @@
                     "path": "dist/esm/cli-commands/start.js",
                     "source": "src/cli-commands/start.ts",
                     "inject": [
-                        "$container",
                         "param.0",
                         "param.1"
                     ]
                 },
                 "": {
                     "inject": [
-                        "$container",
                         "param.0",
                         "param.1"
                     ]
@@ -294,6 +292,13 @@
                         "help": {
                             "doc": "displays this help message"
                         },
+                        "keepAttached": {
+                            "aliases": [
+                                "keep-attached"
+                            ],
+                            "needsValue": false,
+                            "doc": "keeps the process attached to the current terminal"
+                        },
                         "wait": {
                             "aliases": [
                                 "w"
@@ -317,7 +322,6 @@
                         }
                     },
                     "inject": [
-                        "$container",
                         "options.program",
                         "context"
                     ],
