@@ -33,7 +33,18 @@
                             ]
                         },
                         "keepAttached": {
-                            "needsValue": true
+                            "aliases": [
+                                "keep-attached"
+                            ],
+                            "needsValue": false,
+                            "doc": "keeps the process attached to the current terminal"
+                        },
+                        "wait": {
+                            "aliases": [
+                                "w"
+                            ],
+                            "needsValue": false,
+                            "doc": "waits for the program to be started before returning, otherwise, returns after the start command is sent to the pm daemon"
                         }
                     }
                 }
