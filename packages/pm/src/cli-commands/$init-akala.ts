@@ -4,7 +4,8 @@ import { connect, Container } from "@akala/commands";
 import { platform } from "os";
 import { Triggers } from "@akala/commands";
 import { ProxyConfiguration } from "@akala/config";
-import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
+import { eachAsync } from "@akala/core";
+import commands from "../container.js";
 
 type CliOptions = { pmSock: string | number, tls: boolean };
 
@@ -25,13 +26,34 @@ export default async function (c: CliContext<CliOptions, ProxyConfiguration<{ pm
         container = await connect('unix://\\\\?\\pipe\\pm', c.abort.signal)
     else
     {
-        const connectOptions = c.state?.pm?.mapping?.pm?.connect?.extract();
-        if (connectOptions)
-            container = await connect(Object.keys(connectOptions)[0], c.abort.signal);
+        const connectMapping = c.state?.pm?.mapping.pm?.connect;
+        await eachAsync(connectMapping.extract(), async (config, connectionString) =>
+        {
+            if (container)
+                return;
+            try
+            {
+                c.logger.verbose('trying to connect to ' + connectionString);
+                const url = new URL(connectionString);
+                if (url.hostname == '0.0.0.0')
+                    url.hostname = 'localhost';
+                container = await connect(url, c.abort.signal, commands.meta);
+            }
+            catch (e)
+            {
+                c.logger.silly('failed to connect to ' + connectionString);
+                c.logger.silly(e)
+                if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
+                    return;
+                c.logger.error(e);
+                throw e;
+            }
+
+        })
     }
 
-    if (!container)
-        throw new ErrorWithStatus(HttpStatusCode.BadGateway, 'no connection option specified');
+    if (container)
+        await container.attach(Triggers.cli, program.command('pm'));
+    // throw new ErrorWithStatus(HttpStatusCode.BadGateway, 'no connection option specified');
 
-    await container.attach(Triggers.cli, program.command('pm'));
 }
