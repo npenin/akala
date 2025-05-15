@@ -31,7 +31,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         args = [...context.args, ...unparseOptions({ ...context.options, inspect: undefined })];
     }
 
-    args.unshift(path.resolve(_dirname, '../fork'))
+    args.unshift(path.resolve(_dirname, '../fork.js'))
 
     if (context.options && context.options.inspect)
         args.unshift('--inspect-brk');

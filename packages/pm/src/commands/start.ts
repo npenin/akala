@@ -72,7 +72,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (!def?.type || def.type == 'nodejs')
     {
 
-        args.unshift(path.resolve(_dirname, '../fork'))
+        args.unshift(path.resolve(_dirname, '../fork.js'))
     }
 
     if (options?.inspect)
