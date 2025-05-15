@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import sms from 'source-map-support'
 sms.install();
-import * as path from 'path'
+import path from 'path'
 import { lstat } from 'fs/promises';
 import pmDef from './container.js';
 import { IpcAdapter } from "./ipc-adapter.js";
@@ -23,14 +23,15 @@ let log: Logger;
 const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string>()('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
+    const fs: Processors.FileSystem = new Processors.FileSystem(path.dirname(c.options.program));
     if (c.options.verbose)
-        processor = new Processors.LogProcessor((_c, cmd, params) =>
+        processor = new Processors.LogEventProcessor(fs, c.abort.signal, (_c, cmd, params) =>
         {
             log.verbose({ cmd, params });
-            return undefined;
         });
 
-    await Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
+    const options: Processors.DiscoveryOptions = { processor: processor, isDirectory: folderOrFile.isDirectory() };
+    await Processors.FileSystem.discoverCommands(c.options.program, cliContainer, options);
 });
 let initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
 const controller = new AbortController();
