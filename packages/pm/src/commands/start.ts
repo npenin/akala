@@ -69,12 +69,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
         args = [new URL('../../../commands.json', import.meta.url).toString(), ...(context?.args || []), ...unparseOptions({ ...options, inspect: undefined })];
     }
 
-    if (!def?.type || def.type == 'nodejs')
-    {
-
-        args.unshift(path.resolve(_dirname, '../fork.js'))
-    }
-
     if (options?.inspect)
         args.unshift('--inspect-brk');
 
