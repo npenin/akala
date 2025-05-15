@@ -1,51 +1,19 @@
-import { Container } from "@akala/commands";
 import State, { } from '../state.js';
-import { spawn, ChildProcess, StdioOptions } from "child_process";
-import pmContainer from '../container.js';
+import { StdioOptions } from "child_process";
 import { CliContext, unparseOptions } from "@akala/cli";
-import { ErrorWithStatus } from "@akala/core";
-import getRandomName from "../commands/name.js";
-import path from 'path'
-import { fileURLToPath } from 'url'
+import ChildProcess from '../runtimes/child_process.js'
 
-//eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
-
-export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, name: string, context?: CliContext<{ configFile: string, new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
-    let args: string[];
+    const args = [...context.args, ...unparseOptions({
+        ...context.options,
+        configFile: context.options.configFile + '#pm',
+        name: 'pm',
+        program: new URL('../../../commands.json', import.meta.url).toString(),
+        inspect: undefined, keepAttached: undefined, new: undefined, wait: undefined
+    })];
 
-    if (!context.options.name && context.options.new)
-        context.options.name = getRandomName();
-    else if (!context.options.name)
-        context.options.name = name;
-
-    if (this.isDaemon)
-        throw new ErrorWithStatus(40, 'pm is already running');
-    else
-    {
-        if (name != 'pm')
-            throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
-
-        args = [...context.args, ...unparseOptions({ ...context.options, inspect: undefined })];
-    }
-
-    args.unshift(path.resolve(_dirname, '../fork.js'))
-
-    if (context.options && context.options.inspect)
-        args.unshift('--inspect-brk');
-
-    args.unshift(...process.execArgv);
-
-    if (context.options && context.options.verbose)
-        args.push('-v')
-
-    let cp: ChildProcess;
-    if (context.options.keepAttached)
-        cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'] });
-    else
-        cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
+    const cp = ChildProcess.build(args, { ...context.options, inheritStdio: context.options.keepAttached }, context.abort.signal);
     cp.on('exit', function (...args: unknown[])
     {
         console.log(args);
@@ -66,7 +34,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             }
             resolve();
         })
-    })
+    });
 }
 
 start.$inject = ['$container', 'param.0', 'options']
