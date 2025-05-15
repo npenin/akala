@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* chord support df992cf
+* using code instead of key 475e931
 
 
 
