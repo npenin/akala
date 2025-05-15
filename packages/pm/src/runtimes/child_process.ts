@@ -29,10 +29,19 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
         if (options.inspect)
             args.unshift("--inspect-brk");
         this.cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !options.keepAttached, env: Object.assign({ DEBUG_COLORS: process.stdout.isTTY }, process.env), stdio: ['ignore', options.inheritStdio ? 'inherit' : 'pipe', options.inheritStdio ? 'inherit' : 'pipe', 'ipc'], shell: false, windowsHide: true });
-        if (!options.inheritStdio)
+        if (options.keepAttached && !options.inheritStdio)
         {
-            this.cp.stderr?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stderr);
-            this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stdout);
+            const stderrPrefixer = this.cp.stderr?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stderr.isTTY }), { end: true });
+            stderrPrefixer.pipe(process.stderr);
+            const stdoutPrefixer = this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stdout.isTTY }), { end: true });
+            stdoutPrefixer.pipe(process.stdout);
+            this.on('disconnect', () =>
+            {
+                this.cp.stderr?.unpipe();
+                this.cp.stdout?.unpipe();
+                stderrPrefixer?.unpipe();
+                stdoutPrefixer?.unpipe();
+            });
         }
         this.adapter = new IpcAdapter(this.cp);
         this.cp.on('close', (code, signal) => { this.emit('close', code, signal); this.emit('exit') });
@@ -71,6 +80,8 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
     public unref()
     {
         this.cp.unref();
+        this.cp.stderr?.unpipe();
+        this.cp.stdout?.unpipe();
     }
 
     get stderr(): Readable { return this.cp.stderr }
