@@ -3,19 +3,11 @@
 
 ### Bug Fixes
 
-* improve akala plugin ed46190
-* init-akala start even if not connected 9cd0f47
-* injection consistency 2efa972
-* injection consistency d1d6092
-* simplify start command 508cedd
-* simplify start command 70cf360
-* start in cli c0ad45e
-
-
-### Features
-
-* add verbose flag to fork a78acb0
-* allow for signal to be provided to chain abort signal 320c767
+* add missing events pass through 7a73f40
+* handle abort signal 7f33b8c
+* handle undefined connect mapping f74b982
+* handle verbose behavior db8b8e7
+* pass keepAttached through 9603be4
 
 
 
