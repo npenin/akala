@@ -1,9 +1,9 @@
 #  (2025-05-15)
 
 
-### Features
+### Bug Fixes
 
-* add SIGINT and SIGTERM signals handling 6906860
+* cli should not exit by itself on success. Resource should be properly managed 4b13eec
 
 
 
