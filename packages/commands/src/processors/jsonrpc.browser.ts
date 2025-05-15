@@ -11,12 +11,19 @@ type OnlyArray<T> = Extract<T, unknown[]>;
 
 export async function handler(url: URL, options: { signal: AbortSignal }): Promise<HandlerResult<JsonRpcBrowser>>
 {
-    const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
+    const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve, reject) =>
     {
         const socket = jsonrpcws.ws.connect(url.toString());
         socket.on('open', function ()
         {
             resolve(socket);
+        });
+        socket.on('error', function (err: ErrorEvent)
+        {
+            if (err instanceof Error)
+                reject(err);
+            else
+                reject(new Error(err.error));
         });
     });
     const connection = JsonRpcBrowser.getConnection(socket);

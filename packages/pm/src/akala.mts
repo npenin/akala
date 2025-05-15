@@ -52,7 +52,7 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
             return start.call({ config: c.state.pm } as unknown as State, null, 'pm', { name: 'pm', ...c.options }, c);
         });
 
-    let metaContainer = commands.meta;
+    const metaContainer = commands.meta;
     let container: Container<unknown>;
     cli.preAction(async c =>
     {
@@ -81,7 +81,10 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                         try
                         {
                             log.verbose('trying to connect to ' + connectionString);
-                            container = await connect(new URL(connectionString), c.abort.signal, metaContainer);
+                            const url = new URL(connectionString);
+                            if (url.hostname == '0.0.0.0')
+                                url.hostname = 'localhost';
+                            container = await connect(url, c.abort.signal, metaContainer);
                         }
                         catch (e)
                         {
