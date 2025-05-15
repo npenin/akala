@@ -23,6 +23,10 @@ process.emit = function (name, data, ...args)
 
 const context = buildCliContextFromProcess(logger('akala', LogLevels.help), { plugins: [] });
 cli();
+
+process.on('SIGINT', () => context.abort.abort('SIGINT'));
+process.on('SIGTERM', () => context.abort.abort('SIGTERM'));
+
 await program.process(context).then(
     result =>
     {
