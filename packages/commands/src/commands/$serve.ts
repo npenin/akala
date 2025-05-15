@@ -5,11 +5,16 @@ import { ServeOptions } from '../index.js';
 
 export default async function $serve(container: Container<unknown>, options: ServeOptions | string[], signal?: AbortSignal)
 {
-    console.log(options);
-    if ('args' in options)
+    // console.log(options);
+    if (isServeOptions(options))
         await serve(container, serveMetadata(options), signal);
     else
         await serve(container, options, signal);
+}
+
+function isServeOptions(options: unknown): options is ServeOptions
+{
+    return typeof options === 'object' && 'args' in options;
 }
 
 $serve.$inject = ['$container', 'param.0', 'param.1'];
