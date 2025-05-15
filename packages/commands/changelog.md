@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* improve reliability 8fc7212
+* add missing context and options to init c083eff
+* improve type checking 457c1b3
 
 
 
