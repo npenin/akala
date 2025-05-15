@@ -32,7 +32,6 @@ await program.process(context).then(
     {
         if (typeof result != 'undefined')
             console.log(result);
-        process.exit(0);
     },
     err =>
     {
@@ -44,7 +43,7 @@ await program.process(context).then(
             console.error('There is no such command. Try the --help flag to get help on usage');
         if (err && typeof err.statusCode != 'undefined')
         {
-            if (Math.floor(err.statusCode / 100) > 3)
+            if (err.statusCode > 300)
                 process.exit(err.statusCode / 10);
             else
                 process.exit(0);
