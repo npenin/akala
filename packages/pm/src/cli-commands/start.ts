@@ -10,7 +10,7 @@ export default async function start(this: State, name: string, context?: CliCont
         configFile: context.options.configFile + '#pm',
         name: 'pm',
         program: new URL('../../../commands.json', import.meta.url).toString(),
-        inspect: undefined, keepAttached: undefined, new: undefined, wait: undefined
+        inspect: undefined, new: undefined, wait: undefined
     })];
 
     const cp = ChildProcess.build(args, { ...context.options, inheritStdio: context.options.keepAttached }, context.abort.signal);
@@ -21,8 +21,8 @@ export default async function start(this: State, name: string, context?: CliCont
     cp.on('message', function (message)
     {
         console.log(message);
-        // cp.disconnect();
     });
+
     return new Promise<void>((resolve) =>
     {
         cp.on('disconnect', function ()
