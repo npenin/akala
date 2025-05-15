@@ -36,9 +36,11 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
         }
         this.adapter = new IpcAdapter(this.cp);
         this.cp.on('close', (code, signal) => { this.emit('close', code, signal); this.emit('exit') });
+        this.cp.on('message', (message, sendHandle) => this.emit('message', message, sendHandle));
 
+        this.cp.on('disconnect', () => { this.emit('disconnect'); });
         if (options.keepAttached)
-            this.cp.on('disconnect', () => { this.emit('disconnect'); this.emit('exit') });
+            this.cp.on('disconnect', () => { this.emit('exit') });
 
         signal?.addEventListener('abort', () =>
         {
