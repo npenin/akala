@@ -1,15 +1,16 @@
 import * as path from 'path'
-import { Processors, Metadata, Container, ICommandProcessor, Triggers, Cli, connect } from '@akala/commands';
+import { Processors, Metadata, Container, ICommandProcessor, Triggers, Cli, connect, registerCommands } from '@akala/commands';
 import { platform, homedir } from 'os';
-import start from './commands/start.js'
 import { Readable } from 'stream';
 
 import { spawnAsync } from '@akala/cli/cli-helper';
-import State, { StateConfiguration } from './state.js';
+import { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
 import { eachAsync, logger, LogLevels, NotHandled, ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 import commands from './container.js';
+import cliCommands from './cli-container.js';
+import Configuration from '@akala/config';
 
 const log = logger('akala:pm');
 
@@ -37,23 +38,26 @@ const truncate = '…';
 type CliOptions = { output: string, verbose: number, pmSock: string | number, tls: boolean, help: boolean };
 export default async function (_config, program: NamespaceMiddleware<{ configFile: string, verbose: number }>)
 {
+
+
     const cli = program.command('pm').state<{ pm?: StateConfiguration }>().options<CliOptions>({
         output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' },
         verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" },
         pmSock: { aliases: ['pm-sock'], needsValue: true, doc: "path to the unix socket or destination in the form host:port" },
         help: { doc: "displays this help message" }
     });
-    cli.command('start pm')
-        .option<boolean>()('inspect', { doc: "starts the process with --inspect-brk parameter to help debugging" })
-        .option<boolean>()('keepAttached', { doc: "keeps the process attached" })
-        .action(c =>
-        {
-            c.options.configFile += '#pm';
-            return start.call({ config: c.state.pm } as unknown as State, null, 'pm', { name: 'pm', ...c.options }, c);
-        });
 
-    const metaContainer = commands.meta;
+    const pm = new Container('pm-cli', {});
+
+    const fs = new Processors.FileSystem();
+
+    registerCommands(cliCommands.meta.commands, fs, pm);
+
+    await pm.attach(Triggers.cli, cli);
+
     let container: Container<unknown>;
+    const metaContainer = commands.meta;
+
     cli.preAction(async c =>
     {
         process.stdin.pause();
@@ -73,30 +77,33 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                 container = await connect(new URL('jsonrpc+unix://\\\\?\\pipe\\pm'), c.abort.signal, metaContainer);
             else
             {
-                if (c.state?.pm?.mapping.pm?.connect)
-                    await eachAsync(c.state.pm.mapping.pm.connect, async (config, connectionString) =>
+                let connectMapping = c.state?.pm?.mapping.pm?.connect;
+                if (connectMapping)
+                    if (connectMapping instanceof Configuration)
+                        connectMapping = connectMapping.extract();
+                await eachAsync(connectMapping, async (config, connectionString) =>
+                {
+                    if (container)
+                        return;
+                    try
                     {
-                        if (container)
+                        log.verbose('trying to connect to ' + connectionString);
+                        const url = new URL(connectionString);
+                        if (url.hostname == '0.0.0.0')
+                            url.hostname = 'localhost';
+                        container = await connect(url, c.abort.signal, metaContainer);
+                    }
+                    catch (e)
+                    {
+                        log.silly('failed to connect to ' + connectionString);
+                        log.silly(e)
+                        if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
                             return;
-                        try
-                        {
-                            log.verbose('trying to connect to ' + connectionString);
-                            const url = new URL(connectionString);
-                            if (url.hostname == '0.0.0.0')
-                                url.hostname = 'localhost';
-                            container = await connect(url, c.abort.signal, metaContainer);
-                        }
-                        catch (e)
-                        {
-                            log.silly('failed to connect to ' + connectionString);
-                            log.silly(e)
-                            if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
-                                return;
-                            log.error(e);
-                            throw e;
-                        }
+                        log.error(e);
+                        throw e;
+                    }
 
-                    })
+                })
             }
             if (container)
             {
