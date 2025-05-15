@@ -39,6 +39,7 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
     option<string>()('name', { needsValue: true, positional: true, position: 1, optional: true }).
     option<boolean>()('tls', { needsValue: false }).
     option<string>()('configFile', { needsValue: false }).
+    option<number>()('verbose', { aliases: ['v'], needsValue: false }).
     options<{
         port?: number,
         tcpPort?: string,
@@ -175,7 +176,9 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
                         const serveArgs = await pm.dispatch('connect', c.options.name);
                         // console.log(serveArgs)
                         // serveArgs.signal = controller.signal;
-                        await cliContainer.dispatch('$serve', serveArgs, controller.signal);
+                        if (!serveArgs && (!('socketName' in c.options) || !c.options.socketName))
+                            c.options['socketName'] = c.options.name;
+                        await cliContainer.dispatch('$serve', serveArgs || c, controller.signal);
                     }
                     catch (e)
                     {
