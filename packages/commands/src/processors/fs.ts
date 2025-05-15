@@ -16,7 +16,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 
 async function protocolHandler(url: URL)
 {
-    let options: DiscoveryOptions = parseQueryString(url);
+    const options: DiscoveryOptions = parseQueryString(url);
     if (url.searchParams.has('ignoreFileWithNoDefaultExport'))
         options.ignoreFileWithNoDefaultExport = !!url.searchParams.get('ignoreFileWithNoDefaultExport') && url.searchParams.get('ignoreFileWithNoDefaultExport').toLocaleLowerCase() !== 'false';
     else
@@ -48,7 +48,7 @@ handlers.useProtocol('file', protocolHandler);
 handlers.useProtocol('npm',
     async function npmHandler(url: URL)
     {
-        let options: DiscoveryOptions = url.search && Object.fromEntries(url.searchParams.entries()) || {};
+        const options: DiscoveryOptions = url.search && Object.fromEntries(url.searchParams.entries()) || {};
         if (url.searchParams.has('ignoreFileWithNoDefaultExport'))
             options.ignoreFileWithNoDefaultExport = !!url.searchParams.get('ignoreFileWithNoDefaultExport') && url.searchParams.get('ignoreFileWithNoDefaultExport').toLocaleLowerCase() !== 'false';
         else
@@ -136,7 +136,7 @@ export interface DiscoveryOptions
 
 async function resolveFolder(require: NodeJS.Require, request: string)
 {
-    let paths = require.resolve.paths(request);
+    const paths = require.resolve.paths(request);
     let result = null;
     await eachAsync(paths, async p =>
     {
@@ -233,7 +233,7 @@ export class FileSystem extends CommandProcessor
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             const metacontainer: Metadata.Container & { extends?: string[] } = await importJson(path.resolve(root));
             metacontainer.commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
-            let globalDefs = metacontainer.$defs;
+            const globalDefs = metacontainer.$defs;
             if (metacontainer.extends?.length)
             {
                 await eachAsync(metacontainer.extends, async subPath =>
