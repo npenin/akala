@@ -41,7 +41,7 @@ cli.command('start pm')
         c.options['name'] = 'pm'
         c.options['program'] = new URL('../../commands.json', import.meta.url).toString();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return start.call({} as unknown as State, null, 'pm', c as any);
+        return start.call({} as unknown as State, null, c as any);
     });
 
 let socket: Socket;
