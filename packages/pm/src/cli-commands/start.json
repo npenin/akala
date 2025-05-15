@@ -2,7 +2,6 @@
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
     "": {
         "inject": [
-            "$container",
             "param.0",
             "param.1"
         ]
@@ -34,6 +33,13 @@
             "help": {
                 "doc": "displays this help message"
             },
+            "keepAttached": {
+                "aliases": [
+                    "keep-attached"
+                ],
+                "needsValue": false,
+                "doc": "keeps the process attached to the current terminal"
+            },
             "wait": {
                 "aliases": [
                     "w"
@@ -57,7 +63,6 @@
             }
         },
         "inject": [
-            "$container",
             "options.program",
             "context"
         ],
