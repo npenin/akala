@@ -10,7 +10,7 @@ type PathLike = string | URL;
 
 export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
 {
-    constructor(private readonly root: URL)
+    constructor(public readonly root: URL)
     {
     }
 
@@ -66,14 +66,17 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
     async readFile(path: PathLike | NodeFileHandle, options: { encoding: BufferEncoding; flag?: string; }): Promise<string>;
     async readFile(path: PathLike | NodeFileHandle, options?: any): Promise<string | Buffer>
     {
-        const isFileHandle = (p: unknown): p is NodeFileHandle =>
-            typeof p === 'object' && p !== null && 'fd' in p;
-
-        if (isFileHandle(path))
+        if (this.isFileHandle(path))
         {
             return fs.readFile(path, options);
         }
-        return fs.readFile(this.resolvePath(path), options);
+        return fs.readFile(this.resolvePath(path), options).catch(e =>
+        {
+            if (e.code === 'ENOENT')
+                throw new ErrorWithStatus(HttpStatusCode.NotFound, e.message);
+            throw e;
+        }
+        );
     }
 
     async rename(oldPath: PathLike, newPath: PathLike): Promise<void>
@@ -150,17 +153,14 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
     async writeFile(path: PathLike | fs.FileHandle, data: string | ArrayBuffer | SharedArrayBuffer): Promise<void>
     {
         const buffer = Buffer.from(data as ArrayBuffer);
-        const isFileHandle = (p: unknown): p is fs.FileHandle =>
-            typeof p === 'object' && p !== null && 'fd' in p;
 
-        if (isFileHandle(path))
-        {
+        if (this.isFileHandle(path))
             return fs.writeFile(path, buffer);
-        }
+
         return fs.writeFile(this.resolvePath(path), buffer);
     }
 
-    isFileHandle(p: any): p is fs.FileHandle
+    public isFileHandle(p: unknown): p is fs.FileHandle
     {
         return typeof p === 'object' && p !== null && 'fd' in p;
     }

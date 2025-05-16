@@ -1,6 +1,13 @@
 import { UrlHandler } from '@akala/core';
+import { FSFileSystemProvider } from './fs.js';
 
-const fsHandler = new UrlHandler<[URL, void], FileSystemProvider<unknown>>(true);
+export interface FileHandle
+{
+    close(): Promise<void>;
+}
+
+const fsHandler = new UrlHandler<[URL, void], FileSystemProvider<FileHandle>>(true);
+fsHandler.useProtocol('file', url => Promise.resolve(new FSFileSystemProvider(url)))
 export default fsHandler;
 
 export type OpenFlags = 'r' | 'w' | 'rw' | 'rw+' | 'w+';
@@ -68,8 +75,9 @@ export interface RmDirOptions
     retryDelay?: number;
 }
 
-export interface FileSystemProvider<TFileHandle>
+export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
 {
+    readonly root: URL;
     access(path: string | URL, mode?: number): Promise<void>;
     copyFile(src: string | URL, dest: string | URL, mode?: number): Promise<void>;
     cp(src: string | URL, dest: string | URL, options?: { force?: boolean; recursive?: boolean }): Promise<void>;
