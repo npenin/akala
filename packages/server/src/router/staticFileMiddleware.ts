@@ -12,7 +12,7 @@ export interface Options
     setHeaders?(): void;
     maxAge?: string | number;
     root?: string;
-    fs?: Promise<FileSystemProvider<unknown>>
+    fs?: Promise<FileSystemProvider>
 }
 
 export class SendFileStream extends EventEmitter<{ error: Event<[ErrorWithStatus]>, directory: Event<[Request]>, headers: Event<[Request['headers']]>, file: Event<[]>, close: Event<[]> }>
@@ -46,7 +46,7 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
 {
     private readonly options: Options;
     onDirectory: (res: Request) => void;
-    fs: Promise<FileSystemProvider<unknown>>;
+    fs: Promise<FileSystemProvider>;
 
     constructor(root?: string, options?: Options)
     {
