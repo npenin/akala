@@ -51,7 +51,7 @@ async function x(type, tsconfigPath, packageConfig)
 }
 
 const cjs = await import('./packages/tsconfig.cjs.json', { assert: { type: 'json' } });
-for (var ref of cjs.default.references)
+for (const ref of cjs.default.references)
 {
     const tsconfigPath = path.join(path.dirname(import.meta.url).substring(5), './packages', ref.path);
     const packageConfig = path.join(path.dirname(path.join(path.dirname(import.meta.url).substring(5), './packages', ref.path)), './package.json');
@@ -73,7 +73,7 @@ for (var ref of cjs.default.references)
 
 
 const esm = await import('./packages/tsconfig.esm.json', { assert: { type: 'json' } });
-for (var ref of esm.default.references)
+for (const ref of esm.default.references)
 {
     const tsconfigPath = path.join(path.dirname(import.meta.url).substring(5), './packages', ref.path);
     const packageConfig = path.join(path.dirname(path.join(path.dirname(import.meta.url).substring(5), './packages', ref.path)), './package.json');
