@@ -2,16 +2,15 @@
 import sms from 'source-map-support'
 sms.install();
 import path from 'path'
-import { lstat } from 'fs/promises';
 import pmDef from './container.js';
 import { IpcAdapter } from "./ipc-adapter.js";
 import { logger, Logger, module as coreModule, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
-import { Stats } from 'fs';
 import { Processors, Triggers, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, StructuredParameters, Container, CommandProcessor, serveMetadata, connectByPreference, Metadata, $metadata } from '@akala/commands';
-import { fileURLToPath } from 'url';
+import { pathToFileURL } from 'url';
 import commands from './container.js';
 import Configuration from '@akala/config';
+import fsHandler, { Stats } from '@akala/fs';
 
 var isPm = false;
 
@@ -23,14 +22,14 @@ let log: Logger;
 const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string>()('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
-    const fs: Processors.FileSystem = new Processors.FileSystem(path.dirname(c.options.program));
+    const fs: Processors.FileSystem = new Processors.FileSystem(new URL('./', c.options.program));
     if (c.options.verbose)
         processor = new Processors.LogEventProcessor(fs, c.abort.signal, (_c, cmd, params) =>
         {
             log.verbose({ cmd, params });
         });
 
-    const options: Processors.DiscoveryOptions = { processor: processor, isDirectory: folderOrFile.isDirectory() };
+    const options: Processors.DiscoveryOptions = { processor: processor, isDirectory: folderOrFile.isDirectory };
     await Processors.FileSystem.discoverCommands(c.options.program, cliContainer, options);
 });
 let initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
@@ -54,18 +53,12 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
     }).
     preAction(async c => //If pure js file
     {
-        if (URL.canParse(c.options.program))
-        {
-            const url = new URL(c.options.program);
-            if (url.protocol == 'file:')
-                c.options.program = fileURLToPath(url);
-            else
-                throw new Error('remote commands are not yet supported');
-        }
-
-        folderOrFile = await lstat(c.options.program);
-        if (folderOrFile.isFile() && path.extname(c.options.program) === '.js')
-            return require(c.options.program);
+        if (!URL.canParse(c.options.program))
+            c.options.program = pathToFileURL(c.options.program).toString();
+        const fs = await fsHandler.process(new URL('./', c.options.program));
+        folderOrFile = await fs.stat(c.options.program);
+        if (folderOrFile.isFile && path.extname(c.options.program) === '.js')
+            return import(c.options.program);
 
         log = logger(c.options.name);
 
@@ -74,17 +67,17 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
 
         cliContainer = new Container('cli', {});
 
-        if (folderOrFile.isFile())
-            processor = new Processors.FileSystem(path.dirname(c.options.program));
+        if (folderOrFile.isFile)
+            processor = new Processors.FileSystem(new URL('./', c.options.program));
         else
-            processor = new Processors.FileSystem(c.options.program);
+            processor = new Processors.FileSystem(new URL(c.options.program));
     }).
     useMiddleware(null, MiddlewareCompositeAsync.new(logMiddleware,
         {
             handle: async c =>
             {
                 cliContainer.name = c.options.name;
-                isPm = c.options.name === 'pm' && 'file://' + c.options.program === new URL('../../commands.json', import.meta.url).toString();
+                isPm = c.options.name === 'pm' && c.options.program === new URL('../../commands.json', import.meta.url).toString();
                 const init = cliContainer.resolve('$init');
                 if (init && init.config && init.config.cli && init.config.cli.options)
                 {

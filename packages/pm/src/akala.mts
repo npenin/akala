@@ -38,8 +38,6 @@ const truncate = '…';
 type CliOptions = { output: string, verbose: number, pmSock: string | number, tls: boolean, help: boolean };
 export default async function (_config, program: NamespaceMiddleware<{ configFile: string, verbose: number }>)
 {
-
-
     const cli = program.command('pm').state<{ pm?: StateConfiguration }>().options<CliOptions>({
         output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' },
         verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" },
@@ -49,7 +47,8 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
 
     const pm = new Container('pm-cli', {});
 
-    const fs = new Processors.FileSystem();
+    const root = new URL('../../', import.meta.url);
+    const fs = new Processors.FileSystem(root);
 
     registerCommands(cliCommands.meta.commands, fs, pm);
 

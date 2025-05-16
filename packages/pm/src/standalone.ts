@@ -3,10 +3,10 @@ import sms from 'source-map-support'
 sms.install();
 import * as path from 'path'
 import * as ac from '@akala/commands';
-import { lstat } from 'fs/promises';
 import { convertToMiddleware, logger, Logger, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
-import { Stats } from 'fs';
+import fsHandler, { Stats } from '@akala/fs';
+import { pathToFileURL } from 'url';
 
 program.option('help')
 let folderOrFile: Stats;
@@ -24,7 +24,7 @@ logMiddleware.preAction(async c =>
             return undefined;
         });
 
-    await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
+    await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory });
 });
 const initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
 const controller = new AbortController();
@@ -45,18 +45,19 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
     }).
     preAction(async c => //If pure js file
     {
-        folderOrFile = await lstat(c.options.program);
-        if (folderOrFile.isFile() && path.extname(c.options.program) === '.js')
-            return require(c.options.program);
+        const fs = await fsHandler.process(pathToFileURL(c.currentWorkingDirectory));
+        folderOrFile = await fs.stat(c.options.program);
+        if (folderOrFile.isFile && path.extname(c.options.program) === '.js')
+            return import(c.options.program);
 
         log = logger(c.options.name);
 
         cliContainer = new ac.Container('cli', {});
 
-        if (folderOrFile.isFile())
-            processor = new ac.Processors.FileSystem(path.dirname(c.options.program));
+        if (folderOrFile.isFile)
+            processor = new ac.Processors.FileSystem(new URL('./', c.options.program));
         else
-            processor = new ac.Processors.FileSystem(c.options.program);
+            processor = new ac.Processors.FileSystem(new URL(c.options.program));
     }).
     useMiddleware(null, MiddlewareCompositeAsync.new(logMiddleware,
         convertToMiddleware(async c =>
