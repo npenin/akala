@@ -17,14 +17,14 @@ export { Processors, Triggers }
 export { NetSocketAdapter } from './net-socket-adapter.js'
 import commands from './commands.js'
 import $metadata from './commands/$metadata.js'
-import { stat } from 'fs/promises'
-import { dirname } from 'path'
 import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
 export { default as serve, ServeOptions } from './cli/serve.js'
 import * as FileGenerator from './cli/new.js';
 import { Readable } from 'stream';
 import { Metadata } from './index.browser.js'
+import { pathToFileURL } from 'url'
 export { default as serveMetadata, connectByPreference } from './serve-metadata.js'
+import fsHandler from '@akala/fs'
 
 
 export { generatorPlugin as tsPluginHandler } from './cli/generate-metadata.js'
@@ -61,19 +61,21 @@ export class Cli
         if (!options)
             options = { ignoreFileWithNoDefaultExport: true };
         if (typeof options === 'string')
-            options = { relativeTo: options };
+            options = { relativeTo: URL.canParse(options) ? new URL(options) : pathToFileURL(options) };
 
         if (!options.processor)
         {
             if (!options.relativeTo)
             {
-                const stats = await stat(commandsPath);
-                options.isDirectory = stats.isDirectory();
+                const commandsURL = URL.canParse(commandsPath) ? new URL(commandsPath) : pathToFileURL(commandsPath);
+                const fs = await fsHandler.process(commandsURL);
+                const stats = await fs.stat(commandsPath);
+                options.isDirectory = stats.isDirectory;
 
                 if (!options.isDirectory)
-                    options.relativeTo = dirname(commandsPath);
+                    options.relativeTo = new URL('.', commandsURL);
                 else
-                    options.relativeTo = commandsPath;
+                    options.relativeTo = commandsURL;
             }
 
             options.processor = new Processors.FileSystem(options.relativeTo);

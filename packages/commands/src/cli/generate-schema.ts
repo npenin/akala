@@ -7,6 +7,7 @@ import ts from 'typescript'
 import type { Schema as BaseSchema, SchemaObject } from "ajv";
 import { Command } from "../metadata/command.js";
 import { SchemaConfiguration, SchemaValidator } from "../processors/schema-validator.js";
+import { pathToFileURL } from "url";
 
 type JsonSchema = Exclude<BaseSchema, boolean>
 
@@ -97,7 +98,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     let output: Writable;
     let outputFolder: string;
     ({ output, outputFile, outputFolder } = await outputHelper(outputFile, 'commands.json', true));
-    discoveryOptions.relativeTo = outputFolder;
+    discoveryOptions.relativeTo = pathToFileURL(outputFolder);
     discoveryOptions.recursive = true;
     discoveryOptions.ignoreFileWithNoDefaultExport = true;
     let configPath = ts.findConfigFile(folder, ts.sys.fileExists, "tsconfig.json");

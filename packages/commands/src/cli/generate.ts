@@ -5,10 +5,19 @@ import { outputHelper, write } from './new.js';
 import { DiscoveryOptions } from "../processors/fs.js";
 import { Metadata, Processors } from "../index.js";
 import { MiddlewareCompositeAsync } from '@akala/core';
+import { pathToFileURL } from 'url';
+import fsHandler from '@akala/fs';
 
 function importJson(path: string)
 {
-    return fs.promises.readFile(path, { encoding: 'utf-8', flag: 'r' }).then(JSON.parse)
+    return fs.promises.readFile(path, { encoding: 'utf-8', flag: 'r' }).then(c => c && JSON.parse(c) || undefined, e =>
+    {
+        if (e.code == 'ENOENT')
+            return undefined;
+        else
+            throw e;
+    }
+    );
 }
 
 export const generatorPlugin = new MiddlewareCompositeAsync<[options: Partial<DiscoveryOptions>, meta: Metadata.Container, outputFolder: string, outputFile: string]>();
@@ -35,7 +44,7 @@ export default async function generate(options: Partial<DiscoveryOptions>, folde
         }
     }));
 
-    const commands = await Processors.FileSystem.discoverMetaCommands(path.resolve(folder), Object.assign({ relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new Processors.FileSystem(outputFolder) }, options));
+    const commands = await Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { ...options, fs: await fsHandler.process(pathToFileURL(outputFolder + '/')), relativeTo: pathToFileURL(outputFolder), isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new Processors.FileSystem(pathToFileURL(outputFolder)) });
     Object.assign(meta, commands);
     if (!commands.name && name)
         meta.name = name;

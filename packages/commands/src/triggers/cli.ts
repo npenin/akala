@@ -28,7 +28,7 @@ export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TSta
         command.useMiddleware(null, {
             handle(context)
             {
-                return c.handle(c, cmd, {
+                return c.handle(c, cmd.name, {
                     param: context.args,
                     context: context, options: context.options, _trigger: 'cli', get stdin()
                     {

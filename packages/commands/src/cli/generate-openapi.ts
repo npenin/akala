@@ -1,9 +1,9 @@
 import * as akala from "../index.js";
 import * as path from 'path'
 import * as fs from 'fs';
-import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
 import { jsonObject } from "../metadata/configurations.js";
+import { pathToFileURL } from "url";
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
@@ -19,16 +19,15 @@ export default async function generate(folder?: string, name?: string, outputFil
         discoveryOptions.isDirectory = false;
     }
 
-    let output: Writable;
-    let outputFolder: string;
-    ({ output, outputFolder } = await outputHelper(outputFile, 'commands.json', true));
-    discoveryOptions.relativeTo = outputFolder;
+    const outputResult = await outputHelper(outputFile, 'commands.json', true);
+    const output = outputResult.output;
+    discoveryOptions.relativeTo = pathToFileURL(outputResult.outputFolder);
     discoveryOptions.recursive = true;
     discoveryOptions.ignoreFileWithNoDefaultExport = true;
 
     const container = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
 
-    let result: jsonObject = { paths: {} };
+    const result: jsonObject = { paths: {} };
     result.openapi = '3.1.0';
     result.info = { title: 'openAPI documentation for ' + container.name, version: '' };
     for (const command of container.commands)
@@ -65,7 +64,7 @@ export default async function generate(folder?: string, name?: string, outputFil
             });
             if (hasBody)
             {
-                let content = { schema: { type: 'object', properties: {} } };
+                const content = { schema: { type: 'object', properties: {} } };
                 switch (command.config.http.type)
                 {
                     default:

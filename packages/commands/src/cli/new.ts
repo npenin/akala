@@ -38,7 +38,7 @@ export async function outputHelper(outputFile: string | Writable | undefined, na
             }
     }
 
-    const outputFolder = path.dirname(outputFile);
+    const outputFolder = path.dirname(outputFile) + '/';
 
     if (actionIfExists)
     {
