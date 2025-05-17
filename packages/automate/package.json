@@ -46,7 +46,9 @@
         "generate-automate": "ac generate dist/esm/commands commands.json --name @akala/automate",
         "generate-metadata-automate": "ac generate-metadata commands.json src/container.ts",
         "generate-workflow": "ac generate dist/esm/workflow-commands workflow.json --name workflow",
-        "generate-metadata-workflow": "ac generate-metadata workflow.json src/workflow.ts --name workflow"
+        "generate-metadata-workflow": "ac generate-metadata workflow.json src/workflow.ts --name workflow",
+        "test": "node --enable-source-maps dist/esm/cli.js --loader @akala/automate-yamlloader --file './test/test-file-echo time.yml' --verbose=warning",
+        "coverage": "yarn test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info"
     },
     "exports": {
         ".": {
