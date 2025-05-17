@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* serverHandlers not fulling promise 4695ccb
+* handle 0.0.0.0 and * to connect to localhost e303589
 
 
 
