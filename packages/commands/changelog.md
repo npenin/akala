@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* relative extension path computation 3fe635f
-* unit test a5932d1
+* serverHandlers not fulling promise 4695ccb
 
 
 
