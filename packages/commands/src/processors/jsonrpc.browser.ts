@@ -13,6 +13,8 @@ export async function handler(url: URL, options: { signal: AbortSignal }): Promi
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve, reject) =>
     {
+        if (url.hostname == '0.0.0.0' || url.hostname == '*')
+            url.hostname = '127.0.0.1';
         const socket = jsonrpcws.ws.connect(url.toString());
         socket.on('open', function ()
         {
