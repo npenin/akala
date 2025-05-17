@@ -173,7 +173,10 @@ export class FileSystem extends CommandProcessor
         let name: string = options && 'name' in options && typeof options.name == 'string' ? options.name : '';
         if (typeof root == 'string')
             if (!URL.canParse(root))
-                root = pathToFileURL(root);
+                if (options.fs)
+                    root = new URL(root, options.fs.root);
+                else
+                    root = pathToFileURL(root);
             else
                 root = new URL(root);
         if (root.hash?.length > 1)
