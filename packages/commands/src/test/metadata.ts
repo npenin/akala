@@ -3,7 +3,7 @@ import assert from 'assert'
 import { metadata, helper, commandList, fromObject } from '../generator.js';
 import { FileSystem } from '../processors/index.js';
 import { describe, it } from 'node:test'
-import { fileURLToPath } from 'url';
+import fsHandler from '@akala/fs';
 // import { createRequire } from 'module';
 
 // const require = createRequire(import.meta.url);
@@ -129,10 +129,10 @@ describe('test helpers', function ()
 
     it('should interpret json properly', async function ()
     {
-        const cmds = await FileSystem.discoverMetaCommands(fileURLToPath(new URL('../../../commands.json', import.meta.url)));
+        const cmds = await FileSystem.discoverMetaCommands(new URL('../../../commands.json', import.meta.url));
         assert.strictEqual(cmds.commands.length, 15);
         // debugger;
-        const cmds2 = await FileSystem.discoverMetaCommands(fileURLToPath(new URL('../../../src/test/metadata.json', import.meta.url)));
+        const cmds2 = await FileSystem.discoverMetaCommands(new URL('../../../src/test/metadata.json', import.meta.url), { fs: await fsHandler.process(new URL('../../..', import.meta.url)) });
         assert.strictEqual(cmds2.commands.length, 37);
         assert.strictEqual(cmds2.commands.reduce((prev, current) => prev + (cmds.commands.some(cmd => cmd.name == current.name) ? '' : current.name), ''), 'dummy$initbridgenameproxyreadyreload-metadatarestartstartstatusstop$init-akalaconnectdiscoverinstalllinkloglsmapuninstallupdateversion')
     })
