@@ -7,7 +7,6 @@ import { registerCommands } from '../generator.js';
 import { Local } from './local.js';
 import { jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise, eachAsync } from '@akala/core';
-import { createRequire } from 'module';
 import { protocolHandlers as handlers, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
 import os from 'node:os'
@@ -141,31 +140,6 @@ export interface DiscoveryOptions
     relativeTo?: URL;
 }
 
-async function resolveFolder(fs: FileSystemProvider, require: NodeJS.Require, request: string)
-{
-    const paths = require.resolve.paths(request);
-    let result = null;
-    await eachAsync(paths, async p =>
-    {
-        if (result)
-            return;
-        try
-        {
-            if (!p.endsWith('/'))
-                p += '/'
-            if (!(await fs.stat(path.join(p, request), {})).isDirectory)
-                result = path.join(p, request);
-        }
-        catch (e)
-        {
-            if (e.code === 'ENOENT')
-                return;
-            throw e;
-        }
-    }, true)
-    return result;
-}
-
 export class FileSystem extends CommandProcessor
 {
     public static async discoverCommands<T>(root: string, container: Container<T>, options?: DiscoveryOptions): Promise<void>
@@ -222,13 +196,10 @@ export class FileSystem extends CommandProcessor
         if (options.isDirectory && !root.pathname.endsWith('/'))
             root = new URL(root + '/');
 
-        if (hasNoFs)
-        {
-            if (!options.isDirectory)
-                options.fs = await fsHandler.process(new URL('./', root));
-            else if (!root.pathname.endsWith('/'))
-                options.fs = await fsHandler.process(root);
-        }
+        if (!options.isDirectory)
+            options.fs.chroot(new URL('./', root));
+        else if (!root.pathname.endsWith('/'))
+            options.fs.chroot(root);
 
         if (!options.relativeTo)
         {
@@ -239,7 +210,7 @@ export class FileSystem extends CommandProcessor
         }
         if (!options.isDirectory)
         {
-            const cmdRequire = createRequire(fileURLToPath(root));
+            // const cmdRequire = createRequire(fileURLToPath(root));
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             const metacontainer: Metadata.Container & { extends?: string[] } = await importJson(options.fs, root.toString());
             metacontainer.commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
@@ -248,19 +219,8 @@ export class FileSystem extends CommandProcessor
             {
                 await eachAsync(metacontainer.extends, async subPath =>
                 {
-                    const indexOfColon = subPath.indexOf(':');
-                    let name: string;
-                    if (indexOfColon > 1)
-                    {
-                        name = subPath.substring(indexOfColon + 1);
-                        subPath = subPath.substring(0, indexOfColon);
-                    }
-
-                    let parentCommands: Metadata.Container;
-                    if (indexOfColon > 1)
-                        parentCommands = await this.discoverMetaCommands(new URL(subPath + ':' + name, root), { ...options, isDirectory: undefined, relativeTo: pathToFileURL(cmdRequire.resolve(subPath)) });
-                    else
-                        parentCommands = await this.discoverMetaCommands(new URL(subPath, root), { ...options, isDirectory: undefined, relativeTo: pathToFileURL(cmdRequire.resolve(subPath)) });
+                    const subFs = await fsHandler.process(new URL(subPath, root));
+                    const parentCommands = await this.discoverMetaCommands(new URL(subPath, root), { ...options, fs: subFs, isDirectory: undefined });
                     if (parentCommands.stateless)
                         Object.defineProperty(metacontainer, 'stateless', { enumerable: false, value: parentCommands.stateless });
                     await eachAsync(parentCommands.commands, async c =>
@@ -268,9 +228,9 @@ export class FileSystem extends CommandProcessor
                         if (metacontainer.commands.find(c2 => c.name == c2.name))
                             return;
                         if (c.config?.fs?.path)
-                            c.config.fs.path = path.resolve(path.dirname(await resolveFolder(options.fs, cmdRequire, subPath)), c.config.fs.path);
+                            c.config.fs.path = path.relative(path.dirname(fileURLToPath(new URL(subPath, root))), c.config.fs.path);
                         if (c.config?.fs?.source)
-                            c.config.fs.source = path.resolve(path.dirname(await resolveFolder(options.fs, cmdRequire, subPath)), c.config.fs.source);
+                            c.config.fs.source = path.relative(path.dirname(fileURLToPath(new URL(subPath, root))), c.config.fs.source);
 
                         if (c.config.schema?.$defs)
                             if (globalDefs)
@@ -278,7 +238,7 @@ export class FileSystem extends CommandProcessor
 
                         try
                         {
-                            const f = await options.fs.open(c.config.fs.source, 'r');
+                            const f = await subFs.open(c.config.fs.source, 'r');
                             await f.close();
                             metacontainer.commands.push(c);
                         }
