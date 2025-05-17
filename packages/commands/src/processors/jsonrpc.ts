@@ -44,9 +44,9 @@ serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, con
         url = new URL(url);
 
     if (url.hostname == '0.0.0.0' || url.hostname == '*')
-        await new Promise(resolve => server.listen(url.port ? Number(url.port) : 31416, () => resolve));
+        await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url.port ? Number(url.port) : 31416, resolve) });
     else
-        await new Promise(resolve => server.listen({ host: url.hostname, port: url.port ? Number(url.port) : 31416 }, () => resolve));
+        await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen({ host: url.hostname, port: url.port ? Number(url.port) : 31416 }, resolve) });
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
@@ -79,7 +79,11 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
     });
     if (!(url instanceof URL))
         url = new URL(url);
-    server.listen(url);
+    if (url.hostname == '0.0.0.0' || url.hostname == '*')
+        await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url, resolve) });
+    else
+        await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url, resolve) });
+
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
@@ -109,7 +113,7 @@ serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, co
     });
     if (!(url instanceof URL))
         url = new URL(url);
-    server.listen(url.hostname + url.pathname);
+    await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url.hostname + url.pathname, resolve) });
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
@@ -139,7 +143,7 @@ serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string
     });
     if (!(url instanceof URL))
         url = new URL(url);
-    server.listen(url.hostname + url.pathname);
+    await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url.hostname + url.pathname, resolve) });
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
