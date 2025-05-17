@@ -1,8 +1,8 @@
 import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
-import { FileSystemProvider, MakeDirectoryOptions, OpenFlags, RmDirOptions, RmOptions, StatOptions, Stats } from "./index.js";
+import { FileSystemProvider, MakeDirectoryOptions, OpenFlags, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
 import { promises as fs, OpenDirOptions } from 'fs';
 import { FileHandle as NodeFileHandle } from 'fs/promises';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 type PathLike = string | URL;
 
@@ -10,14 +10,22 @@ type PathLike = string | URL;
 
 export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
 {
-    constructor(public readonly root: URL)
+    constructor(public root: URL, public readonly readonly: boolean)
     {
     }
 
-    private resolvePath(pathLike: PathLike): string
+    chroot(root: string | URL): void
+    {
+        const newRoot = pathToFileURL(this.resolvePath(root, true));
+        if (newRoot.toString() == this.root.toString())
+            return;
+        this.root = newRoot;
+    }
+
+    public resolvePath(pathLike: PathLike, unsafe?: boolean): string
     {
         const url = new URL(pathLike, this.root);
-        if (!url.toString().startsWith(this.root.toString()))
+        if (!unsafe && !url.toString().startsWith(this.root.toString()))
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, `The path ${pathLike} is not in scope of ${this.root}`)
         return fileURLToPath(url);
     }
@@ -29,11 +37,15 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
 
     async copyFile(src: PathLike, dest: PathLike, mode?: number): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.copyFile(this.resolvePath(src), this.resolvePath(dest), mode);
     }
 
     async cp(src: PathLike, dest: PathLike, options?: { force?: boolean; recursive?: boolean; }): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.cp(this.resolvePath(src), this.resolvePath(dest), options);
     }
 
@@ -41,11 +53,15 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
     async mkdir(path: PathLike, options?: MakeDirectoryOptions): Promise<void>;
     async mkdir(path: PathLike, options?: MakeDirectoryOptions): Promise<void | string | undefined>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.mkdir(this.resolvePath(path), options);
     }
 
-    async open(path: PathLike, flags: OpenFlags | number): Promise<fs.FileHandle>
+    async open(path: PathLike, flags: OpenFlags): Promise<fs.FileHandle>
     {
+        if (this.readonly && flags != 'r')
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return await fs.open(this.resolvePath(path), flags);
     }
 
@@ -81,16 +97,22 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
 
     async rename(oldPath: PathLike, newPath: PathLike): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.rename(this.resolvePath(oldPath), this.resolvePath(newPath));
     }
 
     async rmdir(path: PathLike, options?: RmDirOptions): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.rmdir(this.resolvePath(path), options);
     }
 
     async rm(path: PathLike, options?: RmOptions): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.rm(this.resolvePath(path), options);
     }
 
@@ -132,16 +154,22 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
 
     async truncate(path: PathLike, len?: number): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.truncate(this.resolvePath(path), len);
     }
 
     async unlink(path: PathLike): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.unlink(this.resolvePath(path));
     }
 
     async utimes(path: PathLike, atime: string | number | Date, mtime: string | number | Date): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.utimes(this.resolvePath(path), atime, mtime);
     }
 
@@ -152,6 +180,8 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
 
     async writeFile(path: PathLike | fs.FileHandle, data: string | ArrayBuffer | SharedArrayBuffer): Promise<void>
     {
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         const buffer = Buffer.from(data as ArrayBuffer);
 
         if (this.isFileHandle(path))
