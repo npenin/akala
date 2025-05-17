@@ -151,6 +151,8 @@ async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
     {
+        if (url.hostname == '0.0.0.0' || url.hostname == '*')
+            url.hostname = '127.0.0.1';
         const socket = jsonrpcws.ws.connect(url.toString());
         socket.on('open', function ()
         {
