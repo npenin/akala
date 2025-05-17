@@ -136,7 +136,7 @@ nodeLinker: node-modules
             if (files[zipFilePath])
                 return;
             files[zipFilePath] = true;
-            await zipFile.add(zipFilePath, new zip.Uint8ArrayReader(new Uint8Array(await fs.readFile(join(entry.parentPath, entry.name)))));
+            await zipFile.add(zipFilePath, new zip.CompatibleUint8ArrayReader(new Uint8Array(await fs.readFile(join(entry.parentPath, entry.name)))));
         });
 
         zipStream.on('close', resolve);
@@ -192,7 +192,7 @@ nodeLinker: node-modules
                 if (files[zipFilePath])
                     return;
                 files[zipFilePath] = true;
-                await zipFile.add(zipFilePath, new zip.Uint8ArrayReader(new Uint8Array(await fs.readFile(join(entry.parentPath, entry.name)))));
+                await zipFile.add(zipFilePath, new zip.CompatibleUint8ArrayReader(new Uint8Array(await fs.readFile(join(entry.parentPath, entry.name)))));
             });
         }
         else
@@ -207,7 +207,7 @@ nodeLinker: node-modules
                     return;
                 files[zipFilePath] = true;
 
-                await zipFile.add(zipFilePath, new zip.Uint8ArrayReader(new Uint8Array(await fs.readFile(join(entry.parentPath, entry.name)))));
+                await zipFile.add(zipFilePath, new zip.CompatibleUint8ArrayReader(new Uint8Array(await fs.readFile(join(entry.parentPath, entry.name)))));
             });
 
         zipStream.on('close', resolve);
