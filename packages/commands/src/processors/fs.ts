@@ -227,10 +227,17 @@ export class FileSystem extends CommandProcessor
                     {
                         if (metacontainer.commands.find(c2 => c.name == c2.name))
                             return;
+                        const subURL = new URL(subPath, root);
                         if (c.config?.fs?.path)
-                            c.config.fs.path = path.relative(path.dirname(fileURLToPath(new URL(subPath, root))), c.config.fs.path);
+                            if (subURL.protocol == 'file:')
+                                c.config.fs.path = path.relative(path.dirname(fileURLToPath(subURL)), c.config.fs.path);
+                            else
+                                c.config.fs.path = new URL(c.config.fs.path, subURL).toString();
                         if (c.config?.fs?.source)
-                            c.config.fs.source = path.relative(path.dirname(fileURLToPath(new URL(subPath, root))), c.config.fs.source);
+                            if (subURL.protocol == 'file:')
+                                c.config.fs.source = path.relative(path.dirname(fileURLToPath(subURL)), c.config.fs.source);
+                            else
+                                c.config.fs.source = new URL(c.config.fs.source, subURL).toString();
 
                         if (c.config.schema?.$defs)
                             if (globalDefs)
