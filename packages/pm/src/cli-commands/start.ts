@@ -7,7 +7,7 @@ export default async function start(this: State, name: string, context?: CliCont
 {
     const args = [...context.args, ...unparseOptions({
         ...context.options,
-        configFile: context.options.configFile + '#pm',
+        configFile: context.options.configFile,
         name: 'pm',
         program: new URL('../../../commands.json', import.meta.url).toString(),
         inspect: undefined, new: undefined, wait: undefined

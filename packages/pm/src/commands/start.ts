@@ -52,8 +52,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (!def && name != 'pm')
             throw new ErrorWithStatus(404, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
 
-        if (options.configFile)
-            options.configFile += '#' + options.name
+        // if (options.configFile)
+        //     options.configFile += '#' + options.name
 
         args.unshift(...(context?.args || []), ...unparseOptions({ ...options, program: undefined, new: undefined, inspect: undefined }, { ignoreUndefined: true }));
         if (def && def.get('path'))
