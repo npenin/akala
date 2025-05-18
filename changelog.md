@@ -1,4 +1,4 @@
-#  (2025-05-07)
+#  (2025-05-18)
 
 
 * chore : code cleanup eae1150
@@ -7,6 +7,8 @@
 ### Bug Fixes
 
 * #S6661 234a6f5
+* absolute path config ceaf573
+* add basic unit test dcd8665
 * add commands argument normalisation 8c9fb75
 * add commands argument normalisation 34ca419
 * add debug to understand why publish is crashing c463573
@@ -27,13 +29,16 @@
 * add InitAkala and AuthHandler on server 54f96ca
 * add initial documentation files for Akala client and set navigation exclusions c3f96e5
 * add initial documentation files for Akala client and set navigation exclusions 0b59055
+* add js extension to fork files 39368e9
 * add loginUrl and keyPath to auth configuration 9751a94
 * add missing case in marshall 598c8c0
 * add missing case in marshall 8c814f2
+* add missing context and options to init c083eff
 * add missing dependencies 1104b8d
 * add missing dependencies 7251d39
 * add missing dependency d1d127b
 * add missing dependency 4435ab1
+* add missing events pass through 7a73f40
 * add missing link targets a2dae65
 * add missing link targets 2fc6516
 * add missing storage provider ff28469
@@ -62,6 +67,7 @@
 * add parent and title attributes to markdown files for improved documentation structure b61c4b1
 * add parent reference to CLI Trigger documentation 335814a
 * add parent reference to CLI Trigger documentation 04a80ea
+* add possibility to unit test workflows a9f9001
 * add strong typing to refactored functions 69758db
 * add strong typing to refactored functions 103a56a
 * add support for INIT_CWD variable 939b024
@@ -88,6 +94,7 @@
 * artificial bump 51ca8e8
 * artificially bump akala 0057047
 * artificially bump akala c6407f8
+* attach signature c8722b0
 * await for container to be ready 064a452
 * aws sdk generation and update services 7b922cf
 * base64UrlEncode properly strips = 8a9274d
@@ -101,14 +108,18 @@
 * broken `has` behavior de026d0
 * bug when result is null 4596a13
 * bug when result is null b6a9828
+* build b92d150
 * build e6cbc6d
 * build fbd741f
 * build 88b29f4
 * build from scratch issue b2f5bde
 * busbox compatibility by switching from env -S to env and enabling sourcemap in js a510d42
+* cancel breaking change e5ab02a
 * case when x is null 4631c51
 * case when x is null 8c0dd0d
 * change vulnerable algorithm 7d5caa7
+* chord support df992cf
+* chord support 751f7f7
 * clean up _config.yml by removing redundant layout definitions for various collections aeb21af
 * clean up _config.yml by removing redundant layout definitions for various collections 664223e
 * cleanup dependencies d4f9ef0
@@ -119,6 +130,8 @@
 * CLI handle optional path 26605aa
 * cli returns mainprogram (to prevent multiple init if processing multiple times 2979e96
 * cli returns mainprogram (to prevent multiple init if processing multiple times d14f9f0
+* cli should not exit by itself on success. Resource should be properly managed 4b13eec
+* command extension to provide name a47159f
 * commands exports resolution d8d5fc0
 * config as akala plugin 211cc6b
 * configFile init 79f7467
@@ -143,6 +156,7 @@
 * DataInjector inherits SimpleInjector 5d1c018
 * DataInjector inherits SimpleInjector cb22e64
 * date formatter parser d15e22b
+* date parsing 8fff853
 * default logging level 29b39bf
 * default logging level 072212e
 * default logging level f8f9a2c
@@ -160,6 +174,7 @@
 * duplicate akala.mts to support yarn dlx dbf2f5e
 * duplicate akala.mts to support yarn dlx a665a56
 * each databinding 89c07e8
+* edge cases bf341e8
 * edge cases when template is not defined 18add50
 * edge cases when template is not defined 412b6f6
 * enable navigation folding for all Akala documentation sections cfd5444
@@ -188,15 +203,18 @@
 * exclude upcoming documentation from navigation 6a2cc0a
 * exclude views and fix login template cff89b9
 * existing file generator detection ca3ad06
+* export ParserFormatter 7842585
 * extract params considers when array is provided 96c7644
 * extract params considers when array is provided c5eb98b
 * fallthrough on 404 a81cd29
 * fallthrough on 404 a8d70b5
+* feature detection cba1075
 * first binding definition eb24595
 * force run init-akala only once (no matter the trigger) 2827d75
 * force run init-akala only once (no matter the trigger) 1acbe99
 * force set configFile path c42e60b
 * force set configFile path f22123d
+* forcing command trigger through name b327d25
 * forcing context build f5dfdbc
 * forcing context build b3fe873
 * formatter parsing within objects 98c53c9
@@ -204,21 +222,29 @@
 * generator bug when force=true ec5d977
 * git rev list command bbc7fa2
 * git rev list command cd73e5a
+* handle 0.0.0.0 and * to connect to localhost 5f54dd4
+* handle 0.0.0.0 and * to connect to localhost e303589
+* handle abort signal 7f33b8c
 * handle already provided options 37f7aef
 * handle already provided options d0b15c3
 * handle case when url pathname is empty b44a1dc
 * handle cases when no auth is configured for the current trigger a4ac9a0
 * handle container metadata in the activate stage fedf680
 * handle edge case on datacontext definition 50c0275
+* handle hotkey when no previous key was pressed a5f3b71
 * handle init lifecycle stage 54a8169
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
+* handle Self during registration 9cdbd4c
 * handle setting a binding a boundproperty value aec03f6
+* handle undefined connect mapping f74b982
+* handle undefined dateFormat 114f4c3
 * handle undefined each source 823b7cd
 * handle upper case methods 974659f
 * handle upper case methods b915081
+* handle verbose behavior db8b8e7
 * hasYarn detection to prevent it to crash 6980e95
 * hasYarn detection to prevent it to crash 2aff971
 * http support on `add user` function 0281cb8
@@ -263,7 +289,10 @@
 * https://sonarcloud.io/project/issues?pullRequest=1552&open=AZW88X0Wq0REeBwPKV96&id=npenin_akala d0334ca
 * https://sonarcloud.io/project/issues?pullRequest=1552&open=AZXBiU-Vh4iXFpU85dQG&id=npenin_akala 8c5d05b
 * https://sonarcloud.io/project/issues?pullRequest=1552&open=AZXBljQ3ciQ1C4Z5WWTj&id=npenin_akala 91da7af
+* i18n composer 711eddd
 * i18n uses the core Translator interface 6dd0a83
+* if middleware b1c193c
+* if middleware de376b1
 * implements the discover function 0bf23ac
 * implements the discover function b400c4d
 * import dependencies db62996
@@ -276,6 +305,7 @@
 * improper akala cli initialization 5ee0293
 * improper config init 70efb0d
 * improper config init 0f90955
+* improve akala plugin ed46190
 * improve discovery 31bdd8a
 * improve discovery 3e0d64b
 * improve error handling in HTTP command wrapping 42daa25
@@ -283,16 +313,21 @@
 * improve formatter behavior 30996cd
 * improve isomorphicbuffer usability e0ff541
 * improve parser performances 158b46d
+* improve reliability 8fc7212
 * improve resolvable wrintings f67e854
 * improve resolvable wrintings 6be2301
 * improve Router next param support + documentation 207c326
 * improve serialize on http ca89683
 * improve serialize on http af3373b
 * improve session default expiration to 5min instead of 300ms 9bfe110
+* improve type checking 457c1b3
 * improve typing in vite.config.mts 11e538a
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
 * inifinite loop ccf7416
+* init-akala start even if not connected 9cd0f47
+* injection consistency 2efa972
+* injection consistency d1d6092
 * Injector inheritance d015db2
 * injectWithNameAsync behaves as its sync counterpart but awaits for args to be resolved before call the injectable dc7f00c
 * install command should now handle any package (as long as it contains an akala plugin) 7bec66f
@@ -326,6 +361,7 @@
 * metatadata to return original commands 27a9049
 * mimeMiddleware to properly handle serialization 052ba0e
 * missed unsaved files for outletservice injection token 89ae3bc
+* missing async formatter in vite test bab96df
 * missing return keyword 545fb14
 * missing reverse enum mapping f66d206
 * modelDefinitions intruding in db 1d2fefc
@@ -342,7 +378,12 @@
 * options setup 387b195
 * outlet root scope fb5cfd1
 * outlet root scope 3c0d3e6
+* overriding serveMetadata and connectByPreference in non browser dc2ade3
+* parsing ! expressions 0115a31
 * parsing on first parenthesis e3c07e4
+* pass keepAttached through 9603be4
+* pm start d3d04b3
+* pm start when no kept attached 17fc708
 * positional parameters 0839d7d
 * positional parameters 4c7e6df
 * postinstall after cli update 6e53e1f
@@ -356,7 +397,9 @@
 * pre-create config file if it does not exist 0c72d08
 * pre-create config file if it does not exist 46d5f72
 * prevent http formatter infinite calls e8f33c1
+* prevent overriding command name to undefined 9fe0d0d
 * prevent overwriting data-context attribute 1cd19e0
+* prevent parsing formatters e1ec937
 * prevent tag creation 49c9302
 * properly handle event emitters failure a24cafe
 * protobuf reading 007b724
@@ -368,6 +411,7 @@
 * re-tagging workflow 5539b6b
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
+* relative extension path computation 3fe635f
 * release tagging 61cb1e1
 * release tagging b7cf1aa
 * remove - as valid character 9a9f5b5
@@ -435,9 +479,12 @@
 * semantic release based on branch e4668c7
 * semantic release based on branch 8b7d109
 * server.close returns a promise a2a8a5f
+* serverHandlers not fulling promise 4695ccb
 * setAttribute when provided object a3eff3d
 * simple injector resolution with resolvable arrays 8411f99
 * simplify and smoother observablearray "piping" 18f75b2
+* simplify start command 508cedd
+* simplify start command 70cf360
 * simplify titles and remove unnecessary metadata in CLI documentation f331a8e
 * simplify titles and remove unnecessary metadata in CLI documentation 7702b95
 * sonar coverage discovery 505f9b3
@@ -469,6 +516,7 @@
 * standardize parent attribute casing in documentation for consistency b5ce37c
 * standardize section titles in documentation for consistency d8b067b
 * standardize section titles in documentation for consistency b2026f2
+* start in cli c0ad45e
 * stop re-exporting spawnAsync from cli 2c2e894
 * store relative staticFolders 33fc0f4
 * store relative staticFolders 30863ce
@@ -485,6 +533,7 @@
 * switching to working teme 91a852a
 * ternary operator parsing 2deff53
 * test 9dcc33b
+* test cases to match UTC 2e8ef88
 * testing command bindings and auth 888755a
 * testing command bindings and auth 96220e8
 * testing nav_order without parent e2dd071
@@ -505,6 +554,7 @@
 * typo and enforce type 935051c
 * typo in filename 5ad48f8
 * typo in filename 098f7a1
+* unit test a5932d1
 * unit tests 5ea6752
 * unit tests ddef0ab
 * update add-script command to work with node 22+ 1500158
@@ -515,6 +565,10 @@
 * update after breaking change 0357943
 * update after client breaking change ffa91c6
 * update after client breaking change d8abf32
+* update after core breaking change 669c311
+* update after core breaking change 859e291
+* update after core breaking change 990363a
+* update after core breaking change f4cc614
 * update after core breaking change f571a17
 * update after core breaking change 21b0ad6
 * update after core breaking change 5bec499
@@ -528,6 +582,7 @@
 * update after core breaking change 6ea3ca9
 * update after core BufferEncoding introduction 298da96
 * update after core Translator interface upgrade a6500a1
+* update after fs FileHandle interface update 552b3f0
 * update after storage breaking change 87b037a
 * update after storage breaking change 06b7d59
 * update after storage breaking change cad8a62
@@ -535,6 +590,7 @@
 * update after storage breaking change on providers 91b6037
 * update after StringCursor switch 583bac9
 * update after StringCursor switch 5031902
+* update after zip.js breaking change a35d7f5
 * update aws services definition 9bb0b0b
 * update CLI plugin to get installed even within a multiple nodejs call 4680f4f
 * update CLI plugin to get installed even within a multiple nodejs call 6c194e6
@@ -582,6 +638,7 @@
 * update permalink structure and footer content in documentation 01f1715
 * update serve function to accept URL objects instead of strings 9f68893
 * update serve function to accept URL objects instead of strings 51f45ec
+* update tests after refactor ae50c4a
 * update titles and parent attributes in markdown files for improved documentation clarity c562dc3
 * update titles and parent attributes in markdown files for improved documentation clarity 717dd51
 * update to support login redirect d2e8e6e
@@ -591,11 +648,17 @@
 * use helpers from @akala/cli 74292f2
 * use proper selector 562b53a
 * use proper selector 97fa6f9
+* use TriggerArgs and TriggerReturnType for attach f2bea7f
 * using $metadata instead of $metadataCmd 453d4fd
+* using code instead of key 475e931
 * using proper branch option 4136d01
 * using proper branch option 93a62fb
+* vite plugin to leverage provided options b6427eb
 * void options plugin invocation 0112f3e
 * wasm duplicate code 0cc73de
+* webcomponent registration 5661065
+* webkit workaround #1624 a2ad462
+* when discovering from package.json file 5be62eb
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
 * wrong csv parsing f9359c6
@@ -668,6 +731,7 @@
 * add fs package 9751886
 * add GitHub sponsorship and star buttons to documentation 45cdee0
 * add GitHub sponsorship and star buttons to documentation 457055f
+* add grid option f3c24aa
 * add helper to identify deadlinks and ran it 36188c8
 * add helper to identify deadlinks and ran it d9101ac
 * add http auth in schema and auth in general 6cbe68a
@@ -682,6 +746,8 @@
 * add invoke formatter 2ea1311
 * add JWK and few more improvements 7672b7e
 * add JWK and few more improvements 54d30ae
+* add locale support ea68a09
+* add locale support 5054537
 * add logo e5bd83f
 * add logo 2b3af22
 * add merge-coverage to SDK bcd0cd4
@@ -697,8 +763,10 @@
 * add raw query and custom resolvers 19a38cc
 * add raw query support 940f72e
 * add raw query support 020975f
+* add readonly root URL 9098660
 * add runtime concept 1993141
 * add shadowWithStyles helper function 2c8e6b8
+* add SIGINT and SIGTERM signals handling 6906860
 * add sort and parse formatters 5b06cdd
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
@@ -706,6 +774,7 @@
 * add TopDown and BottomUp namespace event emitters d8e148e
 * add uri on request to be able to know the full url of a request a189409
 * add uri on request to be able to know the full url of a request 3ed1dd0
+* add verbose flag to fork a78acb0
 * add version field to package.json for documentation package 42a4cc8
 * add version field to package.json for documentation package ac5b028
 * add wasm and fs to build e5177d6
@@ -714,6 +783,7 @@
 * akala plugin implementation d050e1a
 * allow customizing the context name with the name attribute a9d0353
 * allow CustomResolver as Resolvable b1cfa93
+* allow for signal to be provided to chain abort signal 320c767
 * allow not assigning result as last parameter c93f78c
 * allow not assigning result as last parameter cbc28b4
 * allow providing transaction during commit 271f464
@@ -730,6 +800,7 @@
 * enable info logging by default 521849c
 * enable info logging by default e65f143
 * enable opentofu/terraform generation for aws lambda deployment 667a77b
+* enforce URL usage and switch to @akala/fs 207908d
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing 08e5e24
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing def786c
 * errorWithStatus can be assigned a name fb0ef99
@@ -748,6 +819,7 @@
 * expose more middlewares b750c8f
 * expose more middlewares 24e8e4a
 * expose outlet as symbol b7a49ec
+* expose TriggerArgs and TriggerReturnType e2a2c89
 * expose xpm f60e75a
 * extend AkalaConfig to include API URLs and enhance URL handling in plugin 5e28461
 * extend AkalaConfig to include API URLs and enhance URL handling in plugin efbebca
@@ -758,6 +830,7 @@
 * formatters can be registered by priority 80d96e1
 * formatters can be registered by priority 1204aa8
 * generalize signature to open it to $http options too 09eee3a
+* hotkey trigger moved to config instead of command name df81271
 * http-client now has body support 9895032
 * http-client now has body support d217cac
 * implement assignment expressions and related operators f3e6fe5
@@ -789,6 +862,7 @@
 * remove cjs support 145dc5f
 * remove cjs support c967b21
 * remove legacy global injector functions 29d5996
+* rename control to akala e88f358
 * start using new akala fs module 008cbb0
 * switch client http authentication from hard coded to dynamic with middleware. 1d01a5c
 * switch to eventBuses impl f483b10
@@ -802,6 +876,12 @@
 
 ### BREAKING CHANGES
 
+* fs processor expects a URL and uses @akala/fs
+* Self is not registered by default and the constructor expects the command name and its handler
+* hotkey triggers moved to config instead of command names
+* akala controls now have akala as property, not control
+* Translator interface is now an object with a translate function and a locale property
+* date parsing now returns and parses UTC dates
 * $outlet should be replaced with OutletService.InjectionToken
 * names are extracted from the object given as the modelRegistration
 * remove ParsedBinary and ParsedTernary
