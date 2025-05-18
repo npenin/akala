@@ -3,7 +3,7 @@ import { CommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
-import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode } from '@akala/core';
 import { HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 
@@ -23,9 +23,9 @@ export async function handler(url: URL, options: { signal: AbortSignal }): Promi
         socket.on('error', function (err: ErrorEvent)
         {
             if (err instanceof Error)
-                reject(err);
+                reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, null, err));
             else
-                reject(new Error(err.error));
+                reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.error, null, err.error));
         });
     });
     const connection = JsonRpcBrowser.getConnection(socket);

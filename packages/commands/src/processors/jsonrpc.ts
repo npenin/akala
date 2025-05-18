@@ -4,7 +4,7 @@ import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
-import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode } from '@akala/core';
 import { HandlerResult, protocolHandlers as handlers, serverHandlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 import { NetSocketAdapter } from '../net-socket-adapter.js';
@@ -17,9 +17,9 @@ handlers.useProtocol('jsonrpc+tcp', async function (url, options, result)
 {
     const socket = new Socket();
     if (url.hostname == '0.0.0.0' || url.hostname == '*')
-        await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
+        await new Promise<void>((resolve, reject) => { socket.on('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); socket.connect({ port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
     else
-        await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
+        await new Promise<void>((resolve, reject) => { socket.on('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); socket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
@@ -44,9 +44,9 @@ serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, con
         url = new URL(url);
 
     if (url.hostname == '0.0.0.0' || url.hostname == '*')
-        await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url.port ? Number(url.port) : 31416, resolve) });
+        await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen(url.port ? Number(url.port) : 31416, resolve) });
     else
-        await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen({ host: url.hostname, port: url.port ? Number(url.port) : 31416 }, resolve) });
+        await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen({ host: url.hostname, port: url.port ? Number(url.port) : 31416 }, resolve) });
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
@@ -55,9 +55,9 @@ handlers.useProtocol('jsonrpc+tcp+tls', async function (url, options, result)
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
     if (url.hostname == '0.0.0.0' || url.hostname == '*')
-        await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
+        await new Promise<void>((resolve, reject) => { tlsSocket.on('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); tlsSocket.connect({ port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
     else
-        await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
+        await new Promise<void>((resolve, reject) => { tlsSocket.on('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); tlsSocket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
@@ -80,9 +80,9 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
     if (!(url instanceof URL))
         url = new URL(url);
     if (url.hostname == '0.0.0.0' || url.hostname == '*')
-        await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url, resolve) });
+        await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen(url, resolve) });
     else
-        await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url, resolve) });
+        await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen(url, resolve) });
 
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
@@ -90,8 +90,17 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
 handlers.useProtocol('jsonrpc+unix', async function (url, options, result)
 {
     const socket = new Socket();
+    const error = new ErrorWithStatus(HttpStatusCode.BadGateway);
 
-    await new Promise<void>((resolve, reject) => { socket.on('error', reject); socket.connect({ path: url.hostname + url.pathname }, resolve) });
+    await new Promise<void>((resolve, reject) =>
+    {
+        socket.on('error', err =>
+        {
+            error.cause = err;
+            error.message = err.message;
+            reject(error);
+        }); socket.connect({ path: url.hostname + url.pathname }, resolve)
+    });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
@@ -113,7 +122,7 @@ serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, co
     });
     if (!(url instanceof URL))
         url = new URL(url);
-    await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url.hostname + url.pathname, resolve) });
+    await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen(url.hostname + url.pathname, resolve) });
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
@@ -121,7 +130,7 @@ handlers.useProtocol('jsonrpc+unix+tls', async function (url, options, result)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
-    await new Promise<void>((resolve, reject) => { tlsSocket.on('error', reject); tlsSocket.connect({ path: url.hostname + url.pathname }, resolve) });
+    await new Promise<void>((resolve, reject) => { tlsSocket.on('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); tlsSocket.connect({ path: url.hostname + url.pathname }, resolve) });
 
     const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
@@ -143,13 +152,13 @@ serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string
     });
     if (!(url instanceof URL))
         url = new URL(url);
-    await new Promise<void>((resolve, reject) => { server.once('error', reject); server.listen(url.hostname + url.pathname, resolve) });
+    await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen(url.hostname + url.pathname, resolve) });
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
 async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
 {
-    const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
+    const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve, reject) =>
     {
         if (url.hostname == '0.0.0.0' || url.hostname == '*')
             url.hostname = '127.0.0.1';
@@ -157,6 +166,13 @@ async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
         socket.on('open', function ()
         {
             resolve(socket);
+        });
+        socket.on('error', function (err: ErrorEvent)
+        {
+            if (err instanceof Error)
+                reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, null, err));
+            else
+                reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.error, null, err.error));
         });
     });
     const connection = JsonRpc.getConnection(socket);

@@ -6,7 +6,7 @@ import { Readable } from 'stream';
 import { spawnAsync } from '@akala/cli/cli-helper';
 import { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
-import { eachAsync, logger, LogLevels, NotHandled, ObservableObject, Parser } from '@akala/core';
+import { eachAsync, HttpStatusCode, logger, LogLevels, NotHandled, ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 import commands from './container.js';
 import cliCommands from './cli-container.js';
@@ -97,7 +97,7 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                         {
                             log.silly('failed to connect to ' + connectionString);
                             log.silly(e)
-                            if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
+                            if (e.statusCode == HttpStatusCode.BadGateway || e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
                                 return;
                             log.error(e);
                             throw e;
