@@ -479,6 +479,8 @@ export class FileSystem extends CommandProcessor
         }
         catch (e)
         {
+            if (e.code === 'ERR_MODULE_NOT_FOUND')
+                return undefined;
             return e;
         }
     }
