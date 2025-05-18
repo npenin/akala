@@ -14,16 +14,15 @@ import { ConfigurationMap, Configurations, Configuration, GenericConfiguration, 
 
 import { CommandProcessor } from './model/processor.js'
 export { Processors, Metadata }
-import $metadata from './commands/$metadata.js'
-import { protocolHandlers } from './protocol-handler.js'
+export { default as $metadata } from './commands/$metadata.js'
 import { Container } from './model/container.js'
 import { registerCommands } from './generator.js'
 export { CommandProcessor };
-export { $metadata };
 
 export { ConfigurationMap, Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
 
-export { protocolHandlers, HandlerResult, serverHandlers, ServerHandler } from './protocol-handler.js';
+import { protocolHandlers, HandlerResult, serverHandlers, ServerHandler } from './protocol-handler.js';
+export { protocolHandlers, HandlerResult, serverHandlers, ServerHandler };
 
 export const Triggers = {}
 
