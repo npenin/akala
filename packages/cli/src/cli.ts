@@ -130,9 +130,6 @@ export function cli()
         preAction(async context =>
         {
             await loadConfig(context);
-        }).
-        preAction(async (context) =>
-        {
             await loadPlugins(context, mainProgram as NamespaceMiddleware<{ help: true, configFile: string }>, plugins);
         })
 
