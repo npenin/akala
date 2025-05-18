@@ -4,7 +4,7 @@ import { connect, Container } from "@akala/commands";
 import { platform } from "os";
 import { Triggers } from "@akala/commands";
 import { ProxyConfiguration } from "@akala/config";
-import { eachAsync } from "@akala/core";
+import { eachAsync, HttpStatusCode } from "@akala/core";
 import commands from "../container.js";
 
 type CliOptions = { pmSock: string | number, tls: boolean };
@@ -43,7 +43,7 @@ export default async function (c: CliContext<CliOptions, ProxyConfiguration<{ pm
             {
                 c.logger.silly('failed to connect to ' + connectionString);
                 c.logger.silly(e)
-                if (e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
+                if (e.statusCode == HttpStatusCode.BadGateway || e.code == 'ENOENT' || e.code == 'ECONNREFUSED')
                     return;
                 c.logger.error(e);
                 throw e;
