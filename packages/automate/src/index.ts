@@ -122,7 +122,7 @@ export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<J
         {
             return Promise.resolve(e);
         }
-        return NotHandled;
+        return Promise.reject();
     }, true);
 
 
