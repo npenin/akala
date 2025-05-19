@@ -410,6 +410,7 @@
 * provide proper logging 445a133
 * provide proper logging 2e02b06
 * publicize fs module 97c3471
+* re-tag tag deletion e6274d1
 * re-tagging workflow bc599dc
 * re-tagging workflow 5539b6b
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
