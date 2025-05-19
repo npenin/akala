@@ -1,4 +1,4 @@
-#  (2025-05-18)
+#  (2025-05-19)
 
 
 * chore : code cleanup eae1150
@@ -196,6 +196,8 @@
 * ensure InitAkala warms up correctly when handling the init command c7dd7a2
 * ensure postinstall completes 135afa8
 * ensure postinstall completes 10c4a72
+* error codes on connection c73426b
+* error codes on connection ca0ab9b
 * escape start string in parseString method to prevent regex errors 7be1a8e
 * escape start string in parseString method to prevent regex errors 07d76a8
 * event datacontext 560847c
@@ -365,6 +367,7 @@
 * missing return keyword 545fb14
 * missing reverse enum mapping f66d206
 * modelDefinitions intruding in db 1d2fefc
+* module not found shall not prevent next processors to process the command d665f36
 * mongodb storage aee06bc
 * move all code to cli install ad7249d
 * move all code to cli install 991eda8
@@ -554,6 +557,8 @@
 * typo and enforce type 935051c
 * typo in filename 5ad48f8
 * typo in filename 098f7a1
+* unit test 11df8e7
+* unit test 3f5abd5
 * unit test a5932d1
 * unit tests 5ea6752
 * unit tests ddef0ab
@@ -709,6 +714,7 @@
 * add bootstrap functions which registers all web-ui control with a predefined naming dd2ae8f
 * add branch parameter eaa94d6
 * add case converters + tests ab359d1
+* add cause to errorwithstatus af5a83e
 * add cli npm and yarn helpers from pm d23234f
 * add client install support 63a020d
 * add client install support 02b05eb
@@ -853,6 +859,7 @@
 * module accept Resolvable instead of just strings 0c95374
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
+* pm fork can be triggered from pm run command cd61525
 * provide akala plugin for registering mongodb provider. a120302
 * provide akala plugin for registering mongodb provider. f776509
 * provide serverHandlers in addition to the commandServerHandlers registration c86d4f3
