@@ -39,8 +39,8 @@ jobs:
           - -d
           - $($.name)@$($.version)
         with:
-          path: $($)
-        foreach: $(build.tagged-commit)
+          ignore-failure: true
+        foreach: $(build.versions)
       - name: re-tag
         run:
           - git
