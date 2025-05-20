@@ -27,14 +27,22 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
     if (context.options.configFile)
     {
         context.logger.info('loading config file from specified option flag');
-        const stats = await fs.lstat(context.options.configFile);
-        if (stats.isFile())
+        try
         {
-            loadedConfig = JSON.parse(await fs.readFile(context.options.configFile, 'utf-8'));
-            context.logger.debug('config file loaded')
+            const stats = await fs.lstat(context.options.configFile);
+            if (stats.isFile())
+            {
+                loadedConfig = JSON.parse(await fs.readFile(context.options.configFile, 'utf-8'));
+                context.logger.debug('config file loaded')
+            }
+        }
+        catch (e)
+        {
+            if (e.code !== 'ENOENT')
+                throw e;
         }
     }
-    if (!loadedConfig)
+    else if (!loadedConfig)
     {
         context.logger.info('loading config file from current working directory and/or parents');
         const cwd = context.currentWorkingDirectory;
