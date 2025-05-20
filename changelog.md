@@ -1,4 +1,4 @@
-#  (2025-05-19)
+#  (2025-05-20)
 
 
 * chore : code cleanup eae1150
@@ -859,6 +859,7 @@
 * make help accessible everywhere by any clicontext e18be04
 * make help accessible everywhere by any clicontext 9f5892a
 * module accept Resolvable instead of just strings 0c95374
+* move configFile to docker volume b382a24
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
 * pm fork can be triggered from pm run command cd61525
