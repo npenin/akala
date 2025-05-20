@@ -169,6 +169,7 @@
 * disable nav folding for all documentation sections 6bc5e4d
 * disable nav folding for all documentation sections 9d5bcf4
 * do not through on empty list 0305479
+* dockerfile 480944e
 * don't publish style updates 2f7631e
 * don't publish style updates c21f66b
 * duplicate akala.mts to support yarn dlx dbf2f5e
@@ -233,6 +234,7 @@
 * handle cases when no auth is configured for the current trigger a4ac9a0
 * handle container metadata in the activate stage fedf680
 * handle edge case on datacontext definition 50c0275
+* handle first run case f1ffe66
 * handle hotkey when no previous key was pressed a5f3b71
 * handle init lifecycle stage 54a8169
 * handle null in sort formatter 5c27a43
