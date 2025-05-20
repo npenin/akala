@@ -10,7 +10,8 @@ WORKDIR /usr/src/akala
 RUN adduser -S akala && \
     chown -R akala .
 USER akala
-RUN yarn set version berry && \
+RUN mkdir /usr/src/akala/db && \
+    yarn set version berry && \
     yarn config set nodeLinker node-modules && \
     yarn add @akala/pm
 ENV PATH=/usr/src/akala/node_modules/.bin:${PATH}
