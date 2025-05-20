@@ -5,7 +5,7 @@ WORKDIR /usr/src/akala
 COPY package.json package.json
 # COPY ash.sh /usr/bin/ash-env
 RUN mkdir /root/.yarn && ln -s /usr/src/akala/.yarn /root/.yarn
-VOLUME ["/usr/src/akala/build"]
+VOLUME ["/usr/src/akala/db"]
 WORKDIR /usr/src/akala
 RUN adduser -S akala && \
     chown -R akala .
@@ -16,9 +16,9 @@ RUN yarn set version berry && \
 ENV PATH=/usr/src/akala/node_modules/.bin:${PATH}
 ENV NODE_ENV=production
 ENV DEBUG=*
-RUN akala plugins add @akala/config/akala && \
-    akala plugins add @akala/commands/akala && \
-    akala plugins add @akala/pm/akala
+RUN akala --configFile=db/.akala.json plugins add @akala/config/akala && \
+    akala --configFile=db/.akala.json plugins add @akala/commands/akala && \
+    akala --configFile=db/.akala.json plugins add @akala/pm/akala
 ENTRYPOINT ["yarn", "start"]
 CMD [ "tcp", "--tcpPort=31416"]
 EXPOSE 31416
