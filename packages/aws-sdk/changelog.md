@@ -1,4 +1,4 @@
-#  (2025-05-20)
+#  (2025-05-21)
 
 
 ### Bug Fixes
@@ -12,6 +12,7 @@
 * restore proper regex from github autofix 154e05b
 * sonar issues 7528b67
 * sonar issues 9b157ec
+* update after command breaking change 796613c
 * update after zip.js breaking change a35d7f5
 * update aws services definition 9bb0b0b
 * update commands 168670b
