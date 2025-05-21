@@ -1,4 +1,4 @@
-#  (2025-05-20)
+#  (2025-05-21)
 
 
 * chore : code cleanup eae1150
@@ -199,6 +199,7 @@
 * ensure postinstall completes 10c4a72
 * error codes on connection c73426b
 * error codes on connection ca0ab9b
+* ErrorMiddleware input type 1b43611
 * escape start string in parseString method to prevent regex errors 7be1a8e
 * escape start string in parseString method to prevent regex errors 07d76a8
 * event datacontext 560847c
@@ -376,6 +377,7 @@
 * move HttpStatusCode to be more "independent" of Http 0bcb3aa
 * multiple modules may be started simultaneously 3ea8a55
 * nested bindings change detection and oldValue assignment 8f373ca
+* npm fs handler using import.meta.resolve 4da63aa
 * obersavable array array mimicking d310c55
 * oidc discover properly returns options for authorize, token and keys 0934291
 * oidc discover properly returns options for authorize, token and keys b92665c
@@ -425,11 +427,13 @@
 * remove Buffer reference for non-node runtimes 18ea445
 * remove cjs reference e501923
 * remove cjs reference 2284b79
+* remove copy/paste issue d625947
 * remove deprecated command documentation files and navigation exclusions 90bceca
 * remove deprecated command documentation files and navigation exclusions 69bc7d5
 * remove duplicated code c81dd54
 * remove existing commit function on new config creation 350c719
 * remove existing commit function on new config creation 1811cfc
+* remove extra code and wrong return 0695910
 * remove extra logging 6b70092
 * remove invalid require usage 360ced2
 * remove invalid require usage 72645d2
@@ -524,6 +528,7 @@
 * standardize section titles in documentation for consistency d8b067b
 * standardize section titles in documentation for consistency b2026f2
 * start in cli c0ad45e
+* stop mixing init and init-akala 8e0e27b
 * stop re-exporting spawnAsync from cli 2c2e894
 * store relative staticFolders 33fc0f4
 * store relative staticFolders 30863ce
@@ -574,6 +579,11 @@
 * update after breaking change 0357943
 * update after client breaking change ffa91c6
 * update after client breaking change d8abf32
+* update after command breaking change 573cfe0
+* update after command breaking change f560340
+* update after command breaking change ef19b8c
+* update after command breaking change 796613c
+* update after command breaking change 7e441b2
 * update after core breaking change 669c311
 * update after core breaking change 859e291
 * update after core breaking change 990363a
@@ -609,6 +619,7 @@
 * update CLI title and remove navigation exclusion c448dd1
 * update commands b3d2e1e
 * update commands 168670b
+* update dev dependency 62fdb89
 * update documentation files to exclude from navigation and improve file creation logic f2b1bfe
 * update documentation files to exclude from navigation and improve file creation logic febbad3
 * update documentation links and improve file creation logic ffb1c22
@@ -876,6 +887,7 @@
 * remove cjs support c967b21
 * remove legacy global injector functions 29d5996
 * rename control to akala e88f358
+* repl command announces itself as $repl option 44f4a4b
 * start using new akala fs module 008cbb0
 * switch client http authentication from hard coded to dynamic with middleware. 1d01a5c
 * switch to eventBuses impl f483b10
@@ -889,6 +901,7 @@
 
 ### BREAKING CHANGES
 
+* init-akala is replaced with init
 * fs processor expects a URL and uses @akala/fs
 * Self is not registered by default and the constructor expects the command name and its handler
 * hotkey triggers moved to config instead of command names
