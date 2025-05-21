@@ -8,8 +8,6 @@ import { Local } from './local.js';
 import { jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise, eachAsync } from '@akala/core';
 import { protocolHandlers as handlers, parseQueryString } from '../protocol-handler.js';
-import { stat } from 'fs/promises';
-import os from 'node:os'
 import { fileURLToPath, pathToFileURL } from 'url';
 import fsHandler, { FileSystemProvider } from '@akala/fs';
 
@@ -50,58 +48,12 @@ handlers.useProtocol('npm',
         else
             options.ignoreFileWithNoDefaultExport = true;
 
-        let p: string = 'file://./node_modules/' + url.hostname;
-        if (p.endsWith('/'))
-            p = p.substring(0, p.length - 1);
+        const fs = await fsHandler.process(url);
 
-        if (os.platform() == 'win32')
-            p += url.pathname.substring(1);
-        else
-            p += url.pathname;
+        options.fs = fs;
 
-        if (typeof (options.isDirectory) === 'undefined')
-        {
-            try
-            {
-                const stats = await stat(p);
-                options.isDirectory = stats.isDirectory();
-            }
-            catch (e)
-            {
-                if (e.code == 'ENOENT')
-                {
-                    const cwd = process.cwd();
-                    const maxUp = cwd.split(path.sep).length;
-                    let tmpP = p;
-                    for (let i = 1; i <= maxUp; i++)
-                    {
-                        if (i == maxUp)
-                            throw e;
-                        tmpP = '../' + tmpP;
-                        try
-                        {
-                            const stats = await stat(tmpP);
-                            options.isDirectory = stats.isDirectory();
-                            p = tmpP;
-                            break;
-                        }
-                        catch (e)
-                        {
-                            if (e.code != 'ENOENT')
-                                throw e;
-                        }
-                    }
-                }
-            }
-        }
 
-        if (typeof (options.relativeTo) === 'undefined')
-            if (!options.isDirectory)
-                options.relativeTo = new URL('./', p);
-            else
-                options.relativeTo = new URL(p);
-
-        return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(p, options) }
+        return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(url, options) }
     });
 
 
