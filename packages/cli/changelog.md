@@ -1,9 +1,9 @@
-#  (2025-05-20)
+#  (2025-05-21)
 
 
-### Bug Fixes
+### Features
 
-* handle first run case f1ffe66
+* repl command announces itself as $repl option 44f4a4b
 
 
 
