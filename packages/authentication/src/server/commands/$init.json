@@ -5,8 +5,16 @@
             "$container",
             "param.0",
             "param.1",
-            "param.2",
-            "$container.$mainRouter"
+            "param.2"
+        ]
+    },
+    "server": {
+        "inject": [
+            "$container",
+            "config.auth.provider",
+            "config.auth.keyPath",
+            "config.auth.loginUrl",
+            "router"
         ]
     },
     "cli": {
@@ -15,7 +23,7 @@
             "options.provider",
             "options.key",
             "options.loginUrl",
-            "$container.$mainRouter"
+            "router"
         ],
         "options": {
             "provider": {
@@ -25,6 +33,9 @@
                 "needsValue": true
             },
             "key": {
+                "needsValue": true
+            },
+            "loginUrl": {
                 "needsValue": true
             }
         }
