@@ -1,20 +1,15 @@
-import * as path from 'path'
-import { Processors, Metadata, Container, ICommandProcessor, Triggers, Cli, connect, registerCommands } from '@akala/commands';
-import { platform, homedir } from 'os';
+import { Processors, Metadata, Container, Triggers, Cli, connect, registerCommands } from '@akala/commands';
+import { platform } from 'os';
 import { Readable } from 'stream';
 
-import { spawnAsync } from '@akala/cli/cli-helper';
 import { StateConfiguration } from './state.js';
-import { CliContext, ErrorMessage, InteractError, NamespaceMiddleware, unparse } from '@akala/cli';
-import { eachAsync, HttpStatusCode, logger, LogLevels, NotHandled, ObservableObject, Parser } from '@akala/core';
-import module from 'module'
+import { CliContext, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
+import { eachAsync, HttpStatusCode, logger, LogLevels } from '@akala/core';
 import commands from './container.js';
 import cliCommands from './cli-container.js';
 import Configuration from '@akala/config';
 
 const log = logger('akala:pm');
-
-const require = module.createRequire(import.meta.url);
 
 const tableChars = {
     'top': '─'
@@ -59,8 +54,6 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
 
     cli.preAction(async c =>
     {
-        process.stdin.pause();
-        process.stdin.setEncoding('utf8');
         if (!container)
         {
             if (c.options.pmSock)
@@ -113,64 +106,8 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                 await container.attach(Triggers.cli, cli);
             }
         }
-    }).
-        // cli.
-        //     useMiddleware(null, handle).
-        useError(async (err: InteractError, args) =>
-        {
-            if (err.code === 'INTERACT')
-            {
-                console.log(err.message);
-                const value = await readLine();
-                if (typeof err.as == 'string')
-                {
-                    const indexOfDot = err.as.indexOf('.');
-                    if (indexOfDot > 0)
-                    {
-                        ObservableObject.setValue(args.options, new Parser().parse(err.as), value);
-                    }
-                    args.options[err.as] = value;
-                }
-                else
-                    args.args.push(value);
-                return await cli.process(args);
-            }
-            throw err;
-        })
+    })
 
-    // handle.action(async args =>
-    // {
-    //     try
-    //     {
-    //         const cmdName = args.args[0].toString();
-    //         if (cmdName == '$metadata')
-    //             return formatResult(metaContainer, args.options.output);
-    //         else
-    //         {
-    //             const cmd = metaContainer.commands.find(c => c.name === cmdName);
-    //             await tryRun(processor, cmd, args, false);
-    //         }
-    //         await new Promise<void>((resolve) => socket.end(resolve));
-    //     }
-    //     catch (e)
-    //     {
-    //         if (e.code == 'INTERACT')
-    //         {
-    //             console.log(e.message);
-    //             const value = await readLine();
-    //             if (e.as)
-    //                 args.options[e] = value;
-    //             else
-    //                 args.args.push(value);
-    //             return handle.handle(args).then(e => { if (e) throw e }, res => res);
-    //         }
-    //         if (args.options.verbose)
-    //             console.log(e);
-    //         else
-    //             console.log(e.message)
-    //         await new Promise<void>((resolve) => socket.end(resolve));
-    //     }
-    // });
     cli.format(async (result, context) =>
     {
         if (result instanceof Readable)
@@ -179,28 +116,32 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
             return new Promise((resolve) => result.on('close', resolve));
         }
 
-        return formatResult(result, context.options.output);
+        return formatResult(result, context.options.output, context);
     });
-    program.useError((err: Error, context) =>
+    program.useError((err, context) =>
     {
         if (context.options.verbose >= LogLevels.debug)
             console.error(err);
         else if (err instanceof ErrorMessage)
             console.log(err.message)
         else
-            console.error('Error: ' + err.message);
-        return NotHandled;
-    })
+        {
+            context.abort.abort();
+            if ('message' in err)
+                console.error('Error: ' + err.message);
+        }
+        return Promise.resolve(err);
+    });
 }
 
-function formatResult(result: unknown, outputFormat: string)
+function formatResult(result: unknown, outputFormat: string, context: CliContext)
 {
     if (typeof result == 'undefined')
         return;
-    if (result instanceof Readable)
-    {
-        return result;
-    }
+
+    if (!context.options.$repl)
+        context.abort.abort();
+
     switch (outputFormat)
     {
         case 'table':
@@ -362,122 +303,4 @@ function formatResult(result: unknown, outputFormat: string)
             console.log(result);
             break;
     }
-}
-
-function prepareParam(cmd: Metadata.Command, args: CliContext, standalone?: boolean)
-{
-    if (!cmd)
-        return false;
-
-    if (!cmd.config || !cmd.config.cli || (standalone && !cmd.config.cli['standalone']))
-        return false;
-
-    delete args.options.pmSock;
-    return {
-        options: args.options, param: args.args.slice(1), _trigger: 'cli', cwd: args.currentWorkingDirectory, context: args, get stdin()
-        {
-            return new Promise<string>((resolve) =>
-            {
-                const buffers = [];
-                process.stdin.on('data', data => buffers.push(data));
-                process.stdin.on('end', () => resolve(Buffer.concat(buffers).toString('utf8')));
-            })
-        }
-    };
-}
-
-async function tryRun(processor: ICommandProcessor, cmd: Metadata.Command, args: CliContext, localProcessing: boolean)
-{
-    const params = prepareParam(cmd, args, localProcessing);
-    if (!params)
-        throw new Error('Either command does not exist or it is not standalone');
-
-    try
-    {
-        const result = await processor.handle(null, cmd, params).then(err => { throw err }, res => res);
-        if (result instanceof Readable)
-            result.pipe(process.stdout);
-        else
-            formatResult(result, args.options.output as string);
-    }
-
-    catch (e)
-    {
-        if (e.code == 'INTERACT')
-        {
-            console.log(e.message);
-            let value = await readLine();
-            value = value.trim();
-            if (e.as)
-                args.options[e] = value;
-            else
-                args.args.push(value);
-            args.args.unshift(cmd.name);
-            return await tryRun(processor, cmd, args, localProcessing);
-        }
-        if (args.options.verbose)
-            console.log(e);
-        else
-            console.log(e.message);
-    }
-
-}
-
-export async function tryLocalProcessing(args: CliContext)
-{
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const config: StateConfiguration = require(path.join(homedir(), './.pm.config.json'));
-    let cmdName = args.args.shift();
-    if (!cmdName)
-        throw undefined;
-    const indexOfDot = cmdName.indexOf('.');
-    if (indexOfDot > -1)
-    {
-        const containerName = cmdName.substring(0, indexOfDot);
-        if (config.containers[containerName] && config.containers[containerName].commandable)
-        {
-            cmdName = cmdName.substring(indexOfDot + 1);
-            const container = new Container('cli-temp', {});
-            const options: Processors.DiscoveryOptions = {};
-            await Processors.FileSystem.discoverCommands(config.containers[containerName].path, container, options);
-            const cmd = container.resolve(cmdName);
-            return tryRun(options.processor, cmd, args, true);
-        }
-    }
-    else
-    {
-        if (!config.containers[cmdName].commandable)
-            return spawnAsync(config.containers[cmdName].path, null, ...unparse(args));
-    }
-}
-
-let stdinBuffer = '';
-function readLine()
-{
-    process.stdin.pause();
-    return new Promise<string>((resolve) =>
-    {
-
-        process.stdin.on('data', function processChunk(chunk)
-        {
-            const indexOfNewLine = stdinBuffer.length + chunk.indexOf('\n');
-            stdinBuffer += chunk;
-            if (indexOfNewLine > -1)
-            {
-                process.stdin.pause();
-                process.stdin.removeListener('data', processChunk);
-                if (indexOfNewLine < stdinBuffer.length - 1)
-                {
-                    resolve(stdinBuffer.substr(0, indexOfNewLine));
-                    stdinBuffer = stdinBuffer.substr(indexOfNewLine + 1);
-                }
-                else
-                {
-                    resolve(stdinBuffer);
-                    stdinBuffer = '';
-                }
-            }
-        })
-        process.stdin.resume();
-    })
 }

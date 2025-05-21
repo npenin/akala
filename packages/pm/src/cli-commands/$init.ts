@@ -13,9 +13,6 @@ export default async function (c: CliContext<CliOptions, ProxyConfiguration<{ pm
 {
     let container: Container<unknown>;
 
-    process.stdin.pause();
-    process.stdin.setEncoding('utf8');
-
     if (typeof c.options.pmSock == 'string' && URL.canParse(c.options.pmSock))
         container = await connect(c.options.pmSock, c.abort.signal)
     else if (typeof c.options.pmSock == 'number')
