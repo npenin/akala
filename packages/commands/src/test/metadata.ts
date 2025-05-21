@@ -133,7 +133,7 @@ describe('test helpers', function ()
         assert.strictEqual(cmds.commands.length, 15);
         // debugger;
         const cmds2 = await FileSystem.discoverMetaCommands(new URL('../../../src/test/metadata.json', import.meta.url), { fs: await fsHandler.process(new URL('../../..', import.meta.url)) });
-        assert.strictEqual(cmds2.commands.length, 23);
-        assert.strictEqual(cmds2.commands.reduce((prev, current) => prev + (cmds.commands.some(cmd => cmd.name == current.name) ? '' : current.name), ''), 'dummy$initbridgenameproxyreadyreload-metadatarestartstartstatusstop$init-akalaconnectdiscoverinstalllinkloglsmaprununinstallupdateversion')
+        assert.strictEqual(cmds2.commands.length, 22);
+        assert.strictEqual(cmds2.commands.reduce((prev, current) => prev + (cmds.commands.some(cmd => cmd.name == current.name) ? '' : current.name), ''), 'dummy$initbridgenameproxyreadyreload-metadatarestartstartstatusstopconnectdiscoverinstalllinkloglsmaprununinstallupdateversion')
     })
 })

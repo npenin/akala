@@ -28,7 +28,7 @@ export class InitAkala<T> extends CommandProcessor
     {
         if (!this.warmedup)
         {
-            this.init ??= container.resolve('$init-akala');
+            this.init ??= container.resolve('$init');
             if (this.init)
             {
                 if (!this.warmedup && cmd !== this.init && cmd.name !== '$metadata')
@@ -89,9 +89,9 @@ export async function install(_context: CliContext<{ configFile: string }, objec
                 cliContainer.processor.useMiddleware(51, handler.processor);
 
                 const commands = await handler.getMetadata();
-                const init = commands.commands.find(c => c.name == '$init-akala');
+                const init = commands.commands.find(c => c.name == '$init');
                 if (init)
-                    cliContainer.processor.useMiddleware(1, new InitAkala(init, { config: context.state, options: context.options, args: context.args }));
+                    cliContainer.processor.useMiddleware(1, new InitAkala(init, { _trigger: 'cli', config: context.state, options: context.options, args: context.args }));
 
                 registerCommands(commands.commands, handler.processor, cliContainer);
                 await cliContainer.attach(Triggers.cli, program.command(name));
