@@ -34,7 +34,7 @@ export interface ErrorMiddleware<T extends unknown[], U extends string | undefin
      * @param ...context - The context parameters associated with the error.
      * @returns The result of error handling.
      */
-    handleError(error: Error | OptionsResponse, ...context: T): MiddlewareResult<U>;
+    handleError(error: MiddlewareResult<U>, ...context: T): MiddlewareResult<U>;
 }
 
 export interface MiddlewareAsync<T extends unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam> 
@@ -44,7 +44,7 @@ export interface MiddlewareAsync<T extends unknown[], TSpecialNextParam extends 
 
 export interface ErrorMiddlewareAsync<T extends unknown[], U extends string | undefined = SpecialNextParam> 
 {
-    handleError(error: Error | OptionsResponse, ...context: T): Promise<MiddlewareResult<U>>;
+    handleError(error: MiddlewareResult<U>, ...context: T): Promise<MiddlewareResult<U>>;
 }
 
 export type AnyAsyncMiddleware<T extends unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam> =
