@@ -83,19 +83,15 @@ export interface ServeOptions
 
 export default async function <T = void>(container: Container<T>, options: string[] | Record<string, object>, signal?: AbortSignal)
 {
-    var failed: Error = null;
-
     if (Array.isArray(options))
         await eachAsync(options, url => serverHandlers.process(new URL(url), container, { signal }));
     else
         await eachAsync(options, (options, url) => serverHandlers.process(new URL(url), container, { ...options, signal }))
 
-    if (failed)
+    Object.keys(options).forEach(o =>
     {
-        console.log(failed);
-        console.log('exiting...');
-        throw failed;
-    }
-    else
-        console.log('server ready');
+        console.log('listening on ' + o);
+    })
+
+    console.log('server ready');
 }
