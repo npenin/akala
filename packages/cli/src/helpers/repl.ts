@@ -94,8 +94,13 @@ export default function (_config, mainprogram)
                 {
                     try
                     {
-                        const result = await mainprogram.process(buildCliContextFromContext(context, ...replEval(input.trim())));
-                        cb(null, result);
+                        const c = buildCliContextFromContext(context, ...replEval(input.trim()));
+                        c.options['$repl'] = true;
+                        const result = await mainprogram.process(c);
+                        if (typeof result !== 'undefined')
+                            cb(null, result);
+                        else
+                            cb();
                     }
                     catch (e)
                     {
@@ -108,6 +113,10 @@ export default function (_config, mainprogram)
                             cb(e);
                     }
                 }
-            }));
+            })).addListener('exit', () =>
+            {
+                context.abort.abort();
+            });
+
         })
 }
