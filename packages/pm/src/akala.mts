@@ -3,8 +3,8 @@ import { platform } from 'os';
 import { Readable } from 'stream';
 
 import { StateConfiguration } from './state.js';
-import { CliContext, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
-import { eachAsync, HttpStatusCode, logger, LogLevels } from '@akala/core';
+import { CliContext, NamespaceMiddleware } from '@akala/cli';
+import { eachAsync, HttpStatusCode, logger } from '@akala/core';
 import commands from './container.js';
 import cliCommands from './cli-container.js';
 import Configuration from '@akala/config';
@@ -120,17 +120,8 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
     });
     program.useError((err, context) =>
     {
-        if (context.options.verbose >= LogLevels.debug)
-            console.error(err);
-        else if (err instanceof ErrorMessage)
-            console.log(err.message)
-        else
-        {
-            context.abort.abort();
-            if ('message' in err)
-                console.error('Error: ' + err.message);
-        }
-        return Promise.resolve(err);
+        context.abort.abort();
+        return Promise.reject(err);
     });
 }
 
