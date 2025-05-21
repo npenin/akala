@@ -1,9 +1,9 @@
-#  (2025-05-19)
+#  (2025-05-21)
 
 
-### Features
+### Bug Fixes
 
-* add cause to errorwithstatus af5a83e
+* ErrorMiddleware input type 1b43611
 
 
 
