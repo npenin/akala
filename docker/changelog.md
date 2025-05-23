@@ -1,8 +1,9 @@
-#  (2025-05-21)
+#  (2025-05-23)
 
 
 ### Bug Fixes
 
+* add missing server plugin b294302
 * add user options 3c953f7
 * dockerfile 480944e
 * merge run steps b508445
