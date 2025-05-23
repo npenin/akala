@@ -5,14 +5,15 @@ import path from 'path'
 import pmDef from '../container.js';
 import { IpcAdapter } from "../ipc-adapter.js";
 import { module as coreModule } from '@akala/core';
-import { CliContext } from '@akala/cli';
+import { buildCliContextFromContext, CliContext, NamespaceMiddleware } from '@akala/cli';
 import { Processors, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, StructuredParameters, Container, serveMetadata, connectByPreference, Metadata, $metadata, protocolHandlers } from '@akala/commands';
 import { pathToFileURL } from 'url';
 import commands from '../container.js';
 import fsHandler, { Stats } from '@akala/fs';
+import { Triggers } from '@akala/commands';
 
 
-export default async function run(program: string, name: string, c: CliContext, pmSocket?: string)
+export default async function run(program: string, name: string, c: CliContext<{ help: boolean, configFile: string, name?: string, args?: string[] }>, pmSocket?: string)
 {
     let folderOrFile: Stats;
     if (!URL.canParse(program))
@@ -31,6 +32,7 @@ export default async function run(program: string, name: string, c: CliContext, 
 
     const isPm = name === 'pm' && program === new URL('../../../commands.json', import.meta.url).toString();
     const init = cliContainer.resolve('$init');
+    const cli = await Triggers.cli.register(cliContainer, new NamespaceMiddleware(null));
 
     process.on('unhandledRejection', (x) =>
     {
@@ -102,9 +104,12 @@ export default async function run(program: string, name: string, c: CliContext, 
 
     if (init)
     {
-        c.options.configFile += '#' + name
-        await cliContainer.dispatch(init, { logger: c.logger, options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c, signal: c.abort.signal });
+        const subContext = buildCliContextFromContext(c, '$init', ...c.options.args);
+        subContext.options = c.options;
+        subContext.options.configFile = c.options.configFile + '#' + c.options.name
+        await cli.process(subContext);
     }
+
     try
     {
         const serveArgs = await pm.dispatch('connect', c.options.name);
