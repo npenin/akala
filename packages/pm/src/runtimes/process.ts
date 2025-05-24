@@ -16,16 +16,7 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
     }
     stop(timeoutInMs?: number): Promise<number>
     {
-        return new Promise((resolve) =>
-        {
-            process.on('exit', (code, signal) =>
-            {
-                clearTimeout(timeout);
-                resolve(code);
-            })
-            process.kill(process.pid, 'SIGINT')
-            const timeout = setTimeout(() => { process.exit() }, timeoutInMs || 5000)
-        })
+        return Promise.resolve(0);
     }
     get stderr(): Readable { return this.stdio.stderr }
     get stdout(): Readable { return this.stdio.stdout }
