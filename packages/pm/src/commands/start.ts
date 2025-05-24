@@ -85,6 +85,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             cp = Worker.build(args, options);
             break;
         case 'nodejs':
+            args.push('--pm-sock', 'ipc://')
             cp = ChildProcess.build(args, options);
             break;
         default:
