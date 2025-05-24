@@ -4,7 +4,7 @@ import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
-import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, noop, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled, MiddlewareResult } from '@akala/core';
 import { HandlerResult, protocolHandlers as handlers, serverHandlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 import { NetSocketAdapter } from '../net-socket-adapter.js';
@@ -297,6 +297,8 @@ export class JsonRpc extends CommandProcessor
 
     public async handle(container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
+        if (typeof command.config.jsonrpc !== 'undefined' && !command.config.jsonrpc)
+            return NotHandled;
         return await Local.execute(command, (...args: SerializableObject[]) => 
         {
             // if ((inject.length != 1 || inject[0] != '$param') && !params._trigger)
@@ -304,7 +306,7 @@ export class JsonRpc extends CommandProcessor
             args = Local.extractParams(command.config?.jsonrpc?.inject || command.config?.['']?.inject)(...args);
             // }
 
-            return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
+            return new Promise<MiddlewareResult>((resolve, reject) =>
             {
                 if (this.client.socket.open)
                     this.client.sendMethod(typeof command == 'string' ? command : command.name, args, function (err, result)

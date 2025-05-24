@@ -3,7 +3,7 @@ import { CommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
-import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled } from '@akala/core';
 import { HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 
@@ -151,6 +151,8 @@ export class JsonRpcBrowser extends CommandProcessor
 
     public async handle(container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
+        if (typeof command.config.jsonrpc !== 'undefined' && !command.config.jsonrpc)
+            return NotHandled;
         return await Local.execute(command, (...args: SerializableObject[]) => 
         {
             // if ((inject.length != 1 || inject[0] != '$param') && !params._trigger)
