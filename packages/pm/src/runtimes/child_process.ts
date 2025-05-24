@@ -20,6 +20,7 @@ export type ChildProcessRuntimeOptions = { new?: boolean, name: string, keepAtta
 
 export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> implements RuntimeInstance<ChildProcessRuntimeEventMap>
 {
+    public static readonly name = 'nodejs';
     private readonly cp: ChildProcess;
     public readonly adapter: IpcAdapter;
     constructor(args: string[], options: ChildProcessRuntimeOptions, signal?: AbortSignal)
@@ -53,10 +54,17 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
 
         signal?.addEventListener('abort', () =>
         {
-            return this.stop(5000);
+            switch (signal.reason)
+            {
+                case 'SIGINT':
+                case 'SIGTERM':
+                    return this.stop(5000, signal.reason);
+                default:
+                    return this.stop(5000);
+            }
         })
     }
-    stop(timeoutInMs?: number): Promise<number>
+    stop(timeoutInMs?: number, signal?: 'SIGINT' | 'SIGTERM'): Promise<number>
     {
         return new Promise((resolve) =>
         {
@@ -65,7 +73,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
                 clearTimeout(timeout);
                 resolve(code);
             })
-            this.cp.kill('SIGINT');
+            this.cp.kill(signal);
             const timeout = setTimeout(() => { this.cp.kill() }, timeoutInMs || 5000)
         })
     }

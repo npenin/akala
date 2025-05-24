@@ -4,6 +4,7 @@ import { Readable } from "stream";
 
 export interface Runtime
 {
+    name: string;
     build(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean }): RuntimeInstance;
 }
 
