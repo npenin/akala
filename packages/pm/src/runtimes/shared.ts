@@ -15,6 +15,7 @@ export type RuntimeEventMap = {
 
 export interface RuntimeInstance<T extends RuntimeEventMap = RuntimeEventMap> extends EventEmitter<T>
 {
+    runtime: Omit<Runtime, 'build'>;
     stop(): Promise<number>;
     get adapter(): SocketAdapter;
 

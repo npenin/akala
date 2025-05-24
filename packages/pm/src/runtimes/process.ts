@@ -5,6 +5,8 @@ import { EventEmitter } from "@akala/core";
 
 export default class Runtime extends EventEmitter<RuntimeEventMap> implements RuntimeInstance
 {
+    public static readonly name = 'self'
+    public readonly runtime = Runtime;
     public readonly adapter: IpcAdapter;
     private stdio: { stderr: Readable, stdout: Readable, stdin: Writable }
     constructor(stdio?: { stderr: Readable, stdout: Readable, stdin: Writable })

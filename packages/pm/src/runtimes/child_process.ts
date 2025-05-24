@@ -20,6 +20,7 @@ export type ChildProcessRuntimeOptions = { new?: boolean, name: string, keepAtta
 
 export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> implements RuntimeInstance<ChildProcessRuntimeEventMap>
 {
+    public readonly runtime = Runtime;
     public static readonly name = 'nodejs';
     private readonly cp: ChildProcess;
     public readonly adapter: IpcAdapter;

@@ -9,6 +9,7 @@ const require = module.createRequire(import.meta.url);
 
 export default class Runtime extends EventEmitter<RuntimeEventMap> implements RuntimeInstance
 {
+    public readonly runtime = Runtime;
     private readonly cp: Worker;
     public readonly adapter: MessagePortAdapter;
     private _running: boolean;
