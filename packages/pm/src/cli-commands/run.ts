@@ -44,7 +44,7 @@ export default async function run(program: string, name: string, c: CliContext<{
         c.abort.abort(x)
         return false;
     });
-    process.on('SIGINT', () => c.abort.abort(null));
+    process.on('SIGINT', () => c.abort.abort('SIGINT'));
 
     let pm: Container<unknown> & pmDef.container;
     let pmConnectInfo: ServeMetadata;
