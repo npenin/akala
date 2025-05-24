@@ -11,7 +11,7 @@ export interface Options
     redirect?: boolean;
     setHeaders?(): void;
     maxAge?: string | number;
-    root?: string;
+    root?: URL;
     fs?: Promise<FileSystemProvider>
 }
 
@@ -48,7 +48,7 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
     onDirectory: (res: Request) => void;
     fs: Promise<FileSystemProvider>;
 
-    constructor(root?: string, options?: Options)
+    constructor(root?: URL | string, options?: Options)
     {
         this.options = options = Object.create(options || null);
 
@@ -61,9 +61,12 @@ export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]
         // setup options for send
         options.maxAge = options.maxAge || 0
         if (!options.root)
-            options.root = root && resolve(root);
+            if (typeof root == 'string' && !URL.canParse(root))
+                options.root = pathToFileURL(resolve(root));
+            else
+                options.root = new URL(root);
         if (options.root && !this.fs)
-            options.fs = fsHandler.process(typeof (options.root) !== 'string' || URL.canParse(options.root) ? new URL(options.root) : pathToFileURL(options.root))
+            options.fs = fsHandler.process(options.root)
 
         // construct directory listener
         this.onDirectory = options.redirect

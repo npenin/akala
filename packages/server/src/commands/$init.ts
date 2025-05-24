@@ -3,7 +3,6 @@ import { router, HttpRouter } from '../router/index.js';
 import '../triggers/http.js'
 import { State } from '../state.js';
 import { logger, SimpleInjector } from "@akala/core";
-import { join } from "path";
 import { StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
 const log = logger('akala:server')
@@ -50,7 +49,7 @@ export default async function $init(container: Container<State>, options: Record
         container.state.lateBoundRoutes = lateBoundRoutes;
         container.state.app = app;
 
-        preAuthenticatedRouter.useMiddleware('/', new StaticFileMiddleware(null, { root: join(process.cwd(), './build'), fallthrough: true }));
+        preAuthenticatedRouter.useMiddleware('/', new StaticFileMiddleware(null, { root: new URL('../../../views', import.meta.url), fallthrough: true }));
         // mainRouter.use('/api', function (_req, res)
         // {
         //     res.writeHead(404, 'Not found');
