@@ -72,9 +72,11 @@ serverHandlers.useProtocol('http2s', async (url, options) =>
 
 commandHandlers.protocol.use(async (url, container, options: (ServerOptions) & { router?: HttpRouter, signal: AbortSignal }) =>
 {
+    if (container.resolve('$webServer:' + url))
+        return;
     const server = await serverHandlers.process(url, options)
 
-    container.register('$webServer', server);
+    container.register('$webServer:' + url, server);
     if (url.pathname.length > 1)
     {
         const router = new HttpRouter();
@@ -90,15 +92,17 @@ commandHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options
 {
     let server: http.Server | https.Server;// | Http2SecureServer | Http2Server;
 
-    server = container.resolve('$webServer');
+    const webUrl = url.href.replace(/^ws:/, 'http:')
+
+    server = container.resolve('$webServer:' + webUrl);
     if (server == null)
     {
-        await commandHandlers.process(new URL(url.toString().replace(/^ws:/, 'http:')), container, options);
-        server = container.resolve('$webServer');
+        await commandHandlers.process(new URL(webUrl), container, options);
+        server = container.resolve('$webServer:' + webUrl);
     }
 
     const wsServer = new ws.WebSocketServer({ server });
-    container.register('$wsServer', wsServer);
+    container.register('$wsServer:' + url, wsServer);
     wsServer.on('connection', (socket: ws.WebSocket) =>
     {
         container.attach(Processors.JsonRpc.trigger, new jsonrpcws.ws.SocketAdapter(socket));
@@ -110,15 +114,17 @@ commandHandlers.useProtocol<NetConnectOpts>('wss', async (url, container, option
 {
     let server: http.Server | https.Server;// | Http2SecureServer | Http2Server;
 
-    server = container.resolve('$webServer');
+    const webUrl = url.href.replace(/^wss:/, 'https:');
+
+    server = container.resolve('$webServer:' + webUrl);
     if (server == null)
     {
-        await commandHandlers.process(new URL(url.toString().replace(/^wss:/, 'https:')), container, options);
-        server = container.resolve('$webServer');
+        await commandHandlers.process(new URL(webUrl), container, options);
+        server = container.resolve('$webServer:' + webUrl);
     }
 
     const wsServer = new ws.WebSocketServer({ server });
-    container.register('$wssServer', wsServer);
+    container.register('$wssServer:' + url, wsServer);
     wsServer.on('connection', (socket: ws.WebSocket) =>
     {
         container.attach(Processors.JsonRpc.trigger, new jsonrpcws.ws.SocketAdapter(socket));
