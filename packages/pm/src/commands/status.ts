@@ -6,5 +6,5 @@ export default function status(this: State, name?: string): { name: string, filt
     if (name)
         processes = processes.filter(p => p.name == name);
 
-    return processes.map(p => { return { name: p.name, filter: name, running: p.running, folder: p.path, stateless: p.stateless, type: p.type, cwd: p.cwd } })
+    return processes.map(p => { return { name: p.name, filter: name, running: p.running, folder: p.path, stateless: p.stateless, type: p.process?.runtime.name, cwd: p.cwd } })
 }
