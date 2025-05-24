@@ -1,13 +1,14 @@
 import { program as root, ErrorMessage, NamespaceMiddleware, CliContext } from "@akala/cli"
-import { NotHandled, SimpleInjector, mapAsync } from "@akala/core"
+import { MiddlewarePromise, NotHandled, SimpleInjector, mapAsync, spread } from "@akala/core"
 import commands from "./commands.js";
-import { CommandProcessor, Metadata, registerCommands, ServeOptions, Triggers } from "./index.js";
+import { CommandProcessor, Metadata, registerCommands, ServeOptions, StructuredParameters, Triggers } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
 import { dirname, isAbsolute, resolve } from "node:path";
 import { protocolHandlers } from "./protocol-handler.js";
 import { pathToFileURL } from "node:url";
+import { Command } from "./metadata/command.js";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { with: { type: 'json' } }).then(x => x.default)
 
 export default async function (_, program: NamespaceMiddleware<{ configFile: string }>, context: CliContext<{ configFile: string }, object>)
@@ -24,7 +25,7 @@ export class InitAkala<T> extends CommandProcessor
         super('initAkala');
     }
 
-    async handle(container, cmd, param)
+    async handle(container: Container<unknown>, cmd: Command, param: StructuredParameters): MiddlewarePromise
     {
         if (!this.warmedup)
         {
@@ -34,7 +35,7 @@ export class InitAkala<T> extends CommandProcessor
                 if (!this.warmedup && cmd !== this.init && cmd.name !== '$metadata')
                     try
                     {
-                        const err = await container.handle(container, this.init, { ...param, containers, ...this.context, param: [], env: process.env });
+                        const err = await container.handle(container, this.init, spread(param, { containers }, this.context, { param: [], env: process.env }));
                         if (err)
                             return err;
                     }
