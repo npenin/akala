@@ -26,48 +26,38 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
     let def: ProxyConfiguration<SidecarMetadata>;
 
-    if (this.isDaemon)
-    {
-        var instanceConfig = this.config.mapping[options.name || name];
-        if (!instanceConfig?.container)
-            def = this.config.containers[name];
-        else
-            def = this.config.containers[instanceConfig.container];
-
-        if (typeof options.autostart !== 'undefined')
-            if (instanceConfig)
-                instanceConfig.autostart = options.autostart;
-            else
-            {
-                this.config.mapping.set(options.name || name, { container: name, autostart: options.autostart });
-                await this.config.commit()
-            }
-
-        var container = this.processes[options.name || name];
-        if (container?.running)
-            throw new Error(container.name + ' is already started');
-
-        args = [];
-
-        if (!def && name != 'pm')
-            throw new ErrorWithStatus(404, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
-
-        // if (options.configFile)
-        //     options.configFile += '#' + options.name
-
-        args.unshift(...(context?.args || []), ...unparseOptions({ ...options, program: undefined, new: undefined, inspect: undefined }, { ignoreUndefined: true }));
-        if (def && def.get('path'))
-            args.unshift('--program=' + def.get('path'));
-        else
-            args.unshift('--program=' + name);
-    }
+    var instanceConfig = this.config.mapping[options.name || name];
+    if (!instanceConfig?.container)
+        def = this.config.containers[name];
     else
-    {
-        if (name != 'pm')
-            throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
+        def = this.config.containers[instanceConfig.container];
 
-        args = [new URL('../../../commands.json', import.meta.url).toString(), ...(context?.args || []), ...unparseOptions({ ...options, inspect: undefined })];
-    }
+    if (typeof options.autostart !== 'undefined')
+        if (instanceConfig)
+            instanceConfig.autostart = options.autostart;
+        else
+        {
+            this.config.mapping.set(options.name || name, { container: name, autostart: options.autostart });
+            await this.config.commit()
+        }
+
+    var container = this.processes[options.name || name];
+    if (container?.running)
+        throw new Error(container.name + ' is already started');
+
+    args = [];
+
+    if (!def && name != 'pm')
+        throw new ErrorWithStatus(404, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
+
+    // if (options.configFile)
+    //     options.configFile += '#' + options.name
+
+    args.unshift(...(context?.args || []), ...unparseOptions({ ...options, program: undefined, new: undefined, inspect: undefined }, { ignoreUndefined: true }));
+    if (def && def.get('path'))
+        args.unshift('--program=' + def.get('path'));
+    else
+        args.unshift('--program=' + name);
 
     if (options?.inspect)
         args.unshift('--inspect-brk');
@@ -77,123 +67,102 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (options?.verbose)
         args.push('-v')
 
-    if (!this.isDaemon)
-    {
-        const cp = ChildProcess.build(args, { inheritStdio: true, name: options.name });
-        cp.on('exit', function ()
-        {
-            console.log(args);
-        })
 
-        return new Promise<void>((resolve) =>
-        {
-            cp.on('runningChanged', () =>
-            {
-                if (!options.keepAttached)
-                    cp.unref();
-                console.log('pm started');
-                resolve();
-            })
-        })
+    let cp: RuntimeInstance;
+
+    if (!container && def.dependencies?.length)
+    {
+        const missingDeps = def.dependencies.filter(d => !this.config.containers[d] && !this.config.mapping[d]);
+        if (missingDeps.length > 0)
+            throw new ErrorWithStatus(404, `Some dependencies are missing to start ${options.name}:\n\t-${missingDeps.join('\n\t-')}`);
+
+        await eachAsync(def.dependencies, async (dep) => { await pm.dispatch('start', dep, { name: options.name + '-' + dep, wait: true }) });
     }
-    else
+
+    switch (def?.type)
     {
-        let cp: RuntimeInstance;
+        case 'worker':
+            cp = Worker.build(args, options);
+            break;
+        case 'nodejs':
+            cp = ChildProcess.build(args, options);
+            break;
+        default:
+            throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
+    }
 
-        if (!container && def.dependencies?.length)
+    if (!container?.running)
+    {
+        container = new Container(options.name, null) as RunningContainer;
+        const connection = Processors.JsonRpc.getConnection(cp.adapter, pm, (params) =>
         {
-            const missingDeps = def.dependencies.filter(d => !this.config.containers[d] && !this.config.mapping[d]);
-            if (missingDeps.length > 0)
-                throw new ErrorWithStatus(404, `Some dependencies are missing to start ${options.name}:\n\t-${missingDeps.join('\n\t-')}`);
-
-            await eachAsync(def.dependencies, async (dep) => { await pm.dispatch('start', dep, { name: options.name + '-' + dep, wait: true }) });
-        }
-
-        switch (def?.type)
-        {
-            case 'worker':
-                cp = Worker.build(args, options);
-                break;
-            case 'nodejs':
-                cp = ChildProcess.build(args, options);
-                break;
-            default:
-                throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
-        }
-
-        if (!container?.running)
-        {
-            container = new Container(options.name, null) as RunningContainer;
-            const connection = Processors.JsonRpc.getConnection(cp.adapter, pm, (params) =>
-            {
-                params.process = cp;
-                Object.defineProperty(params, 'connectionAsContainer', { value: container });
-            });
-            container.processor.useMiddleware(20, new Processors.JsonRpc(connection));
-
-            connection.on('close', function disconnected()
-            {
-                console.warn(`${options.name} has disconnected`);
-                container.running = false;
-            });
-
-            if (def?.commandable)
-                pm.register(container, def?.stateless);
-
-            this.processes[options.name] = container;
-        }
-        container.process = cp;
-
-        Object.assign(container, def, instanceConfig);
-        container.ready = new Event();
-        if (container.commandable)// && !container.stateless)
-        {
-            container.unregister(Cli.Metadata.name);
-            container.register(Metadata.extractCommandMetadata(Cli.Metadata));
-        }
-        container.ready.addListener(() =>
-        {
-            return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
-            {
-                updateCommands(metaContainer.commands, null, container);
-                container.stateless = metaContainer.stateless;
-                pm.register(name, container, true);
-            });
+            params.process = cp;
+            Object.defineProperty(params, 'connectionAsContainer', { value: container });
         });
-        // , () =>
-        // {
-        //     console.warn(`${options.name} has disconnected`);
-        //     container.running = false;
-        // });
+        container.processor.useMiddleware(20, new Processors.JsonRpc(connection));
 
-        container.running = true;
-        let buffer = [];
-
-        cp.on('exit', function ()
+        connection.on('close', function disconnected()
         {
+            console.warn(`${options.name} has disconnected`);
             container.running = false;
-            if (!container.stateless)
-            {
-                pm.unregister(container.name);
-                console.log(new Error('program stopped: ' + buffer?.join('')));
-            }
         });
-        if (options.wait && container.commandable)
-        {
-            //eslint-disable-next-line no-inner-declarations
-            function gather(chunk: string)
-            {
-                buffer.push(chunk);
-            }
-            cp.stderr.on('data', gather);
-            cp.on('exit', () =>
-            {
-                buffer = null;
-                cp.stderr.off('data', gather);
-            });
-        }
-        if (options.wait)
-            await new Promise<void>(resolve => container.ready?.addListener(resolve));
-        return { execPath: process.execPath, args: args, cwd: process.cwd(), shell: false, windowsHide: true };
+
+        if (def?.commandable)
+            pm.register(container, def?.stateless);
+
+        this.processes[options.name] = container;
     }
+    container.process = cp;
+
+    Object.assign(container, def, instanceConfig);
+    container.ready = new Event();
+    if (container.commandable)// && !container.stateless)
+    {
+        container.unregister(Cli.Metadata.name);
+        container.register(Metadata.extractCommandMetadata(Cli.Metadata));
+    }
+    container.ready.addListener(() =>
+    {
+        return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
+        {
+            updateCommands(metaContainer.commands, null, container);
+            container.stateless = metaContainer.stateless;
+            pm.register(name, container, true);
+        });
+    });
+    // , () =>
+    // {
+    //     console.warn(`${options.name} has disconnected`);
+    //     container.running = false;
+    // });
+
+    container.running = true;
+    let buffer = [];
+
+    cp.on('exit', function ()
+    {
+        container.running = false;
+        if (!container.stateless)
+        {
+            pm.unregister(container.name);
+            console.log(new Error('program stopped: ' + buffer?.join('')));
+        }
+    });
+    if (options.wait && container.commandable)
+    {
+        //eslint-disable-next-line no-inner-declarations
+        function gather(chunk: string)
+        {
+            buffer.push(chunk);
+        }
+        cp.stderr.on('data', gather);
+        cp.on('exit', () =>
+        {
+            buffer = null;
+            cp.stderr.off('data', gather);
+        });
+    }
+    if (options.wait)
+        await new Promise<void>(resolve => container.ready?.addListener(resolve));
+    return { execPath: process.execPath, args: args, cwd: process.cwd(), shell: false, windowsHide: true };
 }
