@@ -19,6 +19,25 @@ export function lazy<T>(factory: () => T)
     }
 }
 
+export function spread<A>(a: A): A
+export function spread<A, B>(a: A, b: B): A & B
+export function spread<A, B, C>(a: A, b: B, c: C): A & B & C
+export function spread<A, B, C, D>(a: A, b: B, c: C, d: D): A & B & C & D
+export function spread<A, B, C, D, E>(a: A, b: B, c: C, d: D, e: E): A & B & C & D & E
+export function spread(...args: object[]): object
+export function spread(...args: object[]): object
+{
+    const result = {};
+    for (let i = 0; i < args.length; i++)
+    {
+        const element = args[i];
+        const descriptors = Object.getOwnPropertyDescriptors(element);
+        Object.defineProperties(result, descriptors);
+    }
+
+    return result;
+}
+
 export interface Translator
 {
     locale: string | Intl.Locale;
