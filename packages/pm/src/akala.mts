@@ -1,5 +1,4 @@
-import { Processors, Metadata, Container, Triggers, Cli, connect, registerCommands } from '@akala/commands';
-import { platform } from 'os';
+import { Processors, Metadata, Container, Triggers, Cli, connect, registerCommands, protocolHandlers } from '@akala/commands';
 import { Readable } from 'stream';
 
 import { StateConfiguration } from './state.js';
@@ -8,6 +7,7 @@ import { eachAsync, HttpStatusCode, logger } from '@akala/core';
 import commands from './container.js';
 import cliCommands from './cli-container.js';
 import Configuration from '@akala/config';
+import { IpcAdapter } from './ipc-adapter.js';
 
 const log = logger('akala:pm');
 
@@ -29,6 +29,19 @@ const tableChars = {
     , 'middle': '│'
 }
 const truncate = '…';
+
+if (process.connected)
+    protocolHandlers.useProtocol('ipc', async (url, options) =>
+    {
+        const connection = Processors.JsonRpc.getConnection(new IpcAdapter(process));
+
+        return {
+            processor: new Processors.JsonRpc(connection),
+            getMetadata: () => new Promise<Metadata.Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+                typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+            ))
+        };
+    })
 
 type CliOptions = { output: string, verbose: number, pmSock: string | number, tls: boolean, help: boolean };
 export default async function (_config, program: NamespaceMiddleware<{ configFile: string, verbose: number }>)
@@ -65,8 +78,6 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                 else
                     container = await connect(new URL('jsonrpc+tcp://localhost:' + c.options.pmSock), c.abort.signal, metaContainer);
             }
-            else if (platform() == 'win32')
-                container = await connect(new URL('jsonrpc+unix://\\\\?\\pipe\\pm'), c.abort.signal, metaContainer);
             else
             {
                 let connectMapping = c.state?.pm?.mapping.pm?.connect;
