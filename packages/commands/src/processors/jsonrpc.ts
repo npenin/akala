@@ -50,7 +50,7 @@ serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, con
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
-handlers.useProtocol('jsonrpc+tcp+tls', async function (url, options, result)
+handlers.useProtocol('jsonrpc+tcp+tls', async function (url, options)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
@@ -62,12 +62,12 @@ handlers.useProtocol('jsonrpc+tcp+tls', async function (url, options, result)
     const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
 
-    return Object.assign(result, {
+    return {
         processor: new JsonRpc(connection),
         getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
-    });
+    };
 });
 
 serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string, container: Container<unknown>, options: TlsOptions & { signal: AbortSignal })
@@ -87,7 +87,7 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
-handlers.useProtocol('jsonrpc+unix', async function (url, options, result)
+handlers.useProtocol('jsonrpc+unix', async function (url, options)
 {
     const socket = new Socket();
     const error = new ErrorWithStatus(HttpStatusCode.BadGateway);
@@ -105,12 +105,12 @@ handlers.useProtocol('jsonrpc+unix', async function (url, options, result)
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
 
-    return Object.assign(result, {
+    return {
         processor: new JsonRpc(connection),
         getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
-    });
+    };
 });
 
 serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, container: Container<unknown>, options: ServerOpts & { signal: AbortSignal })
@@ -126,7 +126,7 @@ serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, co
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
-handlers.useProtocol('jsonrpc+unix+tls', async function (url, options, result)
+handlers.useProtocol('jsonrpc+unix+tls', async function (url, options)
 {
     const socket = new Socket();
     const tlsSocket = new TLSSocket(socket);
@@ -135,12 +135,12 @@ handlers.useProtocol('jsonrpc+unix+tls', async function (url, options, result)
     const connection = JsonRpc.getConnection(new NetSocketAdapter(tlsSocket), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
 
-    return Object.assign(result, {
+    return {
         processor: new JsonRpc(connection),
         getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
-    });
+    };
 });
 
 serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string, container: Container<unknown>, options: TlsOptions & { signal: AbortSignal })
