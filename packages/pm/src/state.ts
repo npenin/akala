@@ -26,7 +26,7 @@ export interface SidecarMetadata
     stateless: boolean;
     dependencies?: string[];
     commandable: boolean;
-    type?: 'nodejs' | 'worker';
+    type: 'nodejs' | 'worker';
 }
 
 export interface SidecarConfiguration<T extends string | SerializableObject = SerializableObject>
@@ -40,7 +40,7 @@ export interface SidecarConfiguration<T extends string | SerializableObject = Se
 }
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface RunningContainer<T extends string | SerializableObject = any> extends Container<unknown>, SidecarConfiguration<T>, SidecarMetadata
+export interface RunningContainer<T extends string | SerializableObject = any> extends Container<unknown>, SidecarConfiguration<T>, Omit<SidecarMetadata, 'type'>
 {
     process: RuntimeInstance;
     running?: boolean;
