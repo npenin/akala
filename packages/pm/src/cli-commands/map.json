@@ -5,13 +5,15 @@
             "param.0",
             "param.1",
             "param.2",
-            "param.3"
+            "param.3",
+            "param.4"
         ]
     },
     "cli": {
         "inject": [
             "options.name",
             "options.path",
+            "options.runtime",
             "cwd",
             "options"
         ],
@@ -27,6 +29,12 @@
                     "s"
                 ],
                 "needsValue": false
+            },
+            "runtime": {
+                "aliases": [
+                    "r"
+                ],
+                "needsValue": true
             }
         },
         "usage": "map <name> <path>"

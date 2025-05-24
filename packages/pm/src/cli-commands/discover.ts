@@ -70,9 +70,9 @@ export default async function discover(packageName: string, folder: string, pm: 
                 if (Array.isArray(packageConfig))
                     throw new Error('commands property must be of type object or string');
 
-                return await Promise.all(Object.keys(packageConfig.commands).map(v => pm.dispatch('map', v, moduleRequire?.resolve('./' + packageConfig.commands[v]), path, { commandable: true })));
+                return await Promise.all(Object.keys(packageConfig.commands).map(v => pm.dispatch('map', v, moduleRequire?.resolve('./' + packageConfig.commands[v]), 'nodejs', path, { commandable: true })));
             case 'string':
-                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.commands), path, { commandable: true });
+                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.commands), 'nodejs', path, { commandable: true });
             default:
                 throw new Error('commands property must be of type object or string');
         }
@@ -85,9 +85,9 @@ export default async function discover(packageName: string, folder: string, pm: 
             case 'object':
                 if (Array.isArray(packageConfig))
                     throw new Error('bin property must be of type object or string');
-                return Promise.all(Object.keys(packageConfig.bin).map(v => pm.dispatch('map', v, moduleRequire.resolve('./' + packageConfig.bin[v]), path, { commandable: false })));
+                return Promise.all(Object.keys(packageConfig.bin).map(v => pm.dispatch('map', v, moduleRequire.resolve('./' + packageConfig.bin[v]), 'nodejs', path, { commandable: false })));
             case 'string':
-                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.bin), path, { commandable: false });
+                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.bin), 'nodejs', path, { commandable: false });
             default:
                 throw new Error('bin property must be of type object or string');
         }
@@ -95,7 +95,7 @@ export default async function discover(packageName: string, folder: string, pm: 
 
     const commandsJsonFile = tryModuleRequireResolve('./commands.json');
     if (commandsJsonFile)
-        return pm.dispatch('map', packageName, commandsJsonFile, path, { commandable: true });
+        return pm.dispatch('map', packageName, commandsJsonFile, 'nodejs', path, { commandable: true });
 
-    return pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.main), path, { commandable: false });
+    return pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.main), 'nodejs', path, { commandable: false });
 }
