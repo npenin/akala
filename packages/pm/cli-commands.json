@@ -212,7 +212,8 @@
                         "param.0",
                         "param.1",
                         "param.2",
-                        "param.3"
+                        "param.3",
+                        "param.4"
                     ]
                 },
                 "": {
@@ -220,13 +221,15 @@
                         "param.0",
                         "param.1",
                         "param.2",
-                        "param.3"
+                        "param.3",
+                        "param.4"
                     ]
                 },
                 "cli": {
                     "inject": [
                         "options.name",
                         "options.path",
+                        "options.runtime",
                         "cwd",
                         "options"
                     ],
@@ -242,6 +245,12 @@
                                 "s"
                             ],
                             "needsValue": false
+                        },
+                        "runtime": {
+                            "aliases": [
+                                "r"
+                            ],
+                            "needsValue": true
                         }
                     },
                     "usage": "map <name> <path>"
@@ -265,6 +274,7 @@
                         "param.1"
                     ]
                 },
+                "jsonrpc": false,
                 "cli": {
                     "options": {
                         "output": {
@@ -327,7 +337,7 @@
                         "context",
                         "options.pmSock"
                     ],
-                    "usage": "run [...args]"
+                    "usage": "run <name> [...args]"
                 }
             }
         },
