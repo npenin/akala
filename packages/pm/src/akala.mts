@@ -104,6 +104,9 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                 container.register(Metadata.extractCommandMetadata(Cli.Metadata));
 
                 await container.attach(Triggers.cli, cli);
+                const run = container.resolve('run')
+                container.unregister('run');
+                container.register({ ...Metadata.extractCommandMetadata(run), processor: fs });
             }
         }
     })
@@ -127,11 +130,11 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
 
 function formatResult(result: unknown, outputFormat: string, context: CliContext)
 {
-    if (typeof result == 'undefined')
-        return;
-
     if (!context.options.$repl)
         context.abort.abort();
+
+    if (typeof result == 'undefined')
+        return;
 
     switch (outputFormat)
     {
