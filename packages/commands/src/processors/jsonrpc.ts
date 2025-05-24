@@ -13,7 +13,7 @@ import { TLSSocket, Server as TLSServer, TlsOptions } from 'tls';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-handlers.useProtocol('jsonrpc+tcp', async function (url, options, result)
+handlers.useProtocol('jsonrpc+tcp', async function (url, options)
 {
     const socket = new Socket();
     if (url.hostname == '0.0.0.0' || url.hostname == '*')
@@ -156,7 +156,7 @@ serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
 
-async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
+async function handler(url: URL, options: { signal: AbortSignal, container?: Container<unknown> }): Promise<HandlerResult<JsonRpc>>
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve, reject) =>
     {
@@ -175,7 +175,8 @@ async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
                 reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.error, null, err.error));
         });
     });
-    const connection = JsonRpc.getConnection(socket);
+    const connection = JsonRpc.getConnection(socket, options.container);
+    options.signal?.addEventListener('abort', (ev) => connection.close(ev));
 
     return {
         processor: new JsonRpc(connection),
