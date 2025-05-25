@@ -20,9 +20,20 @@ serverHandlers.useProtocol('http', async (url, options) =>
     {
         server.once('error', reject);
         server.listen(Number(url.port), url.hostname, resolve);
-        options.signal.addEventListener('abort', () => { server.close(); server.closeAllConnections(); });
+        options.signal.addEventListener('abort', async () =>
+        {
+            await new Promise<void>((resolve, reject) => server.close(err =>
+            {
+                if (err)
+                    reject(err);
+                else
+                    resolve();
+            }));
+            if (options.signal.reason !== 'SIGINT')
+                server.closeAllConnections();
+            server.unref();
+        });
     });
-    console.log(`server listening on http://${url.hostname}:${url.port}`);
 
     return server;
 });
@@ -35,7 +46,17 @@ serverHandlers.useProtocol('http2', async (url, options) =>
     {
         server.once('error', reject);
         server.listen(Number(url.port), url.hostname, resolve);
-        options.signal.addEventListener('abort', () => { server.close(); });
+        options.signal.addEventListener('abort', async () =>
+        {
+            await new Promise<void>((resolve, reject) => server.close(err =>
+            {
+                if (err)
+                    reject(err);
+                else
+                    resolve();
+            }));
+            server.unref();
+        });
     });
     console.log(`server listening on http2://${url.hostname}:${url.port}`);
 
@@ -49,7 +70,19 @@ serverHandlers.useProtocol('https', async (url, options) =>
     {
         server.once('error', reject);
         server.listen(Number(url.port), url.hostname, resolve);
-        options.signal.addEventListener('abort', () => { server.close(); });
+        options.signal.addEventListener('abort', async () =>
+        {
+            await new Promise<void>((resolve, reject) => server.close(err =>
+            {
+                if (err)
+                    reject(err);
+                else
+                    resolve();
+            }));
+            if (options.signal.reason !== 'SIGINT')
+                server.closeAllConnections();
+            server.unref();
+        });
     });
     console.log(`server listening on https://${url.hostname}:${url.port}`);
 
@@ -62,7 +95,17 @@ serverHandlers.useProtocol('http2s', async (url, options) =>
     {
         server.once('error', reject);
         server.listen(Number(url.port), url.hostname, resolve);
-        options.signal.addEventListener('abort', () => { server.close(); });
+        options.signal.addEventListener('abort', async () =>
+        {
+            await new Promise<void>((resolve, reject) => server.close(err =>
+            {
+                if (err)
+                    reject(err);
+                else
+                    resolve();
+            }));
+            server.unref();
+        });
     });
     console.log(`server listening on http2s://${url.hostname}:${url.port}`);
 
@@ -102,6 +145,13 @@ commandHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options
     }
 
     const wsServer = new ws.WebSocketServer({ server });
+    options.signal?.addEventListener('abort', () => new Promise<void>((resolve, reject) => wsServer.close(err =>
+    {
+        if (err)
+            reject(err);
+        else
+            resolve();
+    })));
     container.register('$wsServer:' + url, wsServer);
     wsServer.on('connection', (socket: ws.WebSocket) =>
     {
@@ -124,6 +174,13 @@ commandHandlers.useProtocol<NetConnectOpts>('wss', async (url, container, option
     }
 
     const wsServer = new ws.WebSocketServer({ server });
+    options.signal?.addEventListener('abort', () => new Promise<void>((resolve, reject) => wsServer.close(err =>
+    {
+        if (err)
+            reject(err);
+        else
+            resolve();
+    })));
     container.register('$wssServer:' + url, wsServer);
     wsServer.on('connection', (socket: ws.WebSocket) =>
     {
