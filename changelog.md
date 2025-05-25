@@ -1,4 +1,4 @@
-#  (2025-05-23)
+#  (2025-05-25)
 
 
 * chore : code cleanup eae1150
@@ -29,6 +29,7 @@
 * add InitAkala and AuthHandler on server 54f96ca
 * add initial documentation files for Akala client and set navigation exclusions c3f96e5
 * add initial documentation files for Akala client and set navigation exclusions 0b59055
+* add IPC socket argument for nodejs process creation 87425d8
 * add js extension to fork files 39368e9
 * add loginUrl and keyPath to auth configuration 9751a94
 * add missing case in marshall 598c8c0
@@ -69,6 +70,7 @@
 * add parent reference to CLI Trigger documentation 335814a
 * add parent reference to CLI Trigger documentation 04a80ea
 * add possibility to unit test workflows a9f9001
+* add signal propagation cf81d93
 * add strong typing to refactored functions 69758db
 * add strong typing to refactored functions 103a56a
 * add support for INIT_CWD variable 939b024
@@ -167,8 +169,10 @@
 * dependency loop 1de99cd
 * **deps:** update dependency mime-types to v3 5cfe8d4
 * **deps:** update dependency mime-types to v3 0d181d4
+* disable jsonrpc run 7aea19a
 * disable nav folding for all documentation sections 6bc5e4d
 * disable nav folding for all documentation sections 9d5bcf4
+* discover enforces nodejs runtime 09fb7b3
 * do not through on empty list 0305479
 * dockerfile 480944e
 * don't publish style updates 2f7631e
@@ -186,6 +190,8 @@
 * enable tag lookup if current version is not tagged 6fd51df
 * enforce handlers with use 5fc57bc
 * enforce handlers with use 3cf35ac
+* enforce run to execute with fs 01fde68
+* enforce type on config 9d8bc0f
 * enforce type on Parsed call ed0964e
 * enhance HTTP response handling for different content types 059c659
 * enhance HTTP response handling for different content types 4bc375e
@@ -232,6 +238,7 @@
 * handle abort signal 7f33b8c
 * handle already provided options 37f7aef
 * handle already provided options d0b15c3
+* handle case when both ws and http are trying to start the same server 998fbb3
 * handle case when url pathname is empty b44a1dc
 * handle cases when no auth is configured for the current trigger a4ac9a0
 * handle container metadata in the activate stage fedf680
@@ -243,6 +250,7 @@
 * handle null options during datacontext extension 8d1a88b
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
+* handle proper termination 91c7535
 * handle Self during registration 9cdbd4c
 * handle setting a binding a boundproperty value aec03f6
 * handle undefined connect mapping f74b982
@@ -406,10 +414,12 @@
 * pre-create config file if it does not exist 0c72d08
 * pre-create config file if it does not exist 46d5f72
 * prevent http formatter infinite calls e8f33c1
+* prevent jsonrpc run if disabled e2f14ac
 * prevent overriding command name to undefined 9fe0d0d
 * prevent overwriting data-context attribute 1cd19e0
 * prevent parsing formatters e1ec937
 * prevent tag creation 49c9302
+* propagate the abort reason d3df91f
 * properly handle event emitters failure a24cafe
 * protobuf reading 007b724
 * protocol-parser tests after IsomorphicBuffer implementation 338a64d
@@ -457,6 +467,7 @@
 * remove reference to a legacy function b7dc12e
 * remove unnecessary metadata from CLI documentation files c472f4c
 * remove unnecessary metadata from CLI documentation files 6b2386c
+* remove unused result parameter from jsonrpc protocol handlers 198fed9
 * remove useless await 52d94b0
 * remove useless config parameter 21b41cb
 * remove useless config parameter df3b94d
@@ -530,6 +541,7 @@
 * standardize section titles in documentation for consistency d8b067b
 * standardize section titles in documentation for consistency b2026f2
 * start in cli c0ad45e
+* stop in process runtime d49bb87
 * stop mixing init and init-akala 8e0e27b
 * stop re-exporting spawnAsync from cli 2c2e894
 * store relative staticFolders 33fc0f4
@@ -638,6 +650,7 @@
 * update file command processor to generate UUID only when record key is absent 4c5ff85
 * update grant_types_supported to use keyof for compatibility ec88441
 * update grant_types_supported to use keyof for compatibility 49f93de
+* update jsonrpc handlers to include options parameter for better connection management 1b80835
 * update keyPath references and improve password handling in authentication commands 9e74b5b
 * update link and introduce companion term 28cbbf0
 * update link and introduce companion term fd23c14
@@ -668,6 +681,7 @@
 * update vite tests and vite config b8e8524
 * use combineSubscriptions helper e569526
 * use helpers from @akala/cli 74292f2
+* use new spread helper to prevent blocking stdin abf4ad0
 * use proper selector 562b53a
 * use proper selector 97fa6f9
 * use TriggerArgs and TriggerReturnType for attach f2bea7f
@@ -725,6 +739,8 @@
 * add auth views c5238de
 * add automate as plugin 0da9a74
 * add automate as plugin fedd6ad
+* add backchannel container for 2 ways connections 70c69a6
+* add backChannelContainer a5c1ecf
 * add bindings (as in azure function bindings) as configuration 8cf7076
 * add bindings (as in azure function bindings) as configuration ca6211f
 * add bindings (as in azure function bindings) as configuration 69067b9
@@ -768,6 +784,7 @@
 * add initial documentation for various modules and commands 5f68588
 * add int, cache and leb128 parsers 0fb8868
 * add invoke formatter 2ea1311
+* add IPC protocol handler for improved inter-process communication 96b2326
 * add JWK and few more improvements 7672b7e
 * add JWK and few more improvements 54d30ae
 * add locale support ea68a09
@@ -789,13 +806,16 @@
 * add raw query support 020975f
 * add readonly root URL 9098660
 * add runtime concept 1993141
+* add runtime on RuntimeInstance 008d85a
 * add shadowWithStyles helper function 2c8e6b8
 * add SIGINT and SIGTERM signals handling 6906860
 * add sort and parse formatters 5b06cdd
+* add spread helper that does not evaluate getters 9830448
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
 * add table row event handlers 392d906
 * add TopDown and BottomUp namespace event emitters d8e148e
+* add type to status fb8961e
 * add uri on request to be able to know the full url of a request a189409
 * add uri on request to be able to know the full url of a request 3ed1dd0
 * add verbose flag to fork a78acb0
@@ -891,6 +911,7 @@
 * rename control to akala e88f358
 * repl command announces itself as $repl option 44f4a4b
 * start using new akala fs module 008cbb0
+* staticFileMiddleware expects a URL f28e32f
 * switch client http authentication from hard coded to dynamic with middleware. 1d01a5c
 * switch to eventBuses impl f483b10
 * switch to IsomorphicBuffer 18d9aa2
@@ -903,6 +924,9 @@
 
 ### BREAKING CHANGES
 
+* staticFileMiddleware expects a URL and not a string
+* RuntimeInstance have a mandatory runtime attribute
+* map expects a runtime
 * init-akala is replaced with init
 * fs processor expects a URL and uses @akala/fs
 * Self is not registered by default and the constructor expects the command name and its handler
