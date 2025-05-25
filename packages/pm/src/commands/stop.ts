@@ -3,7 +3,7 @@ import State from '../state.js';
 
 export default async function stop(this: State, name: string, container: Container<State>): Promise<void>
 {
-    await Promise.all(Object.values(this.processes).filter(p => p.name == name && p.process).map(cp =>
+    await Promise.all(Object.values(this.processes).filter(p => (p.name == name || name === 'pm') && p.process).map(cp =>
     {
         return new Promise<void>((resolve) =>
         {

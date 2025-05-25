@@ -3,15 +3,13 @@ import sms from 'source-map-support'
 sms.install();
 import path from 'path'
 import pmDef from '../container.js';
-import { IpcAdapter } from "../ipc-adapter.js";
 import { module as coreModule } from '@akala/core';
 import { buildCliContextFromContext, CliContext, NamespaceMiddleware } from '@akala/cli';
-import { Processors, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, StructuredParameters, Container, serveMetadata, connectByPreference, Metadata, $metadata, protocolHandlers } from '@akala/commands';
+import { ServeMetadata, registerCommands, SelfDefinedCommand, Container, connectByPreference, Metadata, $metadata, protocolHandlers } from '@akala/commands';
 import { pathToFileURL } from 'url';
-import commands from '../container.js';
 import fsHandler, { Stats } from '@akala/fs';
 import { Triggers } from '@akala/commands';
-
+import { backChannelContainer, remotePm } from '../akala.mjs';
 
 export default async function run(program: string, name: string, c: CliContext<{ help: boolean, configFile: string, name?: string, args?: string[] }>, pmSocket?: string)
 {
@@ -23,12 +21,13 @@ export default async function run(program: string, name: string, c: CliContext<{
     if (folderOrFile.isFile && path.extname(program) === '.js')
         return import(program);
 
-    const cliContainer = new Container(name, {});
+    const cliContainer = backChannelContainer
 
     const result = await protocolHandlers.process(new URL(program), { signal: c.abort.signal, container: cliContainer }, {});
     cliContainer.processor.useMiddleware(20, result.processor);
     const metaContainer = await result.getMetadata();
     registerCommands(metaContainer.commands, result.processor, cliContainer);
+    cliContainer.name = name;
 
     const isPm = name === 'pm' && program === new URL('../../../commands.json', import.meta.url).toString();
     const init = cliContainer.resolve('$init');
@@ -44,45 +43,14 @@ export default async function run(program: string, name: string, c: CliContext<{
         c.abort.abort(x)
         return false;
     });
-    process.on('SIGINT', () => c.abort.abort('SIGINT'));
+    process.on('SIGINT', () => { c.abort.abort('SIGINT') });
 
     let pm: Container<unknown> & pmDef.container;
     let pmConnectInfo: ServeMetadata;
 
     if (!isPm)
     {
-        //eslint-disable-next-line @typescript-eslint/no-var-requires
-        const pmMeta = commands.meta;
-        if (process.connected)
-        {
-            pm = new Container('pm', null, new Processors.JsonRpc(Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) as Container<unknown> & pmDef.container;
-            registerCommands(pmMeta.commands, null, pm);
-        }
-        else
-        {
-            if (pmSocket)
-                pmConnectInfo = { [pmSocket]: {} };
-            else
-                pmConnectInfo = serveMetadata({ args: ['local'], options: { socketName: 'pm' } })
-            const x = await connectByPreference(pmConnectInfo, { metadata: pmMeta, signal: c.abort.signal, container: cliContainer });
-            // controller.signal.addEventListener('abort', () => x.processor)
-            pm = x.container as Container<unknown> & pmDef.container;
-            pm.processor.useMiddleware(20, x.processor);
-            const connect = pm.resolve('connect');
-            pm.unregister('connect');
-            pm.register(new SelfDefinedCommand((name: string, param: StructuredParameters<unknown[]>) =>
-            {
-                if (name == 'pm')
-                    return pmConnectInfo;
-                return x.processor.handle(pm, connect, param).then(e => { throw e }, r => r);
-            }, 'connect', [
-                "param.0",
-                "$param"
-            ]));
-        }
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        pm.unregister(Cli.Metadata.name);
-        pm.register(Metadata.extractCommandMetadata(Cli.Metadata));
+        pm = remotePm;
     }
     else
         pm = cliContainer as pmDef.container & Container<unknown>;

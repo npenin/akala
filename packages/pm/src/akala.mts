@@ -1,4 +1,4 @@
-import { Processors, Metadata, Container, Triggers, Cli, connect, registerCommands, protocolHandlers } from '@akala/commands';
+import { Processors, Metadata, Container, Triggers, Cli, registerCommands, protocolHandlers, SelfDefinedCommand, StructuredParameters, ICommandProcessor, HandlerResult } from '@akala/commands';
 import { Readable } from 'stream';
 
 import { StateConfiguration } from './state.js';
@@ -30,10 +30,14 @@ const tableChars = {
 }
 const truncate = '…';
 
+export const backChannelContainer = new Container('', {});
+export const remotePm = new Container('proxy-pm', {}) as commands.container & Container<unknown>;
+
+
 if (process.connected)
     protocolHandlers.useProtocol('ipc', async (url, options) =>
     {
-        const connection = Processors.JsonRpc.getConnection(new IpcAdapter(process));
+        const connection = Processors.JsonRpc.getConnection(new IpcAdapter(process), options.container);
 
         return {
             processor: new Processors.JsonRpc(connection),
@@ -62,21 +66,20 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
 
     await pm.attach(Triggers.cli, cli);
 
-    let container: Container<unknown>;
     const metaContainer = commands.meta;
+    let result: HandlerResult<ICommandProcessor>;
 
     cli.preAction(async c =>
     {
-        if (!container)
+        if (!result)
         {
+            let pmConnectInfo: URL;
             if (c.options.pmSock)
             {
                 if (typeof (c.options.pmSock) == 'string')
-                {
-                    container = await connect(c.options.pmSock, c.abort.signal, metaContainer);
-                }
+                    result = await protocolHandlers.process(new URL(c.options.pmSock), { signal: c.abort.signal, container: backChannelContainer }, {})
                 else
-                    container = await connect(new URL('jsonrpc+tcp://localhost:' + c.options.pmSock), c.abort.signal, metaContainer);
+                    result = await protocolHandlers.process(new URL('jsonrpc+tcp://localhost:' + c.options.pmSock), { signal: c.abort.signal, container: backChannelContainer }, {})
             }
             else
             {
@@ -87,7 +90,7 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                 if (connectMapping)
                     await eachAsync(connectMapping, async (config, connectionString) =>
                     {
-                        if (container)
+                        if (result)
                             return;
                         try
                         {
@@ -95,7 +98,7 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                             const url = new URL(connectionString);
                             if (url.hostname == '0.0.0.0')
                                 url.hostname = 'localhost';
-                            container = await connect(url, c.abort.signal, metaContainer);
+                            result = await protocolHandlers.process(url, { signal: c.abort.signal, container: backChannelContainer }, {})
                         }
                         catch (e)
                         {
@@ -109,15 +112,27 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
 
                     })
             }
-            if (container)
+            if (result)
             {
-                container.unregister(Cli.Metadata.name);
-                container.register(Metadata.extractCommandMetadata(Cli.Metadata));
+                remotePm.processor.useMiddleware(20, result.processor);
 
-                await container.attach(Triggers.cli, cli);
-                const run = container.resolve('run')
-                container.unregister('run');
-                container.register({ ...Metadata.extractCommandMetadata(run), processor: fs });
+                registerCommands(metaContainer.commands.filter(c => !['run', 'connect', Cli.Metadata.name].includes(c.name)), null, remotePm);
+                remotePm.unregister(Cli.Metadata.name);
+                remotePm.register(Metadata.extractCommandMetadata(Cli.Metadata));
+
+                remotePm.register({ ...metaContainer.commands.find(c => c.name === 'run'), processor: fs });
+
+                remotePm.register(new SelfDefinedCommand((name: string, param: StructuredParameters<unknown[]>) =>
+                {
+                    if (name == 'pm')
+                        return { [pmConnectInfo.toString()]: {} };
+                    return result.processor.handle(pm, metaContainer.commands.find(c => c.name === 'connect'), param).then(e => { throw e }, r => r);
+                }, 'connect', [
+                    "param.0",
+                    "$param"
+                ]));
+
+                await remotePm.attach(Triggers.cli, cli);
             }
         }
     })

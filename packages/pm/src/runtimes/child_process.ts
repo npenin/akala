@@ -49,9 +49,9 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
         this.cp.on('close', (code, signal) => { this.emit('close', code, signal); this.emit('exit') });
         this.cp.on('message', (message, sendHandle) => this.emit('message', message, sendHandle));
 
-        this.cp.on('disconnect', () => { this.emit('disconnect'); });
+        this.cp.on('disconnect', () => this.emit('disconnect'));
         if (options.keepAttached)
-            this.cp.on('disconnect', () => { this.emit('exit') });
+            this.cp.on('disconnect', () => this.emit('exit'));
 
         signal?.addEventListener('abort', () =>
         {
@@ -75,7 +75,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
                 resolve(code);
             })
             this.cp.kill(signal);
-            const timeout = setTimeout(() => { this.cp.kill() }, timeoutInMs || 5000)
+            const timeout = setTimeout(() => { this.cp.kill('SIGKILL') }, timeoutInMs || 5000)
         })
     }
 

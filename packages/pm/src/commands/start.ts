@@ -86,7 +86,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             break;
         case 'nodejs':
             args.push('--pm-sock', 'ipc://')
-            cp = ChildProcess.build(args, options);
+            cp = ChildProcess.build(args, { ...options, keepAttached: true });
             break;
         default:
             throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
@@ -108,9 +108,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
             container.running = false;
         });
 
-        if (def?.commandable)
-            pm.register(container, def?.stateless);
-
         this.processes[options.name] = container;
     }
     container.process = cp;
@@ -121,16 +118,17 @@ export default async function start(this: State, pm: pmContainer.container & Con
     {
         container.unregister(Cli.Metadata.name);
         container.register(Metadata.extractCommandMetadata(Cli.Metadata));
-    }
-    container.ready.addListener(() =>
-    {
-        return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
+
+        container.ready.addListener(() =>
         {
-            updateCommands(metaContainer.commands, null, container);
-            container.stateless = metaContainer.stateless;
-            pm.register(name, container, true);
+            return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
+            {
+                updateCommands(metaContainer.commands, null, container);
+                container.stateless = metaContainer.stateless;
+                pm.register(name, container, true);
+            });
         });
-    });
+    }
     // , () =>
     // {
     //     console.warn(`${options.name} has disconnected`);
