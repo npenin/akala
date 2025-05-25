@@ -1,9 +1,9 @@
-#  (2025-05-21)
+#  (2025-05-25)
 
 
-### Bug Fixes
+### Features
 
-* ErrorMiddleware input type 1b43611
+* add spread helper that does not evaluate getters 9830448
 
 
 
