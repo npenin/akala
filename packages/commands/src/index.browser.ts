@@ -26,10 +26,10 @@ export { protocolHandlers, HandlerResult, serverHandlers, ServerHandler };
 
 export const Triggers = {}
 
-export async function connect(socketPath: string | URL, signal: AbortSignal, resolvedMetadata?: Metadata.Container): Promise<Container<unknown>>
+export async function connect(socketPath: string | URL, signal: AbortSignal, resolvedMetadata?: Metadata.Container, backChannelContainer?: Container<unknown>): Promise<Container<unknown>>
 {
     const container = new Container('proxy', null);
-    const { processor, getMetadata } = await protocolHandlers.process(new URL(socketPath), { signal, container }, {})
+    const { processor, getMetadata } = await protocolHandlers.process(new URL(socketPath), { signal, container: backChannelContainer }, {})
 
     const meta = resolvedMetadata || await getMetadata();
     container.name = meta.name;
