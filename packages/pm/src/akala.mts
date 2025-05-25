@@ -77,9 +77,9 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
             if (c.options.pmSock)
             {
                 if (typeof (c.options.pmSock) == 'string')
-                    result = await protocolHandlers.process(new URL(c.options.pmSock), { signal: c.abort.signal, container: backChannelContainer }, {})
+                    result = await protocolHandlers.process(pmConnectInfo = new URL(c.options.pmSock), { signal: c.abort.signal, container: backChannelContainer }, {})
                 else
-                    result = await protocolHandlers.process(new URL('jsonrpc+tcp://localhost:' + c.options.pmSock), { signal: c.abort.signal, container: backChannelContainer }, {})
+                    result = await protocolHandlers.process(pmConnectInfo = new URL('jsonrpc+tcp://localhost:' + c.options.pmSock), { signal: c.abort.signal, container: backChannelContainer }, {})
             }
             else
             {
@@ -95,7 +95,7 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
                         try
                         {
                             log.verbose('trying to connect to ' + connectionString);
-                            const url = new URL(connectionString);
+                            const url = pmConnectInfo = new URL(connectionString);
                             if (url.hostname == '0.0.0.0')
                                 url.hostname = 'localhost';
                             result = await protocolHandlers.process(url, { signal: c.abort.signal, container: backChannelContainer }, {})
