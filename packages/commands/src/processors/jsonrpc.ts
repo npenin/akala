@@ -80,9 +80,9 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
     if (!(url instanceof URL))
         url = new URL(url);
     if (url.hostname == '0.0.0.0' || url.hostname == '*')
-        await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen(url, resolve) });
+        await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen({ port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
     else
-        await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen(url, resolve) });
+        await new Promise<void>((resolve, reject) => { server.once('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); server.listen({ port: isNaN(Number(url.port)) ? 31416 : Number(url.port), host: url.hostname }, resolve) });
 
     options.signal?.addEventListener('abort', () => server.close((err => { console.error(err) })));
 })
