@@ -401,6 +401,7 @@
 * pm start 75d92fd
 * pm start d3d04b3
 * pm start when no kept attached 17fc708
+* pmConnectInfo not populated 8cd0190
 * positional parameters 0839d7d
 * positional parameters 4c7e6df
 * postinstall after cli update 6e53e1f
