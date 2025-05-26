@@ -15,6 +15,7 @@ RUN mkdir /usr/src/akala/db && \
     yarn config set nodeLinker node-modules && \
     yarn config set enableGlobalCache false && \
     yarn config set compressionLevel mixed && \
+    yarn set version latest && \
     yarn add @akala/pm @akala/server
 ENV PATH=/usr/src/akala/node_modules/.bin:${PATH}
 ENV NODE_ENV=production
