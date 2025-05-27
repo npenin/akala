@@ -116,7 +116,9 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
             {
                 remotePm.processor.useMiddleware(20, result.processor);
 
-                registerCommands(metaContainer.commands.filter(c => !['run', 'connect', Cli.Metadata.name].includes(c.name)), null, remotePm);
+                const remoteMeta = await result.getMetadata();
+
+                registerCommands(remoteMeta.commands.filter(c => !['run', 'connect', Cli.Metadata.name].includes(c.name)), null, remotePm);
                 remotePm.unregister(Cli.Metadata.name);
                 remotePm.register(Metadata.extractCommandMetadata(Cli.Metadata));
 
