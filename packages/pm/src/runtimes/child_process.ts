@@ -24,6 +24,8 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
     public static readonly name = 'nodejs';
     private readonly cp: ChildProcess;
     public readonly adapter: IpcAdapter;
+    private readonly stderrPrefixer: NewLinePrefixer;
+    private readonly stdoutPrefixer: NewLinePrefixer;
     constructor(args: string[], options: ChildProcessRuntimeOptions, signal?: AbortSignal)
     {
         super();
@@ -33,25 +35,25 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
         this.cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !options.keepAttached, env: Object.assign({ DEBUG_COLORS: process.stdout.isTTY }, process.env), stdio: ['ignore', options.inheritStdio ? 'inherit' : 'pipe', options.inheritStdio ? 'inherit' : 'pipe', 'ipc'], shell: false, windowsHide: true });
         if (options.keepAttached && !options.inheritStdio)
         {
-            const stderrPrefixer = this.cp.stderr?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stderr.isTTY }), { end: true });
-            stderrPrefixer.pipe(process.stderr);
-            const stdoutPrefixer = this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stdout.isTTY }), { end: true });
-            stdoutPrefixer.pipe(process.stdout);
+            this.stderrPrefixer = this.cp.stderr?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stderr.isTTY }), { end: true });
+            this.stderrPrefixer.pipe(process.stderr);
+            this.stdoutPrefixer = this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stdout.isTTY }), { end: true });
+            this.stdoutPrefixer.pipe(process.stdout);
             this.on('disconnect', () =>
             {
                 this.cp.stderr?.unpipe();
                 this.cp.stdout?.unpipe();
-                stderrPrefixer?.unpipe();
-                stdoutPrefixer?.unpipe();
+                this.stderrPrefixer?.unpipe();
+                this.stdoutPrefixer?.unpipe();
             });
         }
         this.adapter = new IpcAdapter(this.cp);
-        this.cp.on('close', (code, signal) => { this.emit('close', code, signal); this.emit('exit') });
+        this.cp.on('exit', (code, signal) => { this.emit('exit', code, signal) });
         this.cp.on('message', (message, sendHandle) => this.emit('message', message, sendHandle));
 
         this.cp.on('disconnect', () => this.emit('disconnect'));
         if (options.keepAttached)
-            this.cp.on('disconnect', () => this.emit('exit'));
+            this.cp.on('disconnect', () => this.emit('exit', this.cp.exitCode, this.cp.signalCode));
 
         signal?.addEventListener('abort', () =>
         {
@@ -65,7 +67,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
             }
         })
     }
-    stop(timeoutInMs?: number, signal?: 'SIGINT' | 'SIGTERM'): Promise<number>
+    stop(timeoutInMs?: number, signal?: 'SIGINT' | 'SIGTERM' | 'SIGKILL'): Promise<number>
     {
         return new Promise((resolve) =>
         {
@@ -75,7 +77,12 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
                 resolve(code);
             })
             this.cp.kill(signal);
-            const timeout = setTimeout(() => { this.cp.kill('SIGKILL') }, timeoutInMs || 5000)
+            if (signal == 'SIGTERM')
+            {
+                this.stderrPrefixer?.unpipe();
+                this.stdoutPrefixer?.unpipe();
+            }
+            const timeout = setTimeout(() => { this.stop(timeoutInMs, signal == 'SIGINT' ? 'SIGTERM' : 'SIGKILL') }, timeoutInMs || 5000)
         })
     }
 
