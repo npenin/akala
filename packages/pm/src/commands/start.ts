@@ -138,15 +138,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
     container.running = true;
     let buffer = [];
 
-    cp.on('exit', function ()
-    {
-        container.running = false;
-        if (!container.stateless)
-        {
-            pm.unregister(container.name);
-            console.log(new Error('program stopped: ' + buffer?.join('')));
-        }
-    });
     if (options.wait && container.commandable)
     {
         //eslint-disable-next-line no-inner-declarations
@@ -155,12 +146,27 @@ export default async function start(this: State, pm: pmContainer.container & Con
             buffer.push(chunk);
         }
         cp.stderr.on('data', gather);
-        cp.on('exit', () =>
+        cp.on('exit', (code) =>
         {
-            buffer = null;
             cp.stderr.off('data', gather);
-        });
+
+            if (code && buffer?.length > 0)
+                console.error(buffer.join(''));
+            buffer = null;
+        })
     }
+
+    cp.on('exit', function ()
+    {
+        container.running = false;
+        if (!container.stateless)
+        {
+            pm.unregister(container.name);
+            if (buffer?.length > 0)
+                console.log(new Error('program stopped: ' + buffer?.join('')));
+        }
+    });
+
     if (options.wait)
         await new Promise<void>(resolve => container.ready?.addListener(resolve));
     return { execPath: process.execPath, args: args, cwd: process.cwd(), shell: false, windowsHide: true };
