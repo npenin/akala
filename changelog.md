@@ -1,4 +1,4 @@
-#  (2025-05-26)
+#  (2025-05-27)
 
 
 * chore : code cleanup eae1150
@@ -225,6 +225,7 @@
 * force run init-akala only once (no matter the trigger) 1acbe99
 * force set configFile path c42e60b
 * force set configFile path f22123d
+* force stop increasingly INT->TERM->KILL 1658c43
 * forcing command trigger through name b327d25
 * forcing context build f5dfdbc
 * forcing context build b3fe873
@@ -437,6 +438,7 @@
 * relative extension path computation 3fe635f
 * release tagging 61cb1e1
 * release tagging b7cf1aa
+* remotePm metadata 47a98f6
 * remove - as valid character 9a9f5b5
 * remove Buffer reference for non-node runtimes 18ea445
 * remove cjs reference e501923
@@ -449,6 +451,7 @@
 * remove existing commit function on new config creation 1811cfc
 * remove extra code and wrong return 0695910
 * remove extra logging 6b70092
+* remove handler on attach d52021c
 * remove invalid require usage 360ced2
 * remove invalid require usage 72645d2
 * remove name option "mandatoryness" as we should already be in a valid node project 575e95a
@@ -499,6 +502,7 @@
 * revert options copy on buildCliContextFromContext 1cbbd3e
 * revert to cayman cf3e496
 * revert to cayman b7cd5e2
+* route cli usage 408d064
 * routing 033343d
 * routing 0bd2fdd
 * run as user instead of root f06cbb8
@@ -756,6 +760,7 @@
 * add client install support 63a020d
 * add client install support 02b05eb
 * add close on FileGenerator db6fd88
+* add code and signal to exit event 16472d5
 * add combineSubscriptions helper f569432
 * add commands getting-started guide 5492118
 * add commands getting-started guide 1564b82
