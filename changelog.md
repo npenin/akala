@@ -1,4 +1,4 @@
-#  (2025-05-25)
+#  (2025-05-26)
 
 
 * chore : code cleanup eae1150
@@ -336,6 +336,7 @@
 * improve session default expiration to 5min instead of 300ms 9bfe110
 * improve type checking 457c1b3
 * improve typing in vite.config.mts 11e538a
+* improve yarn config a47ff40
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
 * inifinite loop ccf7416
@@ -505,6 +506,7 @@
 * semantic release based on branch 8b7d109
 * server.close returns a promise a2a8a5f
 * serverHandlers not fulling promise 4695ccb
+* set yarn version 2427848
 * setAttribute when provided object a3eff3d
 * simple injector resolution with resolvable arrays 8411f99
 * simplify and smoother observablearray "piping" 18f75b2
