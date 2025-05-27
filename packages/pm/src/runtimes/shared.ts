@@ -10,7 +10,7 @@ export interface Runtime
 
 export type RuntimeEventMap = {
     runningChanged: IEvent<[], void>;
-    exit: IEvent<[], void>;
+    exit: IEvent<[number, NodeJS.Signals], void>;
 }
 
 export interface RuntimeInstance<T extends RuntimeEventMap = RuntimeEventMap> extends EventEmitter<T>
