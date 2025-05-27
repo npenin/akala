@@ -146,12 +146,12 @@ export default async function start(this: State, pm: pmContainer.container & Con
             buffer.push(chunk);
         }
         cp.stderr.on('data', gather);
-        cp.on('exit', (code) =>
+        cp.on('exit', (code, signal) =>
         {
             cp.stderr.off('data', gather);
 
-            if (code && buffer?.length > 0)
-                console.error(buffer.join(''));
+            if ((signal || code) && buffer?.length > 0)
+                console.error(new Error('program stopped: ' + buffer.join('')));
             buffer = null;
         })
     }
@@ -159,12 +159,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     cp.on('exit', function ()
     {
         container.running = false;
-        if (!container.stateless)
-        {
-            pm.unregister(container.name);
-            if (buffer?.length > 0)
-                console.log(new Error('program stopped: ' + buffer?.join('')));
-        }
+        pm.unregister(container.name);
     });
 
     if (options.wait)
