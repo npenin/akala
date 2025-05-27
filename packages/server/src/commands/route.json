@@ -1,24 +1,38 @@
 {
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
     "cli": {
+        "usage": "route <route> <path>",
         "inject": [
-            "param.0",
-            "param.1",
+            "options.route",
+            "options.path",
             "options",
             "cwd"
         ],
         "options": {
-            "normalize": [
-                "param.1",
-                "root"
-            ],
-            "boolean": [
-                "get",
-                "use",
-                "pre",
-                "auth",
-                "app"
-            ]
+            "get": {
+                "needsValue": false
+            },
+            "use": {
+                "needsValue": false
+            },
+            "pre": {
+                "needsValue": false
+            },
+            "auth": {
+                "needsValue": false
+            },
+            "app": {
+                "needsValue": false
+            },
+            "path": {
+                "needsValue": true,
+                "normalize": true
+            },
+            "route": {
+                "needsValue": true,
+                "normalize": true,
+                "doc": "root path for the route"
+            }
         }
     },
     "": {
