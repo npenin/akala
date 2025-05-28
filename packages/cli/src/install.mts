@@ -1,5 +1,5 @@
-import npm from './npm-helper.js'
-import yarn, { hasYarn } from './yarn-helper.js'
+import npm from './xpm/npm-helper.js'
+import yarn, { hasYarn } from './xpm/yarn-helper.js'
 import program, { buildCliContextFromContext } from './index.js';
 import { AkalaConfig } from './cli.js';
 
