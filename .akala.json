@@ -18,7 +18,8 @@
             "server": {
                 "path": "./packages/server/commands.json",
                 "commandable": true,
-                "stateless": false
+                "stateless": false,
+                "type": "nodejs"
             }
         },
         "mapping": {
@@ -26,9 +27,15 @@
                 "container": "pm",
                 "connect": {
                     "jsonrpc+unix://./pm.sock": {},
-                    "jsonrpc+tcp://0.0.0.0:31416": {},
-                    "ws://0.0.0.0:31415": {}
+                    "jsonrpc+tcp://0.0.0.0:31416": {}
                 }
+            },
+            "server": {
+                "connect": {
+                    "ws://0.0.0.0:8080": {},
+                    "http://0.0.0.0:8080": {}
+                },
+                "autostart": true
             }
         },
         "plugins": []
