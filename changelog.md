@@ -1,4 +1,4 @@
-#  (2025-05-27)
+#  (2025-05-28)
 
 
 * chore : code cleanup eae1150
@@ -243,6 +243,7 @@
 * handle case when url pathname is empty b44a1dc
 * handle cases when no auth is configured for the current trigger a4ac9a0
 * handle container metadata in the activate stage fedf680
+* handle duplicate ws and http servers e1855d7
 * handle edge case on datacontext definition 50c0275
 * handle first run case f1ffe66
 * handle hotkey when no previous key was pressed a5f3b71
@@ -328,6 +329,7 @@
 * improve formatter behavior 30996cd
 * improve isomorphicbuffer usability e0ff541
 * improve parser performances 158b46d
+* improve process cleanup aff53f4
 * improve reliability 8fc7212
 * improve resolvable wrintings f67e854
 * improve resolvable wrintings 6be2301
@@ -510,6 +512,7 @@
 * semantic release based on branch 8b7d109
 * server.close returns a promise a2a8a5f
 * serverHandlers not fulling promise 4695ccb
+* set relativeTo when using npm protocol 68385e3
 * set yarn version 2427848
 * setAttribute when provided object a3eff3d
 * simple injector resolution with resolvable arrays 8411f99
@@ -640,6 +643,7 @@
 * update CLI title and remove navigation exclusion c448dd1
 * update commands b3d2e1e
 * update commands 168670b
+* update config b984b49
 * update dev dependency 62fdb89
 * update documentation files to exclude from navigation and improve file creation logic f2b1bfe
 * update documentation files to exclude from navigation and improve file creation logic febbad3
