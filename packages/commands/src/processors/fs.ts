@@ -53,7 +53,7 @@ handlers.useProtocol('npm',
         options.fs = fs;
 
 
-        return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(url, options) }
+        return { processor: new FileSystem(options.relativeTo || options.fs.root), getMetadata: () => FileSystem.discoverMetaCommands(url, options) }
     });
 
 
