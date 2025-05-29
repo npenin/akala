@@ -249,6 +249,7 @@
 * handle hotkey when no previous key was pressed a5f3b71
 * handle init lifecycle stage 54a8169
 * handle no pubsub config 40e7ff2
+* handle null configuration value b5d6df1
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
 * handle pre-processed context d0b91a8
@@ -552,6 +553,7 @@
 * standardize section titles in documentation for consistency d8b067b
 * standardize section titles in documentation for consistency b2026f2
 * start in cli c0ad45e
+* state also uses sub configuration d8e0539
 * stop in process runtime d49bb87
 * stop mixing init and init-akala 8e0e27b
 * stop re-exporting spawnAsync from cli 2c2e894
