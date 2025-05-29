@@ -229,7 +229,7 @@ export default class Configuration<T extends object = SerializableObject>
                     return config;
                 return config[key];
             }, this.config);
-            if (typeof value == 'object' && !Array.isArray(value))
+            if (typeof value == 'object' && value && !Array.isArray(value))
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 return Configuration.new(this.path, value as SerializableObject, this.rootConfig, this.cryptKey) as any;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
