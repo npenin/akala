@@ -1,7 +1,7 @@
 import { Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
 import { ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container } from '@akala/commands'
-import { SerializableDefinition, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
+import { SerializableDefinition, PersistenceEngine, providers, Store, StoreDefinition, ModelDefinition } from '@akala/storage'
 import { EventBus, Serializable, eachAsync, eventBuses, module } from '@akala/core';
 import { CliContext, OptionType } from '@akala/cli'
 
@@ -64,14 +64,19 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     switch (typeof stateStoreConfig)
     {
         case 'string':
-            await providers.process(stateStoreConfig || 'file://./').then(async (engine: PersistenceEngine<unknown>) =>
+            await providers.process(new URL(stateStoreConfig || 'file://./')).then(async (engine: PersistenceEngine<unknown>) =>
             {
                 sidecar.store = Store.create<T>(engine);
             });
             break;
         case 'object':
-            throw new Error('Unsupported configuration type')
+            await providers.process(new URL(stateStoreConfig.provider || 'file://./')).then(async (engine: PersistenceEngine<unknown>) =>
+            {
+                const models = Object.entries(stateStoreConfig.models).map(e => [e[0], ModelDefinition.fromJson(e[0], '', e[1], engine.definitions)]);
 
+                sidecar.store = Store.create<T>(engine, Object.fromEntries(models));
+            });
+            break;
         // if (Array.isArray(stateStoreConfig))
         // {
         //     const engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
