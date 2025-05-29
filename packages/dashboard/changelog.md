@@ -7,4 +7,9 @@
 * update after client breaking change ffa91c6
 
 
+### Features
+
+* add TileManager (incomplete) 9e0d08f
+
+
 
