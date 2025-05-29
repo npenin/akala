@@ -222,6 +222,34 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
             } : undefined);
     }
 
+    /**
+     * Creates a new instance of `ModelDefinition` from a JSON string or a `SerializableDefinition` object.
+     *
+     * @template TObject - The type of the object represented by the model.
+     * @param name - The name of the model.
+     * @param namespace - The namespace of the model.
+     * @param data - The JSON string or `SerializableDefinition` object containing the model data.
+     * @param modelHolder - A record containing existing model definitions, used for reference resolution.
+     * @returns A new `ModelDefinition` instance populated with the provided data.
+     */
+    public static fromJson<TObject extends object>(name: string, namespace: string, data: string | SerializableDefinition<TObject>, modelHolder: Record<string, ModelDefinition<unknown>>)
+    {
+        const model = new ModelDefinition<TObject>(name, namespace);
+        model.fromJson(data, modelHolder);
+        return model;
+    }
+
+    /**
+     * Populates the current model definition from a JSON string or a serializable definition object.
+     *
+     * This method parses the provided data and updates the model's fields, relationships, and members
+     * according to the definition. It uses the provided `modelHolder` to resolve related models.
+     *
+     * @template TObject - The type of the object being deserialized.
+     * @param data - The JSON string or serializable definition object representing the model.
+     * @param modelHolder - A record mapping model names to their corresponding model definitions, used to resolve relationships.
+     * @throws {Error} If the provided data cannot be parsed or is not a valid object.
+     */
     fromJson(data: string | SerializableDefinition<TObject>, modelHolder: Record<string, ModelDefinition<unknown>>)
     {
         if (typeof data == 'string')
