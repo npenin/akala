@@ -25,6 +25,7 @@
 * add front matter attributes to index.md for improved documentation structure cacdb9a
 * add front matter title and parent attributes to markdown files for consistency cb199f6
 * add front matter title and parent attributes to markdown files for consistency 995d102
+* add i18n 603ec11
 * add InitAkala and AuthHandler on server eabf4fe
 * add InitAkala and AuthHandler on server 54f96ca
 * add initial documentation files for Akala client and set navigation exclusions c3f96e5
@@ -252,6 +253,7 @@
 * handle null configuration value b5d6df1
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
+* handle object config type a0831b7
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
 * handle proper termination 91c7535
@@ -360,6 +362,7 @@
 * link to pm source fc73c95
 * links e6a33ea
 * links 53c17f6
+* login import 6cb7589
 * login page sonar issues e620328
 * make fs private for now 6e84b29
 * make modelDefinitions readonly f797208
@@ -826,9 +829,11 @@
 * add SIGINT and SIGTERM signals handling 6906860
 * add sort and parse formatters 5b06cdd
 * add spread helper that does not evaluate getters 9830448
+* add static fromJson on ModelDefinition 78f3d71
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
 * add table row event handlers 392d906
+* add TileManager (incomplete) 9e0d08f
 * add TopDown and BottomUp namespace event emitters d8e148e
 * add type to status fb8961e
 * add uri on request to be able to know the full url of a request a189409
