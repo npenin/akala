@@ -59,7 +59,8 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     module('@akala/pm').register('container', sidecar.pm, true);
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
-    sidecar.pubsub = await eventBuses.process(new URL(pubsubConfig.transport), pubsubConfig.transportOptions);
+    if (pubsubConfig?.transport)
+        sidecar.pubsub = await eventBuses.process(new URL(pubsubConfig.transport), pubsubConfig.transportOptions);
     switch (typeof stateStoreConfig)
     {
         case 'string':
