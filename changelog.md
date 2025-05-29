@@ -1,4 +1,4 @@
-#  (2025-05-28)
+#  (2025-05-29)
 
 
 * chore : code cleanup eae1150
@@ -248,6 +248,7 @@
 * handle first run case f1ffe66
 * handle hotkey when no previous key was pressed a5f3b71
 * handle init lifecycle stage 54a8169
+* handle no pubsub config 40e7ff2
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
 * handle pre-processed context d0b91a8
