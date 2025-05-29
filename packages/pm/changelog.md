@@ -1,9 +1,9 @@
-#  (2025-05-28)
+#  (2025-05-29)
 
 
 ### Bug Fixes
 
-* improve process cleanup aff53f4
+* state also uses sub configuration d8e0539
 
 
 
