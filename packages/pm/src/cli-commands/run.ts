@@ -74,7 +74,12 @@ export default async function run(program: string, name: string, c: CliContext<{
     {
         const subContext = buildCliContextFromContext(c, '$init', ...c.options.args);
         subContext.options = c.options;
-        subContext.options.configFile = c.options.configFile + '#' + c.options.name
+        subContext.options.configFile = c.options.configFile + '#' + c.options.name;
+        subContext.state = c.state[c.options.name];
+        if (!subContext.state)
+            c.state[c.options.name] = {};
+        subContext.state = c.state[c.options.name];
+
         await cli.process(subContext);
     }
 
