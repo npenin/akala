@@ -1,10 +1,11 @@
 import { Scope as IScope, Page, page, LocationService, ScopeImpl } from '@akala/client'
 import { Container, Processors } from '@akala/commands';
+import template from './login.html?raw'
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: Processors.EventProcessor }>;
 
 @page({
-    template: 'test/login/login.html',
+    template: template,
     inject: [ScopeImpl.injectionToken, '$modules.akala-services.$location']
 })
 export class Login extends Page
