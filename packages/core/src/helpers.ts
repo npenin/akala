@@ -114,11 +114,13 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
 
     public static concat(buffers: IsomorphicBuffer[])
     {
-        const totalLength = buffers.reduce((previous, current) => previous + current.length, 0);
+        const totalLength = buffers.reduce((previous, current) => previous + current?.length, 0);
         const target = new IsomorphicBuffer(totalLength);
         let offset = 0;
         for (const buffer of buffers)
         {
+            if (!buffer?.length)
+                continue;
             target.copy(buffer, offset)
             offset += buffer.length;
         }
