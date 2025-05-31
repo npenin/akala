@@ -1,4 +1,4 @@
-#  (2025-05-29)
+#  (2025-05-31)
 
 
 * chore : code cleanup eae1150
@@ -246,6 +246,7 @@
 * handle container metadata in the activate stage fedf680
 * handle duplicate ws and http servers e1855d7
 * handle edge case on datacontext definition 50c0275
+* handle empty or undefined buffers in concat 3bae07f
 * handle first run case f1ffe66
 * handle hotkey when no previous key was pressed a5f3b71
 * handle init lifecycle stage 54a8169
@@ -696,6 +697,7 @@
 * update to support login redirect d2e8e6e
 * update type annotations for Base64 encoding functions and improve handling of ArrayBuffer d2157f1
 * update vite tests and vite config b8e8524
+* url handler will fail with Error 404 if not found e13a9a6
 * use combineSubscriptions helper e569526
 * use helpers from @akala/cli 74292f2
 * use new spread helper to prevent blocking stdin abf4ad0
