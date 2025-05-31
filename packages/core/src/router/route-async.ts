@@ -1,8 +1,7 @@
 import { MiddlewarePromise, NotHandled, SpecialNextParam, MiddlewareAsync } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
 import { Routable, RouteBuilderArguments } from "./route.js";
-import { UriTemplate } from '../uri-template/index.js';
-import { UrlTemplate } from '../index.js';
+import { match, parse, UriTemplate } from '../uri-template/index.js';
 
 /**
  * Represents an asynchronous route handler for URI template matching in middleware chains.
@@ -23,7 +22,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]], TSpecialNe
     constructor(route: string | UriTemplate)
     {
         super(route.toString());
-        this.routePath = Array.isArray(route) ? route : UrlTemplate.parse(route);
+        this.routePath = Array.isArray(route) ? route : parse(route);
     }
 
     /**
@@ -63,7 +62,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]], TSpecialNe
     async handle(...context: T): MiddlewarePromise<TSpecialNextParam>
     {
         const req = context[0];
-        const isMatch = UrlTemplate.match(req.path, this.routePath);
+        const isMatch = match(req.path, this.routePath);
 
         if (isMatch && (!this.isApplicable || this.isApplicable(req)))
         {
