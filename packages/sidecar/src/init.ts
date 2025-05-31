@@ -47,12 +47,12 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     const stateStoreConfig = context.state.store?.extract();
 
     context.logger.debug('connecting to pm...');
-    if (typeof remotePm != 'string')
+    if (typeof remotePm != 'string' && remotePm)
         sidecar.pm = remotePm;
     else
     {
         //eslint-disable-next-line @typescript-eslint/no-var-requires
-        var result = await connectByPreference<void>(context.state.get('pm.mapping.pm.connect'), { host: remotePm, metadata: pmMeta })
+        var result = await connectByPreference<void>(context.state.get('pm.mapping.pm.connect'), { host: remotePm as string, metadata: pmMeta })
         sidecar.pm = result.container as Container<void> & pm;
     }
 
