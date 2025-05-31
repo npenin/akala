@@ -64,13 +64,13 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     switch (typeof stateStoreConfig)
     {
         case 'string':
-            await providers.process(new URL(stateStoreConfig || 'file://./')).then(async (engine: PersistenceEngine<unknown>) =>
+            await providers.process(new URL(stateStoreConfig || 'file+json://./')).then(async (engine: PersistenceEngine<unknown>) =>
             {
                 sidecar.store = Store.create<T>(engine);
             });
             break;
         case 'object':
-            await providers.process(new URL(stateStoreConfig.provider || 'file://./')).then(async (engine: PersistenceEngine<unknown>) =>
+            await providers.process(new URL(stateStoreConfig.provider || 'file+json://./')).then(async (engine: PersistenceEngine<unknown>) =>
             {
                 const models = Object.entries(stateStoreConfig.models).map(e => [e[0], ModelDefinition.fromJson(e[0], '', e[1], engine.definitions)]);
 
