@@ -444,6 +444,7 @@
 * re-tag tag deletion e6274d1
 * re-tagging workflow bc599dc
 * re-tagging workflow 5539b6b
+* ready for pm 22151a2
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
 * relative extension path computation 3fe635f
