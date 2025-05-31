@@ -1,7 +1,8 @@
-import { Router } from "./router/router.js";
 import { MiddlewareCompositeAsync } from "./middlewares/composite-async.js";
 import { MiddlewareAsync, MiddlewarePromise } from "./middlewares/shared.js";
 import { Routable } from "./router/route.js";
+import ErrorWithStatus, { HttpStatusCode } from "./errorWithStatus.js";
+import { RouterAsync } from "./router/router-async.js";
 
 type MiddlewareError = 'break' | 'loop' | undefined;
 
@@ -25,7 +26,7 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
     /** 
      * Router for path-based routing 
      */
-    router: Router<[Routable, ...T]>;
+    router: RouterAsync<[Routable, ...T]>;
 
     /**
      * Creates a new URL handler instance
@@ -34,7 +35,7 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
     {
         this.protocol = new MiddlewareCompositeAsync('protocols');
         this.host = new MiddlewareCompositeAsync('domains');
-        this.router = new Router('path');
+        this.router = new RouterAsync('path');
     }
 
     /**
@@ -125,6 +126,7 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
         }, ...context);
         if (error)
             return error;
+        return new ErrorWithStatus(HttpStatusCode.NotFound)
     }
 }
 
