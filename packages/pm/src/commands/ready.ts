@@ -2,11 +2,11 @@ import { $metadata, Container, Metadata, registerCommands, SelfDefinedCommand } 
 import pm from '../container.js';
 import State, { RunningContainer } from '../state.js';
 
-export default async function ready(this: State, pm: pm.container & Container<State>, container: RunningContainer, standaloneContainer: Container<void>): Promise<void>
+export default async function ready(this: State, pm: pm.container & Container<State>, container: RunningContainer, standaloneContainer: RunningContainer): Promise<void>
 {
-    if (standaloneContainer['process'])
+    if (standaloneContainer?.process)
     {
-        container = standaloneContainer as RunningContainer;
+        container = standaloneContainer;
         if (!container.stateless)
             standaloneContainer = null;
     }

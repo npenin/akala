@@ -101,6 +101,9 @@ export default async function run(program: string, name: string, c: CliContext<{
 
     if (pm !== cliContainer)
         await pm.dispatch('ready')
+    else
+        await pm.dispatch('ready', { _trigger: 'pm', param: [pm] })
+
 
     return new Promise(resolve => c.abort.signal.addEventListener('abort', resolve))
 }

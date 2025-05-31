@@ -6,7 +6,7 @@ import { PassThrough } from 'stream';
 import { CliContext } from '@akala/cli';
 import { Configuration } from '@akala/config';
 import { fileURLToPath } from 'url';
-import { eachAsync } from '@akala/core';
+import { eachAsync, Event } from '@akala/core';
 import Process from '../runtimes/process.js';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
@@ -76,6 +76,8 @@ export default async function (this: State, container: RunningContainer & pmCont
         stderr: stderrPT,
         stdin: process.stdin
     });
+
+    container.ready = new Event();
 
     const configPath = context.options.configFile || './.pm.config.json';
     this.config = await Configuration.load<StateConfiguration>(configPath, true);
