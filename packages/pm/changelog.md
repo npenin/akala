@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* move autostart to ready event fe98d3f
+* ready for pm 22151a2
 
 
 
