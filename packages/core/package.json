@@ -3,8 +3,8 @@
     "version": "39.2.0",
     "description": "",
     "scripts": {
-        "test": "node --test --enable-source-maps",
-        "coverage": "yarn test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
+        "test": "node --test --enable-source-maps dist/esm/test/*.js",
+        "coverage": "node --test --enable-source-maps --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info dist/esm/test/*.js",
         "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json"
     },
