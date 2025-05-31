@@ -251,6 +251,7 @@
 * handle hotkey when no previous key was pressed a5f3b71
 * handle init lifecycle stage 54a8169
 * handle no pubsub config 40e7ff2
+* handle null case 9c3dc93
 * handle null configuration value b5d6df1
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
@@ -393,9 +394,11 @@
 * mongodb storage aee06bc
 * move all code to cli install ad7249d
 * move all code to cli install 991eda8
+* move autostart to ready event fe98d3f
 * move HttpStatusCode to be more "independent" of Http 0bcb3aa
 * multiple modules may be started simultaneously 3ea8a55
 * nested bindings change detection and oldValue assignment 8f373ca
+* node test pattern cbfe1b4
 * npm fs handler using import.meta.resolve 4da63aa
 * obersavable array array mimicking d310c55
 * oidc discover properly returns options for authorize, token and keys 0934291
@@ -602,6 +605,7 @@
 * unit test a5932d1
 * unit tests 5ea6752
 * unit tests ddef0ab
+* unknown storage provider 37b9109
 * update add-script command to work with node 22+ 1500158
 * update add-script command to work with node 22+ 701b5d4
 * update after akala cli refactoring 0187052
