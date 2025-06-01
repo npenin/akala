@@ -1,4 +1,4 @@
-#  (2025-05-31)
+#  (2025-06-01)
 
 
 * chore : code cleanup eae1150
@@ -360,6 +360,7 @@
 * IsomorphicBuffer 1885b99
 * leverage core case converters 63bcf6b
 * leverage EventProcessor to allow for more use cases 6e85fc6
+* leverage remotePm if no pm is provided 1c7c6ff
 * link to pm source 27aad27
 * link to pm source fc73c95
 * links e6a33ea
