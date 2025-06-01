@@ -4,6 +4,7 @@ import { connectByPreference, Container } from '@akala/commands'
 import { SerializableDefinition, PersistenceEngine, providers, Store, StoreDefinition, ModelDefinition } from '@akala/storage'
 import { EventBus, Serializable, eachAsync, eventBuses, module } from '@akala/core';
 import { CliContext, OptionType } from '@akala/cli'
+import { remotePm } from '@akala/pm/akala';
 
 export interface PubSubConfiguration
 {
@@ -22,7 +23,7 @@ export interface Sidecar<T extends StoreDefinition = unknown>
 {
     sidecars: pmSidecar;
     pubsub?: EventBus
-    pm: Container<void> & pm;
+    pm: Container<unknown> & pm;
     store?: StoreDefinition<T> & T;
 }
 
@@ -30,13 +31,13 @@ export type SidecarPluginConfiguration = { sidecar: string, optional: true, comm
 
 export type SidecarConfiguration = { pubsub?: PubSubConfiguration, store?: StoreConfiguration, plugins?: SidecarPluginConfiguration };
 
-export async function $init<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, remotePm?: string | (pm & Container<void>)): Promise<void>
+export async function $init<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, remotePm?: string | (pm & Container<unknown>)): Promise<void>
 {
     Object.assign(this, await app<T>(context, remotePm));
     context.logger.help('Your application is now ready !');
 }
 
-export default async function app<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
+export default async function app<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, localRemotePm?: string | (pm & Container<unknown>)): Promise<Sidecar<T>>
 {
     // if (typeof config == 'undefined')
     //     throw new Error('configuration is required');
@@ -47,14 +48,18 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     const stateStoreConfig = context.state.store?.extract();
 
     context.logger.debug('connecting to pm...');
-    if (typeof remotePm != 'string' && remotePm)
-        sidecar.pm = remotePm;
+
+    if (localRemotePm)
+        if (typeof localRemotePm != 'string')
+            sidecar.pm = localRemotePm;
+        else
+        {
+            //eslint-disable-next-line @typescript-eslint/no-var-requires
+            var result = await connectByPreference<void>(context.state.get('pm.mapping.pm.connect'), { host: localRemotePm, metadata: pmMeta })
+            sidecar.pm = result.container as Container<void> & pm;
+        }
     else
-    {
-        //eslint-disable-next-line @typescript-eslint/no-var-requires
-        var result = await connectByPreference<void>(context.state.get('pm.mapping.pm.connect'), { host: remotePm as string, metadata: pmMeta })
-        sidecar.pm = result.container as Container<void> & pm;
-    }
+        sidecar.pm = remotePm;
 
     module('@akala/pm').register('container', sidecar.pm, true);
     sidecar.sidecars = pmsidecar();
