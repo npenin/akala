@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* improve logging 9319332
+* remove useless abort 436343b
 
 
 
