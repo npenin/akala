@@ -12,6 +12,17 @@ cli();
 process.on('SIGINT', () => context.abort.abort('SIGINT'));
 process.on('SIGTERM', () => context.abort.abort('SIGTERM'));
 
+context.abort.signal.addEventListener('abort', () =>
+{
+    if (context.abort.signal.reason)
+        if (typeof context.abort.signal.reason === 'string')
+            console.warn('received context.abort.signal.reason');
+        else
+            console.error(context.abort.signal.reason);
+    else
+        console.error('unhandled undefined result');
+})
+
 program.process(context).catch(e =>
 {
     setImmediate(() => context.abort.abort(e));
