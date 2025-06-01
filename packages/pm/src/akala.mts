@@ -149,11 +149,6 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
 
         return formatResult(result, context.options.output, context);
     });
-    program.useError((err, context) =>
-    {
-        context.abort.abort();
-        return Promise.reject(err);
-    });
 }
 
 function formatResult(result: unknown, outputFormat: string, context: CliContext)
