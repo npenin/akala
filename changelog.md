@@ -487,6 +487,7 @@
 * remove unnecessary metadata from CLI documentation files c472f4c
 * remove unnecessary metadata from CLI documentation files 6b2386c
 * remove unused result parameter from jsonrpc protocol handlers 198fed9
+* remove useless abort 436343b
 * remove useless await 52d94b0
 * remove useless config parameter 21b41cb
 * remove useless config parameter df3b94d
