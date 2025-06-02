@@ -16,7 +16,7 @@ context.abort.signal.addEventListener('abort', () =>
 {
     if (context.abort.signal.reason)
         if (typeof context.abort.signal.reason === 'string')
-            console.warn('received context.abort.signal.reason');
+            console.warn('received ' + context.abort.signal.reason);
         else
             console.error(context.abort.signal.reason);
     else
