@@ -1,4 +1,4 @@
-#  (2025-06-01)
+#  (2025-06-02)
 
 
 * chore : code cleanup eae1150
@@ -409,6 +409,7 @@
 * options setup 387b195
 * outlet root scope fb5cfd1
 * outlet root scope 3c0d3e6
+* output logging 8045a93
 * overriding serveMetadata and connectByPreference in non browser dc2ade3
 * parsing ! expressions 0115a31
 * parsing on first parenthesis e3c07e4
