@@ -41,7 +41,7 @@ if (process.connected)
 
         return {
             processor: new Processors.JsonRpc(connection),
-            getMetadata: () => new Promise<Metadata.Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+            getMetadata: () => new Promise<Metadata.Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
                 typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
             ))
         };

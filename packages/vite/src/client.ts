@@ -70,7 +70,7 @@ if (import.meta.hot)
         rootScope.$set('$commandEvents', eventProcessor)
         rootScope.$set('$authProcessor', authProcessor)
 
-        await processor.handle(container, Metadata.extractCommandMetadata(container.resolve('$metadata')), { param: [true] }).
+        await processor.handle(container, Metadata.extractCommandMetadata(container.resolve('$metadata')), { params: [true] }).
             then(err => Promise.reject(err), (metadata: Metadata.Container) =>
             {
                 console.log(metadata);

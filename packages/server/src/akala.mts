@@ -97,7 +97,7 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                     container.processor.useMiddleware(4, new InitAkala(undefined, { config: context.state, _trigger: 'server', router }))
                     registerCommands(metaContainer.commands, result.processor, container);
                     if (metaContainer.commands.find(c => c.name == '$init'))
-                        await container.dispatch('$init', { param: [], _trigger: 'server', config: context.state, router });
+                        await container.dispatch('$init', { params: [], _trigger: 'server', config: context.state, router });
                 }
             }
 

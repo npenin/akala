@@ -111,7 +111,7 @@ export function plugin(options: Record<string, { path: string, init?: unknown[],
                 if (init)
                 {
                     // console.log('init', init);
-                    await subContainer.dispatch('$init', { param: init, _trigger: 'vite' })
+                    await subContainer.dispatch('$init', { params: init, _trigger: 'vite' })
                 }
             })).then(async () =>
             {

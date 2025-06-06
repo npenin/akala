@@ -5,13 +5,13 @@
             "name": "$init",
             "inject": [
                 "$container",
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "fs": {
@@ -19,16 +19,16 @@
                     "source": "src/commands/$init.ts",
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "options": {
                         "normalize": [
-                            "param.0"
+                            "params.0"
                         ]
                     }
                 }
@@ -38,13 +38,13 @@
             "name": "commit",
             "inject": [
                 "$container",
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "aws": true,
@@ -53,12 +53,12 @@
                     "source": "src/commands/commit.ts",
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "options.formatted"
                     ],
                     "options": {
@@ -66,7 +66,7 @@
                             "formatted"
                         ],
                         "normalize": [
-                            "param.0"
+                            "params.0"
                         ]
                     }
                 }
@@ -75,14 +75,14 @@
         {
             "name": "get",
             "inject": [
-                "param.0",
-                "param.1"
+                "params.0",
+                "params.1"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "aws": true,
@@ -90,13 +90,13 @@
                     "path": "dist/commands/get.js",
                     "source": "src/commands/get.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "options.file"
                     ],
                     "options": {
@@ -115,12 +115,12 @@
         {
             "name": "revert",
             "inject": [
-                "param.0"
+                "params.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "aws": true,
@@ -128,16 +128,16 @@
                     "path": "dist/commands/revert.js",
                     "source": "src/commands/revert.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "options": {
                         "normalize": [
-                            "param.0"
+                            "params.0"
                         ]
                     }
                 }
@@ -146,16 +146,16 @@
         {
             "name": "set",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
+                "params.0",
+                "params.1",
+                "params.2"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 },
                 "aws": {
@@ -172,15 +172,15 @@
                     "path": "dist/commands/set.js",
                     "source": "src/commands/set.ts",
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "params.0",
+                        "params.1",
                         "options.file"
                     ],
                     "options": {

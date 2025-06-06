@@ -315,8 +315,8 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
                         } as Processors.HttpConfiguration,
                         schema: {
                             resultSchema: toSchema(urn, (operation as SmithyOperation)?.output, smithy, schemaCache),
-                            inject: [].concat(route.parameters.map(p => 'param.0.' + p.name), ['param.0']),
-                            $defs: { 'param.0': schemaDef }
+                            inject: [].concat(route.parameters.map(p => 'params.0.' + p.name), ['params.0']),
+                            $defs: { 'params.0': schemaDef }
                         },
                         cli: {
                             inject: ["options"],
@@ -330,7 +330,7 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
                 name: operationName,
                 config: {
                     http: {
-                        inject: ["param.0"],
+                        inject: ["params.0"],
                         method: 'POST',
                         route: '/',
                         // auth: { mode: { type: 'header', name: 'Authorization' } },
@@ -339,8 +339,8 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
                     } as Processors.HttpConfiguration,
                     schema: {
                         resultSchema: toSchema(urn, (operation as SmithyOperation)?.output, smithy, schemaCache),
-                        inject: ['param.0'],
-                        $defs: { 'param.0': toSchema(urn, (operation as SmithyOperation)?.input, smithy, schemaCache) }
+                        inject: ['params.0'],
+                        $defs: { 'params.0': toSchema(urn, (operation as SmithyOperation)?.input, smithy, schemaCache) }
                     }
                 }
             }

@@ -37,4 +37,4 @@ export default async function start(this: State, name: string, context?: CliCont
     });
 }
 
-start.$inject = ['$container', 'param.0', 'options']
+start.$inject = ['$container', 'params.0', 'options']

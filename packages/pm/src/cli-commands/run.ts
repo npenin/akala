@@ -68,7 +68,7 @@ export default async function run(program: string, name: string, c: CliContext<{
         pm2.container.register(Metadata.extractCommandMetadata(pm.resolve('bridge')));
         if (!await pm2.container.dispatch('bridge', connectionId))
             throw new Error('connection could not be established');
-    }, '$bridge', ['param.0']));
+    }, '$bridge', ['params.0']));
 
     if (init)
     {
@@ -102,7 +102,7 @@ export default async function run(program: string, name: string, c: CliContext<{
     if (pm !== cliContainer)
         await pm.dispatch('ready')
     else
-        await pm.dispatch('ready', { _trigger: 'pm', param: [pm] })
+        await pm.dispatch('ready', { _trigger: 'pm', params: [pm] })
 
 
     return new Promise(resolve => c.abort.signal.addEventListener('abort', resolve))

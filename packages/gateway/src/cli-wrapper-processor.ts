@@ -12,7 +12,7 @@ export default class CliGatewayProcessor extends ac.CommandProcessor
 
     public handle(_origin: ac.Container<unknown>, cmd: ac.Metadata.Command, param: ac.StructuredParameters<[CliContext]>): MiddlewarePromise
     {
-        const args = unparseWithMeta(cmd.config.cli, param.param[0]);
+        const args = unparseWithMeta(cmd.config.cli, param.params[0]);
         if (cmd.config.cli.usage)
         {
             cmd.config.cli.usage

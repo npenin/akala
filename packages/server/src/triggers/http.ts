@@ -60,7 +60,7 @@ export async function processCommand<T>(container: Container<T>, c: Metadata.Com
     const req = injected.$request;
     let bodyParsing: Promise<{ parsed: unknown, raw: Buffer }>;
     return container.handle(container, c, {
-        param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
+        params: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
         {
             if (!bodyParsing)
                 bodyParsing = req.body.parse({ returnRawBody: true });

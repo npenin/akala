@@ -82,7 +82,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
             initMiddleware.action(async c =>
             {
                 if (init)
-                    await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', context: c });
+                    await cliContainer.dispatch(init, { options: c.options, params: c.args, _trigger: 'cli', context: c });
             });
         }),
         initMiddleware));

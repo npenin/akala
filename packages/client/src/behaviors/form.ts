@@ -55,7 +55,7 @@ export class FormComposer implements Composer<Container<void>>
             ev.preventDefault();
             try
             {
-                await (container || this.container).dispatch(form.action.substring(document.baseURI.length), { _trigger: 'html', param: [], form: new FormInjector(form), element: form, document: document });
+                await (container || this.container).dispatch(form.action.substring(document.baseURI.length), { _trigger: 'html', params: [], form: new FormInjector(form), element: form, document: document });
             }
             catch (e)
             {

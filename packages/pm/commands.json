@@ -10,13 +10,13 @@
                     "source": "src/commands/$init.ts",
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
@@ -72,20 +72,20 @@
                     "path": "dist/esm/commands/bridge.js",
                     "source": "src/commands/bridge.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "socket"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -97,12 +97,12 @@
                     "path": "dist/esm/commands/name.js",
                     "source": "src/commands/name.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -114,20 +114,20 @@
                     "path": "dist/esm/commands/proxy.js",
                     "source": "src/commands/proxy.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "socket"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -140,7 +140,7 @@
                     "source": "src/commands/ready.ts",
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "jsonrpc": {
@@ -150,10 +150,16 @@
                         "connectionAsContainer"
                     ]
                 },
+                "pm": {
+                    "inject": [
+                        "$container",
+                        "params.0"
+                    ]
+                },
                 "": {
                     "inject": [
                         "$container",
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -163,7 +169,7 @@
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "path": "dist/esm/commands/reload-metadata.js",
                     "source": "src/commands/reload-metadata.ts"
@@ -175,7 +181,7 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 }
             }
@@ -188,15 +194,15 @@
                     "source": "src/commands/restart.ts",
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
@@ -225,7 +231,7 @@
                     },
                     "inject": [
                         "$container",
-                        "param.0",
+                        "params.0",
                         "context"
                     ],
                     "usage": "restart <program>"
@@ -233,14 +239,14 @@
                 "schema": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ],
                     "$defs": {
-                        "param.0": {
+                        "params.0": {
                             "type": "string"
                         },
-                        "param.1": {
+                        "params.1": {
                             "type": "object",
                             "properties": {
                                 "wait": {
@@ -253,8 +259,8 @@
                 "html-form": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -267,17 +273,17 @@
                     "source": "src/commands/start.ts",
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 },
                 "": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 },
                 "cli": {
@@ -318,23 +324,23 @@
                 "html-form": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 },
                 "schema": {
                     "inject": [
                         "$container",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ],
                     "$defs": {
-                        "param.0": {
+                        "params.0": {
                             "type": "string"
                         },
-                        "param.1": {
+                        "params.1": {
                             "type": "object",
                             "properties": {
                                 "wait": {
@@ -354,7 +360,7 @@
                                 }
                             }
                         },
-                        "param.2": {
+                        "params.2": {
                             "type": "object",
                             "properties": {
                                 "args": {
@@ -376,30 +382,30 @@
                     "path": "dist/esm/commands/status.js",
                     "source": "src/commands/status.ts",
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "html-form": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ]
                 },
                 "schema": {
                     "inject": [
-                        "param.0"
+                        "params.0"
                     ],
                     "$defs": {
-                        "param.0": {
+                        "params.0": {
                             "type": "string",
                             "description": "The name of the container to get the status of"
                         }
@@ -414,13 +420,13 @@
                     "path": "dist/esm/commands/stop.js",
                     "source": "src/commands/stop.ts",
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "$container"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "$container"
                     ]
                 },
@@ -438,17 +444,17 @@
                 },
                 "html-form": {
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "$container"
                     ]
                 },
                 "schema": {
                     "inject": [
-                        "param.0",
+                        "params.0",
                         "$container"
                     ],
                     "$defs": {
-                        "param.0": {
+                        "params.0": {
                             "type": "string"
                         }
                     }

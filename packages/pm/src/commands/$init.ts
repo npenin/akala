@@ -112,7 +112,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     container.name = 'pm';
     const config = container.resolve<Metadata.Configurations>('$metadata.config');
     container.unregister('$metadata');
-    container.register(configure(config)(new SelfDefinedCommand(metadata, '$metadata', ['$container', 'param.0'])));
+    container.register(configure(config)(new SelfDefinedCommand(metadata, '$metadata', ['$container', 'params.0'])));
 
     const setup = this.config.setup?.packages;
     if (setup?.length > 0)
@@ -159,6 +159,6 @@ export default async function (this: State, container: RunningContainer & pmCont
 
     context.abort.signal.addEventListener('abort', async () =>
     {
-        await container.dispatch('stop', { param: ['pm'] });
+        await container.dispatch('stop', { params: ['pm'] });
     });
 }
