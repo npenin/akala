@@ -373,7 +373,6 @@ export abstract class Connection<TStreamable>
      */
     public close(error?: ConnectionError | 1000 | Error | Event): void
     {
-
         logger('close');
         if (error && error !== 1000)
         {
