@@ -72,7 +72,7 @@ export class ContainerMiddleware implements MiddlewareAsync<MiddlewareSignature<
     {
         let resolved = Object.keys(step).map(k => [k, this.container.resolve(k)]).filter(k => k[1] instanceof Container) as [string, Container<unknown>][];
         const errors = (await mapAsync(resolved, k =>
-            this.container.handle(step[k[0]], { _trigger: 'automate', ...context, ...step.with, param: [] })
+            this.container.handle(step[k[0]], { _trigger: 'automate', ...context, ...step.with, params: [] })
         )).filter(err => err && err instanceof Error) as Error[];
         if (errors.length)
             if (errors.length === 1)
