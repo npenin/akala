@@ -146,10 +146,10 @@ export abstract class Injector implements ICustomResolver
      * @param {{ [k: string | symbol]: any }} resolved - The resolved values.
      * @returns {T} The applied map.
      */
-    static applyCollectedMap<T>(param: InjectMap<T>, resolved: { [k: string | symbol]: any }): T | Promise<T>
+    static applyCollectedMap<T>(param: InjectMap<T> | ArrayLike<InjectMap>, resolved: { [k: string | symbol]: any }): T | Promise<T>
     {
         let promises: PromiseLike<void>[] = [];
-        const result = map(param, (value, key) =>
+        const result = map(param as InjectMap<T>, (value, key) =>
         {
             if (typeof value == 'object')
             {
@@ -178,13 +178,15 @@ export abstract class Injector implements ICustomResolver
     static collectMap(param: InjectMap): Resolvable<object>[]
     {
         let result: Resolvable<object>[] = [];
-        each(param, value =>
-        {
-            if (typeof value == 'object')
-                result = result.concat(Injector.collectMap(param));
-            else
-                result.push(value);
-        })
+
+        if (param)
+            each(param, value =>
+            {
+                if (typeof value == 'object')
+                    result = result.concat(Injector.collectMap(param));
+                else
+                    result.push(value);
+            })
         return result;
     }
 
@@ -236,7 +238,7 @@ export abstract class Injector implements ICustomResolver
      * @param fallback - A function to handle unresolved keys, invoked with the remaining keys if resolution fails.
      * @returns The resolved value of type `T`, or the result of the fallback function if provided.
      */
-    public static resolveKeys<T>(source: unknown, keys: ResolvableArray<object>, fallback: (keys: Resolvable[]) => T): T
+    public static resolveKeys<T>(source: unknown, keys: ResolvableArray<object>, fallback?: (keys: Resolvable[]) => T): T
     {
         let result: unknown = source;
         for (let i = 0; i < keys.length; i++)
@@ -524,4 +526,40 @@ export abstract class LocalInjector extends Injector
      * @param {boolean} [override] - Whether to override the existing value.
      */
     abstract registerDescriptor(name: string | symbol, value: PropertyDescriptor, override?: boolean): void
+}
+
+
+export class InjectorMap extends Injector
+{
+    constructor(private map: ((Resolvable) => any))
+    {
+        super();
+
+    }
+
+    onResolve<T = unknown>(name: Resolvable): PromiseLike<T>;
+    onResolve<T = unknown>(name: Resolvable, handler: (value: T) => void): void;
+    onResolve<T>(name: unknown, handler?: unknown): void | PromiseLike<T>
+    {
+        throw new Error('Method not implemented.');
+    }
+    resolve<T>(param: Resolvable): T
+    {
+
+        if (typeof param == 'object')
+        {
+            if (Array.isArray(param))
+                return Injector.resolveKeys({}, param);
+
+            const x = Injector.collectMap(param);
+
+            return Injector.applyCollectedMap(param as InjectMap<T>, Object.fromEntries(x.map(x => [x, this.resolve(x)]))) as T;
+        }
+
+        return this.map(param);
+    }
+    inspect(): void
+    {
+    }
+
 }
