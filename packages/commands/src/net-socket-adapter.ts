@@ -14,7 +14,7 @@ handlers.useProtocol('tcp', async (url) =>
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
 
     return {
-        processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
@@ -27,7 +27,7 @@ handlers.useProtocol('tcps', async (url) =>
     const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
 
     return {
-        processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };

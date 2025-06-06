@@ -19,7 +19,7 @@ import commands from './commands.js'
 import $metadata from './commands/$metadata.js'
 import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
 export { default as serve, ServeOptions } from './cli/serve.js'
-import * as FileGenerator from './cli/new.js';
+import * as FileGenerator from './new.js';
 import { Readable } from 'stream';
 import { Metadata } from './index.browser.js'
 import { pathToFileURL } from 'url'

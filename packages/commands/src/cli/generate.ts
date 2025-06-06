@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
-import { outputHelper, write } from './new.js';
+import { outputHelper, write } from '../new.js';
 import { DiscoveryOptions } from "../processors/fs.js";
 import { Metadata, Processors } from "../index.js";
 import { MiddlewareCompositeAsync } from '@akala/core';

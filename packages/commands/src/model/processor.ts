@@ -2,7 +2,7 @@ import { Injector, MiddlewareAsync, MiddlewarePromise } from '@akala/core';
 import { Command } from '../metadata/index.js';
 import { Container } from './container.js';
 
-export type StructuredParameters<T extends unknown[] = unknown[]> = { param: T, [key: string]: unknown, _trigger?: string, injector?: Injector }
+export type StructuredParameters<T = unknown[]> = { params: T, [key: string]: unknown, _trigger?: string, injector?: Injector }
 
 export abstract class CommandProcessor implements ICommandProcessor
 {

@@ -1,4 +1,4 @@
-import { MiddlewarePromise } from '@akala/core';
+import { InjectorMap, MiddlewarePromise } from '@akala/core';
 import { Container, Metadata } from '../index.browser.js';
 import { Command } from '../metadata/command.js';
 import { ICommandProcessor, StructuredParameters } from '../model/processor.js';
@@ -35,12 +35,12 @@ export class SchemaValidator implements ICommandProcessor
             const schema: SchemaObject = {
                 $defs: cmd.config.schema.$defs,
                 type: "array",
-                prefixItems: cmd.config.schema.inject.map(x => typeof x == 'string' ? SchemaValidator.notRefTypes.includes(x) ? x : { $ref: x } : x),
+                prefixItems: new InjectorMap(x => typeof x == 'string' ? SchemaValidator.notRefTypes.includes(x) ? x : { $ref: x } : x).resolve(cmd.config.schema.inject),
                 items: false
             }
 
             const ajv = new Ajv.default();
-            const validationResult = ajv.validate(schema, param.param)
+            const validationResult = ajv.validate(schema, param.params)
 
             if (!validationResult)
                 return Promise.resolve(new SchemaValidationError(ajv.errors))

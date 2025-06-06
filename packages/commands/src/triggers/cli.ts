@@ -1,7 +1,7 @@
 import * as Metadata from '../metadata/index.js'
 import { Trigger } from '../model/trigger.js';
 import { NamespaceMiddleware } from '@akala/cli'
-import { each } from '@akala/core';
+import { each, Injector } from '@akala/core';
 import { Container } from '../model/container.js'
 
 export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TState>, program: NamespaceMiddleware)
@@ -29,7 +29,7 @@ export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TSta
             handle(context)
             {
                 return c.handle(c, cmd.name, {
-                    param: context.args,
+                    params: context.args,
                     context: context, options: context.options, _trigger: 'cli', get stdin()
                     {
                         return stdin || (stdin =
@@ -58,7 +58,8 @@ export const processTrigger = new Trigger('cli', async (c, program: NamespaceMid
 
 export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware): void
 {
-    cmd.config?.cli?.inject?.forEach((p, i) =>
+    const r = (Array.isArray(cmd.config?.cli?.inject) ? cmd.config?.cli?.inject : Injector.collectMap(cmd.config?.cli?.inject));
+    r.forEach((p, i) =>
     {
         if (typeof p == 'string' && p.startsWith('options.'))
         {
@@ -78,7 +79,7 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
         {
             if (typeof name != 'string')
                 return;
-            if (cmd.config.cli.inject.indexOf('options.' + name) > -1)
+            if (r.indexOf('options.' + name) > -1)
                 return;
             if (!opt?.doc && cmd.config.doc?.options?.[name])
                 opt = { ...opt, doc: cmd.config.doc.options[name] };

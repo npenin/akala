@@ -35,7 +35,7 @@ describe('test http processing', function ()
                     const match = UrlTemplate.match(url, template)
                     if (match && config.inject)
                     {
-                        config.inject.forEach((inject, i) =>
+                        (config.inject as akala.Resolvable[]).forEach((inject, i) =>
                         {
                             if (inject == 'route.step')
                             {
@@ -47,7 +47,7 @@ describe('test http processing', function ()
             }
             else
                 cmdName = url.substring(1);
-            Promise.resolve(calculator.dispatch(cmdName, { param: params })).then(function (result)
+            Promise.resolve(calculator.dispatch(cmdName, { params: params })).then(function (result)
             {
                 if (typeof result != 'undefined')
                 {

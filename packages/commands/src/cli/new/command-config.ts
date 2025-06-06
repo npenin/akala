@@ -3,7 +3,7 @@ import { ErrorWithStatus } from "@akala/core";
 import path from "path";
 import { Processors } from "../../index.js";
 import { Command } from "../../metadata/command.js";
-import { outputHelper, write } from "../new.js";
+import { outputHelper, write } from "../../new.js";
 import { pathToFileURL } from "url";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)

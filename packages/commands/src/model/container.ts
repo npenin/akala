@@ -66,7 +66,7 @@ export class Container<TState> extends SimpleInjector implements MiddlewareAsync
     public handle(container: Container<TState>, command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): MiddlewarePromise
     {
         container = container || this;
-        if (typeof (param) == 'object' && param !== null && param.length === 1 && typeof (param[0]) == 'object' && param[0] !== null && param[0]['param'] && Array.isArray(param[0]['param']))
+        if (typeof (param) == 'object' && param !== null && param.length === 1 && typeof (param[0]) == 'object' && param[0] !== null && param[0]['params'] && Array.isArray(param[0]['params']))
         {
             // console.log(`dispatching ${command}(${JSON.stringify(param[0])})`)
             let cmd: Metadata.Command;
@@ -90,7 +90,7 @@ export class Container<TState> extends SimpleInjector implements MiddlewareAsync
         {
             if (typeof param == 'undefined' || param === null)
                 param = [];
-            return this.handle(container, command, { param: param });
+            return this.handle(container, command, { params: param });
         }
     }
 

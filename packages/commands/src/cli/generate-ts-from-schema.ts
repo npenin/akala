@@ -1,6 +1,6 @@
 import * as fs from 'fs/promises';
 import { Writable } from "stream";
-import { outputHelper, write } from './new.js';
+import { outputHelper, write } from '../new.js';
 // import type { Schema as BaseSchema } from "ajv";
 import { fileURLToPath } from "url";
 import { FetchHttp } from "@akala/core";

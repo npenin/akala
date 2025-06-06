@@ -3,7 +3,7 @@ import fs from 'fs/promises'
 import { fileURLToPath } from 'url';
 import { Command } from '../metadata/command.js';
 import { Container } from '../metadata/container.js';
-import { outputHelper, write } from './new.js';
+import { outputHelper, write } from '../new.js';
 import { Writable } from 'stream';
 import { promisify } from 'util';
 import { redirectSchema, simplifySchema } from './generate-schema.js';
@@ -52,7 +52,7 @@ export default async function (pathToOpenApiFile: string | URL, outputFile?: str
         const commands: Command[] = (await Promise.all(Object.entries(openApi.paths).map(async ([path, requests]: [string, PathItem | pathItem]) =>
             await Promise.all(Object.entries(requests).map(async ([method, request]: [string, Operation | operation]) =>
             {
-                const parameters = Object.fromEntries(await Promise.all(request.parameters?.map(async (p: Parameter | Reference | parameterOrReference, i: number) => '$ref' in p ? ['param.' + i, await resolveToTypeScript(p.$ref, { '#': openApi as any }, {})] : [(p as parameter | Parameter).in + '.' + (p as parameter | Parameter).name, p]) || [])) as Record<string, parameter | Parameter>
+                const parameters = Object.fromEntries(await Promise.all(request.parameters?.map(async (p: Parameter | Reference | parameterOrReference, i: number) => '$ref' in p ? ['params.' + i, await resolveToTypeScript(p.$ref, { '#': openApi as any }, {})] : [(p as parameter | Parameter).in + '.' + (p as parameter | Parameter).name, p]) || [])) as Record<string, parameter | Parameter>
                 const needsSchema = !!request.parameters?.find(p => p && ('$ref' in p || 'in' in p && p.in == 'body')) || request.responses['200'] && '$ref' in request.responses['200'] && resolve(request.responses['200'].$ref as string, { '#': openApi }, {}) || (request.responses['200'] as response | Response)?.content.schema;
 
                 return simplifySchema({

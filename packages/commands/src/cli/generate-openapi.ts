@@ -1,9 +1,10 @@
 import * as akala from "../index.js";
 import * as path from 'path'
 import * as fs from 'fs';
-import { outputHelper, write } from './new.js';
+import { outputHelper, write } from '../new.js';
 import { jsonObject } from "../metadata/configurations.js";
 import { pathToFileURL } from "url";
+import { each } from "@akala/core";
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
@@ -38,7 +39,7 @@ export default async function generate(folder?: string, name?: string, outputFil
             const action: jsonObject = result.paths[command.config.http.route][command.config.http.method] = { parameters: [] };
             // var keys: Key[] = [].concat(pathToRegexp(commands[i].config.http.route).keys);
             let hasBody = false;
-            action.parameters = command.config.http.inject.map(p =>
+            action.parameters = Array.isArray(command.config.http.inject) ? command.config.http.inject.map(p =>
             {
                 if (typeof p == 'string')
                     if (p.startsWith('route.'))
@@ -61,7 +62,7 @@ export default async function generate(folder?: string, name?: string, outputFil
                         }
                     else if (p.startsWith('body.'))
                         hasBody = true;
-            });
+            }) : command.config.http.inject as jsonObject;
             if (hasBody)
             {
                 const content = { schema: { type: 'object', properties: {} } };
@@ -81,11 +82,20 @@ export default async function generate(folder?: string, name?: string, outputFil
                         action.content = { 'text/json': content }
                         break;
                 }
-                command.config.http.inject.forEach((p, i) =>
+                if (Array.isArray(command.config.http.inject))
+                    command.config.http.inject.forEach((p, i) =>
+                    {
+                        if (typeof p == 'string' && p.startsWith('body.'))
+                            content.schema.properties[p.substring('body.'.length)] = p ? command.config.schema?.$defs[p] : {};
+                    });
+                else
                 {
-                    if (typeof p == 'string' && p.startsWith('body.'))
-                        content.schema.properties[p.substring('body.'.length)] = command.config.schema?.inject[i] ? command.config.schema?.$defs[command.config.schema?.inject[i] as string] : {};
-                });
+                    each(command.config.http.inject as any, (p, i) =>
+                    {
+                        if (typeof p == 'string' && p.startsWith('body.'))
+                            content.schema.properties[p.substring('body.'.length)] = p ? command.config.schema?.$defs[p] : {};
+                    });
+                }
             }
         }
     }

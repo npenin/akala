@@ -1,4 +1,4 @@
-import { InjectableWithTypedThis, Resolvable } from "@akala/core";
+import { InjectableWithTypedThis, InjectMap, Resolvable } from "@akala/core";
 import { ICommandProcessor } from './processor.js';
 import { Command } from '../metadata/command.js'
 import { Configurations } from '../metadata/configurations.js'
@@ -22,18 +22,18 @@ export class SelfDefinedCommand<TArgs extends unknown[], T = unknown> implements
             inject = [];
             for (let i = 0; i < handler.length; i++)
             {
-                inject.push('param.' + i);
+                inject.push('params.' + i);
             }
         }
         this.inject = inject || [];
     }
 
-    public get inject(): Resolvable[] 
+    public get inject(): Resolvable[] | InjectMap<any>
     {
         return this.config[''].inject;
     }
 
-    public set inject(value: Resolvable[] | undefined)
+    public set inject(value: InjectMap<any> | Resolvable[] | undefined)
     {
         this.config[''].inject = value;
     }
@@ -49,7 +49,7 @@ export class SelfDefinedCommand<TArgs extends unknown[], T = unknown> implements
 //     {
 //         super(function (...args)
 //         {
-//             container.dispatch(commandToTrigger, { param: args });
+//             container.dispatch(commandToTrigger, { params: args });
 //         }, name, inject);
 //     }
 // }

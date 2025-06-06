@@ -10,7 +10,7 @@ let cmd: cmds.SelfDefinedCommand<unknown[], state> = calculator.register(new cmd
     if (step && typeof step == 'string')
         step = Number(step);
     this.value += step || 1;
-}, 'increment', ['param.0']));
+}, 'increment', ['params.0']));
 cmd.config.http = { method: 'post', route: '/increment/{step}', inject: ['route.step'] }
 
 cmd = calculator.register(new cmds.SelfDefinedCommand<[], state>(function reset()
@@ -28,5 +28,5 @@ cmd = configure('http', { method: 'post', route: '/decrement/{step}', inject: ['
     }))
 );
 
-cmd.inject = ['$state', 'param.0'];
+cmd.inject = ['$state', 'params.0'];
 

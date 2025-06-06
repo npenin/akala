@@ -1,4 +1,4 @@
-import { Injectable, each, MiddlewarePromise, SpecialNextParam, MiddlewareAsync, SimpleInjector, Resolvable, NotHandled, map, ErrorWithStatus, HttpStatusCode } from '@akala/core';
+import { Injectable, each, MiddlewarePromise, SpecialNextParam, MiddlewareAsync, SimpleInjector, Resolvable, NotHandled, map, ErrorWithStatus, HttpStatusCode, InjectMap, Injector } from '@akala/core';
 import * as  Metadata from '../metadata/index.js';
 import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
@@ -58,14 +58,21 @@ export class Local extends CommandProcessor
         return new Local(o as any);
     }
 
-    public static extractParams(source: Resolvable[])
+    public static extractParams(source: Resolvable[] | InjectMap)
     {
-        const sourceParams = source.
-            map((i, j) => [i, j]).
-            filter(x => typeof x[0] == 'string' && x[0].startsWith('param.') || Array.isArray(x[0]) && (x[0][0] == 'param' || x[0][0].startsWith('param.'))).
-            map(x => [...x as [string, number], Number((x[0] as string).substring('param.'.length))] as const).
-            sort((a, b) => a[2] - b[2])
-            ;
+        let sourceParams: (readonly [string, number, number])[];
+        if (Array.isArray(source))
+            sourceParams = source.
+                map((i, j) => [i, j]).
+                filter(x => typeof x[0] == 'string' && x[0].startsWith('params.') || Array.isArray(x[0]) && (x[0][0] == 'params' || x[0][0].startsWith('params.'))).
+                map(x => [...x as [string, number], Number((x[0] as string).substring('params.'.length))] as const).
+                sort((a, b) => a[2] - b[2])
+                ;
+        else
+        {
+            return this.extractParams(Injector.collectMap(source));
+        }
+
 
         return function (...args)
         {
@@ -78,14 +85,14 @@ export class Local extends CommandProcessor
     {
         const sourceParams = source.
             map((i, j) => [i, j] as [string, number]).
-            filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(x[0].substring('param.'.length))] as const).
+            filter(x => x[0].startsWith('params.')).
+            map(x => [...x, Number(x[0].substring('params.'.length))] as const).
             sort((a, b) => a[2] - b[2])
             ;
         const destinationParams = destination.
             map((i, j) => [i, j] as [string, number]).
-            filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(x[0].substring('param.'.length))] as const)
+            filter(x => x[0].startsWith('params.')).
+            map(x => [...x, Number(x[0].substring('params.'.length))] as const)
             ;
 
         return function (...args)
@@ -121,10 +128,13 @@ export class Local extends CommandProcessor
         injector.register('$config', config);
         injector.register('$command', cmd);
         if (!inject)
-            inject = param.param.map((a, i) => 'param.' + i);
+            inject = param.params.map((a, i) => 'params.' + i);
         // console.log(inject);
         // injector.inspect();
-        return injector.injectWithNameAsync(inject, handler)(container.state);
+        if (Array.isArray(inject))
+            return injector.injectWithNameAsync(inject, handler)(container.state);
+        else
+            return injector.injectWithNameAsync([inject], handler)(container.state);
     }
 
     public static async handle<T, TArgs extends unknown[], U = unknown>(cmd: Metadata.Command, handler: Injectable<U, TArgs>, container: Container<T>, param: StructuredParameters): MiddlewarePromise

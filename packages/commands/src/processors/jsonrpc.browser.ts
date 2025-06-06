@@ -33,7 +33,7 @@ export async function handler(url: URL, options: { signal: AbortSignal }): Promi
 
     return {
         processor: new JsonRpcBrowser(connection),
-        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     }
@@ -104,13 +104,12 @@ export class JsonRpcBrowser extends CommandProcessor
                         if (log)
                             log.debug(params);
 
-
                         if (!params)
-                            params = { param: [] as string[] };
+                            params = { params: [] as string[] };
                         if (Array.isArray(params))
-                            params = { param: params };
-                        if (typeof (params) != 'object' || !params['param'])
-                            params = { param: [params] } as SerializableObject;
+                            params = { params: params };
+                        if (typeof (params) != 'object' || params instanceof ReadableStream || !params['params'])
+                            params = { params: [params] } as SerializableObject;
 
                         Object.defineProperty(params, 'connectionId', { configurable: true, enumerable: false, value: this.id });
                         Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });

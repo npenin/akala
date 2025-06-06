@@ -56,7 +56,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
         registerCommands(settings.metadata.commands, processor, container);
     else
     {
-        await processor.handle(container, $metadata, { param: [] }).then(e => { throw e }, metaContainer =>
+        await processor.handle(container, $metadata, { params: [] }).then(e => { throw e }, metaContainer =>
             registerCommands(metaContainer.commands, processor, container))
     }
 

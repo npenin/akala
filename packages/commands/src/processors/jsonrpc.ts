@@ -26,7 +26,7 @@ handlers.useProtocol('jsonrpc+tcp', async function (url, options)
 
     return {
         processor: new JsonRpc(connection),
-        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
@@ -64,7 +64,7 @@ handlers.useProtocol('jsonrpc+tcp+tls', async function (url, options)
 
     return {
         processor: new JsonRpc(connection),
-        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
@@ -107,7 +107,7 @@ handlers.useProtocol('jsonrpc+unix', async function (url, options)
 
     return {
         processor: new JsonRpc(connection),
-        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
@@ -137,7 +137,7 @@ handlers.useProtocol('jsonrpc+unix+tls', async function (url, options)
 
     return {
         processor: new JsonRpc(connection),
-        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     };
@@ -180,7 +180,7 @@ async function handler(url: URL, options: { signal: AbortSignal, container?: Con
 
     return {
         processor: new JsonRpc(connection),
-        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        getMetadata: () => new Promise<MetaContainer>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
     }
@@ -251,13 +251,12 @@ export class JsonRpc extends CommandProcessor
                         if (log)
                             log.debug(params);
 
-
                         if (!params)
-                            params = { param: [] as string[] };
+                            params = { params: [] as string[] };
                         if (Array.isArray(params))
-                            params = { param: params };
-                        if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
-                            params = { param: [params] } as SerializableObject;
+                            params = { params: params };
+                        if (typeof (params) != 'object' || params instanceof Readable || !params['params'])
+                            params = { params: [params] } as SerializableObject;
 
                         Object.defineProperty(params, 'connectionId', { configurable: true, enumerable: false, value: this.id });
                         Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });

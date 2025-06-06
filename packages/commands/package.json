@@ -17,8 +17,8 @@
         "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json",
         "cli": "node dist/esm/cli.js",
-        "generate-cli": "ac generate dist/esm/cli commands.json --name cli",
-        "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name cli",
+        "generate-cli": "node dist/esm/cli.mjs generate dist/esm/cli/ commands.json --name cli",
+        "generate-metadata-cli": "node dist/esm/cli.mjs generate-metadata commands.json src/commands.ts --name cli",
         "generate": "yarn run generate-cli",
         "generate-metadata": "yarn run generate-metadata-cli"
     },
@@ -34,9 +34,6 @@
         "./dist/esm/processors/fs.js": "./dist/esm/processors/fs-browser.js",
         "./dist/esm/processors/jsonrpc.js": "./dist/esm/processors/jsonrpc.browser.js",
         "./dist/esm/serve-metadata.js": "./dist/esm/serve-metadata.browser.js"
-    },
-    "bin": {
-        "ac": "dist/esm/cli.mjs"
     },
     "source": "src/index.ts",
     "dependencies": {

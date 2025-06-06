@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata/index.js';
-import { CommandProcessor } from '../model/processor.js';
+import { CommandProcessor, StructuredParameters } from '../model/processor.js';
 import { Container } from '../model/container.js';
 import { registerCommands } from '../generator.js';
 import { Local } from './local.js';
@@ -160,6 +160,8 @@ export class FileSystem extends CommandProcessor
         {
             if (!options.isDirectory)
                 options.relativeTo = new URL('./', root);
+            else if (!root.pathname.endsWith('/'))
+                options.relativeTo = new URL(root + '/');
             else
                 options.relativeTo = new URL(root);
         }
@@ -250,7 +252,7 @@ export class FileSystem extends CommandProcessor
         const relativeToPath = fileURLToPath(options.relativeTo);
         await akala.eachAsync(files, async f =>
         {
-            if (f.isFile())
+            if (f.isFile)
             {
                 if (f.name.endsWith('.js') || f.name.endsWith('.mjs') || f.name.endsWith('.cjs'))
                 {
@@ -285,7 +287,7 @@ export class FileSystem extends CommandProcessor
                         return;
                     }
                     const otherConfigsFile: string = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
-                    const otherConfigs = await tryImportJson(options.fs, otherConfigsFile);
+                    const otherConfigs = await tryImportJson(options.fs, new URL(otherConfigsFile, relativeTo));
 
                     if (otherConfigs)
                     {
@@ -295,21 +297,33 @@ export class FileSystem extends CommandProcessor
                         cmd.config = { ...cmd.config, ...otherConfigs };
                         cmd.config.fs = { ...cmd.config.fs, ...fsConfig };
                     }
-                    let params: string[];
                     if (!cmd.config.fs.inject)
                     {
                         log.debug(`looking for fs default definition`)
-                        params = [];
-                        if (cmd.config['']?.inject?.length)
+                        if (Array.isArray(cmd.config['']?.inject))
                         {
-                            akala.each(cmd.config[''].inject, item =>
+                            const params: string[] = [];
+                            if (cmd.config['']?.inject?.length)
                             {
-                                if (typeof item == 'string' && (item.startsWith('param.') || item == '$container'))
-                                    params.push(item);
+                                akala.each(cmd.config[''].inject, item =>
+                                {
+                                    if (typeof item == 'string' && (item.startsWith('params.') || item == '$container'))
+                                        params.push(item);
+                                    else
+                                        params.push('ignore');
+                                });
+                                cmd.config.fs.inject = params;
+                            }
+                        }
+                        else
+                        {
+                            cmd.config.fs.inject = cmd.config['']?.inject && akala.map(cmd.config[''].inject as any, item =>
+                            {
+                                if (typeof item == 'string' && (item.startsWith('params.') || item == '$container'))
+                                    return item
                                 else
-                                    params.push('ignore');
+                                    return 'ignore';
                             });
-                            cmd.config.fs.inject = params;
                         }
                     }
                     // if (!cmd.config.fs.inject)
@@ -322,8 +336,8 @@ export class FileSystem extends CommandProcessor
                     //         {
                     //             akala.each(config.inject, item =>
                     //             {
-                    //                 if (item.startsWith('param.'))
-                    //                     params[Number(item.substring('param.'.length))] = item;
+                    //                 if (item.startsWith('params.'))
+                    //                     params[Number(item.substring('params.'.length))] = item;
                     //             });
                     //             cmd.config.fs.inject = params;
                     //         }
@@ -358,7 +372,7 @@ export class FileSystem extends CommandProcessor
                             {
                                 if (v == '$container')
                                     return v;
-                                return 'param.' + (n++)
+                                return 'params.' + (n++)
                             }
                             );
                         }
@@ -380,7 +394,7 @@ export class FileSystem extends CommandProcessor
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
                         try
                         {
-                            const cmd: FSCommand = await importJson(options.fs, f.name);
+                            const cmd: FSCommand = await importJson(options.fs, new URL(f.name, root));
                             metacontainer.commands.push(cmd);
                         }
                         catch (e)
@@ -392,7 +406,7 @@ export class FileSystem extends CommandProcessor
                 }
             }
             else
-                if (f.isDirectory() && options?.recursive)
+                if (f.isDirectory && options?.recursive)
                     metacontainer.commands.push(...(await FileSystem.discoverMetaCommands(new URL(f.name, root), options)).commands.map(c => ({ name: (options.flatten ? '' : (f.name + '.')) + c.name, config: c.config })));
         }, false);
 
@@ -405,7 +419,7 @@ export class FileSystem extends CommandProcessor
         return metacontainer;
     }
 
-    public async handle(origin: Container<unknown>, command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
+    public async handle(origin: Container<unknown>, command: FSCommand, param: StructuredParameters): MiddlewarePromise
     {
         const cwd = pathToFileURL(process.cwd());
         let filepath: URL;

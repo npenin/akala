@@ -17,4 +17,4 @@ function isServeOptions(options: unknown): options is ServeOptions
     return typeof options === 'object' && 'args' in options;
 }
 
-$serve.$inject = ['$container', 'param.0', 'param.1'];
+$serve.$inject = ['$container', 'params.0', 'params.1'];

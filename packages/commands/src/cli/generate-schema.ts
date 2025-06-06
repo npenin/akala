@@ -2,7 +2,7 @@ import * as akala from "../index.js";
 import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
-import { outputHelper, write } from './new.js';
+import { outputHelper, write } from '../new.js';
 import ts from 'typescript'
 import type { Schema as BaseSchema, SchemaObject } from "ajv";
 import { Command } from "../metadata/command.js";
@@ -18,7 +18,8 @@ export function simplifySchema(command: Command)
     if (!command.config?.schema?.$defs)
         return command;
 
-    const usedRef = command.config.schema.inject?.filter(p => !SchemaValidator.notRefTypes.includes(p as string));
+    const arg = Array.isArray(command.config.schema.inject) ? command.config.schema.inject : [command.config.schema.inject];
+    const usedRef = arg?.filter(p => !SchemaValidator.notRefTypes.includes(p as string));
     if (!usedRef?.length && !command.config.schema.resultSchema)
         delete command.config.schema.$defs;
     else
@@ -35,7 +36,7 @@ export function simplifySchema(command: Command)
 
         const processed: string[] = [];
 
-        const init = result.config.schema.inject.slice(0);
+        const init = arg.slice(0);
         const resultRef = crypto.randomUUID();
         if (command.config.schema.resultSchema)
         {
@@ -180,8 +181,9 @@ export default async function generate(folder?: string, name?: string, outputFil
         });
         await Promise.all(promises).then(results =>
         {
+            const arg = Array.isArray(c.cmd.config[''].inject) ? c.cmd.config[''].inject : [c.cmd.config[''].inject];
             c.cmd.config.schema = {
-                $defs: Object.fromEntries(c.cmd.config[""].inject.map((p, i) => [p, typeof p == 'string' && p.startsWith('param.') ? results[i] : { type: "null", description: p }])),
+                $defs: Object.fromEntries(arg.map((p, i) => [p, typeof p == 'string' && p.startsWith('params.') ? results[i] : { type: "null", description: p }])),
                 inject: c.cmd.config[""].inject,
             };
         });

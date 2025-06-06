@@ -13,7 +13,7 @@ const $metadataCmd = configure({
     "": {
         "inject": [
             "$container",
-            "param.0"
+            "params.0"
         ]
     },
     "cli": {

@@ -54,7 +54,7 @@ describe('test jsonrpcws processing', function ()
             {
                 assert.ifError(error);
                 assert.strictEqual(calculator.state.value, 1)
-                client.send('decrement', { param: [2] }, function (error)
+                client.send('decrement', { params: [2] }, function (error)
                 {
                     if (error)
                         reject(error);

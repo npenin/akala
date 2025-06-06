@@ -35,7 +35,7 @@ export class InitAkala<T> extends CommandProcessor
                 if (!this.warmedup && cmd !== this.init && cmd.name !== '$metadata')
                     try
                     {
-                        const err = await container.handle(container, this.init, spread(param, { containers }, this.context, { param: [], env: process.env }));
+                        const err = await container.handle(container, this.init, spread(param, { containers }, this.context, { params: [], env: process.env }));
                         if (err)
                             return err;
                     }

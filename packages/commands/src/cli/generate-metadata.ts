@@ -2,13 +2,14 @@ import * as path from 'path'
 import { DocConfiguration, jsonObject } from '../metadata/index.js';
 import { FileSystemConfiguration } from '../processors/fs.js';
 import { Writable } from "stream";
-import { outputHelper, write } from './new.js';
+import { outputHelper, write } from '../new.js';
 import { resolveToTypeScript } from './generate-ts-from-schema.js';
 import { Metadata, Processors } from '../index.js';
 import { eachAsync, MiddlewareCompositeWithPriorityAsync, toCamelCase } from '@akala/core';
 import { JsonSchema } from '../jsonschema.js';
 
 export const generatorPlugin = new MiddlewareCompositeWithPriorityAsync<[options: { name?: string, noContainer?: boolean; noProxy?: boolean; noStandalone?: boolean; noMetadata?: boolean; }, container: Metadata.Container, output: Writable, outputFolder: string, outputFile: string]>();
+
 
 generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) =>
 {
@@ -36,12 +37,14 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
                 filePath += '.js'
                 if (config.inject)
                 {
+                    const arg = Array.isArray(config.inject) ? config.inject : [config.inject];
+
                     await write(output, ', ...args: [');
                     const args: string[] = [];
-                    config.inject.forEach((p, i) =>
+                    arg.forEach((p, i) =>
                     {
                         if (typeof p === 'string')
-                            if (p.startsWith('param.'))
+                            if (p.startsWith('params.'))
                                 args.push(`Argument${i}<typeof import('./${filePath}').default>`)
                     })
                     await write(output, args.join(', '));
@@ -50,15 +53,18 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
                 else
                     await write(output, `, ...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
-            else if (cmd.config.schema?.inject?.length)
+            else if (cmd.config.schema?.inject && (!Array.isArray(cmd.config.schema?.inject) || cmd.config.schema?.inject?.length))
             {
+                const arg = Array.isArray(cmd.config.schema?.inject) ? cmd.config.schema?.inject : [cmd.config.schema?.inject];
+
                 await write(output, ', ...args: [');
-                await write(output, (await Promise.all(cmd.config.schema.inject.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p as string | JsonSchema, { '#': cmd.config.schema as any }, types)}`))).join(', '));
+                await write(output, (await Promise.all(arg.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p as string | JsonSchema, { '#': cmd.config.schema as any }, types)}`))).join(', '));
                 await write(output, `]): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, types)}>\n`);
             }
-            else if (cmd.config[""]?.inject?.length)
+            else if (!Array.isArray(cmd.config['']?.inject) || cmd.config[""]?.inject?.length)
             {
-                await write(output, cmd.config[""]?.inject.filter(p => typeof p == 'string' && p.startsWith('param.')).map(() => `, unknown`).join(''));
+                const arg = Array.isArray(cmd.config['']?.inject) ? cmd.config['']?.inject : [cmd.config['']?.inject];
+                await write(output, arg.filter(p => typeof p == 'string' && p.startsWith('params.')).map(() => `, unknown`).join(''));
                 await write(output, `): unknown\n`);
             }
             else
@@ -92,11 +98,12 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
                 filePath += '.js';
                 if (config.inject)
                 {
+                    const arg = Array.isArray(config.inject) ? config.inject : [config.inject];
                     await write(output, '(...args: [');
                     const args: string[] = [];
-                    config.inject.forEach((p, i) =>
+                    arg.forEach((p, i) =>
                     {
-                        if (typeof p == 'string' && p.startsWith('param.'))
+                        if (typeof p == 'string' && p.startsWith('params.'))
                             args.push(`Argument${i}<typeof import('./${filePath}').default>`)
                     })
                     await write(output, args.join(', '));
@@ -105,15 +112,19 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
                 else
                     await write(output, `(...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
-            else if (cmd.config.schema?.inject?.length)
+            else if (cmd.config.schema?.inject && (!Array.isArray(cmd.config.schema?.inject) || cmd.config.schema?.inject?.length))
             {
+                const arg = Array.isArray(cmd.config.schema.inject) ? cmd.config.schema.inject : [cmd.config.schema.inject];
+
                 await write(output, `(`);
-                await write(output, (await Promise.all(cmd.config.schema.inject.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p as string | JsonSchema, { '#': cmd.config.schema as any }, types)}`))).join(', '));
+                await write(output, (await Promise.all(arg.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p as string | JsonSchema, { '#': cmd.config.schema as any }, types)}`))).join(', '));
                 await write(output, `): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, types)}>\n`);
             }
-            else if (cmd.config[""]?.inject?.length)
+            else if (cmd.config['']?.inject && (!Array.isArray(cmd.config['']?.inject) || cmd.config[""]?.inject?.length))
             {
-                await write(output, cmd.config[""]?.inject.filter(p => typeof p == 'string' && p.startsWith('param.')).map((p) => `arg${(p as string).substring(6)}:any`).join(', '));
+                const arg = Array.isArray(cmd.config[''].inject) ? cmd.config[''].inject : [cmd.config[''].inject];
+
+                await write(output, arg.filter(p => typeof p == 'string' && p.startsWith('params.')).map((p) => `arg${(p as string).substring(6)}:any`).join(', '));
                 await write(output, `): unknown\n`);
             }
             else
@@ -204,13 +215,24 @@ async function writeDoc(output: Writable, argName: string, doc: DocConfiguration
 {
     await write(output, `\t\t/** 
 \t\t  * ${doc.description?.split('\n').join('\n\t\t  * ')}`);
-    if (doc.inject?.length)
-    {
-        for (const i in doc.inject)
-            await write(output, `\n\t\t  * @typedef ${argName}${i} - ${doc.inject[i] as string}`)
+    if (doc.inject)
+        if (Array.isArray(doc.inject))
+        {
+            if (doc.inject?.length)
+            {
+                for (const i in doc.inject)
+                    await write(output, `\n\t\t  * @typedef ${argName}${i} - ${doc.inject[i] as string}`)
 
-        await write(output, `\n\t\t  * @param {[${doc.inject.map((_, i) => argName + i).join(', ')}]} ${argName}`)
-    }
+                await write(output, `\n\t\t  * @param {[${doc.inject.map((_, i) => argName + i).join(', ')}]} ${argName}`)
+            }
+        }
+        else
+        {
+            for (const i in doc.inject)
+                await write(output, `\n\t\t  * @typedef ${argName} - ${doc.inject[i] as string}`)
+
+            await write(output, `\n\t\t  * @param {[${argName}).join(', ')}]} ${argName}`)
+        }
 
     await write(output, `\n\t\t  */\n`);
 }

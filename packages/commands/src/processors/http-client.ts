@@ -179,11 +179,11 @@ export class HttpClient extends CommandProcessor
                             if (typeof value == 'symbol')
                                 throw new ErrorWithStatus(HttpStatusCode.PreconditionFailed, 'Symbols are not allowed in http client');
 
-                            const indexOfDot = value.indexOf('.');
+                            const indexOfDot = (value as string).indexOf('.');
                             if (~indexOfDot)
                             {
-                                const subKey = value.substring(indexOfDot + 1);
-                                switch (value.substring(0, indexOfDot))
+                                const subKey = (value as string).substring(indexOfDot + 1);
+                                switch ((value as string).substring(0, indexOfDot))
                                 {
                                     case 'body':
                                         options.contentType = options.type as HttpOptions<unknown>['contentType'];
@@ -281,7 +281,7 @@ authMiddleware.use(100, function (httpConfig, options, auth)
             inj.register('auth', auth);
             if (!httpConfig.inject)
                 httpConfig.inject = [];
-            inj.injectWithName(httpConfig.inject, (auth) =>
+            inj.injectWithName(Array.isArray(httpConfig.inject) ? httpConfig.inject : [httpConfig.inject], (auth) =>
             {
                 switch (typeof options.body)
                 {
@@ -314,7 +314,7 @@ authMiddleware.use(100, function (httpConfig, options, auth)
                 inj.register('auth', auth);
                 if (!httpConfig.inject)
                     httpConfig.inject = [];
-                inj.injectWithName(httpConfig.inject, (auth) =>
+                inj.injectWithName(Array.isArray(httpConfig.inject) ? httpConfig.inject : [httpConfig.inject], (auth) =>
                 {
                     switch (typeof options.body)
                     {
