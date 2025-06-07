@@ -68,6 +68,7 @@ import { IsomorphicBuffer, BufferEncoding } from '@akala/core'
 import SignedLEB128 from './LEB128.signed.js'
 import UnsignedLEB128 from './LEB128.unsigned.js'
 import Cache from './cache.js'
+import ConstantString from './string-constant.js'
 
 export { protobuf };
 
@@ -181,6 +182,11 @@ export function cache<T extends number | string | symbol, TMessage>(parser: Pars
 export function cache<T extends number | string | symbol, TMessage>(parser: AnyParser<T, TMessage>): AnyParser<T, TMessage>
 {
     return new Cache(parser);
+}
+
+export function constant<TValue extends string>(value: TValue, encoding?: BufferEncoding): Parser<TValue>
+{
+    return new ConstantString(value, encoding);
 }
 
 export function string<TString extends string = string>(length: number, encoding?: BufferEncoding): Parser<TString>
