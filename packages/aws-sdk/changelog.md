@@ -1,4 +1,4 @@
-#  (2025-06-02)
+#  (2025-06-07)
 
 
 ### Bug Fixes
@@ -8,11 +8,13 @@
 * aws sdk generation and update services 7b922cf
 * build fbd741f
 * build 88b29f4
+* build after dependency upgrade 877c53a
 * cleanup dependencies 7d25a0d
 * restore proper regex from github autofix 154e05b
 * sonar issues 7528b67
 * sonar issues 9b157ec
 * update after command breaking change 796613c
+* update after commands breaking change ab04f29
 * update after zip.js breaking change a35d7f5
 * update aws services definition 9bb0b0b
 * update commands 168670b
