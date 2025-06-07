@@ -7,7 +7,7 @@ import https from 'https';
 import http, { ServerOptions } from 'http';
 import { trigger } from "./triggers/http.js";
 import http2 from "http2";
-import { UrlHandler } from "@akala/core";
+import { HttpStatusCode, UrlHandler } from "@akala/core";
 import { HttpRouter } from "./router/router.js";
 
 export const serverHandlers = new UrlHandler<[URL, (http.ServerOptions | http2.ServerOptions | https.ServerOptions | http2.SecureServerOptions) & { signal: AbortSignal }, void], http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server>(true);
@@ -118,7 +118,15 @@ commandHandlers.protocol.use(async (url, container, options: (ServerOptions) & {
     let server: http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server;
     if (!(server = container.resolve('$webServer:' + url)))
     {
-        server = await serverHandlers.process(url, options)
+        try
+        {
+            server = await serverHandlers.process(url, options)
+        }
+        catch (e)
+        {
+            if (e?.statusCode == HttpStatusCode.NotFound)
+                return Promise.reject();
+        }
         container.register('$webServer:' + url, server);
     }
     if (!container.resolve('$mainRouter'))
