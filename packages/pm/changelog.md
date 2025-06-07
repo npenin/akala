@@ -1,9 +1,10 @@
-#  (2025-06-02)
+#  (2025-06-07)
 
 
 ### Bug Fixes
 
-* output logging 8045a93
+* handle 'undefined' abort reason 1c2cb6f
+* update after commands breaking change ab04f29
 
 
 
