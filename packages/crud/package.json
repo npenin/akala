@@ -8,13 +8,16 @@
     "source": "src/index.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "generate": "ac generate dist/esm/commands commands.json --name @akala/crud"
+        "generate": "akala sdk generate dist/esm/commands commands.json --name @akala/crud"
     },
     "dependencies": {
         "@akala/commands": "workspace:^",
         "@akala/config": "workspace:^",
         "@akala/sidecar": "workspace:^",
         "@akala/storage": "workspace:^"
+    },
+    "devDependencies": {
+        "@akala/cli": "workspace:^"
     },
     "exports": {
         "import": {

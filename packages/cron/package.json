@@ -13,10 +13,10 @@
     "homepage": "https://akala.js.org/cron",
     "type": "module",
     "scripts": {
-        "generate": "ac generate dist/esm/commands commands.json --name @akala/cron",
-        "generate-metadata": "ac generate-metadata commands.json src/container.ts",
-        "generate-pubsub": "ac generate dist/esm/pubsub pubsub-commands.json --name cron-pubsub",
-        "generate-metadata-pubsub": "ac generate-metadata pubsub-commands.json src/pubsub-container.ts --name cron-pubsub"
+        "generate": "akala sdk generate dist/esm/commands commands.json --name @akala/cron",
+        "generate-metadata": "akala sdk generate-metadata commands.json src/container.ts",
+        "generate-pubsub": "akala sdk generate dist/esm/pubsub pubsub-commands.json --name cron-pubsub",
+        "generate-metadata-pubsub": "akala sdk generate-metadata pubsub-commands.json src/pubsub-container.ts --name cron-pubsub"
     },
     "dependencies": {
         "@akala/commands": "workspace:^",
@@ -26,6 +26,7 @@
         "suncalc": "^1.9.0"
     },
     "devDependencies": {
+        "@akala/cli": "workspace:^",
         "@akala/pm": "workspace:^",
         "@types/debug": "^4.1.12"
     },

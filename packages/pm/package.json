@@ -7,8 +7,8 @@
     "version": "15.2.9",
     "scripts": {
         "test": "echo 1",
-        "generate": "ac generate dist/esm/commands commands.json --name pm && ac generate dist/esm/cli-commands cli-commands.json --name pm",
-        "generate-metadata": "ac generate-metadata commands.json src/container.ts && ac generate-metadata cli-commands.json src/cli-container.ts",
+        "generate": "akala sdk generate dist/esm/commands commands.json --name pm && akala sdk generate dist/esm/cli-commands cli-commands.json --name pm",
+        "generate-metadata": "akala sdk generate-metadata commands.json src/container.ts && akala sdk generate-metadata cli-commands.json src/cli-container.ts",
         "prepack": "../../makeCjs.sh",
         "akala-install": "akala plugins add dist/esm/akala.mjs"
     },

@@ -40,8 +40,8 @@
         "coverage": "yarn test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info",
         "generate": "yarn generate-server && yarn generate-oidc-server",
         "generate-metadata": "yarn generate-metadata-server && yarn generate-metadata-oidc-server",
-        "generate-server": "ac generate dist/esm/server/commands commands.json --name auth",
-        "generate-metadata-server": "ac generate-metadata commands.json src/container.ts",
+        "generate-server": "akala sdk generate dist/esm/server/commands commands.json --name auth",
+        "generate-metadata-server": "akala sdk generate-metadata commands.json src/container.ts",
         "generate-oidc-server": "akala sdk generate dist/esm/server/oidc-server oidc-server.json --name oidc-server",
         "generate-metadata-oidc-server": "akala sdk generate-metadata oidc-server.json src/oidc-server.ts --name oidc-server"
     },

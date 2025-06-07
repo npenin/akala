@@ -12,13 +12,16 @@
     "type": "module",
     "source": "src/index.ts",
     "scripts": {
-        "generate": "ac generate dist/esm/commands commands.json --name pubsub",
-        "generate-metadata": "ac generate-metadata commands.json src/container.ts"
+        "generate": "akala sdk generate dist/esm/commands commands.json --name pubsub",
+        "generate-metadata": "akala sdk generate-metadata commands.json src/container.ts"
     },
     "dependencies": {
         "@akala/commands": "workspace:^",
         "@akala/core": "workspace:^",
         "@akala/pm": "workspace:^"
+    },
+    "devDependencies": {
+        "@akala/cli": "workspace:^"
     },
     "exports": {
         ".": {
