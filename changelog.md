@@ -1,4 +1,4 @@
-#  (2025-06-02)
+#  (2025-06-07)
 
 
 * chore : code cleanup eae1150
@@ -116,6 +116,7 @@
 * build e6cbc6d
 * build fbd741f
 * build 88b29f4
+* build after dependency upgrade 877c53a
 * build from scratch issue b2f5bde
 * busbox compatibility by switching from env -S to env and enabling sourcemap in js a510d42
 * cancel breaking change e5ab02a
@@ -138,6 +139,7 @@
 * command extension to provide name a47159f
 * commands exports resolution d8d5fc0
 * config as akala plugin 211cc6b
+* config cli wrong bin path 742aeb7
 * configFile init 79f7467
 * configFile init abcfad1
 * configFile option 9609a93
@@ -231,10 +233,12 @@
 * forcing context build f5dfdbc
 * forcing context build b3fe873
 * formatter parsing within objects 98c53c9
+* forward undefined to parent url handler 93d7d10
 * generator bug when force=true 0817c02
 * generator bug when force=true ec5d977
 * git rev list command bbc7fa2
 * git rev list command cd73e5a
+* handle 'undefined' abort reason 1c2cb6f
 * handle 0.0.0.0 and * to connect to localhost 5f54dd4
 * handle 0.0.0.0 and * to connect to localhost e303589
 * handle abort signal 7f33b8c
@@ -624,6 +628,11 @@
 * update after command breaking change ef19b8c
 * update after command breaking change 796613c
 * update after command breaking change 7e441b2
+* update after commands breaking change e80cd0e
+* update after commands breaking change ab04f29
+* update after commands breaking change 95b04e6
+* update after commands breaking change 5249df2
+* update after commands breaking change d466cc8
 * update after core breaking change 669c311
 * update after core breaking change 859e291
 * update after core breaking change 990363a
@@ -811,6 +820,7 @@
 * add initial documentation for command processors and triggers 47506ce
 * add initial documentation for various modules and commands e3e5945
 * add initial documentation for various modules and commands 5f68588
+* add InjectorMap injector 1c19941
 * add int, cache and leb128 parsers 0fb8868
 * add invoke formatter 2ea1311
 * add IPC protocol handler for improved inter-process communication 96b2326
@@ -927,6 +937,8 @@
 * make help accessible everywhere by any clicontext 9f5892a
 * module accept Resolvable instead of just strings 0c95374
 * move configFile to docker volume b382a24
+* move from param to params to enable mcp e52cbaa
+* normalizing readdir output ac219a6
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
 * pm fork can be triggered from pm run command cd61525
@@ -955,6 +967,7 @@
 
 ### BREAKING CHANGES
 
+* param renamed to params
 * staticFileMiddleware expects a URL and not a string
 * RuntimeInstance have a mandatory runtime attribute
 * map expects a runtime
