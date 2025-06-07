@@ -16,7 +16,31 @@ export interface StatOptions
     bigint?: boolean;
 }
 
-export interface Stats<T = number>
+export interface FileEntry<Name extends string | Buffer = string>
+{
+    /**
+     * Returns `true` if the `FileEntry` object describes a regular file.
+     * @since v10.10.0
+     */
+    get isFile(): boolean;
+    /**
+     * Returns `true` if the `FileEntry` object describes a file system
+     * directory.
+     * @since v10.10.0
+     */
+    get isDirectory(): boolean;
+    /**
+     * The file name that this `FileEntry` object refers to. The type of this
+     * value is determined by the `options.encoding` passed to {@link readdir} or {@link readdirSync}.
+     */
+    name: Name;
+    /**
+     * The base path that this `FileEntry` object refers to.
+     */
+    parentPath: URL;
+}
+
+export interface Stats<T = number> extends FileEntry
 {
     get isFile(): boolean;
     get isDirectory(): boolean;
@@ -150,9 +174,9 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for reading the directory.
      * @returns A promise that resolves with the directory contents.
      */
-    readdir(path: string | URL, options?: { encoding?: BufferEncoding | null, withFileTypes?: false }): Promise<string[]>;
-    readdir(path: string | URL, options: { encoding: 'buffer', withFileTypes?: false }): Promise<Buffer[]>;
-    readdir(path: string | URL, options: { withFileTypes: true }): Promise<any[]>;
+    readdir(path: string | URL, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
+    readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<FileEntry<Buffer>[]>;
+    readdir(path: string | URL, options: { withFileTypes: true; }): Promise<FileEntry[]>;
 
     /**
      * Reads the contents of a file.

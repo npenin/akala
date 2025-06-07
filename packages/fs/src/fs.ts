@@ -1,8 +1,9 @@
 import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
-import { FileSystemProvider, MakeDirectoryOptions, OpenFlags, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
-import { promises as fs, OpenDirOptions } from 'fs';
+import { FileEntry, FileSystemProvider, MakeDirectoryOptions, OpenFlags, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
+import { Dirent, promises as fs, OpenDirOptions } from 'fs';
 import { FileHandle as NodeFileHandle } from 'fs/promises';
 import { fileURLToPath, pathToFileURL } from 'url';
+import { basename, dirname } from "path";
 
 type PathLike = string | URL;
 
@@ -70,12 +71,29 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
         return fs.opendir(this.resolvePath(path), options);
     }
 
-    async readdir(path: PathLike, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
-    async readdir(path: PathLike, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<Buffer[]>;
-    async readdir(path: PathLike, options: { withFileTypes: true; }): Promise<any[]>;
-    async readdir(path: PathLike, options?: any): Promise<string[] | Buffer[] | any[]>
+    async readdir(path: string | URL, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
+    async readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<FileEntry<Buffer>[]>;
+    async readdir(path: string | URL, options: { withFileTypes: true; }): Promise<FileEntry[]>;
+    async readdir(path: string | URL, options?: any): Promise<string[] | FileEntry<Buffer>[] | FileEntry[]>
     {
-        return fs.readdir(this.resolvePath(path), options);
+        return fs.readdir(this.resolvePath(path), options).then(files =>
+        {
+            if (options?.withFileTypes)
+            {
+                return (files as unknown as Dirent[]).map(f => ({
+                    get isFile() { return f.isFile() },
+                    get isDirectory() { return f.isDirectory() },
+                    get isBlockDevice() { return f.isBlockDevice() },
+                    get isCharacterDevice() { return f.isCharacterDevice() },
+                    get isSymbolicLink() { return f.isSymbolicLink() },
+                    get isFIFO() { return f.isFIFO() },
+                    get isSocket() { return f.isSocket() },
+                    name: f.name,
+                    parentPath: new URL(path),
+                }));
+            }
+            return files;
+        });
     }
 
     async readFile(path: PathLike | NodeFileHandle, options?: { encoding?: null; flag?: string; }): Promise<Buffer>;
@@ -124,6 +142,8 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
         if (opts?.bigint)
         {
             return {
+                parentPath: path instanceof URL ? new URL('.', path) : dirname(path),
+                name: path instanceof URL ? basename(path.pathname) : basename(path),
                 isFile: stats.isFile(),
                 isDirectory: stats.isDirectory(),
                 size: stats.size as bigint,
@@ -138,6 +158,8 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
             } as Stats<bigint>;
         }
         return {
+            parentPath: path instanceof URL ? new URL('.', path) : dirname(path),
+            name: path instanceof URL ? basename(path.pathname) : basename(path),
             isFile: stats.isFile(),
             isDirectory: stats.isDirectory(),
             size: Number(stats.size),
