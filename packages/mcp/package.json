@@ -1,0 +1,23 @@
+{
+    "name": "@akala/mcp",
+    "private": true,
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            }
+        }
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    },
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/json-rpc-ws": "workspace:^"
+    }
+}
