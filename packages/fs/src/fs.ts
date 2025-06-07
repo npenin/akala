@@ -1,15 +1,35 @@
 import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
-import { FileEntry, FileSystemProvider, MakeDirectoryOptions, OpenFlags, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
+import { FileEntry, FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
 import { Dirent, promises as fs, OpenDirOptions } from 'fs';
-import { FileHandle as NodeFileHandle } from 'fs/promises';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { basename, dirname } from "path";
+import { Readable, Writable } from "stream";
 
 type PathLike = string | URL;
 
+type FullFileHandle<TOpenFlag extends OpenFlags> = FileHandle<TOpenFlag> & fs.FileHandle;
+type ReadableFileHandle = FileHandle<'r' | 'r+' | 'rw' | 'rw+'> & fs.FileHandle;
+type WritableFileHandle = FileHandle<'w' | 'w+' | 'rw' | 'rw+'> & fs.FileHandle;
 
+function fsFileHandleAdapter<TOpenFlag extends OpenFlags>(handle: fs.FileHandle, flag?: TOpenFlag): FullFileHandle<TOpenFlag>
+{
+    return Object.assign(handle, {
+        openStream(options: OpenStreamOptions): TOpenFlag extends 'r' | 'r+' ? ReadableStream : WritableStream
+        {
+            switch (flag)
+            {
+                case 'r+':
+                case 'r':
+                    return Readable.toWeb(handle.createReadStream(options)) as any;
+                default:
+                    return Writable.toWeb(handle.createWriteStream(options)) as any;
 
-export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
+            }
+        }
+    })
+}
+
+export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle & FileHandle<OpenFlags>>
 {
     constructor(public root: URL, public readonly readonly: boolean)
     {
@@ -59,11 +79,11 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
         return fs.mkdir(this.resolvePath(path), options);
     }
 
-    async open(path: PathLike, flags: OpenFlags): Promise<fs.FileHandle>
+    async open<const TOpenFlag extends OpenFlags>(path: PathLike, flags: TOpenFlag): Promise<FullFileHandle<TOpenFlag>>
     {
         if (this.readonly && flags != 'r')
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
-        return await fs.open(this.resolvePath(path), flags);
+        return fsFileHandleAdapter(await fs.open(this.resolvePath(path), flags), flags);
     }
 
     async opendir(path: PathLike, options?: OpenDirOptions): Promise<any>
@@ -96,9 +116,9 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
         });
     }
 
-    async readFile(path: PathLike | NodeFileHandle, options?: { encoding?: null; flag?: string; }): Promise<Buffer>;
-    async readFile(path: PathLike | NodeFileHandle, options: { encoding: BufferEncoding; flag?: string; }): Promise<string>;
-    async readFile(path: PathLike | NodeFileHandle, options?: any): Promise<string | Buffer>
+    async readFile(path: PathLike | ReadableFileHandle, options?: { encoding?: null; flag?: string; }): Promise<Buffer>;
+    async readFile(path: PathLike | ReadableFileHandle, options: { encoding: BufferEncoding; flag?: string; }): Promise<string>;
+    async readFile(path: PathLike | ReadableFileHandle, options?: any): Promise<string | Buffer>
     {
         if (this.isFileHandle(path))
         {
@@ -200,7 +220,7 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
         return fs.watch(this.resolvePath(filename), options);
     }
 
-    async writeFile(path: PathLike | fs.FileHandle, data: string | ArrayBuffer | SharedArrayBuffer): Promise<void>
+    async writeFile(path: PathLike | WritableFileHandle, data: string | ArrayBuffer | SharedArrayBuffer): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
@@ -212,7 +232,7 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle>
         return fs.writeFile(this.resolvePath(path), buffer);
     }
 
-    public isFileHandle(p: unknown): p is fs.FileHandle
+    public isFileHandle(p: unknown): p is FullFileHandle<OpenFlags>
     {
         return typeof p === 'object' && p !== null && 'fd' in p;
     }

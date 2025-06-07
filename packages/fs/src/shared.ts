@@ -1,10 +1,11 @@
 
-export interface FileHandle
+export interface FileHandle<T extends OpenFlags = OpenFlags>
 {
+    openStream(options?: OpenStreamOptions): T extends 'r' | 'r+' ? ReadableStream : WritableStream;
     close(): Promise<void>;
 }
 
-export type OpenFlags = 'r' | 'w' | 'rw' | 'rw+' | 'w+';
+export type OpenFlags = 'r' | 'r+' | 'w' | 'rw' | 'rw+' | 'w+';
 
 export interface MakeDirectoryOptions
 {
@@ -14,6 +15,16 @@ export interface MakeDirectoryOptions
 export interface StatOptions
 {
     bigint?: boolean;
+}
+
+export interface OpenStreamOptions
+{
+    encoding?: BufferEncoding,
+    autoClose?: boolean | undefined;
+    emitClose?: boolean | undefined;
+    start?: number | undefined;
+    end?: number | undefined;
+    highWaterMark?: number | undefined;
 }
 
 export interface FileEntry<Name extends string | Buffer = string>
