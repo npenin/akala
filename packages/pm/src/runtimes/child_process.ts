@@ -63,7 +63,8 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
                 case 'SIGTERM':
                     return this.stop(5000, signal.reason);
                 default:
-                    return this.stop(5000);
+                    if (signal.reason?.name !== 'AbortError' || options.keepAttached)
+                        return this.stop(5000);
             }
         })
     }
