@@ -1,4 +1,4 @@
-import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
+import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from "@akala/core";
 import { FileEntry, FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
 import { Dirent, promises as fs, OpenDirOptions } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
@@ -7,29 +7,47 @@ import { Readable, Writable } from "stream";
 
 type PathLike = string | URL;
 
-type FullFileHandle<TOpenFlag extends OpenFlags> = FileHandle<TOpenFlag> & fs.FileHandle;
-type ReadableFileHandle = FileHandle<'r' | 'r+' | 'rw' | 'rw+'> & fs.FileHandle;
-type WritableFileHandle = FileHandle<'w' | 'w+' | 'rw' | 'rw+'> & fs.FileHandle;
+type FullFileHandle = FileHandle & Omit<fs.FileHandle, 'readFile'>;
+type ReadableFileHandle = FullFileHandle;
+type WritableFileHandle = FullFileHandle;
 
-function fsFileHandleAdapter<TOpenFlag extends OpenFlags>(handle: fs.FileHandle, flag?: TOpenFlag): FullFileHandle<TOpenFlag>
+function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, path: URL, readonly: boolean): FullFileHandle
 {
-    return Object.assign(handle, {
-        openStream(options: OpenStreamOptions): TOpenFlag extends 'r' | 'r+' ? ReadableStream : WritableStream
+    return Object.assign({}, handle as Omit<fs.FileHandle, 'readFile'>, {
+        path,
+        openReadStream(options: OpenStreamOptions): ReadableStream
         {
-            switch (flag)
-            {
-                case 'r+':
-                case 'r':
-                    return Readable.toWeb(handle.createReadStream(options)) as any;
-                default:
-                    return Writable.toWeb(handle.createWriteStream(options)) as any;
+            return Readable.toWeb(handle.createReadStream(options)) as any;
+        },
+        openWriteStream(options: OpenStreamOptions): WritableStream
+        {
+            if (readonly)
+                throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
 
-            }
+            return Writable.toWeb(handle.createWriteStream(options)) as any;
+        },
+        async writeFile(data: string | IsomorphicBuffer)
+        {
+            if (readonly)
+                throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
+
+            let buffer = typeof data == 'string' ? Buffer.from(data) : data.toArray();
+            await handle.truncate(buffer.length)
+            await handle.write(buffer, 0, buffer.length, 0);
+
+        },
+        async readFile<T = unknown>(encoding?: BufferEncoding | 'json'): Promise<IsomorphicBuffer | string | T>
+        {
+            if (encoding == 'binary' || !encoding)
+                return IsomorphicBuffer.fromBuffer(await handle.readFile({ encoding: null }));
+            if (encoding === 'json')
+                return await handle.readFile('utf-8').then(JSON.parse) as T;
+            return await handle.readFile({ encoding }) as string;
         }
-    })
+    }) as FullFileHandle;
 }
 
-export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle & FileHandle<OpenFlags>>
+export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
 {
     constructor(public root: URL, public readonly readonly: boolean)
     {
@@ -43,12 +61,20 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle & 
         this.root = newRoot;
     }
 
+    newChroot(root: string | URL)
+    {
+        const newRoot = pathToFileURL(this.resolvePath(root, true));
+        if (newRoot.toString() == this.root.toString())
+            return;
+        return new FSFileSystemProvider(newRoot, this.readonly);
+    }
+
     public resolvePath(pathLike: PathLike, unsafe?: boolean): string
     {
         const url = new URL(pathLike, this.root);
         if (!unsafe && !url.toString().startsWith(this.root.toString()))
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, `The path ${pathLike} is not in scope of ${this.root}`)
-        return fileURLToPath(url);
+        return fileURLToPath(url) + url.hash;
     }
 
     async access(path: PathLike, mode?: number): Promise<void>
@@ -79,11 +105,20 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle & 
         return fs.mkdir(this.resolvePath(path), options);
     }
 
-    async open<const TOpenFlag extends OpenFlags>(path: PathLike, flags: TOpenFlag): Promise<FullFileHandle<TOpenFlag>>
+    async open(path: PathLike, flags: OpenFlags): Promise<FullFileHandle>
     {
-        if (this.readonly && flags != 'r')
+        if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
-        return fsFileHandleAdapter(await fs.open(this.resolvePath(path), flags), flags);
+        try
+        {
+            return fsFileHandleAdapter(await fs.open(this.resolvePath(path), flags), this, new URL(path, this.root), this.readonly);
+        }
+        catch (e)
+        {
+            if (e.code == 'ENOENT')
+                throw new ErrorWithStatus(404, e.message, undefined, e);
+            throw e;
+        }
     }
 
     async opendir(path: PathLike, options?: OpenDirOptions): Promise<any>
@@ -92,11 +127,11 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle & 
     }
 
     async readdir(path: string | URL, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
-    async readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<FileEntry<Buffer>[]>;
+    async readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
     async readdir(path: string | URL, options: { withFileTypes: true; }): Promise<FileEntry[]>;
-    async readdir(path: string | URL, options?: any): Promise<string[] | FileEntry<Buffer>[] | FileEntry[]>
+    async readdir(path: string | URL, options?: { encoding?: 'buffer' | BufferEncoding | null; withFileTypes?: boolean }): Promise<string[] | IsomorphicBuffer[] | FileEntry[]>
     {
-        return fs.readdir(this.resolvePath(path), options).then(files =>
+        return fs.readdir(this.resolvePath(path), options as any).then(files =>
         {
             if (options?.withFileTypes)
             {
@@ -112,25 +147,33 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle & 
                     parentPath: new URL(path),
                 }));
             }
+            if (options.encoding == 'buffer')
+                return files.map(f => IsomorphicBuffer.fromBuffer(f as unknown as Buffer));
             return files;
         });
     }
 
-    async readFile(path: PathLike | ReadableFileHandle, options?: { encoding?: null; flag?: string; }): Promise<Buffer>;
-    async readFile(path: PathLike | ReadableFileHandle, options: { encoding: BufferEncoding; flag?: string; }): Promise<string>;
-    async readFile(path: PathLike | ReadableFileHandle, options?: any): Promise<string | Buffer>
+    async readFile<TEncoding extends BufferEncoding>(path: PathLike | ReadableFileHandle, options: { encoding: TEncoding; flag?: OpenFlags; }): Promise<string>;
+    async readFile(path: PathLike | ReadableFileHandle, options?: { flag?: OpenFlags; }): Promise<IsomorphicBuffer>;
+    async readFile<T = unknown>(path: PathLike | ReadableFileHandle, options: { encoding: 'json'; flag?: OpenFlags; }): Promise<T>;
+    async readFile<T = unknown>(path: PathLike | ReadableFileHandle, options?: any): Promise<string | IsomorphicBuffer | T>
     {
         if (this.isFileHandle(path))
         {
-            return fs.readFile(path, options);
+            return path.readFile(options?.encoding);
         }
-        return fs.readFile(this.resolvePath(path), options).catch(e =>
+
+        if (options?.encoding === 'json')
+            return this.readFile(path, { ...options, encoding: 'utf8' }).then(c => JSON.parse(c));
+
+        return fs.readFile(this.resolvePath(path), options).then(content => Buffer.isBuffer(content) ? IsomorphicBuffer.fromBuffer(content) : content, e =>
         {
             if (e.code === 'ENOENT')
-                throw new ErrorWithStatus(HttpStatusCode.NotFound, e.message);
+                throw new ErrorWithStatus(HttpStatusCode.NotFound, e.message, null, e);
+            if (e.code == 'ENOTDIR')
+                throw new ErrorWithStatus(HttpStatusCode.BadRequest, e.message, null, e);
             throw e;
-        }
-        );
+        });
     }
 
     async rename(oldPath: PathLike, newPath: PathLike): Promise<void>
@@ -158,40 +201,82 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle & 
     async stat(path: PathLike, opts: StatOptions & { bigint: true; }): Promise<Stats<bigint>>;
     async stat(path: PathLike, opts?: StatOptions): Promise<Stats | Stats<bigint>>
     {
-        const stats = await fs.stat(this.resolvePath(path), opts);
-        if (opts?.bigint)
+        try
         {
+            const stats = await fs.stat(this.resolvePath(path), opts);
+            if (opts?.bigint)
+            {
+                return {
+                    parentPath: path instanceof URL ? new URL('.', path) : dirname(path),
+                    name: path instanceof URL ? basename(path.pathname) : basename(path),
+                    isFile: stats.isFile(),
+                    isDirectory: stats.isDirectory(),
+                    size: stats.size as bigint,
+                    atimeMs: stats.atimeMs as bigint,
+                    mtimeMs: stats.mtimeMs as bigint,
+                    ctimeMs: stats.ctimeMs as bigint,
+                    birthtimeMs: stats.birthtimeMs as bigint,
+                    atime: stats.atime,
+                    mtime: stats.mtime,
+                    ctime: stats.ctime,
+                    birthtime: stats.birthtime
+                } as Stats<bigint>;
+            }
             return {
                 parentPath: path instanceof URL ? new URL('.', path) : dirname(path),
                 name: path instanceof URL ? basename(path.pathname) : basename(path),
                 isFile: stats.isFile(),
                 isDirectory: stats.isDirectory(),
-                size: stats.size as bigint,
-                atimeMs: stats.atimeMs as bigint,
-                mtimeMs: stats.mtimeMs as bigint,
-                ctimeMs: stats.ctimeMs as bigint,
-                birthtimeMs: stats.birthtimeMs as bigint,
+                size: Number(stats.size),
+                atimeMs: Number(stats.atimeMs),
+                mtimeMs: Number(stats.mtimeMs),
+                ctimeMs: Number(stats.ctimeMs),
+                birthtimeMs: Number(stats.birthtimeMs),
                 atime: stats.atime,
                 mtime: stats.mtime,
                 ctime: stats.ctime,
                 birthtime: stats.birthtime
-            } as Stats<bigint>;
+            } as Stats;
         }
-        return {
-            parentPath: path instanceof URL ? new URL('.', path) : dirname(path),
-            name: path instanceof URL ? basename(path.pathname) : basename(path),
-            isFile: stats.isFile(),
-            isDirectory: stats.isDirectory(),
-            size: Number(stats.size),
-            atimeMs: Number(stats.atimeMs),
-            mtimeMs: Number(stats.mtimeMs),
-            ctimeMs: Number(stats.ctimeMs),
-            birthtimeMs: Number(stats.birthtimeMs),
-            atime: stats.atime,
-            mtime: stats.mtime,
-            ctime: stats.ctime,
-            birthtime: stats.birthtime
-        } as Stats;
+        catch (e)
+        {
+            if (e.code === 'ENOENT')
+                throw new ErrorWithStatus(HttpStatusCode.NotFound, path.toString());
+            throw e;
+        }
+    }
+
+    async symlink(source: PathLike, target: PathLike, type?: 'dir' | 'file' | 'junction'): Promise<void>
+    {
+        source = this.resolvePath(source);
+        target = this.resolvePath(target);
+        if (source.endsWith('/'))
+            source = source.substring(0, source.length - 1);
+        if (target.endsWith('/'))
+            target = target.substring(0, target.length - 1);
+        if (this.readonly)
+            throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
+        try
+        {
+            await fs.symlink(target, source, type);
+        }
+        catch (e)
+        {
+            if (e.code == 'ENOENT')
+                throw new ErrorWithStatus(HttpStatusCode.NotFound, e.message, undefined, e);
+            if (e.code == 'EEXIST')
+                throw new ErrorWithStatus(HttpStatusCode.Conflict, `The symlink ${source} already exists`, undefined, e);
+            if (e.code == 'EPERM' || e.code == 'EACCES')
+                throw new ErrorWithStatus(HttpStatusCode.Forbidden, `The symlink ${source} cannot be created`, undefined, e);
+            if (e.code == 'EINVAL')
+                throw new ErrorWithStatus(HttpStatusCode.BadRequest, `The symlink ${source} is invalid`, undefined, e);
+            if (e.code == 'ENOTDIR')
+                throw new ErrorWithStatus(HttpStatusCode.BadRequest, `The symlink ${source} is not a directory`, undefined, e);
+            if (e.code == 'ENOSPC')
+                throw new ErrorWithStatus(HttpStatusCode.InsufficientStorage, `The symlink ${source} cannot be created due to insufficient storage`, undefined, e);
+            throw e;
+        }
+
     }
 
     async truncate(path: PathLike, len?: number): Promise<void>
@@ -220,20 +305,25 @@ export class FSFileSystemProvider implements FileSystemProvider<fs.FileHandle & 
         return fs.watch(this.resolvePath(filename), options);
     }
 
-    async writeFile(path: PathLike | WritableFileHandle, data: string | ArrayBuffer | SharedArrayBuffer): Promise<void>
+    async writeFile(path: PathLike | WritableFileHandle, data: string | ArrayBuffer | SharedArrayBuffer | Buffer | Uint8Array): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
-        const buffer = Buffer.from(data as ArrayBuffer);
+        const buffer = Buffer.isBuffer(data) ? data : Buffer.from(data as ArrayBuffer);
 
         if (this.isFileHandle(path))
-            return fs.writeFile(path, buffer);
+            return path.writeFile(buffer);
 
         return fs.writeFile(this.resolvePath(path), buffer);
     }
 
-    public isFileHandle(p: unknown): p is FullFileHandle<OpenFlags>
+    public isFileHandle(p: unknown): p is FullFileHandle
     {
         return typeof p === 'object' && p !== null && 'fd' in p;
+    }
+
+    public glob(pattern: string | string[])
+    {
+        return fs.glob(pattern);
     }
 }

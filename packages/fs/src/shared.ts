@@ -1,11 +1,41 @@
+import { IsomorphicBuffer } from "@akala/core";
 
-export interface FileHandle<T extends OpenFlags = OpenFlags>
+export interface FileHandle
 {
-    openStream(options?: OpenStreamOptions): T extends 'r' | 'r+' ? ReadableStream : WritableStream;
+    readonly path: URL;
+    openReadStream(options?: OpenStreamOptions): ReadableStream;
+    openWriteStream(options?: OpenStreamOptions): WritableStream;
+    readFile(encoding: Exclude<BufferEncoding, 'binary'>): Promise<string>;
+    readFile(encoding: 'binary'): Promise<IsomorphicBuffer>;
+    readFile<T>(encoding: 'json'): Promise<T>;
+    writeFile(data: string | IsomorphicBuffer): Promise<void>;
     close(): Promise<void>;
+    [Symbol.dispose](): void;
+    [Symbol.asyncDispose](): Promise<void>;
+    stat(opts?: StatOptions): Promise<Stats>;
+    stat(opts: StatOptions & { bigint: true }): Promise<Stats<bigint>>;
 }
 
-export type OpenFlags = 'r' | 'r+' | 'w' | 'rw' | 'rw+' | 'w+';
+export enum OpenFlags
+{
+    /** Open file for appending. The file is created if it does not exist. */
+    Append = 0o0200,
+
+    /** Open file for reading.An exception occurs if the file does not exist. */
+    Read = 0o0000,
+
+    /** Open file for reading and writing.An exception occurs if the file does not exist. */
+    ReadWrite = 0o0002,
+
+    /** Open file for writing. The file is created (if it does not exist) or truncated (if it exists). */
+    Write = 0o001,
+
+    CreateIfNotExist = 0o0100,
+
+    Truncate = 0o1000,
+
+    NonExisting = 0o0200,
+}
 
 export interface MakeDirectoryOptions
 {
@@ -27,7 +57,7 @@ export interface OpenStreamOptions
     highWaterMark?: number | undefined;
 }
 
-export interface FileEntry<Name extends string | Buffer = string>
+export interface FileEntry<Name extends string | IsomorphicBuffer = string>
 {
     /**
      * Returns `true` if the `FileEntry` object describes a regular file.
@@ -105,9 +135,33 @@ export interface RmDirOptions
 }
 
 /**
- * Interface representing a file system provider with various methods for file and directory operations.
+ * Represents an abstract file system provider interface, defining a set of methods and properties
+ * for interacting with files and directories in a platform-agnostic way.
  * 
- * @template TFileHandle - The type of file handle used by the provider, defaults to `FileHandle`.
+ * @typeParam TFileHandle - The type representing a file handle, defaulting to `FileHandle`.
+ * 
+ * Implementations of this interface should provide concrete logic for file system operations such as
+ * reading, writing, copying, deleting files and directories, as well as handling symbolic links,
+ * watching for changes, and managing file system roots.
+ * 
+ * The interface supports only asynchronous operations, and is designed to be
+ * compatible with various environments (e.g., Node.js, browser, virtual file systems).
+ * 
+ * @remarks
+ * - The `readonly` property indicates if the provider supports write operations.
+ * - The `root` property specifies the root URL of the file system.
+ * - Methods accept both string and URL types for paths, and support a variety of options for flexibility.
+ * - The interface supports advanced features such as recursive operations, file handle management,
+ *   and glob pattern matching.
+ * 
+ * @see FileHandle
+ * @see Stats
+ * @see MakeDirectoryOptions
+ * @see RmDirOptions
+ * @see RmOptions
+ * @see StatOptions
+ * @see IsomorphicBuffer
+ * @see FileEntry
  */
 export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
 {
@@ -161,6 +215,13 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
     mkdir(path: string | URL, options?: MakeDirectoryOptions): Promise<void>;
 
     /**
+     * Creates a symbolic link.
+     *
+     * @return Fulfills with `undefined` upon success.
+     */
+    symlink(source: string | URL, target: string | URL, type?: 'dir' | 'file' | 'junction'): Promise<void>;
+
+    /**
      * Opens a file at the specified path.
      * 
      * @param path - The path to the file.
@@ -186,7 +247,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @returns A promise that resolves with the directory contents.
      */
     readdir(path: string | URL, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
-    readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<FileEntry<Buffer>[]>;
+    readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
     readdir(path: string | URL, options: { withFileTypes: true; }): Promise<FileEntry[]>;
 
     /**
@@ -196,8 +257,9 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for reading the file.
      * @returns A promise that resolves with the file contents.
      */
-    readFile(path: string | URL | TFileHandle, options?: { encoding?: null, flag?: string }): Promise<Buffer>;
-    readFile(path: string | URL | TFileHandle, options: { encoding: BufferEncoding, flag?: string }): Promise<string>;
+    readFile(path: string | URL | TFileHandle, options?: { encoding?: null | 'binary', flag?: OpenFlags }): Promise<IsomorphicBuffer>;
+    readFile(path: string | URL | TFileHandle, options: { encoding: BufferEncoding, flag?: OpenFlags }): Promise<string>;
+    readFile<T>(path: string | URL | TFileHandle, options: { encoding: 'json', flag?: OpenFlags }): Promise<T>;
 
     /**
      * Renames a file or directory.
@@ -289,10 +351,33 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
     chroot(root: string | URL): void;
 
     /**
+     * Creates a new file system provider with the new root directory.
+     * 
+     * @param root - The new root directory.
+     */
+    newChroot(root: string | URL): FileSystemProvider<TFileHandle>;
+
+    /**
      * Determines if the given object is a file handle.
      * 
      * @param x - The object to check.
      * @returns `true` if the object is a file handle, otherwise `false`.
      */
     isFileHandle(x: any): x is TFileHandle;
+
+
+    /**
+     * Returns an async iterator that yields file paths matching the given glob pattern(s).
+     *
+     * @param pattern - A glob pattern string or an array of glob patterns to match files against.
+     * @returns An async iterator that yields the paths of files matching the specified pattern(s).
+     *
+     * @example
+     * ```typescript
+     * for await (const filePath of provider.glob('** /*.ts')) {
+        * console.log(filePath);
+     * }
+     * ```
+     */
+    glob(pattern: string | string[]): AsyncIterable<string>
 }
