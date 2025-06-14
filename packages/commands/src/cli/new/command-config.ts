@@ -5,10 +5,11 @@ import { Processors } from "../../index.js";
 import { Command } from "../../metadata/command.js";
 import { outputHelper, write } from "../../new.js";
 import { pathToFileURL } from "url";
+import fsHandler from "@akala/fs";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
-    var container = await Processors.FileSystem.discoverMetaCommands(destination, { relativeTo: pathToFileURL(process.cwd()), processor: new Processors.FileSystem(pathToFileURL(destination)), ignoreFileWithNoDefaultExport: true });
+    var container = await Processors.FileSystem.discoverMetaCommands(destination, { fs: await fsHandler.process(pathToFileURL(process.cwd() + '/')), relativeTo: pathToFileURL(process.cwd() + '/'), processor: new Processors.FileSystem(pathToFileURL(destination)), ignoreFileWithNoDefaultExport: true });
     const cmd = container.commands.find(c => c.name == name);
     if (!cmd)
         throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)
