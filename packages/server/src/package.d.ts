@@ -74,7 +74,7 @@ export interface CoreProperties
   /**
    * A person who has been involved in creating or maintaining this package
    */
-  "author"?: Person;
+  "author"?: string;
   /**
    * A list of people who contributed to this package.
    */
