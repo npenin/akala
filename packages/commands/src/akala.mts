@@ -69,7 +69,7 @@ export async function install(_context: CliContext<{ configFile: string }, objec
         if (commands)
             await mapAsync(commands, async (path, name) =>
             {
-                const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined, undefined, sharedInjector);
+                const cliContainer: commands.container & Container<unknown> = new Container('cli', {}, undefined, sharedInjector);
 
                 let uri: URL;
                 try
