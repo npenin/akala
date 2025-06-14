@@ -1,0 +1,32 @@
+//eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore 6133
+//eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argument5, Argument6, Argument7, Argument8, Argument9, Argument10, Argument11, Argument12, Argument13, Argument14, Argument15, Argument16, Argument17 } from '@akala/core';
+import {Metadata, ICommandProcessor, Container, registerCommands} from "@akala/commands";
+// eslint-disable-next-line @typescript-eslint/no-namespace
+namespace apm
+{
+	export interface container 
+	{
+		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./commands/$init.js').default>
+		dispatch (cmd:'cache.add', ...args: [Argument0<typeof import('./commands/cache/add.js').default>, Argument1<typeof import('./commands/cache/add.js').default>]): ReturnType<typeof import('./commands/cache/add.js').default>
+		dispatch (cmd:'config.set-registry', ...args: [Argument0<typeof import('./commands/config/set-registry.js').default>, Argument1<typeof import('./commands/config/set-registry.js').default>]): ReturnType<typeof import('./commands/config/set-registry.js').default>
+		dispatch (cmd:'install', ...args: [Argument0<typeof import('./commands/install.js').default>, Argument1<typeof import('./commands/install.js').default>, Argument2<typeof import('./commands/install.js').default>, Argument3<typeof import('./commands/install.js').default>]): ReturnType<typeof import('./commands/install.js').default>
+	}
+	export interface proxy 
+	{
+		'$init'(...args: []): ReturnType<typeof import('./commands/$init.js').default>
+		'cache.add'(...args: [Argument0<typeof import('./commands/cache/add.js').default>, Argument1<typeof import('./commands/cache/add.js').default>]): ReturnType<typeof import('./commands/cache/add.js').default>
+		'config.set-registry'(...args: [Argument0<typeof import('./commands/config/set-registry.js').default>, Argument1<typeof import('./commands/config/set-registry.js').default>]): ReturnType<typeof import('./commands/config/set-registry.js').default>
+		'install'(...args: [Argument0<typeof import('./commands/install.js').default>, Argument1<typeof import('./commands/install.js').default>, Argument2<typeof import('./commands/install.js').default>, Argument3<typeof import('./commands/install.js').default>]): ReturnType<typeof import('./commands/install.js').default>
+	}
+   export const meta={"name":"apm","commands":[{"name":"$init","config":{"fs":{"path":"dist/commands/$init.js","source":"src/commands/$init.ts","inject":[]},"":{"inject":[]}}},{"name":"cache.add","config":{"fs":{"inject":["params.0","params.1"],"path":"dist/commands/cache/add.js","source":"src/commands/cache/add.ts"},"cli":{"usage":"add <pkgUrl>","inject":["options.pkgUrl","options.force"],"options":{"force":{"aliases":["f"],"needsValue":false}}},"":{"inject":["params.0","params.1"]}}},{"name":"config.set-registry","config":{"fs":{"path":"dist/commands/config/set-registry.js","source":"src/commands/config/set-registry.ts","inject":["params.0","params.1"]},"":{"inject":["params.0","params.1"]}}},{"name":"install","config":{"fs":{"inject":["params.0","params.1","params.2","params.3"],"path":"dist/commands/install.js","source":"src/commands/install.ts"},"cli":{"usage":"install [package] [version]","inject":["context.abort.signal","options.package","options.version","options.save"],"options":{"save":{"needsValue":true,"doc":"expected value is true | false | dev | peer | optional | test. Default: true"}}},"":{"inject":["params.0","params.1","params.2","params.3"]}}}],"$schema":"https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"} as Metadata.Container;
+
+   export function connect(processor?:ICommandProcessor) {
+            const container = new Container<void>("apm", void 0);
+            registerCommands(meta.commands, processor, container);
+            return container as container & Container<void>;
+        }
+}
+
+export { apm as default };

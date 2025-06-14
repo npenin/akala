@@ -1,0 +1,146 @@
+{
+    "name": "apm",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "params.0"
+                    ],
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "context"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "params.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "cache.add",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2"
+                    ],
+                    "path": "dist/commands/cache/add.js",
+                    "source": "src/commands/cache/add.ts"
+                },
+                "cli": {
+                    "usage": "add <pkgUrl>",
+                    "inject": [
+                        "context.logger",
+                        "options.pkgUrl",
+                        "options.force"
+                    ],
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ],
+                            "needsValue": false
+                        }
+                    }
+                },
+                "": {
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "config.set-registry",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/config/set-registry.js",
+                    "source": "src/commands/config/set-registry.ts",
+                    "inject": [
+                        "params.0",
+                        "params.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "params.0",
+                        "params.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "install",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
+                    ],
+                    "path": "dist/commands/install.js",
+                    "source": "src/commands/install.ts"
+                },
+                "cli": {
+                    "usage": "install [package] [version]",
+                    "inject": [
+                        "context.abort.signal",
+                        "options.package",
+                        "options.version",
+                        "options.save"
+                    ],
+                    "options": {
+                        "save": {
+                            "needsValue": true,
+                            "doc": "expected value is true | false | dev | peer | optional | test. Default: true"
+                        }
+                    }
+                },
+                "": {
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2",
+                        "params.3"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "why",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "params.0"
+                    ],
+                    "path": "dist/commands/why.js",
+                    "source": "src/commands/why.ts"
+                },
+                "cli": {
+                    "inject": [
+                        "options.pkg",
+                        "context.abort.signal"
+                    ],
+                    "usage": "why <pkg>"
+                },
+                "": {
+                    "inject": [
+                        "params.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
+}

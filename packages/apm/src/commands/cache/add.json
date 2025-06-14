@@ -1,0 +1,33 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "params.0",
+            "params.1",
+            "params.2"
+        ]
+    },
+    "cli": {
+        "usage": "add <pkgUrl>",
+        "inject": [
+            "context.logger",
+            "options.pkgUrl",
+            "options.force"
+        ],
+        "options": {
+            "force": {
+                "aliases": [
+                    "f"
+                ],
+                "needsValue": false
+            }
+        }
+    },
+    "": {
+        "inject": [
+            "params.0",
+            "params.1",
+            "params.2"
+        ]
+    }
+}
