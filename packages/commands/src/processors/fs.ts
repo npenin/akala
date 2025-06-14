@@ -9,7 +9,7 @@ import { jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise, eachAsync } from '@akala/core';
 import { protocolHandlers as handlers, parseQueryString } from '../protocol-handler.js';
 import { fileURLToPath, pathToFileURL } from 'url';
-import fsHandler, { FileSystemProvider } from '@akala/fs';
+import fsHandler, { FileSystemProvider, OpenFlags } from '@akala/fs';
 
 async function protocolHandler(url: URL)
 {
@@ -67,7 +67,7 @@ export interface FileSystemConfiguration extends Metadata.Configuration
 
 function importJson(fs: FileSystemProvider, path: string | URL)
 {
-    return fs.readFile(path, { encoding: 'utf-8', flag: 'r' }).then(JSON.parse)
+    return fs.readFile(path, { encoding: 'utf-8', flag: OpenFlags.Read }).then(JSON.parse)
 }
 function tryImportJson(fs: FileSystemProvider, path: string | URL)
 {
@@ -202,7 +202,7 @@ export class FileSystem extends CommandProcessor
 
                         try
                         {
-                            const f = await subFs.open(c.config.fs.source, 'r');
+                            const f = await subFs.open(c.config.fs.source, OpenFlags.Read);
                             await f.close();
                             metacontainer.commands.push(c);
                         }
@@ -271,7 +271,7 @@ export class FileSystem extends CommandProcessor
                     const source = cmd.config.fs.source || cmd.config.fs.path;
                     try
                     {
-                        const f = await options.fs.open(new URL(cmd.config.fs.source, relativeTo), 'r');
+                        const f = await options.fs.open(new URL(cmd.config.fs.source, relativeTo), OpenFlags.Read);
                         await f.close()
                     }
                     catch (e)
