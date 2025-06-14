@@ -69,6 +69,7 @@ import SignedLEB128 from './LEB128.signed.js'
 import UnsignedLEB128 from './LEB128.unsigned.js'
 import Cache from './cache.js'
 import ConstantString from './string-constant.js'
+import FixedStringOrNull from './string-fixed-or-null.js'
 
 export { protobuf };
 
@@ -159,6 +160,11 @@ export
     SignedLEB128,
     UnsignedLEB128,
     Cache,
+    FixedStringOrNull,
+    PrefixedLengthSeries,
+    PreparsedLengthArray,
+    PreparsedLengthBuffer,
+    PreparsedLengthString,
 };
 
 export function skip<TMessage>(length: number | AnyParser<number, TMessage>): ParsersWithMessage<never, TMessage>
