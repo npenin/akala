@@ -30,6 +30,8 @@ export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialN
     public useMiddleware(priority: number, ...middlewares: AnyAsyncMiddleware<T, TSpecialNextParam>[]): this
     {
         this.stack.push(...middlewares.map(m => [priority, m] as const));
+        this.stack.sort((a, b) => a[0] - b[0]);
+
         return this;
     }
 
@@ -75,9 +77,11 @@ export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialN
     public async handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
     {
         let failed: boolean = !!error;
-        this.stack.sort((a, b) => a[0] - b[0]);
+        // this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
+            if (this.stack.length === 0)
+                return error;
             await eachAsync(this.stack, async (middleware) =>
             {
                 try
@@ -123,9 +127,11 @@ export class MiddlewareCompositeWithPriorityAsync<T extends unknown[], TSpecialN
     {
         let error: Error | OptionsResponse = undefined;
         let failed: boolean = undefined;
-        this.stack.sort((a, b) => a[0] - b[0]);
+        // this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
+            if (this.stack.length === 0)
+                return error;
             await eachAsync(this.stack, (middleware) =>
             {
                 if (failed && isErrorMiddleware(middleware[1]))

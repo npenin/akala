@@ -88,6 +88,8 @@ export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends 
         let failed: boolean = !!error;
         try
         {
+            if (this.stack.length === 0)
+                return error;
             each(this.stack, async (middleware) =>
             {
                 try
@@ -142,6 +144,8 @@ export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends 
         let failed: boolean = undefined;
         try
         {
+            if (this.stack.length === 0)
+                return error;
             each(this.stack, (middleware) =>
             {
                 if (failed && isErrorMiddleware(middleware))

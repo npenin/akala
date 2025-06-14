@@ -84,6 +84,8 @@ export class MiddlewareCompositeAsync<T extends unknown[], TSpecialNextParam ext
         let failed: boolean = !!error;
         try
         {
+            if (this.stack.length === 0)
+                return error;
             await eachAsync(this.stack, async (middleware) =>
             {
                 try
@@ -131,6 +133,8 @@ export class MiddlewareCompositeAsync<T extends unknown[], TSpecialNextParam ext
         let failed: boolean = undefined;
         try
         {
+            if (this.stack.length === 0)
+                return error;
             await eachAsync(this.stack, (middleware) =>
             {
                 if (failed && isErrorMiddleware(middleware))
