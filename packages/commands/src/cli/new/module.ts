@@ -40,17 +40,14 @@ test`},
             name: 'package.json', content: JSON.stringify({
                 "name": name,
                 "version": "0.0.0",
-                "main": "dist/cjs/index.js",
-                "types": "dist/cjs/index.d.ts",
+                "main": "dist/index.js",
+                "types": "dist/index.d.ts",
+                "type": "module",
                 "exports": {
                     ".": {
                         "import": {
-                            "types": "./dist/esm/index.d.ts",
-                            "default": "./dist/esm/index.js"
-                        },
-                        "require": {
-                            "types": "./dist/cjs/index.d.ts",
-                            "default": "./dist/cjs/index.js"
+                            "types": "./dist/index.d.ts",
+                            "default": "./dist/index.js"
                         }
                     }
                 },
