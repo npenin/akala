@@ -218,12 +218,17 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
     {
         if (offset)
             return this.subarray(offset, end).toString(encoding);
+
+        if (!end)
+            end = this.length;
+
         switch (encoding)
         {
             case "ascii": {
-                const result = new Array<string>(this.length);
-                for (let i = this.offset; i < this.end; i++)
-                    result[i] = String.fromCharCode(this.buffer[i]);
+                end += this.offset;
+                const result = new Array<string>(end - this.offset);
+                for (let i = this.offset; i < end; i++)
+                    result[i - this.offset] = String.fromCharCode(this.buffer[i]);
                 return result.join('');
             }
             case "utf8":
@@ -950,5 +955,36 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
             }
         }
         return true;
+    }
+}
+
+export function throttle<T>(threshold: number)
+{
+    if (threshold < 1)
+        throw new Error('Threshold must be greater than 0');
+    if (threshold == Number.POSITIVE_INFINITY || threshold == Number.MAX_SAFE_INTEGER)
+        return function (handler: () => Promise<T>): Promise<T>
+        {
+            return handler();
+        }
+
+    const open = new Array<Promise<unknown>>(threshold);
+    let rr = -1;
+    console.time('throttle');
+    return function (handler: () => Promise<T>): Promise<T>
+    {
+        rr = (rr + 1) % threshold;
+        if (!open[rr])
+        {
+            const result = handler();
+            open[rr] = result
+            return result;
+        }
+        else
+        {
+            const result = open[rr].then(() => handler())
+            open[rr] = result;
+            return result;
+        }
     }
 }
