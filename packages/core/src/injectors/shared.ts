@@ -98,6 +98,8 @@ export function isCustomResolver(x: unknown): x is ICustomResolver
     return x && typeof x == 'object' && customResolve in x;
 }
 
+export type SpecificInjector<T> = Injector & { resolve(param: Resolvable): T };
+
 /**
  * The `Injector` abstract class provides a framework for dependency injection, 
  * allowing the resolution and injection of parameters, functions, and constructors.
