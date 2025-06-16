@@ -1,4 +1,4 @@
-import { InjectableWithTypedThis, InjectMap, Resolvable } from "@akala/core";
+import { InjectableWithTypedThis, InjectMap, Resolvable, ResolvableArray } from "@akala/core";
 import { ICommandProcessor } from './processor.js';
 import { Command } from '../metadata/command.js'
 import { Configurations } from '../metadata/configurations.js'
@@ -12,7 +12,7 @@ export interface CommandWithProcessorAffinity extends Command
 
 export class SelfDefinedCommand<TArgs extends unknown[], T = unknown> implements Command
 {
-    constructor(public readonly handler: Injectable<unknown | PromiseLike<unknown>, T, TArgs>, name?: string, inject?: Exclude<Resolvable, symbol>[])
+    constructor(public readonly handler: Injectable<unknown | PromiseLike<unknown>, T, TArgs>, name?: string, inject?: ResolvableArray<TArgs> | InjectMap<TArgs extends [infer X, ...unknown[]] ? X : never>)
     {
         this.name = name || handler.name;
         if (typeof inject == 'undefined')
