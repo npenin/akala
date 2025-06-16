@@ -1,10 +1,11 @@
 import
 {
-    convertToMiddleware, each, introspect, isPromiseLike, Logger, map, MiddlewareAsync, MiddlewareCompositeAsync,
+    convertToMiddleware, each, ErrorWithStatus, introspect, isPromiseLike, Logger, map, MiddlewareAsync, MiddlewareCompositeAsync,
     MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, MiddlewarePromise,
     NotHandled
 } from '@akala/core';
 import normalize from '../helpers/normalize.js';
+import { link } from 'ansi-escapes'
 
 export type OptionType = string | boolean | string[] | number;
 
@@ -27,11 +28,16 @@ export interface OptionParseOption
     valueAssign: string;
 }
 
-export class ErrorMessage extends Error
+export class ErrorMessage extends ErrorWithStatus
 {
-    constructor(message?: string, public statusCode: number = 500)
+    constructor(message?: string, statusCode: number = 500, name?: string, cause?: Error)
     {
-        super(message);
+        super(statusCode, message
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) => link(text, url)) // Links have to be first to prevent ansi-codes injection
+            .replace(/!\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) => `[Image: ${text}]`) // Links have to be first to prevent ansi-codes injection
+            , name,
+            cause
+        );
     }
 
     toString()
