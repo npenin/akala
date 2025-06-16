@@ -8,10 +8,11 @@
     "exports": {
         ".": {
             "import": {
-                "types": "./dist/esm/index.d.ts",
-                "default": "./dist/esm/index.js"
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
             }
-        }
+        },
+        "./akala": "./dist/akala.mjs"
     },
     "scripts": {
         "generate": "akala sdk generate dist/commands commands.json --name mcp",
