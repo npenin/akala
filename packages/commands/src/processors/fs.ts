@@ -276,7 +276,7 @@ export class FileSystem extends CommandProcessor
                     }
                     catch (e)
                     {
-                        if (e.code == 'ENOENT')
+                        if (e.statusCode == akala.HttpStatusCode.NotFound)
                             console.warn(`The file ${cmd.config.fs.source} does not exist (thus ignoring ${cmd.name}). It could be that you deleted the source file, but the transpiled file is still around.`)
                         else
                         {
