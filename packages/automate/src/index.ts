@@ -1,7 +1,7 @@
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container.js';
-import { SerializableObject, Interpolate, mapAsync, MiddlewareCompositeWithPriorityAsync, Parser, parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger, MiddlewareAsync, NotHandled } from '@akala/core';
+import { SerializableObject, Interpolate, mapAsync, MiddlewareCompositeWithPriorityAsync, Parser, parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, MiddlewareAsync, NotHandled } from '@akala/core';
 import { Stream } from 'stream';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process.js';
@@ -448,7 +448,7 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
 
 export type JobStepUse = JobStepDef<'uses'>;
 export type JobStepJob = JobStepDef<'job'>;
-export type JobStepLog = JobStepDef<'log', string | [string, ...unknown[]], { 'log-level': keyof ILogger }>;
+export type JobStepLog = JobStepDef<'log', string | [string, ...unknown[]], { 'log-level': keyof typeof LogLevels }>;
 export type JobStepIf = JobStepDef<'if', string, void>;
 export type JobStepForEach = JobStepDef<'foreach', string, void>;
 

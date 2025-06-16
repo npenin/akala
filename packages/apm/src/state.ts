@@ -1,11 +1,11 @@
-import { ErrorWithStatus, ILogger } from "@akala/core";
+import { ErrorWithStatus, Logger } from "@akala/core";
 import { FileHandle, FileSystemProvider, OpenFlags } from "@akala/fs"
 
 export interface State
 {
     registry: Record<string, string>
     fs: FileSystemProvider;
-    logger: ILogger
+    logger: Logger
     cacheFolder: FileSystemProvider;
 }
 
