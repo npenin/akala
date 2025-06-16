@@ -207,11 +207,87 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: jsonrpcws.SocketAdapter)
+    public static trigger = new Trigger('jsonrpc', async function register<T>(container: Container<T>, media: jsonrpcws.SocketAdapter)
     {
         // assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
+        const error = new Error();
         const log = logger('akala:commands:jsonrpc:' + container.name)
-        return JsonRpc.getConnection(media, container, null, log);
+
+        const meta = await container.dispatch('$metadata', true);
+        const containers: Container<unknown>[] = [];
+
+        const connection = new jsonrpcws.Connection(media, {
+            type: 'client',
+            disconnected()
+            {
+                const cmd = meta.commands.find(c => c.name == '$disconnect' || c.config.jsonrpc?.name == '$disconnect')
+                if (cmd)
+                    Promise.all(containers.map(async c =>
+                    {
+                        await c.dispatch(cmd);
+                    })).then(noop, noop);
+            },
+            getHandler(method: string)
+            {
+                if (!container)
+                    return null;
+
+                const cmd = meta.commands.find(c => c.name == '$disconnect' || c.config.jsonrpc?.name == '$disconnect')
+                if (!cmd)
+                {
+                    container.inspect();
+                    error.message = `Command with name ${method} could not be found on ${media.constructor.name}`;
+                    return null;
+                }
+
+                return async function (this: jsonrpcws.Connection, params, reply)
+                {
+                    try
+                    {
+                        if (log)
+                            log.debug(params);
+
+                        if (!params)
+                            params = { params: [] as string[] };
+                        if (Array.isArray(params))
+                            params = { params: params };
+                        if (typeof (params) != 'object' || params instanceof Readable || !params['params'])
+                            params = { params: [params] } as SerializableObject;
+
+                        Object.defineProperty(params, 'connectionId', { configurable: true, enumerable: false, value: this.id });
+                        Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });
+                        Object.defineProperty(params, 'connectionAsContainer', { configurable: true, enumerable: false, get: getContainer });
+                        Object.defineProperty(params, 'socket', { configurable: true, enumerable: false, value: media });
+
+                        if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
+                            params['_trigger'] = 'jsonrpc';
+
+                        const result = await container.dispatch(method, params as StructuredParameters<SerializableObject[]>);
+                        reply(null, result as jsonrpcws.PayloadDataType<Readable>);
+                    }
+                    catch (error)
+                    {
+                        if (typeof error === 'undefined')
+                            return;
+                        if (log)
+                            log.error(error);
+                        if (error && typeof error.toJSON == 'function')
+                            reply(error.toJSON());
+                        else
+                            reply(error);
+                    }
+                }
+            }
+        });
+        const getProcessor = lazy(() => new JsonRpc(connection));
+        const getContainer = lazy(() =>
+        {
+            const c = Container.proxy(container?.name + '-client', getProcessor());
+            containers.push(c);
+            return c;
+        });
+
+        return connection;
     })
 
     public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
