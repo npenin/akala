@@ -1,5 +1,5 @@
-
 import debug from 'debug';
+import { bold, italic, strikethrough, underline } from 'yoctocolors'
 
 /**
  * Enum representing logging levels mapped to numeric priorities
@@ -108,12 +108,63 @@ export function logger(rootNamespace: string, logLevel?: LogLevels): Logger
     const logger = { get level() { return logLevel }, set level(l) { setLevel(rootNamespace, l) } };
     if (debug.enabled(rootNamespace))
         logger.level = LogLevels.silly;
+    const debugInstance = debug(rootNamespace);
     Object.keys(LogLevels).forEach(k =>
     {
         if (!isNaN(Number(k)))
             return;
         if (typeof k == 'string')
-            Object.defineProperty(logger, k, { value: debug(k + ':' + rootNamespace), enumerable: false });
+            Object.defineProperty(logger, k, { value: debugInstance.extend(k), enumerable: false });
     })
     return logger as Logger;
+}
+
+export const emojiMap = {
+    smile: '😄',
+    thumbsup: '👍',
+    heart: '❤️',
+    fire: '🔥',
+    star: '⭐',
+    cry: '😢',
+    laugh: '😂',
+    wink: '😉',
+    clap: '👏',
+    angry: '😠',
+    shocked: '😲',
+    cool: '😎',
+    poop: '💩',
+    party: '🥳',
+    thinking: '🤔',
+    pray: '🙏',
+    hug: '🤗',
+    ok: '👌',
+    eyes: '👀',
+    grin: '😁',
+    sleepy: '😴',
+    kiss: '😘',
+    celebration: '🎉',
+    check: '✅',
+    cross: '❌',
+    question: '❓',
+    wave: '👋',
+    rocket: '🚀',
+    100: '💯'
+};
+
+const oldErrorLog = console.error;
+console.error = function (format, ...args)
+{
+    if (typeof format == 'string')
+        oldErrorLog.call(console, format
+            .replace(/__((?:[^_]|_[^_])+)__/g, (_, text) => bold(text))
+            .replace(/\*\*((?:[^\*]|\*[^\*])+)\*\*/g, (_, text) => bold(text))
+            .replace(/_([^_]+)_/g, (_, text) => underline(text))
+            .replace(/\*([^\*]+)\*/g, (_, text) => italic(text))
+            .replace(/```.*\n((?:[^`]|\n)+)\n```/g, (_, text) => italic(bold(text)))
+            .replace(/`([^`]+)`/g, (_, text) => italic(bold(text)))
+            .replace(/~~((?:[^~]|~[^~])+)~~/g, (_, text) => strikethrough(text))
+            .replace(/:([a-z_]+):/g, (_, emojiName) => emojiMap[emojiName] || `:${emojiName}:`)
+            , ...args);
+    else
+        oldErrorLog.call(console, format, ...args);
 }
