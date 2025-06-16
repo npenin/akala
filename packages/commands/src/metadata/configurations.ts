@@ -29,7 +29,7 @@ export interface ConfigurationMap //extends Record<string, Configuration>
     cli: CliConfiguration;
     doc: DocConfiguration;
     schema: SchemaConfiguration;
-    jsonrpc: Configuration;
+    jsonrpc: Configuration & { name?: string };
     bindings: BindingConfiguration;
 }
 
