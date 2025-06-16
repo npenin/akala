@@ -18,6 +18,15 @@ import { IsomorphicBuffer } from '@akala/core';
  */
 export class i32 implements wasmtypeInstance<i32>, usize<u32>
 {
+    public static convert_u(value: i32 | i64)
+    {
+        return value instanceof i32 ? value : value.wrap();
+    }
+    public static convert_s(value: i32 | i64)
+    {
+        return value instanceof i32 ? value : value.wrap();
+    }
+
     /**
      * Creates a new i32 instance
      * @param initialOp - The initial operation buffer

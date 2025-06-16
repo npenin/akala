@@ -18,6 +18,15 @@ import { IsomorphicBuffer } from '@akala/core';
  */
 export class i64 implements wasmtypeInstance<i64>, usize<bigint>
 {
+    public static convert_u(value: i32 | i64)
+    {
+        return value instanceof i64 ? value : value.extend_u();
+    }
+    public static convert_s(value: i32 | i64)
+    {
+        return value instanceof i64 ? value : value.extend_s();
+    }
+
     /**
      * Creates a new i64 instance
      * @param initialOp - The initial operation buffer

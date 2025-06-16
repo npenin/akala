@@ -184,8 +184,11 @@ export interface usize<TNative extends bigint | number> extends wasmtypeInstance
  */
 export interface usizeType<TNative extends bigint | u32> extends wasmtype<usize<TNative>>
 {
+    convert_s(value: i32 | i64): usize<TNative>
+    convert_u(value: i32 | i64): usize<TNative>
+
     /** Size in bits */
-    size: number;
+    readonly size: number;
     /** Creates constant value */
     const(v: TNative | u32): usize<TNative>;
     /** Loads value from memory */
