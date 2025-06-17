@@ -67,3 +67,30 @@ export class TeardownManager implements Disposable
         return sub;
     }
 }
+
+
+export class StatefulSubscription implements Disposable
+{
+    _unsubscribed: boolean = false;
+    constructor(private readonly _unsubscribe: () => void)
+    {
+    }
+
+    public readonly unsubscribe: Subscription = () =>
+    {
+        if (this._unsubscribed)
+            return false;
+        this._unsubscribe()
+        return this._unsubscribed = true;
+    }
+
+    public get unsubscribed(): boolean
+    {
+        return this._unsubscribed;
+    }
+
+    [Symbol.dispose](): void
+    {
+        this._unsubscribe();
+    }
+}

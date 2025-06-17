@@ -75,7 +75,7 @@ export interface EventBus<T extends object = Record<string, Event<unknown[]>>> e
      * @param {EventListener<AllEvents<T>[TEvent]>} handler - The event handler.
      * @returns {boolean} - True if the listener was removed, false otherwise.
      */
-    off<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>): boolean;
+    off<const TEvent extends AllEventKeys<T>>(event: TEvent, handler?: EventListener<AllEvents<T>[TEvent]>): boolean;
 }
 
 

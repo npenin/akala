@@ -4,7 +4,7 @@ import { AsEvent, Event, EventArgs, EventKeys, EventListener, EventOptions, Even
 
 type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
 
-type AllEvents<T extends object> = EventMap<T> & SpecialEvents
+export type AllEvents<T extends object> = EventMap<T> & SpecialEvents
 
 /**
  * EventEmitter class to manage events and listeners.

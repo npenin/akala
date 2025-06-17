@@ -73,7 +73,7 @@ export interface IEventSink<T extends readonly unknown[], TReturnType, TOptions 
     maxListeners: number;
     hasListeners: boolean;
     addListener(listener: Listener<T, TReturnType>, options?: TOptions): Subscription;
-    removeListener(listener: Listener<T, TReturnType>): boolean;
+    removeListener(listener?: Listener<T, TReturnType>): boolean;
     [Symbol.dispose](): void;
 }
 
@@ -206,8 +206,10 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
      * @param {Listener<T, TReturnType>} listener - The listener to remove.
      * @returns {boolean} - True if the listener was removed, false otherwise.
      */
-    removeListener(listener: (...args: T) => TReturnType): boolean
+    removeListener(listener?: (...args: T) => TReturnType): boolean
     {
+        if (typeof listener == 'undefined')
+            return !this.listeners.splice(0, this.listeners.length).length;
         const indexOfListener = this.listeners.indexOf(listener);
         return indexOfListener > -1 && !!this.listeners.splice(indexOfListener, 1).length;
     }
