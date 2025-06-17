@@ -10,7 +10,7 @@ export default function (_config, program: NamespaceMiddleware)
     {
         const container = containers.resolve<Container<unknown>>(c.options.commands);
         if (container)
-            return await McpTrigger.register(container);
+            return await McpTrigger.register(container, c.abort.signal);
 
         if (URL.canParse(c.options.commands))
         {
@@ -20,7 +20,7 @@ export default function (_config, program: NamespaceMiddleware)
             const container = new Container(meta.name, {});
             registerCommands(meta.commands, options.processor, container);
 
-            return await McpTrigger.register(container);
+            return await McpTrigger.register(container, c.abort.signal);
         }
 
         throw new ErrorWithStatus(HttpStatusCode.BadRequest, `${c.options.commands} could not be resolved to a valid container. It has to be a name registered with \`akala commands add\` or a valid URL.`)

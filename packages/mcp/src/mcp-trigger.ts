@@ -24,7 +24,7 @@ declare module '@akala/commands'
     }
 }
 
-export const McpTrigger = new Trigger('mcp', async container =>
+export const McpTrigger = new Trigger('mcp', async (container, signal: AbortSignal) =>
 {
     const meta = await container.dispatch('$metadata', true);
     const capabilities: { tools: ToolDefinition[], resources: ResourceDefinition[], resourceTemplates: ResourceTemplateDefinition[] } = { tools: [], resources: [], resourceTemplates: [] }
@@ -65,5 +65,5 @@ export const McpTrigger = new Trigger('mcp', async container =>
 
     const mcp = new Container<State>('mcp-server', { capabilities, resourceRouter, container })
 
-    Processors.JsonRpc.trigger.register(mcp, new ProcessStdioAdapter(process));
+    Processors.JsonRpc.trigger.register(mcp, new ProcessStdioAdapter(process, signal));
 })
