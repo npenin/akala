@@ -186,15 +186,9 @@ export class FileSystem extends CommandProcessor
                             return;
                         const subURL = new URL(subPath, root);
                         if (c.config?.fs?.path)
-                            if (subURL.protocol == 'file:')
-                                c.config.fs.path = path.join(path.relative(path.dirname(fileURLToPath(subURL)), path.dirname(fileURLToPath(root))), c.config.fs.path);
-                            else
-                                c.config.fs.path = new URL(c.config.fs.path, subURL).toString();
+                            c.config.fs.path = new URL(c.config.fs.path, subURL).toString();
                         if (c.config?.fs?.source)
-                            if (subURL.protocol == 'file:')
-                                c.config.fs.source = path.join(path.relative(path.dirname(fileURLToPath(subURL)), path.dirname(fileURLToPath(root))), c.config.fs.source);
-                            else
-                                c.config.fs.source = new URL(c.config.fs.source, subURL).toString();
+                            c.config.fs.source = new URL(c.config.fs.source, subURL).toString();
 
                         if (c.config.schema?.$defs)
                             if (globalDefs)
