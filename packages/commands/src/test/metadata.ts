@@ -132,8 +132,8 @@ describe('test helpers', function ()
         const cmds = await FileSystem.discoverMetaCommands(new URL('../../../commands.json', import.meta.url));
         assert.strictEqual(cmds.commands.length, 15);
         // debugger;
-        const cmds2 = await FileSystem.discoverMetaCommands(new URL('../../../src/test/metadata.json', import.meta.url), { fs: await fsHandler.process(new URL('../../..', import.meta.url)) });
-        assert.strictEqual(cmds2.commands.length, 22);
+        const cmds2 = await FileSystem.discoverMetaCommands(new URL('../../../src/test/metadata.json', import.meta.url), { fs: await fsHandler.process(new URL('../../../', import.meta.url)) });
+        assert.strictEqual(cmds2.commands.length, 37);
         assert.strictEqual(cmds2.commands.reduce((prev, current) => prev + (cmds.commands.some(cmd => cmd.name == current.name) ? '' : current.name), ''), 'dummy$initbridgenameproxyreadyreload-metadatarestartstartstatusstopconnectdiscoverinstalllinkloglsmaprununinstallupdateversion')
     })
 })
