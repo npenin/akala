@@ -1,10 +1,11 @@
 import { Socket } from 'net';
 import { TLSSocket, connect as tlsconnect } from 'tls'
 import * as jsonrpcws from '@akala/json-rpc-ws';
-import { EventEmitter } from 'events';
 import { protocolHandlers as handlers } from './protocol-handler.js';
 import { JsonRpc } from './processors/jsonrpc.js';
 import { Container } from './metadata/container.js';
+import { AllEventKeys, AllEvents, EventEmitter, EventListener, EventOptions, StatefulSubscription, Subscription } from '@akala/core';
+import { SocketAdapterAkalaEventMap } from '@akala/json-rpc-ws';
 
 handlers.useProtocol('tcp', async (url) =>
 {
@@ -61,27 +62,31 @@ handlers.useProtocol('unixs', async (url) =>
     };
 });
 
-export class NetSocketAdapter implements jsonrpcws.SocketAdapter
+export class NetSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements jsonrpcws.SocketAdapter
 {
     constructor(private socket: Socket)
     {
+        super();
         socket.setNoDelay(true);
     }
 
-    off<K extends keyof jsonrpcws.SocketAdapterEventMap>(event: K, handler?: (this: unknown, ev: jsonrpcws.SocketAdapterEventMap[K]) => void): void
+
+    public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): boolean
     {
         if (event == 'message')
-            if (handler)
-                this.ee.removeListener(event, handler);
-            else
-                this.ee.removeAllListeners(event);
+            return super.off(event, handler)
         else if (handler)
             this.socket.removeListener(event, handler);
         else
             this.socket.removeAllListeners(event);
+
+        return true;
     }
 
-    pipe(socket: jsonrpcws.SocketAdapter<unknown>)
+    pipe(socket: jsonrpcws.SocketAdapter)
     {
         if (socket instanceof NetSocketAdapter)
         {
@@ -94,7 +99,6 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 
     private buffer = '';
     private dataEventRegistered = false;
-    private ee = new EventEmitter();
 
     private registerDataEvent()
     {
@@ -107,12 +111,11 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
                 if (Buffer.isBuffer(data))
                     sData = data.toString('utf8');
 
-
                 let indexOfEOL = sData.indexOf('}\n');
                 while (indexOfEOL > -1)
                 {
-                    this.ee.emit('message', this.buffer + sData.substr(0, indexOfEOL + 1));
-                    sData = sData.substr(indexOfEOL + 2);
+                    this.emit('message', this.buffer + sData.substring(0, indexOfEOL + 1));
+                    sData = sData.substring(indexOfEOL + 2);
                     this.buffer = '';
                     indexOfEOL = sData.indexOf('}\n');
                 }
@@ -135,52 +138,49 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
     {
         this.socket.write(data + '\n');
     }
-    on(event: "message", handler: (this: unknown, ev: string) => void): void;
-    on(event: "open", handler: (this: unknown) => void): void;
-    on(event: "error", handler: (this: unknown, ev: Event) => void): void;
-    on(event: "close", handler: (this: unknown, ev: CloseEvent) => void): void;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    on(event: "message" | "open" | "error" | "close", handler: (ev?: any) => void): void
+
+
+    public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>,
+        options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): Subscription
     {
+        const sub = new StatefulSubscription(() => this.socket.removeListener(event, handler));
+
         switch (event)
         {
             case 'message':
                 this.registerDataEvent();
-                this.ee.on('message', handler);
-                break;
+                return super.on('message', handler as EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>);
             case 'open':
-                this.socket.on('connect', handler);
+                if (options?.once)
+                    this.socket.once('connect', handler);
+                else
+                    this.socket.on('connect', handler);
                 break;
             case 'error':
-                this.socket.on('error', handler);
+                if (options?.once)
+                    this.socket.once('error', handler);
+                else
+                    this.socket.on('error', handler);
                 break;
             case 'close':
-                this.socket.on('close', handler);
+                if (options?.once)
+                    this.socket.once('close', handler);
+                else
+                    this.socket.on('close', handler);
                 break;
         }
+        return sub.unsubscribe;
     }
-    once(event: "message", handler: (this: unknown, ev: MessageEvent) => void): void;
-    once(event: "open", handler: (this: unknown) => void): void;
-    once(event: "error", handler: (this: unknown, ev: Event) => void): void;
-    once(event: "close", handler: (this: unknown, ev: CloseEvent) => void): void;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    once(event: "message" | "open" | "error" | "close", handler: (ev?: any) => void): void
+
+    public once<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>,
+        options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): Subscription
     {
-        switch (event)
-        {
-            case 'message':
-                this.registerDataEvent();
-                this.ee.once('message', handler);
-                break;
-            case 'open':
-                this.socket.once('connect', handler);
-                break;
-            case 'error':
-                this.socket.once('error', handler);
-                break;
-            case 'close':
-                this.socket.once('close', handler);
-                break;
-        }
+        return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>);
     }
 }
