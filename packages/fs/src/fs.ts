@@ -107,7 +107,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
 
     async open(path: PathLike, flags: OpenFlags): Promise<FullFileHandle>
     {
-        if (this.readonly)
+        if (this.readonly && (flags & (OpenFlags.Write | OpenFlags.ReadWrite)) > 0)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         try
         {
