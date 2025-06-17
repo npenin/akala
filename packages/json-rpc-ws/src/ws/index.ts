@@ -7,7 +7,7 @@ import Client from './client.js';
 export { SocketAdapter, ServerAdapter }
 import debug from 'debug';
 import * as ws from 'ws';
-const logger = debug('json-rpc-ws');
+const logger = debug('akala:json-rpc-ws');
 
 export function createClient(): Client
 {

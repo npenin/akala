@@ -11,7 +11,7 @@ function assert(ok: unknown, message: string): void
   if (!ok)
     throw new Error(message);
 }
-const logger = debug('json-rpc-ws');
+const logger = debug('akala:json-rpc-ws');
 
 export interface ServerAdapter 
 {

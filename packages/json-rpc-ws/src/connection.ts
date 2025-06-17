@@ -3,7 +3,7 @@ import { SerializableObject } from '@akala/core';
 import debug from 'debug';
 import * as stream from 'stream';
 import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, SocketAdapter, Parent } from './shared-connection.js'
-const logger = debug('json-rpc-ws');
+const logger = debug('akala:json-rpc-ws');
 
 
 function isBuffer(obj: unknown): obj is Uint8Array

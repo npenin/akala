@@ -1,6 +1,6 @@
 'use strict';
 import debug from 'debug';
-const logger = debug('json-rpc-ws');
+const logger = debug('akala:json-rpc-ws');
 
 import { Connection, Handler, PayloadDataType, Parent, SocketAdapter } from './shared-connection.js';
 

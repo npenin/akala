@@ -1,7 +1,7 @@
 import debug from 'debug';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors.js';
-import { SerializableObject } from '@akala/core';
-const logger = debug('json-rpc-ws');
+import { EventBus, EventListener, IEvent, SerializableObject, Subscription } from '@akala/core';
+const logger = debug('akala:json-rpc-ws');
 
 export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | boolean | boolean[] | number[] | string | string[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
 export type SerializedBuffer = { type: 'Buffer', data: Uint8Array | number[] };
@@ -74,19 +74,13 @@ export interface SocketAdapterEventMap
     close: CloseEvent;
 }
 
+export type SocketAdapterAkalaEventMap = { [key in keyof SocketAdapterEventMap]: IEvent<[SocketAdapterEventMap[key]], void> }
 
-export interface SocketAdapter<TSocket = unknown>
+export interface SocketAdapter extends EventBus<SocketAdapterAkalaEventMap>
 {
     readonly open: boolean;
     close(): void;
     send(data: string): void;
-
-    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void
-
-    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void;
-
-    off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void
-
     pipe(socket: SocketAdapter): void;
 }
 
@@ -107,6 +101,7 @@ export interface Parent<TStreamable, TConnection extends Connection<TStreamable>
 
 export abstract class Connection<TStreamable>
 {
+    sub: Subscription;
     /**
      *
      */
@@ -116,7 +111,7 @@ export abstract class Connection<TStreamable>
             throw new Error('socket.send is not defined');
         logger('new Connection to %s', parent.type);
 
-        socket.on('message', this.message.bind(this));
+        this.sub = socket.on('message', this.message.bind(this));
         // this.on('message', this.message.bind(this));
         this.once('close', this.close.bind(this));
         this.once('error', this.close.bind(this));
@@ -133,14 +128,14 @@ export abstract class Connection<TStreamable>
     }
 
 
-    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap[K]>): Subscription
     {
-        this.socket.on(event, handler);
+        return this.socket.on(event, handler);
     }
 
-    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap[K]>): Subscription
     {
-        this.socket.once(event, handler);
+        return this.socket.once(event, handler);
     }
 
     public readonly id = crypto.randomUUID();
@@ -379,6 +374,7 @@ export abstract class Connection<TStreamable>
             // debugger;
             logger('close error %s', error['stack'] || error);
         }
+        this.sub?.();
         this.parent.disconnected(this); //Tell parent what went on so it can track connections
         // delete this.socket;
     }

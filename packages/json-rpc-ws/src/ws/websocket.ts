@@ -1,8 +1,10 @@
 'use strict';
 
 import { default as ClientBase } from './shared-client.js';
-import { SocketAdapter, SocketAdapterEventMap } from '../shared-connection.js';
+import { SocketAdapter, SocketAdapterAkalaEventMap } from '../shared-connection.js';
 import { Connection } from '../browser.js'
+import { EventEmitter, AllEventKeys, AllEvents, EventListener, EventOptions, StatefulSubscription, Subscription } from '@akala/core';
+import debug from 'debug';
 /**
  * json-rpc-ws connection
  *
@@ -11,14 +13,14 @@ import { Connection } from '../browser.js'
  * @param {Object} parent - parent that controls this connection
  */
 
-export class WebSocketAdapter implements SocketAdapter
+export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
 {
     constructor(private readonly socket: WebSocket)
     {
-
+        super();
     }
 
-    pipe(socket: SocketAdapter<unknown>)
+    pipe(socket: SocketAdapter)
     {
         this.on('message', (message) => socket.send(message));
         this.on('close', () => socket.close());
@@ -41,7 +43,10 @@ export class WebSocketAdapter implements SocketAdapter
 
     private readonly messageListeners: [(ev: unknown) => void, (ev: unknown) => void][] = [];
 
-    public off<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): boolean
     {
         switch (event)
         {
@@ -60,10 +65,16 @@ export class WebSocketAdapter implements SocketAdapter
                 this.socket.removeEventListener(event, handler as any);
                 break;
             default:
-                throw new Error(`Unsupported event ${event}`);
+                throw new Error(`Unsupported event ${String(event)}`);
         }
+        return true;
     }
-    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+
+    public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>,
+        options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): Subscription
     {
         switch (event)
         {
@@ -71,7 +82,12 @@ export class WebSocketAdapter implements SocketAdapter
                 {
                     const x = function (ev) { return handler.call(this, ev.data) };
                     this.messageListeners.push([handler, x]);
-                    this.socket.addEventListener('message', x);
+                    this.socket.addEventListener('message', x, options);
+                    return new StatefulSubscription(() =>
+                    {
+                        this.messageListeners.splice(this.messageListeners.findIndex(x => x[0] === handler), 1);
+                        this.socket.removeEventListener('message', x);
+                    }).unsubscribe;
                 }
                 break;
             case 'close':
@@ -79,26 +95,30 @@ export class WebSocketAdapter implements SocketAdapter
             case 'open':
                 //eslint-disable-next-line @typescript-eslint/no-explicit-any
                 this.socket.addEventListener(event, handler as any);
-                break;
+                return new StatefulSubscription(() =>
+                {
+                    this.socket.removeEventListener(event, handler as any);
+                }).unsubscribe;
             default:
-                throw new Error(`Unsupported event ${event}`);
+                throw new Error(`Unsupported event ${String(event)}`);
         }
     }
-    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+
+    public once<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): Subscription
     {
         switch (event)
         {
             case 'message':
-                this.socket.addEventListener('message', function (ev) { return handler.call(this, ev.data) }, { once: true });
-                break;
+                return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>);
             case 'close':
             case 'error':
             case 'open':
-                //eslint-disable-next-line @typescript-eslint/no-explicit-any
-                this.socket.addEventListener(event, handler as any, { once: true });
-                break;
+                return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>);
             default:
-                throw new Error(`Unsupported event ${event}`);
+                throw new Error(`Unsupported event ${event?.toString()}`);
         }
     }
 }
@@ -115,12 +135,13 @@ export default class Client extends ClientBase<ReadableStream, { protocols?: str
         super(Client.connect, options);
     }
 
-    public static connect(address: string, options?: { protocols?: string | string[] }): SocketAdapter { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'), options?.protocols)); }
+    public static connect(address: string, options?: { protocols?: string | string[] }): SocketAdapter
+    {
+        return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'), options?.protocols));
+    }
 }
 
-import debug from 'debug';
-const logger = debug('json-rpc-ws');
-export { SocketAdapter }
+const logger = debug('akala:json-rpc-ws');
 
 export function createClient(options?: { protocols?: string | string[] }): Client
 {

@@ -1,6 +1,6 @@
 import { Base } from './base.js';
 import debug from 'debug';
-const logger = debug('json-rpc-ws');
+const logger = debug('akala:json-rpc-ws');
 import { SocketAdapter, PayloadDataType, Connection } from './shared-connection.js';
 import { Error as MyError } from './errors.js'
 

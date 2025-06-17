@@ -5,9 +5,9 @@ import { SerializableObject } from '@akala/core'
 
 import debug from 'debug';
 
-const logger = debug('json-rpc-ws');
+const logger = debug('akala:json-rpc-ws');
 
-import * as ws from './ws/browser.js';
+import * as ws from './ws/websocket.js';
 export { ws };
 export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload, SocketAdapterEventMap };
 

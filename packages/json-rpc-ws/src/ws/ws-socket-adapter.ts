@@ -1,6 +1,6 @@
 import ws from 'ws';
-import { SocketAdapter, SocketAdapterEventMap } from '../shared-connection.js';
-import { Readable } from 'stream';
+import { SocketAdapter, SocketAdapterAkalaEventMap } from '../shared-connection.js';
+import { AllEventKeys, AllEvents, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from '@akala/core';
 
 /**
  * json-rpc-ws connection
@@ -9,13 +9,27 @@ import { Readable } from 'stream';
  * @param {Socket} socket - web socket for this connection
  * @param {Object} parent - parent that controls this connection
  */
-export default class WsSocketAdapter implements SocketAdapter<Readable>
+export default class WsSocketAdapter extends TeardownManager implements SocketAdapter
 {
     constructor(private socket: ws)
     {
+        super();
     }
 
-    pipe(socket: SocketAdapter<unknown>)
+    hasListener<const TKey extends AllEventKeys<SocketAdapterAkalaEventMap>>(name: TKey)
+    {
+        return !!this.socket.listenerCount(name);
+    }
+    get definedEvents(): AllEventKeys<SocketAdapterAkalaEventMap>[]
+    {
+        return ['message', 'close', 'error', 'open'].filter(k => this.socket.listenerCount(k)) as AllEventKeys<SocketAdapterAkalaEventMap>[]
+    }
+    emit<const TEvent extends EventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<SocketAdapterAkalaEventMap[TEvent]>): false | EventReturnType<SocketAdapterAkalaEventMap[TEvent]>
+    {
+        throw new Error('Method not implemented.');
+    }
+
+    pipe(socket: SocketAdapter)
     {
         this.on('message', (message) => socket.send(message));
         this.on('close', () => socket.close());
@@ -36,7 +50,10 @@ export default class WsSocketAdapter implements SocketAdapter<Readable>
         this.socket.send(data, { binary: false });
     }
 
-    public off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (ev: SocketAdapterEventMap[K]) => void): void
+    public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): boolean
     {
         if (event === 'message')
         {
@@ -44,31 +61,55 @@ export default class WsSocketAdapter implements SocketAdapter<Readable>
         }
         else
             this.socket.off(event, handler);
+
+        return true;
     }
 
-    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    private readonly messageListeners: [(ev: unknown) => void, (data: ws.Data, isBinary: boolean) => void][] = [];
+
+    public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>,
+        options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): Subscription
     {
         if (event === 'message')
         {
-            this.socket.on(event, function (data: ws.Data, isBinary: boolean)
+            function x(data: ws.Data, isBinary: boolean)
             {
                 if (!isBinary)
                 {
                     if (Buffer.isBuffer(data))
-                        (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data.toString('utf8'));
+                        (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, data.toString('utf8'));
                     else
-                        (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data);
+                        (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, data);
                 }
                 else
-                    (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data);
+                    (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, data);
 
-            });
+            }
+            this.messageListeners.push([handler, x]);
+            if (options?.once)
+                this.socket.once(event, x);
+            else
+                this.socket.on(event, x);
+            return new StatefulSubscription(() => this.socket.off(event, x)).unsubscribe;
         }
         else
-            this.socket.on(event, handler);
+        {
+            if (options?.once)
+                this.socket.on(event, handler);
+            else
+                this.socket.on(event, handler);
+            return new StatefulSubscription(() => this.socket.off(event, handler)).unsubscribe;
+        }
     }
-    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+
+    public once<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+    ): Subscription
     {
-        this.socket.once(event, handler);
+        return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>);
     }
 }

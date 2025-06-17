@@ -2,7 +2,7 @@
 
 import debug from 'debug';
 
-const logger = debug('json-rpc-ws');
+const logger = debug('akala:json-rpc-ws');
 
 /*
  * http://www.jsonrpc.org/specification#error_object

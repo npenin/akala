@@ -1,4 +1,4 @@
-import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, SocketAdapterEventMap } from './shared-connection.js';
+import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, SocketAdapterEventMap, SocketAdapterAkalaEventMap } from './shared-connection.js';
 import { Connection } from './connection.js'
 import { default as Client } from './shared-client.js';
 import { default as Server, ServerAdapter } from './server.js';
@@ -12,4 +12,4 @@ import { default as Errors, Payload as ErrorPayload } from './errors.js';
 
 import * as ws from './ws/index.js';
 export { ws };
-export { Server, Client, ServerAdapter, SocketAdapter, Errors, BaseConnection, Connection, PayloadDataType, SerializedBuffer, Payload, ErrorPayload, SocketAdapterEventMap };
+export { Server, Client, ServerAdapter, SocketAdapter, Errors, BaseConnection, Connection, PayloadDataType, SerializedBuffer, Payload, ErrorPayload, SocketAdapterEventMap, SocketAdapterAkalaEventMap };

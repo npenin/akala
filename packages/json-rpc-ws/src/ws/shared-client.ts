@@ -2,7 +2,7 @@ import debug from 'debug';
 import ClientBase from '../shared-client.js';
 import { SocketAdapter } from '../shared-connection.js';
 
-const logger = debug('json-rpc-ws');
+const logger = debug('akala:json-rpc-ws');
 
 export default abstract class Client<TStreamable, TConnectOptions> extends ClientBase<TStreamable, TConnectOptions>
 {
