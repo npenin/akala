@@ -85,7 +85,7 @@ export class JsonRpcBrowser extends CommandProcessor
                 if (!container)
                     return null;
 
-                const cmd = meta.commands.find(c => c.name == '$disconnect' || c.config.jsonrpc?.name == '$disconnect')
+                const cmd = meta.commands.find(c => c.name == method || c.config.jsonrpc?.name == method)
                 if (!cmd)
                 {
                     container.inspect();
