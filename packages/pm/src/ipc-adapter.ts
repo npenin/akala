@@ -1,13 +1,13 @@
 import { ChildProcess } from "child_process";
 import * as jsonrpc from '@akala/json-rpc-ws';
-import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
+import { AllEventKeys, AllEvents, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from "@akala/core";
 
-export class IpcAdapter implements jsonrpc.SocketAdapter
+export class IpcAdapter extends TeardownManager implements jsonrpc.SocketAdapter
 {
     get open(): boolean { return !!this.cp.pid; }
 
 
-    pipe(socket: jsonrpc.SocketAdapter<unknown>)
+    pipe(socket: jsonrpc.SocketAdapter)
     {
         this.on('message', (message) => socket.send(message));
         this.on('close', () => socket.close());
@@ -25,7 +25,11 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
         else
             console.warn(`process ${this.cp.pid} does not support send over IPC`);
     }
-    off<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+
+    public off<const TEvent extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>
+    ): boolean
     {
         switch (event)
         {
@@ -39,41 +43,59 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
                 this.cp.off('disconnect', handler);
                 break;
         }
+        return true;
     }
-    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+
+    public on<const TEvent extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>,
+        options?: EventOptions<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>
+    ): Subscription
     {
         switch (event)
         {
             case 'message':
-                this.cp.on('message', handler);
-                break;
+                if (options?.once)
+                    this.cp.on('message', handler);
+                else
+                    this.cp.on('message', handler);
+                return new StatefulSubscription(() => this.cp.off('message', handler)).unsubscribe;
             case 'open':
                 handler(null);
                 break;
             case 'close':
-                this.cp.on('disconnect', handler);
-                break;
+                if (options?.once)
+                    this.cp.once('disconnect', handler);
+                else
+                    this.cp.on('disconnect', handler);
+                return new StatefulSubscription(() => this.cp.off('disconnect', handler)).unsubscribe;
         }
     }
 
-    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    public once<const TEvent extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(
+        event: TEvent,
+        handler: EventListener<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>,
+    ): Subscription
     {
-        switch (event)
-        {
-            case 'message':
-                this.cp.once('message', handler);
-                break;
-            case 'open':
-                handler(null);
-                break;
-            case 'close':
-                this.cp.once('disconnect', () => handler(null));
-                break;
-        }
+        return this.on(event, handler, { once: true } as EventOptions<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>)
     }
 
     constructor(private cp: ChildProcess | typeof process)
     {
+        super();
     }
-
+    hasListener<const TKey extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(name: TKey)
+    {
+        if (name === 'open')
+            return false;
+        return !!this.cp.listenerCount(name);
+    }
+    get definedEvents(): AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>[]
+    {
+        return (['close', 'error', 'message'] as const).filter(ev => this.hasListener(ev));
+    }
+    emit<const TEvent extends EventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<jsonrpc.SocketAdapterAkalaEventMap[TEvent]>): false | EventReturnType<jsonrpc.SocketAdapterAkalaEventMap[TEvent]>
+    {
+        throw new Error("Method not implemented.");
+    }
 }
