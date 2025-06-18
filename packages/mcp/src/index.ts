@@ -47,7 +47,7 @@ export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap
         options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
     ): Subscription
     {
-        if (!this.events[event].hasListeners)
+        if (!this.events[event]?.hasListeners)
             switch (event)
             {
                 case 'message':
