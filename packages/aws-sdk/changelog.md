@@ -1,4 +1,4 @@
-#  (2025-06-07)
+#  (2025-06-18)
 
 
 ### Bug Fixes
@@ -10,6 +10,7 @@
 * build 88b29f4
 * build after dependency upgrade 877c53a
 * cleanup dependencies 7d25a0d
+* remove deprecated ac command usage 5cf4a82
 * restore proper regex from github autofix 154e05b
 * sonar issues 7528b67
 * sonar issues 9b157ec
