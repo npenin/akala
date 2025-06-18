@@ -1,10 +1,10 @@
-#  (2025-06-07)
+#  (2025-06-18)
 
 
 ### Bug Fixes
 
-* forward undefined to parent url handler 93d7d10
-* update after commands breaking change ab04f29
+* package definition 5571baf
+* remove deprecated ac command usage 5cf4a82
 
 
 
