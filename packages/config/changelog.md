@@ -1,10 +1,9 @@
-#  (2025-06-07)
+#  (2025-06-18)
 
 
 ### Bug Fixes
 
-* config cli wrong bin path 742aeb7
-* update after commands breaking change ab04f29
+* peerDependency reference 1b7e951
 
 
 
