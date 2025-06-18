@@ -143,7 +143,7 @@ export default async function generate(folder?: string, name?: string, outputFil
             {
                 if (!node.getChildren().findLast(n => ts.isBlock(n)))
                     return;
-                if (node.modifiers.filter(m => m.kind == ts.SyntaxKind.ExportKeyword || m.kind == ts.SyntaxKind.DefaultKeyword).length == 2)
+                if (node.modifiers?.filter(m => m.kind == ts.SyntaxKind.ExportKeyword || m.kind == ts.SyntaxKind.DefaultKeyword).length == 2)
                 {
                     if (node.typeParameters?.length)
                         defs.local = Object.fromEntries(node.typeParameters.map(tp => [tp.name, tp.constraint ? Promise.all([Promise.resolve(serializeSymbol(checker, tp.constraint, defs)).then(x => 'promise' in x ? x.promise : x), tp.default ? Promise.resolve(serializeSymbol(checker, tp.default, defs)).then(x => 'promise' in x ? x.promise : x) : Promise.resolve(undefined)]).then(r => ({ ...r[0], "default": r[1] })) : Promise.resolve(undefined)], true))
@@ -337,7 +337,7 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
                     }
                     return {
                         $ref: "#/$defs/" + resolvedType.id, $defs: Object.fromEntries(serializedTypes.map((serializedType, i) => [serializedType.name,
-                        { type: 'object', $dynamicAnchor: resolvedType.id + '.' + (type as ts.TypeReference).target.typeArguments[i].symbol.escapedName, ...serializedType.type, $id: undefined }]))
+                        { type: 'object', $dynamicAnchor: resolvedType.id + '.' + (type as ts.TypeReference).target?.typeArguments[i].symbol.escapedName, ...serializedType.type, $id: undefined }]))
                     };
                 }
                 return { $ref: "#/$defs/" + resolvedType.id };
