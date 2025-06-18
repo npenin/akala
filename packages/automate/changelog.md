@@ -1,9 +1,10 @@
-#  (2025-06-07)
+#  (2025-06-18)
 
 
 ### Bug Fixes
 
-* update after commands breaking change 95b04e6
+* remove deprecated ac command usage 5cf4a82
+* use of Logger interface instead of limited ILogger 5228151
 
 
 
