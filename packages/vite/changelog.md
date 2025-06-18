@@ -1,9 +1,9 @@
-#  (2025-06-07)
+#  (2025-06-18)
 
 
-### Bug Fixes
+### Features
 
-* update after commands breaking change ab04f29
+* enhance ViteSocketAdapter to improve event handling and subscription management c28f992
 
 
 
