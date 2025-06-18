@@ -1,10 +1,14 @@
-#  (2025-06-07)
+#  (2025-06-18)
 
 
 ### Bug Fixes
 
-* handle 'undefined' abort reason 1c2cb6f
-* update after commands breaking change ab04f29
+* remove deprecated ac command usage 5cf4a82
+
+
+### Features
+
+* enhance IpcAdapter and MessagePortAdapter to support improved event handling and subscription management 24090fb
 
 
 
