@@ -1,13 +1,20 @@
 /// <reference types="vite/client" />
 import { Container, Metadata, Processors, registerCommands } from "@akala/commands";
-import { SocketAdapter, SocketAdapterEventMap } from "@akala/json-rpc-ws";
+import { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/json-rpc-ws";
 import { bootstrapModule, IScope, templateCache, templateFunction } from "@akala/client";
-import { isPromiseLike } from "@akala/core";
+import { AllEventKeys, AllEvents, EventEmitter, EventListener, EventOptions, isPromiseLike, Subscription } from "@akala/core";
 
 const container = new Container('akala', null);
 
-class ViteSocketAdapter implements SocketAdapter
+class ViteSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
 {
+    messageEvent: (args_0: string) => void;
+    constructor()
+    {
+        super();
+        this.messageEvent = this.getOrCreate('message').emit.bind(this.getOrCreate('message'));
+    }
+
     readonly open: boolean = true;
     close(): void
     {
@@ -17,32 +24,30 @@ class ViteSocketAdapter implements SocketAdapter
     {
         import.meta.hot.send('jsonrpc', data)
     }
-    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
+    on<K extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: K, handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>, options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[K]>): Subscription
     {
         if (event == 'message')
-            import.meta.hot.on('jsonrpc', handler);
-    }
-    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
-    {
-        const wrapper = function (...args)
         {
-            try
-            {
-                return handler.apply(this, args);
-            }
-            finally
-            {
-                import.meta.hot.off('jsonrpc', wrapper);
-            }
+            if (!this.hasListener(event))
+                import.meta.hot.on('jsonrpc', this.messageEvent);
+            return super.on(event, handler, options);
         }
-        import.meta.hot.on('jsonrpc', wrapper);
+
     }
-    off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
+    once<K extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: K, handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>): Subscription
     {
-        if (event == 'message')
-            import.meta.hot.off('jsonrpc', handler);
+        return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[K]>)
     }
-    pipe(socket: SocketAdapter<unknown>): void
+    off<K extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: K, handler?: EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>): boolean
+    {
+        const result = super.off(event, handler)
+
+        if (event == 'message' && !this.hasListener(event))
+            import.meta.hot.off('jsonrpc', this.messageEvent)
+
+        return result;
+    }
+    pipe(socket: SocketAdapter): void
     {
         throw new Error('Method not implemented.');
     }

@@ -1,14 +1,22 @@
 import { CommandMetadataProcessorSignature, protocolHandlers, registerCommands, Container, Processors } from '@akala/commands'
-import { SocketAdapter, SocketAdapterEventMap } from '@akala/json-rpc-ws';
-import { MiddlewareAsync } from '@akala/core'
+import { SocketAdapter, SocketAdapterAkalaEventMap } from '@akala/json-rpc-ws';
+import { AllEventKeys, AllEvents, Argument1, EventEmitter, EventListener, EventOptions, MiddlewareAsync, Subscription } from '@akala/core'
 import { readFile } from 'fs/promises';
 import { Plugin, ViteDevServer } from 'vite';
 import { fileURLToPath, pathToFileURL } from 'url'
 
-export class ViteSocketAdapter implements SocketAdapter
+export class ViteSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
 {
+    messageEvent: (args_0: string) => void;
+    errorEvent: (args_0: Event) => void;
+    closeEvent: (args_0: CloseEvent) => void;
     constructor(private server: ViteDevServer)
     {
+        super();
+        this.messageEvent = this.getOrCreate('message').emit.bind(this.getOrCreate('message'));
+        this.closeEvent = this.getOrCreate('close').emit.bind(this.getOrCreate('close'));
+        this.errorEvent = this.getOrCreate('error').emit.bind(this.getOrCreate('error'));
+
     }
 
     open = true;
@@ -21,35 +29,65 @@ export class ViteSocketAdapter implements SocketAdapter
     {
         this.server.ws.send('jsonrpc', data)
     }
-    on<const K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
+    on<const K extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: K, handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>, options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[K]>): Subscription
     {
-        if (event == 'message')
-            this.server.ws.on('jsonrpc', handler);
-        if (event == 'close')
-            this.server.ws.on('vite:ws:disconnect', () => { console.log('disconnect'); return handler(new CloseEvent('close', {}) as SocketAdapterEventMap[K]) });
-    }
-    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
-    {
-        const self = this;
-        const wrapper = function (...args)
+        switch (event)
         {
-            try
+            case 'message':
+
+                if (!this.hasListener(event))
+                    import.meta.hot.on('jsonrpc', this.messageEvent);
+                return super.on(event, handler, options);
+            case 'close':
+                const originalHandler = handler;
+                handler = function () 
+                {
+                    console.log('disconnect');
+                    return originalHandler(new CloseEvent('close', {}) as Argument1<SocketAdapterAkalaEventMap['close']>)
+                } as EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>;
+
+                if (!this.hasListener(event))
+                {
+                    this.server.ws.on('vite:ws:disconnect', this.closeEvent);
+                    super.on('close', () => console.log('disconnect'));
+                }
+                return super.on(event, handler, options);
+            case 'open':
+                handler(null);
+                return () => false;
+            case 'error':
+                if (!this.hasListener(event))
+                    this.server.ws.on('error', this.errorEvent);
+                return super.on(event, handler, options);
+        }
+    }
+    once<K extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: K, handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>): Subscription
+    {
+        return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[K]>);
+    }
+    off<K extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: K, handler?: EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>): boolean
+    {
+        const result = super.off(event, handler)
+        if (result && !this.hasListener(event))
+        {
+            switch (event)
             {
-                return handler.apply(this, args);
-            }
-            finally
-            {
-                self.server.ws.off('jsonrpc', wrapper);
+                case 'message':
+                    this.server.ws.off('jsonrpc', handler);
+                    break;
+                case 'close':
+                    this.server.ws.off('close', this.closeEvent);
+                    break;
+                case 'error':
+                    this.server.ws.off('error', this.errorEvent);
+                    break;
+
             }
         }
-        this.on(event, wrapper);
+
+        return true;
     }
-    off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
-    {
-        if (event == 'message')
-            this.server.ws.off('jsonrpc', handler);
-    }
-    pipe(socket: SocketAdapter<unknown>): void
+    pipe(socket: SocketAdapter): void
     {
         throw new Error('Method not implemented.');
     }
