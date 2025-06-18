@@ -1,4 +1,4 @@
-#  (2025-06-07)
+#  (2025-06-18)
 
 
 * chore : code cleanup eae1150
@@ -8,6 +8,7 @@
 
 * #S6661 234a6f5
 * absolute path config ceaf573
+* add @akala/mcp/akala plugin to the configuration 39fd2d3
 * add basic unit test dcd8665
 * add commands argument normalisation 8c9fb75
 * add commands argument normalisation 34ca419
@@ -72,6 +73,7 @@
 * add parent reference to CLI Trigger documentation 04a80ea
 * add possibility to unit test workflows a9f9001
 * add signal propagation cf81d93
+* add SpecificInjector type to enhance dependency resolution bc04767
 * add strong typing to refactored functions 69758db
 * add strong typing to refactored functions 103a56a
 * add support for INIT_CWD variable 939b024
@@ -86,6 +88,7 @@
 * add user options 85802c8
 * add web-ui connection to client in documentation flowchart 47abc33
 * add web-ui connection to client in documentation flowchart e43978b
+* akala commands start 99d55d6
 * allow line breaks and tabs in parser a5bb001
 * allow optional spaces 002c4a2
 * allow optional spaces 951a42d
@@ -136,6 +139,7 @@
 * cli returns mainprogram (to prevent multiple init if processing multiple times 2979e96
 * cli returns mainprogram (to prevent multiple init if processing multiple times d14f9f0
 * cli should not exit by itself on success. Resource should be properly managed 4b13eec
+* command companion generation 1da0ec5
 * command extension to provide name a47159f
 * commands exports resolution d8d5fc0
 * config as akala plugin 211cc6b
@@ -224,6 +228,7 @@
 * fallthrough on 404 a8d70b5
 * feature detection cba1075
 * first binding definition eb24595
+* flexible file detection fdbe01d
 * force run init-akala only once (no matter the trigger) 2827d75
 * force run init-akala only once (no matter the trigger) 1acbe99
 * force set configFile path c42e60b
@@ -234,6 +239,7 @@
 * forcing context build b3fe873
 * formatter parsing within objects 98c53c9
 * forward undefined to parent url handler 93d7d10
+* fs processor extensions 3e5dab9
 * generator bug when force=true 0817c02
 * generator bug when force=true ec5d977
 * git rev list command bbc7fa2
@@ -260,6 +266,7 @@
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
 * handle object config type a0831b7
+* handle optional chaining in schema serialization functions 122a158
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
 * handle proper termination 91c7535
@@ -319,6 +326,7 @@
 * i18n uses the core Translator interface 6dd0a83
 * if middleware b1c193c
 * if middleware de376b1
+* ignore node_modules2 for apm dev purpose a5388e0
 * implements the discover function 0bf23ac
 * implements the discover function b400c4d
 * import dependencies db62996
@@ -363,6 +371,7 @@
 * install command should now handle any package (as long as it contains an akala plugin) cad421f
 * introduce BufferEncoding to stop node dependency and add missing implementation in IsomorphicBuffer e2ee6b4
 * IsomorphicBuffer 1885b99
+* jsonrpc find handler f0be1eb
 * leverage core case converters 63bcf6b
 * leverage EventProcessor to allow for more use cases 6e85fc6
 * leverage remotePm if no pm is provided 1c7c6ff
@@ -373,6 +382,7 @@
 * login import 6cb7589
 * login page sonar issues e620328
 * make fs private for now 6e84b29
+* make jsonrpc triggers statically discovering metadata df2ef95
 * make modelDefinitions readonly f797208
 * make rawQuery support optional 3be8917
 * make rawQuery support optional 6050617
@@ -409,15 +419,19 @@
 * obersavable array array mimicking d310c55
 * oidc discover properly returns options for authorize, token and keys 0934291
 * oidc discover properly returns options for authorize, token and keys b92665c
+* optimize middleware processing e900bc6
 * options setup 185ffa4
 * options setup 387b195
 * outlet root scope fb5cfd1
 * outlet root scope 3c0d3e6
 * output logging 8045a93
 * overriding serveMetadata and connectByPreference in non browser dc2ade3
+* package definition 5571baf
 * parsing ! expressions 0115a31
 * parsing on first parenthesis e3c07e4
 * pass keepAttached through 9603be4
+* peerDependency reference 89b2555
+* peerDependency reference 1b7e951
 * pm start 75d92fd
 * pm start d3d04b3
 * pm start when no kept attached 17fc708
@@ -442,6 +456,7 @@
 * prevent tag creation 49c9302
 * propagate the abort reason d3df91f
 * properly handle event emitters failure a24cafe
+* properly handle readonly and open flags 8997997
 * protobuf reading 007b724
 * protocol-parser tests after IsomorphicBuffer implementation 338a64d
 * provide proper logging 445a133
@@ -463,6 +478,7 @@
 * remove cjs reference e501923
 * remove cjs reference 2284b79
 * remove copy/paste issue d625947
+* remove deprecated ac command usage 5cf4a82
 * remove deprecated command documentation files and navigation exclusions 90bceca
 * remove deprecated command documentation files and navigation exclusions 69bc7d5
 * remove duplicated code c81dd54
@@ -491,6 +507,7 @@
 * remove reference to a legacy function b7dc12e
 * remove unnecessary metadata from CLI documentation files c472f4c
 * remove unnecessary metadata from CLI documentation files 6b2386c
+* remove unused dependency ansi-escapes from package.json 8bba710
 * remove unused result parameter from jsonrpc protocol handlers 198fed9
 * remove useless abort 436343b
 * remove useless await 52d94b0
@@ -570,6 +587,7 @@
 * standardize section titles in documentation for consistency b2026f2
 * start in cli c0ad45e
 * state also uses sub configuration d8e0539
+* stdio adapter 949d708
 * stop in process runtime d49bb87
 * stop mixing init and init-akala 8e0e27b
 * stop re-exporting spawnAsync from cli 2c2e894
@@ -669,6 +687,7 @@
 * update commands b3d2e1e
 * update commands 168670b
 * update config b984b49
+* update description in add-script and commands to clarify package.json location 24e9a79
 * update dev dependency 62fdb89
 * update documentation files to exclude from navigation and improve file creation logic f2b1bfe
 * update documentation files to exclude from navigation and improve file creation logic febbad3
@@ -684,6 +703,7 @@
 * update documentation titles and structure for clarity and organization cad4d78
 * update error status code for unauthorized actions in AuthHandler 663f8b9
 * update file command processor to generate UUID only when record key is absent 4c5ff85
+* update fs flag usage e2355d1
 * update grant_types_supported to use keyof for compatibility ec88441
 * update grant_types_supported to use keyof for compatibility 49f93de
 * update jsonrpc handlers to include options parameter for better connection management 1b80835
@@ -694,7 +714,10 @@
 * update link to CLI documentation for consistency cd855e9
 * update links in documentation to remove file extensions 41271f9
 * update links in documentation to remove file extensions 17391c9
+* update lock files a1575cf
+* update metadata command discovery to reflect new command count 69ffaf9
 * update output_hash calculation to use base64.base64EncArrBuff for consistency 70cf535
+* update package.json exports and add akala command handler f38f8ae
 * update parent and title attributes in documentation for improved clarity and consistency 2fac4a4
 * update parent and title attributes in documentation for improved clarity and consistency 64eb3b6
 * update parent attributes in markdown files for improved documentation structure c202c71
@@ -715,10 +738,13 @@
 * update to support login redirect d2e8e6e
 * update type annotations for Base64 encoding functions and improve handling of ArrayBuffer d2157f1
 * update vite tests and vite config b8e8524
+* update yarn.lock to add ansi-escapes and yoctocolors dependencies fbadb14
+* upgrade module generation to esm only faee1d3
 * url handler will fail with Error 404 if not found e13a9a6
 * use combineSubscriptions helper e569526
 * use helpers from @akala/cli 74292f2
 * use new spread helper to prevent blocking stdin abf4ad0
+* use of Logger interface instead of limited ILogger 5228151
 * use proper selector 562b53a
 * use proper selector 97fa6f9
 * use TriggerArgs and TriggerReturnType for attach f2bea7f
@@ -794,6 +820,7 @@
 * add combineSubscriptions helper f569432
 * add commands getting-started guide 5492118
 * add commands getting-started guide 1564b82
+* add constant parsing 9e4e322
 * add cookie support + add IdStore and IdSerializer interfaces 2e3b84d
 * add cookie support + add IdStore and IdSerializer interfaces c5a5d6a
 * add cryptokey to state 2117314
@@ -824,8 +851,11 @@
 * add int, cache and leb128 parsers 0fb8868
 * add invoke formatter 2ea1311
 * add IPC protocol handler for improved inter-process communication 96b2326
+* add jsonrpc name remapping f6ff8b2
 * add JWK and few more improvements 7672b7e
 * add JWK and few more improvements 54d30ae
+* add light markdown formatting on console.error 60a1533
+* add link and images formatting in ErrorMessage 35909ca
 * add locale support ea68a09
 * add locale support 5054537
 * add logo e5bd83f
@@ -839,11 +869,13 @@
 * add NO_AKALAPOSTINSTALL support bebd6b1
 * add oidc formatter factory 11b2d52
 * add oidc formatter factory fba4a73
+* add openStream on FileHandle 2868198
 * add raw query and custom resolvers 91f1063
 * add raw query and custom resolvers 19a38cc
 * add raw query support 940f72e
 * add raw query support 020975f
 * add readonly root URL 9098660
+* add resources and tools implementation cb5cb7b
 * add runtime concept 1993141
 * add runtime on RuntimeInstance 008d85a
 * add shadowWithStyles helper function 2c8e6b8
@@ -853,12 +885,14 @@
 * add static fromJson on ModelDefinition 78f3d71
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
+* add string-fixed-or-null terminated parser 5cbd71f
 * add table row event handlers 392d906
 * add TileManager (incomplete) 9e0d08f
 * add TopDown and BottomUp namespace event emitters d8e148e
 * add type to status fb8961e
 * add uri on request to be able to know the full url of a request a189409
 * add uri on request to be able to know the full url of a request 3ed1dd0
+* add usize convert c50a87f
 * add verbose flag to fork a78acb0
 * add version field to package.json for documentation package 42a4cc8
 * add version field to package.json for documentation package ac5b028
@@ -873,10 +907,12 @@
 * allow not assigning result as last parameter cbc28b4
 * allow providing transaction during commit 271f464
 * allow providing transaction during commit a1460f9
+* allow removing all listeners at once 8286d52
 * allow service to be given as symbol aa0cbf3
 * attempt to improve the nocode base 44684fd
 * code from akala helper to trigger akala install b95b3bb
 * code from akala helper to trigger akala install 003219e
+* complete bit and uint2 wasm parsers 95a295f
 * disable comments 60901b4
 * disable comments 5b33949
 * disable comments f2c7940
@@ -888,6 +924,11 @@
 * enforce URL usage and switch to @akala/fs 207908d
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing 08e5e24
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing def786c
+* enhance IpcAdapter and MessagePortAdapter to support improved event handling and subscription management 24090fb
+* enhance IsomorphicBuffer to support dynamic end in toString and add throttle function 89794bb
+* enhance NetSocketAdapter to extend EventEmitter and improve event handling 81ed6c5
+* enhance ProcessStdioAdapter and McpTrigger to support abort signal handling f0fb23d
+* enhance ViteSocketAdapter to improve event handling and subscription management c28f992
 * errorWithStatus can be assigned a name fb0ef99
 * errorWithStatus can be assigned a name 45c77e4
 * EventEmitter is now a TeardownManager e19c5d8
@@ -942,6 +983,7 @@
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
 * pm fork can be triggered from pm run command cd61525
+* provide additional file handle methods ce68f35
 * provide akala plugin for registering mongodb provider. a120302
 * provide akala plugin for registering mongodb provider. f776509
 * provide serverHandlers in addition to the commandServerHandlers registration c86d4f3
@@ -953,7 +995,11 @@
 * remove legacy global injector functions 29d5996
 * rename control to akala e88f358
 * repl command announces itself as $repl option 44f4a4b
+* SelfDefinedCommand accepts InjectMap 9b71e5c
+* start apm implementation bc60ca3
+* start cursor implementation 8414539
 * start using new akala fs module 008cbb0
+* start WasmTranslator ab864f8
 * staticFileMiddleware expects a URL f28e32f
 * switch client http authentication from hard coded to dynamic with middleware. 1d01a5c
 * switch to eventBuses impl f483b10
@@ -962,11 +1008,13 @@
 * switch to nodejs postinstall script 2128399
 * update documentation with usage examples for parsing and formatters 3970fc6
 * update documentation with usage examples for parsing and formatters 293bbae
+* update SocketAdapter extend EventBus 1065904
 * vite plugin to auto-import required webui css plugins d89aafd
 
 
 ### BREAKING CHANGES
 
+* more implementations required to implement EventBus
 * param renamed to params
 * staticFileMiddleware expects a URL and not a string
 * RuntimeInstance have a mandatory runtime attribute
