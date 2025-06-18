@@ -1,9 +1,9 @@
-#  (2025-06-07)
+#  (2025-06-18)
 
 
 ### Bug Fixes
 
-* update after commands breaking change 5249df2
+* remove deprecated ac command usage 5cf4a82
 
 
 
