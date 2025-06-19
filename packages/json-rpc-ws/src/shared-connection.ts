@@ -264,7 +264,7 @@ export abstract class Connection<TStreamable>
         if (error && result)
             throw new Error('Cannot have both an error and a result');
 
-        const response: Payload<TStreamable> = { id: id, stream: !!isStream || this.isStream(result) };
+        const response: Payload<TStreamable> = { id: id, stream: typeof isStream === 'undefined' ? undefined : !!isStream || this.isStream(result) };
 
         if (result)
         {
