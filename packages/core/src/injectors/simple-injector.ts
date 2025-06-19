@@ -170,7 +170,7 @@ export class SimpleInjector extends LocalInjector
         if (this.inspecting)
             return;
         this.inspecting = true;
-        console.log(this.injectables);
+        console.error(this.injectables);
         this.inspecting = false;
     }
 
