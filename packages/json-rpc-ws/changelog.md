@@ -1,14 +1,9 @@
-#  (2025-06-18)
+#  (2025-06-19)
 
 
-### Features
+### Bug Fixes
 
-* update SocketAdapter extend EventBus 1065904
-
-
-### BREAKING CHANGES
-
-* more implementations required to implement EventBus
+* prevent invalid stream property if not a stream 1a2caad
 
 
 

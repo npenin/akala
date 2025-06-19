@@ -1,4 +1,4 @@
-#  (2025-06-18)
+#  (2025-06-19)
 
 
 * chore : code cleanup eae1150
@@ -356,6 +356,7 @@
 * improve serialize on http ca89683
 * improve serialize on http af3373b
 * improve session default expiration to 5min instead of 300ms 9bfe110
+* improve some typing b3ca27e
 * improve type checking 457c1b3
 * improve typing in vite.config.mts 11e538a
 * improve yarn config a47ff40
@@ -367,11 +368,13 @@
 * injection consistency d1d6092
 * Injector inheritance d015db2
 * injectWithNameAsync behaves as its sync counterpart but awaits for args to be resolved before call the injectable dc7f00c
+* inspect logs to stderr instead of stdout eef76ee
 * install command should now handle any package (as long as it contains an akala plugin) 7bec66f
 * install command should now handle any package (as long as it contains an akala plugin) cad421f
 * introduce BufferEncoding to stop node dependency and add missing implementation in IsomorphicBuffer e2ee6b4
 * IsomorphicBuffer 1885b99
 * jsonrpc find handler f0be1eb
+* jsonrpc indirections 0b82b4c
 * leverage core case converters 63bcf6b
 * leverage EventProcessor to allow for more use cases 6e85fc6
 * leverage remotePm if no pm is provided 1c7c6ff
@@ -449,6 +452,7 @@
 * pre-create config file if it does not exist 0c72d08
 * pre-create config file if it does not exist 46d5f72
 * prevent http formatter infinite calls e8f33c1
+* prevent invalid stream property if not a stream 1a2caad
 * prevent jsonrpc run if disabled e2f14ac
 * prevent overriding command name to undefined 9fe0d0d
 * prevent overwriting data-context attribute 1cd19e0
@@ -951,6 +955,7 @@
 * extend AkalaConfig to include API URLs and enhance URL handling in plugin efbebca
 * first CLI client generator working !!! 822b8ba
 * first CLI client generator working !!! 2ab3f9e
+* first mcp version working 450061b
 * first version 409539e
 * first wasm commit on main branch 09227cd
 * formatters can be registered by priority 80d96e1
@@ -964,6 +969,7 @@
 * implement customElement polyfill for server rendering 94bfb96
 * implement dynamic routing based on URL pathname in server handlers e16592f
 * implement dynamic routing based on URL pathname in server handlers f73ea99
+* implement webdav FS handler 79ef231
 * improve documentation titles and structure for middleware sections 34f33ad
 * improve documentation titles and structure for middleware sections 2395989
 * improve translator interface d3884d0
