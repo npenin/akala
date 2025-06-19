@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* jsonrpc indirections 0b82b4c
+* improve mcp invokation c824af8
 
 
 
