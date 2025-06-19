@@ -42,12 +42,18 @@ export interface Capability
 
 export interface ServerCapabilities
 {
+    protocolVersion: "2024-11-05",
     capabilities: {
         prompts?: Omit<Capability, 'subcribe'>
         resources?: Capability,
         logging?: {},
         tools?: Omit<Capability, 'subcribe'>
-    }
+    },
+    serverInfo: {
+        name: "Akala",
+        title: "Akala MCP server",
+        version: "0.0.0"
+    },
 }
 
 export interface ClientCapabilities

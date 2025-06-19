@@ -7,6 +7,7 @@ export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap
     messageEvent: (args_0: string) => void;
     openEvent: (args_0: Event) => void;
     closeEvent: (args_0: CloseEvent) => void;
+    errorEvent: (args_0: Event) => void;
     get open(): boolean { return !!this.process.pid; }
 
 
@@ -16,15 +17,17 @@ export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap
         this.on('close', () => socket.close());
     }
 
-    close(): void
+    async close()
     {
-        this.process.disconnect();
+        this.off('message');
+        this.off('error');
+        this.closeEvent(null);
     }
     send(data: string): void
     {
         this.process.stdout.write(data + '\n');
     }
-    off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>): boolean
+    off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, handler?: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>): boolean
     {
         const result = super.off(event, handler);
         if (!super.hasListener(event))
@@ -34,7 +37,10 @@ export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap
                     this.process.stdin.off('data', this.messageEvent);
                     break;
                 case 'close':
-                    this.process.off('disconnect', this.closeEvent);
+                    this.process.stdin.off('end', this.closeEvent);
+                    break;
+                case 'error':
+                    this.process.stdin.off('error', this.errorEvent);
                     break;
             }
 
@@ -59,11 +65,11 @@ export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap
                 case 'open':
                     handler(null);
                     return () => false;
-                case 'close':
+                case 'error':
                     if (options?.once)
-                        this.process.stdin.once('close', this.closeEvent);
+                        this.process.stdin.once('error', this.errorEvent);
                     else
-                        this.process.stdin.on('close', this.closeEvent);
+                        this.process.stdin.on('error', this.errorEvent);
                     break;
             }
 
@@ -78,9 +84,15 @@ export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap
     constructor(private process: NodeJS.Process, abort: AbortSignal)
     {
         super();
-        abort.addEventListener('abort', () => this[Symbol.dispose]());
+        abort.addEventListener('abort', () =>
+        {
+            this.close();
+        });
         this.messageEvent = this.getOrCreate('message').emit.bind(this.get('message'));
         this.closeEvent = this.getOrCreate('close').emit.bind(this.get('close'));
+        this.errorEvent = this.getOrCreate('error').emit.bind(this.get('error'));
+        this.process.stdin.setEncoding('utf-8');
+        this.process.stdout.setDefaultEncoding('utf-8');
     }
 
 }
@@ -117,7 +129,7 @@ export class ChildProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEve
                     this.process.stdout.off('data', this.messageEvent);
                     break;
                 case 'close':
-                    this.process.off('disconnect', this.closeEvent);
+                    this.process.stdout.off('end', this.closeEvent);
                     break;
             }
 

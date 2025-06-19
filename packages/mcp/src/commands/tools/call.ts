@@ -10,6 +10,13 @@ export default async function (this: State, name: string, args: unknown[]): Prom
     }
     catch (e)
     {
-        return { content: e, isError: true };
+        return {
+            content: {
+                stack: e.stack,
+                code: e.code,
+                statusCode: e.statusCode,
+                message: e.message
+            }, isError: true
+        };
     }
 }

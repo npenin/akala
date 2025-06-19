@@ -23,6 +23,38 @@
             }
         },
         {
+            "name": "notifications.cancelled",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/notifications/cancelled.js",
+                    "source": "src/commands/notifications/cancelled.ts",
+                    "inject": []
+                },
+                "jsonrpc": {
+                    "name": "notifications/cancelled"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "notifications.initialized",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/notifications/initialized.js",
+                    "source": "src/commands/notifications/initialized.ts",
+                    "inject": []
+                },
+                "jsonrpc": {
+                    "name": "notifications/initialized"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "resources.list",
             "config": {
                 "fs": {
@@ -68,7 +100,7 @@
                     "inject": []
                 },
                 "jsonrpc": {
-                    "name": "resources/list"
+                    "name": "resources/templates/list"
                 },
                 "": {
                     "inject": []
@@ -87,7 +119,11 @@
                     ]
                 },
                 "jsonrpc": {
-                    "name": "tools/call"
+                    "name": "tools/call",
+                    "inject": [
+                        "params.0.name",
+                        "params.0.arguments"
+                    ]
                 },
                 "": {
                     "inject": [

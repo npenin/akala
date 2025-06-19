@@ -1,7 +1,8 @@
 import { Configuration, Container, Processors, Trigger } from "@akala/commands";
 import { ProcessStdioAdapter } from "./index.js";
-import { ErrorWithStatus, HttpStatusCode, Router1Async } from "@akala/core";
+import { delay, ErrorWithStatus, HttpStatusCode, Router1Async } from "@akala/core";
 import { ResourceDefinition, ResourceTemplateDefinition, State, ToolDefinition } from "./state.js";
+// import why from 'why-is-node-running'
 
 export type McpConfiguration = McpResourceConfiguration | McpToolConfiguration
 
@@ -40,7 +41,14 @@ export const McpTrigger = new Trigger('mcp', async (container, signal: AbortSign
                 capabilities.tools.push({
                     name: cmd.config.mcp.name || cmd.name,
                     "description": cmd.config.doc?.description,
-                    "inputSchema": cmd.config.schema.inject,
+                    "inputSchema": Array.isArray(cmd.config.schema.inject) ? {
+                        "type": "object", properties: {
+                            params: {
+                                type: 'array',
+                                preItems: cmd.config.schema.inject
+                            }
+                        }
+                    } : cmd.config.schema.inject,
                     command: cmd
                 });
             if (cmd.config.mcp.type == 'resource')
@@ -63,7 +71,27 @@ export const McpTrigger = new Trigger('mcp', async (container, signal: AbortSign
         }
     });
 
-    const mcp = new Container<State>('mcp-server', { capabilities, resourceRouter, container })
+    const mcp = new Container<State>('mcp-server', { capabilities, resourceRouter, container });
 
-    Processors.JsonRpc.trigger.register(mcp, new ProcessStdioAdapter(process, signal));
+    await Processors.FileSystem.discoverCommands(import.meta.resolve('../commands.json'), mcp)
+
+    const connection = await Processors.JsonRpc.trigger.register(mcp, new ProcessStdioAdapter(process, signal));
+
+    signal.addEventListener('abort', async () =>
+    {
+        console.error(signal.reason);
+        await connection.hangup();
+        await delay(2000);
+
+        await connection.socket[Symbol.asyncDispose]?.();
+        connection.socket[Symbol.dispose]();
+
+        // why();
+        // process.exit(0);
+    })
+
+    return new Promise(resolve =>
+    {
+        signal.addEventListener('abort', resolve);
+    })
 })
