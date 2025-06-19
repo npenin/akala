@@ -347,6 +347,9 @@
 * improve formatter behavior 30996cd
 * improve isomorphicbuffer usability e0ff541
 * improve logging 9319332
+* improve mcp declaration 387555d
+* improve mcp invokation 2303889
+* improve mcp invokation c824af8
 * improve parser performances 158b46d
 * improve process cleanup aff53f4
 * improve reliability 8fc7212
