@@ -34,20 +34,23 @@ export const McpTrigger = new Trigger('mcp', async (container, signal: AbortSign
     {
         if (cmd.config.mcp)
         {
-            if (!cmd.config.schema)
+            if (!cmd.config.schema && !cmd.config.mcp.inject)
                 throw new ErrorWithStatus(HttpStatusCode.InternalServerError, 'The MCP configuration requires schema to be specified');
 
             if (cmd.config.mcp.type == 'tool')
                 capabilities.tools.push({
-                    name: cmd.config.mcp.name || cmd.name,
+                    name: (cmd.config.mcp.name || cmd.name).replace(/[^a-z0-9_-]/g, '_'),
                     "description": cmd.config.doc?.description,
-                    "inputSchema": Array.isArray(cmd.config.schema.inject) ? {
-                        "type": "object", properties: {
+                    "inputSchema": cmd.config.mcp?.inject ? cmd.config.mcp.inject : Array.isArray(cmd.config.schema.inject) ? {
+                        "type": "object",
+                        properties: {
                             params: {
                                 type: 'array',
-                                preItems: cmd.config.schema.inject
+                                prefixItems: cmd.config.schema.inject
                             }
-                        }
+                        },
+                        required: ['params'],
+                        additionalProperties: false
                     } : cmd.config.schema.inject,
                     command: cmd
                 });
