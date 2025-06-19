@@ -471,17 +471,38 @@
                         "options.destination"
                     ]
                 },
+                "jsonrpc": {
+                    "inject": [
+                        "params.0.name",
+                        "params.0.destination"
+                    ]
+                },
                 "doc": {
                     "description": "create a new module with the given name and destination (if present, cwd otherwise)"
                 },
                 "schema": {
                     "inject": [
-                        "string",
-                        "string"
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "string"
+                        }
                     ]
                 },
                 "mcp": {
-                    "type": "tool"
+                    "type": "tool",
+                    "inject": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "destination": {
+                                "type": "string"
+                            }
+                        }
+                    }
                 },
                 "": {
                     "inject": [
