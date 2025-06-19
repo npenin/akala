@@ -1,4 +1,3 @@
-import { CliContext } from "@akala/cli";
 import fs from 'fs/promises'
 import path from "path";
 
@@ -17,7 +16,7 @@ export async function mkHierarchy(destination: string, hierarchy: (File | Folder
     }));
 }
 
-export default async function (name: string, context: CliContext<{ force?: boolean }>, destination?: string)
+export default async function (name: string, destination?: string)
 {
     var hierarchy: Folder = {
         name, children: [{
@@ -71,5 +70,5 @@ test`},
         }]
     };
 
-    await mkHierarchy(destination, [hierarchy]);
+    await mkHierarchy(destination || process.cwd(), [hierarchy]);
 }
