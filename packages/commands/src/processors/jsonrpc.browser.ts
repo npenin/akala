@@ -90,6 +90,7 @@ export class JsonRpcBrowser extends CommandProcessor
                 {
                     container.inspect();
                     error.message = `Command with name ${method} could not be found on ${media.constructor.name}`;
+                    console.error(error.message);
                     return null;
                 }
 
@@ -115,7 +116,7 @@ export class JsonRpcBrowser extends CommandProcessor
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
-                        const result = await container.dispatch(method, params as StructuredParameters<SerializableObject[]>);
+                        const result = await container.dispatch(cmd.name, params as StructuredParameters<SerializableObject[]>);
                         reply(null, result as jsonrpcws.PayloadDataType<ReadableStream>);
                     }
                     catch (error)
@@ -170,6 +171,7 @@ export class JsonRpcBrowser extends CommandProcessor
                 {
                     container.inspect();
                     error.message = `Command with name ${method} could not be found on ${socket.constructor.name}`;
+                    console.error(error.message);
                     return null;
                 }
 
@@ -196,7 +198,7 @@ export class JsonRpcBrowser extends CommandProcessor
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
-                        const result = await container.dispatch(method, params as StructuredParameters<SerializableObject[]>);
+                        const result = await container.dispatch(cmd.name, params as StructuredParameters<SerializableObject[]>);
                         reply(null, result as jsonrpcws.PayloadDataType<never>);
                     }
                     catch (error)
