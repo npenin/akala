@@ -10,6 +10,7 @@ import { Trigger } from '../model/trigger.js'
 import { NetSocketAdapter } from '../net-socket-adapter.js';
 import { Socket, Server, ServerOpts } from 'net';
 import { TLSSocket, Server as TLSServer, TlsOptions } from 'tls';
+import $metadataCmd from '../commands/$metadata.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -214,6 +215,7 @@ export class JsonRpc extends CommandProcessor
         const log = logger('akala:commands:jsonrpc:' + container.name)
 
         const meta = await container.dispatch('$metadata', true);
+        meta.commands.push($metadataCmd);
         const containers: Container<unknown>[] = [];
 
         const connection = new jsonrpcws.Connection(media, {
@@ -233,7 +235,8 @@ export class JsonRpc extends CommandProcessor
                     return null;
 
                 const cmd = meta.commands.find(c => c.name == method || c.config.jsonrpc?.name == method)
-                if (!cmd)
+
+                if (!cmd && method !== '$metadata')
                 {
                     container.inspect();
                     error.message = `Command with name ${method} could not be found on ${media.constructor.name}`;

@@ -6,6 +6,7 @@ import { Local } from './local.js';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled } from '@akala/core';
 import { HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
+import $metadataCmd from '../commands/$metadata.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -67,6 +68,8 @@ export class JsonRpcBrowser extends CommandProcessor
         const log = logger('akala:commands:jsonrpc:' + container.name)
 
         const meta = await container.dispatch('$metadata', true);
+        meta.commands.push($metadataCmd);
+
         const containers: Container<unknown>[] = [];
 
         const connection = new jsonrpcws.Connection(media, {
