@@ -448,8 +448,7 @@
                     "source": "src/cli/new/module.ts",
                     "inject": [
                         "params.0",
-                        "params.1",
-                        "params.2"
+                        "params.1"
                     ]
                 },
                 "cli": {
@@ -469,18 +468,25 @@
                     },
                     "inject": [
                         "options.name",
-                        "context",
                         "options.destination"
                     ]
                 },
                 "doc": {
                     "description": "create a new module with the given name and destination (if present, cwd otherwise)"
                 },
+                "schema": {
+                    "inject": [
+                        "string",
+                        "string"
+                    ]
+                },
+                "mcp": {
+                    "type": "tool"
+                },
                 "": {
                     "inject": [
                         "params.0",
-                        "params.1",
-                        "params.2"
+                        "params.1"
                     ]
                 }
             }
