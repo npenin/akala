@@ -1,5 +1,5 @@
 import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from "@akala/core";
-import { FileEntry, FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
+import { CopyFlags, FileEntry, FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
 import { Dirent, promises as fs, OpenDirOptions } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { basename, dirname } from "path";
@@ -82,11 +82,14 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return fs.access(this.resolvePath(path), mode);
     }
 
-    async copyFile(src: PathLike, dest: PathLike, mode?: number): Promise<void>
+    async copyFile(src: PathLike, dest: PathLike, mode?: CopyFlags): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
-        return fs.copyFile(this.resolvePath(src), this.resolvePath(dest), mode);
+
+        const fsMode = mode & OpenFlags.NonExisting | mode & 0xFF;
+
+        return fs.copyFile(this.resolvePath(src), this.resolvePath(dest), fsMode);
     }
 
     async cp(src: PathLike, dest: PathLike, options?: { force?: boolean; recursive?: boolean; }): Promise<void>

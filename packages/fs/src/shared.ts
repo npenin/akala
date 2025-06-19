@@ -12,9 +12,11 @@ export interface FileHandle
     close(): Promise<void>;
     [Symbol.dispose](): void;
     [Symbol.asyncDispose](): Promise<void>;
-    stat(opts?: StatOptions): Promise<Stats>;
+    stat(opts?: StatOptions & { bigint: false }): Promise<Stats>;
     stat(opts: StatOptions & { bigint: true }): Promise<Stats<bigint>>;
+    stat(opts?: StatOptions): Promise<Stats | Stats<bigint>>;
 }
+
 
 export enum OpenFlags
 {
@@ -35,6 +37,11 @@ export enum OpenFlags
     Truncate = 0o1000,
 
     NonExisting = 0o0200,
+}
+
+export enum CopyFlags
+{
+    NonExisting = OpenFlags.NonExisting,
 }
 
 export interface MakeDirectoryOptions
@@ -182,7 +189,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param mode - The access mode (optional).
      * @returns A promise that resolves if the file or directory is accessible.
      */
-    access(path: string | URL, mode?: number): Promise<void>;
+    access(path: string | URL, mode?: OpenFlags): Promise<void>;
 
     /**
      * Copies a file from the source path to the destination path.
@@ -211,7 +218,6 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for directory creation.
      * @returns A promise that resolves with the path of the created directory if recursive, otherwise void.
      */
-    mkdir(path: string | URL, options?: MakeDirectoryOptions & { recursive: true }): Promise<string | undefined>;
     mkdir(path: string | URL, options?: MakeDirectoryOptions): Promise<void>;
 
     /**
