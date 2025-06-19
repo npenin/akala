@@ -5,7 +5,7 @@ export default async function (this: State, name: string, args: unknown[]): Prom
     const tool = this.capabilities.tools.find(t => t.name === name);
     try
     {
-        const result = await this.container.dispatch(tool.command, args)
+        const result = await this.container.dispatch(tool.command, { params: [args], _trigger: 'jsonrpc' })
         return { content: result, isError: false };
     }
     catch (e)
