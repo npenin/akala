@@ -26,7 +26,7 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
             try
             {
                 const subContainer = await cmd.dispatch('$metadata', deep) as Metadata.Container;
-                console.log(subContainer);
+                //console.log(subContainer);
                 if (subContainer && subContainer.commands)
                 {
                     subContainer.commands.forEach(c => c.name = key + '.' + c.name)
