@@ -1,6 +1,6 @@
 import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from "@akala/core";
-import { CopyFlags, FileEntry, FileHandle, FileSystemProvider, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
-import { Dirent, promises as fs, OpenDirOptions } from 'fs';
+import { CopyFlags, FileEntry, FileHandle, FileSystemProvider, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
+import { Dirent, promises as fs, OpenDirOptions, GlobOptions as FsGlobOptions } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { basename, dirname } from "path";
 import { Readable, Writable } from "stream";
@@ -10,6 +10,21 @@ type PathLike = string | URL;
 type FullFileHandle = FileHandle & Omit<fs.FileHandle, 'readFile'>;
 type ReadableFileHandle = FullFileHandle;
 type WritableFileHandle = FullFileHandle;
+
+function direntToFileEntry<T extends string | IsomorphicBuffer = string | IsomorphicBuffer>(f: Dirent<T extends IsomorphicBuffer ? Buffer : T>, root: URL): FileEntry<T>
+{
+    return {
+        get isFile() { return f.isFile() },
+        get isDirectory() { return f.isDirectory() },
+        get isBlockDevice() { return f.isBlockDevice() },
+        get isCharacterDevice() { return f.isCharacterDevice() },
+        get isSymbolicLink() { return f.isSymbolicLink() },
+        get isFIFO() { return f.isFIFO() },
+        get isSocket() { return f.isSocket() },
+        name: (Buffer.isBuffer(f.name) ? new IsomorphicBuffer(f.name) : f.name) as T,
+        parentPath: new URL(root),
+    }
+}
 
 function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, path: URL, readonly: boolean): FullFileHandle
 {
@@ -138,17 +153,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         {
             if (options?.withFileTypes)
             {
-                return (files as unknown as Dirent[]).map(f => ({
-                    get isFile() { return f.isFile() },
-                    get isDirectory() { return f.isDirectory() },
-                    get isBlockDevice() { return f.isBlockDevice() },
-                    get isCharacterDevice() { return f.isCharacterDevice() },
-                    get isSymbolicLink() { return f.isSymbolicLink() },
-                    get isFIFO() { return f.isFIFO() },
-                    get isSocket() { return f.isSocket() },
-                    name: f.name,
-                    parentPath: new URL(path),
-                }));
+                return (files as unknown as Dirent[]).map(f => direntToFileEntry(f, new URL(path, this.root)));
             }
             if (options.encoding == 'buffer')
                 return files.map(f => IsomorphicBuffer.fromBuffer(f as unknown as Buffer));
@@ -162,9 +167,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
     async readFile<T = unknown>(path: PathLike | ReadableFileHandle, options?: any): Promise<string | IsomorphicBuffer | T>
     {
         if (this.isFileHandle(path))
-        {
             return path.readFile(options?.encoding);
-        }
 
         if (options?.encoding === 'json')
             return this.readFile(path, { ...options, encoding: 'utf8' }).then(c => JSON.parse(c));
@@ -325,8 +328,45 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return typeof p === 'object' && p !== null && 'fd' in p;
     }
 
-    public glob(pattern: string | string[])
+    public glob(pattern: string | string[], options: GlobOptionsWithFileTypes): AsyncIterable<FileEntry>
+    public glob(pattern: string | string[], options?: GlobOptionsWithoutFileTypes): AsyncIterable<URL>
+    public glob(pattern: string | string[], options?: GlobOptionsWithFileTypes | GlobOptionsWithoutFileTypes): AsyncIterable<URL> | AsyncIterable<FileEntry>
     {
-        return fs.glob(pattern);
+        const fsOptions: FsGlobOptions = {};
+
+        fsOptions.cwd = options?.cwd || this.resolvePath(this.root);
+        fsOptions.withFileTypes = options?.withFileTypes;
+        const exclude = options?.exclude as GlobOptions['exclude'];
+        switch (typeof exclude)
+        {
+            case 'function':
+                fsOptions.exclude = entry =>
+                {
+                    if (typeof entry == 'string')
+                        return exclude(new URL(entry, this.root));
+                    else
+                        return exclude(direntToFileEntry(entry, new URL(entry.parentPath, this.root)));
+                }
+                break;
+            case 'object':
+                fsOptions.exclude = exclude?.map(e => this.resolvePath(e, true));
+        }
+
+        if (options.withFileTypes)
+            return (async function* ()
+            {
+                for await (const entry of fs.glob(pattern, fsOptions))
+                {
+                    yield direntToFileEntry(entry as Dirent, new URL((entry as Dirent).parentPath, this.root))
+                }
+            })();
+        else
+            return (async function* ()
+            {
+                for await (const entry of fs.glob(pattern, fsOptions))
+                {
+                    yield new URL((entry as Dirent).parentPath, this.root);
+                }
+            })()
     }
 }

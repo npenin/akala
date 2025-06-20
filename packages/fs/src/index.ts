@@ -1,5 +1,5 @@
 import { FSFileSystemProvider } from './fs.js';
-import fsHandler from './index.browser.js';
+import fsHandler, { FileSystemProviderProxy } from './index.browser.js';
 
 export * from './index.browser.js';
 
@@ -24,6 +24,10 @@ fsHandler.useProtocol('npm', async url =>
         }
         return FSFileSystemProvider.prototype.resolvePath.call(fs, path);
     }
+
+    const fakeNpm = new FileSystemProviderProxy(fs);
+    fakeNpm.root = new URL(root);
+
     return fs;
 });
 export default fsHandler;

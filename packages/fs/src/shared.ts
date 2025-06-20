@@ -8,6 +8,7 @@ export interface FileHandle
     readFile(encoding: Exclude<BufferEncoding, 'binary'>): Promise<string>;
     readFile(encoding: 'binary'): Promise<IsomorphicBuffer>;
     readFile<T>(encoding: 'json'): Promise<T>;
+    readFile<T>(encoding: 'json' | BufferEncoding): Promise<T | IsomorphicBuffer | string>;
     writeFile(data: string | IsomorphicBuffer): Promise<void>;
     close(): Promise<void>;
     [Symbol.dispose](): void;
@@ -17,6 +18,7 @@ export interface FileHandle
     stat(opts?: StatOptions): Promise<Stats | Stats<bigint>>;
 }
 
+export type PathLike<TFileHandle extends FileHandle = FileHandle> = string | URL | TFileHandle;
 
 export enum OpenFlags
 {
@@ -68,15 +70,41 @@ export interface FileEntry<Name extends string | IsomorphicBuffer = string>
 {
     /**
      * Returns `true` if the `FileEntry` object describes a regular file.
-     * @since v10.10.0
      */
     get isFile(): boolean;
     /**
      * Returns `true` if the `FileEntry` object describes a file system
      * directory.
-     * @since v10.10.0
      */
     get isDirectory(): boolean;
+
+    /**
+     * Returns `true` if the `fs.Dirent` object describes a block device.
+     * @since v10.10.0
+     */
+    get isBlockDevice(): boolean;
+    /**
+     * Returns `true` if the `fs.Dirent` object describes a character device.
+     * @since v10.10.0
+     */
+    get isCharacterDevice(): boolean;
+    /**
+     * Returns `true` if the `fs.Dirent` object describes a symbolic link.
+     * @since v10.10.0
+     */
+    get isSymbolicLink(): boolean;
+    /**
+     * Returns `true` if the `fs.Dirent` object describes a first-in-first-out
+     * (FIFO) pipe.
+     * @since v10.10.0
+     */
+    get isFIFO(): boolean;
+    /**
+     * Returns `true` if the `fs.Dirent` object describes a socket.
+     * @since v10.10.0
+     */
+    get isSocket(): boolean;
+
     /**
      * The file name that this `FileEntry` object refers to. The type of this
      * value is determined by the `options.encoding` passed to {@link readdir} or {@link readdirSync}.
@@ -141,6 +169,37 @@ export interface RmDirOptions
     retryDelay?: number;
 }
 
+interface _GlobOptions<T extends FileEntry | URL>
+{
+    /**
+     * Current working directory.
+     * @default root
+     */
+    cwd?: string | undefined;
+    /**
+     * `true` if the glob should return paths as `FileEntry`s, `false` otherwise.
+     * @default false
+     * @since v22.2.0
+     */
+    withFileTypes?: boolean | undefined;
+    /**
+     * Function to filter out files/directories or a
+     * list of glob patterns to be excluded. If a function is provided, return
+     * `true` to exclude the item, `false` to include it.
+     * @default undefined
+     */
+    exclude?: ((fileName: T) => boolean) | readonly (PathLike<never>)[] | undefined;
+}
+export interface GlobOptions extends _GlobOptions<FileEntry | URL> { }
+export interface GlobOptionsWithFileTypes extends _GlobOptions<FileEntry>
+{
+    withFileTypes: true;
+}
+export interface GlobOptionsWithoutFileTypes extends _GlobOptions<URL>
+{
+    withFileTypes?: false | undefined;
+}
+
 /**
  * Represents an abstract file system provider interface, defining a set of methods and properties
  * for interacting with files and directories in a platform-agnostic way.
@@ -189,7 +248,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param mode - The access mode (optional).
      * @returns A promise that resolves if the file or directory is accessible.
      */
-    access(path: string | URL, mode?: OpenFlags): Promise<void>;
+    access(path: PathLike<TFileHandle>, mode?: OpenFlags): Promise<void>;
 
     /**
      * Copies a file from the source path to the destination path.
@@ -199,7 +258,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param mode - The copy mode (optional).
      * @returns A promise that resolves when the file is copied.
      */
-    copyFile(src: string | URL, dest: string | URL, mode?: number): Promise<void>;
+    copyFile(src: PathLike<TFileHandle>, dest: string | URL, mode?: number): Promise<void>;
 
     /**
      * Copies files or directories recursively.
@@ -209,7 +268,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for the copy operation (optional).
      * @returns A promise that resolves when the operation is complete.
      */
-    cp(src: string | URL, dest: string | URL, options?: { force?: boolean; recursive?: boolean }): Promise<void>;
+    cp(src: PathLike<TFileHandle>, dest: string | URL, options?: { force?: boolean; recursive?: boolean }): Promise<void>;
 
     /**
      * Creates a directory at the specified path.
@@ -218,14 +277,14 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for directory creation.
      * @returns A promise that resolves with the path of the created directory if recursive, otherwise void.
      */
-    mkdir(path: string | URL, options?: MakeDirectoryOptions): Promise<void>;
+    mkdir(path: PathLike<TFileHandle>, options?: MakeDirectoryOptions): Promise<void>;
 
     /**
      * Creates a symbolic link.
      *
      * @return Fulfills with `undefined` upon success.
      */
-    symlink(source: string | URL, target: string | URL, type?: 'dir' | 'file' | 'junction'): Promise<void>;
+    symlink(source: PathLike<TFileHandle>, target: string | URL, type?: 'dir' | 'file' | 'junction'): Promise<void>;
 
     /**
      * Opens a file at the specified path.
@@ -234,7 +293,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param flags - The flags for opening the file.
      * @returns A promise that resolves with the file handle.
      */
-    open(path: string | URL, flags: OpenFlags): Promise<TFileHandle>;
+    open(path: PathLike<never>, flags: OpenFlags): Promise<TFileHandle>;
 
     /**
      * Opens a directory for reading.
@@ -243,7 +302,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for opening the directory (optional).
      * @returns A promise that resolves with the directory handle.
      */
-    opendir(path: string | URL, options?: { bufferSize?: number, encoding?: string }): Promise<any>;
+    opendir(path: PathLike<never>, options?: { bufferSize?: number, encoding?: string }): Promise<any>;
 
     /**
      * Reads the contents of a directory.
@@ -252,9 +311,9 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for reading the directory.
      * @returns A promise that resolves with the directory contents.
      */
-    readdir(path: string | URL, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
-    readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
-    readdir(path: string | URL, options: { withFileTypes: true; }): Promise<FileEntry[]>;
+    readdir(path: PathLike<never>, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
+    readdir(path: PathLike<never>, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
+    readdir(path: PathLike<never>, options: { withFileTypes: true; }): Promise<FileEntry[]>;
 
     /**
      * Reads the contents of a file.
@@ -263,9 +322,9 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for reading the file.
      * @returns A promise that resolves with the file contents.
      */
-    readFile(path: string | URL | TFileHandle, options?: { encoding?: null | 'binary', flag?: OpenFlags }): Promise<IsomorphicBuffer>;
-    readFile(path: string | URL | TFileHandle, options: { encoding: BufferEncoding, flag?: OpenFlags }): Promise<string>;
-    readFile<T>(path: string | URL | TFileHandle, options: { encoding: 'json', flag?: OpenFlags }): Promise<T>;
+    readFile(path: PathLike<TFileHandle>, options?: { encoding?: null | 'binary', flag?: OpenFlags }): Promise<IsomorphicBuffer>;
+    readFile(path: PathLike<TFileHandle>, options: { encoding: BufferEncoding, flag?: OpenFlags }): Promise<string>;
+    readFile<T>(path: PathLike<TFileHandle>, options: { encoding: 'json', flag?: OpenFlags }): Promise<T>;
 
     /**
      * Renames a file or directory.
@@ -274,7 +333,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param newPath - The new path of the file or directory.
      * @returns A promise that resolves when the operation is complete.
      */
-    rename(oldPath: string | URL, newPath: string | URL): Promise<void>;
+    rename(oldPath: PathLike<TFileHandle>, newPath: string | URL): Promise<void>;
 
     /**
      * Removes a directory.
@@ -283,7 +342,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for removing the directory (optional).
      * @returns A promise that resolves when the directory is removed.
      */
-    rmdir(path: string | URL, options?: RmDirOptions): Promise<void>;
+    rmdir(path: PathLike<never>, options?: RmDirOptions): Promise<void>;
 
     /**
      * Removes a file or directory.
@@ -292,7 +351,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for the removal operation (optional).
      * @returns A promise that resolves when the operation is complete.
      */
-    rm(path: string | URL, options?: RmOptions): Promise<void>;
+    rm(path: PathLike<never>, options?: RmOptions): Promise<void>;
 
     /**
      * Retrieves the stats of a file or directory.
@@ -301,8 +360,8 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param opts - Options for retrieving stats.
      * @returns A promise that resolves with the stats object.
      */
-    stat(path: string | URL, opts?: StatOptions & { bigint?: false }): Promise<Stats>;
-    stat(path: string | URL, opts: StatOptions & { bigint: true }): Promise<Stats<bigint>>;
+    stat(path: PathLike<TFileHandle>, opts?: StatOptions & { bigint?: false }): Promise<Stats>;
+    stat(path: PathLike<TFileHandle>, opts: StatOptions & { bigint: true }): Promise<Stats<bigint>>;
 
     /**
      * Truncates a file to a specified length.
@@ -311,7 +370,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param len - The length to truncate to (optional).
      * @returns A promise that resolves when the operation is complete.
      */
-    truncate(path: string | URL, len?: number): Promise<void>;
+    truncate(path: PathLike<TFileHandle>, len?: number): Promise<void>;
 
     /**
      * Deletes a file.
@@ -319,7 +378,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param path - The path to the file.
      * @returns A promise that resolves when the file is deleted.
      */
-    unlink(path: string | URL): Promise<void>;
+    unlink(path: PathLike<TFileHandle>): Promise<void>;
 
     /**
      * Updates the access and modification times of a file.
@@ -329,7 +388,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param mtime - The new modification time.
      * @returns A promise that resolves when the operation is complete.
      */
-    utimes(path: string | URL, atime: string | number | Date, mtime: string | number | Date): Promise<void>;
+    utimes(path: PathLike<TFileHandle>, atime: string | number | Date, mtime: string | number | Date): Promise<void>;
 
     /**
      * Watches for changes on a file or directory.
@@ -338,7 +397,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for watching (optional).
      * @returns A promise that resolves with the watcher object.
      */
-    watch(filename: string | URL, options?: { encoding?: BufferEncoding, recursive?: boolean }): Promise<any>;
+    watch(filename: PathLike<TFileHandle>, options?: { encoding?: BufferEncoding, recursive?: boolean }): Promise<any>;
 
     /**
      * Writes data to a file.
@@ -347,21 +406,21 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param data - The data to write.
      * @returns A promise that resolves when the data is written.
      */
-    writeFile(path: string | URL | TFileHandle, data: string | ArrayBuffer | SharedArrayBuffer): Promise<void>;
+    writeFile(path: PathLike<TFileHandle>, data: string | ArrayBuffer | SharedArrayBuffer): Promise<void>;
 
     /**
      * Changes the root directory of the file system provider.
      * 
      * @param root - The new root directory.
      */
-    chroot(root: string | URL): void;
+    chroot(root: PathLike<never>): void;
 
     /**
      * Creates a new file system provider with the new root directory.
      * 
      * @param root - The new root directory.
      */
-    newChroot(root: string | URL): FileSystemProvider<TFileHandle>;
+    newChroot(root: PathLike<never>): FileSystemProvider<TFileHandle>;
 
     /**
      * Determines if the given object is a file handle.
@@ -385,5 +444,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * }
      * ```
      */
-    glob(pattern: string | string[]): AsyncIterable<string>
+    glob(pattern: string | string[], options: GlobOptionsWithFileTypes): AsyncIterable<FileEntry>
+    glob(pattern: string | string[], options?: GlobOptionsWithoutFileTypes): AsyncIterable<URL>
+    glob(pattern: string | string[], options?: GlobOptions): AsyncIterable<URL> | AsyncIterable<FileEntry>
 }
