@@ -82,28 +82,28 @@
                     "source": "src/cli-commands/discover.ts",
                     "inject": [
                         "params.0",
-                        "params.1",
-                        "$container"
+                        "$container",
+                        "params.1"
                     ]
                 },
                 "": {
                     "inject": [
                         "params.0",
-                        "params.1",
-                        "$container"
+                        "$container",
+                        "params.1"
                     ]
                 },
                 "cli": {
-                    "usage": "discover <name> <folder>",
+                    "usage": "discover <path> [name]",
                     "options": {
-                        "folder": {
+                        "path": {
                             "normalize": true
                         }
                     },
                     "inject": [
-                        "options.name",
-                        "options.folder",
-                        "$container"
+                        "options.path",
+                        "$container",
+                        "options.name"
                     ]
                 }
             }
