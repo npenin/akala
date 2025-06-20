@@ -13,6 +13,8 @@ fsHandler.useProtocol('npm', async url =>
     const fs = new FSFileSystemProvider(new URL(root), true);
     fs.resolvePath = path =>
     {
+        if (fs.isFileHandle(path))
+            path = path.path;
         if (URL.canParse(path))
             path = new URL(path);
         if (path instanceof URL)

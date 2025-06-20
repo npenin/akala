@@ -1,15 +1,13 @@
 import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from "@akala/core";
-import { CopyFlags, FileEntry, FileHandle, FileSystemProvider, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
+import { CopyFlags, FileEntry, FileHandle, FileSystemProvider, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
 import { Dirent, promises as fs, OpenDirOptions, GlobOptions as FsGlobOptions } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { basename, dirname } from "path";
 import { Readable, Writable } from "stream";
 
-type PathLike = string | URL;
-
 type FullFileHandle = FileHandle & Omit<fs.FileHandle, 'readFile'>;
-type ReadableFileHandle = FullFileHandle;
-type WritableFileHandle = FullFileHandle;
+
+type FsPathLike = PathLike<FullFileHandle>
 
 function direntToFileEntry<T extends string | IsomorphicBuffer = string | IsomorphicBuffer>(f: Dirent<T extends IsomorphicBuffer ? Buffer : T>, root: URL): FileEntry<T>
 {
@@ -68,7 +66,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
     {
     }
 
-    chroot(root: string | URL): void
+    chroot(root: PathLike): void
     {
         const newRoot = pathToFileURL(this.resolvePath(root, true));
         if (newRoot.toString() == this.root.toString())
@@ -76,7 +74,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         this.root = newRoot;
     }
 
-    newChroot(root: string | URL)
+    newChroot(root: PathLike)
     {
         const newRoot = pathToFileURL(this.resolvePath(root, true));
         if (newRoot.toString() == this.root.toString())
@@ -84,20 +82,22 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return new FSFileSystemProvider(newRoot, this.readonly);
     }
 
-    public resolvePath(pathLike: PathLike, unsafe?: boolean): string
+    public resolvePath(pathLike: FsPathLike, unsafe?: boolean): string
     {
+        if (this.isFileHandle(pathLike))
+            return fileURLToPath(pathLike.path) + pathLike.path.hash;
         const url = new URL(pathLike, this.root);
         if (!unsafe && !url.toString().startsWith(this.root.toString()))
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, `The path ${pathLike} is not in scope of ${this.root}`)
         return fileURLToPath(url) + url.hash;
     }
 
-    async access(path: PathLike, mode?: number): Promise<void>
+    async access(path: FsPathLike, mode?: number): Promise<void>
     {
         return fs.access(this.resolvePath(path), mode);
     }
 
-    async copyFile(src: PathLike, dest: PathLike, mode?: CopyFlags): Promise<void>
+    async copyFile(src: FsPathLike, dest: PathLike, mode?: CopyFlags): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
@@ -107,7 +107,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return fs.copyFile(this.resolvePath(src), this.resolvePath(dest), fsMode);
     }
 
-    async cp(src: PathLike, dest: PathLike, options?: { force?: boolean; recursive?: boolean; }): Promise<void>
+    async cp(src: FsPathLike, dest: PathLike, options?: { force?: boolean; recursive?: boolean; }): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
@@ -144,10 +144,10 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return fs.opendir(this.resolvePath(path), options);
     }
 
-    async readdir(path: string | URL, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
-    async readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
-    async readdir(path: string | URL, options: { withFileTypes: true; }): Promise<FileEntry[]>;
-    async readdir(path: string | URL, options?: { encoding?: 'buffer' | BufferEncoding | null; withFileTypes?: boolean }): Promise<string[] | IsomorphicBuffer[] | FileEntry[]>
+    async readdir(path: PathLike, options?: { encoding?: Exclude<BufferEncoding, 'binary'> | null; withFileTypes?: false; }): Promise<string[]>;
+    async readdir(path: PathLike, options: { encoding: "binary"; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
+    async readdir(path: PathLike, options: { withFileTypes: true; }): Promise<FileEntry[]>;
+    async readdir(path: PathLike, options?: { encoding?: BufferEncoding | null; withFileTypes?: boolean }): Promise<string[] | IsomorphicBuffer[] | FileEntry[]>
     {
         return fs.readdir(this.resolvePath(path), options as any).then(files =>
         {
@@ -155,16 +155,16 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
             {
                 return (files as unknown as Dirent[]).map(f => direntToFileEntry(f, new URL(path, this.root)));
             }
-            if (options.encoding == 'buffer')
+            if (options.encoding == 'binary')
                 return files.map(f => IsomorphicBuffer.fromBuffer(f as unknown as Buffer));
             return files;
         });
     }
 
-    async readFile<TEncoding extends BufferEncoding>(path: PathLike | ReadableFileHandle, options: { encoding: TEncoding; flag?: OpenFlags; }): Promise<string>;
-    async readFile(path: PathLike | ReadableFileHandle, options?: { flag?: OpenFlags; }): Promise<IsomorphicBuffer>;
-    async readFile<T = unknown>(path: PathLike | ReadableFileHandle, options: { encoding: 'json'; flag?: OpenFlags; }): Promise<T>;
-    async readFile<T = unknown>(path: PathLike | ReadableFileHandle, options?: any): Promise<string | IsomorphicBuffer | T>
+    async readFile<TEncoding extends BufferEncoding>(path: FsPathLike, options: { encoding: TEncoding; flag?: OpenFlags; }): Promise<string>;
+    async readFile(path: FsPathLike, options?: { flag?: OpenFlags; }): Promise<IsomorphicBuffer>;
+    async readFile<T = unknown>(path: FsPathLike, options: { encoding: 'json'; flag?: OpenFlags; }): Promise<T>;
+    async readFile<T = unknown>(path: FsPathLike, options?: any): Promise<string | IsomorphicBuffer | T>
     {
         if (this.isFileHandle(path))
             return path.readFile(options?.encoding);
@@ -182,7 +182,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         });
     }
 
-    async rename(oldPath: PathLike, newPath: PathLike): Promise<void>
+    async rename(oldPath: FsPathLike, newPath: PathLike): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
@@ -196,16 +196,16 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return fs.rmdir(this.resolvePath(path), options);
     }
 
-    async rm(path: PathLike, options?: RmOptions): Promise<void>
+    async rm(path: FsPathLike, options?: RmOptions): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.rm(this.resolvePath(path), options);
     }
 
-    async stat(path: PathLike, opts?: StatOptions & { bigint?: false; }): Promise<Stats>;
-    async stat(path: PathLike, opts: StatOptions & { bigint: true; }): Promise<Stats<bigint>>;
-    async stat(path: PathLike, opts?: StatOptions): Promise<Stats | Stats<bigint>>
+    async stat(path: FsPathLike, opts?: StatOptions & { bigint?: false; }): Promise<Stats>;
+    async stat(path: FsPathLike, opts: StatOptions & { bigint: true; }): Promise<Stats<bigint>>;
+    async stat(path: FsPathLike, opts?: StatOptions): Promise<Stats | Stats<bigint>>
     {
         try
         {
@@ -213,8 +213,8 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
             if (opts?.bigint)
             {
                 return {
-                    parentPath: path instanceof URL ? new URL('.', path) : dirname(path),
-                    name: path instanceof URL ? basename(path.pathname) : basename(path),
+                    parentPath: path instanceof URL ? new URL('.', path) : typeof path === 'string' ? dirname(path) : new URL('./', path.path),
+                    name: path instanceof URL ? basename(path.pathname) : typeof path === 'string' ? basename(path) : basename(path.path.pathname),
                     isFile: stats.isFile(),
                     isDirectory: stats.isDirectory(),
                     size: stats.size as bigint,
@@ -229,8 +229,8 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
                 } as Stats<bigint>;
             }
             return {
-                parentPath: path instanceof URL ? new URL('.', path) : dirname(path),
-                name: path instanceof URL ? basename(path.pathname) : basename(path),
+                parentPath: path instanceof URL ? new URL('.', path) : typeof path === 'string' ? dirname(path) : new URL('./', path.path),
+                name: path instanceof URL ? basename(path.pathname) : typeof path === 'string' ? basename(path) : basename(path.path.pathname),
                 isFile: stats.isFile(),
                 isDirectory: stats.isDirectory(),
                 size: Number(stats.size),
@@ -252,7 +252,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         }
     }
 
-    async symlink(source: PathLike, target: PathLike, type?: 'dir' | 'file' | 'junction'): Promise<void>
+    async symlink(source: FsPathLike, target: PathLike, type?: 'dir' | 'file' | 'junction'): Promise<void>
     {
         source = this.resolvePath(source);
         target = this.resolvePath(target);
@@ -285,37 +285,37 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
 
     }
 
-    async truncate(path: PathLike, len?: number): Promise<void>
+    async truncate(path: FsPathLike, len?: number): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.truncate(this.resolvePath(path), len);
     }
 
-    async unlink(path: PathLike): Promise<void>
+    async unlink(path: FsPathLike): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.unlink(this.resolvePath(path));
     }
 
-    async utimes(path: PathLike, atime: string | number | Date, mtime: string | number | Date): Promise<void>
+    async utimes(path: FsPathLike, atime: string | number | Date, mtime: string | number | Date): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         return fs.utimes(this.resolvePath(path), atime, mtime);
     }
 
-    async watch(filename: PathLike, options?: { encoding?: BufferEncoding; recursive?: boolean; }): Promise<any>
+    async watch(filename: FsPathLike, options?: { encoding?: BufferEncoding; recursive?: boolean; }): Promise<any>
     {
         return fs.watch(this.resolvePath(filename), options);
     }
 
-    async writeFile(path: PathLike | WritableFileHandle, data: string | ArrayBuffer | SharedArrayBuffer | Buffer | Uint8Array): Promise<void>
+    async writeFile(path: FsPathLike, data: string | IsomorphicBuffer | ArrayBuffer | SharedArrayBuffer | Buffer | Uint8Array): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
-        const buffer = Buffer.isBuffer(data) ? data : Buffer.from(data as ArrayBuffer);
+        const buffer = data instanceof IsomorphicBuffer ? data.toArray() : Buffer.isBuffer(data) ? data : Buffer.from(data as ArrayBuffer);
 
         if (this.isFileHandle(path))
             return path.writeFile(buffer);
