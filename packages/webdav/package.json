@@ -2,7 +2,7 @@
     "name": "@akala/webdav",
     "version": "0.2.0",
     "private": true,
-    "main": "./dist/cjs/index.js",
+    "main": "./dist/esm/index.js",
     "types": "./dist/esm/index.d.ts",
     "type": "module",
     "source": "src/index.ts",
@@ -23,14 +23,8 @@
     },
     "exports": {
         ".": {
-            "import": {
-                "types": "./dist/esm/index.d.ts",
-                "default": "./dist/esm/index.js"
-            },
-            "require": {
-                "types": "./dist/cjs/index.d.ts",
-                "default": "./dist/cjs/index.js"
-            }
+            "types": "./dist/esm/index.d.ts",
+            "default": "./dist/esm/index.js"
         }
     },
     "module": "./dist/esm/index.js",

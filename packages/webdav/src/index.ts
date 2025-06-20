@@ -1,5 +1,5 @@
 import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from '@akala/core';
-import fsHandler, { FileSystemProvider, FileHandle, OpenFlags, RmDirOptions, RmOptions, MakeDirectoryOptions, FileEntry, StatOptions, Stats, CopyFlags, OpenStreamOptions } from '@akala/fs'
+import fsHandler, { FileSystemProvider, FileHandle, OpenFlags, RmDirOptions, RmOptions, MakeDirectoryOptions, FileEntry, StatOptions, Stats, CopyFlags, OpenStreamOptions, PathLike, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, VirtualFileHandle } from '@akala/fs'
 import { XMLParser } from 'fast-xml-parser';
 import { isMatch } from 'micromatch'
 
@@ -13,10 +13,8 @@ fsHandler.useProtocol('davs', (url) =>
     return Promise.resolve(new WebDavFS(new URL(url.toString().replace(/^davs:/, 'https:'))));
 })
 
-export class WebDavFileHandle implements FileHandle
+export class WebDavFileHandle extends VirtualFileHandle<WebDavFS>
 {
-    constructor(private fs: WebDavFS, public readonly path: URL) { }
-
     openReadStream(options?: OpenStreamOptions): ReadableStream
     {
         const url = this.path;
@@ -37,7 +35,7 @@ export class WebDavFileHandle implements FileHandle
                     headers['Range'] = `bytes=${position}-${position + chunkSize - 1}`;
                 }
 
-                const response = await fetch(url.toString(), {
+                const response = await fetch(url, {
                     method: 'GET',
                     headers,
                 });
@@ -65,54 +63,14 @@ export class WebDavFileHandle implements FileHandle
             },
         });
     }
-
-    openWriteStream(options?: OpenStreamOptions): WritableStream
-    {
-        throw new ErrorWithStatus(HttpStatusCode.NotAcceptable, 'WebDAV streaming is not supported');
-    }
-
-    readFile(encoding: Exclude<BufferEncoding, 'binary'>): Promise<string>;
-    readFile(encoding: 'binary'): Promise<IsomorphicBuffer>;
-    readFile<T>(encoding: 'json'): Promise<T>;
-    readFile<T>(encoding: 'binary' | null | BufferEncoding | 'json'): Promise<IsomorphicBuffer> | Promise<string> | Promise<T>
-    {
-        return this.fs.readFile(this.path, { encoding } as any) as any;
-    }
-    writeFile(data: string | IsomorphicBuffer): Promise<void>
-    {
-        return this.fs.writeFile(this.path, data);
-    }
-    close(): Promise<void>
-    {
-        return Promise.resolve();
-    }
-
-    stat(opts?: StatOptions & {
-        bigint: false;
-    }): Promise<Stats>
-    stat(opts: StatOptions & {
-        bigint: true;
-    }): Promise<Stats<bigint>>
-    stat(opts?: StatOptions): Promise<Stats | Stats<bigint>>
-    stat(opts?: StatOptions)
-    {
-        return this.fs.stat(this.path, opts);
-    }
-    [Symbol.dispose](): void
-    {
-    }
-    [Symbol.asyncDispose](): Promise<void>
-    {
-        return Promise.resolve();
-    }
 }
 
-export class WebDavFS implements FileSystemProvider<FileHandle>
+export class WebDavFS implements FileSystemProvider<WebDavFileHandle>
 {
     constructor(public root: URL) { }
     readonly: boolean;
 
-    resolveUrl(path: string | URL): URL
+    resolveUrl(path: PathLike): URL
     {
         if (typeof path == 'string')
             path = new URL(path, this.root);
@@ -122,7 +80,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
         return path;
     }
 
-    async access(path: string | URL, mode?: OpenFlags): Promise<void>
+    async access(path: PathLike, mode?: OpenFlags): Promise<void>
     {
         path = this.resolveUrl(path);
 
@@ -165,7 +123,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
         }
     }
 
-    async copyFile(src: string | URL, dest: string | URL, mode?: CopyFlags): Promise<void>
+    async copyFile(src: PathLike, dest: PathLike, mode?: CopyFlags): Promise<void>
     {
         const sourceUrl = this.resolveUrl(src);
         const destinationUrl = this.resolveUrl(dest);
@@ -191,7 +149,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
         }
     }
 
-    async cp(src: string | URL, dest: string | URL, options?: { force?: boolean; recursive?: boolean; }): Promise<void>
+    async cp(src: PathLike, dest: PathLike, options?: { force?: boolean; recursive?: boolean; }): Promise<void>
     {
         const sourceUrl = this.resolveUrl(src);
         const destinationUrl = this.resolveUrl(dest);
@@ -234,7 +192,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
         }
     }
 
-    async mkdir(path: string | URL, options?: MakeDirectoryOptions): Promise<void>
+    async mkdir(path: PathLike, options?: MakeDirectoryOptions): Promise<void>
     {
         const url = this.resolveUrl(path);
         try
@@ -263,7 +221,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             else
             {
                 // Create a single directory
-                const response = await fetch(url.toString(), {
+                const response = await fetch(url, {
                     method: 'MKCOL',
                 });
 
@@ -278,7 +236,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
         }
     }
 
-    async symlink(source: string | URL, target: string | URL, type?: 'dir' | 'file' | 'junction'): Promise<void>
+    async symlink(source: PathLike, target: PathLike, type?: 'dir' | 'file' | 'junction'): Promise<void>
     {
         const sourceUrl = this.resolveUrl(source);
         const targetUrl = this.resolveUrl(target);
@@ -314,25 +272,25 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             throw new ErrorWithStatus(HttpStatusCode.InternalServerError, '', undefined, error);
         }
     }
-    async open(path: string | URL, flags: OpenFlags): Promise<FileHandle>
+    async open(path: PathLike, flags: OpenFlags): Promise<WebDavFileHandle>
     {
         return new WebDavFileHandle(this, this.resolveUrl(path));
     }
 
-    async opendir(path: string | URL, options?: { bufferSize?: number; encoding?: BufferEncoding; }): Promise<FileEntry[]>
+    async opendir(path: PathLike, options?: { bufferSize?: number; encoding?: BufferEncoding; }): Promise<FileEntry[]>
     {
         return this.readdir(path, { ...options, withFileTypes: true });
     }
-    readdir(path: string | URL, options?: { encoding?: BufferEncoding | null; withFileTypes?: false; }): Promise<string[]>;
-    readdir(path: string | URL, options: { encoding: "buffer"; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
-    readdir(path: string | URL, options: { withFileTypes: true; }): Promise<FileEntry[]>;
-    async readdir(path: string | URL, options?: { withFileTypes?: boolean, encoding?: BufferEncoding | null | 'buffer' }): Promise<any[]>
+    readdir(path: PathLike, options?: { encoding?: Exclude<BufferEncoding, 'binary'> | null; withFileTypes?: false; }): Promise<string[]>;
+    readdir(path: PathLike, options: { encoding: "binary"; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
+    readdir(path: PathLike, options: { withFileTypes: true; }): Promise<FileEntry[]>;
+    async readdir(path: PathLike, options?: { withFileTypes?: boolean, encoding?: BufferEncoding | null }): Promise<any[]>
     {
         const url = this.resolveUrl(path);
 
         try
         {
-            const response = await fetch(url.toString(), {
+            const response = await fetch(url, {
                 method: 'PROPFIND',
                 headers: {
                     Depth: '1', // Depth 1 to list immediate children
@@ -381,16 +339,19 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             throw new ErrorWithStatus(HttpStatusCode.InternalServerError, '', undefined, error);
         }
     }
-    readFile(path: string | URL | FileHandle, options?: { encoding?: null | 'binary', flag?: OpenFlags }): Promise<IsomorphicBuffer>;
-    readFile(path: string | URL | FileHandle, options: { encoding: BufferEncoding, flag?: OpenFlags }): Promise<string>;
-    readFile<T>(path: string | URL | FileHandle, options: { encoding: 'json', flag?: OpenFlags }): Promise<T>;
-    async readFile(path: string | URL | FileHandle, options?: { encoding?: 'binary' | null | BufferEncoding | 'json', flag?: OpenFlags }): Promise<any>
+    readFile(path: PathLike<WebDavFileHandle>, options?: { encoding?: null | 'binary', flag?: OpenFlags }): Promise<IsomorphicBuffer>;
+    readFile(path: PathLike<WebDavFileHandle>, options: { encoding: BufferEncoding, flag?: OpenFlags }): Promise<string>;
+    readFile<T>(path: PathLike<WebDavFileHandle>, options: { encoding: 'json', flag?: OpenFlags }): Promise<T>;
+    async readFile(path: PathLike<WebDavFileHandle>, options?: { encoding?: null | BufferEncoding | 'json', flag?: OpenFlags }): Promise<any>
     {
-        const url = this.resolveUrl(path as string | URL);
+        if (this.isFileHandle(path))
+            return path.readFile(options?.encoding);
+
+        const url = this.resolveUrl(path);
 
         try
         {
-            const response = await fetch(url.toString(), {
+            const response = await fetch(url, {
                 method: 'GET',
             });
 
@@ -415,9 +376,9 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
 
         }
     }
-    async rename(oldPath: string | URL, newPath: string | URL): Promise<void>
+    async rename(oldPath: PathLike<WebDavFileHandle>, newPath: PathLike): Promise<void>
     {
-        const sourceUrl = this.resolveUrl(oldPath);
+        const sourceUrl = this.isFileHandle(oldPath) ? oldPath.path : this.resolveUrl(oldPath);
         const destinationUrl = this.resolveUrl(newPath);
 
         try
@@ -432,6 +393,11 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
 
             if (!response.ok)
                 throw new ErrorWithStatus(response.status, `Failed to rename/move from ${sourceUrl} to ${destinationUrl}: ${response.statusText}\n${await response.text()}`);
+
+            if (oldPath instanceof WebDavFileHandle)
+            {
+                oldPath.path = destinationUrl;
+            }
         }
         catch (error)
         {
@@ -439,7 +405,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             throw new ErrorWithStatus(HttpStatusCode.InternalServerError, '', undefined, error);
         }
     }
-    async rmdir(path: string | URL, options?: RmDirOptions): Promise<void>
+    async rmdir(path: PathLike, options?: RmDirOptions): Promise<void>
     {
         const url = this.resolveUrl(path);
 
@@ -461,22 +427,22 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             }
         }
 
-        const response = await fetch(url.toString(), {
+        const response = await fetch(url, {
             method: 'DELETE',
         });
 
         if (!response.ok)
             throw new ErrorWithStatus(response.status, `Failed to remove directory at ${url}: ${response.statusText}`);
     }
-    async rm(path: string | URL, options?: RmOptions): Promise<void>
+    async rm(path: PathLike<WebDavFileHandle>, options?: RmOptions): Promise<void>
     {
-        const url = this.resolveUrl(path);
+        const url = this.isFileHandle(path) ? path.path : this.resolveUrl(path);
 
         if (options?.force)
         {
             try
             {
-                const response = await fetch(url.toString(), {
+                const response = await fetch(url, {
                     method: 'DELETE',
                 });
 
@@ -493,7 +459,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
         }
         else
         {
-            const response = await fetch(url.toString(), {
+            const response = await fetch(url, {
                 method: 'DELETE',
             });
 
@@ -503,16 +469,16 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             }
         }
     }
-    stat(path: string | URL, opts?: StatOptions & { bigint?: false }): Promise<Stats>;
-    stat(path: string | URL, opts: StatOptions & { bigint: true }): Promise<Stats<bigint>>;
-    stat(path: string | URL, opts?: StatOptions): Promise<Stats<number> | Stats<bigint>>
-    async stat(path: string | URL, opts?: StatOptions): Promise<Stats<number> | Stats<bigint>>
+    async stat(path: PathLike<WebDavFileHandle>, opts?: StatOptions & { bigint?: false }): Promise<Stats>;
+    async stat(path: PathLike<WebDavFileHandle>, opts: StatOptions & { bigint: true }): Promise<Stats<bigint>>;
+    async stat(path: PathLike<WebDavFileHandle>, opts?: StatOptions): Promise<Stats<number> | Stats<bigint>>
+    async stat(path: PathLike<WebDavFileHandle>, opts?: StatOptions): Promise<Stats<number> | Stats<bigint>>
     {
-        const url = this.resolveUrl(path);
+        const url = this.isFileHandle(path) ? path.path : this.resolveUrl(path);
 
         try
         {
-            const response = await fetch(url.toString(), {
+            const response = await fetch(url, {
                 method: 'PROPFIND',
                 headers: {
                     Depth: '0',
@@ -551,7 +517,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
         }
     }
 
-    async truncate(path: string | URL, len?: number): Promise<void>
+    async truncate(path: PathLike, len?: number): Promise<void>
     {
         const url = this.resolveUrl(path);
 
@@ -561,7 +527,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             if (!len)
             {
                 // Read the current file content
-                const response = await fetch(url.toString(), {
+                const response = await fetch(url, {
                     method: 'GET',
                 });
 
@@ -577,7 +543,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
                 truncatedContent = new ArrayBuffer(0);
 
             // Write the truncated content back to the file
-            const writeResponse = await fetch(url.toString(), {
+            const writeResponse = await fetch(url, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'text/plain',
@@ -594,13 +560,13 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             throw new ErrorWithStatus(HttpStatusCode.InternalServerError, '', undefined, error);
         }
     }
-    async unlink(path: string | URL): Promise<void>
+    async unlink(path: PathLike): Promise<void>
     {
         const url = this.resolveUrl(path);
 
         try
         {
-            const response = await fetch(url.toString(), {
+            const response = await fetch(url, {
                 method: 'DELETE',
             });
 
@@ -613,7 +579,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
         }
     }
 
-    async utimes(path: string | URL, atime: string | number | Date, mtime: string | number | Date): Promise<void>
+    async utimes(path: PathLike, atime: string | number | Date, mtime: string | number | Date): Promise<void>
     {
         {
             const url = this.resolveUrl(path);
@@ -634,7 +600,7 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             </d:propertyupdate>
         `;
 
-                const response = await fetch(url.toString(), {
+                const response = await fetch(url, {
                     method: 'PROPPATCH',
                     headers: {
                         'Content-Type': 'application/xml',
@@ -652,19 +618,19 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             }
         }
     }
-    watch(filename: string | URL, options?: { encoding?: BufferEncoding; recursive?: boolean; }): Promise<any>
+    watch(filename: PathLike, options?: { encoding?: BufferEncoding; recursive?: boolean; }): Promise<any>
     {
         throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'WebDAV does not support watching.');
     }
-    async writeFile(path: string | URL | FileHandle, data: string | IsomorphicBuffer | ArrayBuffer | SharedArrayBuffer): Promise<void>
+    async writeFile(path: PathLike<FileHandle>, data: string | IsomorphicBuffer | ArrayBuffer | SharedArrayBuffer): Promise<void>
     {
-        const url = this.resolveUrl(path as string | URL);
+        const url = this.resolveUrl(path as PathLike);
 
         try
         {
             const body = typeof data === 'string' ? data : data instanceof IsomorphicBuffer ? data.toArray() : new Uint8Array(data);
 
-            const response = await fetch(url.toString(), {
+            const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': typeof data === 'string' ? `text/plain; charset=utf-8` : 'application/octet-stream',
@@ -682,63 +648,107 @@ export class WebDavFS implements FileSystemProvider<FileHandle>
             throw new ErrorWithStatus(HttpStatusCode.InternalServerError, '', undefined, error);
         }
     }
-    chroot(root: string | URL): void
+    chroot(root: PathLike): void
     {
         this.root = this.resolveUrl(root);
     }
 
-    newChroot(root: string | URL): FileSystemProvider<FileHandle>
+    newChroot(root: PathLike): FileSystemProvider<WebDavFileHandle>
     {
         const newRoot = this.resolveUrl(root);
         return new WebDavFS(newRoot);
     }
 
-    isFileHandle(x: any): x is FileHandle
+    isFileHandle(x: any): x is WebDavFileHandle
     {
         return x instanceof WebDavFileHandle;
     }
 
-    async * glob(pattern: string | string[]): AsyncIterable<string>
+    public glob(pattern: string | string[], options: GlobOptionsWithFileTypes): AsyncIterable<FileEntry>
+    public glob(pattern: string | string[], options?: GlobOptionsWithoutFileTypes): AsyncIterable<URL>
+    public glob(pattern: string | string[], options?: GlobOptionsWithFileTypes | GlobOptionsWithoutFileTypes): AsyncIterable<URL> | AsyncIterable<FileEntry>
     {
-        const url = this.root;
-
         try
         {
-            const response = await fetch(url.toString(), {
-                method: 'PROPFIND',
-                headers: {
-                    Depth: 'infinity', // Retrieve all nested directories and files
-                },
-            });
-
-            if (!response.ok)
+            return (async function* ()
             {
-                throw new ErrorWithStatus(response.status, `Failed to retrieve directory structure at ${url}: ${response.statusText}\n${await response.text()}`);
-            }
+                const response = await fetch(this.root, {
+                    method: 'PROPFIND',
+                    headers: {
+                        Depth: 'infinity', // Retrieve all nested directories and files
+                    },
+                });
 
-            const text = await response.text();
-            const parser = new XMLParser();
-            const xmlData = parser.parse(text);
+                if (!response.ok)
+                {
+                    throw new ErrorWithStatus(response.status, `Failed to retrieve directory structure at ${this.root}: ${response.statusText}\n${await response.text()}`);
+                }
 
-            const responses = xmlData['D:multistatus']?.['D:response'];
-            if (!responses)
-            {
-                return;
-            }
+                const text = await response.text();
+                const parser = new XMLParser();
+                const xmlData = parser.parse(text);
 
-            const entries = Array.isArray(responses) ? responses : [responses];
-            for (const entry of entries)
-            {
-                const href = entry['D:href'];
-                const entryPath = decodeURIComponent(new URL(href, url).toString());
+                const responses = xmlData['D:multistatus']?.['D:response'];
+                if (!responses)
+                {
+                    return;
+                }
 
-                if (isMatch(entryPath, pattern))
-                    yield entryPath;
-            }
+                const entries = Array.isArray(responses) ? responses : [responses];
+                for (const entry of entries)
+                {
+                    const href = entry['D:href'];
+                    const entryUrl = new URL(href, this.root);
+
+                    if (isMatch(href, pattern))
+                    {
+                        if (options.withFileTypes)
+                        {
+                            const exclude = options?.exclude as GlobOptionsWithFileTypes['exclude'];
+                            const parent = new URL('./', entryUrl);
+                            const name = decodeURIComponent(entryUrl.pathname.substring(parent.pathname.length));
+
+                            const fileEntry: FileEntry = {
+                                name,
+                                parentPath: new URL('./', entryUrl),
+                                get isFile() { return !fileEntry.isBlockDevice && !fileEntry.isCharacterDevice && !fileEntry.isDirectory && !fileEntry.isFIFO && !fileEntry.isSocket && !fileEntry.isSymbolicLink },
+                                get isDirectory() { return !!entry['D:propstat']?.['D:prop']?.['D:resourcetype']?.['D:collection'] },
+                                get isBlockDevice() { return false; },
+                                get isCharacterDevice() { return false; },
+                                get isSymbolicLink() { return false; },
+                                get isFIFO() { return false; },
+                                get isSocket() { return false; }
+                            };
+                            if (exclude)
+                                if (typeof exclude === 'function')
+                                {
+                                    if (!exclude(fileEntry))
+                                        yield fileEntry;
+                                }
+                                else if (!exclude.find(x => typeof x === 'string' ? isMatch(href, x) : isMatch(href, x.toString())))
+                                    yield fileEntry;
+                        }
+
+                        if (options?.exclude)
+                        {
+                            const exclude = options.exclude as GlobOptionsWithoutFileTypes['exclude'];
+                            if (typeof exclude === 'function')
+                            {
+                                if (!exclude(entryUrl))
+                                    yield entryUrl;
+                            }
+                            else if (!exclude.find(x => typeof x === 'string' ? isMatch(href, x) : isMatch(href, x.toString())))
+                                yield entryUrl;
+                        }
+                        else
+                            yield entryUrl;
+                    }
+                }
+            })() as AsyncIterable<FileEntry> | AsyncIterable<URL>;
         }
         catch (error)
         {
-            console.error(`Error retrieving directory structure at ${url}:`, error);
+            console.error(`Error retrieving directory structure at ${this.root}:`, error);
             throw new ErrorWithStatus(HttpStatusCode.InternalServerError, '', undefined, error);
         }
     }
