@@ -1,9 +1,9 @@
-#  (2025-06-19)
+#  (2025-06-20)
 
 
 ### Bug Fixes
 
-* improve mcp invokation c824af8
+* add $metadata command to meta commands in JsonRpc handlers bf60490
 
 
 
