@@ -2,7 +2,6 @@ import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
 import { CoreProperties, Dependency } from "./package.js";
 import { handler } from "./registry.js";
 import { State } from "./state.js";
-import { join } from 'path/posix'
 
 export interface LockFile
 {
@@ -99,7 +98,7 @@ export async function snapshot(pkg: CoreProperties | LockPackage, state: State, 
                 {
                     try
                     {
-                        const wspacePkg = await state.fs.readFile<CoreProperties>(join(workspace, 'package.json'), { encoding: 'json' });
+                        const wspacePkg = await state.fs.readFile<CoreProperties>(new URL(workspace, 'package.json'), { encoding: 'json' });
 
                         wspacePkg.resolution = `workspace:${wspacePkg.name}/${wspacePkg.version}`
 
