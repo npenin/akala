@@ -28,7 +28,7 @@ fsHandler.useProtocol('npm', async url =>
     }
 
     const fakeNpm = new FileSystemProviderProxy(fs);
-    fakeNpm.root = new URL(root);
+    fakeNpm.root = new URL('npm:///' + packageName);
 
     return fs;
 });
