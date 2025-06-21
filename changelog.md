@@ -1,4 +1,4 @@
-#  (2025-06-19)
+#  (2025-06-20)
 
 
 * chore : code cleanup eae1150
@@ -9,6 +9,7 @@
 * #S6661 234a6f5
 * absolute path config ceaf573
 * add @akala/mcp/akala plugin to the configuration 39fd2d3
+* add $metadata command to meta commands in JsonRpc handlers bf60490
 * add basic unit test dcd8665
 * add commands argument normalisation 8c9fb75
 * add commands argument normalisation 34ca419
@@ -340,6 +341,7 @@
 * improper config init 70efb0d
 * improper config init 0f90955
 * improve akala plugin ed46190
+* improve discover using @akala/fs e96ea22
 * improve discovery 31bdd8a
 * improve discovery 3e0d64b
 * improve error handling in HTTP command wrapping 42daa25
@@ -484,6 +486,7 @@
 * remove Buffer reference for non-node runtimes 18ea445
 * remove cjs reference e501923
 * remove cjs reference 2284b79
+* remove console log from metadata function 9d30b2c
 * remove copy/paste issue d625947
 * remove deprecated ac command usage 5cf4a82
 * remove deprecated command documentation files and navigation exclusions 90bceca
@@ -675,6 +678,7 @@
 * update after core breaking change 6ea3ca9
 * update after core BufferEncoding introduction 298da96
 * update after core Translator interface upgrade a6500a1
+* update after fs breaking change 56df9a7
 * update after fs FileHandle interface update 552b3f0
 * update after storage breaking change 87b037a
 * update after storage breaking change 06b7d59
@@ -710,6 +714,7 @@
 * update documentation titles and structure for clarity and organization cad4d78
 * update error status code for unauthorized actions in AuthHandler 663f8b9
 * update file command processor to generate UUID only when record key is absent 4c5ff85
+* update file path handling in snapshot function to use URL 68431d9
 * update fs flag usage e2355d1
 * update grant_types_supported to use keyof for compatibility ec88441
 * update grant_types_supported to use keyof for compatibility 49f93de
@@ -839,6 +844,7 @@
 * add doc from gh-pages branch a024fed
 * add fallthrough option to cover additional registration in router 19652e5
 * add fallthrough option to cover additional registration in router feb46b4
+* add FileSystemProviderProxy 24ba3aa
 * add fs package 1df97d4
 * add fs package 9751886
 * add GitHub sponsorship and star buttons to documentation 45cdee0
@@ -982,6 +988,7 @@
 * introduce if composer 5fdfd35
 * introduce IsomorphicBuffer dfa275f
 * introduce master detail, entity and if by default f1c5d91
+* introduce PathLike be0a8f8
 * introduce vite as trigger in vite plugin 43d9826
 * make help accessible everywhere by any clicontext e18be04
 * make help accessible everywhere by any clicontext 9f5892a
@@ -1023,6 +1030,9 @@
 
 ### BREAKING CHANGES
 
+* switched 'buffer' to 'binary' in readFile
+* more file types on file entry might break for implementors
+* glob options needs to be supported by implementors
 * more implementations required to implement EventBus
 * param renamed to params
 * staticFileMiddleware expects a URL and not a string
