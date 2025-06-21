@@ -177,6 +177,7 @@ export class FileSystem extends CommandProcessor
                 await eachAsync(metacontainer.extends, async subPath =>
                 {
                     const subFs = await fsHandler.process(new URL(subPath, root));
+                    const relativeToPath = subFs.root.toString().startsWith(options.fs.root.toString()) ? path.dirname(fileURLToPath(subFs.root)) : '';
                     const parentCommands = await this.discoverMetaCommands(new URL(subPath, root), { ...options, fs: subFs, isDirectory: undefined });
                     if (parentCommands.stateless)
                         Object.defineProperty(metacontainer, 'stateless', { enumerable: false, value: parentCommands.stateless });
@@ -186,9 +187,15 @@ export class FileSystem extends CommandProcessor
                             return;
                         const subURL = new URL(subPath, root);
                         if (c.config?.fs?.path)
-                            c.config.fs.path = new URL(c.config.fs.path, subURL).toString();
+                            if (relativeToPath)
+                                c.config.fs.path = path.relative(relativeToPath, fileURLToPath(new URL(c.config.fs.path, subURL)))
+                            else
+                                c.config.fs.path = new URL(c.config.fs.path, subURL).toString();
                         if (c.config?.fs?.source)
-                            c.config.fs.source = new URL(c.config.fs.source, subURL).toString();
+                            if (relativeToPath)
+                                c.config.fs.source = path.relative(relativeToPath, fileURLToPath(new URL(c.config.fs.source, subURL)))
+                            else
+                                c.config.fs.source = new URL(c.config.fs.source, subURL).toString();
 
                         if (c.config.schema?.$defs)
                             if (globalDefs)
