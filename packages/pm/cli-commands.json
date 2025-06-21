@@ -209,6 +209,7 @@
                     "path": "dist/esm/cli-commands/map.js",
                     "source": "src/cli-commands/map.ts",
                     "inject": [
+                        "ignore",
                         "params.0",
                         "params.1",
                         "params.2",
@@ -218,6 +219,7 @@
                 },
                 "": {
                     "inject": [
+                        "$state.config",
                         "params.0",
                         "params.1",
                         "params.2",
@@ -227,6 +229,7 @@
                 },
                 "cli": {
                     "inject": [
+                        "context.state",
                         "options.name",
                         "options.path",
                         "options.runtime",

@@ -2,6 +2,7 @@
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
     "": {
         "inject": [
+            "$state.config",
             "params.0",
             "params.1",
             "params.2",
@@ -11,6 +12,7 @@
     },
     "cli": {
         "inject": [
+            "context.state",
             "options.name",
             "options.path",
             "options.runtime",
