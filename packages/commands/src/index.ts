@@ -73,12 +73,15 @@ export class Cli
                 options.isDirectory = stats.isDirectory;
 
                 if (!options.isDirectory)
-                    options.relativeTo = new URL('.', commandsURL);
+                {
+                    options.relativeTo = new URL('./', commandsURL);
+                    fs.chroot(options.relativeTo);
+                }
                 else
                     options.relativeTo = commandsURL;
             }
 
-            options.processor = new Processors.FileSystem(options.relativeTo);
+            options.processor = new Processors.FileSystem(await fsHandler.process(options.relativeTo));
         }
 
         cliContainer.processor.useMiddleware(51, options.processor);

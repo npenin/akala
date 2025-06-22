@@ -3,9 +3,7 @@ import fs from 'fs/promises'
 import { fileURLToPath } from 'url';
 import { Command } from '../metadata/command.js';
 import { Container } from '../metadata/container.js';
-import { outputHelper, write } from '../new.js';
-import { Writable } from 'stream';
-import { promisify } from 'util';
+import { outputHelper } from '../new.js';
 import { redirectSchema, simplifySchema } from './generate-schema.js';
 import { OpenApi30, Operation, Parameter, PathItem, Reference, Response } from '../oas30.js';
 import { OpenApi31, operation, parameter, parameterOrReference, pathItem, response } from '../oas31.js';
@@ -16,7 +14,7 @@ export default async function (pathToOpenApiFile: string | URL, outputFile?: str
 {
 
     console.log(arguments)
-    let output: Writable;
+    let output: WritableStreamDefaultWriter;
     ({ output } = await outputHelper(outputFile, 'openapi.json', true));
     if (typeof pathToOpenApiFile == 'string')
     {
@@ -84,8 +82,8 @@ export default async function (pathToOpenApiFile: string | URL, outputFile?: str
         const result = { commands, name: openApi.info.title.replace(/\./g, '-') } as Container;
         if (outputFile)
         {
-            await write(output, JSON.stringify(result, null, 4));
-            await promisify(cb => output.end(cb))();
+            await output.write(JSON.stringify(result, null, 4));
+            await output.close();
         }
         else
             return result;
@@ -129,8 +127,8 @@ export default async function (pathToOpenApiFile: string | URL, outputFile?: str
         const result = { commands, name: openApi.info.title.replace(/\./g, '-') } as Container;
         if (outputFile)
         {
-            await write(output, JSON.stringify(result, null, 4));
-            await promisify(cb => output.end(cb))();
+            await output.write(JSON.stringify(result, null, 4));
+            await output.close();
         }
         else
             return result;

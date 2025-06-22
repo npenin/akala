@@ -1,74 +1,65 @@
 import { Writable } from "stream";
-import fs from 'fs';
-import path from 'path';
-import { promisify } from "util";
+import fsHandler, { FileSystemProvider } from "@akala/fs";
+import { pathToFileURL } from "url";
 
-export type Generator = { output: Writable, exists: false, outputFile: string, outputFolder: string } | { output?: Writable, exists: true, outputFile: string, outputFolder: string };
+export type Generator = { output: WritableStreamDefaultWriter, exists: false, outputFile: string, outputFs: FileSystemProvider } | { output?: WritableStreamDefaultWriter, exists: true, outputFile: string, outputFs: FileSystemProvider };
 
-export async function outputHelper(outputFile: string | Writable | undefined, nameIfFolder: string, force: boolean, actionIfExists?: (exists: boolean) => boolean | Promise<boolean> | void | Promise<void>): Promise<Generator>
+export async function outputHelper(outputFile: string | Writable | WritableStream | undefined, nameIfFolder: string, force: boolean, actionIfExists?: (exists: boolean) => boolean | Promise<boolean> | void | Promise<void>): Promise<Generator>
 {
-    let output: Writable = undefined;
+    let output: WritableStream = undefined;
     let exists = false;
+    let outputFs: FileSystemProvider;
+
     if (!outputFile)
     {
-        output = process.stdout;
+        output = Writable.toWeb(process.stdout);
         outputFile = '';
     }
     else if (outputFile instanceof Writable)
     {
+        output = Writable.toWeb(outputFile);
+        outputFile = '';
+    }
+    else if (outputFile instanceof WritableStream)
+    {
         output = outputFile;
         outputFile = '';
     }
-    else if (await promisify(fs.exists)(outputFile))
+    else
     {
-        exists = true;
+        outputFs = await fsHandler.process(URL.canParse(outputFile) ? new URL(outputFile) : pathToFileURL(outputFile));
+        if (await outputFs.access(outputFile).then(() => true, () => false))
+        {
+            exists = true;
 
-        if ((await fs.promises.lstat(outputFile)).isDirectory())
-            return outputHelper(outputFile + '/' + nameIfFolder, nameIfFolder, force, actionIfExists);
-        else if (!force)
-            throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
-
-        if (!force)
-            if (await promisify(fs.exists)(outputFile))
-                throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
+            if ((await outputFs.stat(outputFile)).isDirectory)
+                outputFile = outputFile + '/' + nameIfFolder;
             else
-            {
-                console.log(force)
-                exists = false;
-            }
-    }
+                outputFs.chroot('./');
 
-    const outputFolder = path.dirname(outputFile) + '/';
+            if (!force)
+                // if (await promisify(fs.exists)(outputFile))
+                throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
+            // else
+            // {
+            //     console.log(force)
+            //     exists = false;
+            // }
+        }
+        output = outputFs.openWriteStream(outputFile)
+    }
 
     if (actionIfExists)
     {
         const action = await actionIfExists(exists)
         if (typeof (action) == 'boolean' && !action)
         {
-            return { outputFolder, outputFile, exists: exists as true };
+            return { outputFs, outputFile, exists: exists as true };
         }
 
     };
 
-    if (!output)
-        output = fs.createWriteStream(outputFile);
-
-
-    return { output, outputFolder, outputFile, exists };
-}
-
-export async function write(output: Writable, content: string)
-{
-    return new Promise<void>((resolve, reject) =>
-    {
-        output.write(content, function (err)
-        {
-            if (err)
-                reject(err);
-            else
-                resolve();
-        })
-    })
+    return { output: output.getWriter(), outputFs: outputFs, outputFile, exists };
 }
 
 export async function close(output: Writable)

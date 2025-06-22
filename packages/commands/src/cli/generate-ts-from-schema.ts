@@ -1,6 +1,5 @@
 import * as fs from 'fs/promises';
-import { Writable } from "stream";
-import { outputHelper, write } from '../new.js';
+import { outputHelper } from '../new.js';
 // import type { Schema as BaseSchema } from "ajv";
 import { fileURLToPath } from "url";
 import { FetchHttp } from "@akala/core";
@@ -9,24 +8,24 @@ import { JsonSchema } from '../jsonschema.js'
 
 // const jsonSchemaArrays = ['allOf', 'anyOf', 'oneOf']
 
-export default async function generate(pathToOpenApiFile: string | URL, name: string, outputFile?: string)
+export default async function generate(pathToSchemaFile: string | URL, name: string, outputFile?: string)
 {
-    let output: Writable;
+    let output: WritableStreamDefaultWriter;
     ({ output } = await outputHelper(outputFile, 'openapi.json', true));
-    if (typeof pathToOpenApiFile == 'string')
+    if (typeof pathToSchemaFile == 'string')
     {
-        if (pathToOpenApiFile.indexOf(':') < 1)
-            pathToOpenApiFile = 'file://' + pathToOpenApiFile;
-        pathToOpenApiFile = new URL(pathToOpenApiFile);
+        if (pathToSchemaFile.indexOf(':') < 1)
+            pathToSchemaFile = 'file://' + pathToSchemaFile;
+        pathToSchemaFile = new URL(pathToSchemaFile);
     }
     let content: string;
-    switch (pathToOpenApiFile.protocol)
+    switch (pathToSchemaFile.protocol)
     {
         case 'file:':
-            content = await fs.readFile(fileURLToPath(pathToOpenApiFile), { encoding: 'utf8' });
+            content = await fs.readFile(fileURLToPath(pathToSchemaFile), { encoding: 'utf8' });
             break;
         case 'https:':
-            content = await new FetchHttp(null).getJSON(pathToOpenApiFile.toString(), new URLSearchParams({ format: 'json' }));
+            content = await new FetchHttp(null).getJSON(pathToSchemaFile.toString(), new URLSearchParams({ format: 'json' }));
             break;
         default:
             throw new Error('Unsupported URL scheme');
@@ -40,7 +39,10 @@ export default async function generate(pathToOpenApiFile: string | URL, name: st
     delete types[''];
 
     if (outputFile)
-        await write(output, Object.entries(types).map(e => `export type ${e[0]}=${e[1]}`).join(';\n'));
+    {
+        await output.write(Object.entries(types).map(e => `export type ${e[0]}=${e[1]}`).join(';\n'));
+        await output.close();
+    }
     else
         console.log(types);
 }

@@ -1,50 +1,44 @@
 import * as path from 'path'
-import * as fs from 'fs';
-import { Writable } from "stream";
-import { outputHelper, write } from '../new.js';
+import { outputHelper } from '../new.js';
 import { DiscoveryOptions } from "../processors/fs.js";
 import { Metadata, Processors } from "../index.js";
 import { MiddlewareCompositeAsync } from '@akala/core';
 import { pathToFileURL } from 'url';
-import fsHandler from '@akala/fs';
+import fsHandler, { FileSystemProvider } from '@akala/fs';
 
-function importJson(path: string)
-{
-    return fs.promises.readFile(path, { encoding: 'utf-8', flag: 'r' }).then(c => c && JSON.parse(c) || undefined, e =>
-    {
-        if (e.code == 'ENOENT')
-            return undefined;
-        else
-            throw e;
-    }
-    );
-}
-
-export const generatorPlugin = new MiddlewareCompositeAsync<[options: Partial<DiscoveryOptions>, meta: Metadata.Container, outputFolder: string, outputFile: string]>();
+export const generatorPlugin = new MiddlewareCompositeAsync<[options: Partial<DiscoveryOptions>, meta: Metadata.Container, outputFs: FileSystemProvider, outputFile: string]>();
 
 
 export default async function generate(options: Partial<DiscoveryOptions>, folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
 
-    if (!name && fs.existsSync(path.join(folder, './package.json')))
-        name = (await importJson(path.join(folder, './package.json'))).name;
+    const folderUrl = !URL.canParse(folder) ? pathToFileURL(folder) : new URL(folder);
+
+    const sourceFs = await fsHandler.process(folderUrl);
+
+    if (!name && await sourceFs.access(path.join(folder, './package.json')).then(() => true, () => false))
+        name = (await sourceFs.readFile<{ name: string }>('./package.json', { encoding: 'json' })).name;
     if (!name)
         name = path.basename(folder);
 
-    let output: Writable;
-    let outputFolder: string;
+    let output: WritableStreamDefaultWriter;
+    let outputFs: FileSystemProvider;
     const meta: Metadata.Container & { $schema?: string } = { name: name, commands: [] };
-    ({ output, outputFile, outputFolder } = await outputHelper(outputFile, 'commands.json', true, async (exists) =>
+    ({ output, outputFile, outputFs } = await outputHelper(outputFile, 'commands.json', true, async (exists) =>
     {
         if (exists)
         {
-            const existing: Metadata.Container = await importJson(path.resolve(process.cwd(), outputFile));
+            const existing = await outputFs.readFile<Metadata.Container>(outputFile, { encoding: 'json' });
             Object.assign(meta, { ...existing, name: meta.name || existing.name, commands: meta.commands || existing.commands })
         }
     }));
 
-    const commands = await Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { ...options, fs: await fsHandler.process(pathToFileURL(outputFolder + '/')), relativeTo: pathToFileURL(outputFolder), isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new Processors.FileSystem(pathToFileURL(outputFolder)) });
+    const commands = await Processors.FileSystem.discoverMetaCommands(path.resolve(folder), {
+        ...options, fs: outputFs, relativeTo: outputFs.root,
+        isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true,
+        processor: new Processors.FileSystem(outputFs)
+    });
     Object.assign(meta, commands);
     if (!commands.name && name)
         meta.name = name;
@@ -52,7 +46,7 @@ export default async function generate(options: Partial<DiscoveryOptions>, folde
 
     try
     {
-        await generatorPlugin.process(options, meta, outputFolder, outputFile);
+        await generatorPlugin.process(options, meta, outputFs, outputFile);
     }
     catch (e)
     {
@@ -60,6 +54,6 @@ export default async function generate(options: Partial<DiscoveryOptions>, folde
             throw e;
     }
 
-    await write(output, JSON.stringify(meta, null, 4));
-    await new Promise(resolve => output.end(resolve));
+    await output.write(JSON.stringify(meta, null, 4));
+    await output.close();
 }

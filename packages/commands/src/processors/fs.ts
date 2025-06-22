@@ -32,29 +32,29 @@ async function protocolHandler(url: URL)
         else
             options.relativeTo = url;
 
-    return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(url.toString(), options) }
+    return { processor: new FileSystem(fs), getMetadata: () => FileSystem.discoverMetaCommands(url.toString(), options) }
 }
 
 
 handlers.useProtocol('fs', protocolHandler);
 handlers.useProtocol('file', protocolHandler);
 
-handlers.useProtocol('npm',
-    async function npmHandler(url: URL)
-    {
-        const options: DiscoveryOptions = url.search && Object.fromEntries(url.searchParams.entries()) || {};
-        if (url.searchParams.has('ignoreFileWithNoDefaultExport'))
-            options.ignoreFileWithNoDefaultExport = !!url.searchParams.get('ignoreFileWithNoDefaultExport') && url.searchParams.get('ignoreFileWithNoDefaultExport').toLocaleLowerCase() !== 'false';
-        else
-            options.ignoreFileWithNoDefaultExport = true;
+handlers.useProtocol('npm', protocolHandler);
+// async function npmHandler(url: URL)
+// {
+//     const options: DiscoveryOptions = url.search && Object.fromEntries(url.searchParams.entries()) || {};
+//     if (url.searchParams.has('ignoreFileWithNoDefaultExport'))
+//         options.ignoreFileWithNoDefaultExport = !!url.searchParams.get('ignoreFileWithNoDefaultExport') && url.searchParams.get('ignoreFileWithNoDefaultExport').toLocaleLowerCase() !== 'false';
+//     else
+//         options.ignoreFileWithNoDefaultExport = true;
 
-        const fs = await fsHandler.process(url);
+//     const fs = await fsHandler.process(url);
 
-        options.fs = fs;
+//     options.fs = fs;
 
 
-        return { processor: new FileSystem(options.relativeTo || options.fs.root), getMetadata: () => FileSystem.discoverMetaCommands(url, options) }
-    });
+//     return { processor: new FileSystem(options.fs?.toImportPath(url)), getMetadata: () => FileSystem.discoverMetaCommands(url, options) }
+// });
 
 
 
@@ -99,16 +99,16 @@ export class FileSystem extends CommandProcessor
         if (!options)
             options = {};
 
-        let fs: FileSystem;
-        if (!options.processor)
-            options.processor = fs = new FileSystem(options.relativeTo);
 
         const commands = await this.discoverMetaCommands(root, options);
 
+        let processor: FileSystem;
+        if (!options.processor)
+            options.processor = processor = new FileSystem(options.fs);
+
         registerCommands(commands.commands, options.processor, container);
 
-        if (fs)
-            fs.root = options.relativeTo;
+        processor?.fs.chroot(options.relativeTo);
 
         if (typeof (commands.name) != 'undefined')
             container.name = commands.name;
@@ -308,7 +308,7 @@ export class FileSystem extends CommandProcessor
                             {
                                 akala.each(cmd.config[''].inject, item =>
                                 {
-                                    if (typeof item == 'string' && (item.startsWith('params.') || item == '$container'))
+                                    if (typeof item == 'string' && (item.startsWith('params.') || item == '$container' || item.startsWith('$state.')))
                                         params.push(item);
                                     else
                                         params.push('ignore');
@@ -320,7 +320,7 @@ export class FileSystem extends CommandProcessor
                         {
                             cmd.config.fs.inject = cmd.config['']?.inject && akala.map(cmd.config[''].inject as any, item =>
                             {
-                                if (typeof item == 'string' && (item.startsWith('params.') || item == '$container'))
+                                if (typeof item == 'string' && (item.startsWith('params.') || item == '$container' || item.startsWith('$state.')))
                                     return item
                                 else
                                     return 'ignore';
@@ -425,9 +425,9 @@ export class FileSystem extends CommandProcessor
         const cwd = pathToFileURL(process.cwd());
         let filepath: URL;
         if (command && command.config && command.config.fs?.path)
-            filepath = new URL(command.config.fs.path, this.root || cwd);
+            filepath = new URL(command.config.fs.path, this.fs.root || cwd);
         else
-            filepath = new URL(command.name, (this.root || cwd));
+            filepath = new URL(command.name, (this.fs.root || cwd));
         try
         {
             let script;
@@ -452,7 +452,7 @@ export class FileSystem extends CommandProcessor
         }
     }
 
-    constructor(private root?: URL)
+    constructor(private fs: FileSystemProvider)
     {
         super('fs');
     }

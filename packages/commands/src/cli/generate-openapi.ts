@@ -1,17 +1,23 @@
 import * as akala from "../index.js";
 import * as path from 'path'
-import * as fs from 'fs';
-import { outputHelper, write } from '../new.js';
+import { outputHelper } from '../new.js';
 import { jsonObject } from "../metadata/configurations.js";
-import { pathToFileURL } from "url";
 import { each } from "@akala/core";
+import { pathToFileURL } from "url";
+import { FSFileSystemProvider, hasAccess } from "@akala/fs";
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
+
+    if (!folder.endsWith('/'))
+        folder += '/'
+
     const discoveryOptions: akala.Processors.DiscoveryOptions = { isDirectory: true };
 
-    if (!name && fs.existsSync(path.join(folder, './package.json')))
+    const sourceFs = new FSFileSystemProvider(pathToFileURL(folder), false);
+
+    if (!name && await hasAccess(sourceFs, './package.json'))
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         name = (await import(path.join(folder, './package.json'))).name;
     if (!name)
@@ -22,7 +28,8 @@ export default async function generate(folder?: string, name?: string, outputFil
 
     const outputResult = await outputHelper(outputFile, 'commands.json', true);
     const output = outputResult.output;
-    discoveryOptions.relativeTo = pathToFileURL(outputResult.outputFolder);
+    discoveryOptions.fs = outputResult.outputFs
+    discoveryOptions.relativeTo = outputResult.outputFs.root;
     discoveryOptions.recursive = true;
     discoveryOptions.ignoreFileWithNoDefaultExport = true;
 
@@ -99,6 +106,6 @@ export default async function generate(folder?: string, name?: string, outputFil
             }
         }
     }
-    await write(output, JSON.stringify(result, null, 4));
-    await new Promise(resolve => output.end(resolve));
+    await output.write(JSON.stringify(result, null, 4));
+    await output.close();
 }

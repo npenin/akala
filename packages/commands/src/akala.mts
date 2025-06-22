@@ -90,6 +90,7 @@ export async function install(_context: CliContext<{ configFile: string }, objec
                 cliContainer.processor.useMiddleware(51, handler.processor);
 
                 const commands = await handler.getMetadata();
+                cliContainer.name = commands.name;
                 const init = commands.commands.find(c => c.name == '$init');
                 if (init)
                     cliContainer.processor.useMiddleware(1, new InitAkala(init, { _trigger: 'cli', config: context.state?.[name], options: { ...context.options, configFile: context.options && 'configFile' in context.options ? context.options.configFile + '#pm' : undefined }, args: context.args }));

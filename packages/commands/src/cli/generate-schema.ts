@@ -1,13 +1,12 @@
 import * as akala from "../index.js";
 import * as path from 'path'
 import * as fs from 'fs';
-import { Writable } from "stream";
-import { outputHelper, write } from '../new.js';
+import { outputHelper } from '../new.js';
 import ts from 'typescript'
 import type { Schema as BaseSchema, SchemaObject } from "ajv";
 import { Command } from "../metadata/command.js";
 import { SchemaConfiguration, SchemaValidator } from "../processors/schema-validator.js";
-import { pathToFileURL } from "url";
+import { FileSystemProvider } from "@akala/fs";
 
 type JsonSchema = Exclude<BaseSchema, boolean>
 
@@ -96,10 +95,11 @@ export default async function generate(folder?: string, name?: string, outputFil
         discoveryOptions.isDirectory = false;
     }
 
-    let output: Writable;
-    let outputFolder: string;
-    ({ output, outputFile, outputFolder } = await outputHelper(outputFile, 'commands.json', true));
-    discoveryOptions.relativeTo = pathToFileURL(outputFolder);
+    let output: WritableStreamDefaultWriter;
+    let outputFs: FileSystemProvider;
+    ({ output, outputFile, outputFs } = await outputHelper(outputFile, 'commands.json', true));
+    discoveryOptions.fs = outputFs;
+    discoveryOptions.relativeTo = outputFs.root;
     discoveryOptions.recursive = true;
     discoveryOptions.ignoreFileWithNoDefaultExport = true;
     let configPath = ts.findConfigFile(folder, ts.sys.fileExists, "tsconfig.json");
@@ -191,8 +191,8 @@ export default async function generate(folder?: string, name?: string, outputFil
     }));
     result['$defs'] = Object.fromEntries(await Promise.all(Object.entries(defs.global).map(e => e[1].promise.then(r => [e[0], r]))))
 
-    await write(output, JSON.stringify(result, null, 4));
-    await new Promise(resolve => output.end(resolve));
+    await output.write(JSON.stringify(result, null, 4));
+    await output.close();
 }
 
 function serializeSymbol(checker: ts.TypeChecker, typeNode: ts.TypeNode, defs: { local: Record<string, { id: string, isDynamic: boolean, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> }): JsonSchema | { id: string, promise: Promise<JsonSchema> }
