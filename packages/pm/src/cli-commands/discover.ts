@@ -1,7 +1,7 @@
 import pmContainer from '../container.js';
 import map from './map.js'
 import { logger } from "@akala/core";
-import fsHandler, { OpenFlags } from "@akala/fs";
+import fsHandler, { hasAccess, OpenFlags } from "@akala/fs";
 
 
 type Unpromise<T> = T extends Promise<infer X> ? X : never;
@@ -50,8 +50,7 @@ export default async function discover(path: string | URL, pm: pmContainer.conta
         }
     }
 
-    const commandsJsonFile = await moduleFs.access('./commands.json', OpenFlags.Read).then(() => true, () => false);
-    if (commandsJsonFile)
+    if (await hasAccess(moduleFs, './commands.json', OpenFlags.Read))
         return pm.dispatch('map', name ?? packageConfig.name, new URL('./commands.json', moduleFs.root), 'nodejs', null, { commandable: true });
 
     return pm.dispatch('map', name ?? packageConfig.name, new URL('./' + packageConfig.main, moduleFs.root), 'nodejs', null, { commandable: false });

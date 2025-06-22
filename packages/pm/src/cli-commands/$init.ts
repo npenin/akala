@@ -1,5 +1,5 @@
 import program, { CliContext } from "@akala/cli";
-import { StateConfiguration } from "../state.js";
+import State, { StateConfiguration } from "../state.js";
 import { connect, Container } from "@akala/commands";
 import { platform } from "os";
 import { Triggers } from "@akala/commands";
@@ -9,7 +9,7 @@ import commands from "../container.js";
 
 type CliOptions = { pmSock: string | number, tls: boolean };
 
-export default async function (c: CliContext<CliOptions, ProxyConfiguration<{ pm?: StateConfiguration }>>)
+export default async function (c: CliContext<CliOptions, ProxyConfiguration<{ pm?: StateConfiguration }>>, pm: Container<Partial<State>>)
 {
     let container: Container<unknown>;
 
@@ -51,6 +51,8 @@ export default async function (c: CliContext<CliOptions, ProxyConfiguration<{ pm
 
     if (container)
         await container.attach(Triggers.cli, program.command('pm'));
+    else
+        pm.state.config = c.state.pm;
     // throw new ErrorWithStatus(HttpStatusCode.BadGateway, 'no connection option specified');
 
 }
