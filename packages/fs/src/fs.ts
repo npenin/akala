@@ -98,7 +98,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
     {
         const newRoot = pathToFileURL(this.resolvePath(root, true));
         if (newRoot.toString() == this.root.toString())
-            return;
+            return this;
         return new FSFileSystemProvider(newRoot, this.readonly);
     }
 
@@ -190,7 +190,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
             return path.readFile(options?.encoding);
 
         if (options?.encoding === 'json')
-            return this.readFile(path, { ...options, encoding: 'utf8' }).then(c => JSON.parse(c));
+            return this.readFile(path, { ...options, encoding: 'utf8' }).then(c => c && JSON.parse(c) || undefined);
 
         return fs.readFile(this.resolvePath(path), options).then(content => Buffer.isBuffer(content) ? IsomorphicBuffer.fromBuffer(content) : content, e =>
         {
