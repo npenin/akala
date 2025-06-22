@@ -422,12 +422,11 @@ export class FileSystem extends CommandProcessor
 
     public async handle(origin: Container<unknown>, command: FSCommand, param: StructuredParameters): MiddlewarePromise
     {
-        const cwd = pathToFileURL(process.cwd());
-        let filepath: URL;
+        let filepath: string;
         if (command && command.config && command.config.fs?.path)
-            filepath = new URL(command.config.fs.path, this.fs.root || cwd);
+            filepath = this.fs.toImportPath(command.config.fs.path);
         else
-            filepath = new URL(command.name, (this.fs.root || cwd));
+            filepath = this.fs.toImportPath(command.name);
         try
         {
             let script;
