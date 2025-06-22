@@ -33,8 +33,14 @@ fsHandler.useProtocol('npm', async url =>
         }
     }
     else
-        fs = new FSFileSystemProvider(new URL(import.meta.resolve(`${packageName}${url.pathname.substring(packageName.length + offset)}`)), true);
-
+    {
+        const resolvedUrl = import.meta.resolve(`${packageName}${url.pathname.substring(packageName.length + offset)}`);
+        fs = new FSFileSystemProvider(new URL(resolvedUrl), true);
+        while (!await fs.access('./package.json').then(() => true, () => false))
+        {
+            fs.chroot(new URL(dirname(fs.root.toString()) + '/'))
+        }
+    }
     fs.resolvePath = path =>
     {
         if (fs.isFileHandle(path))
