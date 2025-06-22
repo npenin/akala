@@ -8,25 +8,25 @@ namespace commands
 {
 	export interface container 
 	{
-		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./commands/$init.js').default>
-		dispatch (cmd:'add-job', ...args: [Argument0<typeof import('./commands/add-job.js').default>, Argument1<typeof import('./commands/add-job.js').default>, Argument2<typeof import('./commands/add-job.js').default>]): ReturnType<typeof import('./commands/add-job.js').default>
-		dispatch (cmd:'add-job-schedule', ...args: [Argument0<typeof import('./commands/add-job-schedule.js').default>, Argument1<typeof import('./commands/add-job-schedule.js').default>]): ReturnType<typeof import('./commands/add-job-schedule.js').default>
-		dispatch (cmd:'add-schedule', ...args: [Argument0<typeof import('./commands/add-schedule.js').default>, Argument1<typeof import('./commands/add-schedule.js').default>]): ReturnType<typeof import('./commands/add-schedule.js').default>
-		dispatch (cmd:'list-jobs', ...args: []): ReturnType<typeof import('./commands/list-jobs.js').default>
-		dispatch (cmd:'list-schedules', ...args: []): ReturnType<typeof import('./commands/list-schedules.js').default>
-		dispatch (cmd:'remove-job-schedule', ...args: [Argument0<typeof import('./commands/remove-job-schedule.js').default>, Argument1<typeof import('./commands/remove-job-schedule.js').default>]): ReturnType<typeof import('./commands/remove-job-schedule.js').default>
-		dispatch (cmd:'wait', ...args: [Argument0<typeof import('./commands/wait.js').default>]): ReturnType<typeof import('./commands/wait.js').default>
+		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./commands/$init.ts').default>
+		dispatch (cmd:'add-job', ...args: [Argument0<typeof import('./commands/add-job.ts').default>, Argument1<typeof import('./commands/add-job.ts').default>, Argument2<typeof import('./commands/add-job.ts').default>]): ReturnType<typeof import('./commands/add-job.ts').default>
+		dispatch (cmd:'add-job-schedule', ...args: [Argument0<typeof import('./commands/add-job-schedule.ts').default>, Argument1<typeof import('./commands/add-job-schedule.ts').default>]): ReturnType<typeof import('./commands/add-job-schedule.ts').default>
+		dispatch (cmd:'add-schedule', ...args: [Argument0<typeof import('./commands/add-schedule.ts').default>, Argument1<typeof import('./commands/add-schedule.ts').default>]): ReturnType<typeof import('./commands/add-schedule.ts').default>
+		dispatch (cmd:'list-jobs', ...args: []): ReturnType<typeof import('./commands/list-jobs.ts').default>
+		dispatch (cmd:'list-schedules', ...args: []): ReturnType<typeof import('./commands/list-schedules.ts').default>
+		dispatch (cmd:'remove-job-schedule', ...args: [Argument0<typeof import('./commands/remove-job-schedule.ts').default>, Argument1<typeof import('./commands/remove-job-schedule.ts').default>]): ReturnType<typeof import('./commands/remove-job-schedule.ts').default>
+		dispatch (cmd:'wait', ...args: [Argument0<typeof import('./commands/wait.ts').default>]): ReturnType<typeof import('./commands/wait.ts').default>
 	}
 	export interface proxy 
 	{
-		'$init'(...args: []): ReturnType<typeof import('./commands/$init.js').default>
-		'add-job'(...args: [Argument0<typeof import('./commands/add-job.js').default>, Argument1<typeof import('./commands/add-job.js').default>, Argument2<typeof import('./commands/add-job.js').default>]): ReturnType<typeof import('./commands/add-job.js').default>
-		'add-job-schedule'(...args: [Argument0<typeof import('./commands/add-job-schedule.js').default>, Argument1<typeof import('./commands/add-job-schedule.js').default>]): ReturnType<typeof import('./commands/add-job-schedule.js').default>
-		'add-schedule'(...args: [Argument0<typeof import('./commands/add-schedule.js').default>, Argument1<typeof import('./commands/add-schedule.js').default>]): ReturnType<typeof import('./commands/add-schedule.js').default>
-		'list-jobs'(...args: []): ReturnType<typeof import('./commands/list-jobs.js').default>
-		'list-schedules'(...args: []): ReturnType<typeof import('./commands/list-schedules.js').default>
-		'remove-job-schedule'(...args: [Argument0<typeof import('./commands/remove-job-schedule.js').default>, Argument1<typeof import('./commands/remove-job-schedule.js').default>]): ReturnType<typeof import('./commands/remove-job-schedule.js').default>
-		'wait'(...args: [Argument0<typeof import('./commands/wait.js').default>]): ReturnType<typeof import('./commands/wait.js').default>
+		'$init'(...args: []): ReturnType<typeof import('./commands/$init.ts').default>
+		'add-job'(...args: [Argument0<typeof import('./commands/add-job.ts').default>, Argument1<typeof import('./commands/add-job.ts').default>, Argument2<typeof import('./commands/add-job.ts').default>]): ReturnType<typeof import('./commands/add-job.ts').default>
+		'add-job-schedule'(...args: [Argument0<typeof import('./commands/add-job-schedule.ts').default>, Argument1<typeof import('./commands/add-job-schedule.ts').default>]): ReturnType<typeof import('./commands/add-job-schedule.ts').default>
+		'add-schedule'(...args: [Argument0<typeof import('./commands/add-schedule.ts').default>, Argument1<typeof import('./commands/add-schedule.ts').default>]): ReturnType<typeof import('./commands/add-schedule.ts').default>
+		'list-jobs'(...args: []): ReturnType<typeof import('./commands/list-jobs.ts').default>
+		'list-schedules'(...args: []): ReturnType<typeof import('./commands/list-schedules.ts').default>
+		'remove-job-schedule'(...args: [Argument0<typeof import('./commands/remove-job-schedule.ts').default>, Argument1<typeof import('./commands/remove-job-schedule.ts').default>]): ReturnType<typeof import('./commands/remove-job-schedule.ts').default>
+		'wait'(...args: [Argument0<typeof import('./commands/wait.ts').default>]): ReturnType<typeof import('./commands/wait.ts').default>
 	}
    export const meta={"name":"@akala/cron","commands":[{"name":"$init","config":{"fs":{"path":"dist/esm/commands/$init.js","source":"src/commands/$init.ts","inject":[]},"":{"inject":[]}}},{"name":"add-job","config":{"fs":{"path":"dist/esm/commands/add-job.js","source":"src/commands/add-job.ts","inject":["params.0","params.1","params.2"]},"":{"inject":["params.0","params.1","params.2"]}}},{"name":"add-job-schedule","config":{"fs":{"path":"dist/esm/commands/add-job-schedule.js","source":"src/commands/add-job-schedule.ts","inject":["params.0","params.1"]},"":{"inject":["params.0","params.1"]}}},{"name":"add-schedule","config":{"fs":{"path":"dist/esm/commands/add-schedule.js","source":"src/commands/add-schedule.ts","inject":["params.0","params.1"]},"":{"inject":["params.0","params.1"]}}},{"name":"list-jobs","config":{"fs":{"path":"dist/esm/commands/list-jobs.js","source":"src/commands/list-jobs.ts","inject":[]},"":{"inject":[]}}},{"name":"list-schedules","config":{"fs":{"path":"dist/esm/commands/list-schedules.js","source":"src/commands/list-schedules.ts","inject":[]},"":{"inject":[]}}},{"name":"remove-job-schedule","config":{"fs":{"path":"dist/esm/commands/remove-job-schedule.js","source":"src/commands/remove-job-schedule.ts","inject":["params.0","params.1"]},"":{"inject":["params.0","params.1"]}}},{"name":"wait","config":{"fs":{"path":"dist/esm/commands/wait.js","source":"src/commands/wait.ts","inject":["params.0"]},"":{"inject":[]},"cli":{"standalone":true,"inject":["options.riseSet","options.minutes","options.hour","options.day","options.month","options.lat","options.lng","options.tz"]}}}],"$schema":"https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"} as Metadata.Container;
 

@@ -16,11 +16,16 @@
                 "stateless": false,
                 "path": "./packages/pm/commands.json"
             },
-            "server": {
+            "@akala/server": {
                 "path": "./packages/server/commands.json",
                 "commandable": true,
                 "stateless": false,
                 "type": "nodejs"
+            },
+            "auth": {
+                "type": "nodejs",
+                "path": "npm:///@akala/authentication/commands.json",
+                "commandable": true
             }
         },
         "mapping": {
@@ -31,10 +36,10 @@
                     "jsonrpc+tcp://0.0.0.0:31416": {}
                 }
             },
-            "server": {
+            "@akala/server": {
                 "connect": {
-                    "ws://0.0.0.0:8080": {},
-                    "http://0.0.0.0:8080": {}
+                    "ws://0.0.0.0:8081": {},
+                    "http://0.0.0.0:8081": {}
                 },
                 "autostart": true
             }

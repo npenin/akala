@@ -8,15 +8,15 @@ namespace commands
 {
 	export interface container 
 	{
-		dispatch (cmd:'publish', ...args: [Argument0<typeof import('./commands/publish.js').default>, Argument1<typeof import('./commands/publish.js').default>]): ReturnType<typeof import('./commands/publish.js').default>
-		dispatch (cmd:'subscribe', ...args: [Argument0<typeof import('./commands/subscribe.js').default>, Argument1<typeof import('./commands/subscribe.js').default>, Argument2<typeof import('./commands/subscribe.js').default>]): ReturnType<typeof import('./commands/subscribe.js').default>
-		dispatch (cmd:'unsubscribe', ...args: [Argument0<typeof import('./commands/unsubscribe.js').default>, Argument1<typeof import('./commands/unsubscribe.js').default>]): ReturnType<typeof import('./commands/unsubscribe.js').default>
+		dispatch (cmd:'publish', ...args: [Argument0<typeof import('./commands/publish.ts').default>, Argument1<typeof import('./commands/publish.ts').default>]): ReturnType<typeof import('./commands/publish.ts').default>
+		dispatch (cmd:'subscribe', ...args: [Argument0<typeof import('./commands/subscribe.ts').default>, Argument1<typeof import('./commands/subscribe.ts').default>, Argument2<typeof import('./commands/subscribe.ts').default>]): ReturnType<typeof import('./commands/subscribe.ts').default>
+		dispatch (cmd:'unsubscribe', ...args: [Argument0<typeof import('./commands/unsubscribe.ts').default>, Argument1<typeof import('./commands/unsubscribe.ts').default>]): ReturnType<typeof import('./commands/unsubscribe.ts').default>
 	}
 	export interface proxy 
 	{
-		'publish'(...args: [Argument0<typeof import('./commands/publish.js').default>, Argument1<typeof import('./commands/publish.js').default>]): ReturnType<typeof import('./commands/publish.js').default>
-		'subscribe'(...args: [Argument0<typeof import('./commands/subscribe.js').default>, Argument1<typeof import('./commands/subscribe.js').default>, Argument2<typeof import('./commands/subscribe.js').default>]): ReturnType<typeof import('./commands/subscribe.js').default>
-		'unsubscribe'(...args: [Argument0<typeof import('./commands/unsubscribe.js').default>, Argument1<typeof import('./commands/unsubscribe.js').default>]): ReturnType<typeof import('./commands/unsubscribe.js').default>
+		'publish'(...args: [Argument0<typeof import('./commands/publish.ts').default>, Argument1<typeof import('./commands/publish.ts').default>]): ReturnType<typeof import('./commands/publish.ts').default>
+		'subscribe'(...args: [Argument0<typeof import('./commands/subscribe.ts').default>, Argument1<typeof import('./commands/subscribe.ts').default>, Argument2<typeof import('./commands/subscribe.ts').default>]): ReturnType<typeof import('./commands/subscribe.ts').default>
+		'unsubscribe'(...args: [Argument0<typeof import('./commands/unsubscribe.ts').default>, Argument1<typeof import('./commands/unsubscribe.ts').default>]): ReturnType<typeof import('./commands/unsubscribe.ts').default>
 	}
    export const meta={"name":"pubsub","commands":[{"name":"publish","config":{"fs":{"path":"dist/esm/commands/publish.js","source":"src/commands/publish.ts","inject":["params.0","params.1"]},"":{"inject":["params.0","params.1"]},"jsonrpc":{"inject":["params.0","params.1"]}}},{"name":"subscribe","config":{"fs":{"path":"dist/esm/commands/subscribe.js","source":"src/commands/subscribe.ts","inject":["params.0","params.1","params.2"]},"":{"inject":["params.0","params.1","params.2"]},"jsonrpc":{"inject":["$connectionAsContainer","params.1","params.2"]}}},{"name":"unsubscribe","config":{"fs":{"inject":["params.0","params.1"],"path":"dist/esm/commands/unsubscribe.js","source":"src/commands/unsubscribe.ts"},"":{"inject":["params.0","params.1"]},"jsonrpc":{"inject":["connectionAsContainer","params.0"]}}}],"$schema":"https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"} as Metadata.Container;
 

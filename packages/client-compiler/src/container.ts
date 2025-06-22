@@ -8,13 +8,13 @@ namespace commands
 {
 	export interface container 
 	{
-		dispatch (cmd:'add-loader', ...args: [Argument0<typeof import('./commands/add-loader.js').default>, Argument1<typeof import('./commands/add-loader.js').default>]): ReturnType<typeof import('./commands/add-loader.js').default>
-		dispatch (cmd:'compile', ...args: []): ReturnType<typeof import('./commands/compile.js').default>
+		dispatch (cmd:'add-loader', ...args: [Argument0<typeof import('./commands/add-loader.ts').default>, Argument1<typeof import('./commands/add-loader.ts').default>]): ReturnType<typeof import('./commands/add-loader.ts').default>
+		dispatch (cmd:'compile', ...args: []): ReturnType<typeof import('./commands/compile.ts').default>
 	}
 	export interface proxy 
 	{
-		'add-loader'(...args: [Argument0<typeof import('./commands/add-loader.js').default>, Argument1<typeof import('./commands/add-loader.js').default>]): ReturnType<typeof import('./commands/add-loader.js').default>
-		'compile'(...args: []): ReturnType<typeof import('./commands/compile.js').default>
+		'add-loader'(...args: [Argument0<typeof import('./commands/add-loader.ts').default>, Argument1<typeof import('./commands/add-loader.ts').default>]): ReturnType<typeof import('./commands/add-loader.ts').default>
+		'compile'(...args: []): ReturnType<typeof import('./commands/compile.ts').default>
 	}
    export const meta={"name":"@akala/client-compiler","commands":[{"name":"add-loader","config":{"fs":{"inject":["params.0","params.1"],"path":"dist/esm/commands/add-loader.js","source":"src/commands/add-loader.ts"},"":{"inject":["params.0","params.1"]},"cli":{"inject":["options.type","options.path"],"usage":"add-loader <type> <path>","options":{"path":{"normalize":true}}}}},{"name":"compile","config":{"fs":{"inject":["params"],"path":"dist/esm/commands/compile.js","source":"src/commands/compile.ts"},"":{"inject":["params"]},"cli":{"usage":"compile [...entrypoints]","inject":["context.state","options.entrypoints"],"options":{"entrypoints":{"normalize":true}}}}}],"$schema":"https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"} as Metadata.Container;
 

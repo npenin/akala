@@ -8,15 +8,15 @@ namespace awsSDK
 {
 	export interface container 
 	{
-		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./cli/$init.js').default>
-		dispatch (cmd:'generate-sdk', ...args: [Argument1<typeof import('./cli/generate-sdk.js').default>, Argument2<typeof import('./cli/generate-sdk.js').default>]): ReturnType<typeof import('./cli/generate-sdk.js').default>
-		dispatch (cmd:'generate-tf', ...args: [Argument1<typeof import('./cli/generate-tf.js').default>, Argument2<typeof import('./cli/generate-tf.js').default>]): ReturnType<typeof import('./cli/generate-tf.js').default>
+		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./cli/$init.ts').default>
+		dispatch (cmd:'generate-sdk', ...args: [Argument1<typeof import('./cli/generate-sdk.ts').default>, Argument2<typeof import('./cli/generate-sdk.ts').default>]): ReturnType<typeof import('./cli/generate-sdk.ts').default>
+		dispatch (cmd:'generate-tf', ...args: [Argument1<typeof import('./cli/generate-tf.ts').default>, Argument2<typeof import('./cli/generate-tf.ts').default>]): ReturnType<typeof import('./cli/generate-tf.ts').default>
 	}
 	export interface proxy 
 	{
-		'$init'(...args: []): ReturnType<typeof import('./cli/$init.js').default>
-		'generate-sdk'(...args: [Argument1<typeof import('./cli/generate-sdk.js').default>, Argument2<typeof import('./cli/generate-sdk.js').default>]): ReturnType<typeof import('./cli/generate-sdk.js').default>
-		'generate-tf'(...args: [Argument1<typeof import('./cli/generate-tf.js').default>, Argument2<typeof import('./cli/generate-tf.js').default>]): ReturnType<typeof import('./cli/generate-tf.js').default>
+		'$init'(...args: []): ReturnType<typeof import('./cli/$init.ts').default>
+		'generate-sdk'(...args: [Argument1<typeof import('./cli/generate-sdk.ts').default>, Argument2<typeof import('./cli/generate-sdk.ts').default>]): ReturnType<typeof import('./cli/generate-sdk.ts').default>
+		'generate-tf'(...args: [Argument1<typeof import('./cli/generate-tf.ts').default>, Argument2<typeof import('./cli/generate-tf.ts').default>]): ReturnType<typeof import('./cli/generate-tf.ts').default>
 	}
    export const meta={"name":"aws-sdk","commands":[{"name":"$init","config":{"fs":{"inject":[],"path":"dist/cli/$init.js","source":"src/cli/$init.ts"},"":{"inject":["containers"]}}},{"name":"generate-sdk","config":{"fs":{"path":"dist/cli/generate-sdk.js","source":"src/cli/generate-sdk.ts","inject":["ignore","params.0","params.1"]},"":{"inject":["$http","params.0","params.1"]},"cli":{"usage":"generate [output] [service]","inject":["$http","options.service","options.output"],"options":{"output":{"normalize":true}}}}},{"name":"generate-tf","config":{"fs":{"path":"dist/cli/generate-tf.js","source":"src/cli/generate-tf.ts","inject":["ignore","params.0","params.1"]},"":{"inject":["$http","params.0","params.1"]},"cli":{"usage":"tf <packagePath> <environment> [containerName]","inject":["context.logger","options.packagePath","options.containerName","options.environment","options.outputPath"],"options":{"packagePath":{"normalize":true,"needsValue":true},"outputPath":{"normalize":true,"needsValue":true},"environment":{"needsValue":true}}}}}],"$schema":"https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"} as Metadata.Container;
 
