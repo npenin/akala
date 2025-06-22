@@ -126,6 +126,7 @@ commandHandlers.protocol.use(async (url, container, options: (ServerOptions) & {
         {
             if (e?.statusCode == HttpStatusCode.NotFound)
                 return Promise.reject();
+            throw e;
         }
         container.register('$webServer:' + url, server);
     }
