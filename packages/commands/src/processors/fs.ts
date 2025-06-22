@@ -26,13 +26,14 @@ async function protocolHandler(url: URL)
         const stats = await fs.stat(url);
         options.isDirectory = stats.isDirectory;
     }
+    if (!options.isDirectory)
+        fs.chroot('./');
     if (typeof (options.relativeTo) === 'undefined')
-        if (!options.isDirectory)
-            options.relativeTo = new URL('./', url);
-        else
-            options.relativeTo = url;
+        options.relativeTo = fs.root;
 
-    return { processor: new FileSystem(fs), getMetadata: () => FileSystem.discoverMetaCommands(url.toString(), options) }
+    options.fs = fs;
+
+    return { processor: new FileSystem(fs), getMetadata: () => FileSystem.discoverMetaCommands(url, options) }
 }
 
 
