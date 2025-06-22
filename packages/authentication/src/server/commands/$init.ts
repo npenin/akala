@@ -8,46 +8,50 @@ import { State } from '../state.js';
 import { AuthenticationStore } from '../authentication-store.js';
 import { providers, Query } from "@akala/storage";
 // import { webcrypto as crypto } from "crypto";
-import { base64 } from '@akala/core'
-import { readFile, writeFile } from "fs/promises";
+import { base64, HttpStatusCode, IsomorphicBuffer } from '@akala/core'
 import { AuthorizeRedirectFormatter } from "../middlewares/AuthorizeRedirectFormatter.js";
 import { User } from "../../model/user.js";
+import { ProxyConfiguration } from '@akala/config';
+import fsHandler from "@akala/fs";
+import { pathToFileURL } from "url";
 
-export default async function (this: State, container: Container<State>, providerName: string, keyPath: string, loginUrl: string, router?: HttpRouter)
+export default async function (this: State, config: ProxyConfiguration<{ provider: string, loginUrl: string, keyPath: string }>, container: Container<State>, providerName: string, keyPath: string, loginUrl: string, router?: HttpRouter)
 {
-
     // console.log(arguments);
     container.state = this;
-    const provider = await providers.process(new URL(providerName))
+    const provider = await providers.process(new URL(providerName || config.provider))
 
+    const fs = await fsHandler.process(pathToFileURL(process.cwd() + '/'));
     const store = this.store = await AuthenticationStore.create(provider);
     // this.session = { slidingExpiration: 30 };
 
-    let key: BufferSource;
+    let key: IsomorphicBuffer;
     try
     {
-        key = await readFile(keyPath);
+        key = await fs.readFile(keyPath || config.keyPath);
     }
     catch (e)
     {
-        if (e.code == 'ENOENT')
+        if (e.statusCode === HttpStatusCode.NotFound)
         {
             const cryptoKey = await crypto.subtle.generateKey({ name: 'HMAC', hash: 'SHA-256' }, true, ['sign', 'verify']);
-            key = await crypto.subtle.exportKey('raw', cryptoKey);
-            await writeFile(keyPath, new DataView(key))
+            key = IsomorphicBuffer.fromArrayBuffer(await crypto.subtle.exportKey('raw', cryptoKey));
+            await fs.writeFile(keyPath, key)
         }
+        else
+            console.error(e);
     }
 
     if (!key)
         console.warn('a temporary key will be generated. That means that entries created with that key will not be valid on the next run. If you want to persist the key, please specify the `keyPath` in the config');
 
-    const cryptoKey = this.cryptoKey = key ? await crypto.subtle.importKey('raw', key, { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']) : await crypto.subtle.generateKey({ name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
+    const cryptoKey = this.cryptoKey = key ? await crypto.subtle.importKey('raw', key.toArray(), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']) : await crypto.subtle.generateKey({ name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
 
     this.getHash = async (value: string, salt?: Uint8Array) => base64.base64EncArrBuff(await crypto.subtle.sign({ name: 'HMAC', hash: 'SHA-256' }, cryptoKey, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value)));
     this.verifyHash = async (value: string, signature: Uint8Array, salt?: Uint8Array) => await crypto.subtle.verify({ name: 'HMAC', hash: 'SHA-256' }, cryptoKey, signature, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value));
     this.session = { slidingExpiration: 300000 };
 
-    router?.formatters.useMiddleware(1, new AuthorizeRedirectFormatter(loginUrl, 'return_url'))
+    router?.formatters.useMiddleware(1, new AuthorizeRedirectFormatter(loginUrl || config.loginUrl, 'return_url'))
 
     container.processor.useMiddleware(6, new Processors.AuthHandler(async (userQ: Query<User>, password: string) =>
     {
@@ -112,5 +116,6 @@ export default async function (this: State, container: Container<State>, provide
     const server = (await containers['@akala/server']);
 
     // server.dispatch('remote-route', '/.well-known/openid-configuration', null, { pre: true, get: true });
-    server.dispatch('remote-route', '/', container, { auth: true, use: true });
+    const remote = await server?.dispatch('remote-route', '/', { auth: true, use: true });
+    remote;
 }
