@@ -1,5 +1,5 @@
 import { Writable } from "stream";
-import fsHandler, { FileSystemProvider, FSFileSystemProvider } from "@akala/fs";
+import { FileSystemProvider, FSFileSystemProvider } from "@akala/fs";
 import { pathToFileURL } from "url";
 
 export type Generator = { output: WritableStreamDefaultWriter, exists: false, outputFile: string, outputFs: FileSystemProvider } | { output?: WritableStreamDefaultWriter, exists: true, outputFile: string, outputFs: FileSystemProvider };
@@ -8,29 +8,25 @@ export async function outputHelper(outputFile: string | Writable | WritableStrea
 {
     let output: WritableStream = undefined;
     let exists = false;
-    let outputFs: FileSystemProvider;
+    const outputFs = new FSFileSystemProvider(pathToFileURL(process.cwd() + '/'), false);
 
     if (!outputFile)
     {
         output = Writable.toWeb(process.stdout);
         outputFile = '';
-        outputFs = new FSFileSystemProvider(pathToFileURL(process.cwd()), false);
     }
     else if (outputFile instanceof Writable)
     {
         output = Writable.toWeb(outputFile);
         outputFile = '';
-        outputFs = new FSFileSystemProvider(pathToFileURL(process.cwd()), false);
     }
     else if (outputFile instanceof WritableStream)
     {
         output = outputFile;
         outputFile = '';
-        outputFs = new FSFileSystemProvider(pathToFileURL(process.cwd()), false);
     }
     else
     {
-        outputFs = await fsHandler.process(URL.canParse(outputFile) ? new URL(outputFile) : pathToFileURL(outputFile));
         if (await outputFs.access(outputFile).then(() => true, () => false))
         {
             exists = true;
