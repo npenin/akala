@@ -7,6 +7,7 @@ import { Metadata, Processors } from '../index.js';
 import { eachAsync, MiddlewareCompositeWithPriorityAsync, toCamelCase } from '@akala/core';
 import { JsonSchema } from '../jsonschema.js';
 import { FileSystemProvider } from '@akala/fs';
+import { relative } from 'path/posix';
 
 export const generatorPlugin = new MiddlewareCompositeWithPriorityAsync<[options: { name?: string, noContainer?: boolean; noProxy?: boolean; noStandalone?: boolean; noMetadata?: boolean; }, container: Metadata.Container, output: WritableStreamDefaultWriter, outputFs: FileSystemProvider, outputFile: string]>();
 
@@ -31,7 +32,8 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
             if (cmd.config.fs)
             {
                 const config = cmd.config.fs as jsonObject & FileSystemConfiguration;
-                let filePath = new URL(config.source || config.path, outputFolder.root)
+                const filePath = relative(new URL('./', new URL(outputFile, outputFolder.root)).toString(), new URL(config.source || config.path, outputFolder.root).toString());
+
                 if (config.inject)
                 {
                     const arg = Array.isArray(config.inject) ? config.inject : [config.inject];
@@ -89,7 +91,7 @@ generatorPlugin.use(10, async (options, meta, output, outputFolder, outputFile) 
             if (cmd.config.fs)
             {
                 const config = cmd.config.fs as jsonObject & FileSystemConfiguration;
-                const filePath = new URL(config.source || config.path, outputFolder.root);
+                const filePath = relative(new URL('./', new URL(outputFile, outputFolder.root)).toString(), new URL(config.source || config.path, outputFolder.root).toString());
                 // filePath = path.join(path.dirname(filePath), path.basename(filePath, path.extname(filePath)));
                 // filePath = filePath.replace(/\\/g, '/');
                 // filePath += '.js';
