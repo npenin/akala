@@ -53,8 +53,8 @@ export default function (_, program: NamespaceMiddleware)
             const folder = context.options.path ? join(context.options.path, caseConverter(context.options.name)) : caseConverter(context.options.name);
 
             const html = await generatePage(context.options.name, folder);
-            await FileGenerator.write(html.output, `<p>This is the content of your ${context.options.name} page</p>`);
-            await FileGenerator.close(html.output);
+            await html.output.write(`<p>This is the content of your ${context.options.name} page</p>`);
+            await html.output.close();
         });
 
     /**
@@ -74,17 +74,17 @@ export default function (_, program: NamespaceMiddleware)
             if (!packagejson.exists)
             {
                 context.logger.help(`Creating package.json file`);
-                await FileGenerator.write(packagejson.output, JSON.stringify({
+                await packagejson.output.write(JSON.stringify({
                     name: context.options.name
                 }));
-                await FileGenerator.close(packagejson.output);
+                await packagejson.output.close();
             }
 
             const postcssrc = await FileGenerator.outputHelper(folder, '.postcssrc.mjs', false, exists => !exists);
             if (!postcssrc.exists)
             {
                 context.logger.help(`Creating .postcssrc.mjs file`);
-                await FileGenerator.write(postcssrc.output, `import akala from "@akala/web-ui/postcss";
+                await postcssrc.output.write(`import akala from "@akala/web-ui/postcss";
 import fullCompose from "@akala/web-ui/postcss-full-compose";
 import contrast from "@akala/web-ui/postcss-contrast";
 import customMedia from "postcss-custom-media";
@@ -99,7 +99,7 @@ const config = {
 }
 
 export default config;`);
-                await FileGenerator.close(postcssrc.output);
+                await postcssrc.output.close();
             }
 
             const indexHtml = await FileGenerator.outputHelper(folder, 'index.html', false, (exists) =>
@@ -109,7 +109,7 @@ export default config;`);
             });
 
             context.logger.help(`Creating index.html file`);
-            await FileGenerator.write(indexHtml.output, `<!doctype html>
+            await indexHtml.output.write(`<!doctype html>
     <html lang="en">
     
     <head>
@@ -125,7 +125,7 @@ export default config;`);
     </body>
     
     </html>`);
-            await FileGenerator.close(indexHtml.output);
+            await indexHtml.output.close();
 
             const indexTs = await FileGenerator.outputHelper(folder, 'index.ts', true, (exists) =>
             {
@@ -134,7 +134,7 @@ export default config;`);
             });
 
             context.logger.help(`Creating index.ts file`);
-            await FileGenerator.write(indexTs.output, `
+            await indexTs.output.write(`
             /// <reference types="vite/client" />
 import './index.css'
 import { bootstrapModule, OutletService, outletDefinition } from '@akala/client'
@@ -149,7 +149,7 @@ bootstrapModule.activate([[serviceModule, OutletService.InjectionToken]], async 
 
 bootstrap('app')
 `);
-            await FileGenerator.close(indexTs.output);
+            await indexTs.output.close();
 
             const indexCss = await FileGenerator.outputHelper(folder, 'index.css', true, (exists) =>
             {
@@ -158,11 +158,11 @@ bootstrap('app')
             });
 
             context.logger.help(`Creating index.css file`);
-            await FileGenerator.write(indexCss.output, `@import '@akala/web-ui/css/theme.css';
+            await indexCss.output.write(`@import '@akala/web-ui/css/theme.css';
     @import-tokens '@akala/web-ui/default-theme.tokens.json';
     
     `);
-            await FileGenerator.close(indexCss.output);
+            await indexCss.output.close();
 
             const tsconfig = await FileGenerator.outputHelper(folder, 'tsconfig.json', true, (exists) =>
             {
@@ -173,7 +173,7 @@ bootstrap('app')
             if (!tsconfig.exists)
             {
                 context.logger.help(`Creating tsconfig.json file`);
-                await FileGenerator.write(tsconfig.output, JSON.stringify({
+                await tsconfig.output.write(JSON.stringify({
                     "compilerOptions": {
                         "experimentalDecorators": true,
                         "rootDir": ".",
@@ -184,13 +184,13 @@ bootstrap('app')
                         "**/*.ts",
                     ]
                 }));
-                await FileGenerator.close(tsconfig.output);
+                await tsconfig.output.close();
             }
 
             context.logger.help(`Creating home page in ${folder}/pages`);
             const page = await generatePage(caseConverter('Home'), join(folder, 'pages'), async ts =>
             {
-                await FileGenerator.write(ts.output, `
+                await ts.output.write(`
     public count: number = 0;
 
     public increment()
@@ -199,14 +199,14 @@ bootstrap('app')
     }
         `);
             });
-            await FileGenerator.write(page.output, `<h1>Welcome to your ${context.options.name} app</h1>        
+            await page.output.write(`<h1>Welcome to your ${context.options.name} app</h1>        
     <div class="card" data-context>
         <button id="counter" on on-click="controller.increment.bind(controller)" type="button">
             count is <span data-bind="{innerText:controller.count}"></span>
         </button>
     </div>
     `);
-            await FileGenerator.close(page.output);
+            await page.output.close();
 
             const pm = await xpm(folder);
             context.logger.help(`Installing dependencies using ${pm.name}...`);
@@ -232,7 +232,7 @@ export async function generatePage(name: string, folder: string, additionalTsCon
             throw new ErrorWithStatus(HttpStatusCode.Conflict, `The page ${name} already exists. Please remove it if you want a fresh one or specify a different path.`);
     });
 
-    await FileGenerator.write(tsGenerator.output, `import { Page, page, RootElement } from '@akala/client'
+    await tsGenerator.output.write(`import { Page, page, RootElement } from '@akala/client'
 import template from './${name}.html?raw'
 
 @page({ template, 'inject': [RootElement] })
@@ -245,10 +245,10 @@ export default class ${toPascalCase(name)} extends Page
 `);
 
     await additionalTsContent?.(tsGenerator).catch(e =>
-        FileGenerator.write(tsGenerator.output, `// FileGeneration failed with error: ${e}`)
+        tsGenerator.output.write(`// FileGeneration failed with error: ${e}`)
     );
 
-    await FileGenerator.write(tsGenerator.output, '}');
+    await tsGenerator.output.write('}');
 
     const htmlGenerator = await FileGenerator.outputHelper(folder, name + '.html', true, (exists) =>
     {

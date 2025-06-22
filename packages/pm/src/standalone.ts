@@ -55,9 +55,9 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
         cliContainer = new ac.Container('cli', {});
 
         if (folderOrFile.isFile)
-            processor = new ac.Processors.FileSystem(new URL('./', c.options.program));
+            processor = new ac.Processors.FileSystem(fs.newChroot(new URL('./', c.options.program)));
         else
-            processor = new ac.Processors.FileSystem(new URL(c.options.program));
+            processor = new ac.Processors.FileSystem(fs.newChroot(new URL(c.options.program)));
     }).
     useMiddleware(null, MiddlewareCompositeAsync.new(logMiddleware,
         convertToMiddleware(async c =>

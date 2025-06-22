@@ -8,6 +8,7 @@ import commands from './container.js';
 import cliCommands from './cli-container.js';
 import Configuration from '@akala/config';
 import { IpcAdapter } from './ipc-adapter.js';
+import { FSFileSystemProvider } from '@akala/fs';
 
 const log = logger('akala:pm');
 
@@ -60,7 +61,7 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
     const pm = new Container('pm-cli', {});
 
     const root = new URL('../../', import.meta.url);
-    const fs = new Processors.FileSystem(root);
+    const fs = new Processors.FileSystem(new FSFileSystemProvider(root, true));
 
     registerCommands(cliCommands.meta.commands, fs, pm);
 

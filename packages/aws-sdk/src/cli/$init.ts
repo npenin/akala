@@ -1,4 +1,4 @@
-import { Metadata, metadataPluginHandler, tsPluginHandler, FileGenerator, protocolHandlers, HandlerResult, ICommandProcessor } from '@akala/commands'
+import { Metadata, metadataPluginHandler, tsPluginHandler, protocolHandlers, HandlerResult, ICommandProcessor } from '@akala/commands'
 import { Policy } from '../iam.js';
 import { Processors } from '@akala/commands';
 import { sign } from '../signature.js';
@@ -15,7 +15,7 @@ export default async function $initAkala()
     tsPluginHandler.use(11, async (_options, meta, output) =>
     {
         if (meta['aws'])
-            await FileGenerator.write(output, `export const awsPermissions = ${JSON.stringify(meta['aws'].permissions)}`);
+            await output.write(`export const awsPermissions = ${JSON.stringify(meta['aws'].permissions)}`);
     })
 
     protocolHandlers.useProtocol('aws:', (url, _options, result) =>
