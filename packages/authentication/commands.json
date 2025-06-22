@@ -28,6 +28,7 @@
                     "path": "dist/esm/server/commands/$init.js",
                     "source": "src/server/commands/$init.ts",
                     "inject": [
+                        "ignore",
                         "$container",
                         "params.0",
                         "params.1",
@@ -36,6 +37,7 @@
                 },
                 "": {
                     "inject": [
+                        "config",
                         "$container",
                         "params.0",
                         "params.1",
@@ -44,6 +46,7 @@
                 },
                 "server": {
                     "inject": [
+                        "config",
                         "$container",
                         "config.auth.provider",
                         "config.auth.keyPath",
@@ -53,6 +56,7 @@
                 },
                 "cli": {
                     "inject": [
+                        "context.state",
                         "$container",
                         "options.provider",
                         "options.key",
