@@ -63,14 +63,3 @@ export async function outputHelper(outputFile: string | Writable | WritableStrea
 
     return { output: output?.getWriter() ?? outputFs.openWriteStream(outputFile).getWriter(), outputFs: outputFs, outputFile, exists };
 }
-
-export async function close(output: Writable)
-{
-    return new Promise<void>((resolve) =>
-    {
-        output.end(function ()
-        {
-            resolve();
-        })
-    })
-}
