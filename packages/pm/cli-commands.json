@@ -8,12 +8,14 @@
                     "path": "dist/esm/cli-commands/$init.js",
                     "source": "src/cli-commands/$init.ts",
                     "inject": [
-                        "params.0"
+                        "params.0",
+                        "params.1"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "context"
+                        "context",
+                        "$container"
                     ],
                     "options": {
                         "pmSock": {
@@ -26,7 +28,8 @@
                 },
                 "": {
                     "inject": [
-                        "params.0"
+                        "params.0",
+                        "params.1"
                     ]
                 }
             }
@@ -209,7 +212,7 @@
                     "path": "dist/esm/cli-commands/map.js",
                     "source": "src/cli-commands/map.ts",
                     "inject": [
-                        "ignore",
+                        "$state.config",
                         "params.0",
                         "params.1",
                         "params.2",
