@@ -1,6 +1,6 @@
 import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from "@akala/core";
 import { CopyFlags, FileEntry, FileHandle, FileSystemProvider, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
-import { Dirent, promises as fs, OpenDirOptions, GlobOptions as FsGlobOptions } from 'fs';
+import { Dirent, promises as fs, OpenDirOptions, GlobOptions as FsGlobOptions, createReadStream, createWriteStream } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { basename, dirname } from "path";
 import { Readable, Writable } from "stream";
@@ -30,14 +30,14 @@ function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, pa
         path,
         openReadStream(options: OpenStreamOptions): ReadableStream
         {
-            return Readable.toWeb(handle.createReadStream(options)) as any;
+            return Readable.toWeb(handle.createReadStream(options));
         },
         openWriteStream(options: OpenStreamOptions): WritableStream
         {
             if (readonly)
                 throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
 
-            return Writable.toWeb(handle.createWriteStream(options)) as any;
+            return Writable.toWeb(handle.createWriteStream(options));
         },
         async writeFile(data: string | IsomorphicBuffer)
         {
@@ -64,6 +64,26 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
 {
     constructor(public root: URL, public readonly readonly: boolean)
     {
+    }
+
+    toImportPath(path: PathLike<never>): string
+    {
+        return this.resolvePath(path);
+    }
+
+    openReadStream(path: PathLike<FullFileHandle>, options?: OpenStreamOptions): ReadableStream
+    {
+        if (this.isFileHandle(path))
+            return path.openReadStream(options);
+        return Readable.toWeb(createReadStream(this.resolvePath(path), options));
+    }
+
+    openWriteStream(path: PathLike<FullFileHandle>, options?: OpenStreamOptions): WritableStream
+    {
+        if (this.isFileHandle(path))
+            return path.openWriteStream(options);
+        return Writable.toWeb(createWriteStream(this.resolvePath(path), options));
+
     }
 
     chroot(root: PathLike): void

@@ -1,4 +1,4 @@
-import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from "@akala/core";
+import { IsomorphicBuffer } from "@akala/core";
 
 export interface FileHandle
 {
@@ -25,12 +25,12 @@ export class VirtualFileHandle<FSP extends FileSystemProvider> implements FileHa
 
     openReadStream(options?: OpenStreamOptions): ReadableStream
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotAcceptable, 'Read streams is not supported');
+        return this.fs.openReadStream(this.path, options);
     }
 
     openWriteStream(options?: OpenStreamOptions): WritableStream
     {
-        throw new ErrorWithStatus(HttpStatusCode.NotAcceptable, 'Write streams is not supported');
+        return this.fs.openWriteStream(this.path, options);
     }
 
     readFile(encoding: Exclude<BufferEncoding, 'binary'>): Promise<string>;
@@ -292,6 +292,34 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * The root URL of the file system.
      */
     readonly root: URL;
+
+    /**
+     * Converts a given path to an importable string path, suitable for module imports or references.
+     *
+     * @param path - The file system path to convert.
+     * @param options - Optional settings for the conversion.
+     * @param options.withSideEffects - If true, indicates the import path may have side effects.
+     * @returns The importable string path.
+     */
+    toImportPath(path: PathLike<never>, options?: { withSideEffects?: boolean }): string;
+
+    /**
+     * Opens a readable stream for reading data from the file system.
+     *
+     * @param path - The path to the file or directory.
+     * @param options - Optional settings for opening the stream.
+     * @returns A {@link ReadableStream} for reading file data.
+     */
+    openReadStream(path: PathLike<TFileHandle>, options?: OpenStreamOptions): ReadableStream;
+
+    /**
+     * Opens a writable stream for writing data to the file system.
+     *
+     * @param path - The path to the file or directory.
+     * @param options - Optional settings for opening the stream.
+     * @returns A {@link WritableStream} for writing file data.
+     */
+    openWriteStream(path: PathLike<TFileHandle>, options?: OpenStreamOptions): WritableStream;
 
     /**
      * Checks the accessibility of a file or directory.
