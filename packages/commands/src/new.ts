@@ -1,10 +1,10 @@
 import { Writable } from "stream";
-import fsHandler, { FileSystemProvider } from "@akala/fs";
+import fsHandler, { FileSystemProvider, FSFileSystemProvider } from "@akala/fs";
 import { pathToFileURL } from "url";
 
 export type Generator = { output: WritableStreamDefaultWriter, exists: false, outputFile: string, outputFs: FileSystemProvider } | { output?: WritableStreamDefaultWriter, exists: true, outputFile: string, outputFs: FileSystemProvider };
 
-export async function outputHelper(outputFile: string | Writable | WritableStream | undefined, nameIfFolder: string, force: boolean, actionIfExists?: (exists: boolean) => boolean | Promise<boolean> | void | Promise<void>): Promise<Generator>
+export async function outputHelper(outputFile: string | Writable | WritableStream | undefined, nameIfFolder: string, force: boolean, actionIfExists?: (exists: boolean, outputFs: FileSystemProvider) => boolean | Promise<boolean> | void | Promise<void>): Promise<Generator>
 {
     let output: WritableStream = undefined;
     let exists = false;
@@ -14,16 +14,19 @@ export async function outputHelper(outputFile: string | Writable | WritableStrea
     {
         output = Writable.toWeb(process.stdout);
         outputFile = '';
+        outputFs = new FSFileSystemProvider(pathToFileURL(process.cwd()), false);
     }
     else if (outputFile instanceof Writable)
     {
         output = Writable.toWeb(outputFile);
         outputFile = '';
+        outputFs = new FSFileSystemProvider(pathToFileURL(process.cwd()), false);
     }
     else if (outputFile instanceof WritableStream)
     {
         output = outputFile;
         outputFile = '';
+        outputFs = new FSFileSystemProvider(pathToFileURL(process.cwd()), false);
     }
     else
     {
@@ -46,12 +49,11 @@ export async function outputHelper(outputFile: string | Writable | WritableStrea
             //     exists = false;
             // }
         }
-        output = outputFs.openWriteStream(outputFile)
     }
 
     if (actionIfExists)
     {
-        const action = await actionIfExists(exists)
+        const action = await actionIfExists(exists, outputFs)
         if (typeof (action) == 'boolean' && !action)
         {
             return { outputFs, outputFile, exists: exists as true };
@@ -59,7 +61,7 @@ export async function outputHelper(outputFile: string | Writable | WritableStrea
 
     };
 
-    return { output: output.getWriter(), outputFs: outputFs, outputFile, exists };
+    return { output: output?.getWriter() ?? outputFs.openWriteStream(outputFile).getWriter(), outputFs: outputFs, outputFile, exists };
 }
 
 export async function close(output: Writable)

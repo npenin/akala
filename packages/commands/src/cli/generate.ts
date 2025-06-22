@@ -25,11 +25,11 @@ export default async function generate(options: Partial<DiscoveryOptions>, folde
     let output: WritableStreamDefaultWriter;
     let outputFs: FileSystemProvider;
     const meta: Metadata.Container & { $schema?: string } = { name: name, commands: [] };
-    ({ output, outputFile, outputFs } = await outputHelper(outputFile, 'commands.json', true, async (exists) =>
+    ({ output, outputFile, outputFs } = await outputHelper(outputFile, 'commands.json', true, async (exists, fs) =>
     {
         if (exists)
         {
-            const existing = await outputFs.readFile<Metadata.Container>(outputFile, { encoding: 'json' });
+            const existing = await fs.readFile<Metadata.Container>(outputFile, { encoding: 'json' })//.catch(e => e.name == 'SyntaxError' ? { name: meta.name, commands: [] } as Metadata.Container : Promise.reject(e));
             Object.assign(meta, { ...existing, name: meta.name || existing.name, commands: meta.commands || existing.commands })
         }
     }));
