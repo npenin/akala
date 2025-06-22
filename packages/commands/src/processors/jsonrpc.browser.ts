@@ -243,18 +243,25 @@ export class JsonRpcBrowser extends CommandProcessor
             return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
             {
                 if (this.client.socket.open)
-                    this.client.sendMethod(typeof command == 'string' ? command : command.name, args, function (err, result)
+                    try
                     {
-                        if (err)
+                        this.client.sendMethod(typeof command == 'string' ? command : command.name, args, function (err, result)
                         {
-                            if (!(err instanceof Error))
-                                resolve(Object.assign(new Error(err.message), err));
+                            if (err)
+                            {
+                                if (!(err instanceof Error))
+                                    resolve(Object.assign(new Error(err.message), err));
+                                else
+                                    resolve(err);
+                            }
                             else
-                                resolve(err);
-                        }
-                        else
-                            reject(result);
-                    })
+                                reject(result);
+                        })
+                    }
+                    catch (e)
+                    {
+                        resolve(e);
+                    }
                 else
                     resolve(undefined);
             });
