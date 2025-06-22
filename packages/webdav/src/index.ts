@@ -13,11 +13,18 @@ fsHandler.useProtocol('davs', (url) =>
     return Promise.resolve(new WebDavFS(new URL(url.toString().replace(/^davs:/, 'https:'))));
 })
 
-export class WebDavFileHandle extends VirtualFileHandle<WebDavFS>
+type WebDavFileHandle = VirtualFileHandle<WebDavFS>;
+
+export class WebDavFS implements FileSystemProvider<WebDavFileHandle>
 {
-    openReadStream(options?: OpenStreamOptions): ReadableStream
+    constructor(public root: URL) { }
+    toImportPath(path: PathLike<never>, options?: { withSideEffects?: boolean; }): string
     {
-        const url = this.path;
+        return this.resolveUrl(path).toString();
+    }
+    openReadStream(path: PathLike<WebDavFileHandle>, options?: OpenStreamOptions): ReadableStream
+    {
+        const url = this.isFileHandle(path) ? path.path : this.resolveUrl(path);
         const chunkSize = options?.highWaterMark || 64 * 1024; // Default to 64 KB chunks
 
         let position = options?.start || 0;
@@ -63,11 +70,10 @@ export class WebDavFileHandle extends VirtualFileHandle<WebDavFS>
             },
         });
     }
-}
-
-export class WebDavFS implements FileSystemProvider<WebDavFileHandle>
-{
-    constructor(public root: URL) { }
+    openWriteStream(path: PathLike<WebDavFileHandle>, options?: OpenStreamOptions): WritableStream
+    {
+        throw new Error('Method not implemented.');
+    }
     readonly: boolean;
 
     resolveUrl(path: PathLike): URL
@@ -274,7 +280,7 @@ export class WebDavFS implements FileSystemProvider<WebDavFileHandle>
     }
     async open(path: PathLike, flags: OpenFlags): Promise<WebDavFileHandle>
     {
-        return new WebDavFileHandle(this, this.resolveUrl(path));
+        return new VirtualFileHandle(this, this.resolveUrl(path));
     }
 
     async opendir(path: PathLike, options?: { bufferSize?: number; encoding?: BufferEncoding; }): Promise<FileEntry[]>
@@ -394,7 +400,7 @@ export class WebDavFS implements FileSystemProvider<WebDavFileHandle>
             if (!response.ok)
                 throw new ErrorWithStatus(response.status, `Failed to rename/move from ${sourceUrl} to ${destinationUrl}: ${response.statusText}\n${await response.text()}`);
 
-            if (oldPath instanceof WebDavFileHandle)
+            if (this.isFileHandle(oldPath))
             {
                 oldPath.path = destinationUrl;
             }
@@ -661,7 +667,7 @@ export class WebDavFS implements FileSystemProvider<WebDavFileHandle>
 
     isFileHandle(x: any): x is WebDavFileHandle
     {
-        return x instanceof WebDavFileHandle;
+        return x instanceof VirtualFileHandle;
     }
 
     public glob(pattern: string | string[], options: GlobOptionsWithFileTypes): AsyncIterable<FileEntry>
