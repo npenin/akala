@@ -5,7 +5,7 @@ import { CommandProcessor, Metadata, registerCommands, ServeOptions, StructuredP
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
-import { dirname, isAbsolute, resolve } from "node:path";
+import { isAbsolute } from "node:path";
 import { protocolHandlers } from "./protocol-handler.js";
 import { pathToFileURL } from "node:url";
 import { Command } from "./metadata/command.js";
@@ -72,19 +72,14 @@ export async function install(_context: CliContext<{ configFile: string }, objec
                 const cliContainer: commands.container & Container<unknown> = new Container('cli', {}, undefined, sharedInjector);
 
                 let uri: URL;
-                try
-                {
+                if (URL.canParse(path))
                     uri = new URL(path);
-                }
-                catch (e)
-                {
-                    if (e.message == 'Invalid URL')
-                    {
-                        if (!isAbsolute(path))
-                            path = resolve(dirname(context.options['configFile'] as string), path)
-                        uri = new URL('file://' + path);
-                    }
-                }
+                else
+                    if (!isAbsolute(path))
+                        uri = new URL(path, pathToFileURL(context.options['configFile'] as string));
+                    else
+                        uri = pathToFileURL(path);
+
                 const handler = await protocolHandlers.process(uri, null, {})
 
                 cliContainer.processor.useMiddleware(51, handler.processor);
