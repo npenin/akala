@@ -1,17 +1,21 @@
-#  (2025-06-20)
+#  (2025-06-23)
+
+
+### Bug Fixes
+
+* enhance FSFileSystemProvider methods to return this for consistent chaining and handle potential null in JSON parsing 162d627
+* npm root fs de6d2a9
+* refactor npm protocol handling to improve URL resolution and ensure package.json access 1d1322a
 
 
 ### Features
 
-* add FileSystemProviderProxy 24ba3aa
-* introduce PathLike be0a8f8
+* add new methods to FSFileSystemProvider bb09cda
 
 
 ### BREAKING CHANGES
 
-* switched 'buffer' to 'binary' in readFile
-* more file types on file entry might break for implementors
-* glob options needs to be supported by implementors
+* for implementers, those need to be implemented: toImportPath, openReadStream, openWriteStream.
 
 
 
