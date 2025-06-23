@@ -1,4 +1,4 @@
-#  (2025-06-20)
+#  (2025-06-23)
 
 
 ### Bug Fixes
@@ -15,6 +15,7 @@
 * sonar issues 7528b67
 * sonar issues 9b157ec
 * update after command breaking change 796613c
+* update after commands breaking change 04b457c
 * update after commands breaking change ab04f29
 * update after zip.js breaking change a35d7f5
 * update aws services definition 9bb0b0b
