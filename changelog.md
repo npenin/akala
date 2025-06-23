@@ -1,4 +1,4 @@
-#  (2025-06-20)
+#  (2025-06-23)
 
 
 * chore : code cleanup eae1150
@@ -187,6 +187,7 @@
 * don't publish style updates c21f66b
 * duplicate akala.mts to support yarn dlx dbf2f5e
 * duplicate akala.mts to support yarn dlx a665a56
+* each container in commands cli has its own configuration section 415e113
 * each databinding 89c07e8
 * edge cases bf341e8
 * edge cases when template is not defined 18add50
@@ -201,10 +202,14 @@
 * enforce run to execute with fs 01fde68
 * enforce type on config 9d8bc0f
 * enforce type on Parsed call ed0964e
+* enhance $init command to utilize config for keyPath and loginUrl, and improve error handling 6cd04e0
+* enhance $init command to utilize config for keyPath and loginUrl, and improve error handling a18d1dd
+* enhance FSFileSystemProvider methods to return this for consistent chaining and handle potential null in JSON parsing 162d627
 * enhance HTTP response handling for different content types 059c659
 * enhance HTTP response handling for different content types 4bc375e
 * enhance parent attribute handling in updateFrontMatter function for improved logic 2cc5c3e
 * enhance parent attribute handling in updateFrontMatter function for improved logic 6706e76
+* enhance relative path handling in FileSystem class for improved URL processing 613e87e
 * enhance updateFrontMatter function to manage parent and nav_order attributes in markdown files dc3f6b0
 * enhance updateFrontMatter function to manage parent and nav_order attributes in markdown files 989c23d
 * ensure akala is not postinstalled ccfb8fa
@@ -230,6 +235,8 @@
 * feature detection cba1075
 * first binding definition eb24595
 * flexible file detection fdbe01d
+* for pm standalone init 81df590
+* for pm standalone init 81a261f
 * force run init-akala only once (no matter the trigger) 2827d75
 * force run init-akala only once (no matter the trigger) 1acbe99
 * force set configFile path c42e60b
@@ -345,6 +352,8 @@
 * improve discovery 31bdd8a
 * improve discovery 3e0d64b
 * improve error handling in HTTP command wrapping 42daa25
+* improve error handling in JsonRpc and JsonRpcBrowser classes by adding try-catch around sendMethod calls 3a537b9
+* improve error handling in protocol command by throwing errors for better debugging 99c47e1
 * improve formatter behavior 954fd43
 * improve formatter behavior 30996cd
 * improve isomorphicbuffer usability e0ff541
@@ -362,6 +371,7 @@
 * improve serialize on http af3373b
 * improve session default expiration to 5min instead of 300ms 9bfe110
 * improve some typing b3ca27e
+* improve state initialization in run function to ensure subContext.state is properly set 10151b2
 * improve type checking 457c1b3
 * improve typing in vite.config.mts 11e538a
 * improve yarn config a47ff40
@@ -424,6 +434,7 @@
 * nested bindings change detection and oldValue assignment 8f373ca
 * node test pattern cbfe1b4
 * npm fs handler using import.meta.resolve 4da63aa
+* npm root fs de6d2a9
 * obersavable array array mimicking d310c55
 * oidc discover properly returns options for authorize, token and keys 0934291
 * oidc discover properly returns options for authorize, token and keys b92665c
@@ -476,8 +487,11 @@
 * re-tagging workflow bc599dc
 * re-tagging workflow 5539b6b
 * ready for pm 22151a2
+* redefine discover and map commands e732371
+* refactor npm protocol handling to improve URL resolution and ensure package.json access 1d1322a
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
+* relative extends maps to relative files 2402375
 * relative extension path computation 3fe635f
 * release tagging 61cb1e1
 * release tagging b7cf1aa
@@ -491,6 +505,7 @@
 * remove deprecated ac command usage 5cf4a82
 * remove deprecated command documentation files and navigation exclusions 90bceca
 * remove deprecated command documentation files and navigation exclusions 69bc7d5
+* remove deprecated require command and its configuration from commands.json ff5ab8a
 * remove duplicated code c81dd54
 * remove existing commit function on new config creation 350c719
 * remove existing commit function on new config creation 1811cfc
@@ -517,7 +532,9 @@
 * remove reference to a legacy function b7dc12e
 * remove unnecessary metadata from CLI documentation files c472f4c
 * remove unnecessary metadata from CLI documentation files 6b2386c
+* remove unused close function to clean up code e100b49
 * remove unused dependency ansi-escapes from package.json 8bba710
+* remove unused fsHandler import and streamline outputFs initialization ed6981d
 * remove unused result parameter from jsonrpc protocol handlers 198fed9
 * remove useless abort 436343b
 * remove useless await 52d94b0
@@ -566,6 +583,7 @@
 * simplify start command 70cf360
 * simplify titles and remove unnecessary metadata in CLI documentation f331a8e
 * simplify titles and remove unnecessary metadata in CLI documentation 7702b95
+* simplify URL handling in install function by removing unnecessary try-catch and improving path resolution df95034
 * sonar coverage discovery 505f9b3
 * sonar coverage discovery 9363979
 * sonar coverage discovery c70faa9
@@ -603,6 +621,7 @@
 * stop re-exporting spawnAsync from cli 2c2e894
 * store relative staticFolders 33fc0f4
 * store relative staticFolders 30863ce
+* streamline output handling in generateCssFromTokens function 3e6be85
 * strongly type built CliContext state ce294ef
 * strongly type built CliContext state 81df5e6
 * style for non-input, but inputs ab463b2
@@ -656,6 +675,7 @@
 * update after command breaking change ef19b8c
 * update after command breaking change 796613c
 * update after command breaking change 7e441b2
+* update after commands breaking change 04b457c
 * update after commands breaking change e80cd0e
 * update after commands breaking change ab04f29
 * update after commands breaking change 95b04e6
@@ -678,6 +698,7 @@
 * update after core breaking change 6ea3ca9
 * update after core BufferEncoding introduction 298da96
 * update after core Translator interface upgrade a6500a1
+* update after fs breaking change 27ec208
 * update after fs breaking change 56df9a7
 * update after fs FileHandle interface update 552b3f0
 * update after storage breaking change 87b037a
@@ -715,6 +736,8 @@
 * update error status code for unauthorized actions in AuthHandler 663f8b9
 * update file command processor to generate UUID only when record key is absent 4c5ff85
 * update file path handling in snapshot function to use URL 68431d9
+* update file path handling to use relative paths for better compatibility 65507c2
+* update filepath handling in FileSystem class to use toImportPath method 058a81a
 * update fs flag usage e2355d1
 * update grant_types_supported to use keyof for compatibility ec88441
 * update grant_types_supported to use keyof for compatibility 49f93de
@@ -729,6 +752,7 @@
 * update lock files a1575cf
 * update metadata command discovery to reflect new command count 69ffaf9
 * update output_hash calculation to use base64.base64EncArrBuff for consistency 70cf535
+* update outputHelper function to include outputFs parameter and improve file system handling 5a0cfcd
 * update package.json exports and add akala command handler f38f8ae
 * update parent and title attributes in documentation for improved clarity and consistency 2fac4a4
 * update parent and title attributes in documentation for improved clarity and consistency 64eb3b6
@@ -742,6 +766,7 @@
 * update path configuration in documentation settings 96f60ec
 * update permalink structure and footer content in documentation 872e25c
 * update permalink structure and footer content in documentation 01f1715
+* update protocolHandler to correctly set relativeTo and improve directory handling dca8258
 * update serve function to accept URL objects instead of strings 9f68893
 * update serve function to accept URL objects instead of strings 51f45ec
 * update tests after refactor ae50c4a
@@ -798,6 +823,7 @@
 * remove ModelDefinition.definitions fd11999
 * replace void with undefined as NextParam 76398ea
 * replace void with undefined as NextParam 34fcf2a
+* update file handling and output methods to use WritableStreamDefaultWriter 38ccdd5
 
 
 ### Features
@@ -878,6 +904,7 @@
 * add name in xpm 2082639
 * add name in xpm d8b9ad6
 * add namespaced event on EventProcessor 719726f
+* add new methods to FSFileSystemProvider bb09cda
 * add NO_AKALAPOSTINSTALL support bb60b83
 * add NO_AKALAPOSTINSTALL support bebd6b1
 * add oidc formatter factory 11b2d52
@@ -1030,6 +1057,10 @@
 
 ### BREAKING CHANGES
 
+* FileSystem needs a FileSystemProvider as constructor parameter
+* FileGenerator returns outputFs and not outputFolder anymore
+* FileGenerator output is now a web WritableStream
+* for implementers, those need to be implemented: toImportPath, openReadStream, openWriteStream.
 * switched 'buffer' to 'binary' in readFile
 * more file types on file entry might break for implementors
 * glob options needs to be supported by implementors
