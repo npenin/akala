@@ -122,53 +122,53 @@ export async function generateCssFromTokens(tokens: DTCGTokenGroup<WebUI>, outpu
         {
             if (name[0] != '$')
             {
-                await FileGenerator.write(generator.output, `@custom-media --breakpoints-max-${CssStyleHandler.normalize(name)} (max-width:${breakpoint.$value});`);
-                await FileGenerator.write(generator.output, `@custom-media --breakpoints-min-${CssStyleHandler.normalize(name)} (min-width:${breakpoint.$value});`);
+                await generator.output.write(`@custom-media --breakpoints-max-${CssStyleHandler.normalize(name)} (max-width:${breakpoint.$value});`);
+                await generator.output.write(`@custom-media --breakpoints-min-${CssStyleHandler.normalize(name)} (min-width:${breakpoint.$value});`);
             }
         });
 
     }
 
-    await FileGenerator.write(generator.output, ':root{\n');
+    await generator.output.write(':root{\n');
     await eachAsync(flattened, async (value, key) =>
     {
         key = CssStyleHandler.normalize(key);
-        await FileGenerator.write(generator.output, `\t--${key}: ${value.$value};\n`);
+        await generator.output.write(`\t--${key}: ${value.$value};\n`);
         if (value.$type == 'color' && key != 'colors-light' && key != 'colors-dark')
         {
             if ('lightnesses' in tokens)
             {
                 await eachAsync(tokens.lightnesses[key] || tokens.lightnesses.default, async (l, variant) =>
                 {
-                    await FileGenerator.write(generator.output, `\t--${key}-${CssStyleHandler.normalize(variant)}: hsl(from var(--${key}) h s ${l.$value});\n`);
+                    await generator.output.write(`\t--${key}-${CssStyleHandler.normalize(variant)}: hsl(from var(--${key}) h s ${l.$value});\n`);
                 })
             }
             if ('darknesses' in tokens)
             {
                 await eachAsync(tokens.darknesses[key] || tokens.darknesses.default, async (l, variant) =>
                 {
-                    await FileGenerator.write(generator.output, `\t--${key}-${CssStyleHandler.normalize(variant)}: hsl(from var(--${key}) h s ${l.$value});\n`);
+                    await generator.output.write(`\t--${key}-${CssStyleHandler.normalize(variant)}: hsl(from var(--${key}) h s ${l.$value});\n`);
                 })
             }
         }
     })
-    await FileGenerator.write(generator.output, '}\n\n');
+    await generator.output.write('}\n\n');
 
     await eachAsync(tokens.colors, async (value, key) =>
     {
         key = CssStyleHandler.normalize(key);
         if (['$type', '$description', '$extensions', '$deprecated'].includes(key))
             return;
-        await FileGenerator.write(generator.output, `.text-${key} { color:var(--${key}); }\n`);
-        await FileGenerator.write(generator.output, `.bg-${key} { background-color:var(--${key}); }\n`);
+        await generator.output.write(`.text-${key} { color:var(--${key}); }\n`);
+        await generator.output.write(`.bg-${key} { background-color:var(--${key}); }\n`);
 
         if ('lightnesses' in tokens)
         {
             await eachAsync(tokens.lightnesses[key] || tokens.lightnesses.default, async (l, variant) =>
             {
                 variant = CssStyleHandler.normalize(variant);
-                await FileGenerator.write(generator.output, `.text-${key}-${variant} { color:var(--${key}-${variant}); }\n`);
-                await FileGenerator.write(generator.output, `.bg-${key}-${variant} { background-color:var(--${key}-${variant}); }\n`);
+                await generator.output.write(`.text-${key}-${variant} { color:var(--${key}-${variant}); }\n`);
+                await generator.output.write(`.bg-${key}-${variant} { background-color:var(--${key}-${variant}); }\n`);
             })
         }
         if ('darknesses' in tokens)
@@ -176,8 +176,8 @@ export async function generateCssFromTokens(tokens: DTCGTokenGroup<WebUI>, outpu
             await eachAsync(tokens.darknesses[key] || tokens.darknesses.default, async (l, variant) =>
             {
                 variant = CssStyleHandler.normalize(variant);
-                await FileGenerator.write(generator.output, `.text-${key}-${variant} { color:var(--${key}-${variant}); }\n`);
-                await FileGenerator.write(generator.output, `.bg-${key}-${variant} { background-color:var(--${key}-${variant}); }\n`);
+                await generator.output.write(`.text-${key}-${variant} { color:var(--${key}-${variant}); }\n`);
+                await generator.output.write(`.bg-${key}-${variant} { background-color:var(--${key}-${variant}); }\n`);
             })
         }
     })
@@ -190,17 +190,17 @@ export async function generateCssFromTokens(tokens: DTCGTokenGroup<WebUI>, outpu
             if (name[0] != '$')
                 if (options.customMedia)
                     for (let i = 1; i <= 12; i++)
-                        await FileGenerator.write(generator.output, `@media (--breakpoints-min-${CssStyleHandler.normalize(name)}) { .col-${CssStyleHandler.normalize(name)}-${i} { max-width: ${i / 12 * 100}%; width: ${i / 12 * 100}%; } }\n`);
+                        await generator.output.write(`@media (--breakpoints-min-${CssStyleHandler.normalize(name)}) { .col-${CssStyleHandler.normalize(name)}-${i} { max-width: ${i / 12 * 100}%; width: ${i / 12 * 100}%; } }\n`);
                 else
                     for (let i = 1; i <= 12; i++)
-                        await FileGenerator.write(generator.output, `@media (min-width:${breakpoint.$value}) { .col-${CssStyleHandler.normalize(name)}-${i} { max-width: ${i / 12 * 100}%; width: ${i / 12 * 100}%; } }\n`);
+                        await generator.output.write(`@media (min-width:${breakpoint.$value}) { .col-${CssStyleHandler.normalize(name)}-${i} { max-width: ${i / 12 * 100}%; width: ${i / 12 * 100}%; } }\n`);
         });
 
         for (let i = 1; i <= 12; i++)
-            await FileGenerator.write(generator.output, `.col-${i} {  width: ${i / 12 * 100}%; max-width: ${i / 12 * 100}%; }\n`);
+            await generator.output.write(`.col-${i} {  width: ${i / 12 * 100}%; max-width: ${i / 12 * 100}%; }\n`);
     }
 
-    await new Promise(resolve => generator.output.end(resolve));
+    await generator.output.close();
 }
 
 // await generateCss(fileURLToPath(import.meta.resolve('../../default-theme.tokens.json')), 'variables.css');
