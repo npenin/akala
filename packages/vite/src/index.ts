@@ -36,7 +36,7 @@ export class ViteSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> 
             case 'message':
 
                 if (!this.hasListener(event))
-                    import.meta.hot.on('jsonrpc', this.messageEvent);
+                    this.server.ws.on('jsonrpc', this.messageEvent);
                 return super.on(event, handler, options);
             case 'close':
                 const originalHandler = handler;
