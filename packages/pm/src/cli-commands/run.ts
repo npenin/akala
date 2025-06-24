@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-import sms from 'source-map-support'
-sms.install();
 import path from 'path'
 import pmDef from '../container.js';
 import { module as coreModule } from '@akala/core';

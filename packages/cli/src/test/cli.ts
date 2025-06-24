@@ -1,5 +1,4 @@
 import * as assert from 'assert'
-import 'source-map-support/register.js'
 import program from '../router/index.js';
 
 program.command('a [opt]').action(async c => c.options)

@@ -1,5 +1,3 @@
-import 'source-map-support/register.js';
-
 import { SimpleInjector } from '../injectors/simple-injector.js';
 import assert from 'assert';
 import { useInjector, inject } from '../injectors/reflection-injector.js';

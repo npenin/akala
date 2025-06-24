@@ -4,8 +4,6 @@ import { Binding, ObservableObject } from '../observables/object.js';
 import assert from 'assert';
 import { it } from 'node:test'
 
-// import 'source-map-support/register.js'
-
 const target: {
     foo: {
         bar?: { a: number, b: string, c: boolean },
