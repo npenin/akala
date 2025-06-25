@@ -224,6 +224,7 @@
 * escape start string in parseString method to prevent regex errors 7be1a8e
 * escape start string in parseString method to prevent regex errors 07d76a8
 * event datacontext 560847c
+* eventBuses UrlHandler should not try to assign the EventBus to last parameter eb1fb17
 * exclude upcoming documentation from navigation 5e58959
 * exclude upcoming documentation from navigation 6a2cc0a
 * exclude views and fix login template cff89b9
@@ -270,6 +271,7 @@
 * handle hotkey when no previous key was pressed a5f3b71
 * handle init lifecycle stage 54a8169
 * handle no pubsub config 40e7ff2
+* handle NotFound error in asyncEventBuses middleware 71b2ce5
 * handle null case 9c3dc93
 * handle null configuration value b5d6df1
 * handle null in sort formatter 5c27a43
@@ -367,6 +369,7 @@
 * improve reliability 8fc7212
 * improve resolvable wrintings f67e854
 * improve resolvable wrintings 6be2301
+* improve result assignment logic in UrlHandler to handle undefined context 9ea67a5
 * improve Router next param support + documentation 207c326
 * improve serialize on http ca89683
 * improve serialize on http af3373b
