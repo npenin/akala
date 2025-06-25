@@ -1,4 +1,4 @@
-#  (2025-06-24)
+#  (2025-06-25)
 
 
 * chore : code cleanup eae1150
@@ -836,6 +836,7 @@
 * add akala plugin as referenced in doc ef39d5c
 * add api serving on akala CLI 4df8528
 * add api serving on akala CLI b649800
+* add async event buses 0e93b12
 * add auth to all configurations 6dd7780
 * add auth to all configurations f48da73
 * add auth views c5238de
@@ -969,6 +970,7 @@
 * enhance IsomorphicBuffer to support dynamic end in toString and add throttle function 89794bb
 * enhance NetSocketAdapter to extend EventEmitter and improve event handling 81ed6c5
 * enhance ProcessStdioAdapter and McpTrigger to support abort signal handling f0fb23d
+* enhance teardown management with async support and improved subscription handling 56a806a
 * enhance ViteSocketAdapter to improve event handling and subscription management c28f992
 * errorWithStatus can be assigned a name fb0ef99
 * errorWithStatus can be assigned a name 45c77e4
