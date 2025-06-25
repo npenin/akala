@@ -67,7 +67,10 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
         return handler.use((...context) => action(...context).then(result =>
         {
             if (!this.noAssign && typeof result !== 'undefined')
-                Object.assign(context[context.length - 1] || {}, result)
+                if (context[context.length - 1])
+                    return Object.assign(context[context.length - 1], result);
+                else
+                    return context[context.length - 1] = result;
             else if (this.noAssign)
                 return result;
         }));
