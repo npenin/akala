@@ -2,14 +2,14 @@ import { Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmside
 import { ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container } from '@akala/commands'
 import { SerializableDefinition, PersistenceEngine, providers, Store, StoreDefinition, ModelDefinition } from '@akala/storage'
-import { EventBus, Serializable, eachAsync, eventBuses, module } from '@akala/core';
+import { EventBus, Serializable, SerializableObject, eachAsync, eventBuses, module } from '@akala/core';
 import { CliContext, OptionType } from '@akala/cli'
 import { remotePm } from '@akala/pm/akala';
 
 export interface PubSubConfiguration
 {
     transport: string;
-    transportOptions?: Serializable;
+    transportOptions?: SerializableObject;
 }
 
 export interface StoreConfiguration
@@ -65,7 +65,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
     if (pubsubConfig?.transport)
-        sidecar.pubsub = await eventBuses.process(new URL(pubsubConfig.transport), pubsubConfig.transportOptions);
+        sidecar.pubsub = await eventBuses.process(new URL(pubsubConfig.transport), Object.assign({}, pubsubConfig.transportOptions, { abort: context.abort.signal }));
     switch (typeof stateStoreConfig)
     {
         case 'string':

@@ -1,4 +1,4 @@
-import { Serializable } from "../helpers.js";
+import { SerializableObject } from "../helpers.js";
 import { UrlHandler } from "../url-handler.js";
 import { AsyncEventBus, EventBus, EventBus2AsyncEventBus } from "./event-bus.js";
 import { EventEmitter } from "./event-emitter.js";
@@ -8,12 +8,14 @@ export * from './event-bus.js'
 export * from './shared.js'
 export * from './event-emitter.js'
 
-export const eventBuses = new UrlHandler<[url: URL, config: Serializable, void], EventBus>();
-export const asyncEventBuses = new UrlHandler<[url: URL, config: Serializable, void], AsyncEventBus>();
+export const eventBuses = new UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], EventBus>();
+export const asyncEventBuses = new UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], AsyncEventBus>();
 
-eventBuses.useProtocol('memory', () =>
+eventBuses.useProtocol('memory', (_, config) =>
 {
-    return Promise.resolve(new EventEmitter());
+    const result = new EventEmitter();
+    config?.abort?.addEventListener('abort', () => result[Symbol.dispose]());
+    return Promise.resolve(result);
 })
 
 asyncEventBuses.protocol.useMiddleware({
