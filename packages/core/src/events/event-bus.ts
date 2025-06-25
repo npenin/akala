@@ -19,7 +19,7 @@ export type AllEventKeys<T extends object> = EventKeys<T> | keyof SpecialEvents;
 type AllEvents<T extends object> = EventMap<T> & SpecialEvents
 
 /**
- * EventEmitter class to manage events and listeners.
+ * EventBus interface to manage events and listeners.
  * @template T
  * @implements {Disposable}
  */
@@ -31,7 +31,7 @@ export interface EventBus<T extends object = Record<string, Event<unknown[]>>> e
      * @param {TKey} name - The name of the event.
      * @returns {boolean} - True if there are listeners, false otherwise.
      */
-    hasListener<const TKey extends AllEventKeys<T>>(name: TKey);
+    hasListener<const TKey extends AllEventKeys<T>>(name: TKey): boolean;
 
     /**
      * Gets the defined events.
@@ -76,6 +76,67 @@ export interface EventBus<T extends object = Record<string, Event<unknown[]>>> e
      * @returns {boolean} - True if the listener was removed, false otherwise.
      */
     off<const TEvent extends AllEventKeys<T>>(event: TEvent, handler?: EventListener<AllEvents<T>[TEvent]>): boolean;
+}
+
+
+/**
+ * AsyncEventBus interface to manage events and listeners.
+ * @template T
+ * @implements {Disposable}
+ */
+export interface AsyncEventBus<T extends object = Record<string, Event<unknown[]>>> extends TeardownManager
+{
+    /**
+     * Checks if there are listeners for a given event.
+     * @template TKey
+     * @param {TKey} name - The name of the event.
+     * @returns {Promise<boolean>} - True if there are listeners, false otherwise.
+     */
+    hasListener<const TKey extends AllEventKeys<T>>(name: TKey): Promise<boolean>;
+
+    /**
+     * Gets the defined events.
+     * @returns {Promise<string[]>} - An array of defined event names.
+     */
+    get definedEvents(): Promise<(AllEventKeys<T>)[]>;
+
+    /**
+     * Emits an event.
+     * @template TEvent
+     * @param {TEvent} event - The event to emit.
+     * @param {...EventArgs<T[TEvent]>} args - The arguments to pass to the event listeners.
+     * @returns {Promise<false | EventReturnType<T[TEvent]>>} - The return value of the event listeners or false if the event does not exist.
+     */
+    emit<const TEvent extends EventKeys<T>>(event: TEvent, ...args: EventArgs<T[TEvent]>): Promise<false | EventReturnType<T[TEvent]>>;
+
+    /**
+     * Adds a listener for an event.
+     * @template TEvent
+     * @param {TEvent} event - The event to listen to.
+     * @param {EventListener<AllEvents<T>[TEvent]>} handler - The event handler.
+     * @param {EventOptions<AllEvents<T>[TEvent]>} [options] - The event options.
+     * @returns {Promise<Subscription>} - The subscription.
+     */
+    on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Promise<Subscription>;
+
+    /**
+     * Adds a one-time listener for an event.
+     * @template TEvent
+     * @param {TEvent} event - The event to listen to.
+     * @param {EventListener<AllEvents<T>[TEvent]>} handler - The event handler.
+     * @param {Omit<EventOptions<AllEvents<T>[TEvent]>, 'once'>} [options] - The event options.
+     * @returns {Promise<Subscription>} - The subscription.
+     */
+    once<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: Omit<EventOptions<AllEvents<T>[TEvent]>, 'once'>): Promise<Subscription>;
+
+    /**
+     * Removes a listener for an event.
+     * @template TEvent
+     * @param {TEvent} event - The event to remove the listener from.
+     * @param {EventListener<AllEvents<T>[TEvent]>} handler - The event handler.
+     * @returns {Promise<boolean>} - True if the listener was removed, false otherwise.
+     */
+    off<const TEvent extends AllEventKeys<T>>(event: TEvent, handler?: EventListener<AllEvents<T>[TEvent]>): Promise<boolean>;
 }
 
 
@@ -166,5 +227,96 @@ export class EventBusWrapper<T extends object = Record<string, Event<unknown[]>>
     off<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>): boolean
     {
         return this.emitter.off(event, handler);
+    }
+}
+
+
+/**
+ * Wrapper class to make a sync event bus async.
+ * @template T
+ * @implements {Disposable}
+ */
+export class EventBus2AsyncEventBus<T extends object = Record<string, Event<unknown[]>>> extends TeardownManager implements AsyncEventBus<T>
+{
+    constructor(private readonly emitter: EventBus<T>)
+    {
+        super();
+        emitter.once(Symbol.dispose, (() => this[Symbol.dispose]()) as EventListener<AllEvents<T>[typeof Symbol.dispose]>);
+    }
+
+    public readonly subscriptions: Subscription[] = []
+
+    /**
+     * Checks if there are listeners for a given event.
+     * @template TKey
+     * @param {TKey} name - The name of the event.
+     * @returns {boolean} - True if there are listeners, false otherwise.
+     */
+    hasListener<const TKey extends AllEventKeys<T>>(name: TKey): Promise<boolean>
+    {
+        return Promise.resolve(this.emitter.hasListener(name));
+    }
+
+    /**
+     * Gets the defined events.
+     * @returns {string[]} - An array of defined event names.
+     */
+    public get definedEvents(): Promise<AllEventKeys<T>[]>
+    {
+        return Promise.resolve(this.emitter.definedEvents);
+    }
+
+    /**
+     * Emits an event.
+     * @template TEvent
+     * @param {TEvent} event - The event to emit.
+     * @param {...EventArgs<T[TEvent]>} args - The arguments to pass to the event listeners.
+     * @returns {false | EventReturnType<T[TEvent]>} - The return value of the event listeners or false if the event does not exist.
+     */
+    emit<const TEvent extends EventKeys<T>>(event: TEvent, ...args: EventArgs<T[TEvent]>): Promise<false | EventReturnType<T[TEvent]>>
+    {
+        return Promise.resolve(this.emitter.emit(event, ...args));
+    }
+
+    /**
+     * Adds a listener for an event.
+     * @template TEvent
+     * @param {TEvent} event - The event to listen to.
+     * @param {EventListener<AllEvents<T>[TEvent]>} handler - The event handler.
+     * @param {EventOptions<AllEvents<T>[TEvent]>} [options] - The event options.
+     * @returns {Subscription} - The subscription.
+     */
+    on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Promise<Subscription>
+    {
+        const sub = this.emitter.on(event, handler, options);
+        this.subscriptions.push(sub);
+        return Promise.resolve(sub);
+    }
+
+    /**
+     * Adds a one-time listener for an event.
+     * @template TEvent
+     * @param {TEvent} event - The event to listen to.
+     * @param {EventListener<AllEvents<T>[TEvent]>} handler - The event handler.
+     * @param {Omit<EventOptions<AllEvents<T>[TEvent]>, "once">} [options] - The event options.
+     * @returns {Subscription} - The subscription.
+     */
+    once<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: Omit<EventOptions<AllEvents<T>[TEvent]>, "once">): Promise<Subscription>
+    {
+        const sub = this.emitter.once(event, handler, options);
+        this.subscriptions.push(sub);
+        return Promise.resolve(sub);
+    }
+
+    /**
+     * Removes a listener for an event.
+     * @template TEvent
+     * @param {TEvent} event - The event to remove the listener from.
+     * @param {EventListener<AllEvents<T>[TEvent]>} handler - The event handler.
+     * @returns {boolean} - True if the listener was removed, false otherwise.
+     */
+    off<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>): Promise<boolean>
+    {
+        return Promise.resolve(this.emitter.off(event, handler));
     }
 }
