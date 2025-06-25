@@ -1,4 +1,4 @@
-import { Subscription, TeardownManager } from "../teardown-manager.js";
+import { AsyncSubscription, AsyncTeardownManager, Subscription, TeardownManager } from "../teardown-manager.js";
 import { AsEvent, Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType } from "./shared.js";
 
 /**
@@ -84,7 +84,7 @@ export interface EventBus<T extends object = Record<string, Event<unknown[]>>> e
  * @template T
  * @implements {Disposable}
  */
-export interface AsyncEventBus<T extends object = Record<string, Event<unknown[]>>> extends TeardownManager
+export interface AsyncEventBus<T extends object = Record<string, Event<unknown[]>>> extends AsyncTeardownManager
 {
     /**
      * Checks if there are listeners for a given event.
@@ -117,7 +117,7 @@ export interface AsyncEventBus<T extends object = Record<string, Event<unknown[]
      * @param {EventOptions<AllEvents<T>[TEvent]>} [options] - The event options.
      * @returns {Promise<Subscription>} - The subscription.
      */
-    on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Promise<Subscription>;
+    on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Promise<AsyncSubscription>;
 
     /**
      * Adds a one-time listener for an event.
@@ -127,7 +127,7 @@ export interface AsyncEventBus<T extends object = Record<string, Event<unknown[]
      * @param {Omit<EventOptions<AllEvents<T>[TEvent]>, 'once'>} [options] - The event options.
      * @returns {Promise<Subscription>} - The subscription.
      */
-    once<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: Omit<EventOptions<AllEvents<T>[TEvent]>, 'once'>): Promise<Subscription>;
+    once<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: Omit<EventOptions<AllEvents<T>[TEvent]>, 'once'>): Promise<AsyncSubscription>;
 
     /**
      * Removes a listener for an event.
@@ -236,12 +236,12 @@ export class EventBusWrapper<T extends object = Record<string, Event<unknown[]>>
  * @template T
  * @implements {Disposable}
  */
-export class EventBus2AsyncEventBus<T extends object = Record<string, Event<unknown[]>>> extends TeardownManager implements AsyncEventBus<T>
+export class EventBus2AsyncEventBus<T extends object = Record<string, Event<unknown[]>>> extends AsyncTeardownManager implements AsyncEventBus<T>
 {
     constructor(private readonly emitter: EventBus<T>)
     {
         super();
-        emitter.once(Symbol.dispose, (() => this[Symbol.dispose]()) as EventListener<AllEvents<T>[typeof Symbol.dispose]>);
+        emitter.once(Symbol.dispose, (() => this[Symbol.asyncDispose]()) as EventListener<AllEvents<T>[typeof Symbol.dispose]>);
     }
 
     public readonly subscriptions: Subscription[] = []
@@ -286,11 +286,11 @@ export class EventBus2AsyncEventBus<T extends object = Record<string, Event<unkn
      * @param {EventOptions<AllEvents<T>[TEvent]>} [options] - The event options.
      * @returns {Subscription} - The subscription.
      */
-    on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Promise<Subscription>
+    on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Promise<AsyncSubscription>
     {
         const sub = this.emitter.on(event, handler, options);
         this.subscriptions.push(sub);
-        return Promise.resolve(sub);
+        return Promise.resolve(() => Promise.resolve(sub()));
     }
 
     /**
@@ -301,11 +301,11 @@ export class EventBus2AsyncEventBus<T extends object = Record<string, Event<unkn
      * @param {Omit<EventOptions<AllEvents<T>[TEvent]>, "once">} [options] - The event options.
      * @returns {Subscription} - The subscription.
      */
-    once<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: Omit<EventOptions<AllEvents<T>[TEvent]>, "once">): Promise<Subscription>
+    once<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: Omit<EventOptions<AllEvents<T>[TEvent]>, "once">): Promise<AsyncSubscription>
     {
         const sub = this.emitter.once(event, handler, options);
         this.subscriptions.push(sub);
-        return Promise.resolve(sub);
+        return Promise.resolve(() => Promise.resolve(sub()));
     }
 
     /**
