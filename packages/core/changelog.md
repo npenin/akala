@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* update AsyncEventBus and EventBus2AsyncEventBus to use AsyncSubscription 6d85049
+* update Serializable to SerializableObject in event buses and sidecar configurations f865e03
 
 
 
