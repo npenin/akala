@@ -1,10 +1,9 @@
 import { State } from '../state.js';
-import { SendOptions } from "send";
 import * as path from 'path'
 import { HttpRouter } from '../router/index.js';
-import { StaticFileMiddleware } from '../router/staticFileMiddleware.js';
+import { Options, StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
-export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & SendOptions, cwd: string): void
+export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & Options, cwd: string): void
 {
     let method: 'get' | 'use' | 'useGet';
 
@@ -25,14 +24,7 @@ export default function route(this: State, route: string, target: string, option
     if (target && !path.isAbsolute(target))
         target = path.resolve(cwd, target);
 
-    if (options.root && !path.isAbsolute(options.root))
-    {
-        options.root = path.resolve(cwd, options.root);
-    }
-
     let router: HttpRouter;
-
-
 
     console.log('registering route to ' + target + ' as ' + route);
     if (options.pre)
