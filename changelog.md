@@ -710,6 +710,7 @@
 * update after StringCursor switch 583bac9
 * update after StringCursor switch 5031902
 * update after zip.js breaking change a35d7f5
+* update AsyncEventBus and EventBus2AsyncEventBus to use AsyncSubscription 6d85049
 * update aws services definition 9bb0b0b
 * update CLI plugin to get installed even within a multiple nodejs call 4680f4f
 * update CLI plugin to get installed even within a multiple nodejs call 6c194e6
