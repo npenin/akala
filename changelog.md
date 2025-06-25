@@ -769,6 +769,7 @@
 * update permalink structure and footer content in documentation 872e25c
 * update permalink structure and footer content in documentation 01f1715
 * update protocolHandler to correctly set relativeTo and improve directory handling dca8258
+* update Serializable to SerializableObject in event buses and sidecar configurations f865e03
 * update serve function to accept URL objects instead of strings 9f68893
 * update serve function to accept URL objects instead of strings 51f45ec
 * update tests after refactor ae50c4a
