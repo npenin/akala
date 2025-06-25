@@ -9,8 +9,8 @@ export * from './event-bus.js'
 export * from './shared.js'
 export * from './event-emitter.js'
 
-export const eventBuses = new UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], EventBus>();
-export const asyncEventBuses = new UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], AsyncEventBus>();
+export const eventBuses = new UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], EventBus>(true);
+export const asyncEventBuses = new UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], AsyncEventBus>(true);
 
 eventBuses.useProtocol('memory', (_, config) =>
 {
