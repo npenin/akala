@@ -2,19 +2,37 @@
  * Callback type for teardown subscriptions that returns true when unsubscribed 
  */
 export type Subscription = () => boolean
+export type AsyncSubscription = () => Promise<boolean>
 
 export function combineSubscriptions(...subs: (void | undefined | Subscription)[]): Subscription
 {
-    let unsubscribed = false;
     return () =>
     {
-        if (unsubscribed)
-            return false;
+        let unsubscribed = false;
 
         for (const sub of subs)
-            sub && sub();
+        {
+            const result = sub && sub();
+            unsubscribed ||= result;
+        }
 
         return unsubscribed = true;
+    };
+}
+
+export function combineAsyncSubscriptions(...subs: (void | undefined | Subscription | AsyncSubscription)[]): AsyncSubscription
+{
+    return async () =>
+    {
+        let unsubscribed = false;
+
+        for (const sub of subs)
+        {
+            const result = sub && await sub();
+            unsubscribed ||= result;
+        }
+
+        return unsubscribed;
     };
 }
 
@@ -68,6 +86,59 @@ export class TeardownManager implements Disposable
     }
 }
 
+/**
+ * Manages cleanup of subscriptions and disposable resources
+ */
+export class AsyncTeardownManager implements AsyncDisposable
+{
+    /**
+     * @param subscriptions - Optional initial array of teardown subscriptions
+     */
+    constructor(subscriptions?: (AsyncSubscription | Subscription)[])
+    {
+        if (subscriptions)
+            this.subscriptions = subscriptions;
+    }
+
+    protected readonly subscriptions: (AsyncSubscription | Subscription)[] = [];
+
+    /** 
+     * Cleans up all registered subscriptions (implements Disposable pattern)
+     */
+    async [Symbol.asyncDispose]()
+    {
+        await Promise.all(this.subscriptions.map(s => s()));
+        this.subscriptions.length = 0;
+    }
+
+    /**
+     * Registers a teardown subscription or Disposable
+     * @typeParam T - Subscription function or Disposable object
+     * @param sub - Subscription callback or Disposable object to register
+     * @returns The original subscription for chaining
+     */
+    teardown<T extends AsyncSubscription | AsyncDisposable | Subscription | Disposable | undefined | null>(sub: T): T
+    {
+        if (!sub)
+            return sub;
+        if (Symbol.dispose in sub)
+            this.subscriptions.push(() =>
+            {
+                sub[Symbol.dispose]();
+                return Promise.resolve(true);
+            });
+        else if (Symbol.asyncDispose in sub)
+            this.subscriptions.push(async () =>
+            {
+                await sub[Symbol.asyncDispose]();
+                return true;
+            });
+        else
+            this.subscriptions.push(sub);
+        return sub;
+    }
+}
+
 
 export class StatefulSubscription implements Disposable
 {
@@ -92,5 +163,31 @@ export class StatefulSubscription implements Disposable
     [Symbol.dispose](): void
     {
         this._unsubscribe();
+    }
+}
+
+export class StatefulAsyncSubscription implements AsyncDisposable
+{
+    _unsubscribed: boolean = false;
+    constructor(private readonly _unsubscribe: () => Promise<any>)
+    {
+    }
+
+    public readonly unsubscribe: AsyncSubscription = async () =>
+    {
+        if (this._unsubscribed)
+            return false;
+        await this._unsubscribe()
+        return this._unsubscribed = true;
+    }
+
+    public get unsubscribed(): boolean
+    {
+        return this._unsubscribed;
+    }
+
+    async [Symbol.asyncDispose](): Promise<void>
+    {
+        await this._unsubscribe();
     }
 }
