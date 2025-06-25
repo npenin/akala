@@ -1,3 +1,4 @@
+import ErrorWithStatus, { HttpStatusCode } from "../errorWithStatus.js";
 import { SerializableObject } from "../helpers.js";
 import { UrlHandler } from "../url-handler.js";
 import { AsyncEventBus, EventBus, EventBus2AsyncEventBus } from "./event-bus.js";
@@ -23,7 +24,10 @@ asyncEventBuses.protocol.useMiddleware({
     {
         try
         {
-            return await handle.call(eventBuses, url, config);
+            const error = await handle.call(eventBuses, url, config);
+            if (error instanceof ErrorWithStatus && error?.statusCode == HttpStatusCode.NotFound)
+                return undefined;
+            return error;
         }
         catch (eventBus)
         {
