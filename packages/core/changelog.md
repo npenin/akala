@@ -1,10 +1,9 @@
 #  (2025-06-25)
 
 
-### Features
+### Bug Fixes
 
-* add async event buses 0e93b12
-* enhance teardown management with async support and improved subscription handling 56a806a
+* update AsyncEventBus and EventBus2AsyncEventBus to use AsyncSubscription 6d85049
 
 
 
