@@ -537,6 +537,7 @@
 * remove unnecessary metadata from CLI documentation files c472f4c
 * remove unnecessary metadata from CLI documentation files 6b2386c
 * remove unused close function to clean up code e100b49
+* remove unused dependencies and update route options type 3c70d1c
 * remove unused dependency ansi-escapes from package.json 8bba710
 * remove unused fsHandler import and streamline outputFs initialization ed6981d
 * remove unused result parameter from jsonrpc protocol handlers 198fed9
@@ -775,6 +776,7 @@
 * update Serializable to SerializableObject in event buses and sidecar configurations f865e03
 * update serve function to accept URL objects instead of strings 9f68893
 * update serve function to accept URL objects instead of strings 51f45ec
+* update Switch constructor to accept a function for dynamic key resolution 8cc1de4
 * update tests after refactor ae50c4a
 * update titles and parent attributes in markdown files for improved documentation clarity c562dc3
 * update titles and parent attributes in markdown files for improved documentation clarity 717dd51
