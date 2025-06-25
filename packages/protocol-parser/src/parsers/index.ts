@@ -296,7 +296,7 @@ export const noop: Parser<void> = {
 }
 
 
-export function choose<T extends { [key in TKey]: number | string }, const TKey extends keyof T, TResult>(name: TKey, parsers: { [key in T[TKey]]: AnyParser<TResult, T> })
+export function choose<T extends { [key in TKey]: number | string }, const TKey extends keyof T, TResult>(name: TKey | ((x: T) => T[TKey]), parsers: { [key in T[TKey]]: AnyParser<TResult, T> })
 {
     return new Switch<T, TKey, TResult, T[TKey]>(name, parsers);
 }

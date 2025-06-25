@@ -4,7 +4,7 @@ import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } f
 export default class Switch<T extends { [key in TKey]: TValue }, TKey extends keyof T, TResult, TValue extends string | number> implements ParserWithMessageWithoutKnownLength<TResult, T>
 {
     private parsers: { [key in TValue]: AnyParser<TResult, T> };
-    constructor(private name: TKey, parsers: { [key in TValue]: AnyParser<TResult, T> })
+    constructor(private name: TKey | ((x: T) => TValue), parsers: { [key in TValue]: AnyParser<TResult, T> })
     {
         this.parsers = parsers;
     }
@@ -19,7 +19,10 @@ export default class Switch<T extends { [key in TKey]: TValue }, TKey extends ke
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): TResult
     {
-        var parser = this.parsers[message[this.name]];
+        if (typeof this.name == 'function')
+            var parser = this.parsers[this.name(message)];
+        else
+            var parser = this.parsers[message[this.name]];
         if (!parser)
             throw new Error(`No parser could be found for ${this.name.toString()} in ${JSON.stringify(message)}`);
 
@@ -30,7 +33,10 @@ export default class Switch<T extends { [key in TKey]: TValue }, TKey extends ke
         if (typeof (message) == 'undefined')
             throw new Error('no message was provided');
 
-        var parser = this.parsers[message[this.name]];
+        if (typeof this.name == 'function')
+            var parser = this.parsers[this.name(message)];
+        else
+            var parser = this.parsers[message[this.name]];
         if (!parser)
             throw new Error(`No parser could be found for ${this.name.toString()} in ${JSON.stringify(value)}`);
 
