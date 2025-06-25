@@ -1,9 +1,10 @@
-#  (2025-06-19)
+#  (2025-06-25)
 
 
-### Bug Fixes
+### Features
 
-* inspect logs to stderr instead of stdout eef76ee
+* add async event buses 0e93b12
+* enhance teardown management with async support and improved subscription handling 56a806a
 
 
 
