@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* simplify choose function signature by removing redundant overloads e24c5c1
+* add readonly modifier to parser property and improve write method logic df093b0
 
 
 
