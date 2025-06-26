@@ -1,7 +1,7 @@
 import { IsomorphicBuffer } from '@akala/core';
 import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from './_common.js';
 
-export default class Switch<T extends { [key in keyof T]: TValue }, TResult, TValue extends PropertyKey> implements ParserWithMessageWithoutKnownLength<TResult, T>
+export default class Switch<T, TResult, TValue extends PropertyKey> implements ParserWithMessageWithoutKnownLength<TResult, T>
 {
     private parsers: Partial<{ [key in TValue]: AnyParser<TResult, T> }>;
     constructor(private condition: keyof { [key in keyof T]: T[key] extends TValue ? T[key] : never } | ((x: T) => TValue), parsers: Partial<{ [key in TValue]: AnyParser<TResult, T> }>)

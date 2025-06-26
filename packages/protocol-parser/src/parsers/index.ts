@@ -297,9 +297,7 @@ export const noop: Parser<void> = {
 
 type OnlyKeys<T, TValue> = { [key in keyof T]: T[key] extends TValue ? key : never }[keyof T]
 
-export function choose<T extends {
-    [key in OnlyKeys<T, TValue>]: TValue;
-}, const TValue extends PropertyKey, TResult>(name: OnlyKeys<T, TValue>, parsers: {
+export function choose<T, const TValue extends PropertyKey, TResult>(name: OnlyKeys<T, TValue>, parsers: {
     [key in TValue]: AnyParser<TResult, T>;
 }): Switch<T, TResult, TValue>
 export function choose<T extends {
