@@ -1,9 +1,14 @@
-#  (2025-06-25)
+#  (2025-06-26)
 
 
-### Bug Fixes
+### Features
 
-* update Switch constructor to accept a function for dynamic key resolution 8cc1de4
+* enable switch parser to use functions 229a371
+
+
+### BREAKING CHANGES
+
+* TKey is not a type expected anymore for choose/switch parsers. TValue is expected instead
 
 
 

@@ -1,4 +1,4 @@
-#  (2025-06-25)
+#  (2025-06-26)
 
 
 * chore : code cleanup eae1150
@@ -706,6 +706,7 @@
 * update after fs breaking change 27ec208
 * update after fs breaking change 56df9a7
 * update after fs FileHandle interface update 552b3f0
+* update after protocol parsers breaking change db4574e
 * update after storage breaking change 87b037a
 * update after storage breaking change 06b7d59
 * update after storage breaking change cad8a62
@@ -970,6 +971,7 @@
 * enable info logging by default 521849c
 * enable info logging by default e65f143
 * enable opentofu/terraform generation for aws lambda deployment 667a77b
+* enable switch parser to use functions 229a371
 * enforce URL usage and switch to @akala/fs 207908d
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing 08e5e24
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing def786c
@@ -1067,6 +1069,7 @@
 
 ### BREAKING CHANGES
 
+* TKey is not a type expected anymore for choose/switch parsers. TValue is expected instead
 * FileSystem needs a FileSystemProvider as constructor parameter
 * FileGenerator returns outputFs and not outputFolder anymore
 * FileGenerator output is now a web WritableStream
