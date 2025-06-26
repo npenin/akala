@@ -295,10 +295,25 @@ export const noop: Parser<void> = {
     },
 }
 
+type OnlyKeys<T, TValue> = { [key in keyof T]: T[key] extends TValue ? key : never }[keyof T]
 
-export function choose<T extends { [key in TKey]: number | string }, const TKey extends keyof T, TResult>(name: TKey | ((x: T) => T[TKey]), parsers: { [key in T[TKey]]: AnyParser<TResult, T> })
+export function choose<T extends {
+    [key in OnlyKeys<T, TValue>]: TValue;
+}, const TValue extends PropertyKey, TResult>(name: OnlyKeys<T, TValue>, parsers: {
+    [key in TValue]: AnyParser<TResult, T>;
+}): Switch<T, TResult, TValue>
+export function choose<T extends {
+    [key in keyof T]: TValue;
+}, const TValue extends PropertyKey, TResult>(name: ((x: T) => TValue), parsers: {
+    [key in TValue]: AnyParser<TResult, T>;
+}): Switch<T, TResult, TValue>
+export function choose<T extends {
+    [key in keyof T]: TValue;
+}, const TValue extends PropertyKey, TResult>(name: keyof T | ((x: T) => TValue), parsers: {
+    [key in TValue]: AnyParser<TResult, T>;
+}): Switch<T, TResult, TValue>
 {
-    return new Switch<T, TKey, TResult, T[TKey]>(name, parsers);
+    return new Switch<T, TResult, TValue>(name, parsers);
 }
 
 export function chooseProperty<T, const TKey extends keyof T = keyof T, const TKeyAssign extends keyof T = keyof T, TResult extends T[TKeyAssign] = T[TKeyAssign], TValue extends (T[TKey] extends string | number | symbol ? T[TKey] : never) = (T[TKey] extends string | number | symbol ? T[TKey] : never)>(name: TKey, assignProperty: TKeyAssign, parsers: { [key in TValue]: AnyParser<TResult, T[TKeyAssign]> })
