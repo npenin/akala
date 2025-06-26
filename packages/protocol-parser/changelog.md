@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* simplify generic constraints in Switch class and choose function e4c2c04
+* simplify choose function signature by removing redundant overloads e24c5c1
 
 
 

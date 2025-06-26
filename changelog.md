@@ -584,6 +584,7 @@
 * setAttribute when provided object a3eff3d
 * simple injector resolution with resolvable arrays 8411f99
 * simplify and smoother observablearray "piping" 18f75b2
+* simplify choose function signature by removing redundant overloads e24c5c1
 * simplify generic constraints in Switch class and choose function e4c2c04
 * simplify start command 508cedd
 * simplify start command 70cf360
