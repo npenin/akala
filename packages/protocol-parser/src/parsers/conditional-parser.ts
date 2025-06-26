@@ -4,7 +4,7 @@ import { IsomorphicBuffer } from "@akala/core";
 
 export class Conditional<T, TMessage> implements ParserWithMessage<T, TMessage>
 {
-    constructor(private condition: (message: TMessage) => boolean, private parser: AnyParser<T, TMessage>)
+    constructor(private condition: (message: TMessage) => boolean, private readonly parser: AnyParser<T, TMessage>)
     {
         this.length = parser.length;
     }
@@ -18,9 +18,14 @@ export class Conditional<T, TMessage> implements ParserWithMessage<T, TMessage>
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
     write(buffer: IsomorphicBuffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): void | IsomorphicBuffer[]
     {
-        if (this.condition(message))
+        if (buffer instanceof IsomorphicBuffer)
+        {
+            if (this.condition(message))
+                return parserWrite(this.parser, buffer, cursor, value, message);
+        }
+        else if (this.condition(cursor as TMessage))
             return parserWrite(this.parser, buffer, cursor, value, message);
     }
 
-    length: number;
+    readonly length: number;
 }
