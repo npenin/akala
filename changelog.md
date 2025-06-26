@@ -73,6 +73,7 @@
 * add parent reference to CLI Trigger documentation 335814a
 * add parent reference to CLI Trigger documentation 04a80ea
 * add possibility to unit test workflows a9f9001
+* add readonly modifier to parser property and improve write method logic df093b0
 * add signal propagation cf81d93
 * add SpecificInjector type to enhance dependency resolution bc04767
 * add strong typing to refactored functions 69758db
