@@ -1,14 +1,9 @@
 #  (2025-06-26)
 
 
-### Features
+### Bug Fixes
 
-* enable switch parser to use functions 229a371
-
-
-### BREAKING CHANGES
-
-* TKey is not a type expected anymore for choose/switch parsers. TValue is expected instead
+* simplify generic constraints in Switch class and choose function e4c2c04
 
 
 
