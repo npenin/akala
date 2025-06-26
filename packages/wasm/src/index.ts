@@ -55,7 +55,7 @@ const x = parsers.array(-1,
     parsers.object<ModuleSections>(
         parsers.property('id', vuint as unknown as parsers.Parser<keyof ModuleSectionMap>),
         parsers.property('section', parsers.sub<ModuleSections['section'], ModuleSections>(vuint,
-            parsers.choose<ModuleSections, 'id', ModuleSections['section']>('id', {
+            parsers.choose<ModuleSections, ModuleSections['id'], ModuleSections['section']>('id', {
                 0: parsers.buffer(-1),
                 1: parsers.emancipate(parsers.array(vuint, type)),
                 2: parsers.emancipate(parsers.array(vuint, parsers.object<ImportSection>(
