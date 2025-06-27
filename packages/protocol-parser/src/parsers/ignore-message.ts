@@ -12,9 +12,12 @@ export class Ignore<T, TMessage> implements ParserWithMessage<T, TMessage>
     {
         return this.inner.read(buffer, cursor, undefined);
     }
-    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void | IsomorphicBuffer[]
     {
-        return parserWrite(this.inner, buffer, cursor, value);
+        if (buffer instanceof IsomorphicBuffer)
+            return parserWrite(this.inner, buffer, cursor, value);
+        else
+            return parserWrite(this.inner, buffer);
     }
 
 }
