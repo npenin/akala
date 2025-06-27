@@ -109,7 +109,7 @@ export * from './dom-helpers.js';
 /**
  * Event sink for client-side events.
  */
-export type IClientEventSink<TEvent extends Event> = IEventSink<[TEvent], void>;
+export type IClientEventSink<TEvent extends Event> = IEventSink<[TEvent], void, { once?: boolean }>;
 
 /**
  * Event type for client-side events.
@@ -194,7 +194,7 @@ export function fromEvent<const TEventName extends keyof HTMLElementEventMap, TE
  * @template TEventName - The type of the event name.
  * @template TEvent - The type of the event.
  */
-export function pipefromEvent<const TEventName extends keyof HTMLElementEventMap, TEvent extends Event = HTMLElementEventMap[TEventName]>(source: IEventSink<[boolean], void>, x: EventTarget, eventName: TEventName): IClientEventSink<TEvent>
+export function pipefromEvent<const TEventName extends keyof HTMLElementEventMap, TEvent extends Event = HTMLElementEventMap[TEventName]>(source: IEventSink<[boolean], void, { once?: boolean }>, x: EventTarget, eventName: TEventName): IClientEventSink<TEvent>
 {
     const event = new ClientEvent<TEvent>();
     let sub: Subscription;
