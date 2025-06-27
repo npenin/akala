@@ -21,7 +21,7 @@ export class ZeroOrOne<T, TMessage> implements ParserWithMessage<T, TMessage>
         if (!(buffer instanceof IsomorphicBuffer))
             value = buffer;
         if (typeof (value) === 'undefined')
-            return null;
+            return [];
         return parserWrite(this.parser, buffer, cursor, value, message);
     }
 
