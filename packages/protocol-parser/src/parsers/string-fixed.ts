@@ -23,11 +23,19 @@ export default class FixedString<TString extends string = string> implements Par
     write(buffer: IsomorphicBuffer, cursor: Cursor, value?: TString): IsomorphicBuffer[]
     write(buffer: IsomorphicBuffer | TString, cursor?: Cursor, value?: TString): IsomorphicBuffer[] | void
     {
+        if (!(buffer instanceof IsomorphicBuffer))
+        {
+            value = buffer;
+            buffer = null;
+        }
+        else if (cursor.subByteOffset > 0)
+            throw new Error('Cross byte value are not supported');
+
+        if (this.length == -1)
+            return [IsomorphicBuffer.from(value, this.encoding)];
+
         if (value.length != this.length)
             throw new Error(`string length (${value.length}) is not matching with expected length (${this.length})`)
-
-        if (cursor.subByteOffset > 0)
-            throw new Error('Cross byte value are not supported');
 
         if (typeof (buffer) === 'string')
             return [IsomorphicBuffer.from(value, this.encoding)];
