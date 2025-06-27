@@ -68,7 +68,7 @@ export type EventOptions<TEvent> = TEvent extends IEventSink<infer _X, infer _Y,
  * @template TOptions
  * @interface IEventSink
  */
-export interface IEventSink<T extends readonly unknown[], TReturnType, TOptions extends { once?: boolean } = { once?: boolean }>
+export interface IEventSink<T extends readonly unknown[], TReturnType, TOptions extends { once?: boolean }>
 {
     maxListeners: number;
     hasListeners: boolean;
@@ -107,12 +107,16 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
      * @param {T} obj - The object containing named events.
      * @returns {IEvent<[{ [K in keyof T]: T[K] extends IEventSink<infer X, unknown, unknown> ? X : T[K] }], void>} - The combined event.
      */
-    public static combineNamed<T extends { [K in keyof T]?: T[K] | IEventSink<T[K] extends unknown[] ? T[K] : [T[K]], unknown> }>(obj: T): IEvent<[{ [K in keyof T]: T[K] extends IEventSink<infer X, unknown, unknown> ? X : T[K] }], void>
+    public static combineNamed<T extends { [K in keyof T]?: T[K] | IEventSink<T[K] extends unknown[] ? T[K] : [T[K]], unknown, {
+        once?: boolean;
+    }> }>(obj: T): IEvent<[{ [K in keyof T]: T[K] extends IEventSink<infer X, unknown, unknown> ? X : T[K] }], void>
     {
         const entries = Object.entries(obj);
         return new PipeEvent(Event.combine(...entries.map(e => e[1] as T[keyof T])), (...ev) =>
         {
-            return [Object.fromEntries(entries.map((e, i) => [e[0], ev[i]])) as { [K in keyof T]: T[K] extends IEventSink<infer X, unknown> ? X : T[K] }];
+            return [Object.fromEntries(entries.map((e, i) => [e[0], ev[i]])) as { [K in keyof T]: T[K] extends IEventSink<infer X, unknown, {
+                once?: boolean;
+            }> ? X : T[K] }];
         }, null) as any;
     }
 
@@ -122,7 +126,11 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
      * @param {...T} events - The events to combine.
      * @returns {IEventSink<T, void>} - The combined event.
      */
-    public static combine<T extends unknown[]>(...events: { [K in keyof T]?: T[K] | IEventSink<T[K] extends unknown[] ? T[K] : [T[K]], unknown> }): IEventSink<T, void>
+    public static combine<T extends unknown[]>(...events: { [K in keyof T]?: T[K] | IEventSink<T[K] extends unknown[] ? T[K] : [T[K]], unknown, {
+        once?: boolean;
+    }> }): IEventSink<T, void, {
+        once?: boolean;
+    }>
     {
         const combinedEvent = new ReplayEvent<T>(1, Event.maxListeners);
         let values: T;
