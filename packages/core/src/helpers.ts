@@ -897,7 +897,7 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
     public subarray(start: number, end?: number)
     {
         if (typeof end == 'undefined')
-            end = this.end;
+            end = this.end - this.offset;
         if (start == 0 && end == this.end)
             return this;
         if (end < start)
