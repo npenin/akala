@@ -2,6 +2,8 @@
 /// Courtesy of https://developer.mozilla.org/en-US/docs/Glossary/Base64#solution_2_%E2%80%93_rewriting_atob_and_btoa_using_typedarrays_and_utf-8
 ///
 
+import { IsomorphicBuffer } from "./helpers.js";
+
 // Array of bytes to Base64 string decoding
 /** 
  * Converts a Base64 character code to its 6-bit integer value.
@@ -91,6 +93,19 @@ function uint6ToB64(nUint6: number)
 export function base64UrlEncArr(aBytes: Uint8Array): string
 {
     let s = base64EncArr(aBytes).replace(/\+/g, '-').replace(/\//g, '_');
+    while (s.endsWith('='))
+        s = s.substring(0, s.length - 1);
+    return s;
+}
+
+/** 
+ * Encodes an ArrayBuffer/Uint8Array to Base64URL format.
+ * @param aBytes The byte array to encode.
+ * @returns The Base64URL encoded string.
+ */
+export function base64UrlEncIsomorphicBuffer(aBytes: IsomorphicBuffer): string
+{
+    let s = base64EncIsomorphicBuffer(aBytes).replace(/\+/g, '-').replace(/\//g, '_');
     while (s.endsWith('='))
         s = s.substring(0, s.length - 1);
     return s;
@@ -225,6 +240,45 @@ export function base64EncArrBuff(aBytes: ArrayBuffer, nBlocksSize?: number): str
     );
 }
 
+/** 
+ * Encodes an ArrayBuffer/Uint8Array to Base64 string.
+ * @param aBytes The byte array to encode.
+ * @param nBlocksSize Optional size for line breaks in the output.
+ * @returns The Base64 encoded string.
+ */
+export function base64EncIsomorphicBuffer(aBytes: IsomorphicBuffer, nBlocksSize?: number): string
+{
+    let nMod3 = 2;
+    let sB64Enc = "";
+
+    const nLen = aBytes.length;
+    let nUint24 = 0;
+    for (let nIdx = 0; nIdx < nLen; nIdx++)
+    {
+        nMod3 = nIdx % 3;
+        if (typeof (nBlocksSize) !== 'undefined' && nIdx > 0 && ((nIdx * 4) / 3) % nBlocksSize === 0)
+        {
+            sB64Enc += "\r\n";
+        }
+
+        nUint24 |= aBytes.readUInt8(nIdx) << ((16 >>> nMod3) & 24);
+        if (nMod3 === 2 || aBytes.length - nIdx === 1)
+        {
+            sB64Enc += String.fromCodePoint(
+                uint6ToB64((nUint24 >>> 18) & 63),
+                uint6ToB64((nUint24 >>> 12) & 63),
+                uint6ToB64((nUint24 >>> 6) & 63),
+                uint6ToB64(nUint24 & 63)
+            );
+            nUint24 = 0;
+        }
+    }
+    return (
+        sB64Enc.substring(0, sB64Enc.length - 2 + nMod3) +
+        (nMod3 === 2 ? "" : nMod3 === 1 ? "=" : "==")
+    );
+}
+
 /* UTF-8 array to JS string and vice versa */
 /** 
  * Converts a UTF-8 encoded byte array to a JavaScript string.
@@ -239,6 +293,57 @@ export function UTF8ArrToStr(aBytes: Uint8Array): string
     for (let nIdx = 0; nIdx < nLen; nIdx++)
     {
         nPart = aBytes[nIdx];
+        sView += String.fromCodePoint(
+            nPart > 251 && nPart < 254 && nIdx + 5 < nLen /* six bytes */
+                ? /* (nPart - 252 << 30) may be not so safe in ECMAScript! So…: */
+                (nPart - 252) * 1073741824 +
+                ((aBytes[++nIdx] - 128) << 24) +
+                ((aBytes[++nIdx] - 128) << 18) +
+                ((aBytes[++nIdx] - 128) << 12) +
+                ((aBytes[++nIdx] - 128) << 6) +
+                aBytes[++nIdx] -
+                128
+                : nPart > 247 && nPart < 252 && nIdx + 4 < nLen /* five bytes */
+                    ? ((nPart - 248) << 24) +
+                    ((aBytes[++nIdx] - 128) << 18) +
+                    ((aBytes[++nIdx] - 128) << 12) +
+                    ((aBytes[++nIdx] - 128) << 6) +
+                    aBytes[++nIdx] -
+                    128
+                    : nPart > 239 && nPart < 248 && nIdx + 3 < nLen /* four bytes */
+                        ? ((nPart - 240) << 18) +
+                        ((aBytes[++nIdx] - 128) << 12) +
+                        ((aBytes[++nIdx] - 128) << 6) +
+                        aBytes[++nIdx] -
+                        128
+                        : nPart > 223 && nPart < 240 && nIdx + 2 < nLen /* three bytes */
+                            ? ((nPart - 224) << 12) +
+                            ((aBytes[++nIdx] - 128) << 6) +
+                            aBytes[++nIdx] -
+                            128
+                            : nPart > 191 && nPart < 224 && nIdx + 1 < nLen /* two bytes */
+                                ? ((nPart - 192) << 6) + aBytes[++nIdx] - 128
+                                : /* nPart < 127 ? */ /* one byte */
+                                nPart
+        );
+    }
+    return sView;
+}
+
+/* UTF-8 array to JS string and vice versa */
+/** 
+ * Converts a UTF-8 encoded byte array to a JavaScript string.
+ * @param aBytes The UTF-8 encoded byte array.
+ * @returns The decoded string.
+ */
+export function UTF8IsomorphicBufferToStr(aBytes: IsomorphicBuffer): string
+{
+    let sView = "";
+    let nPart;
+    const nLen = aBytes.length;
+    for (let nIdx = 0; nIdx < nLen; nIdx++)
+    {
+        nPart = aBytes.readUInt8(nIdx);
         sView += String.fromCodePoint(
             nPart > 251 && nPart < 254 && nIdx + 5 < nLen /* six bytes */
                 ? /* (nPart - 252 << 30) may be not so safe in ECMAScript! So…: */

@@ -233,15 +233,19 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
             }
             case "utf8":
             case "utf-8":
-                return base64.UTF8ArrToStr(this.buffer);
+                return base64.UTF8IsomorphicBufferToStr(this);
             case "base64":
-                return base64.base64EncArr(this.buffer);
+                return base64.base64EncIsomorphicBuffer(this);
             case "hex":
-                return (Array.prototype.map.call(this.buffer, v => v.toString('x')) as string[]).join('')
+                const result = new Array<string>(this.length);
+                for (let i = 0; i < this.length; i++)
+                    result[i] = this.buffer[i].toString(16);
+
+                return result.join('');
             case "base64url":
-                return base64.base64UrlEncArr(this.buffer);
+                return base64.base64UrlEncIsomorphicBuffer(this);
             case "binary":
-                return base64.UTF8ArrToStr(this.buffer);
+                return base64.UTF8IsomorphicBufferToStr(this);
         }
     }
 
