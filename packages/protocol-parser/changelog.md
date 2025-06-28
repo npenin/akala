@@ -3,10 +3,9 @@
 
 ### Bug Fixes
 
-* fix protobuf message reader 38ff7f5
-* refactor write method to improve buffer handling and error checks 8609d52
-* return an empty array instead of null in write method of ZeroOrOne parser 310f7a8
-* update write method to handle IsomorphicBuffer and improve return type 7935152
+* correct offset usage in read method for FixedString parser fb03327
+* ensure write method returns an empty array when conditions are not met 929cbc8
+* return empty array is no output was written in buffer 2621d25
 
 
 
