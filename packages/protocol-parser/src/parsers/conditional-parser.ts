@@ -25,6 +25,8 @@ export class Conditional<T, TMessage> implements ParserWithMessage<T, TMessage>
         }
         else if (this.condition(cursor as TMessage))
             return parserWrite(this.parser, buffer, cursor, value, message);
+        else
+            return [];
     }
 
     readonly length: number;
