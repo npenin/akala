@@ -93,7 +93,10 @@ export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage
         else
         {
             buffer = new IsomorphicBuffer(Math.ceil(parser.length));
-            parser.write(buffer, new Cursor(), value, message);
+            const cursor = new Cursor();
+            parser.write(buffer, cursor, value, message);
+            if (cursor.offset === 0)
+                return []
             return [buffer];
         }
     }
