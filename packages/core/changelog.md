@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* remove default value for Event option in IEventSink interface cfc1e34
+* add isomorphic buffer support for Base64 and UTF-8 encoding/decoding 176c16f
+* adjust end calculation in subarray method to account for offset 4d4a878
 
 
 
