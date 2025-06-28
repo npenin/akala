@@ -13,8 +13,9 @@ export default class FixedString<TString extends string = string> implements Par
 
         if (this.length === -1)
         {
+            const offset = cursor.offset;
             cursor.offset += buffer.length;
-            return buffer.toString(this.encoding, cursor.offset) as TString;
+            return buffer.toString(this.encoding, offset) as TString;
         }
 
         return buffer.toString(this.encoding, cursor.offset, cursor.offset += this.length) as TString;
