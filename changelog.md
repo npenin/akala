@@ -33,6 +33,7 @@
 * add initial documentation files for Akala client and set navigation exclusions c3f96e5
 * add initial documentation files for Akala client and set navigation exclusions 0b59055
 * add IPC socket argument for nodejs process creation 87425d8
+* add isomorphic buffer support for Base64 and UTF-8 encoding/decoding 176c16f
 * add js extension to fork files 39368e9
 * add loginUrl and keyPath to auth configuration 9751a94
 * add missing case in marshall 598c8c0
@@ -90,6 +91,7 @@
 * add user options 85802c8
 * add web-ui connection to client in documentation flowchart 47abc33
 * add web-ui connection to client in documentation flowchart e43978b
+* adjust end calculation in subarray method to account for offset 4d4a878
 * akala commands start 99d55d6
 * allow line breaks and tabs in parser a5bb001
 * allow optional spaces 002c4a2
@@ -159,6 +161,7 @@
 * correct GitHub link for Akala and comment out external navigation links 91622ed
 * correct link references and update interactions documentation structure 80f4691
 * correct link references and update interactions documentation structure ada14b0
+* correct offset usage in read method for FixedString parser fb03327
 * correct title casing in formatters documentation ae403f9
 * correct title casing in formatters documentation 0477e0d
 * css syntax 595ab12
@@ -220,6 +223,7 @@
 * ensure InitAkala warms up correctly when handling the init command c7dd7a2
 * ensure postinstall completes 135afa8
 * ensure postinstall completes 10c4a72
+* ensure write method returns an empty array when conditions are not met 929cbc8
 * error codes on connection c73426b
 * error codes on connection ca0ab9b
 * ErrorMiddleware input type 1b43611
@@ -573,6 +577,7 @@
 * return 204 when no content 3e5f2b9
 * return 204 when no content 5f4185c
 * return an empty array instead of null in write method of ZeroOrOne parser 310f7a8
+* return empty array is no output was written in buffer 2621d25
 * revert options copy on buildCliContextFromContext 084cf1a
 * revert options copy on buildCliContextFromContext 1cbbd3e
 * revert to cayman cf3e496
