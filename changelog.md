@@ -1,4 +1,4 @@
-#  (2025-06-26)
+#  (2025-06-28)
 
 
 * chore : code cleanup eae1150
@@ -144,6 +144,7 @@
 * command companion generation 1da0ec5
 * command extension to provide name a47159f
 * commands exports resolution d8d5fc0
+* comment out yarn workspaces command in cleanup script af1d564
 * config as akala plugin 211cc6b
 * config cli wrong bin path 742aeb7
 * configFile init 79f7467
@@ -237,6 +238,7 @@
 * fallthrough on 404 a8d70b5
 * feature detection cba1075
 * first binding definition eb24595
+* fix protobuf message reader 38ff7f5
 * flexible file detection fdbe01d
 * for pm standalone init 81df590
 * for pm standalone init 81a261f
@@ -494,6 +496,7 @@
 * ready for pm 22151a2
 * redefine discover and map commands e732371
 * refactor npm protocol handling to improve URL resolution and ensure package.json access 1d1322a
+* refactor write method to improve buffer handling and error checks 8609d52
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
 * relative extends maps to relative files 2402375
@@ -507,6 +510,7 @@
 * remove cjs reference 2284b79
 * remove console log from metadata function 9d30b2c
 * remove copy/paste issue d625947
+* remove default value for Event option in IEventSink interface cfc1e34
 * remove deprecated ac command usage 5cf4a82
 * remove deprecated command documentation files and navigation exclusions 90bceca
 * remove deprecated command documentation files and navigation exclusions 69bc7d5
@@ -568,6 +572,7 @@
 * restructure CLI documentation and add new sections d48e2cc
 * return 204 when no content 3e5f2b9
 * return 204 when no content 5f4185c
+* return an empty array instead of null in write method of ZeroOrOne parser 310f7a8
 * revert options copy on buildCliContextFromContext 084cf1a
 * revert options copy on buildCliContextFromContext 1cbbd3e
 * revert to cayman cf3e496
@@ -751,6 +756,7 @@
 * update fs flag usage e2355d1
 * update grant_types_supported to use keyof for compatibility ec88441
 * update grant_types_supported to use keyof for compatibility 49f93de
+* update IClientEventSink and pipefromEvent to include 'once' option in event handling 3f7b7e0
 * update jsonrpc handlers to include options parameter for better connection management 1b80835
 * update keyPath references and improve password handling in authentication commands 9e74b5b
 * update link and introduce companion term 28cbbf0
@@ -787,6 +793,7 @@
 * update to support login redirect d2e8e6e
 * update type annotations for Base64 encoding functions and improve handling of ArrayBuffer d2157f1
 * update vite tests and vite config b8e8524
+* update write method to handle IsomorphicBuffer and improve return type 7935152
 * update yarn.lock to add ansi-escapes and yoctocolors dependencies fbadb14
 * upgrade module generation to esm only faee1d3
 * url handler will fail with Error 404 if not found e13a9a6
