@@ -78,7 +78,7 @@ export default class Message<TMessage> implements ParserWithMessageWithoutKnownL
 
             const fieldParser = this.parsers[fieldId];
             var valueBuffers = parserWrite(fieldParser, value, value);
-            if (valueBuffers !== null)
+            if (valueBuffers.length)
             {
                 var fieldDefinition = new IsomorphicBuffer(1);
                 result.push(fieldDefinition);
