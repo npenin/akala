@@ -1,10 +1,10 @@
-#  (2025-06-28)
+#  (2025-06-29)
 
 
-### Bug Fixes
+### Features
 
-* add isomorphic buffer support for Base64 and UTF-8 encoding/decoding 176c16f
-* adjust end calculation in subarray method to account for offset 4d4a878
+* add base64ByteLength and strUTF8ByteLength methods for improved encoding length calculations d2dfe22
+* add package.json interface and export in core package c4094d7
 
 
 
