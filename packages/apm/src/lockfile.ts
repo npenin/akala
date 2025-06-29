@@ -1,5 +1,4 @@
-import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
-import { CoreProperties, Dependency } from "./package.js";
+import { ErrorWithStatus, HttpStatusCode, packagejson } from "@akala/core";
 import { handler } from "./registry.js";
 import { State } from "./state.js";
 
@@ -16,19 +15,19 @@ export interface LockPackage
     version: string,
     resolution: string,
     bin?: { name: string, path: string }[],
-    dependencies?: Dependency,
-    devDependencies?: Dependency,
-    testDependencies?: Dependency,
-    peerDependencies?: Dependency,
-    optionalDependencies?: Dependency
+    dependencies?: packagejson.Dependency,
+    devDependencies?: packagejson.Dependency,
+    testDependencies?: packagejson.Dependency,
+    peerDependencies?: packagejson.Dependency,
+    optionalDependencies?: packagejson.Dependency
 }
 
-export function pkgKey(pkg: CoreProperties | LockPackage)
+export function pkgKey(pkg: packagejson.CoreProperties | LockPackage)
 {
     return typeof pkg.resolution == 'string' ? pkg.resolution : 'npm:' + pkg?.name + '/' + pkg?.version
 }
 
-export async function resolve(state: State, pkg: string, version: string, pkgJson?: CoreProperties | LockPackage): Promise<{ pkgJson: CoreProperties | LockPackage, url: URL }>
+export async function resolve(state: State, pkg: string, version: string, pkgJson?: packagejson.CoreProperties | LockPackage): Promise<{ pkgJson: packagejson.CoreProperties | LockPackage, url: URL }>
 {
     if (URL.canParse(version))
         return { pkgJson, url: new URL(version) };
@@ -43,9 +42,9 @@ export async function resolve(state: State, pkg: string, version: string, pkgJso
  * Improved version of snapshot that handles concurrency and race conditions
  * @returns Promise<LockFile> A promise that resolves to the complete lock file
  */
-export async function snapshot(pkg: CoreProperties | LockPackage, state: State, lock?: LockFile, frozen?: boolean, events?: {
-    addPkg?(pkg: CoreProperties | LockPackage): Promise<void> | void,
-    walkDep?(specifier: string, version: string, uri: URL, parent: CoreProperties | LockPackage): Promise<void>
+export async function snapshot(pkg: packagejson.CoreProperties | LockPackage, state: State, lock?: LockFile, frozen?: boolean, events?: {
+    addPkg?(pkg: packagejson.CoreProperties | LockPackage): Promise<void> | void,
+    walkDep?(specifier: string, version: string, uri: URL, parent: packagejson.CoreProperties | LockPackage): Promise<void>
 }, signal?: AbortSignal): Promise<LockFile>
 {
     // Initialize lock file if not provided
@@ -64,7 +63,7 @@ export async function snapshot(pkg: CoreProperties | LockPackage, state: State, 
 
     // Process package and its dependencies in parallel with proper dependency tracking
     async function processPackage(
-        currentPkg: CoreProperties | LockPackage,
+        currentPkg: packagejson.CoreProperties | LockPackage,
         visited: Set<string> = new Set(),
         skipDevDeps = false
     ): Promise<void>
@@ -98,7 +97,7 @@ export async function snapshot(pkg: CoreProperties | LockPackage, state: State, 
                 {
                     try
                     {
-                        const wspacePkg = await state.fs.readFile<CoreProperties>(new URL(workspace, 'package.json'), { encoding: 'json' });
+                        const wspacePkg = await state.fs.readFile<packagejson.CoreProperties>(new URL(workspace, 'package.json'), { encoding: 'json' });
 
                         wspacePkg.resolution = `workspace:${wspacePkg.name}/${wspacePkg.version}`
 
@@ -127,7 +126,7 @@ export async function snapshot(pkg: CoreProperties | LockPackage, state: State, 
 
             for (const depType of depTypes)
             {
-                const deps = currentPkg[depType] as Dependency;
+                const deps = currentPkg[depType] as packagejson.Dependency;
                 if (!deps)
                     continue;
 

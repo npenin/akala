@@ -1,10 +1,9 @@
-import { delay, ErrorWithStatus, UrlHandler } from "@akala/core";
-import { CoreProperties } from "./package.js";
+import { delay, ErrorWithStatus, packagejson, UrlHandler } from "@akala/core";
 import { closest, State } from "./state.js";
 import { glob } from 'fs/promises'
 import { join } from "path";
 
-export const handler = new UrlHandler<[URL, State, void], CoreProperties>(true);
+export const handler = new UrlHandler<[URL, State, void], packagejson.CoreProperties>(true);
 
 export const versionParser = /^(?<range>[*^~])?(?<version>(?<major>\d+)(?:\.(?<minor>\d+|x)(?:\.(?<patch>\d+|x))?)?)?$/;
 
@@ -79,7 +78,7 @@ namespace npm
         users: Users
     }
 
-    export type Versions = Record<string, CoreProperties>
+    export type Versions = Record<string, packagejson.CoreProperties>
 
     export type Time = Record<string, string>
     export interface Repository
@@ -231,7 +230,7 @@ handler.useHost('github.com', async (url, state) =>
     if (!res.ok)
         throw new ErrorWithStatus(res.status, await res.text());
 
-    const pkg: CoreProperties = await res.json();
+    const pkg: packagejson.CoreProperties = await res.json();
 
     pkg.dist = { tarball: url.toString() };
 
@@ -251,7 +250,7 @@ handler.useProtocol('github', async (url, state) =>
     if (!res.ok)
         throw new ErrorWithStatus(res.status, await res.text());
 
-    const pkg: CoreProperties = await res.json();
+    const pkg: packagejson.CoreProperties = await res.json();
 
     pkg.dist = { tarball: new URL('https://github.com/' + url.pathname + '/tarball/' + url.hash.substring(1)).toString() };
 
@@ -261,7 +260,7 @@ handler.useProtocol('github', async (url, state) =>
     return pkg;
 });
 
-export const workspaceCache: Record<string, { fsPath: string, pkg: CoreProperties }> = {};
+export const workspaceCache: Record<string, { fsPath: string, pkg: packagejson.CoreProperties }> = {};
 let workspaceProcessing: Promise<void>;
 
 handler.useProtocol('workspace', async (url, state) =>
@@ -276,7 +275,7 @@ handler.useProtocol('workspace', async (url, state) =>
         {
             try
             {
-                const pkg = await res.readFile<CoreProperties>('json');
+                const pkg = await res.readFile<packagejson.CoreProperties>('json');
 
                 if (pkg.workspaces)
                 {
@@ -284,7 +283,7 @@ handler.useProtocol('workspace', async (url, state) =>
                     {
                         try
                         {
-                            const wspacePkg = await state.fs.readFile<CoreProperties>(join(workspace, 'package.json'), { encoding: 'json' });
+                            const wspacePkg = await state.fs.readFile<packagejson.CoreProperties>(join(workspace, 'package.json'), { encoding: 'json' });
 
                             workspaceCache[`workspace:${wspacePkg.name}`] = { fsPath: workspace, pkg: wspacePkg };
                             wspacePkg.resolution = `workspace:${wspacePkg.name}/${wspacePkg.version}`;

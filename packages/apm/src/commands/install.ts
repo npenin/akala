@@ -2,9 +2,8 @@ import { FileHandle, OpenFlags } from "@akala/fs";
 import { LockFile, resolve, snapshot } from "../lockfile.js";
 import { closest, State } from "../state.js";
 import Cache from "../cache.js";
-import { CoreProperties, Dependency } from "../package.js";
 import { versionParser } from "../registry.js";
-import { HttpStatusCode, throttle } from "@akala/core";
+import { HttpStatusCode, packagejson, throttle } from "@akala/core";
 import { getPackageCachePath } from "./cache/add.js";
 
 export default async function install(this: State, signal: AbortSignal, pkgSpecifier?: string | URL, version?: string, save?: boolean | 'dev' | 'peer' | 'optional' | 'test')
@@ -33,7 +32,7 @@ export default async function install(this: State, signal: AbortSignal, pkgSpeci
     const cache = Cache(this);
 
     let pkgFile: FileHandle;
-    let currentPkg: CoreProperties;
+    let currentPkg: packagejson.CoreProperties;
 
 
     const throttler = throttle<void>(Number.POSITIVE_INFINITY);
@@ -202,7 +201,7 @@ export default async function install(this: State, signal: AbortSignal, pkgSpeci
         if (!currentPkg[depType])
             continue;
 
-        for (const dep in currentPkg[depType] as Dependency)
+        for (const dep in currentPkg[depType] as packagejson.Dependency)
         {
             signal.throwIfAborted();
             const version = currentPkg[depType][dep];

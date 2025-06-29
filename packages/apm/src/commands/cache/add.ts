@@ -1,13 +1,12 @@
-import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
+import { ErrorWithStatus, HttpStatusCode, packagejson } from "@akala/core";
 import { State } from "../../state.js";
 import { handler, workspaceCache } from "../../registry.js";
 import { FileType, readTgzEntries } from "../../tar.js";
-import { CoreProperties } from "../../package.js";
 import { dirname } from 'path/posix'
 import { FileSystemProvider } from "@akala/fs";
 import { LockPackage } from "../../lockfile.js";
 
-export async function getPackageCachePath(state: State, pkg: URL, pkgJson?: CoreProperties | LockPackage): Promise<URL>
+export async function getPackageCachePath(state: State, pkg: URL, pkgJson?: packagejson.CoreProperties | LockPackage): Promise<URL>
 {
     if (!pkgJson)
         pkgJson = await handler.process(pkg, state);
@@ -17,12 +16,12 @@ export async function getPackageCachePath(state: State, pkg: URL, pkgJson?: Core
         return new URL(`${pkg.protocol.substring(0, pkg.protocol.length - 1)}-${pkgJson.name}-${pkgJson.version}/`, state.cacheFolder.root)
 }
 
-export async function getPackageCacheFolder(state: State, pkg: URL, pkgJson?: CoreProperties | LockPackage): Promise<FileSystemProvider>
+export async function getPackageCacheFolder(state: State, pkg: URL, pkgJson?: packagejson.CoreProperties | LockPackage): Promise<FileSystemProvider>
 {
     return this.cacheFolder.newChroot(await getPackageCachePath(state, pkg, pkgJson))
 }
 
-export default async function (this: State, pkg: string | URL, force?: boolean): Promise<CoreProperties>
+export default async function (this: State, pkg: string | URL, force?: boolean): Promise<packagejson.CoreProperties>
 {
     if (typeof pkg == 'string' && !URL.canParse(pkg))
         throw new Error('only URLs are supported');
