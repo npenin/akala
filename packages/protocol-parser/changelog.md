@@ -1,11 +1,22 @@
-#  (2025-06-28)
+#  (2025-06-29)
 
 
 ### Bug Fixes
 
-* correct offset usage in read method for FixedString parser fb03327
-* ensure write method returns an empty array when conditions are not met 929cbc8
-* return empty array is no output was written in buffer 2621d25
+* handle zero buffer size in parserWrite and ensure positive buffer size 038eadf
+
+
+### Features
+
+* add getLength method to various parsers for improved length calculation cfc733f
+* performance improvement on protocol parsers writing ebcb08c
+
+
+### BREAKING CHANGES
+
+* parsers are required to implement getLength to be able to properly initialize buffers to the right size
+* parserWrite returns a single buffer and is not used internally
+* ParsersWithUnknownLength are removed
 
 
 
