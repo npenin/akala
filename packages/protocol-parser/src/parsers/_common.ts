@@ -1,4 +1,4 @@
-import { IsomorphicBuffer } from "@akala/core";
+import { ErrorWithStatus, IsomorphicBuffer } from "@akala/core";
 
 export interface Parser<T>
 {
@@ -47,10 +47,17 @@ export class Cursor
 
 export function parserWrite<T, TMessage>(parser: AnyParser<T, unknown>, value: T, message: TMessage = null, bufferSize = 1024)
 {
+    if (bufferSize == 0)
+        bufferSize = parser.getLength(value, message);
+    if (bufferSize <= 0)
+        throw new ErrorWithStatus(400, `Buffer size (${bufferSize}) needs to be set to a positive value`);
+
     const buffer = new IsomorphicBuffer(bufferSize);
 
     const cursor = new Cursor();
     parser.write(buffer, cursor, value, message)
 
+    if (buffer.length == Math.ceil(cursor.offset))
+        return buffer;
     return buffer.subarray(0, Math.ceil(cursor.offset));
 }
