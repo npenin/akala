@@ -17,13 +17,13 @@ export default class Vuint implements Parser<number>
     getLength(value: number): number
     {
         if (value <= 0x7f)
-            return Uint8.prototype.length;
+            return 1;
         else if (value <= 0xff7f)
-            return Uint16LE.prototype.length;
+            return 2;
         else if (value <= 0xffff7f)
-            return Uint24LE.prototype.length;
+            return 3;
         else if (value <= 0xffffff7f)
-            return Uint32LE.prototype.length;
+            return 4;
         else
             throw new Error('invalid value for vuint');
     }
