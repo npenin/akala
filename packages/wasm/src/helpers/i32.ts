@@ -11,6 +11,7 @@ import { mergeUInt8Arrays } from './types.js';
 import { u32 } from '../transpilers/wasmtype.js';
 import { Cursor, parsers } from '@akala/protocol-parser';
 import { IsomorphicBuffer } from '@akala/core';
+import { parserWrite } from '@akala/protocol-parser';
 
 /**
  * Represents a 32-bit integer in WebAssembly
@@ -108,8 +109,9 @@ export class i32 implements wasmtypeInstance<i32>, usize<u32>
      */
     public static const(value: number)
     {
-        if (!this.parser) this.parser = new parsers.SignedLEB128(8);
-        return new i32(mergeUInt8Arrays([transpiler.const], ...this.parser.write(value)));
+        if (!this.parser)
+            this.parser = new parsers.SignedLEB128(8);
+        return new i32(mergeUInt8Arrays([transpiler.const], parserWrite(this.parser, value)));
     }
 
     /**

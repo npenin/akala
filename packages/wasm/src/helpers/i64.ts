@@ -10,6 +10,7 @@ import { usize } from './memory.js';
 import { u32 } from '../transpilers/wasmtype.js';
 import { Cursor, parsers } from '@akala/protocol-parser';
 import { IsomorphicBuffer } from '@akala/core';
+import { parserWrite } from '@akala/protocol-parser';
 
 
 /**
@@ -106,8 +107,9 @@ export class i64 implements wasmtypeInstance<i64>, usize<bigint>
      */
     public static const(value: bigint | u32)
     {
-        if (!this.parser) this.parser = new parsers.SignedLEB128(8);
-        return new i64(mergeUInt8Arrays([0x42], ...this.parser.write(value)));
+        if (!this.parser)
+            this.parser = new parsers.SignedLEB128(8);
+        return new i64(mergeUInt8Arrays([0x42], parserWrite(this.parser, value)));
     }
 
     /**
