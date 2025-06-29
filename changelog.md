@@ -223,6 +223,7 @@
 * ensure InitAkala warms up correctly when handling the init command c7dd7a2
 * ensure postinstall completes 135afa8
 * ensure postinstall completes 10c4a72
+* ensure prepareMessage is called correctly in getLength and write methods 3c77981
 * ensure write method returns an empty array when conditions are not met 929cbc8
 * error codes on connection c73426b
 * error codes on connection ca0ab9b
@@ -761,6 +762,7 @@
 * update file path handling to use relative paths for better compatibility 65507c2
 * update filepath handling in FileSystem class to use toImportPath method 058a81a
 * update fs flag usage e2355d1
+* update getLength method to return correct byte lengths for vuint and vuintLE c273df2
 * update grant_types_supported to use keyof for compatibility ec88441
 * update grant_types_supported to use keyof for compatibility 49f93de
 * update IClientEventSink and pipefromEvent to include 'once' option in event handling 3f7b7e0
