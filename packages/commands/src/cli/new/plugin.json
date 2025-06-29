@@ -1,15 +1,20 @@
 {
     "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/command-schema.json",
     "cli": {
-        "usage": "cmd <name> [destination]",
+        "usage": "plugin <target> [source]",
         "options": {
             "force": {
                 "aliases": [
                     "f"
                 ]
             },
+            "source": {
+                "normalize": true,
+                "default": "./src/akala.mts"
+            },
             "destination": {
-                "normalize": true
+                "normalize": true,
+                "default": "./dist/akala.mjs"
             }
         },
         "inject": [
@@ -19,6 +24,6 @@
         ]
     },
     "doc": {
-        "description": "create a new command with the given `name` and `destination` (if present, cwd otherwise)"
+        "description": "create a new akala plugin at the given `source` (if present, `target` otherwise)"
     }
 }

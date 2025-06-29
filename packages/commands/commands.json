@@ -378,7 +378,7 @@
                                 "f"
                             ]
                         },
-                        "options.destination": {
+                        "destination": {
                             "normalize": true
                         }
                     },
@@ -508,6 +508,53 @@
                     "inject": [
                         "params.0",
                         "params.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "new.plugin",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/new/plugin.js",
+                    "source": "src/cli/new/plugin.ts",
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2"
+                    ]
+                },
+                "cli": {
+                    "usage": "plugin <target> [source]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        },
+                        "source": {
+                            "normalize": true,
+                            "default": "./src/akala.mts"
+                        },
+                        "destination": {
+                            "normalize": true,
+                            "default": "./dist/akala.mjs"
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new akala plugin at the given `source` (if present, `target` otherwise)"
+                },
+                "": {
+                    "inject": [
+                        "params.0",
+                        "params.1",
+                        "params.2"
                     ]
                 }
             }
