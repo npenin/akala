@@ -17,9 +17,7 @@ export default class ConstantString<TString extends string = string> extends Fix
 
         return value;
     }
-    write(value: TString): void
-    write(buffer: IsomorphicBuffer, cursor: Cursor, value?: TString): IsomorphicBuffer[]
-    write(buffer: IsomorphicBuffer | TString, cursor?: Cursor, value?: TString): IsomorphicBuffer[] | void
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value?: TString): void
     {
         if (typeof buffer == 'string')
             value = buffer;
@@ -29,9 +27,6 @@ export default class ConstantString<TString extends string = string> extends Fix
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
 
-        if (typeof (buffer) === 'string')
-            return [IsomorphicBuffer.from(value, this.encoding)];
-        else
-            cursor.offset += buffer.write(value, cursor.offset, this.length, this.encoding);
+        cursor.offset += buffer.write(value, cursor.offset, this.length, this.encoding);
     }
 }

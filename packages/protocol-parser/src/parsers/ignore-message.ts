@@ -8,6 +8,12 @@ export class Ignore<T, TMessage> implements ParserWithMessage<T, TMessage>
 
     }
     get length() { return this.inner.length };
+
+    getLength(value: T): number
+    {
+        return this.inner.getLength(value);
+    }
+
     read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T
     {
         return this.inner.read(buffer, cursor, undefined);

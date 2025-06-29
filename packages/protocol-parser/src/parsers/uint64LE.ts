@@ -14,6 +14,10 @@ export default class Uint64 implements Parser<bigint>
 
     readonly length = length;
 
+    getLength(value: bigint): number
+    {
+        return length;
+    }
     public read(buffer: IsomorphicBuffer, cursor: Cursor): bigint
     {
         if (cursor.subByteOffset > 0)

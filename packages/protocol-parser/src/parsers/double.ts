@@ -11,6 +11,10 @@ export default class Double implements Parser<double>
     {
 
     }
+    getLength(value: number): number
+    {
+        return length;
+    }
 
     readonly length = length;
 

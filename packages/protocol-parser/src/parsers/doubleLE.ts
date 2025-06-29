@@ -12,6 +12,11 @@ export default class DoubleLE implements Parser<double>
 
     }
 
+    getLength(value: number): number
+    {
+        return length;
+    }
+    
     readonly length = length;
 
     public read(buffer: IsomorphicBuffer, cursor: Cursor): double

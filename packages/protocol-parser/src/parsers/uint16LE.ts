@@ -13,6 +13,10 @@ export default class Uint16LE implements Parser<number>
 
     readonly length = length;
 
+    getLength(value: number): number
+    {
+        return length;
+    }
     public read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
         if (cursor.subByteOffset > 0)

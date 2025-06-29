@@ -8,6 +8,12 @@ export default class Cache<T extends PropertyKey, TMessage> implements ParserWit
     {
         this.length = parser.length;
     }
+    getLength(value: T, message?: TMessage): number
+    {
+        if (this.cache.has(value))
+            return this.cache.get(value).length;
+        return this.parser.getLength(value);
+    }
     length: number;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T
     {

@@ -18,6 +18,11 @@ export default class Int7 implements Parser<number>
 
     readonly length = length;
 
+    getLength(value: number): number
+    {
+        return length;
+    }
+
     public read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
         var currentValue = buffer.readInt8(cursor.floorOffset);

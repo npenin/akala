@@ -7,6 +7,10 @@ export default class PreparsedLengthBuffer<T, TKey extends keyof T> implements P
     {
 
     }
+    getLength(value: IsomorphicBuffer, message?: T): number
+    {
+        return value.length;
+    }
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): IsomorphicBuffer
     {

@@ -17,6 +17,12 @@ export default class Sequence<T extends unknown[], TMessage = unknown> implement
             this.length += parser.length;
         }
     }
+    getLength(value: T, message?: TMessage): number
+    {
+        if (this.length == -1)
+            return this.parsers.reduce((previous, current) => previous + current.getLength(value, message), 0)
+        return this.length;
+    }
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T
     {

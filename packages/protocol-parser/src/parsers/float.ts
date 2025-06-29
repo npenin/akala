@@ -14,6 +14,11 @@ export default class Float implements Parser<float>
 
     readonly length = length;
 
+    getLength(value: number): number
+    {
+        return length;
+    }
+
     public read(buffer: IsomorphicBuffer, cursor: Cursor): float
     {
         if (cursor.subByteOffset > 0)

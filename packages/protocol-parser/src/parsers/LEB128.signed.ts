@@ -15,6 +15,34 @@ export default class SignedLEB128<T extends number | bigint> implements Parser<T
 
     length: -1 = -1;
 
+    getLength(value: number | bigint): number
+    {
+        if (value <= 0x3f && value >= -0x3f)
+            return 0.875;
+        else
+        {
+            let more = true;
+            let length = 0;
+            let v = BigInt(value);
+            const isNegative = v < 0n;
+            while (more)
+            {
+                let byte = Number(v & 0x7fn);
+                v >>= 7n;
+                if (isNegative)
+                    v |= - (1n << 57n); // sign extend for negative numbers
+
+                // Check if more bytes are needed
+                if ((v === 0n && (byte & 0x40) === 0) || (v === -1n && (byte & 0x40) !== 0x40))
+                    more = false;
+                else
+                    more = true;
+                length++;
+            }
+            return length;
+        }
+    }
+
     public read(buffer: IsomorphicBuffer, cursor: Cursor): T
     {
         let tmpBuffer = new IsomorphicBuffer(4);
@@ -44,7 +72,7 @@ export default class SignedLEB128<T extends number | bigint> implements Parser<T
         }
     }
 
-    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T): void 
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T): void
     {
         if (typeof value == 'undefined')
             return null;

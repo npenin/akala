@@ -9,6 +9,19 @@ export default class PackedProperty<T, TKey extends keyof T> implements ParserWi
     {
         this.length = parser.length;
     }
+    getLength(value: ArrayItem<T[TKey]> | ArrayItem<T[TKey]>[], message?: T): number
+    {
+        let x = 0;
+        if (typeof value === 'undefined')
+            return x;
+
+        var value = message[this.name] as ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>;
+        if (Array.isArray(value))
+            for (var v of value)
+                x += this.parser.getLength(v, v);
+        else
+            return this.parser.getLength(value as any, value);
+    }
 
     length: number;
 

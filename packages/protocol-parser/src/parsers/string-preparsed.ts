@@ -7,6 +7,11 @@ export default class PreparsedString<T, TKey extends keyof T, TString extends st
     {
 
     }
+    getLength(value: TString, message?: T): number
+    {
+        return Number(message[this.lengthProperty]);
+    }
+
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): TString
     {

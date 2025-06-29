@@ -8,6 +8,20 @@ export default class Switch<T, TResult, TValue extends PropertyKey> implements P
     {
         this.parsers = parsers;
     }
+    getLength(value: TResult, message?: T): number
+    {
+        if (typeof (message) == 'undefined')
+            throw new Error('no message was provided');
+
+        if (typeof this.condition == 'function')
+            var parser = this.parsers[this.condition(message)];
+        else
+            var parser = this.parsers[message[this.condition] as TValue];
+        if (!parser)
+            throw new Error(`No parser could be found for ${this.condition.toString()} in ${JSON.stringify(value)}`);
+
+        return parser.getLength(value, message);
+    }
     register(key: TValue, parser: AnyParser<TResult, T>)
     {
         if (key in this.parsers)

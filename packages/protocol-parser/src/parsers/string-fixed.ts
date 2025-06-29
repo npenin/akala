@@ -6,6 +6,13 @@ export default class FixedString<TString extends string = string> implements Par
     constructor(public readonly length: number, protected readonly encoding: BufferEncoding = 'ascii')
     {
     }
+    getLength(value: TString): number
+    {
+        if (this.length == -1)
+            return IsomorphicBuffer.getInitLength(value, this.encoding);
+        return this.length;
+    }
+
     read(buffer: IsomorphicBuffer, cursor: Cursor): TString
     {
         if (cursor.subByteOffset > 0)
@@ -20,27 +27,20 @@ export default class FixedString<TString extends string = string> implements Par
 
         return buffer.toString(this.encoding, cursor.offset, cursor.offset += this.length) as TString;
     }
-    write(value: TString): void
-    write(buffer: IsomorphicBuffer, cursor: Cursor, value?: TString): IsomorphicBuffer[]
-    write(buffer: IsomorphicBuffer | TString, cursor?: Cursor, value?: TString): IsomorphicBuffer[] | void
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value?: TString): void
     {
-        if (!(buffer instanceof IsomorphicBuffer))
-        {
-            value = buffer;
-            buffer = null;
-        }
-        else if (cursor.subByteOffset > 0)
+        if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
 
         if (this.length == -1)
-            return [IsomorphicBuffer.from(value, this.encoding)];
+        {
+            buffer.write(value, cursor.offset, value.length, this.encoding);
+            return;
+        }
 
         if (value.length != this.length)
             throw new Error(`string length (${value.length}) is not matching with expected length (${this.length})`)
 
-        if (typeof (buffer) === 'string')
-            return [IsomorphicBuffer.from(value, this.encoding)];
-        else
-            cursor.offset += buffer.write(value, cursor.offset, this.length, this.encoding);
+        cursor.offset += buffer.write(value, cursor.offset, this.length, this.encoding);
     }
 }

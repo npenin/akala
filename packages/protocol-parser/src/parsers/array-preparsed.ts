@@ -7,6 +7,10 @@ export default class PreparsedLengthArray<T, TMessage> implements ParserWithMess
     constructor(private prefix: keyof TMessage, private valueParser: AnyParser<T, TMessage>)
     {
     }
+    getLength(value: T[], message?: TMessage): number
+    {
+        return value?.reduce((previous, current) => previous + this.valueParser.getLength(current, message), 0) || 0;
+    }
 
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T[] 

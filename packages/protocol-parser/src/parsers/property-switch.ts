@@ -10,6 +10,10 @@ export default class SwitchProperty<TMessage, TKey extends keyof TMessage, TKeyA
         this.parsers = parsers;
 
     }
+    getLength(value: TResult, message?: TMessage): number
+    {
+        return this.parsers[message[this.name]].getLength(message[this.assignProperty] as TResult, message[this.assignProperty])
+    }
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): TResult
     {

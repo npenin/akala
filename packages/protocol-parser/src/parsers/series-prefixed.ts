@@ -7,6 +7,11 @@ export default class PrefixedLengthSeries<T, TMessage> implements ParserWithMess
     constructor(private prefix: Parsers<number>, private valueParser: AnyParser<T, TMessage>)
     {
     }
+    getLength(value: T, message?: TMessage): number
+    {
+        const values = this.valueParser.getLength(value, message);
+        return this.prefix.getLength(values) + values;
+    }
 
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T
@@ -20,8 +25,9 @@ export default class PrefixedLengthSeries<T, TMessage> implements ParserWithMess
 
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
     {
-        if (this.prefix.length == -1)
-            throw new Error('cannot write a prefixed series without knowing how much needs to be written');
+        let length = this.prefix.length
+        if (length == -1)
+            length = this.prefix.getLength(this.valueParser.getLength(value, message));
         const initalOffset = cursor.offset;
         cursor.offset += this.prefix.length;
         this.valueParser.write(buffer, cursor, value, message);

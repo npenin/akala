@@ -8,6 +8,10 @@ export default class Property<T extends { [key in TKey]: Exclude<any, object> },
     {
         this.length = parser.length;
     }
+    getLength(value: T[TKey], message?: T): number
+    {
+        return this.parser.getLength(value[this.name], message)
+    }
     length: number;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): T[TKey]
     {

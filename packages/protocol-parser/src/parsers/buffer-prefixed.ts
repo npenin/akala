@@ -7,6 +7,10 @@ export default class PrefixedBuffer implements Parser<IsomorphicBuffer>
     {
 
     }
+    getLength(value: IsomorphicBuffer): number
+    {
+        return this.prefix.getLength(value?.length || 0) + value.length;
+    }
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor): IsomorphicBuffer
     {
@@ -26,5 +30,6 @@ export default class PrefixedBuffer implements Parser<IsomorphicBuffer>
     {
         this.prefix.write(buffer, cursor, value.length);
         buffer.copy(value, cursor.offset);
+        cursor.offset += value.length;
     }
 }

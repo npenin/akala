@@ -11,6 +11,10 @@ export default class Uint24LE implements Parser<number>
 
     length = 3;
 
+    getLength(value: number): number
+    {
+        return length;
+    }
     public read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
         let tmpBuffer = new IsomorphicBuffer(4);

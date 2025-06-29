@@ -15,6 +15,11 @@ export default class Int32LE implements Parser<int32>
 
     readonly length = length;
 
+    getLength(value: number): number
+    {
+        return length;
+    }
+
     public read(buffer: IsomorphicBuffer, cursor: Cursor): int32
     {
         if (cursor.subByteOffset > 0)

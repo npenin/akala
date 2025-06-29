@@ -14,6 +14,14 @@ export default class TLVObject<TMessage extends object> implements Parser<TMessa
         if (map)
             this.mapByName = Object.fromEntries(Object.entries(map).map(e => [e[1].name, { index: e[0] as unknown as number, parser: e[1].parser }])) as MapByName<TMessage>;
     }
+    getLength(value: TMessage): number
+    {
+        return (Object.entries(value) as [keyof TMessage, TMessage[keyof TMessage]][]).reduce((previous, e) =>
+        {
+            if (this.mapByName && this.mapByName[e[0]])
+                return previous + this.number.getLength(this.mapByName[e[0]].index) + this.mapByName[e[0]].parser.getLength(e[1], value);
+        }, 0)
+    }
 
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor): TMessage

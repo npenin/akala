@@ -7,6 +7,10 @@ export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<
     constructor(public readonly length: number, protected readonly valueParser: AnyParser<T, TMessage>)
     {
     }
+    getLength(value: T[], message?: TMessage): number
+    {
+        return value?.reduce((previous, current) => previous + this.valueParser.getLength(current, message), 0) || 0;
+    }
 
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T[]
     {
@@ -31,7 +35,8 @@ export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<
 
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T[], message: TMessage): void
     {
-        for (let index = 0; index < this.length; index++)
+        const length = this.length == -1 ? value.length : this.length;
+        for (let index = 0; index < length; index++)
             this.valueParser.write(buffer, cursor, value[index], message);
     }
 }

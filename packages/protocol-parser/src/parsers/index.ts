@@ -285,6 +285,10 @@ export function prefixedSeries<T extends object>(length: Parsers<number>, ...map
 }
 export const noop: Parser<void> = {
     length: 0,
+    getLength(value)
+    {
+        return 0;
+    },
     read(buffer, cursor)
     {
     },

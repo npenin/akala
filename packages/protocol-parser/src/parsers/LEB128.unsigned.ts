@@ -12,6 +12,17 @@ export default class UnsignedLEB128<T extends number | bigint> implements Parser
     {
 
     }
+    getLength(value: T): number
+    {
+        let v = BigInt(value);
+        let length = 0;
+        do
+        {
+            v >>= 7n;
+            length++;
+        } while (v !== 0n);
+        return length;
+    }
 
     length: -1 = -1;
 

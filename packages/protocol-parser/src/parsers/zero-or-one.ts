@@ -8,6 +8,12 @@ export class ZeroOrOne<T, TMessage> implements ParserWithMessage<T, TMessage>
     {
         this.length = parser.length;
     }
+    getLength(value: T, message?: TMessage): number
+    {
+        if (typeof value === 'undefined')
+            return 0;
+        return this.parser.getLength(value, message);
+    }
     read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T
     {
         if (buffer.length > cursor.offset)

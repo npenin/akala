@@ -13,6 +13,24 @@ export default class Varint implements Parser<number>
     {
 
     }
+    getLength(value: number): number
+    {
+        if (value <= 0x7f)
+        {
+            return 1;
+        }
+        else
+        {
+            if (value <= 0x7fff)
+                return 2;
+            else if (value <= 0x7fffff)
+                return 3;
+            else if (value <= 0x7fffffff)
+                return 4;
+            else
+                throw new Error('invalid value for varint');
+        }
+    }
 
     wireType: WireType = 'varint'
 

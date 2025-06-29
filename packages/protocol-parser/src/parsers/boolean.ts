@@ -9,6 +9,12 @@ export default class Boolean implements Parser<boolean>
     {
         this.length = parser.length;
     }
+    getLength(value: boolean): number
+    {
+        return this.parser.getLength(value && 1 || 0);
+    }
+
+
 
     public length: number;
 

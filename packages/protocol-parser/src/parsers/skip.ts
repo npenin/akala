@@ -4,6 +4,10 @@ import { AnyParser, Cursor, ParserWithMessage } from './_common.js';
 export default class Skip<TMessage> implements ParserWithMessage<never, TMessage>
 {
     constructor(public readonly length: number) { }
+    getLength(value: never, message?: TMessage): number
+    {
+        return this.length;
+    }
     read(buffer: IsomorphicBuffer, cursor: Cursor)
     {
         if (this.length >= 0)
@@ -25,6 +29,11 @@ export class SkipParser<TMessage> implements ParserWithMessage<never, TMessage>
     public readonly length = -1;
 
     constructor(private lengthParser: AnyParser<number, unknown>) { }
+
+    getLength(value: never, message?: TMessage): number
+    {
+        return this.lengthParser.getLength(0);
+    }
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage)
     {
         cursor.offset += this.lengthParser.read(buffer, cursor, message);

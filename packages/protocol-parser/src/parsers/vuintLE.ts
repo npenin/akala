@@ -14,6 +14,20 @@ export default class Vuint implements Parser<number>
 
     length: -1 = -1;
 
+    getLength(value: number): number
+    {
+        if (value <= 0x7f)
+            return Uint8.prototype.length;
+        else if (value <= 0xff7f)
+            return Uint16LE.prototype.length;
+        else if (value <= 0xffff7f)
+            return Uint24LE.prototype.length;
+        else if (value <= 0xffffff7f)
+            return Uint32LE.prototype.length;
+        else
+            throw new Error('invalid value for vuint');
+    }
+
     public read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
         let tmpBuffer = new IsomorphicBuffer(4);

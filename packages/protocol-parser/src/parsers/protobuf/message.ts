@@ -33,6 +33,19 @@ export default class Message<TMessage> implements ParserWithMessage<TMessage, Pa
     {
         this.parsers = parsers;
     }
+    getLength(value: TMessage, message?: Partial<TMessage>): number
+    {
+        return this.parsers.reduce((previous, current, fieldId) =>
+        {
+
+            const length = current.getLength(value, value);
+
+            if (length > 0)
+                return length + field.getLength({ fieldId: fieldId + 1, type: current.wireType });
+            else
+                return 0
+        }, 0)
+    }
 
     length: -1 = -1;
 
@@ -80,7 +93,12 @@ export default class Message<TMessage> implements ParserWithMessage<TMessage, Pa
             fieldParser.write(buffer, cursor, value, value);
 
             if (cursor.offset > initialOffset + 1)
+            {
+                const finalOffset = cursor.offset;
+                cursor.offset = initialOffset;
                 field.write(buffer, cursor, { fieldId: fieldId + 1, type: fieldParser.wireType });
+                cursor.offset = finalOffset;
+            }
             else
                 cursor.offset--;
         }
@@ -97,6 +115,11 @@ export class UnknownMessage implements ParserWithMessage<Record<number, unknown 
     }
 
     length: -1 = -1;
+
+    getLength(value: Record<number, unknown>, message?: Record<number, unknown>): number
+    {
+        return -1;
+    }
 
     public read(buffer: IsomorphicBuffer, cursor: Cursor, message?: Record<number, unknown | unknown[]>): Record<number, unknown | unknown[]>
     {

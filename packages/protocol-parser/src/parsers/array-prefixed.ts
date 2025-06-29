@@ -7,6 +7,10 @@ export default class PrefixedLengthArray<T, TMessage> implements ParserWithMessa
     constructor(private prefix: Parsers<number>, private valueParser: AnyParser<T, TMessage>)
     {
     }
+    getLength(value: T[], message?: TMessage): number
+    {
+        return this.prefix.getLength(value.length) + value?.reduce((previous, current) => previous + this.valueParser.getLength(current, message), 0) || 0;
+    }
 
     length: -1 = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T[]

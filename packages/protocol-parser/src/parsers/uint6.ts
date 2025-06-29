@@ -17,6 +17,10 @@ export default class Uint6 implements Parser<number>
 
     readonly length = length;
 
+    getLength(value: number): number
+    {
+        return length;
+    }
     public read(buffer: IsomorphicBuffer, cursor: Cursor): number
     {
         var currentValue = buffer.readUInt8(cursor.floorOffset);

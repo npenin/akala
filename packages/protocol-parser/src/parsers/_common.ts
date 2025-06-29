@@ -5,12 +5,14 @@ export interface Parser<T>
     length: number;
     read(buffer: IsomorphicBuffer, cursor: Cursor): T;
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T): void;
+    getLength(value: T): number;
 }
 export interface ParserWithMessage<T, TMessage>
 {
     length: number;
     read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T;
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void;
+    getLength(value: T, message?: TMessage): number;
 }
 
 
@@ -50,5 +52,5 @@ export function parserWrite<T, TMessage>(parser: AnyParser<T, unknown>, value: T
     const cursor = new Cursor();
     parser.write(buffer, cursor, value, message)
 
-    return buffer.subarray(0, cursor.offset + 1);
+    return buffer.subarray(0, Math.ceil(cursor.offset));
 }

@@ -9,6 +9,10 @@ export class TLVNumber implements Parser<number>
         this.length = lengthParser.length * 2;
         this._length = lengthParser.length;
     }
+    getLength(value: number): number
+    {
+        return this.length;
+    }
 
     public readonly length: number;
 

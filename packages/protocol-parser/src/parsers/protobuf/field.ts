@@ -7,6 +7,10 @@ export type WireType = 'varint' | '64-bit' | 'length-delimited' | 'start-group' 
 
 export class Field implements Parser<{ fieldId: number; type: WireType; }>
 {
+    getLength(value: { fieldId: number; type: WireType; }): number
+    {
+        return this.length;
+    }
     length: 1 = 1;
     read(buffer: IsomorphicBuffer, cursor: Cursor): { fieldId: number; type: WireType; }
     {

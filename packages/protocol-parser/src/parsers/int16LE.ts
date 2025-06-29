@@ -14,6 +14,11 @@ export default class Int16LE implements Parser<int16>
 
     readonly length = length;
 
+    getLength(value: number): number
+    {
+        return length;
+    }
+
     public read(buffer: IsomorphicBuffer, cursor: Cursor): int16
     {
         if (cursor.subByteOffset > 0)

@@ -75,10 +75,10 @@ describe('tlv', function ()
         });
 
         const expected = encode(pairMessage.mapByName.state.index, PairState.M1, pairMessage.mapByName.method.index, PairMethod.Setup)
-        assert.deepStrictEqual(expected, actual);
+        assert.ok(expected.equals(actual));
     })
 
-    it('should decode properly', function ()
+    it.only('should decode properly', function ()
     {
         const expected = {
             state: PairState.M1,

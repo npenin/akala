@@ -10,6 +10,10 @@ export default class Uint2 implements Parser<number>
     {
 
     }
+    getLength(value: number): number
+    {
+        return length;
+    }
 
     readonly length = length;
 

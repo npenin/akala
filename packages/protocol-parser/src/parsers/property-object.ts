@@ -8,7 +8,12 @@ export default class Property<T extends object, TKey extends keyof T> implements
     {
         this.length = parser.length;
     }
+    getLength(value: T[TKey], message?: T): number
+    {
+        return this.parser.getLength(message[this.name], message[this.name]);
+    }
     length: number;
+
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): T[TKey]
     {
         var result: T[TKey];

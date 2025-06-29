@@ -8,6 +8,12 @@ export class Conditional<T, TMessage> implements ParserWithMessage<T, TMessage>
     {
         this.length = parser.length;
     }
+    getLength(value: T, message?: TMessage): number
+    {
+        if (this.condition(message))
+            return this.parser.getLength(value, message);
+        return 0;
+    }
     read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T
     {
         if (this.condition(partial))
