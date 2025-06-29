@@ -3,20 +3,8 @@
 
 ### Bug Fixes
 
-* handle zero buffer size in parserWrite and ensure positive buffer size 038eadf
-
-
-### Features
-
-* add getLength method to various parsers for improved length calculation cfc733f
-* performance improvement on protocol parsers writing ebcb08c
-
-
-### BREAKING CHANGES
-
-* parsers are required to implement getLength to be able to properly initialize buffers to the right size
-* parserWrite returns a single buffer and is not used internally
-* ParsersWithUnknownLength are removed
+* ensure prepareMessage is called correctly in getLength and write methods 3c77981
+* update getLength method to return correct byte lengths for vuint and vuintLE c273df2
 
 
 
