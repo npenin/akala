@@ -12,6 +12,8 @@ export default class SwitchProperty<TMessage, TKey extends keyof TMessage, TKeyA
     }
     getLength(value: TResult, message?: TMessage): number
     {
+        if (!message)
+            message = value as unknown as TMessage;
         return this.parsers[message[this.name]].getLength(message[this.assignProperty] as TResult, message[this.assignProperty])
     }
     length: -1 = -1;
