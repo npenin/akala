@@ -127,6 +127,25 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
         return target;
     }
 
+    public static getInitLength(s: string, encoding: BufferEncoding = 'utf8'): number
+    {
+        switch (encoding)
+        {
+            case "ascii":
+                return s.length;
+            case "utf8":
+            case "utf-8":
+                return base64.strUTF8ByteLength(s);
+            case "base64":
+            case "base64url":
+                return base64.base64ByteLength(s);
+            case "hex":
+                return s.length / 2;
+            case "binary":
+                return s.length;
+        }
+    }
+
     public static from(s: string, encoding: BufferEncoding = 'utf8'): IsomorphicBuffer
     {
         switch (encoding)

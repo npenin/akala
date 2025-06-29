@@ -25,6 +25,15 @@ function b64ToUint6(nChr: number): number
                         : 0;
 }
 
+export function base64ByteLength(sBase64: string, nBlocksSize?: number)
+{
+    const sB64Enc = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
+    const nInLen = sB64Enc.length;
+    return nBlocksSize
+        ? Math.ceil(((nInLen * 3 + 1) >> 2) / nBlocksSize) * nBlocksSize
+        : (nInLen * 3 + 1) >> 2;
+}
+
 /** 
  * Decodes a Base64 string into a Uint8Array.
  * @param sBase64 The Base64 encoded string.
@@ -35,9 +44,7 @@ export function base64DecToArr(sBase64: string, nBlocksSize?: number): Uint8Arra
 {
     const sB64Enc = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
     const nInLen = sB64Enc.length;
-    const nOutLen = nBlocksSize
-        ? Math.ceil(((nInLen * 3 + 1) >> 2) / nBlocksSize) * nBlocksSize
-        : (nInLen * 3 + 1) >> 2;
+    const nOutLen = base64ByteLength(sB64Enc, nBlocksSize);
     const taBytes = new Uint8Array(nOutLen);
 
     let nMod3;
@@ -381,14 +388,9 @@ export function UTF8IsomorphicBufferToStr(aBytes: IsomorphicBuffer): string
     return sView;
 }
 
-/** 
- * Converts a JavaScript string to a UTF-8 encoded ArrayBuffer.
- * @param sDOMStr The input string to encode.
- * @returns The UTF-8 encoded ArrayBuffer.
- */
-export function strToUTF8Arr(sDOMStr: string): Uint8Array 
+export function strUTF8ByteLength(sDOMStr: string): number
 {
-    let nChr;
+    let nChr: number;
     const nStrLen = sDOMStr.length;
     let nArrLen = 0;
 
@@ -415,6 +417,19 @@ export function strToUTF8Arr(sDOMStr: string): Uint8Array
                                 ? 5
                                 : 6;
     }
+
+    return nArrLen;
+}
+
+/** 
+ * Converts a JavaScript string to a UTF-8 encoded ArrayBuffer.
+ * @param sDOMStr The input string to encode.
+ * @returns The UTF-8 encoded ArrayBuffer.
+ */
+export function strToUTF8Arr(sDOMStr: string): Uint8Array 
+{
+    let nChr: number;
+    let nArrLen = strUTF8ByteLength(sDOMStr);
 
     const aBytes = new Uint8Array(nArrLen);
 

@@ -280,8 +280,11 @@ export interface CoreProperties
   };
   "readme"?: string;
   workspaces: string[] | string;
+  "exports"?: string | ExportDefinition
   [k: string]: unknown;
 }
+
+export type ExportDefinition = { [key: string]: string | ExportDefinition }
 export interface JspmDefinition
 {
   "jspm"?: CoreProperties;
