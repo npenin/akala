@@ -1,4 +1,4 @@
-#  (2025-06-28)
+#  (2025-06-29)
 
 
 * chore : code cleanup eae1150
@@ -296,6 +296,7 @@
 * handle upper case methods 974659f
 * handle upper case methods b915081
 * handle verbose behavior db8b8e7
+* handle zero buffer size in parserWrite and ensure positive buffer size 038eadf
 * hasYarn detection to prevent it to crash 6980e95
 * hasYarn detection to prevent it to crash 2aff971
 * http support on `add user` function 0281cb8
@@ -719,6 +720,7 @@
 * update after fs breaking change 27ec208
 * update after fs breaking change 56df9a7
 * update after fs FileHandle interface update 552b3f0
+* update after protocol parser breaking change 2d306f6
 * update after protocol parsers breaking change db4574e
 * update after storage breaking change 87b037a
 * update after storage breaking change 06b7d59
@@ -867,6 +869,7 @@
 * add automate as plugin fedd6ad
 * add backchannel container for 2 ways connections 70c69a6
 * add backChannelContainer a5c1ecf
+* add base64ByteLength and strUTF8ByteLength methods for improved encoding length calculations d2dfe22
 * add bindings (as in azure function bindings) as configuration 8cf7076
 * add bindings (as in azure function bindings) as configuration ca6211f
 * add bindings (as in azure function bindings) as configuration 69067b9
@@ -898,6 +901,7 @@
 * add FileSystemProviderProxy 24ba3aa
 * add fs package 1df97d4
 * add fs package 9751886
+* add getLength method to various parsers for improved length calculation cfc733f
 * add GitHub sponsorship and star buttons to documentation 45cdee0
 * add GitHub sponsorship and star buttons to documentation 457055f
 * add grid option f3c24aa
@@ -930,11 +934,13 @@
 * add name in xpm d8b9ad6
 * add namespaced event on EventProcessor 719726f
 * add new methods to FSFileSystemProvider bb09cda
+* add new plugin command with configuration and update command options 963a893
 * add NO_AKALAPOSTINSTALL support bb60b83
 * add NO_AKALAPOSTINSTALL support bebd6b1
 * add oidc formatter factory 11b2d52
 * add oidc formatter factory fba4a73
 * add openStream on FileHandle 2868198
+* add package.json interface and export in core package c4094d7
 * add raw query and custom resolvers 91f1063
 * add raw query and custom resolvers 19a38cc
 * add raw query support 940f72e
@@ -1038,6 +1044,7 @@
 * improve translator interface d3884d0
 * include URI in request logging for improved traceability 16891b5
 * include URI in request logging for improved traceability 6e4418a
+* integrate parserWrite for improved value handling in i32 and i64 const methods b8df8d7
 * introduce allowSubProperties on attributecomposer 8b3efac
 * introduce if composer 5fdfd35
 * introduce IsomorphicBuffer dfa275f
@@ -1050,6 +1057,7 @@
 * move configFile to docker volume b382a24
 * move from param to params to enable mcp e52cbaa
 * normalizing readdir output ac219a6
+* performance improvement on protocol parsers writing ebcb08c
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
 * pm fork can be triggered from pm run command cd61525
@@ -1084,6 +1092,9 @@
 
 ### BREAKING CHANGES
 
+* parsers are required to implement getLength to be able to properly initialize buffers to the right size
+* parserWrite returns a single buffer and is not used internally
+* ParsersWithUnknownLength are removed
 * TKey is not a type expected anymore for choose/switch parsers. TValue is expected instead
 * FileSystem needs a FileSystemProvider as constructor parameter
 * FileGenerator returns outputFs and not outputFolder anymore
