@@ -77,6 +77,10 @@ class RoundParser implements parsers.Parser<string>
     {
 
     }
+    getLength(value: string): number
+    {
+        throw new Error('Method not implemented.');
+    }
 
     length: number = -1;
     read(buffer: IsomorphicBuffer, cursor: Cursor)
@@ -100,6 +104,10 @@ class OffsetCapture<T> implements parsers.ParserWithMessage<number, T>
     {
 
     }
+    getLength(value: number, message?: T): number
+    {
+        throw new Error('Method not implemented.');
+    }
     readonly length = 0;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: T): number
     {
@@ -116,6 +124,10 @@ class TerminatedString<TMessage, TString extends string = string> implements par
     constructor(private readonly terminator: string | string[], private readonly parser: parsers.AnyParser<TString, TMessage>)
     {
         this.length = parser.length;
+    }
+    getLength(value: TString, message?: TMessage): number
+    {
+        return this.parser.getLength(value, message);
     }
     length: number;
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): TString
