@@ -30,6 +30,9 @@ export * from './queue.js'
 import * as base64 from './base64.js'
 export { base64 };
 
+import * as packagejson from './package.js'
+export { packagejson };
+
 export * from './observables/shared.js'
 export * from './observables/array.js'
 export * from './observables/object.js'
