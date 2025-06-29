@@ -17,7 +17,8 @@ function readType(name: string, type: Parser<number>, length: number)
             var expected: number = 0;
             for (let j = 0; j < length; j++)
             {
-                expected += Math.pow(2, j);
+                expected <<= 1
+                expected |= 0b1;
             }
             // if (length >= 16)
             //     this.timeout(0);
