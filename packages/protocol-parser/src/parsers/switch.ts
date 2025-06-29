@@ -1,7 +1,7 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { AnyParser, Cursor, ParserWithMessageWithoutKnownLength, parserWrite } from './_common.js';
+import { AnyParser, Cursor, ParserWithMessage } from './_common.js';
 
-export default class Switch<T, TResult, TValue extends PropertyKey> implements ParserWithMessageWithoutKnownLength<TResult, T>
+export default class Switch<T, TResult, TValue extends PropertyKey> implements ParserWithMessage<TResult, T>
 {
     private parsers: Partial<{ [key in TValue]: AnyParser<TResult, T> }>;
     constructor(private condition: keyof { [key in keyof T]: T[key] extends TValue ? T[key] : never } | ((x: T) => TValue), parsers: Partial<{ [key in TValue]: AnyParser<TResult, T> }>)
@@ -28,7 +28,7 @@ export default class Switch<T, TResult, TValue extends PropertyKey> implements P
 
         return parser.read(buffer, cursor, message);
     }
-    write(value: TResult, message: T): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: TResult, message: T): void
     {
         if (typeof (message) == 'undefined')
             throw new Error('no message was provided');
@@ -40,7 +40,7 @@ export default class Switch<T, TResult, TValue extends PropertyKey> implements P
         if (!parser)
             throw new Error(`No parser could be found for ${this.condition.toString()} in ${JSON.stringify(value)}`);
 
-        return parserWrite(parser, value, message);
+        return parser.write(buffer, cursor, value, message);
     }
 
 }

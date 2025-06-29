@@ -1,7 +1,7 @@
 import { IsomorphicBuffer, BufferEncoding } from '@akala/core';
-import { Cursor, ParserWithMessageWithoutKnownLength } from './_common.js';
+import { Cursor, ParserWithMessage } from './_common.js';
 
-export default class PreparsedString<T, TKey extends keyof T, TString extends string = string> implements ParserWithMessageWithoutKnownLength<TString, T>
+export default class PreparsedString<T, TKey extends keyof T, TString extends string = string> implements ParserWithMessage<TString, T>
 {
     constructor(private readonly lengthProperty: TKey, private readonly encoding: BufferEncoding = 'ascii')
     {
@@ -17,11 +17,9 @@ export default class PreparsedString<T, TKey extends keyof T, TString extends st
         cursor.offset += value.length;
         return value as TString;
     }
-    write(value: TString, message: T): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: TString, message: T): void
     {
-        const buffers: IsomorphicBuffer[] = [];
-        buffers.push(IsomorphicBuffer.from(value, this.encoding).subarray(0, Number(message[this.lengthProperty])));
-        return buffers
+        buffer.copy(IsomorphicBuffer.from(value, this.encoding).subarray(0, Number(message[this.lengthProperty])), cursor.offset);
     }
 
 }

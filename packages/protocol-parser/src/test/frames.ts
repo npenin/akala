@@ -1,7 +1,7 @@
 import * as self from '../index.js'
 import * as assert from 'assert'
 import { object, uint16, uint8, string, buffer, bit, property, chooseProperty, emancipate } from '../parsers/index.js'
-import { Cursor, parserWrite } from '../parsers/_common.js'
+import { Cursor } from '../parsers/_common.js'
 import { describe, it } from 'node:test'
 import { IsomorphicBuffer } from '@akala/core'
 
@@ -57,7 +57,8 @@ describe('frame', function ()
         var expected: TestType = { length: 10, type: 5, sequenceNumber: 0, raw: new IsomorphicBuffer(new Uint8Array([0xff, 0xf5, 0x5f, 0x55])) }
         var protocol = frame;
 
-        var buffer: IsomorphicBuffer = IsomorphicBuffer.concat(parserWrite(protocol, expected, expected));
+        const buffer = new IsomorphicBuffer(9);
+        protocol.write(buffer, new Cursor(), expected, expected);
         assert.deepStrictEqual(buffer, new IsomorphicBuffer(new Uint8Array([10, 0, 5, 0, 4, 0xff, 0xf5, 0x5f, 0x55])))
         assert.deepStrictEqual(protocol.read(buffer, new Cursor(), expected), expected, 'frame writing and reading');
     })
@@ -73,7 +74,8 @@ describe('frame', function ()
             property('sign', emancipate(bit)),
             property('value', emancipate(uint16))
         );
-        var buffer = IsomorphicBuffer.concat(parserWrite(protocol, expected, expected));
+        const buffer = new IsomorphicBuffer(3);
+        protocol.write(buffer, new Cursor(), expected, expected);
         assert.deepStrictEqual(buffer, new IsomorphicBuffer(new Uint8Array([0, 78, 1])), 'frame writing')
         assert.deepStrictEqual(protocol.read(buffer, new Cursor(), {}), expected, 'frame reading');
     })
@@ -84,19 +86,22 @@ describe('subframe', function ()
     it('should read and write from buffer', function ()
     {
         var expected: SuperType = { type: 1, prop1: 17, sub: { length: 10, type: 1, sequenceNumber: 0, raw: new IsomorphicBuffer(new Uint8Array([0xff, 0xf5, 0x5f, 0x55])) } }
-        var buffer: IsomorphicBuffer = IsomorphicBuffer.concat(parserWrite(obj, expected));
+        let buffer = new IsomorphicBuffer(12);
+        obj.write(buffer, new Cursor(), expected, expected);
         assert.deepStrictEqual(buffer, new IsomorphicBuffer(new Uint8Array([17, 0, 1, 10, 0, 1, 0, 4, 0xff, 0xf5, 0x5f, 0x55])))
         assert.deepStrictEqual(obj.read(buffer, new Cursor(), {}), expected, 'frame writing and reading');
 
         var expected: SuperType = { type: 2, prop1: 17, sub: { length: 10, type: 1, sequenceNumber: 0, message: 'Buffer.from([0xff, 0xf5, 0x5f, 0x55]' } }
-        buffer = IsomorphicBuffer.concat(parserWrite(obj, expected));
+        buffer = new IsomorphicBuffer(12);
+        obj.write(buffer, new Cursor(), expected, expected);
         assert.deepStrictEqual(buffer, new IsomorphicBuffer(new Uint8Array([17, 0, 2, 10, 0, 1, 0, 36, 66, 117, 102, 102, 101, 114, 46, 102, 114, 111, 109, 40, 91, 48, 120, 102, 102, 44, 32, 48, 120, 102, 53, 44, 32, 48, 120, 53, 102, 44, 32, 48, 120, 53, 53, 93])))
         assert.deepStrictEqual(obj.read(buffer, new Cursor(), {}), expected, 'frame writing and reading');
 
         var expected: SuperType = { type: 3, prop1: 17, sub: { length: 10, type: 1, sequenceNumber: 0, message: 'Buffer.from([0xff, 0xf5, 0x5f, 0x55]' } }
         try
         {
-            parserWrite(obj, expected);
+            buffer = new IsomorphicBuffer(12);
+            obj.write(buffer, new Cursor(), expected, expected);
             assert.fail('unsupported type still passing');
         }
         catch (e)

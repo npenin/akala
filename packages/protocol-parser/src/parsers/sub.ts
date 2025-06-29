@@ -1,8 +1,8 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { ParserWithMessageWithoutKnownLength, Cursor, parserWrite, AnyParser } from './_common.js';
+import { ParserWithMessage, Cursor, AnyParser } from './_common.js';
 
 
-export class Sub<TResult, TMessage> implements ParserWithMessageWithoutKnownLength<TResult, TMessage>
+export class Sub<TResult, TMessage> implements ParserWithMessage<TResult, TMessage>
 {
     constructor(private lengthParser: AnyParser<number, TMessage>, private inner: AnyParser<TResult, TMessage>)
     {
@@ -29,24 +29,17 @@ export class Sub<TResult, TMessage> implements ParserWithMessageWithoutKnownLeng
         return result;
     }
 
-    write(value: TResult, message: TMessage): IsomorphicBuffer[];
-    write(buffer: IsomorphicBuffer, cursor: Cursor, value: TResult, message: TMessage): void;
-    write(buffer: IsomorphicBuffer | TResult, cursor?: Cursor | TMessage, value?: TResult, message?: TMessage)
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: TResult, message: TMessage): void
     {
-        if (!(cursor instanceof Cursor))
-        {
-            var buffers = parserWrite(this.inner, buffer as TResult, cursor);
-            if (buffers)
-            {
-                buffers.unshift(...parserWrite(this.lengthParser, buffers.reduce((previous, current) => previous + current.length, 0), cursor));
-            }
-            return buffers;
-        }
-        var buffers = parserWrite(this.inner, value, message);
-        if (buffers)
-        {
-            buffers.unshift(...parserWrite(this.lengthParser, buffers.reduce((previous, current) => previous + current.length, 0), message));
-        }
-        return buffers;
+        if (this.lengthParser.length == -1)
+            throw new Error('cannot write a prefixed series without knowing how much needs to be written');
+        const initalOffset = cursor.offset;
+        cursor.offset += this.lengthParser.length;
+        this.inner.write(buffer, cursor, value, message);
+        const finalOffset = cursor.offset;
+        cursor.offset = initalOffset;
+        this.lengthParser.write(buffer, cursor, finalOffset - initalOffset, message);
+        cursor.offset = finalOffset;
+
     }
 }

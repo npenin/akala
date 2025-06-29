@@ -1,11 +1,11 @@
 import { uint8 } from "../index.js";
-import { AnyParser, Cursor, Parsers, ParserWithoutKnownLength, parserWrite } from "../_common.js";
+import { AnyParser, Cursor, Parsers, Parser } from "../_common.js";
 import { IsomorphicBuffer } from "@akala/core";
 
 export type Map<TMessage> = Record<number, { name: keyof TMessage, parser: AnyParser<TMessage[keyof TMessage], Partial<TMessage>> }>
 export type MapByName<TMessage> = Record<keyof TMessage, { index: number, parser: AnyParser<TMessage[keyof TMessage], Partial<TMessage>> }>
 
-export default class TLVObject<TMessage extends object> implements ParserWithoutKnownLength<TMessage>
+export default class TLVObject<TMessage extends object> implements Parser<TMessage>
 {
     mapByName: MapByName<TMessage>;
 
@@ -29,12 +29,15 @@ export default class TLVObject<TMessage extends object> implements ParserWithout
         }
         return message as TMessage;
     }
-    write(value: TMessage): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: TMessage): void
     {
-        return (Object.entries(value) as [keyof TMessage, TMessage[keyof TMessage]][]).map(e =>
+        (Object.entries(value) as [keyof TMessage, TMessage[keyof TMessage]][]).forEach(e =>
         {
             if (this.mapByName && this.mapByName[e[0]])
-                return parserWrite(this.number, this.mapByName[e[0]].index).concat(parserWrite(this.mapByName[e[0]].parser, e[1], value) as IsomorphicBuffer[]);
-        }).filter(e => e).flat()
+            {
+                this.number.write(buffer, cursor, this.mapByName[e[0]].index);
+                this.mapByName[e[0]].parser.write(buffer, cursor, e[1], value);
+            }
+        })
     }
 }

@@ -1,5 +1,5 @@
 import { AnyParser, ParserWithMessage } from "./index.js";
-import { Cursor, parserWrite } from './_common.js';
+import { Cursor } from './_common.js';
 import { IsomorphicBuffer } from "@akala/core";
 
 export class Conditional<T, TMessage> implements ParserWithMessage<T, TMessage>
@@ -14,19 +14,10 @@ export class Conditional<T, TMessage> implements ParserWithMessage<T, TMessage>
             return this.parser.read(buffer, cursor, partial);
         return undefined;
     }
-    write(value: T, message: TMessage): IsomorphicBuffer[]
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
-    write(buffer: IsomorphicBuffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): void | IsomorphicBuffer[]
     {
-        if (buffer instanceof IsomorphicBuffer)
-        {
-            if (this.condition(message))
-                return parserWrite(this.parser, buffer, cursor, value, message);
-        }
-        else if (this.condition(cursor as TMessage))
-            return parserWrite(this.parser, buffer, cursor, value, message);
-        else
-            return [];
+        if (this.condition(message))
+            return this.parser.write(buffer, cursor, value, message);
     }
 
     readonly length: number;

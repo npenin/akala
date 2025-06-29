@@ -1,7 +1,7 @@
 import assert from "assert";
 import { protobuf } from "../parsers/index.js"
 import { ProtobufMessage } from "../parsers/protobuf/index.js";
-import { Cursor, parserWrite } from "../parsers/_common.js"
+import { Cursor } from "../parsers/_common.js"
 import { describe, it } from 'node:test'
 import { IsomorphicBuffer } from "@akala/core";
 
@@ -23,21 +23,27 @@ describe('protobuf', function ()
     it('should parse varint', function ()
     {
         const expected = 300;
-        const buffer = IsomorphicBuffer.concat(protobuf.varint.write(expected));
+
+        const buffer = new IsomorphicBuffer(2);
+        protobuf.varint.write(buffer, new Cursor(), expected);
         assert.deepStrictEqual(new IsomorphicBuffer([0b10101100, 0b00000010]), buffer);
         assert.deepStrictEqual(expected, protobuf.varint.read(buffer, new Cursor()));
     })
     it('should parse object with varint', function ()
     {
         const expected: Message1 = { a: 150 };
-        var buffer = IsomorphicBuffer.concat(parserWrite(message1, expected, expected));
+
+        const buffer = new IsomorphicBuffer(3);
+        message1.write(buffer, new Cursor(), expected)
         assert.deepStrictEqual(new IsomorphicBuffer([0x08, 0x96, 0x01]), buffer);
         assert.deepStrictEqual(expected, message1.read(buffer, new Cursor(), {}));
     })
     it('should parse object with repeatable varint', function ()
     {
         const expected: Message4 = { d: [3, 270, 86942] };
-        var buffer = IsomorphicBuffer.concat(parserWrite(message, expected, expected));
+
+        const buffer = new IsomorphicBuffer(8);
+        message.write(buffer, new Cursor(), expected)
         assert.deepStrictEqual(buffer, new IsomorphicBuffer(new Uint8Array([0x22,
             0x06,
             0x03,
@@ -49,14 +55,20 @@ describe('protobuf', function ()
     it('should parse object with string', function ()
     {
         const expected = { b: 'testing' };
-        var buffer = IsomorphicBuffer.concat(parserWrite(message, expected, expected));
+
+        const buffer = new IsomorphicBuffer(9);
+        message.write(buffer, new Cursor(), expected)
+
         assert.deepStrictEqual(new IsomorphicBuffer([0x12, 0x07, 0x74, 0x65, 0x73, 0x74, 0x69, 0x6e, 0x67]), buffer);
         assert.deepStrictEqual(expected, message.read(buffer, new Cursor(), {}));
     })
     it('should parse nested object', function ()
     {
         const expected = { c: { a: 150 } };
-        var buffer = IsomorphicBuffer.concat(parserWrite(message, expected, expected));
+
+        const buffer = new IsomorphicBuffer(5);
+        message.write(buffer, new Cursor(), expected)
+
         assert.deepStrictEqual(new IsomorphicBuffer([0x1a, 0x03, 0x08, 0x96, 0x01]), buffer);
         assert.deepStrictEqual(expected, message.read(buffer, new Cursor(), {}));
     })

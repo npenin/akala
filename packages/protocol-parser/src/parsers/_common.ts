@@ -12,23 +12,10 @@ export interface ParserWithMessage<T, TMessage>
     read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T;
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void;
 }
-export interface ParserWithoutKnownLength<T>
-{
-    length: -1;
-    read(buffer: IsomorphicBuffer, cursor: Cursor, message?: unknown): T;
-    write(value: T): IsomorphicBuffer[];
-}
-export interface ParserWithMessageWithoutKnownLength<T, TMessage>
-{
-    length: -1;
-    read(buffer: IsomorphicBuffer, cursor: Cursor, partial: TMessage): T;
-    write(value: T, message: TMessage): IsomorphicBuffer[];
-}
 
 
-
-export type Parsers<T> = Parser<T> | ParserWithoutKnownLength<T>
-export type ParsersWithMessage<T, TMessage> = ParserWithMessage<T, TMessage> | ParserWithMessageWithoutKnownLength<T, TMessage>;
+export type Parsers<T> = Parser<T>
+export type ParsersWithMessage<T, TMessage> = ParserWithMessage<T, TMessage>;
 export type AnyParser<T, TMessage> = Parsers<T> | ParsersWithMessage<T, TMessage>
 
 export class Cursor
@@ -56,48 +43,12 @@ export class Cursor
     }
 }
 
-// type IsCursor<T> = (cursor: Cursor | T) => boolean;
-
-export function hasUnknownLength<T, TMessage = unknown>(p: AnyParser<T, TMessage>): p is ParserWithoutKnownLength<T> | ParserWithMessageWithoutKnownLength<T, TMessage>
+export function parserWrite<T, TMessage>(parser: AnyParser<T, unknown>, value: T, message: TMessage = null, bufferSize = 1024)
 {
-    return p.length == -1;
-}
+    const buffer = new IsomorphicBuffer(bufferSize);
 
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: IsomorphicBuffer, cursor: Cursor, value: T, message?: TMessage): void
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, value: T, message?: TMessage): IsomorphicBuffer[]
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: IsomorphicBuffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): IsomorphicBuffer[] | void
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: IsomorphicBuffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): IsomorphicBuffer[] | void
-{
-    if (buffer instanceof IsomorphicBuffer && cursor instanceof Cursor)
-        if (hasUnknownLength(parser))
-        {
-            if (!(cursor instanceof Cursor))
-                throw new Error('no cursor was provided');
+    const cursor = new Cursor();
+    parser.write(buffer, cursor, value, message)
 
-            parser.write(value, message).forEach(b => { (buffer as IsomorphicBuffer).copy(b, cursor.offset); cursor.offset += b.length });
-        }
-        else
-        {
-            if (!(cursor instanceof Cursor))
-                throw new Error('no cursor was provided');
-
-            parser.write(buffer, cursor, value as T, message);
-        }
-    else
-    {
-        message = cursor as TMessage;
-        value = buffer as T;
-
-        if (hasUnknownLength(parser))
-            return parser.write(value, message);
-        else
-        {
-            buffer = new IsomorphicBuffer(Math.ceil(parser.length));
-            const cursor = new Cursor();
-            parser.write(buffer, cursor, value, message);
-            if (cursor.offset === 0)
-                return []
-            return [buffer];
-        }
-    }
+    return buffer.subarray(0, cursor.offset + 1);
 }

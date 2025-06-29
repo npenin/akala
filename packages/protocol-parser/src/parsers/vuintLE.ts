@@ -1,11 +1,11 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { Cursor, ParserWithoutKnownLength } from './_common.js';
+import { Cursor, Parser } from './_common.js';
 import Uint16LE from './uint16LE.js';
 import Uint24LE from './uint24LE.js';
 import Uint32LE from './uint32LE.js';
 import Uint8 from './uint8.js';
 
-export default class Vuint implements ParserWithoutKnownLength<number>
+export default class Vuint implements Parser<number>
 {
     constructor()
     {
@@ -34,32 +34,16 @@ export default class Vuint implements ParserWithoutKnownLength<number>
         }
     }
 
-    public write(value: number)
+    public write(buffer: IsomorphicBuffer, cursor: Cursor, value: number): void
     {
         if (value <= 0x7f)
-        {
-            const buffer = new IsomorphicBuffer(1);
-            Uint8.prototype.write(buffer, new Cursor(), value);
-            return [buffer];
-        }
+            Uint8.prototype.write(buffer, cursor, value);
         else if (value <= 0xff7f)
-        {
-            const buffer = new IsomorphicBuffer(2);
-            Uint16LE.prototype.write(buffer, new Cursor(), value);
-            return [buffer];
-        }
+            Uint16LE.prototype.write(buffer, cursor, value);
         else if (value <= 0xffff7f)
-        {
-            const buffer = new IsomorphicBuffer(3);
-            Uint24LE.prototype.write(buffer, new Cursor(), value);
-            return [buffer];
-        }
+            Uint24LE.prototype.write(buffer, cursor, value);
         else if (value <= 0xffffff7f)
-        {
-            const buffer = new IsomorphicBuffer(4);
-            Uint32LE.prototype.write(buffer, new Cursor(), value);
-            return [buffer];
-        }
+            Uint32LE.prototype.write(buffer, cursor, value);
         else
             throw new Error('invalid value for vuint');
     }

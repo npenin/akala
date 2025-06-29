@@ -1,16 +1,16 @@
 import { ParserWithMessage } from "./index.js";
 import Series from './series.js';
-import { Cursor, ParserWithMessageWithoutKnownLength } from './_common.js';
+import { Cursor } from './_common.js';
 import { IsomorphicBuffer } from "@akala/core";
 
-export default class Between<TMessage> extends Series<TMessage> implements ParserWithMessageWithoutKnownLength<TMessage, Partial<TMessage>>
+export default class Between<T extends TMessage, TMessage> extends Series<T, TMessage> implements ParserWithMessage<T, TMessage>
 {
-    constructor(start: ParserWithMessage<any, TMessage>, parser: ParserWithMessageWithoutKnownLength<any, TMessage>, end: ParserWithMessage<any, TMessage>)
+    constructor(start: ParserWithMessage<any, TMessage>, parser: ParserWithMessage<any, TMessage>, end: ParserWithMessage<any, TMessage>)
     {
         super(start, parser, end);
     }
 
-    read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): TMessage
+    read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T
     {
         const newCursor = new Cursor();
         this.parsers[0].read(buffer, cursor, message);
@@ -18,11 +18,6 @@ export default class Between<TMessage> extends Series<TMessage> implements Parse
         cursor.offset += newCursor.offset;
         this.parsers[2].read(buffer, cursor, message);
 
-        return message;
+        return message as T;
     }
-    write(buffer: IsomorphicBuffer | TMessage, cursor: Cursor | Partial<TMessage>, value?: TMessage, message?: Partial<TMessage>)
-    {
-        return super.write(buffer, cursor, value, message);
-    }
-
 }

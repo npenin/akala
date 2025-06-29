@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { AnyParser, Cursor, ParserWithMessage, ParserWithMessageWithoutKnownLength, parserWrite } from './_common.js';
+import { AnyParser, Cursor, ParserWithMessage } from './_common.js';
 
 export default class Skip<TMessage> implements ParserWithMessage<never, TMessage>
 {
@@ -20,7 +20,7 @@ export default class Skip<TMessage> implements ParserWithMessage<never, TMessage
 }
 
 
-export class SkipParser<TMessage> implements ParserWithMessageWithoutKnownLength<never, TMessage>
+export class SkipParser<TMessage> implements ParserWithMessage<never, TMessage>
 {
     public readonly length = -1;
 
@@ -31,10 +31,9 @@ export class SkipParser<TMessage> implements ParserWithMessageWithoutKnownLength
         return null as never;
     }
 
-    write()
+    write(buffer: IsomorphicBuffer, cursor: Cursor)
     {
-        const buffer = new IsomorphicBuffer(this.lengthParser.length)
-        parserWrite(this.lengthParser, buffer, new Cursor(), 0);
+        this.lengthParser.write(buffer, cursor, 0, null);
         return [buffer];
     }
 }

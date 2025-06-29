@@ -1,6 +1,6 @@
 import assert from "assert";
 import { parsers, tlv } from "../index.js"
-import { Cursor } from "../parsers/_common.js"
+import { Cursor, parserWrite } from "../parsers/_common.js"
 import { describe, it } from 'node:test'
 import { IsomorphicBuffer } from "@akala/core";
 
@@ -68,10 +68,11 @@ describe('tlv', function ()
 
     it('should encode properly', function ()
     {
-        const actual = IsomorphicBuffer.concat(pairMessage.write({
+
+        const actual = parserWrite(pairMessage, {
             state: PairState.M1,
             method: PairMethod.Setup,
-        }));
+        });
 
         const expected = encode(pairMessage.mapByName.state.index, PairState.M1, pairMessage.mapByName.method.index, PairMethod.Setup)
         assert.deepStrictEqual(expected, actual);
@@ -84,7 +85,7 @@ describe('tlv', function ()
             method: PairMethod.Setup,
         };
 
-        const actual = pairMessage.read(IsomorphicBuffer.concat(pairMessage.write(expected)), new Cursor());
+        const actual = pairMessage.read(parserWrite(pairMessage, expected), new Cursor());
 
         assert.deepStrictEqual(expected, actual);
     })

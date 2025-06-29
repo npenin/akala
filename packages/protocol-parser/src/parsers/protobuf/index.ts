@@ -3,7 +3,7 @@ import ProtobufString from './string.js';
 import FixedLengthArray from "../array-fixed.js";
 import Uint32 from "../uint32.js";
 import Uint64 from "../uint64.js";
-import { AnyParser, ParsersWithMessage, ParserWithMessageWithoutKnownLength } from "../_common.js";
+import { AnyParser, ParsersWithMessage, ParserWithMessage } from "../_common.js";
 import Property, { ArrayItem } from './property.js';
 import { WireType } from './field.js';
 import Message, { UnknownMessage } from './message.js';
@@ -28,7 +28,7 @@ export function packed<T extends ProtobufMessage<T>>(name: keyof T, parser: AnyP
 }
 
 export function sub<T extends ProtobufMessage<T>>(parser: AnyParser<T, Partial<T>>)
-    : ParserWithMessageWithoutKnownLength<T, any> & { wireType: WireType }
+    : ParserWithMessage<T, any> & { wireType: WireType }
 {
     return new Sub(varint, parser);
 }
@@ -39,17 +39,17 @@ export function sub<T extends ProtobufMessage<T>>(parser: AnyParser<T, Partial<T
  * @returns 
  */
 export function root<T extends ProtobufMessage<T>>(parser: AnyParser<T, Partial<T>>)
-    : ParserWithMessageWithoutKnownLength<T, any> & { wireType: WireType }
+    : ParserWithMessage<T, any> & { wireType: WireType }
 {
     return new Sub(int32, parser);
 }
 
 export function property<T extends ProtobufMessage<T>, TKey extends keyof T>(name: TKey, wireType: WireType, parser: AnyParser<T[TKey], T>)
-    : ParserWithMessageWithoutKnownLength<T[TKey], T> & { wireType: WireType }
+    : ParserWithMessage<T[TKey], T> & { wireType: WireType }
 export function property<T extends ProtobufMessage<T>, TKey extends keyof T>(name: TKey, parser: (ParsersWithMessage<T[TKey], Partial<T>> & { wireType: WireType }))
-    : ParserWithMessageWithoutKnownLength<T[TKey], T> & { wireType: WireType }
+    : ParserWithMessage<T[TKey], T> & { wireType: WireType }
 export function property<T extends ProtobufMessage<T>, TKey extends keyof T>(name: TKey, wireType: WireType | (ParsersWithMessage<any, Partial<T>> & { wireType: WireType }), parser?: AnyParser<T[TKey], Partial<T>>)
-    : ParserWithMessageWithoutKnownLength<T[TKey], T> & { wireType: WireType }
+    : ParserWithMessage<T[TKey], T> & { wireType: WireType }
 {
     if (typeof wireType !== 'string')
     {
@@ -59,8 +59,8 @@ export function property<T extends ProtobufMessage<T>, TKey extends keyof T>(nam
     return new Property<T, typeof name>(name, wireType, new ZeroOrOne(parser)) as any;
 }
 
-export function object<T extends ProtobufMessage<T>>(...parsers: (ParserWithMessageWithoutKnownLength<any, Partial<T>> & { wireType: WireType })[]):
-    ParserWithMessageWithoutKnownLength<T, Partial<T> | void> & { wireType: WireType }
+export function object<T extends ProtobufMessage<T>>(...parsers: (ParserWithMessage<any, Partial<T>> & { wireType: WireType })[]):
+    ParserWithMessage<T, Partial<T> | void> & { wireType: WireType }
 {
     return new Message<T>(...parsers);
 }
@@ -70,8 +70,8 @@ export function object<T extends ProtobufMessage<T>>(...parsers: (ParserWithMess
  * @param parsers 
  * @returns 
  */
-export function message<T extends ProtobufMessage<T>>(...parsers: (ParserWithMessageWithoutKnownLength<any, Partial<T>> & { wireType: WireType })[]):
-    ParserWithMessageWithoutKnownLength<T, Partial<T> | void> & { wireType: WireType }
+export function message<T extends ProtobufMessage<T>>(...parsers: (ParserWithMessage<any, Partial<T>> & { wireType: WireType })[]):
+    ParserWithMessage<T, Partial<T> | void> & { wireType: WireType }
 {
     return root(object(...parsers));
 }

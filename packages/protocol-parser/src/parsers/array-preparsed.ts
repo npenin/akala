@@ -1,8 +1,8 @@
-import { AnyParser, ParserWithMessageWithoutKnownLength } from "./index.js";
-import { Cursor, parserWrite } from './_common.js';
+import { AnyParser, ParserWithMessage } from "./index.js";
+import { Cursor } from './_common.js';
 import { IsomorphicBuffer } from "@akala/core";
 
-export default class PreparsedLengthArray<T, TMessage> implements ParserWithMessageWithoutKnownLength<T[], TMessage>
+export default class PreparsedLengthArray<T, TMessage> implements ParserWithMessage<T[], TMessage>
 {
     constructor(private prefix: keyof TMessage, private valueParser: AnyParser<T, TMessage>)
     {
@@ -21,11 +21,9 @@ export default class PreparsedLengthArray<T, TMessage> implements ParserWithMess
         return result;
     }
 
-    write(value: T[], message: TMessage): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T[], message: TMessage)
     {
-        var buffers: IsomorphicBuffer[] = [];
         for (let index = 0; index < (message[this.prefix] as unknown as number); index++)
-            buffers.push(...parserWrite(this.valueParser, value[index], message));
-        return buffers;
+            this.valueParser.write(buffer, cursor, value[index], message);
     }
 }

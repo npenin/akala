@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 import { array, bit, string, uint16, uint16LE, uint2, uint3, uint32, uint32LE, uint4, uint5, uint6, uint64, uint7, uint8 } from '../parsers/index.js'
-import { Cursor, Parser, parserWrite } from '../parsers/_common.js'
+import { Cursor, Parser } from '../parsers/_common.js'
 import { describe, it } from 'node:test'
 import { IsomorphicBuffer } from '@akala/core'
 
@@ -90,8 +90,8 @@ function readArrayType(name: string, type: Parser<number>, length: number)
 
             var buffer: IsomorphicBuffer = new IsomorphicBuffer(length * type.length + 1);
 
-            parserWrite(arrayType, buffer, new Cursor(), expected);
-            assert.deepStrictEqual(arrayType.read(buffer, new Cursor()), expected, 'reading array in buffer');
+            arrayType.write(buffer, new Cursor(), expected, null);
+            assert.deepStrictEqual(arrayType.read(buffer, new Cursor(), expected), expected, 'reading array in buffer');
         })
     })
 }
@@ -126,7 +126,7 @@ describe('read', function ()
         {
             var expected = 'string'
             var buffer: IsomorphicBuffer = new IsomorphicBuffer(expected.length + 1);
-            parserWrite(s, buffer, new Cursor(), expected);
+            s.write(buffer, new Cursor(), expected);
             assert.strictEqual(s.read(buffer, new Cursor()), 'string', 'reading in buffer');
         })
     })

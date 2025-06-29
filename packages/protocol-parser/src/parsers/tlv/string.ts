@@ -9,24 +9,18 @@ export class TLVString extends PrefixedString
         super(parser, encoding)
     }
 
-    write(value: string): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: string): void
     {
-        const result = []
-        const cursor = new Cursor();
-        while (cursor.offset < value.length)
+        if (value.length > this.maxLength)
         {
-            if (value.length > this.maxLength)
-            {
-                result.push(...super.write(value.substring(cursor.offset, this.maxLength)));
-                cursor.offset += this.maxLength;
-            }
-            else
-            {
-                result.push(...super.write(value.substring(cursor.offset)));
-                cursor.offset += this.maxLength;
-            }
+            super.write(buffer, cursor, value.substring(cursor.offset, this.maxLength));
+            cursor.offset += this.maxLength;
         }
-        return result;
+        else
+        {
+            super.write(buffer, cursor, value.substring(cursor.offset));
+            cursor.offset += this.maxLength;
+        }
     }
 
 }

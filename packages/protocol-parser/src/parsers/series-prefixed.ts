@@ -1,8 +1,8 @@
-import { AnyParser, ParserWithMessageWithoutKnownLength } from "./index.js";
-import { Cursor, Parsers, parserWrite } from './_common.js';
+import { AnyParser, ParserWithMessage } from "./index.js";
+import { Cursor, Parsers } from './_common.js';
 import { IsomorphicBuffer } from "@akala/core";
 
-export default class PrefixedLengthSeries<T, TMessage> implements ParserWithMessageWithoutKnownLength<T, TMessage>
+export default class PrefixedLengthSeries<T, TMessage> implements ParserWithMessage<T, TMessage>
 {
     constructor(private prefix: Parsers<number>, private valueParser: AnyParser<T, TMessage>)
     {
@@ -18,12 +18,16 @@ export default class PrefixedLengthSeries<T, TMessage> implements ParserWithMess
         return this.valueParser.read(buffer.subarray(0, length), cursor, message);
     }
 
-    write(value: T, message: TMessage): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
     {
-        var valueBuffers = IsomorphicBuffer.concat(parserWrite(this.valueParser, value, message));
-        var buffers: IsomorphicBuffer[] = [];
-        buffers.push(...parserWrite(this.prefix, valueBuffers.length, message));
-        buffers.push(valueBuffers)
-        return buffers;
+        if (this.prefix.length == -1)
+            throw new Error('cannot write a prefixed series without knowing how much needs to be written');
+        const initalOffset = cursor.offset;
+        cursor.offset += this.prefix.length;
+        this.valueParser.write(buffer, cursor, value, message);
+        const finalOffset = cursor.offset;
+        cursor.offset = initalOffset;
+        this.prefix.write(buffer, cursor, finalOffset - initalOffset);
+        cursor.offset = finalOffset;
     }
 }

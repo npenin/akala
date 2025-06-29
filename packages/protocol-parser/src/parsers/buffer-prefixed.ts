@@ -1,9 +1,9 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { AnyParser, Cursor, ParserWithoutKnownLength, parserWrite } from './_common.js';
+import { Cursor, Parser } from './_common.js';
 
-export default class PrefixedBuffer implements ParserWithoutKnownLength<IsomorphicBuffer>
+export default class PrefixedBuffer implements Parser<IsomorphicBuffer>
 {
-    constructor(private prefix: AnyParser<number, unknown>, private readonly dismissMainBuffer: boolean = false)
+    constructor(private prefix: Parser<number>, private readonly dismissMainBuffer: boolean = false)
     {
 
     }
@@ -13,7 +13,7 @@ export default class PrefixedBuffer implements ParserWithoutKnownLength<Isomorph
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
 
-        const length = this.prefix.read(buffer, cursor, null);
+        const length = this.prefix.read(buffer, cursor);
         const offset = cursor.offset;
         const result = buffer.subarray(offset, cursor.offset += length);
         if (this.dismissMainBuffer)
@@ -22,11 +22,9 @@ export default class PrefixedBuffer implements ParserWithoutKnownLength<Isomorph
         return result;
     }
 
-    write(value: IsomorphicBuffer): IsomorphicBuffer[]
+    write(buffer: IsomorphicBuffer, cursor: Cursor, value: IsomorphicBuffer)
     {
-        var buffers: IsomorphicBuffer[] = [];
-        buffers.push(...parserWrite(this.prefix, value.length));
-        buffers.push(value);
-        return buffers;
+        this.prefix.write(buffer, cursor, value.length);
+        buffer.copy(value, cursor.offset);
     }
 }
