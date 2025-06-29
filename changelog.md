@@ -221,6 +221,7 @@
 * ensure akala is not postinstalled ccfb8fa
 * ensure akala is not postinstalled 272b1ee
 * ensure InitAkala warms up correctly when handling the init command c7dd7a2
+* ensure message is assigned correctly in getLength method bbebf45
 * ensure postinstall completes 135afa8
 * ensure postinstall completes 10c4a72
 * ensure prepareMessage is called correctly in getLength and write methods 3c77981
