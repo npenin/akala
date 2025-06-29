@@ -12,9 +12,11 @@ export class Prepare<T, TMessage> implements ParserWithMessage<T, TMessage>
 
     getLength(value: T, message?: TMessage): number
     {
-
         if (!this.prepared)
+        {
             this.prepareMessage(value);
+            this.prepared = true;
+        }
         return this.parser.getLength(value, message);
     }
 
@@ -27,7 +29,11 @@ export class Prepare<T, TMessage> implements ParserWithMessage<T, TMessage>
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
     {
         if (!this.prepared)
+        {
             this.prepareMessage(value);
+            this.prepared = true;
+        }
+
         return this.parser.write(buffer, cursor, value, message);
     }
 
