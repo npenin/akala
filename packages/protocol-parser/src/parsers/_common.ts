@@ -1,8 +1,7 @@
 import { ErrorWithStatus, IsomorphicBuffer } from "@akala/core";
 
-export interface Parser<T>
+export interface Parser<T> extends ParserWithMessage<T, any>
 {
-    length: number;
     read(buffer: IsomorphicBuffer, cursor: Cursor): T;
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T): void;
     getLength(value: T): number;
@@ -15,9 +14,13 @@ export interface ParserWithMessage<T, TMessage>
     getLength(value: T, message?: TMessage): number;
 }
 
+export interface OptimizableParser<T, TMessage> extends ParserWithMessage<T, TMessage>
+{
+    getCacheKey(value: T, message: TMessage): void | undefined | string;
+}
 
-export type Parsers<T> = Parser<T>
-export type ParsersWithMessage<T, TMessage> = ParserWithMessage<T, TMessage>;
+export type Parsers<T> = Parser<T> & Partial<OptimizableParser<T, any>>
+export type ParsersWithMessage<T, TMessage> = ParserWithMessage<T, TMessage> & Partial<OptimizableParser<T, TMessage>>;
 export type AnyParser<T, TMessage> = Parsers<T> | ParsersWithMessage<T, TMessage>
 
 export class Cursor
