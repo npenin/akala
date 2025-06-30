@@ -1,9 +1,14 @@
-#  (2025-06-29)
+#  (2025-06-30)
 
 
 ### Bug Fixes
 
-* ensure message is assigned correctly in getLength method bbebf45
+* extend Parser interface to include ParserWithMessage for improved type consistency 6c7cc1f
+
+
+### Features
+
+* introduce auto caching 9efc35e
 
 
 
