@@ -3,12 +3,7 @@
 
 ### Bug Fixes
 
-* extend Parser interface to include ParserWithMessage for improved type consistency 6c7cc1f
-
-
-### Features
-
-* introduce auto caching 9efc35e
+* change cache property visibility to public for better accessibility fa4a62c
 
 
 
