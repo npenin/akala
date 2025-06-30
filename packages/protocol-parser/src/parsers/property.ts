@@ -15,16 +15,18 @@ export default class Property<T extends { [key in TKey]: Exclude<any, object> },
         switch (typeof value)
         {
             case 'string':
-            case 'number':
-            case 'bigint':
             case 'boolean':
             case 'symbol':
                 return value;
+            case 'bigint':
+                return value ? value.toString() : '';
+            case 'number':
+                return value ? value.toString() : '';
             case 'undefined':
-                return '`undefined`';
+                return '';
             case 'object':
                 if (value === null)
-                    return '`null`';
+                    return '';
         }
     }
 
