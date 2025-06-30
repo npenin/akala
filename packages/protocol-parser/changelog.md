@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* missed 1 usecase for seriesOrSingle usage e10786c
+* refine getCacheKey method to handle bigint and number cases more clearly dd49532
 
 
 
