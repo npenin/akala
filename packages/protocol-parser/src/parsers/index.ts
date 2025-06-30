@@ -248,7 +248,7 @@ export function object<T extends object>(...maps: AnyParser<T[keyof T] | T, T>[]
     return new Object<T>(...mapTriaged.map(map => new Series(...map)));
 }
 
-function seriesOrSingle<T>(...map: AnyParser<T[keyof T], T>[])
+function seriesOrSingle<T>(map: AnyParser<T[keyof T], T>[])
 {
     if (map.length == 1)
         return map[0];
@@ -276,10 +276,10 @@ export function series<T extends object>(...maps: AnyParser<T[keyof T], T>[]): P
     if (mapTriaged.length == 1 && maps.length == 1)
         return maps[0] as any;
     if (mapTriaged.length == 1)
-        return new Series(...maps);
+        return seriesOrSingle(mapTriaged[0]);
     if (mapTriaged.length == 3 && mapTriaged[0][0].length > -1 && mapTriaged[1][0].length == -1 && mapTriaged[2][0].length > -1)
-        return new Between<T, Partial<T>>(seriesOrSingle(...mapTriaged[0]), seriesOrSingle(...mapTriaged[1]), seriesOrSingle(...mapTriaged[2]));
-    return new Series(...mapTriaged.map(map => seriesOrSingle(...map)));
+        return new Between<T, Partial<T>>(seriesOrSingle(mapTriaged[0]), seriesOrSingle(mapTriaged[1]), seriesOrSingle(mapTriaged[2]));
+    return new Series(...mapTriaged.map(map => seriesOrSingle(map)));
 }
 
 export function prefixedSeries<T extends object>(length: Parsers<number>, ...maps: AnyParser<T[keyof T] | T, T>[]): ParserWithMessage<T, Partial<T>>
