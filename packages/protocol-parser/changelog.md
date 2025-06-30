@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* ensure prepareMessage is called correctly in getLength and write methods 3c77981
-* update getLength method to return correct byte lengths for vuint and vuintLE c273df2
+* ensure message is assigned correctly in getLength method bbebf45
 
 
 
