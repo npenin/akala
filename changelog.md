@@ -1,4 +1,4 @@
-#  (2025-06-29)
+#  (2025-06-30)
 
 
 * chore : code cleanup eae1150
@@ -238,6 +238,7 @@
 * exclude views and fix login template cff89b9
 * existing file generator detection ca3ad06
 * export ParserFormatter 7842585
+* extend Parser interface to include ParserWithMessage for improved type consistency 6c7cc1f
 * extract params considers when array is provided 96c7644
 * extract params considers when array is provided c5eb98b
 * fallthrough on 404 a81cd29
@@ -1049,6 +1050,7 @@
 * include URI in request logging for improved traceability 6e4418a
 * integrate parserWrite for improved value handling in i32 and i64 const methods b8df8d7
 * introduce allowSubProperties on attributecomposer 8b3efac
+* introduce auto caching 9efc35e
 * introduce if composer 5fdfd35
 * introduce IsomorphicBuffer dfa275f
 * introduce master detail, entity and if by default f1c5d91
