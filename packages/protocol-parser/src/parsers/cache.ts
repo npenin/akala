@@ -20,7 +20,7 @@ export default class Cache<T extends PropertyKey, TMessage> implements ParserWit
         return this.parser.read(buffer, cursor, message);
     }
 
-    private readonly cache = new Map<any, IsomorphicBuffer>();
+    public readonly cache = new Map<any, IsomorphicBuffer>();
 
 
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
@@ -41,5 +41,12 @@ export default class Cache<T extends PropertyKey, TMessage> implements ParserWit
             buffer.copy(cached, cursor.offset);
             cursor.offset += cached.length;
         }
+    }
+
+    public preBuildCache(value: T, message: TMessage)
+    {
+        const buffer = new IsomorphicBuffer(this.length);
+        this.parser.write(buffer, new Cursor(), value, message);
+        this.cache.set(this.parser.getCacheKey(value, message), buffer);
     }
 }
