@@ -15,13 +15,13 @@ export default class Property<T extends { [key in TKey]: Exclude<any, object> },
         switch (typeof value)
         {
             case 'string':
-            case 'boolean':
-            case 'symbol':
                 return value;
+            case 'symbol':
+                return value.toString();
+            case 'boolean':
             case 'bigint':
-                return value ? value.toString() : '';
             case 'number':
-                return value ? value.toString() : '';
+                return value ? (value as any).toString() : '';
             case 'undefined':
                 return '';
             case 'object':
