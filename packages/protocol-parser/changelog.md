@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* change cache property visibility to public for better accessibility fa4a62c
+* missed 1 usecase for seriesOrSingle usage e10786c
 
 
 
