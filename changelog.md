@@ -129,6 +129,7 @@
 * cancel breaking change e5ab02a
 * case when x is null 4631c51
 * case when x is null 8c0dd0d
+* change cache property visibility to public for better accessibility fa4a62c
 * change vulnerable algorithm 7d5caa7
 * chord support df992cf
 * chord support 751f7f7
