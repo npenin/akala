@@ -507,6 +507,7 @@
 * redefine discover and map commands e732371
 * refactor npm protocol handling to improve URL resolution and ensure package.json access 1d1322a
 * refactor write method to improve buffer handling and error checks 8609d52
+* refine getCacheKey method to handle bigint and number cases more clearly dd49532
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
 * relative extends maps to relative files 2402375
