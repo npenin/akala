@@ -1,9 +1,9 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { Cursor, ParsersWithMessage, ParserWithMessage } from './_common.js';
+import { Cursor, OptimizableParser, ParsersWithMessage } from './_common.js';
 
-export default class Series<T extends TMessage, TMessage> implements ParserWithMessage<TMessage, TMessage>
+export default class Series<T extends TMessage, TMessage> implements OptimizableParser<TMessage, TMessage>
 {
-    protected parsers: ParsersWithMessage<any, TMessage>[];
+    protected parsers: (ParsersWithMessage<any, TMessage>)[];
     protected lengths: number[] = [];
     constructor(...parsers: ParsersWithMessage<any, TMessage>[])
     {
@@ -18,6 +18,19 @@ export default class Series<T extends TMessage, TMessage> implements ParserWithM
                 return -1;
             return current + previous;
         }, 0) as -1;
+    }
+
+    getCacheKey(value: T, message: TMessage): void | undefined | string
+    {
+        let cacheKeys: string[] = [];
+        for (let i = 0; i < this.parsers.length; i++)
+        {
+            const cacheKey = this.parsers[i].getCacheKey?.(value, message);
+            if (typeof cacheKey !== 'string')
+                return;
+            cacheKeys.push(cacheKey);
+        }
+        return cacheKeys.join('#')
     }
 
     getLength(value: TMessage, message?: TMessage): number

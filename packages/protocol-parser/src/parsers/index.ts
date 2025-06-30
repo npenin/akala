@@ -252,7 +252,10 @@ function seriesOrSingle<T>(...map: AnyParser<T[keyof T], T>[])
 {
     if (map.length == 1)
         return map[0];
-    return new Series(...map);
+    const result = new Series(...map);
+    if (result.length !== -1)
+        return cache(result);
+    return result;
 }
 
 export function series<T extends object>(...maps: AnyParser<T[keyof T], T>[]): ParserWithMessage<T, Partial<T>>

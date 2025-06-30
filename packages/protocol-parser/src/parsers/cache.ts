@@ -26,15 +26,20 @@ export default class Cache<T extends PropertyKey, TMessage> implements ParserWit
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
     {
         const offset = cursor.offset;
-        if (!this.cache.has(value))
+        const cacheKey = this.parser.getCacheKey?.(value, message);
+        if (typeof cacheKey !== 'string')
+            return this.parser.write(buffer, cursor, value, message);
+
+        if (!this.cache.has(cacheKey))
         {
             this.parser.write(buffer, cursor, value, message);
-            this.cache.set(value, buffer.subarray(offset, cursor.offset));
+            this.cache.set(cacheKey, buffer.subarray(offset, cursor.offset));
         }
         else
         {
-            buffer.copy(this.cache.get(value), cursor.offset);
-            cursor.offset += this.cache.get(value).length
+            var cached = this.cache.get(cacheKey)
+            buffer.copy(cached, cursor.offset);
+            cursor.offset += cached.length;
         }
     }
 }

@@ -1,13 +1,33 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { AnyParser, Cursor, ParserWithMessage } from './_common.js';
+import { AnyParser, Cursor, ParsersWithMessage } from './_common.js';
 
 
-export default class Property<T extends { [key in TKey]: Exclude<any, object> }, TKey extends keyof T> implements ParserWithMessage<T[TKey], T>
+export default class Property<T extends { [key in TKey]: Exclude<any, object> }, TKey extends keyof T> implements ParsersWithMessage<T[TKey], T>
 {
     constructor(public readonly name: TKey, protected readonly parser: AnyParser<T[TKey], T>)
     {
         this.length = parser.length;
     }
+
+    getCacheKey(value: T[TKey], message: T): void | undefined | string
+    {
+        value = message[this.name];
+        switch (typeof value)
+        {
+            case 'string':
+            case 'number':
+            case 'bigint':
+            case 'boolean':
+            case 'symbol':
+                return value;
+            case 'undefined':
+                return '`undefined`';
+            case 'object':
+                if (value === null)
+                    return '`null`';
+        }
+    }
+
     getLength(value: T[TKey], message?: T): number
     {
         return this.parser.getLength(value[this.name], message)
