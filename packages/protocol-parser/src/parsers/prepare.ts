@@ -3,7 +3,7 @@ import { AnyParser, Cursor, ParserWithMessage } from './_common.js';
 
 export class Prepare<T, TMessage> implements ParserWithMessage<T, TMessage>
 {
-    private prepared = false;
+    private prepared: TMessage = null;
 
     constructor(private prepareMessage: (t: T) => void, private parser: AnyParser<T, TMessage>)
     {
@@ -12,10 +12,10 @@ export class Prepare<T, TMessage> implements ParserWithMessage<T, TMessage>
 
     getLength(value: T, message?: TMessage): number
     {
-        if (!this.prepared)
+        if (this.prepared !== message)
         {
             this.prepareMessage(value);
-            this.prepared = true;
+            this.prepared = message;
         }
         return this.parser.getLength(value, message);
     }
@@ -28,10 +28,10 @@ export class Prepare<T, TMessage> implements ParserWithMessage<T, TMessage>
 
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: T, message: TMessage): void
     {
-        if (!this.prepared)
+        if (this.prepared !== message)
         {
             this.prepareMessage(value);
-            this.prepared = true;
+            this.prepared = message;
         }
 
         return this.parser.write(buffer, cursor, value, message);
