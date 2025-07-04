@@ -14,6 +14,7 @@ export type ModuleSectionMap = {
     1: TypeSection[],
     2: ImportSection[],
     3: FuncSection[],
+    4: TableSection[],
     5: MemorySection[],
     7: ExportSection[],
     10: CodeSection[]
@@ -24,6 +25,7 @@ export type ModuleSections = ModuleSection<0>
     | ModuleSection<1>
     | ModuleSection<2>
     | ModuleSection<3>
+    | ModuleSection<4>
     | ModuleSection<5>
     | ModuleSection<7>
     | ModuleSection<10>
@@ -45,6 +47,14 @@ export interface TypeSection
 export interface FuncSection
 {
     type: u32;
+}
+
+export interface TableSection
+{
+    type: u8;
+    flags: boolean;
+    initial: u8;
+    max?: u8;
 }
 
 export interface MemorySection

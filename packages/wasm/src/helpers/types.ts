@@ -47,7 +47,7 @@ export enum valtype
  * @param type - The value type to convert
  * @returns The corresponding WebAssembly type instance
  */
-export function getValType(type: valtype): wasmtype<unknown>
+export function getValType(type: valtype): wasmtype<any>
 {
     switch (type)
     {

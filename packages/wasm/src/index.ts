@@ -3,7 +3,7 @@ import './allocators/tlsf.js'
 // import { Runtime } from './runtime/runtime.js';
 import { i32 } from './helpers/i32.js';
 import { u8 } from './transpilers/wasmtype.js';
-import { CodeSection, ExportSection, FuncSection, ImportSection, MemorySection, Module, ModuleSectionMap, ModuleSections, TypeSection } from './structure.js';
+import { CodeSection, ExportSection, FuncSection, ImportSection, MemorySection, Module, ModuleSectionMap, ModuleSections, TableSection, TypeSection } from './structure.js';
 import { valtype } from './helpers/types.js';
 import { IsomorphicBuffer } from '@akala/core';
 
@@ -66,6 +66,15 @@ const x = parsers.array(-1,
                 ))),
                 3: parsers.emancipate(parsers.array(vuint, parsers.object<FuncSection>(
                     parsers.property('type', vuint)
+                ))),
+                4: parsers.emancipate(parsers.array(vuint, parsers.object<TableSection>(
+                    parsers.property('type', vuint),
+                    parsers.property('flags', parsers.boolean(parsers.uint8)),
+                    parsers.property('initial', vuint),
+                    parsers.chooseProperty<TableSection, 'flags', 'max'>('flags', 'max', {
+                        false: parsers.noop,
+                        true: vuint,
+                    })
                 ))),
                 5: parsers.emancipate(parsers.array(vuint, parsers.object<MemorySection>(
                     parsers.property('flags', parsers.boolean(parsers.uint8)),

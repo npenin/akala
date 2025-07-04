@@ -9,6 +9,25 @@ import { IsomorphicBuffer } from '@akala/core';
 
 export class control 
 {
+    static switch(value: wasmtypeInstance<any>, cases: { code: IsomorphicBuffer, fallthrough?: boolean }[]): control
+    {
+        let block = control.block(undefined, mergeUInt8Arrays(
+            value.toOpCodes(),
+            [control.transpiler.br_table, cases.length, ...cases.map((_, i) => cases.length - i)]
+        ));
+        for (let i = cases.length; i >= 0; i--)
+        {
+            const c = cases[i];
+            block = control.block(undefined,
+                mergeUInt8Arrays(
+                    block.toOpCodes(),
+                    c.code,
+                    c.fallthrough ? [] : [control.transpiler.br, cases.length - i]
+                ))
+        }
+
+        return block;
+    }
     protected constructor(private initialOp: IsomorphicBuffer) { }
     public toOpCodes(): IsomorphicBuffer
     {
@@ -17,8 +36,13 @@ export class control
 
     public static readonly transpiler = transpiler;
 
-    public static block<T extends wasmtype<U>, U extends wasmtypeInstance<U>>(blocktype: T, instr: IsomorphicBuffer): U
+    public static drop<U extends wasmtypeInstance<U>>(value: U)
+    {
+        return mergeUInt8Arrays(value.toOpCodes(), [transpiler.drop]);
+    }
+
     public static block(blocktype: undefined, instr: IsomorphicBuffer): control
+    public static block<T extends wasmtype<U>, U extends wasmtypeInstance<U>>(blocktype: T, instr: IsomorphicBuffer): U
     public static block<T extends wasmtype<U>, U extends wasmtypeInstance<U>>(blocktype: T | undefined, instr: IsomorphicBuffer): U | control
     {
         if (!blocktype)

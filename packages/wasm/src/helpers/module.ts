@@ -1,5 +1,5 @@
 import { global } from "./global.js";
-import { memory } from "./memory.js";
+import { memory, usizeType } from "./memory.js";
 import { func, parameters } from "./func.js";
 import { table } from "./table.js";
 import { getValType, mergeUInt8Arrays } from "./types.js";
@@ -14,6 +14,13 @@ import { IsomorphicBuffer } from "@akala/core";
  * Handler function type for processing WebAssembly function results
  */
 type ResultHandler<T> = (result: T) => IsomorphicBuffer;
+
+export type ImportedFunc<T extends readonly wasmtype<any>[], U extends readonly wasmtype<any>[]> = {
+    (...args: parameters<T>): parameters<U>[0]
+    func: func<T, U>,
+    call(args: parameters<T>, results: ResultHandlers<U>): IsomorphicBuffer
+    index: number
+}
 
 /**
  * Type helper for mapping WebAssembly function result types to their handlers
@@ -35,6 +42,8 @@ export type ResultHandlers<T extends readonly wasmtype<any>[]> = T extends never
  */
 export class Module<TNative extends bigint | number>
 {
+    constructor(public readonly usize: usizeType<TNative>) { }
+
     /**
      * Gets a function by its export name
      * @template T - Array of parameter types
@@ -53,9 +62,9 @@ export class Module<TNative extends bigint | number>
      * @param sections - Array of module sections
      * @returns A new Module instance
      */
-    static fromSections<TNative extends bigint | number>(sections: ModuleSections[]): Module<TNative>
+    static fromSections<TNative extends bigint | number>(usize: usizeType<TNative>, sections: ModuleSections[]): Module<TNative>
     {
-        const module = new Module<TNative>();
+        const module = new Module<TNative>(usize);
 
         sections.forEach(s =>
         {
@@ -111,7 +120,7 @@ export class Module<TNative extends bigint | number>
     /** Array of functions in the module */
     private readonly funcs: { func: func<readonly wasmtype<any>[], readonly wasmtype<any>[]>, type: number }[] = [];
     /** Array of tables in the module */
-    private readonly tables: table<wasmtype<any>, TNative>[] = [];
+    private readonly tables: table<wasmtypeInstance<any>, number>[] = [];
     /** Array of memory definitions */
     private readonly mems: { max: u8, initial: u8, flags: boolean }[] = [];
     /** Array of global variables */
@@ -119,7 +128,7 @@ export class Module<TNative extends bigint | number>
     /** Imported functions */
     private readonly imports: { func: { moduleName: string, funcName: string, func: { func: func<readonly wasmtype<any>[], readonly wasmtype<any>[]>, type: number } }[] } = { func: [] };
     /** Exported entities */
-    private readonly exports: { name: string, desc: (table<wasmtype<any>, TNative> | memory<TNative> | global | func<wasmtype<any>[], wasmtype<any>[]>) }[] = [];
+    private readonly exports: { name: string, desc: (table<wasmtypeInstance<any>, number> | memory<TNative> | global | func<wasmtype<any>[], wasmtype<any>[]>) }[] = [];
 
     /**
      * Declares memory requirements for the module
@@ -145,7 +154,16 @@ export class Module<TNative extends bigint | number>
     {
         const f = func.ref(args, results);
         const type = this.addType({ parameters: args.map(p => p.type), results: results.map(p => p.type) });
-        const result = { func: f, index: this.imports.func.push({ moduleName, funcName, func: { func: f, type: type } }) }
+        const result: ImportedFunc<T, U> = Object.assign((...args: parameters<T>) =>
+        {
+            return new (results[0])(this.callImportedFunc(f, args, results.map((_, i) => i == 0 ? r => r.toOpCodes() : r => control.drop(r)) as ResultHandlers<U>))
+        }, {
+            func: f, call: (args: parameters<T>, results: ResultHandlers<U>) =>
+            {
+                return this.callImportedFunc(f, args, results);
+            },
+            index: this.imports.func.push({ moduleName, funcName, func: { func: f, type: type } }) - 1
+        });
         return result;
     }
 
@@ -194,7 +212,7 @@ export class Module<TNative extends bigint | number>
      * @param t - Table to add
      * @returns Index of the added table
      */
-    public addTable(t: table<wasmtype<any>, TNative>)
+    public addTable(t: table<wasmtypeInstance<any>, TNative>)
     {
         return this.tables.push(t) - 1;
     }
@@ -206,7 +224,7 @@ export class Module<TNative extends bigint | number>
      * @param name - Export name
      * @param desc - Entity to export (table, memory, global, or function)
      */
-    public export<T extends wasmtype<any>[], U extends wasmtype<any>[]>(name: string, desc: table<wasmtype<any>, TNative> | memory<TNative> | global | func<T, U>)
+    public export<T extends wasmtype<any>[], U extends wasmtype<any>[]>(name: string, desc: table<wasmtypeInstance<any>, TNative> | memory<TNative> | global | func<T, U>)
     {
         this.exports.push({ name, desc });
     }
@@ -230,6 +248,33 @@ export class Module<TNative extends bigint | number>
     }
 
     /**
+     * Calls a function in the module
+     * @template T - Array of parameter types
+     * @template U - Array of result types
+     * @param f - Function to call
+     * @param args - Arguments to pass to the function
+     * @param results - Handlers for processing the function results
+     * @returns Buffer containing the call instruction and processed results
+     */
+    public callImportedFunc<T extends readonly wasmtype<any>[], U extends readonly wasmtype<any>[]>(f: func<T, U> | ImportedFunc<T, U>, args: parameters<T>, results: ResultHandlers<U>): IsomorphicBuffer
+    {
+        let fIndex: number
+        if ('index' in f)
+        {
+            fIndex = f.index;
+            f = f.func;
+        }
+        else
+        {
+            fIndex = this.imports.func.findIndex(x => x.func.func === f);
+            if (fIndex == -1)
+                fIndex = this.addFunc(f).index
+        }
+        // throw new Error('the function is not registered');
+        return mergeUInt8Arrays(...args.flatMap(a => a.toOpCodes()), [control.transpiler.call, fIndex], ...results.flatMap((r, i) => r(f.results[i].pop())));
+    }
+
+    /**
      * Gets all sections of the module
      * @returns Array of module sections
      */
@@ -240,7 +285,14 @@ export class Module<TNative extends bigint | number>
             this.types.length ? { id: 1, section: this.types.map(t => ({ ...t, start: func.transpiler.start })) } as ModuleSection<1> : null,//type
             this.imports.func.length ? { id: 2, section: this.imports.func.map(f => ({ module: f.moduleName, entity: f.funcName, type: ImportExportDescription.Func, index: f.func.type })) } as ModuleSection<2> : null,//import
             this.funcs.length ? { id: 3, section: this.funcs } as ModuleSection<3> : null,//function
-            // null,//table
+            {
+                id: 4, section: this.tables.map(t => ({
+                    type: t.elementType.type,
+                    initial: t.initialSize,
+                    flags: !!t.maxSize,
+                    max: t.maxSize
+                }))
+            } as ModuleSection<4>,//table
             { id: 5, section: this.mems } as ModuleSection<5>,//memory
             // null,//global
             this.exports.length ? {

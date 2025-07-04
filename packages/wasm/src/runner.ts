@@ -4,10 +4,11 @@ import { Cursor } from '@akala/protocol-parser'
 import evaluate from './eval/root.js';
 import { Module } from './helpers/module.js';
 import { IsomorphicBuffer } from '@akala/core';
+import { memory } from './helpers/memory.js';
 
 const file = await fs.readFile(process.argv[2])
 const m = wasm.module.read(new IsomorphicBuffer(file), new Cursor(), {});
-const module = Module.fromSections(m.sections);
+const module = Module.fromSections(memory.wasm32.address, m.sections);
 const mem = Buffer.alloc(65536);
 (['writeUint32LE', 'readUint32LE', 'writeInt32LE', 'readInt32LE', 'readUint8', 'writeUint8', 'writeUint16LE', 'readUint16LE', 'readInt16LE', 'readInt16LE']).forEach(k =>
 {

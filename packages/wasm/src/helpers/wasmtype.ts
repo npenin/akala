@@ -6,7 +6,7 @@ import { u32 } from "../transpilers/wasmtype.js";
  * Defines the required methods and properties for any WebAssembly value
  * @template T - The specific type of the instance
  */
-export interface wasmtypeInstance<T = unknown>
+export interface wasmtypeInstance<T extends wasmtypeInstance<T>>
 {
     /**
      * Converts the value to WebAssembly opcodes
@@ -25,7 +25,7 @@ export interface wasmtypeInstance<T = unknown>
  * Contains the constructor and static members required for a WebAssembly type
  * @template T - The specific type being defined
  */
-export interface wasmtype<T>
+export interface wasmtype<T extends wasmtypeInstance<T>>
 {
     /**
      * Creates a new instance of the type
@@ -44,6 +44,8 @@ export interface wasmtype<T>
      */
     type: number;
 }
+
+export type wasmtypewasmInstance<T> = T extends wasmtype<infer X> ? wasmtypeInstance<X> : never;
 
 /**
  * Namespace containing index types used in WebAssembly

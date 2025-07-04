@@ -65,7 +65,7 @@ export class memory<TNative extends bigint | u32>
      */
     public module()
     {
-        return new Module<TNative>()
+        return new Module<TNative>(this.address)
     }
 
     /** 32-bit WebAssembly memory instance */

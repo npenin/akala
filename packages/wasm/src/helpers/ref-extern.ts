@@ -1,5 +1,6 @@
 import { IsomorphicBuffer } from '@akala/core';
 import { wasmtype, wasmtypeInstance } from './wasmtype.js'
+import { externref as transpiler } from '../transpilers/ref-extern.js'
 
 
 /**
@@ -36,6 +37,8 @@ export class externref implements wasmtypeInstance<externref>
 
     /** WebAssembly type code for externref */
     public static readonly type = 0x6f
+
+    public static readonly transpiler = transpiler;
 }
 
 /** Export the externref type code */
