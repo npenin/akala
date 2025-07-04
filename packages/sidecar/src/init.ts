@@ -44,8 +44,8 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     // if (typeof config == 'string')
     //     config = await Configuration.load(config);
     const sidecar: Sidecar<T> = {} as unknown as Sidecar<T>;
-    const pubsubConfig = context.state.pubsub?.extract();
-    const stateStoreConfig = context.state.store?.extract();
+    const pubsubConfig = context.state?.pubsub?.extract();
+    const stateStoreConfig = context.state?.store?.extract();
 
     context.logger.debug('connecting to pm...');
 
@@ -65,7 +65,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
     if (pubsubConfig?.transport)
-        sidecar.pubsub = await asyncEventBuses.process(new URL(pubsubConfig.transport), Object.assign({}, pubsubConfig.transportOptions, { abort: context.abort.signal }));
+        sidecar.pubsub = await asyncEventBuses.process(new URL(pubsubConfig.transport), Object.assign({}, pubsubConfig.transportOptions, { abort: context.abort.signal, password: pubsubConfig.transportOptions.password ? context.state.pubsub.transportOptions.getSecret('password') : undefined }));
     switch (typeof stateStoreConfig)
     {
         case 'string':
@@ -107,7 +107,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
             throw new Error('Unsupported configuration type')
     }
 
-    const plugins = context.state.get<{ sidecar: string, optional: true, command: string, parameters: Serializable }[]>('plugins');
+    const plugins = context.state?.plugins;
     if (plugins?.length)
     {
         const failedSidecars: string[] = [];
