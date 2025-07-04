@@ -8,7 +8,7 @@ import { wasmtypeInstance } from '../helpers/wasmtype.js';
 import * as jssys from './js_sys.js'
 import { JsModule, JsTypes, Marshall, Marshalled } from './js_sys.module.js'
 
-export const glue = ['slice', 'push', 'pop', 'shift', 'unshift', 'indexOf', 'includes', 'join', 'concat', 'reverse', 'Array'] as const;
+export const glue = ['slice', 'push', 'pop', 'shift', 'unshift', 'indexOf', 'includes', 'join', 'concat', 'reverse', 'Array', 'length'] as const;
 
 
 export type ArrayJsModule<TNative extends number | bigint> = Record<typeof glue[number], { pointer: jssys.Pointer, ref: externref }> & {
@@ -23,10 +23,7 @@ export class MarshalledArray<TNative extends number | bigint> extends Marshalled
     constructor(value: Marshall<TNative>)
     {
         super(value);
-        if (!MarshalledArray.registered.has(value.module))
-            this.selfModule = MarshalledArray.register(value.module, value.jsModule);
-        else
-            this.selfModule = MarshalledArray.registered.get(value.module);
+        this.selfModule = MarshalledArray.register(value.module, value.jsModule);
     }
 
     static new<TNative extends number | bigint>(module: Module<TNative>, jsModule: JsModule<TNative>, length: number): MarshalledArray<TNative>
@@ -43,10 +40,13 @@ export class MarshalledArray<TNative extends number | bigint> extends Marshalled
 
     static register<TNative extends number | bigint>(module: Module<TNative>, jsModule: JsModule<TNative>): ArrayJsModule<TNative>
     {
-        const stringPointer = jssys.toPointer(String)[0] as number;
+        if (MarshalledArray.registered.has(module))
+            return MarshalledArray.registered.get(module);
+
+        const arrayPointer = jssys.toPointer(Array)[0] as number;
         const result = Object.fromEntries(glue.map(element =>
         {
-            const pointer = jssys.toPointer(element, stringPointer);
+            const pointer = jssys.toPointer(element, arrayPointer);
             return [element, { pointer, ref: jsModule.heap.get(module.usize.const(pointer[0] as TNative)) }];
         })) as Partial<ArrayJsModule<TNative>>;
 
@@ -56,11 +56,16 @@ export class MarshalledArray<TNative extends number | bigint> extends Marshalled
         return result as ArrayJsModule<TNative>;
     }
 
+    public length()
+    {
+        return this.value.jsModule.getPropertyi32(
+            this.value.address,
+            this.selfModule.length.ref);
+    }
+
     public getAt(index: i32)
     {
-        return new externref(this.value.jsModule.getNumProperty.call(
-            [this.value.address, index],
-            [r => r.toOpCodes()]));
+        return this.value.jsModule.geti32Property(this.value.address, index);
     }
 
     public slice(start: i32, end: i32)
@@ -178,11 +183,13 @@ export class MarshalledArray<TNative extends number | bigint> extends Marshalled
 
     public concat(...arrays: MarshalledArray<TNative>[]): MarshalledArray<TNative>
     {
-        return new MarshalledArray(Marshall.from(this.value, this.value.jsModule.callMethod(
-            this.value.jsModule.getRefProperty(this.value.jsModule.heap.get(this.value.module.usize.const(2)), this.selfModule.Array.ref),
-            this.selfModule.concat.ref,
-            MarshalledArray.from(this.value.module, this.value.jsModule, arrays.map(a => a.address)).value.address,
-        )));
+        return new MarshalledArray(Marshall.from(this.value,
+            this.value.jsModule.callMethod(
+                this.value.jsModule.getProperty(this.value.jsModule.heap.get(this.value.module.usize.const(2)),
+                    this.selfModule.Array.ref),
+                this.selfModule.concat.ref,
+                MarshalledArray.from(this.value.module, this.value.jsModule, arrays.map(a => a.address)).value.address,
+            )));
     }
 
     public reverse(): MarshalledArray<TNative>
