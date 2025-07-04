@@ -3,8 +3,9 @@ import tlsf from "../allocators/tlsf.js";
 import evaluate from "../eval/root.js";
 import { memory } from "../helpers/memory.js";
 import { Module } from "../helpers/module.js";
+import { i32 } from "../helpers/i32.js";
 
-const m = new Module();
+const m = new Module(i32);
 const mem = Buffer.alloc(65536);
 (['writeUint32LE', 'readUint32LE', 'writeInt32LE', 'readInt32LE', 'readUint8', 'writeUint8', 'writeUint16LE', 'readUint16LE', 'readInt16LE', 'readInt16LE']).forEach(k =>
 {
