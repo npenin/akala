@@ -39,7 +39,7 @@ export function toEvent<T>(promise: PromiseLike<T>): IEventSink<[T], void, unkno
 export function fromEvent<T>(event: IEventSink<[T], void, unknown>): PromiseLike<T>
 {
     const result = new Deferred<T>();
-    event.addListener(value => result.resolve(value));
+    event.addListener(value => result.resolve(value), { once: true });
     return result;
 }
 
