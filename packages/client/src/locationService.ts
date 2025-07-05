@@ -208,7 +208,7 @@ export class LocationService extends EventEmitter<{
      * Pushes a new state into the browser's history.
      * @param {string} path - Path to navigate to
      */
-    public set(path: string)
+    public setPath(path: string)
     {
         if (hashbang && path[0] !== '#')
         {

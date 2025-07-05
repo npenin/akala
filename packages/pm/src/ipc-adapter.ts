@@ -1,6 +1,6 @@
 import { ChildProcess } from "child_process";
 import * as jsonrpc from '@akala/json-rpc-ws';
-import { AllEventKeys, AllEvents, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from "@akala/core";
+import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from "@akala/core";
 
 export class IpcAdapter extends TeardownManager implements jsonrpc.SocketAdapter
 {
@@ -94,8 +94,8 @@ export class IpcAdapter extends TeardownManager implements jsonrpc.SocketAdapter
     {
         return (['close', 'error', 'message'] as const).filter(ev => this.hasListener(ev));
     }
-    emit<const TEvent extends EventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<jsonrpc.SocketAdapterAkalaEventMap[TEvent]>): false | EventReturnType<jsonrpc.SocketAdapterAkalaEventMap[TEvent]>
+    emit<const TEvent extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>): false | EventReturnType<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>
     {
-        throw new Error("Method not implemented.");
+        throw new ErrorWithStatus(501, "Method not implemented.");
     }
 }

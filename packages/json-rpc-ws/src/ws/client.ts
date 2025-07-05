@@ -20,5 +20,8 @@ export default class Client extends ClientBase<stream.Readable, ws.ClientOptions
         super(Client.connect, options);
     }
 
-    public static connect(address: string, options?: ws.ClientOptions): SocketAdapter { return new WebSocketAdapter(new WebSocket(address)); }
+    public static connect(address: string, options?: ws.ClientOptions): SocketAdapter
+    {
+        return new WebSocketAdapter(new WebSocket(address));
+    }
 }

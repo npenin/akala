@@ -1,4 +1,4 @@
-import { AllEventKeys, AllEvents, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from "@akala/core";
+import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from "@akala/core";
 import { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/json-rpc-ws";
 import { MessagePort, Worker } from "worker_threads";
 
@@ -114,8 +114,8 @@ export class MessagePortAdapter extends TeardownManager implements SocketAdapter
         return (['close', 'error', 'message'] as const).filter(ev => this.hasListener(ev));
     }
 
-    emit<const TEvent extends EventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<SocketAdapterAkalaEventMap[TEvent]>): false | EventReturnType<SocketAdapterAkalaEventMap[TEvent]>
+    emit<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>): false | EventReturnType<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
     {
-        throw new Error("Method not implemented.");
+        throw new ErrorWithStatus(501, "Method not implemented.");
     }
 }

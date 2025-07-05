@@ -1,4 +1,4 @@
-import { IEvent, EventEmitter } from "@akala/core";
+import { IEvent, EventBus, SpecialEvents } from "@akala/core";
 import { SocketAdapter } from "@akala/json-rpc-ws";
 import { Readable } from "stream";
 
@@ -8,12 +8,13 @@ export interface Runtime
     build(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean }): RuntimeInstance;
 }
 
-export type RuntimeEventMap = {
+export interface RuntimeEventMap
+{
     runningChanged: IEvent<[], void>;
     exit: IEvent<[number, NodeJS.Signals], void>;
 }
 
-export interface RuntimeInstance<T extends RuntimeEventMap = RuntimeEventMap> extends EventEmitter<T>
+export interface RuntimeInstance<T extends RuntimeEventMap = RuntimeEventMap> extends EventBus<T & Partial<SpecialEvents>>
 {
     runtime: Omit<Runtime, 'build'>;
     stop(): Promise<number>;

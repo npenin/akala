@@ -1,6 +1,6 @@
 import ws from 'ws';
 import { SocketAdapter, SocketAdapterAkalaEventMap } from '../shared-connection.js';
-import { AllEventKeys, AllEvents, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from '@akala/core';
+import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, HttpStatusCode, StatefulSubscription, Subscription, TeardownManager } from '@akala/core';
 
 /**
  * json-rpc-ws connection
@@ -24,9 +24,9 @@ export default class WsSocketAdapter extends TeardownManager implements SocketAd
     {
         return ['message', 'close', 'error', 'open'].filter(k => this.socket.listenerCount(k)) as AllEventKeys<SocketAdapterAkalaEventMap>[]
     }
-    emit<const TEvent extends EventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<SocketAdapterAkalaEventMap[TEvent]>): false | EventReturnType<SocketAdapterAkalaEventMap[TEvent]>
+    emit<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>): false | EventReturnType<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
     {
-        throw new Error('Method not implemented.');
+        throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Method not implemented.');
     }
 
     pipe(socket: SocketAdapter)
