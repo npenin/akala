@@ -1,17 +1,17 @@
 import { combineSubscriptions, Subscription, TeardownManager } from "../teardown-manager.js";
 import { AllEventKeys, EventBus, SpecialEvents } from "./event-bus.js";
-import { AsEvent, Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType } from "./shared.js";
+import { Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, IEvent } from "./shared.js";
 
-type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
+//type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
 
-export type AllEvents<T extends object> = EventMap<T> & SpecialEvents
+export type AllEvents<T extends object> = T & SpecialEvents
 
 /**
  * EventEmitter class to manage events and listeners.
  * @template T
  * @implements {Disposable}
  */
-export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> extends TeardownManager implements EventBus<T>
+export class EventEmitter<T extends { [key in keyof T]: IEvent<any[], any> } = Record<PropertyKey, IEvent<unknown[], unknown>>> extends TeardownManager implements EventBus<T & SpecialEvents>
 {
     /**
      * Checks if there are listeners for a given event.
@@ -21,18 +21,18 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
      */
     hasListener<const TKey extends AllEventKeys<T>>(name: TKey): boolean
     {
-        return this.events[name] && this.events[name].hasListeners
+        return this.events[name] && this.events[name].hasListeners;
     }
 
     // protected readonly specialEvents: Partial<SpecialEvents> = {}
-    protected readonly events: AllEvents<T> = {} as AllEvents<T>;
+    protected readonly events: Partial<AllEvents<T>> = {};
     public maxListeners = Event.maxListeners;
 
     /**
      * Gets the defined events.
      * @returns {AllEventKeys<T>[]} - An array of defined event names.
      */
-    public get definedEvents(): AllEventKeys<T>[] { return Object.keys(this.events) as AllEventKeys<T>[]; }
+    public get definedEvents(): EventKeys<T & SpecialEvents>[] { return Object.keys(this.events) as EventKeys<T & SpecialEvents>[]; }
 
     /**
      * Creates an instance of EventEmitter.
@@ -57,7 +57,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    protected eventFactory<const TEvent extends keyof AllEvents<T>>(_name: TEvent): AllEvents<T>[TEvent]
+    protected eventFactory<const TEvent extends AllEventKeys<T>>(_name: TEvent): AllEvents<T>[TEvent]
     {
         return new Event(this.maxListeners) as unknown as AllEvents<T>[TEvent];
     }
@@ -68,7 +68,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
      * @param {TEvent} eventName - The name of the event.
      * @param {AllEvents<T>[TEvent]} event - The event to set.
      */
-    public set<const TEvent extends EventKeys<T>>(eventName: TEvent, event: AllEvents<T>[TEvent])
+    public set<const TEvent extends AllEventKeys<T>>(eventName: TEvent, event: AllEvents<T>[TEvent])
     {
         if (!(eventName in this.events) || !this.events[eventName].hasListeners)
             this.events[eventName] = event //as EventMap<AllEvents<T>>[TEvent];
@@ -82,7 +82,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
      * @param {TEvent} eventName - The name of the event.
      * @returns {AllEvents<T>[TEvent]} - The event.
      */
-    public get<const TEvent extends EventKeys<T>>(eventName: TEvent): AllEvents<T>[TEvent]
+    public get<const TEvent extends AllEventKeys<T>>(eventName: TEvent): AllEvents<T>[TEvent]
     {
         return this.events[eventName];// = event //as EventMap<AllEvents<T>>[TEvent];
     }
@@ -93,7 +93,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
      * @param {TEvent} eventName - The name of the event.
      * @returns {AllEvents<T>[TEvent]} - The event.
      */
-    public getOrCreate<const TEvent extends EventKeys<T>>(eventName: TEvent): AllEvents<T>[TEvent]
+    public getOrCreate<const TEvent extends AllEventKeys<T>>(eventName: TEvent): AllEvents<T>[TEvent]
     {
         return this.events[eventName] || (this.events[eventName] = this.eventFactory(eventName));
         ;// = event //as EventMap<AllEvents<T>>[TEvent];
@@ -120,11 +120,11 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
      * @param {...EventArgs<T[TEvent]>} args - The arguments to pass to the event listeners.
      * @returns {false | EventReturnType<T[TEvent]>} - The return value of the event listeners or false if the event does not exist.
      */
-    emit<const TEvent extends EventKeys<T>>(event: TEvent, ...args: EventArgs<T[TEvent]>): false | EventReturnType<T[TEvent]>
+    emit<const TEvent extends AllEventKeys<T>>(event: TEvent, ...args: EventArgs<AllEvents<T>[TEvent]>): false | EventReturnType<AllEvents<T>[TEvent]>
     {
         if (!(event in this.events))
             return false
-        return this.events[event].emit(...args) as EventReturnType<T[TEvent]>;
+        return this.events[event].emit(...args) as EventReturnType<AllEvents<T>[TEvent]>;
     }
 
     /**
@@ -185,7 +185,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> e
     }
 }
 
-export class TopDownNamespaceEventEmitter<T extends object = Record<string, Event<unknown[]>>> extends EventEmitter<T>
+export class TopDownNamespaceEventEmitter<T extends Record<string, IEvent<unknown[], unknown>> = Record<string, Event<unknown[]>>> extends EventEmitter<T>
 {
     on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Subscription
     {
@@ -203,14 +203,14 @@ export class TopDownNamespaceEventEmitter<T extends object = Record<string, Even
     }
 }
 
-export class BottomUpNamespaceEventEmitter<T extends object = Record<string, Event<unknown[]>>> extends EventEmitter<T>
+export class BottomUpNamespaceEventEmitter<T extends Record<string, IEvent<unknown[], unknown>> = Record<string, Event<unknown[]>>> extends EventEmitter<T>
 {
-    emit<const TEvent extends EventKeys<T>>(event: TEvent, ...args: EventArgs<T[TEvent]>): false | EventReturnType<T[TEvent]>
+    emit<const TEvent extends AllEventKeys<T>>(event: TEvent, ...args: EventArgs<AllEvents<T>[TEvent]>): false | EventReturnType<AllEvents<T>[TEvent]>
     {
         if (typeof event === "string")
         {
             const namespaces = event.split('.').map((n, i, array) => array.slice(array.length - i).join('.'));
-            let result: false | EventReturnType<T[TEvent]>;
+            let result: false | EventReturnType<AllEvents<T>[TEvent]>;
             for (const namespace in namespaces)
                 result = result || super.emit(namespace as TEvent, ...args);
             return result;

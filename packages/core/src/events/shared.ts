@@ -19,13 +19,6 @@ export interface AttachEventOptions
 }
 
 /**
- * Converts a type to an event type.
- * @template T
- * @typedef {IEvent<TArgs, TReturnType, TOptions>} AsEvent
- */
-export type AsEvent<T> = T extends IEventSink<infer TArgs, infer TReturnType, infer TOptions> ? IEvent<TArgs, TReturnType, TOptions> : never;
-
-/**
  * Represents a listener function for events.
  * @template T
  * @template TReturnType
