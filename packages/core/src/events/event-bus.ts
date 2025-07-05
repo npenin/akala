@@ -8,7 +8,7 @@ import { Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnTy
  */
 export type SpecialEvents = { [Symbol.dispose]: IEvent<[], void> }
 
-type EventMap<T extends object> = { [key in EventKeys<T>]?: T[key] }
+export type EventMap<T extends object> = { [key in EventKeys<T>]?: T[key] }
 
 /**
  * Represents all event keys, including special events.
