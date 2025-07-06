@@ -1,6 +1,7 @@
 import
 {
-    convertToMiddleware, each, ErrorWithStatus, introspect, isPromiseLike, Logger, map, MiddlewareAsync, MiddlewareCompositeAsync,
+    Context,
+    convertToMiddleware, each, ErrorWithStatus, introspect, isPromiseLike, map, MiddlewareAsync, MiddlewareCompositeAsync,
     MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, MiddlewarePromise,
     NotHandled
 } from '@akala/core';
@@ -9,16 +10,13 @@ import { link } from 'ansi-escapes'
 
 export type OptionType = string | boolean | string[] | number;
 
-export interface CliContext<TOptions extends Record<string, OptionType> = Record<string, OptionType>, TState = unknown>
+export interface CliContext<TOptions extends Record<string, OptionType> = Record<string, OptionType>, TState = unknown> extends Context<TState>
 {
     args: string[];
     argv: string[];
     options: TOptions
     commandPath?: string;
     currentWorkingDirectory: string;
-    state?: TState;
-    logger: Logger;
-    abort: AbortController;
 }
 
 export interface OptionParseOption
