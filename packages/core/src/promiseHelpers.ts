@@ -1,4 +1,4 @@
-import { EventBus } from "./events/index.js";
+import { AsyncEventBus, EventBus } from "./events/index.js";
 import { Event, EventKeys, IEvent, IEventSink, EventListener } from "./events/shared.js";
 
 export type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>
@@ -53,6 +53,19 @@ export function fromEventBus<const TEvents extends { [key: PropertyKey]: IEvent<
 {
     const result = new Deferred<T>();
     bus.once(eventName, (value => result.resolve(value)) as EventListener<TEvents[keyof TEvents]>);
+    return result;
+}
+
+/**
+ * Converts an Event emitter to a Promise that resolves when the event fires
+ * @template T - The type of the event payload
+ * @param {IEventSink<[T], void, unknown>} event - The event emitter to convert
+ * @returns {PromiseLike<T>} Promise that resolves with the first event payload
+ */
+export async function fromAsyncEventBus<const TEvents extends { [key: PropertyKey]: IEvent<[T], Promise<void> | void> }, T>(bus: AsyncEventBus<TEvents>, eventName: EventKeys<TEvents>): Promise<PromiseLike<T>>
+{
+    const result = new Deferred<T>();
+    await bus.once(eventName, (value => result.resolve(value)) as EventListener<TEvents[keyof TEvents]>);
     return result;
 }
 
