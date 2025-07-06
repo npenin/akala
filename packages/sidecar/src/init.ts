@@ -21,6 +21,7 @@ export interface StoreConfiguration
 
 export interface Sidecar<T extends StoreDefinition = unknown>
 {
+    config: ProxyConfiguration<SidecarConfiguration>;
     sidecars: pmSidecar;
     pubsub?: AsyncEventBus
     pm: Container<unknown> & pm;
@@ -43,7 +44,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     //     throw new Error('configuration is required');
     // if (typeof config == 'string')
     //     config = await Configuration.load(config);
-    const sidecar: Sidecar<T> = {} as unknown as Sidecar<T>;
+    const sidecar: Sidecar<T> = { config: context.state, sidecars: null, pm: null };
     const pubsubConfig = context.state?.pubsub?.extract();
     const stateStoreConfig = context.state?.store?.extract();
 
