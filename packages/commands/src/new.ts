@@ -1,5 +1,5 @@
 import { Writable } from "stream";
-import { FileSystemProvider, FSFileSystemProvider } from "@akala/fs";
+import { FileSystemProvider, FSFileSystemProvider, hasAccess } from "@akala/fs";
 import { pathToFileURL } from "url";
 
 export type Generator = { output: WritableStreamDefaultWriter, exists: false, outputFile: string, outputFs: FileSystemProvider } | { output?: WritableStreamDefaultWriter, exists: true, outputFile: string, outputFs: FileSystemProvider };
@@ -27,16 +27,20 @@ export async function outputHelper(outputFile: string | Writable | WritableStrea
     }
     else
     {
-        if (await outputFs.access(outputFile).then(() => true, () => false))
+        if (await hasAccess(outputFs, outputFile))
         {
             exists = true;
 
             if ((await outputFs.stat(outputFile)).isDirectory)
+            {
                 outputFile = outputFile + '/' + nameIfFolder;
+                exists = (await hasAccess(outputFs, outputFile))
+            }
             else
+            {
                 outputFs.chroot('./');
-
-            if (!force)
+            }
+            if (exists && !force)
                 // if (await promisify(fs.exists)(outputFile))
                 throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
             // else
