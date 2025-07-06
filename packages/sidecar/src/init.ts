@@ -2,7 +2,7 @@ import { Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmside
 import { ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container } from '@akala/commands'
 import { SerializableDefinition, PersistenceEngine, providers, Store, StoreDefinition, ModelDefinition } from '@akala/storage'
-import { AsyncEventBus, Serializable, SerializableObject, eachAsync, asyncEventBuses, module } from '@akala/core';
+import { AsyncEventBus, Serializable, SerializableObject, eachAsync, asyncEventBuses, module, Context } from '@akala/core';
 import { CliContext, OptionType } from '@akala/cli'
 import { remotePm } from '@akala/pm/akala';
 
@@ -38,7 +38,7 @@ export async function $init<T extends StoreDefinition>(context: CliContext<Recor
     context.logger.help('Your application is now ready !');
 }
 
-export default async function app<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, localRemotePm?: string | (pm & Container<unknown>)): Promise<Sidecar<T>>
+export default async function app<T extends StoreDefinition>(context: Context<ProxyConfiguration<SidecarConfiguration>>, localRemotePm?: string | (pm & Container<unknown>)): Promise<Sidecar<T>>
 {
     // if (typeof config == 'undefined')
     //     throw new Error('configuration is required');
