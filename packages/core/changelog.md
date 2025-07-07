@@ -1,10 +1,31 @@
-#  (2025-06-29)
+#  (2025-07-07)
+
+
+### Bug Fixes
+
+* make event keys match types properly 1c71c4b
+* make fromEvent bind only once dd7addd
+
+
+### Code Refactoring
+
+* revisit typing on event emitters and event buses 91e60ba
 
 
 ### Features
 
-* add base64ByteLength and strUTF8ByteLength methods for improved encoding length calculations d2dfe22
-* add package.json interface and export in core package c4094d7
+* add Context interface e5de88f
+* add findIndex on ObservableArray 844a29c
+* add fromAsyncEventBus 70ec690
+* add fromEventBus to promise a5391dc
+* allow promised subscriptions to be tearred down 74aaa72
+* allow typed event buses resolution 140bf5a
+* export EventMap f89264a
+
+
+### BREAKING CHANGES
+
+* some implementors might break during build
 
 
 
