@@ -299,6 +299,8 @@ export default class Configuration<T extends object = SerializableObject>
             else
                 self.cryptKey = await generateAesKey();
         const secret = await aesEncrypt(newConfig, self.cryptKey);
+        if (secret.key !== self.cryptKey)
+            self.cryptKey = secret.key;
         self.set(key, { iv: base64.base64EncArr(secret.iv), value: base64.base64EncArr(new Uint8Array(secret.ciphertext)) });
     }
 
