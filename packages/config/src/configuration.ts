@@ -231,7 +231,7 @@ export default class Configuration<T extends object = SerializableObject>
             }, this.config);
             if (typeof value == 'object' && value && !Array.isArray(value))
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                return Configuration.new(this.path, value as SerializableObject, this.rootConfig, this.cryptKey) as any;
+                return Configuration.new(this.path, value as SerializableObject, this.rootConfig, this.rootConfig.cryptKey) as any;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return value as any
                 ;
@@ -247,12 +247,12 @@ export default class Configuration<T extends object = SerializableObject>
     {
         const self = this[unwrap];
         const secret = self.get<{ iv: string, value: string }>(key).extract();
-        if (!self.cryptKey)
+        if (!self.rootConfig.cryptKey)
             if (self.path)
-                self.cryptKey = await Configuration.loadKey(self.path);
+                self.rootConfig.cryptKey = await Configuration.loadKey(self.path);
             else
                 throw new ErrorWithStatus(HttpStatusCode.NotFound, 'No key was provided to read the secret ' + key);
-        return aesDecrypt(base64.base64DecToArr(secret.value), self.cryptKey, base64.base64DecToArr(secret.iv));
+        return aesDecrypt(base64.base64DecToArr(secret.value), self.rootConfig.cryptKey, base64.base64DecToArr(secret.iv));
     }
 
     public has(key?: string): boolean
@@ -293,14 +293,14 @@ export default class Configuration<T extends object = SerializableObject>
     public async setSecret(key: string | Exclude<keyof T, symbol | number>, newConfig: string): Promise<void>
     {
         const self = this[unwrap];
-        if (!self.cryptKey)
+        if (!self.rootConfig.cryptKey)
             if (self.path)
-                self.cryptKey = await Configuration.loadKey(self.path);
+                self.rootConfig.cryptKey = await Configuration.loadKey(self.path);
             else
-                self.cryptKey = await generateAesKey();
-        const secret = await aesEncrypt(newConfig, self.cryptKey);
-        if (secret.key !== self.cryptKey)
-            self.cryptKey = secret.key;
+                self.rootConfig.cryptKey = await generateAesKey();
+        const secret = await aesEncrypt(newConfig, self.rootConfig.cryptKey);
+        if (secret.key !== self.rootConfig.cryptKey)
+            self.rootConfig.cryptKey = secret.key;
         self.set(key, { iv: base64.base64EncArr(secret.iv), value: base64.base64EncArr(new Uint8Array(secret.ciphertext)) });
     }
 
@@ -330,8 +330,8 @@ export default class Configuration<T extends object = SerializableObject>
         if (typeof formatted == 'undefined')
             formatted = process.env.NODE_ENV !== 'production';
         await fs.writeFile(file || self.path, JSON.stringify(self.rootConfig, null, formatted && 4 || undefined), 'utf8');
-        if (self.cryptKey)
-            await fs.writeFile((file || self.path) + '.key', Buffer.from(await subtle.exportKey('raw', self.cryptKey)));
+        if (self.rootConfig.cryptKey)
+            await fs.writeFile((file || self.path) + '.key', Buffer.from(await subtle.exportKey('raw', self.rootConfig.cryptKey)));
 
     }
 }
