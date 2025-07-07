@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* make sure to use cryptKey from root config bb9c843
-* make sure to use cryptKey from root config ca5727e
+* wrong this 182e22a
 
 
 
