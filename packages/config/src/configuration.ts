@@ -1,4 +1,4 @@
-import { isProxy, base64, Serializable, SerializableObject } from '@akala/core';
+import { isProxy, base64, Serializable, SerializableObject, ErrorWithStatus, HttpStatusCode } from '@akala/core';
 import fs from 'fs/promises'
 import { inspect } from 'util'
 
@@ -243,10 +243,15 @@ export default class Configuration<T extends object = SerializableObject>
 
     [unwrap] = this;
 
-    public getSecret(key: string): Promise<string>
+    public async getSecret(key: string): Promise<string>
     {
         const self = this[unwrap];
         const secret = self.get<{ iv: string, value: string }>(key).extract();
+        if (!self.cryptKey)
+            if (self.path)
+                self.cryptKey = await Configuration.loadKey(self.path);
+            else
+                throw new ErrorWithStatus(HttpStatusCode.NotFound, 'No key was provided to read the secret ' + key);
         return aesDecrypt(base64.base64DecToArr(secret.value), self.cryptKey, base64.base64DecToArr(secret.iv));
     }
 
