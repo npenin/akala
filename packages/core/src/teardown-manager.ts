@@ -1,3 +1,5 @@
+import { isPromiseLike } from "./promiseHelpers.js";
+
 /** 
  * Callback type for teardown subscriptions that returns true when unsubscribed 
  */
@@ -117,10 +119,15 @@ export class AsyncTeardownManager implements AsyncDisposable
      * @param sub - Subscription callback or Disposable object to register
      * @returns The original subscription for chaining
      */
-    teardown<T extends AsyncSubscription | AsyncDisposable | Subscription | Disposable | undefined | null>(sub: T): T
+    teardown<T extends Promise<AsyncSubscription | AsyncDisposable | Subscription | Disposable | undefined | null> | AsyncSubscription | AsyncDisposable | Subscription | Disposable | undefined | null>(sub: T): T
     {
         if (!sub)
             return sub;
+
+        if (isPromiseLike(sub))
+            return sub.then(s => { this.teardown(s); return s; }) as T;
+
+
         if (Symbol.dispose in sub)
             this.subscriptions.push(() =>
             {
