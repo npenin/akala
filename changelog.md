@@ -855,6 +855,7 @@
 * wrong generated key algorithm fc8360d
 * wrong inferred dependency path baed476
 * wrong inferred dependency path 7a1f1ab
+* wrong this 182e22a
 * wrongly reporting existing file 40afc19
 * xpm init 0fb1f90
 * xpm init 37af8c5
