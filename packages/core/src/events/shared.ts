@@ -6,7 +6,7 @@ import { Subscription, TeardownManager } from "../teardown-manager.js";
  * @typedef {Object} EventKeys
  * @property {keyof T} key - The key of the event.
  */
-export type EventKeys<T extends object> = { [key in keyof T]: T[key] extends IEvent<unknown[], unknown, unknown> ? key : never }[keyof T];
+export type EventKeys<T extends object> = { [key in keyof T]: T[key] extends IEvent<any[], any, any> ? key : never }[keyof T];
 
 /**
  * Options for attaching events.
