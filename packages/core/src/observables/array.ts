@@ -390,6 +390,16 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
     }
 
     /**
+     * Finds an element index in the array.
+     * @param {...Parameters<typeof Array.prototype.find>} args - The arguments for the find function.
+     * @returns {ReturnType<typeof Array.prototype.find>} The found element index.
+     */
+    public findIndex(...args: Parameters<typeof Array.prototype.findIndex>): ReturnType<typeof Array.prototype.findIndex>
+    {
+        return this.array.findIndex(...args);
+    }
+
+    /**
      * Iterates over the array.
      * @param {...Parameters<typeof Array.prototype.forEach>} args - The arguments for the forEach function.
      * @returns {ReturnType<typeof Array.prototype.forEach>} The result of the iteration.
