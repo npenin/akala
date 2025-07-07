@@ -293,9 +293,12 @@ export default class Configuration<T extends object = SerializableObject>
     public async setSecret(key: string | Exclude<keyof T, symbol | number>, newConfig: string): Promise<void>
     {
         const self = this[unwrap];
-        const secret = await aesEncrypt(newConfig, self.cryptKey);
         if (!self.cryptKey)
-            self.cryptKey = secret.key;
+            if (self.path)
+                self.cryptKey = await Configuration.loadKey(self.path);
+            else
+                self.cryptKey = await generateAesKey();
+        const secret = await aesEncrypt(newConfig, self.cryptKey);
         self.set(key, { iv: base64.base64EncArr(secret.iv), value: base64.base64EncArr(new Uint8Array(secret.ciphertext)) });
     }
 
