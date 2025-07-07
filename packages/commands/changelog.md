@@ -1,9 +1,14 @@
-#  (2025-06-29)
+#  (2025-07-07)
+
+
+### Bug Fixes
+
+* wrongly reporting existing file 40afc19
 
 
 ### Features
 
-* add new plugin command with configuration and update command options 963a893
+* add pubsub triggers 042d460
 
 
 
