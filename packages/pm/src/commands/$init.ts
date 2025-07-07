@@ -4,7 +4,7 @@ import pmContainer from '../container.js';
 import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand } from '@akala/commands';
 import { PassThrough } from 'stream';
 import { CliContext } from '@akala/cli';
-import { Configuration } from '@akala/config';
+import { ProxyConfiguration } from '@akala/config';
 import { fileURLToPath } from 'url';
 import { eachAsync, Event } from '@akala/core';
 import Process from '../runtimes/process.js';
@@ -49,7 +49,7 @@ export function isRunningContainer(c: Container<unknown>): c is RunningContainer
     return 'running' in c;
 }
 
-export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ configFile: string, keepAttached: boolean, args: string[] }>): Promise<void>
+export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ configFile: string, keepAttached: boolean, args: string[] }, ProxyConfiguration<StateConfiguration>>): Promise<void>
 {
     this.isDaemon = true;
     this.processes = {};
@@ -79,8 +79,7 @@ export default async function (this: State, container: RunningContainer & pmCont
 
     container.ready = new Event();
 
-    const configPath = context.options.configFile || './.pm.config.json';
-    this.config = await Configuration.load<StateConfiguration>(configPath, true);
+    this.config = context.state;
 
     if (this.config?.mapping?.pm)
     {
