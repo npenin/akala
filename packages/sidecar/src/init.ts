@@ -65,12 +65,21 @@ export default async function app<T extends StoreDefinition, TEvents extends Eve
     module('@akala/pm').register('container', sidecar.pm, true);
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
+    let password = pubsubConfig.transportOptions.password;
+    if (typeof password === 'string')
+    {
+        await context.state.pubsub.transportOptions.setSecret('password', password);
+        await context.state.commit();
+    }
+    else if (typeof password === 'object')
+        password = await context.state.pubsub.transportOptions.getSecret('password');
+
     if (pubsubConfig?.transport)
         sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(pubsubConfig.transport), Object.assign({},
             pubsubConfig.transportOptions,
             {
                 abort: context.abort.signal,
-                password: pubsubConfig.transportOptions.password ? context.state.pubsub.transportOptions.getSecret('password') : undefined
+                password
             }));
     switch (typeof stateStoreConfig)
     {
