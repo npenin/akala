@@ -4,16 +4,7 @@ import { Event, EventKeys, IEvent, IEventSink, EventListener } from "./events/sh
 export type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>
 export type RejectHandler<TResult> = (reason: unknown) => void | TResult | PromiseLike<TResult>;
 
-/**
- * Checks if an object is a Promise-like instance
- * @template T - The expected resolved value type
- * @param {T | PromiseLike<T>} o - The object to check
- * @returns {boolean} True if the object has a 'then' method, indicating it's Promise-like
- */
-export function isPromiseLike<T>(o: T | PromiseLike<T>): o is PromiseLike<T>
-{
-    return o && o['then'] && typeof (o['then']) == 'function';
-}
+export { isPromiseLike } from './teardown-manager.js'
 
 /**
  * Converts a Promise to an Event emitter that fires when the Promise resolves
