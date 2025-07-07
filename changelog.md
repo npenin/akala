@@ -113,6 +113,7 @@
 * aws sdk generation and update services 7b922cf
 * base64UrlEncode properly strips = 8a9274d
 * base64UrlEncode properly strips = 54ca5ff
+* better handle of password in config fdd2bde
 * binary operation precedences 542911b
 * binary operation precedences 58c2960
 * BinaryOperator parsing cb0abf0
