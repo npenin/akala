@@ -2,7 +2,7 @@ import { Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmside
 import { ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container } from '@akala/commands'
 import { SerializableDefinition, PersistenceEngine, providers, Store, StoreDefinition, ModelDefinition } from '@akala/storage'
-import { AsyncEventBus, Serializable, SerializableObject, eachAsync, asyncEventBuses, module, Context } from '@akala/core';
+import { AsyncEventBus, Serializable, SerializableObject, eachAsync, asyncEventBuses, module, Context, IEvent, EventMap } from '@akala/core';
 import { CliContext, OptionType } from '@akala/cli'
 import { remotePm } from '@akala/pm/akala';
 
@@ -19,11 +19,11 @@ export interface StoreConfiguration
     models?: { [key: string]: SerializableDefinition<unknown> };
 }
 
-export interface Sidecar<T extends StoreDefinition = unknown>
+export interface Sidecar<T extends StoreDefinition = unknown, TEvents extends { [key in keyof TEvents]: IEvent<unknown[], unknown> } = Record<PropertyKey, IEvent<unknown[], unknown>>>
 {
     config: ProxyConfiguration<SidecarConfiguration>;
     sidecars: pmSidecar;
-    pubsub?: AsyncEventBus
+    pubsub?: AsyncEventBus<TEvents>
     pm: Container<unknown> & pm;
     store?: StoreDefinition<T> & T;
 }
@@ -32,19 +32,19 @@ export type SidecarPluginConfiguration = { sidecar: string, optional: true, comm
 
 export type SidecarConfiguration = { pubsub?: PubSubConfiguration, store?: StoreConfiguration, plugins?: SidecarPluginConfiguration };
 
-export async function $init<T extends StoreDefinition>(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, remotePm?: string | (pm & Container<unknown>)): Promise<void>
+export async function $init(context: CliContext<Record<string, OptionType>, ProxyConfiguration<SidecarConfiguration>>, remotePm?: string | (pm & Container<unknown>)): Promise<void>
 {
-    Object.assign(this, await app<T>(context, remotePm));
+    Object.assign(this, await app(context, remotePm));
     context.logger.help('Your application is now ready !');
 }
 
-export default async function app<T extends StoreDefinition>(context: Context<ProxyConfiguration<SidecarConfiguration>>, localRemotePm?: string | (pm & Container<unknown>)): Promise<Sidecar<T>>
+export default async function app<T extends StoreDefinition, TEvents extends EventMap<TEvents>>(context: Context<ProxyConfiguration<SidecarConfiguration>>, localRemotePm?: string | (pm & Container<unknown>)): Promise<Sidecar<T, TEvents>>
 {
     // if (typeof config == 'undefined')
     //     throw new Error('configuration is required');
     // if (typeof config == 'string')
     //     config = await Configuration.load(config);
-    const sidecar: Sidecar<T> = { config: context.state, sidecars: null, pm: null };
+    const sidecar: Sidecar<T, TEvents> = { config: context.state, sidecars: null, pm: null };
     const pubsubConfig = context.state?.pubsub?.extract();
     const stateStoreConfig = context.state?.store?.extract();
 
@@ -66,7 +66,12 @@ export default async function app<T extends StoreDefinition>(context: Context<Pr
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
     if (pubsubConfig?.transport)
-        sidecar.pubsub = await asyncEventBuses.process(new URL(pubsubConfig.transport), Object.assign({}, pubsubConfig.transportOptions, { abort: context.abort.signal, password: pubsubConfig.transportOptions.password ? context.state.pubsub.transportOptions.getSecret('password') : undefined }));
+        sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(pubsubConfig.transport), Object.assign({},
+            pubsubConfig.transportOptions,
+            {
+                abort: context.abort.signal,
+                password: pubsubConfig.transportOptions.password ? context.state.pubsub.transportOptions.getSecret('password') : undefined
+            }));
     switch (typeof stateStoreConfig)
     {
         case 'string':
