@@ -524,6 +524,7 @@
 * remotePm metadata 47a98f6
 * remove - as valid character 9a9f5b5
 * remove Buffer reference for non-node runtimes 18ea445
+* remove cjs cba8a9a
 * remove cjs reference e501923
 * remove cjs reference 2284b79
 * remove console log from metadata function 9d30b2c
@@ -845,6 +846,7 @@
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
 * wrong csv parsing f9359c6
+* wrong generated key algorithm fc8360d
 * wrong inferred dependency path baed476
 * wrong inferred dependency path 7a1f1ab
 * wrongly reporting existing file 40afc19
