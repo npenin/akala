@@ -1,16 +1,17 @@
 import ErrorWithStatus, { HttpStatusCode } from "../errorWithStatus.js";
 import { SerializableObject } from "../helpers.js";
 import { UrlHandler } from "../url-handler.js";
-import { AsyncEventBus, EventBus, EventBus2AsyncEventBus } from "./event-bus.js";
+import { AsyncEventBus, EventBus, EventBus2AsyncEventBus, EventMap } from "./event-bus.js";
 import { EventEmitter } from "./event-emitter.js";
+import { IEvent } from "./shared.js";
 
 export * from "./async.js";
 export * from './event-bus.js'
 export * from './shared.js'
 export * from './event-emitter.js'
 
-export const eventBuses = new UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], EventBus>(true);
-export const asyncEventBuses = new UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], AsyncEventBus>(true);
+export const eventBuses = new UrlHandler(true) as UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], EventBus> & { process<TEvents extends EventMap<TEvents> = Record<PropertyKey, IEvent<unknown[], unknown>>>(url: URL, config: SerializableObject): Promise<EventBus<TEvents>> };
+export const asyncEventBuses = new UrlHandler(true) as UrlHandler<[url: URL, config: SerializableObject & { abort?: AbortSignal }, void], AsyncEventBus> & { process<TEvents extends EventMap<TEvents> = Record<PropertyKey, IEvent<unknown[], unknown>>>(url: URL, config: SerializableObject): Promise<AsyncEventBus<TEvents>> };
 
 eventBuses.useProtocol('memory', (_, config) =>
 {
