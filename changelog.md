@@ -430,6 +430,8 @@
 * make modelDefinitions readonly f797208
 * make rawQuery support optional 3be8917
 * make rawQuery support optional 6050617
+* make sure to use cryptKey from root config bb9c843
+* make sure to use cryptKey from root config ca5727e
 * many fixes (still not prod ready) d4f40d2
 * many fixes (still not prod ready) a440f8a
 * mapAsync behavior 53a0ef7
@@ -570,6 +572,7 @@
 * remove unused result parameter from jsonrpc protocol handlers 198fed9
 * remove useless abort 436343b
 * remove useless await 52d94b0
+* remove useless config loading fbf7879
 * remove useless config parameter 21b41cb
 * remove useless config parameter df3b94d
 * remove useless config section 9a2d870
