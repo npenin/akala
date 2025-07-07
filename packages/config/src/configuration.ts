@@ -234,13 +234,8 @@ export default class Configuration<T extends object = SerializableObject>
             {
                 const result = Configuration.new(this.path, value as SerializableObject, this.rootConfig, this.cryptKey);
                 Object.defineProperty(result, 'cryptKey', {
-                    get()
-                    {
-                        return this.cryptKey;
-                    }, set(value)
-                    {
-                        this.cryptKey = value;
-                    }
+                    get: () => this.cryptKey,
+                    set: (value) => this.cryptKey = value
                 });
                 return result as ProxyConfiguration<TResult>;
             }
