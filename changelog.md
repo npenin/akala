@@ -1,4 +1,4 @@
-#  (2025-06-30)
+#  (2025-07-07)
 
 
 * chore : code cleanup eae1150
@@ -77,6 +77,7 @@
 * add readonly modifier to parser property and improve write method logic df093b0
 * add signal propagation cf81d93
 * add SpecificInjector type to enhance dependency resolution bc04767
+* add srp to build 023ca74
 * add strong typing to refactored functions 69758db
 * add strong typing to refactored functions 103a56a
 * add support for INIT_CWD variable 939b024
@@ -96,6 +97,8 @@
 * allow line breaks and tabs in parser a5bb001
 * allow optional spaces 002c4a2
 * allow optional spaces 951a42d
+* allow typed pubsub on sidecar 20d640d
+* allow typed pubsub on sidecar 1656a15
 * allow using npx/yarn dlx 21e2024
 * allow using npx/yarn dlx 2b7f40e
 * allow using npx/yarn dlx e308778
@@ -263,6 +266,7 @@
 * fs processor extensions 3e5dab9
 * generator bug when force=true 0817c02
 * generator bug when force=true ec5d977
+* getProperty methods in jssys 1f22de3
 * git rev list command bbc7fa2
 * git rev list command cd73e5a
 * handle 'undefined' abort reason 1c2cb6f
@@ -415,6 +419,8 @@
 * links 53c17f6
 * login import 6cb7589
 * login page sonar issues e620328
+* make event keys match types properly 1c71c4b
+* make fromEvent bind only once dd7addd
 * make fs private for now 6e84b29
 * make jsonrpc triggers statically discovering metadata df2ef95
 * make modelDefinitions readonly f797208
@@ -572,6 +578,7 @@
 * rename provider to processor f755ab3
 * rename provider to processor ee37f19
 * rename root project to prevent conflicts with new akala project fff5646
+* reorder case statements in getCacheKey for improved readability 8ffa598
 * resolution with custom resolver as first item e53e5da
 * resolveKeys c5a4c8e
 * resolveKeys 150e763
@@ -722,6 +729,7 @@
 * update after core breaking change 78576ba
 * update after core breaking change 6379673
 * update after core breaking change 6ea3ca9
+* update after core breaking changes 481dcd6
 * update after core BufferEncoding introduction 298da96
 * update after core Translator interface upgrade a6500a1
 * update after fs breaking change 27ec208
@@ -729,6 +737,7 @@
 * update after fs FileHandle interface update 552b3f0
 * update after protocol parser breaking change 2d306f6
 * update after protocol parsers breaking change db4574e
+* update after refactor 5672623
 * update after storage breaking change 87b037a
 * update after storage breaking change 06b7d59
 * update after storage breaking change cad8a62
@@ -747,6 +756,7 @@
 * update CLI title and remove navigation exclusion c448dd1
 * update commands b3d2e1e
 * update commands 168670b
+* update commands after breaking change a8f765c
 * update config b984b49
 * update description in add-script and commands to clarify package.json location 24e9a79
 * update dev dependency 62fdb89
@@ -798,6 +808,7 @@
 * update permalink structure and footer content in documentation 872e25c
 * update permalink structure and footer content in documentation 01f1715
 * update protocolHandler to correctly set relativeTo and improve directory handling dca8258
+* update pubsub to use AsyncEventBus for improved asynchronous handling 1618567
 * update Serializable to SerializableObject in event buses and sidecar configurations f865e03
 * update serve function to accept URL objects instead of strings 9f68893
 * update serve function to accept URL objects instead of strings 51f45ec
@@ -835,6 +846,7 @@
 * wrong csv parsing f9359c6
 * wrong inferred dependency path baed476
 * wrong inferred dependency path 7a1f1ab
+* wrongly reporting existing file 40afc19
 * xpm init 0fb1f90
 * xpm init 37af8c5
 * xpm issues bd430af
@@ -857,6 +869,7 @@
 * remove ModelDefinition.definitions fd11999
 * replace void with undefined as NextParam 76398ea
 * replace void with undefined as NextParam 34fcf2a
+* revisit typing on event emitters and event buses 91e60ba
 * update file handling and output methods to use WritableStreamDefaultWriter 38ccdd5
 
 
@@ -895,6 +908,7 @@
 * add commands getting-started guide 5492118
 * add commands getting-started guide 1564b82
 * add constant parsing 9e4e322
+* add Context interface e5de88f
 * add cookie support + add IdStore and IdSerializer interfaces 2e3b84d
 * add cookie support + add IdStore and IdSerializer interfaces c5a5d6a
 * add cryptokey to state 2117314
@@ -907,6 +921,9 @@
 * add fallthrough option to cover additional registration in router 19652e5
 * add fallthrough option to cover additional registration in router feb46b4
 * add FileSystemProviderProxy 24ba3aa
+* add findIndex on ObservableArray 844a29c
+* add fromAsyncEventBus 70ec690
+* add fromEventBus to promise a5391dc
 * add fs package 1df97d4
 * add fs package 9751886
 * add getLength method to various parsers for improved length calculation cfc733f
@@ -949,6 +966,7 @@
 * add oidc formatter factory fba4a73
 * add openStream on FileHandle 2868198
 * add package.json interface and export in core package c4094d7
+* add pubsub triggers 042d460
 * add raw query and custom resolvers 91f1063
 * add raw query and custom resolvers 19a38cc
 * add raw query support 940f72e
@@ -965,6 +983,7 @@
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
 * add string-fixed-or-null terminated parser 5cbd71f
+* add support for password secret in config 135edfa
 * add table row event handlers 392d906
 * add TileManager (incomplete) 9e0d08f
 * add TopDown and BottomUp namespace event emitters d8e148e
@@ -984,10 +1003,12 @@
 * allow for signal to be provided to chain abort signal 320c767
 * allow not assigning result as last parameter c93f78c
 * allow not assigning result as last parameter cbc28b4
+* allow promised subscriptions to be tearred down 74aaa72
 * allow providing transaction during commit 271f464
 * allow providing transaction during commit a1460f9
 * allow removing all listeners at once 8286d52
 * allow service to be given as symbol aa0cbf3
+* allow typed event buses resolution 140bf5a
 * attempt to improve the nocode base 44684fd
 * code from akala helper to trigger akala install b95b3bb
 * code from akala helper to trigger akala install 003219e
@@ -1016,10 +1037,12 @@
 * expand documentation with Observables and Events sections 725e8a5
 * expand documentation with Observables and Events sections 57abcf0
 * export cli-helper, yarn-helper  and npm-helper ce23f8e
+* export EventMap f89264a
 * export Generator type and allow actionIfExists to prevent to generate a file if result ===false f58deab
 * export Generator type and allow actionIfExists to prevent to generate a file if result ===false 32ae777
 * export serverHandlers and new serve function to quickly build servers 8a1bb74
 * export serverHandlers and new serve function to quickly build servers e6fc0ea
+* expose config on sidecars f4e2ce7
 * expose directly theme.css 1d83e0b
 * expose extendRequest 86d2793
 * expose extendRequest 009dcb6
@@ -1083,16 +1106,19 @@
 * rename control to akala e88f358
 * repl command announces itself as $repl option 44f4a4b
 * SelfDefinedCommand accepts InjectMap 9b71e5c
+* SRP implementation 354ac26
 * start apm implementation bc60ca3
 * start cursor implementation 8414539
 * start using new akala fs module 008cbb0
 * start WasmTranslator ab864f8
+* started jssys-like implementation 6b3fb16
 * staticFileMiddleware expects a URL f28e32f
 * switch client http authentication from hard coded to dynamic with middleware. 1d01a5c
 * switch to eventBuses impl f483b10
 * switch to IsomorphicBuffer 18d9aa2
 * switch to nodejs postinstall script e18b26f
 * switch to nodejs postinstall script 2128399
+* update app function to be less dependent on cli thanks to new Context interface in core 684e2c1
 * update documentation with usage examples for parsing and formatters 3970fc6
 * update documentation with usage examples for parsing and formatters 293bbae
 * update SocketAdapter extend EventBus 1065904
@@ -1101,6 +1127,7 @@
 
 ### BREAKING CHANGES
 
+* some implementors might break during build
 * parsers are required to implement getLength to be able to properly initialize buffers to the right size
 * parserWrite returns a single buffer and is not used internally
 * ParsersWithUnknownLength are removed
