@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* lazy late binding cryptokey 797a5c7
+* make sure to use cryptKey from root config bb9c843
+* make sure to use cryptKey from root config ca5727e
 
 
 
