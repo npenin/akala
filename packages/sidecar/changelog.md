@@ -1,9 +1,9 @@
 #  (2025-07-08)
 
 
-### Features
+### Bug Fixes
 
-* allow late pubsub configuration ea3661e
+* export pubsub configurator 5a2479c
 
 
 
