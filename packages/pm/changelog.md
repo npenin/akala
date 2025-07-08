@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add missing ready event on dependency 98d31e4
+* dependency start logic 4a03673
 
 
 
