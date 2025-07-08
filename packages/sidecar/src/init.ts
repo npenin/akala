@@ -65,7 +65,7 @@ export default async function app<T extends StoreDefinition, TEvents extends Eve
     module('@akala/pm').register('container', sidecar.pm, true);
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
-    let password = pubsubConfig.transportOptions.password;
+    let password = pubsubConfig?.transportOptions?.password;
     if (typeof password === 'string')
     {
         await context.state.pubsub.transportOptions.setSecret('password', password);
