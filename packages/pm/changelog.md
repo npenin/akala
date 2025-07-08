@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* infinite loop b9aedbb
+* add missing ready event on dependency 98d31e4
 
 
 
