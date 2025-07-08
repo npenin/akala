@@ -1,9 +1,9 @@
 #  (2025-07-08)
 
 
-### Bug Fixes
+### Features
 
-* handle no pubsub config 782ba68
+* allow late pubsub configuration ea3661e
 
 
 
