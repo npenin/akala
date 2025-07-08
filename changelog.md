@@ -1,4 +1,4 @@
-#  (2025-07-07)
+#  (2025-07-08)
 
 
 * chore : code cleanup eae1150
@@ -288,6 +288,7 @@
 * handle init lifecycle stage 54a8169
 * handle lazy loading key on decrypt 8a8eb55
 * handle lazy loading key on encrypt 146c7a7
+* handle no pubsub config 782ba68
 * handle no pubsub config 40e7ff2
 * handle NotFound error in asyncEventBuses middleware 71b2ce5
 * handle null case 9c3dc93
