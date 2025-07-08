@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add missing package to be started 48987d1
+* handle no dependencies provided 07a144d
 
 
 
