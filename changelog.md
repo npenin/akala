@@ -403,6 +403,7 @@
 * improve type checking 457c1b3
 * improve typing in vite.config.mts 11e538a
 * improve yarn config a47ff40
+* infinite loop b9aedbb
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
 * inifinite loop ccf7416
