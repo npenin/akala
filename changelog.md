@@ -243,6 +243,7 @@
 * exclude views and fix login template cff89b9
 * existing file generator detection ca3ad06
 * export ParserFormatter 7842585
+* export pubsub configurator 5a2479c
 * extend Parser interface to include ParserWithMessage for improved type consistency 6c7cc1f
 * extract params considers when array is provided 96c7644
 * extract params considers when array is provided c5eb98b
