@@ -82,7 +82,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         await eachAsync(seq.sequence, async (dep) =>
         {
-            if (!this.processes[dep])
+            if (!this.processes[dep] && dep !== name)
                 await pm.dispatch('start', dep, { wait: true })
         });
     }
