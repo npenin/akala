@@ -291,6 +291,7 @@
 * handle init lifecycle stage 54a8169
 * handle lazy loading key on decrypt 8a8eb55
 * handle lazy loading key on encrypt 146c7a7
+* handle no dependencies provided 07a144d
 * handle no pubsub config 782ba68
 * handle no pubsub config 40e7ff2
 * handle NotFound error in asyncEventBuses middleware 71b2ce5
