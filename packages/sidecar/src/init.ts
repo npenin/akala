@@ -26,6 +26,7 @@ export interface Sidecar<T extends StoreDefinition = unknown, TEvents extends { 
     pubsub?: AsyncEventBus<TEvents>
     pm: Container<unknown> & pm;
     store?: StoreDefinition<T> & T;
+    abort: AbortSignal
 }
 
 export type SidecarPluginConfiguration = { sidecar: string, optional: true, command: string, parameters: Serializable }[]
@@ -38,13 +39,38 @@ export async function $init(context: CliContext<Record<string, OptionType>, Prox
     context.logger.help('Your application is now ready !');
 }
 
+export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: Sidecar<unknown, TEvents>, config: PubSubConfiguration | undefined)
+{
+    if (!sidecar.pubsub)
+    {
+        if (!config)
+            return;
+        let password = config?.transportOptions?.password;
+        if (typeof password === 'string')
+        {
+            await sidecar.config.pubsub.transportOptions.setSecret('password', password);
+            await sidecar.config.commit();
+        }
+        else if (typeof password === 'object')
+            password = await sidecar.config.pubsub.transportOptions.getSecret('password');
+
+        if (config?.transport)
+            sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(config.transport), Object.assign({},
+                config.transportOptions,
+                {
+                    abort: sidecar.abort,
+                    password
+                }));
+    }
+}
+
 export default async function app<T extends StoreDefinition, TEvents extends EventMap<TEvents>>(context: Context<ProxyConfiguration<SidecarConfiguration>>, localRemotePm?: string | (pm & Container<unknown>)): Promise<Sidecar<T, TEvents>>
 {
     // if (typeof config == 'undefined')
     //     throw new Error('configuration is required');
     // if (typeof config == 'string')
     //     config = await Configuration.load(config);
-    const sidecar: Sidecar<T, TEvents> = { config: context.state, sidecars: null, pm: null };
+    const sidecar: Sidecar<T, TEvents> = { config: context.state, sidecars: null, pm: null, abort: context.abort.signal };
     const pubsubConfig = context.state?.pubsub?.extract();
     const stateStoreConfig = context.state?.store?.extract();
 
@@ -65,22 +91,9 @@ export default async function app<T extends StoreDefinition, TEvents extends Eve
     module('@akala/pm').register('container', sidecar.pm, true);
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
-    let password = pubsubConfig?.transportOptions?.password;
-    if (typeof password === 'string')
-    {
-        await context.state.pubsub.transportOptions.setSecret('password', password);
-        await context.state.commit();
-    }
-    else if (typeof password === 'object')
-        password = await context.state.pubsub.transportOptions.getSecret('password');
 
-    if (pubsubConfig?.transport)
-        sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(pubsubConfig.transport), Object.assign({},
-            pubsubConfig.transportOptions,
-            {
-                abort: context.abort.signal,
-                password
-            }));
+    await pubsub(sidecar, pubsubConfig);
+
     switch (typeof stateStoreConfig)
     {
         case 'string':
