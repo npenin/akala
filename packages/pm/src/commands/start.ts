@@ -82,7 +82,9 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         await eachAsync(seq.sequence, async (dep) =>
         {
-            if (!this.processes[dep] && dep !== name)
+            if (dep === name)
+                return;
+            if (!this.processes[dep])
                 await pm.dispatch('start', dep, { wait: true })
             else
                 await new Promise(resolve => this.processes[dep].ready?.addListener(resolve, { once: true }));
