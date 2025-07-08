@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* dependencies sequencing on start 7e2fa87
+* add missing package to be started 48987d1
 
 
 
