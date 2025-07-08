@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle no dependencies provided 07a144d
+* infinite loop b9aedbb
 
 
 
