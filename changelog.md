@@ -1012,6 +1012,7 @@
 * allow customizing the context name with the name attribute a9d0353
 * allow CustomResolver as Resolvable b1cfa93
 * allow for signal to be provided to chain abort signal 320c767
+* allow late pubsub configuration ea3661e
 * allow not assigning result as last parameter c93f78c
 * allow not assigning result as last parameter cbc28b4
 * allow promised subscriptions to be tearred down 74aaa72
