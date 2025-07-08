@@ -189,6 +189,7 @@
 * dependencies sequencing on start 7e2fa87
 * dependency loop b1e483b
 * dependency loop 1de99cd
+* dependency start logic 4a03673
 * **deps:** update dependency mime-types to v3 5cfe8d4
 * **deps:** update dependency mime-types to v3 0d181d4
 * disable jsonrpc run 7aea19a
