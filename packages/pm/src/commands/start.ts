@@ -76,7 +76,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (missingDeps.length > 0)
             throw new ErrorWithStatus(404, `Some dependencies are missing to start ${options.name}:\n\t-${missingDeps.join('\n\t-')}`);
 
-        const seq = sequencify({ ...Object.fromEntries(Object.entries(this.config.containers.extract()).map(e => [e[0], { dep: e[1].dependencies }])), [name]: { dep: def.dependencies } }, [name])
+        const seq = sequencify({ ...Object.fromEntries(Object.entries(this.config.containers.extract()).map(e => [e[0], { dep: e[1].dependencies || [] }])), [name]: { dep: def.dependencies } }, [name])
         if (seq.missingTasks?.length || seq.recursiveDependencies?.length)
             throw new ErrorWithStatus(HttpStatusCode.InternalServerError, 'Some dependencies are not satisfied by the current process. Please check your dependencies and try again.\n' + JSON.stringify(seq))
 
