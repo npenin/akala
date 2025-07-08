@@ -184,6 +184,7 @@
 * default logging level f8f9a2c
 * default logging level f820f7a
 * dependencies b90de68
+* dependencies sequencing on start 7e2fa87
 * dependency loop b1e483b
 * dependency loop 1de99cd
 * **deps:** update dependency mime-types to v3 5cfe8d4
