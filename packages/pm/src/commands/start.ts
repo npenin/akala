@@ -1,7 +1,7 @@
 import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
 import State, { RunningContainer, SidecarMetadata } from '../state.js';
 import pmContainer from '../container.js';
-import { eachAsync, Event, ErrorWithStatus } from "@akala/core";
+import { eachAsync, Event, ErrorWithStatus, sequencify, HttpStatusCode } from "@akala/core";
 import { CliContext, unparseOptions } from "@akala/cli";
 import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
@@ -76,7 +76,15 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (missingDeps.length > 0)
             throw new ErrorWithStatus(404, `Some dependencies are missing to start ${options.name}:\n\t-${missingDeps.join('\n\t-')}`);
 
-        await eachAsync(def.dependencies, async (dep) => { await pm.dispatch('start', dep, { name: options.name + '-' + dep, wait: true }) });
+        const seq = sequencify(Object.fromEntries(Object.entries(this.config.containers.extract()).map(e => [e[0], { dep: e[1].dependencies }])), [name])
+        if (seq.missingTasks?.length || seq.recursiveDependencies?.length)
+            throw new ErrorWithStatus(HttpStatusCode.InternalServerError, 'Some dependencies are not satisfied by the current process. Please check your dependencies and try again.\n' + JSON.stringify(seq))
+
+        await eachAsync(seq.sequence, async (dep) =>
+        {
+            if (!this.processes[dep])
+                await pm.dispatch('start', dep, { wait: true })
+        });
     }
 
     switch (def?.type)
