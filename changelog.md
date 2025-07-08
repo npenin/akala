@@ -47,6 +47,7 @@
 * add missing link targets a2dae65
 * add missing link targets 2fc6516
 * add missing package to be started 48987d1
+* add missing ready event on dependency 98d31e4
 * add missing server plugin b294302
 * add missing storage provider ff28469
 * add missing storage provider 67a9a14
