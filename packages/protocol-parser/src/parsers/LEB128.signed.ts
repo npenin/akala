@@ -122,6 +122,7 @@ export default class SignedLEB128<T extends number | bigint> implements Parser<T
                                 Uint8.prototype.write(buffer, cursor, tmpValue | 0x80);
                             }
                         }
+                        return;
                     }
                 }
             }

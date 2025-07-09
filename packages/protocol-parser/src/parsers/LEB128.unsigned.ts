@@ -100,6 +100,8 @@ export default class UnsignedLEB128<T extends number | bigint> implements Parser
                                 Uint8.prototype.write(buffer, cursor, tmpValue | 0x80);
                             }
                         }
+
+                        return;
                     }
                 }
             }
