@@ -9,6 +9,7 @@ import cliCommands from './cli-container.js';
 import Configuration from '@akala/config';
 import { IpcAdapter } from './ipc-adapter.js';
 import { FSFileSystemProvider } from '@akala/fs';
+import { containers, InitAkala } from '@akala/commands/akala';
 
 const log = logger('akala:pm');
 
@@ -66,6 +67,9 @@ export default async function (_config, program: NamespaceMiddleware<{ configFil
     registerCommands(cliCommands.meta.commands, fs, pm);
 
     await pm.attach(Triggers.cli, cli);
+
+    pm.processor.useMiddleware(1, new InitAkala(commands.meta.commands.find(c => c.name === '$init'), {}));
+    containers.register('pm', pm);
 
     const metaContainer = commands.meta;
     let result: HandlerResult<ICommandProcessor>;
