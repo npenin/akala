@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* normalize on discover path c1a6b5f
+* enforce pm plugin registration and init in commands 53e3c9d
 
 
 
