@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* buffer reading when unlimited 8440c4d
-* leb128 writing 84cee52
+* leb128 writing 3101d3c
 
 
 
