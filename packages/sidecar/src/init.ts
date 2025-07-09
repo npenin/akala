@@ -48,6 +48,8 @@ export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: Sidecar
         let password = config?.transportOptions?.password;
         if (typeof password === 'string')
         {
+            if (!sidecar.config.pubsub)
+                sidecar.config.set('pubsub', config)
             await sidecar.config.pubsub.transportOptions.setSecret('password', password);
             await sidecar.config.commit();
         }
