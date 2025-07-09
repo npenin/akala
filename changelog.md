@@ -565,6 +565,7 @@
 * remove name option "mandatoryness" as we should already be in a valid node project 75141b8
 * remove nav exclusion from documentation files and add placeholders for upcoming content 453224e
 * remove nav exclusion from documentation files and add placeholders for upcoming content 3732092
+* remove normalize on discover path c43eb0b
 * remove obsolete router documentation 2fdace4
 * remove obsolete router documentation 0de7890
 * remove parent attributes from markdown files for improved documentation clarity 3660f44
