@@ -1,4 +1,4 @@
-#  (2025-07-08)
+#  (2025-07-09)
 
 
 * chore : code cleanup eae1150
@@ -123,6 +123,7 @@
 * bindings implementation 8362190
 * broken `has` behavior 4c886b7
 * broken `has` behavior de026d0
+* buffer reading when unlimited 8440c4d
 * bug when result is null 4596a13
 * bug when result is null b6a9828
 * build b92d150
@@ -308,6 +309,7 @@
 * handle proper termination 91c7535
 * handle Self during registration 9cdbd4c
 * handle setting a binding a boundproperty value aec03f6
+* handle setting config if not set dcd7dd7
 * handle undefined connect mapping f74b982
 * handle undefined dateFormat 114f4c3
 * handle undefined each source 823b7cd
@@ -422,6 +424,7 @@
 * jsonrpc find handler f0be1eb
 * jsonrpc indirections 0b82b4c
 * lazy late binding cryptokey 797a5c7
+* leb128 writing 84cee52
 * leverage core case converters 63bcf6b
 * leverage EventProcessor to allow for more use cases 6e85fc6
 * leverage remotePm if no pm is provided 1c7c6ff
