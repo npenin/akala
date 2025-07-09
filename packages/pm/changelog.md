@@ -1,9 +1,9 @@
-#  (2025-07-08)
+#  (2025-07-09)
 
 
 ### Bug Fixes
 
-* dependency start logic 4a03673
+* discover not using proper FS 9b5b428
 
 
 
