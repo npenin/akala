@@ -470,6 +470,7 @@
 * move all code to cli install ad7249d
 * move all code to cli install 991eda8
 * move autostart to ready event fe98d3f
+* move cursor when writing string a4a9d34
 * move HttpStatusCode to be more "independent" of Http 0bcb3aa
 * multiple modules may be started simultaneously 3ea8a55
 * nested bindings change detection and oldValue assignment 8f373ca
