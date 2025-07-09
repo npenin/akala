@@ -17,13 +17,13 @@ export default class FixedBuffer implements Parser<IsomorphicBuffer>
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
 
+        const offset = cursor.offset;
         if (this.length == -1)
         {
-            cursor.offset += buffer.length;
-            return buffer;
+            cursor.offset = buffer.length;
+            return buffer.subarray(offset);
         }
 
-        const offset = cursor.offset;
         const result = buffer.subarray(offset, cursor.offset += this.length);
 
         if (this.dismissMainBuffer)
