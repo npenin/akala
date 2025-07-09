@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* discover not using proper FS 9b5b428
+* remove normalize on discover path c43eb0b
 
 
 
