@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove normalize on discover path c43eb0b
+* normalize on discover path c1a6b5f
 
 
 
