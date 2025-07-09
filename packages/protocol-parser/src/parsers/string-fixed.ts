@@ -32,15 +32,12 @@ export default class FixedString<TString extends string = string> implements Par
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
 
-        if (this.length == -1)
-        {
-            buffer.write(value, cursor.offset, value.length, this.encoding);
-            return;
-        }
-
-        if (value.length != this.length)
+        if (this.length !== -1 && value.length != this.length)
             throw new Error(`string length (${value.length}) is not matching with expected length (${this.length})`)
 
-        cursor.offset += buffer.write(value, cursor.offset, this.length, this.encoding);
+        const bytes = IsomorphicBuffer.from(value, this.encoding);
+        buffer.copy(bytes, cursor.offset, 0);
+
+        cursor.offset += bytes.length;
     }
 }
