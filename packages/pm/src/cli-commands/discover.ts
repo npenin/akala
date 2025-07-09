@@ -1,3 +1,4 @@
+import { pathToFileURL } from 'url';
 import pmContainer from '../container.js';
 import map from './map.js'
 import { logger } from "@akala/core";
@@ -10,12 +11,12 @@ type mapReturn = Unpromise<ReturnType<typeof map>>;
 const log = logger('discover');
 
 
-export default async function discover(path: string | URL, pm: pmContainer.container, name?: string): Promise<mapReturn[] | mapReturn>
+export default async function discover(path: string | URL, pm: pmContainer.container, name?: string, cwd?: string): Promise<mapReturn[] | mapReturn>
 {
     // eslint-disable-next-line prefer-rest-params
     log.debug(arguments);
 
-    const moduleFs = await fsHandler.process(new URL(path));
+    const moduleFs = await fsHandler.process(new URL(path, pathToFileURL(cwd || process.cwd())));
 
     const packageConfig = await moduleFs.readFile<any>('./package.json', { encoding: 'json' })
 
