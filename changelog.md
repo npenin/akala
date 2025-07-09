@@ -216,6 +216,7 @@
 * enable tag lookup if current version is not tagged 6fd51df
 * enforce handlers with use 5fc57bc
 * enforce handlers with use 3cf35ac
+* enforce pm plugin registration and init in commands 53e3c9d
 * enforce run to execute with fs 01fde68
 * enforce type on config 9d8bc0f
 * enforce type on Parsed call ed0964e
