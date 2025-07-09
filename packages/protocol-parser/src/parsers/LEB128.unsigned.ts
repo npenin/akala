@@ -64,7 +64,6 @@ export default class UnsignedLEB128<T extends number | bigint> implements Parser
             {
                 const tmpBuffer = new IsomorphicBuffer(this.maxBytes);
                 let innerCursor = new Cursor();
-                let cursor = new Cursor();
                 let tmpValue: uint8;
                 const maxBits = this.maxBytes << 3;
                 if (this.maxBytes > 4)
