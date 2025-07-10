@@ -155,6 +155,7 @@
 * command extension to provide name a47159f
 * commands exports resolution d8d5fc0
 * comment out yarn workspaces command in cleanup script af1d564
+* config 68a8d85
 * config as akala plugin 211cc6b
 * config cli wrong bin path 742aeb7
 * configFile init 79f7467
@@ -305,6 +306,7 @@
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
 * handle object config type a0831b7
+* handle once 3b574b9
 * handle optional chaining in schema serialization functions 122a158
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
