@@ -359,7 +359,7 @@ export class ReplayEvent<T extends unknown[], TReturnType = void> extends Event<
      * @param {number} maxListeners - The maximum number of listeners.
      * @param {(args: TReturnType[]) => TReturnType} [combineReturnTypes] - Function to combine return types.
      */
-    constructor(private readonly bufferLength: number, maxListeners: number, combineReturnTypes?: (args: TReturnType[]) => TReturnType)
+    constructor(private readonly bufferLength: number, maxListeners?: number, combineReturnTypes?: (args: TReturnType[]) => TReturnType)
     {
         super(maxListeners, combineReturnTypes);
     }
