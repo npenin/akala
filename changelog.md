@@ -1,4 +1,4 @@
-#  (2025-07-09)
+#  (2025-07-10)
 
 
 * chore : code cleanup eae1150
@@ -444,6 +444,7 @@
 * make modelDefinitions readonly f797208
 * make rawQuery support optional 3be8917
 * make rawQuery support optional 6050617
+* make ReplayEvent max listeners optional 86f6545
 * make sure to use cryptKey from root config bb9c843
 * make sure to use cryptKey from root config ca5727e
 * many fixes (still not prod ready) d4f40d2
