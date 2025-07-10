@@ -222,7 +222,7 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
      */
     emit(...args: T): TReturnType 
     {
-        const results = this.listeners.map(listener => listener(...args));
+        const results = this.listeners.slice(0).map(listener => listener(...args));
         if (this.combineReturnTypes)
             return this.combineReturnTypes(results);
     }
