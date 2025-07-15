@@ -1,4 +1,4 @@
-#  (2025-07-10)
+#  (2025-07-15)
 
 
 * chore : code cleanup eae1150
@@ -782,6 +782,7 @@
 * update CLI plugin to get installed even within a multiple nodejs call 73c6187
 * update CLI title and remove navigation exclusion b46bccb
 * update CLI title and remove navigation exclusion c448dd1
+* update CLI usage and inject options in generate.json 4c5dc49
 * update commands b3d2e1e
 * update commands 168670b
 * update commands after breaking change a8f765c
@@ -907,6 +908,7 @@
 
 * `providers` uses UrlHandler instead of module d4afd7a
 * `providers` uses UrlHandler instead of module b228f89
+* add / in default separators in case helpers and allow to specify different separators ca313c2
 * add 1stline as accept run format 24e51ce
 * add 1stline as accept run format 8cc6945
 * add akala plugin as referenced in doc ef39d5c
