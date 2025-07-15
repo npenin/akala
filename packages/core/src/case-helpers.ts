@@ -1,3 +1,4 @@
+import { escapeRegExp } from "./reflect.js";
 
 /**
  * Converts a string to camelCase format.
@@ -5,13 +6,25 @@
  * @returns The camelCased string.
  * @example toCamelCase('hello_world') // 'helloWorld'
  */
-export function toCamelCase(s: string): string
+export function toCamelCase(s: string, separators: string = defaultSeparators): string
 {
-    if (s.length)
-    {
-        return s[0].toLowerCase() + toCamelPascalShared(s.slice(1));
-    }
-    return s;
+    return s?.length ?
+        s[0].toLowerCase() + toCamelPascalShared(s.slice(1))
+        : s;
+}
+
+export const defaultSeparators = '- _/';
+export const defaultCaseRegex = /(?:[- _\/]([a-zA-Z]))/g;
+export const defaultSepRegex = /(?:[- _\/]([a-zA-Z]))|([A-Z])/g;
+
+function getRegexpForSeparators(separators: string, includeCapitals: boolean)
+{
+    let pattern = `(?:[${escapeRegExp(separators)}]([a-zA-Z]))`;
+
+    if (includeCapitals)
+        pattern += '|([A-Z])';
+
+    return new RegExp(pattern, 'g');
 }
 
 /**
@@ -19,11 +32,17 @@ export function toCamelCase(s: string): string
  * @param s - The input string slice to process.
  * @returns The converted string segment.
  */
-function toCamelPascalShared(s: string)
+function toCamelPascalShared(s: string, separators: string = defaultSeparators)
 {
-    return s.length
-        ? s.replace(/(?:[- _]([a-zA-Z]))/g, (_, letter) => letter.toUpperCase())
-        : s;
+    if (separators == defaultSeparators)
+        return s?.length
+            ? s.replace(defaultCaseRegex, (_, letter) => letter.toUpperCase())
+            : s;
+    else
+        return s?.length
+            ? s.replace(getRegexpForSeparators(separators, false), (_, letter) => letter.toUpperCase())
+            : s;
+
 }
 
 /**
@@ -34,11 +53,9 @@ function toCamelPascalShared(s: string)
  */
 export function toPascalCase(s: string): string
 {
-    if (s.length)
-    {
-        return s[0].toUpperCase() + toCamelPascalShared(s.slice(1));
-    }
-    return s;
+    return s?.length ?
+        s[0].toUpperCase() + toCamelPascalShared(s.slice(1))
+        : s;
 }
 
 /**
@@ -47,9 +64,9 @@ export function toPascalCase(s: string): string
  * @returns The kebab-cased string.
  * @example toKebabCase('helloWorld') // 'hello-world'
  */
-export function toKebabCase(s: string): string
+export function toKebabCase(s: string, separators: string = defaultSeparators): string
 {
-    return s.replace(/(?:[- _]([a-zA-Z]))|([A-Z])/g, (_all, letter, upperLetter, index) => (index == 0 ? '' : '-') + (letter || upperLetter).toLowerCase());
+    return s.replace(getRegexpForSeparators(separators, true), (_all, letter, upperLetter, index) => (index == 0 ? '' : '-') + (letter || upperLetter).toLowerCase());
 }
 
 /**
@@ -58,7 +75,8 @@ export function toKebabCase(s: string): string
  * @returns The snake_cased string.
  * @example toSnakeCase('helloWorld') // 'hello_world'
  */
-export function toSnakeCase(s: string): string
+export function toSnakeCase(s: string, separators: string = defaultSeparators): string
 {
-    return s.replace(/(?:[- _]([a-zA-Z]))|([A-Z])/g, (_all, letter, upperLetter, index) => (index == 0 ? '' : '_') + (letter || upperLetter).toLowerCase());
+    return s?.length ?
+        s.replace(getRegexpForSeparators(separators, true), (_all, letter, upperLetter, index) => (index == 0 ? '' : '_') + (letter || upperLetter).toLowerCase()) : s;
 }
