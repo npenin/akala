@@ -1,9 +1,10 @@
-#  (2025-07-15)
+#  (2025-07-18)
 
 
-### Features
+### Bug Fixes
 
-* add / in default separators in case helpers and allow to specify different separators ca313c2
+* enhance argument extraction types to support class constructors 8100fdb
+* refine type definitions and improve event handling in ObservableObject 407d38d
 
 
 
