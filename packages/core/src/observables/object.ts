@@ -1,8 +1,8 @@
 import { map } from "../each.js";
 import { EventEmitter } from "../events/event-emitter.js";
-import { Event, EventArgs, EventKeys, EventListener, IEvent } from "../events/shared.js";
+import { Event, EventArgs, EventListener, IEvent } from "../events/shared.js";
 import { Formatter, formatters, isReversible, ReversibleFormatter } from "../formatters/index.js";
-import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
+import { AllEventKeys, ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
 import { EvaluatorAsFunction, ParsedFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
@@ -265,7 +265,7 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
                     result = newResult;
 
                 if (watcher)
-                    watcher.on(Symbol.dispose, sub = result.on(prop, () => watcher.emit('change', x as object)));
+                    watcher.on(Symbol.dispose, sub = result.on(prop as any, () => watcher.emit('change', x as object)));
                 // result.watch(watcher, prop);
                 return result.getValue(prop);
             }
@@ -670,7 +670,7 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
 }
 
 
-type ObservableType<T extends object> = Record<keyof T, IEvent<[ObjectEvent<T>], void>>;
+type ObservableType<T extends object> = { [key in keyof T]: IEvent<[ObjectEvent<T>], void> } & { [allProperties]: IEvent<[ObjectEvent<T>], void> };
 
 export type BindingChangedEvent<T> = { value: T, oldValue: T };
 
@@ -1055,6 +1055,7 @@ export class EmptyBinding<T> extends Binding<T>
     }
 }
 
+export const allProperties = Symbol('*');
 
 /**
  * Observable object implementation.
@@ -1089,13 +1090,13 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
     //         }
     //     }) as any;
     // }
-    public readonly target: T & { [watcher]?: ObservableObject<T> };
+    public readonly target: T & IWatchable<T>;
 
     /**
      * Creates an instance of ObservableObject.
      * @param {T & { [watcher]?: ObservableObject<T> } | ObservableObject<T>} target - The target object.
      */
-    constructor(target: T & { [watcher]?: ObservableObject<T> } | ObservableObject<T>)
+    constructor(target: (T & IWatchable<T>) | ObservableObject<T>)
     {
         super(Number.POSITIVE_INFINITY);
         if (target instanceof ObservableObject)
@@ -1165,9 +1166,12 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         }
 
         const oo = new ObservableObject(obj);
+        watcher.on(Symbol.dispose, sub = oo.on(allProperties as AllEventKeys<ObservableType<T>>, (() =>
+        {
+            watcher.emit('change', obj);
+        }) as EventListener<ObservableType<T>[typeof allProperties]>));
         Object.entries(obj).forEach(e =>
         {
-            oo.watch(watcher, e[0] as keyof T);
             if (typeof e[1] == 'object')
                 ObservableObject.watchAll(e[1], watcher);
         });
@@ -1179,7 +1183,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
      * @param {TKey} property - The property to watch.
      * @returns {Subscription} The subscription.
      */
-    public watch<const TKey extends EventKeys<ObservableType<T>>>(watcher: Watcher, property: TKey)
+    public watch<const TKey extends AllEventKeys<ObservableType<T>>>(watcher: Watcher, property: TKey)
     {
         const sub = this.on(property, (ev =>
         {
@@ -1236,15 +1240,26 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
      */
     public setValue<const TKey extends keyof T>(property: TKey, value: T[TKey])
     {
-        const oldValue: T[TKey] = this.target[property];
+        const oldValue = this.target[property];
         this.target[property] = value;
-        this.emit(property, ...[{
-            property: property,
-            value: value,
-            oldValue: oldValue,
-        }] as unknown[] as EventArgs<ObservableType<T>[TKey]>);
+
+        // This one is specific to the property
+        this.emit(property as AllEventKeys<ObservableType<T>>, ...[{
+            property,
+            value,
+            oldValue
+        }] as any); // or a tighter type if desired
+
+        // This one is for the `*` symbol (allProperties)
+        this.emit(allProperties as AllEventKeys<ObservableType<T>>, ...[{
+            property,
+            value,
+            oldValue
+        } as ObjectEvent<T>] as EventArgs<ObservableType<T>[typeof allProperties]>); // it's the same shape
+
         return true;
     }
+
 
     /**
      * Gets the value of a property.
@@ -1290,7 +1305,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
     public getObservable<const TKey extends keyof T>(property: TKey): T[TKey] extends object ? ObservableObject<T[TKey]> : null
     {
         if (typeof this.target[property] == 'object')
-            return new ObservableObject(this.target[property] as object) as T[TKey] extends object ? ObservableObject<T[TKey]> : null;
+            return new ObservableObject(this.target[property] as object) as unknown as T[TKey] extends object ? ObservableObject<T[TKey]> : null;
         return null;
     }
 
