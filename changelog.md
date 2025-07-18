@@ -1,4 +1,4 @@
-#  (2025-07-15)
+#  (2025-07-18)
 
 
 * chore : code cleanup eae1150
@@ -223,6 +223,7 @@
 * enforce type on Parsed call ed0964e
 * enhance $init command to utilize config for keyPath and loginUrl, and improve error handling 6cd04e0
 * enhance $init command to utilize config for keyPath and loginUrl, and improve error handling a18d1dd
+* enhance argument extraction types to support class constructors 8100fdb
 * enhance FSFileSystemProvider methods to return this for consistent chaining and handle potential null in JSON parsing 162d627
 * enhance HTTP response handling for different content types 059c659
 * enhance HTTP response handling for different content types 4bc375e
@@ -541,6 +542,7 @@
 * refine getCacheKey method to handle bigint and number cases more clearly dd49532
 * refine parent attribute handling in updateFrontMatter function for improved logic bc0d2b9
 * refine parent attribute handling in updateFrontMatter function for improved logic 714a266
+* refine type definitions and improve event handling in ObservableObject 407d38d
 * relative extends maps to relative files 2402375
 * relative extension path computation 3fe635f
 * release tagging 61cb1e1
