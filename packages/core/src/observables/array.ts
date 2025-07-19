@@ -354,19 +354,27 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
      * @param {...Parameters<typeof Array.prototype.map<U>>} args - The arguments for the map function.
      * @returns {ReturnType<typeof Array.prototype.map<U>>} The mapped array.
      */
-    public map(...args: Parameters<Array<T>['map']>): ReturnType<Array<T>['map']>
+    public map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[]
     {
-        return this.array.map(...args);
+        return this.array.map<U>(callbackfn, thisArg);
     }
 
     /**
-     * Reduces the array.
-     * @param {...Parameters<typeof Array.prototype.reduce<U>>} args - The arguments for the reduce function.
-     * @returns {ReturnType<typeof Array.prototype.reduce<U>>} The reduced value.
+     * Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
+     * @param callbackfn A function that accepts up to four arguments. The reduce method calls the callbackfn function one time for each element in the array.
+     * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.
      */
-    public reduce(...args: Parameters<Array<T>['reduce']>): ReturnType<Array<T>['reduce']>
+    reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T): T
+    reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T
+    /**
+     * Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
+     * @param callbackfn A function that accepts up to four arguments. The reduce method calls the callbackfn function one time for each element in the array.
+     * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the callbackfn function provides this value as an argument instead of an array value.
+     */
+    reduce<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue: U): U
+    reduce<U>(callbackfn: (previousValue: U, currentValue: T, currentIndex: number, array: T[]) => U, initialValue?: U): U
     {
-        return this.array.reduce(...args);
+        return this.array.reduce<U>(callbackfn, initialValue);
     }
 
     /**
