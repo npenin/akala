@@ -354,7 +354,7 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
      * @param {...Parameters<typeof Array.prototype.map<U>>} args - The arguments for the map function.
      * @returns {ReturnType<typeof Array.prototype.map<U>>} The mapped array.
      */
-    public map<U>(...args: Parameters<typeof Array.prototype.map<U>>): ReturnType<typeof Array.prototype.map<U>>
+    public map(...args: Parameters<Array<T>['map']>): ReturnType<Array<T>['map']>
     {
         return this.array.map(...args);
     }
@@ -364,7 +364,7 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
      * @param {...Parameters<typeof Array.prototype.reduce<U>>} args - The arguments for the reduce function.
      * @returns {ReturnType<typeof Array.prototype.reduce<U>>} The reduced value.
      */
-    public reduce<U>(...args: Parameters<typeof Array.prototype.reduce<U>>): ReturnType<typeof Array.prototype.reduce<U>>
+    public reduce(...args: Parameters<Array<T>['reduce']>): ReturnType<Array<T>['reduce']>
     {
         return this.array.reduce(...args);
     }
