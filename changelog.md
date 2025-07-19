@@ -1,4 +1,4 @@
-#  (2025-07-18)
+#  (2025-07-19)
 
 
 * chore : code cleanup eae1150
@@ -106,6 +106,7 @@
 * allow using npx/yarn dlx e308778
 * allow using npx/yarn dlx f11dc14
 * apply trailing empty line 8887eeb
+* array map and reduce typing 7dd1d30
 * artificial bump 3c2fdf4
 * artificial bump 51ca8e8
 * artificially bump akala 0057047
