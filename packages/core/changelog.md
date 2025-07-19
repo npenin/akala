@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* array map and reduce typing 7dd1d30
+* refine map and reduce method signatures for better type inference fafb733
 
 
 
