@@ -1,10 +1,9 @@
-#  (2025-07-18)
+#  (2025-07-19)
 
 
 ### Bug Fixes
 
-* enhance argument extraction types to support class constructors 8100fdb
-* refine type definitions and improve event handling in ObservableObject 407d38d
+* array map and reduce typing 7dd1d30
 
 
 
