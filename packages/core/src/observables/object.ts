@@ -1074,22 +1074,26 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
             return arg0.target;
         return arg0 as any;
     }
-    // public static wrap<T extends object>(target: T): T & { [ObservableObject.wrappingObservable]: ObservableObject<T> } & IWatched<T>
-    // {
-    //     return new Proxy(new ObservableObject(target), {
-    //         get(observableTarget, property)
-    //         {
-    //             if (property === ObservableObject.wrappingObservable)
-    //                 return target;
-    //             return observableTarget.get(property as keyof T);
-    //         },
-    //         set(observableTarget, property, value)
-    //         {
-    //             if(typeof value=='object')
-    //             return observableTarget.set(property as keyof T, value);
-    //         }
-    //     }) as any;
-    // }
+
+    /**
+     * Generates a dynamic proxy that gets and sets values from target, but triggers notifications on set. 
+     */
+    public static wrap<T extends object>(target: T): IWatched<T>
+    {
+        return new Proxy(new ObservableObject(target), {
+            get(observableTarget, property)
+            {
+                if (property === watcher)
+                    return observableTarget;
+                return observableTarget.getValue(property as keyof T);
+            },
+            set(observableTarget, property, value)
+            {
+                return observableTarget.setValue(property as keyof T, value);
+            }
+        }) as any;
+    }
+
     public readonly target: T & IWatchable<T>;
 
     /**
