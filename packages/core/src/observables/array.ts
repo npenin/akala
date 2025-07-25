@@ -344,15 +344,15 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
      * @returns {number} The index of the element.
      */
     public indexOf(searchElement: T, fromIndex?: number): number
-    public indexOf(...args: Parameters<typeof Array.prototype.indexOf>): ReturnType<typeof Array.prototype.indexOf>
+    public indexOf(...args: Parameters<Array<T>['indexOf']>): ReturnType<Array<T>['indexOf']>
     {
         return this.array.indexOf(...args);
     }
 
     /**
      * Maps the array.
-     * @param {...Parameters<typeof Array.prototype.map<U>>} args - The arguments for the map function.
-     * @returns {ReturnType<typeof Array.prototype.map<U>>} The mapped array.
+     * @param {...Parameters<Array<T>['map']<U>>} args - The arguments for the map function.
+     * @returns {ReturnType<Array<T>['map']<U>>} The mapped array.
      */
     public map<U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any): U[]
     {
@@ -379,40 +379,40 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
 
     /**
      * Filters the array.
-     * @param {...Parameters<typeof Array.prototype.filter>} args - The arguments for the filter function.
-     * @returns {ReturnType<typeof Array.prototype.filter>} The filtered array.
+     * @param {...Parameters<Array<T>['filter']>} args - The arguments for the filter function.
+     * @returns {ReturnType<Array<T>['filter']>} The filtered array.
      */
-    public filter(...args: Parameters<typeof Array.prototype.filter>): ReturnType<typeof Array.prototype.filter>
+    public filter(...args: Parameters<Array<T>['filter']>): ReturnType<Array<T>['filter']>
     {
         return this.array.filter(...args);
     }
 
     /**
      * Finds an element in the array.
-     * @param {...Parameters<typeof Array.prototype.find>} args - The arguments for the find function.
-     * @returns {ReturnType<typeof Array.prototype.find>} The found element.
+     * @param {...Parameters<Array<T>['find']>} args - The arguments for the find function.
+     * @returns {ReturnType<Array<T>['find']>} The found element.
      */
-    public find(...args: Parameters<typeof Array.prototype.find>): ReturnType<typeof Array.prototype.find>
+    public find(...args: Parameters<Array<T>['find']>): ReturnType<Array<T>['find']>
     {
         return this.array.find(...args);
     }
 
     /**
      * Finds an element index in the array.
-     * @param {...Parameters<typeof Array.prototype.find>} args - The arguments for the find function.
-     * @returns {ReturnType<typeof Array.prototype.find>} The found element index.
+     * @param {...Parameters<Array<T>['findIndex']>} args - The arguments for the find function.
+     * @returns {ReturnType<Array<T>['findIndex']>} The found element index.
      */
-    public findIndex(...args: Parameters<typeof Array.prototype.findIndex>): ReturnType<typeof Array.prototype.findIndex>
+    public findIndex(...args: Parameters<Array<T>['findIndex']>): ReturnType<Array<T>['findIndex']>
     {
         return this.array.findIndex(...args);
     }
 
     /**
      * Iterates over the array.
-     * @param {...Parameters<typeof Array.prototype.forEach>} args - The arguments for the forEach function.
-     * @returns {ReturnType<typeof Array.prototype.forEach>} The result of the iteration.
+     * @param {...Parameters<Array<T>['forEach']>} args - The arguments for the forEach function.
+     * @returns {ReturnType<Array<T>['forEach']>} The result of the iteration.
      */
-    public forEach(...args: Parameters<typeof Array.prototype.forEach>): ReturnType<typeof Array.prototype.forEach>
+    public forEach(...args: Parameters<Array<T>['forEach']>): ReturnType<Array<T>['forEach']>
     {
         return this.array.forEach(...args);
     }
