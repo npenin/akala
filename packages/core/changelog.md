@@ -1,9 +1,9 @@
-#  (2025-07-19)
+#  (2025-07-25)
 
 
-### Bug Fixes
+### Features
 
-* refine map and reduce method signatures for better type inference fafb733
+* enable wrap function 9630317
 
 
 
