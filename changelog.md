@@ -1,4 +1,4 @@
-#  (2025-07-19)
+#  (2025-07-25)
 
 
 * chore : code cleanup eae1150
@@ -1059,6 +1059,7 @@
 * enable info logging by default e65f143
 * enable opentofu/terraform generation for aws lambda deployment 667a77b
 * enable switch parser to use functions 229a371
+* enable wrap function 9630317
 * enforce URL usage and switch to @akala/fs 207908d
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing 08e5e24
 * enhance documentation structure with new sections on bindings, dependency injection, modules, and parsing def786c
