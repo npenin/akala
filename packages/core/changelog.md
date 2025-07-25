@@ -1,9 +1,9 @@
 #  (2025-07-25)
 
 
-### Features
+### Bug Fixes
 
-* enable wrap function 9630317
+* refine observable array method signatures for better type inference 0cccd94
 
 
 
