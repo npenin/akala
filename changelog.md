@@ -1,4 +1,4 @@
-#  (2025-07-26)
+#  (2025-07-27)
 
 
 * chore : code cleanup eae1150
@@ -295,6 +295,7 @@
 * handle duplicate ws and http servers e1855d7
 * handle edge case on datacontext definition 50c0275
 * handle empty or undefined buffers in concat 3bae07f
+* handle exploding uri templates in matching 07cc4b0
 * handle first run case f1ffe66
 * handle hotkey when no previous key was pressed a5f3b71
 * handle init lifecycle stage 54a8169
