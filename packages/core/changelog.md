@@ -1,9 +1,9 @@
-#  (2025-07-25)
+#  (2025-07-27)
 
 
 ### Bug Fixes
 
-* refine observable array method signatures for better type inference 0cccd94
+* handle exploding uri templates in matching 07cc4b0
 
 
 
