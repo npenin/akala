@@ -484,7 +484,10 @@ export function match(s: string, template: UriTemplate): null | { remainder: str
                                 if (s[j] == sep[t.explode ? t.operator || '' : ''])
                                 {
                                     if (!result[t.ref])
-                                        result[t.ref] = decodeURIComponent(s.substring(lastOffset, j));
+                                        if (t.explode)
+                                            result[t.ref] = [decodeURIComponent(s.substring(lastOffset, j))];
+                                        else
+                                            result[t.ref] = decodeURIComponent(s.substring(lastOffset, j));
                                     else if (Array.isArray(result[t.ref]))
                                         result[t.ref].push(decodeURIComponent(s.substring(lastOffset, j)));
                                     else
@@ -506,7 +509,10 @@ export function match(s: string, template: UriTemplate): null | { remainder: str
                             if (lastOffset < s.length)
                             {
                                 if (!result[t.ref])
-                                    result[t.ref] = decodeURIComponent(s.substring(lastOffset));
+                                    if (t.explode)
+                                        result[t.ref] = [decodeURIComponent(s.substring(lastOffset))];
+                                    else
+                                        result[t.ref] = decodeURIComponent(s.substring(lastOffset));
                                 else if (Array.isArray(result[t.ref]))
                                     result[t.ref].push(decodeURIComponent(s.substring(lastOffset)));
                                 else
