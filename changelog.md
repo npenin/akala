@@ -241,6 +241,7 @@
 * ensure postinstall completes 135afa8
 * ensure postinstall completes 10c4a72
 * ensure prepareMessage is called correctly in getLength and write methods 3c77981
+* ensure using transportOptions if not defined 12b4e5d
 * ensure write method returns an empty array when conditions are not met 929cbc8
 * error codes on connection c73426b
 * error codes on connection ca0ab9b
