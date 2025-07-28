@@ -1,6 +1,6 @@
 import { map } from "../each.js";
 import { EventEmitter } from "../events/event-emitter.js";
-import { Event, EventArgs, EventListener, IEvent } from "../events/shared.js";
+import { Event, EventListener, IEvent } from "../events/shared.js";
 import { Formatter, formatters, isReversible, ReversibleFormatter } from "../formatters/index.js";
 import { AllEventKeys, ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
 import { EvaluatorAsFunction, ParsedFunction } from "../parser/evaluator-as-function.js";
@@ -24,9 +24,9 @@ import { ExpressionType } from "../parser/expressions/expression-type.js";
 
 export interface ObjectEvent<T, TKey extends keyof T>
 {
-    readonly property: keyof T;
-    readonly value: T[keyof T];
-    readonly oldValue: T[keyof T];
+    readonly property: TKey;
+    readonly value: T[TKey];
+    readonly oldValue: T[TKey];
 }
 
 export class AsyncFormatter extends WatcherFormatter
@@ -265,7 +265,7 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
                     result = newResult;
 
                 if (watcher)
-                    watcher.on(Symbol.dispose, sub = result.on(prop as any, () => watcher.emit('change', x as object)));
+                    watcher.on(Symbol.dispose, sub = result.on(prop, () => watcher.emit('change', x as object)));
                 // result.watch(watcher, prop);
                 return result.getValue(prop);
             }
@@ -670,7 +670,9 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
 }
 
 
-type ObservableType<T extends object> = { [key in keyof T]: IEvent<[ObjectEvent<T, key>], void> } & { [allProperties]: IEvent<[ObjectEvent<T, keyof T>], void> };
+type ObservableType<T extends object> =
+    { [key in Exclude<keyof T, typeof allProperties>]: IEvent<[ObjectEvent<T, key>], void> } &
+    { [allProperties]: IEvent<[ObjectEvent<T, keyof T>], void> };
 
 export type BindingChangedEvent<T> = { value: T, oldValue: T };
 
@@ -1173,7 +1175,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         watcher.on(Symbol.dispose, sub = oo.on(allProperties as AllEventKeys<ObservableType<T>>, (() =>
         {
             watcher.emit('change', obj);
-        }) as EventListener<ObservableType<T>[typeof allProperties]>));
+        }) as any));
         Object.entries(obj).forEach(e =>
         {
             if (typeof e[1] == 'object')
@@ -1259,7 +1261,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
             property,
             value,
             oldValue
-        } as ObjectEvent<T, TKey>] as EventArgs<ObservableType<T>[typeof allProperties]>); // it's the same shape
+        } as ObjectEvent<T, TKey>] as any); // it's the same shape
 
         return true;
     }
