@@ -1,9 +1,9 @@
-#  (2025-07-27)
+#  (2025-07-28)
 
 
 ### Bug Fixes
 
-* handle exploding uri templates in matching 07cc4b0
+* specialize ObjectEvent for a better typing 38576c3
 
 
 
