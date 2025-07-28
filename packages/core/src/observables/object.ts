@@ -22,7 +22,7 @@ import { AssignmentExpression } from "../parser/expressions/assignment-expressio
 import { AssignmentOperator } from "../parser/expressions/assignment-operator.js";
 import { ExpressionType } from "../parser/expressions/expression-type.js";
 
-export interface ObjectEvent<T>
+export interface ObjectEvent<T, TKey extends keyof T>
 {
     readonly property: keyof T;
     readonly value: T[keyof T];
@@ -670,7 +670,7 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
 }
 
 
-type ObservableType<T extends object> = { [key in keyof T]: IEvent<[ObjectEvent<T>], void> } & { [allProperties]: IEvent<[ObjectEvent<T>], void> };
+type ObservableType<T extends object> = { [key in keyof T]: IEvent<[ObjectEvent<T, key>], void> } & { [allProperties]: IEvent<[ObjectEvent<T, keyof T>], void> };
 
 export type BindingChangedEvent<T> = { value: T, oldValue: T };
 
@@ -1259,7 +1259,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
             property,
             value,
             oldValue
-        } as ObjectEvent<T>] as EventArgs<ObservableType<T>[typeof allProperties]>); // it's the same shape
+        } as ObjectEvent<T, TKey>] as EventArgs<ObservableType<T>[typeof allProperties]>); // it's the same shape
 
         return true;
     }
