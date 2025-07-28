@@ -1,4 +1,4 @@
-#  (2025-07-27)
+#  (2025-07-28)
 
 
 * chore : code cleanup eae1150
@@ -677,6 +677,7 @@
 * sonar issues 9b4e3c4
 * sonarqube warning bd2b4b5
 * sonarqube warning 4b5de76
+* specialize ObjectEvent for a better typing 38576c3
 * standardize parent attribute casing in documentation for consistency 99b4952
 * standardize parent attribute casing in documentation for consistency b5ce37c
 * standardize section titles in documentation for consistency d8b067b
