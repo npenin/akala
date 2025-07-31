@@ -1,8 +1,8 @@
-import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from "@akala/core";
+import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, AsyncTeardownManager } from "@akala/core";
 import { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/json-rpc-ws";
 import { MessagePort, Worker } from "worker_threads";
 
-export class MessagePortAdapter extends TeardownManager implements SocketAdapter
+export class MessagePortAdapter extends AsyncTeardownManager implements SocketAdapter
 {
     private isOpen: boolean = true;
 

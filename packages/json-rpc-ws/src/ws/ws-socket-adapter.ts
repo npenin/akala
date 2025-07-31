@@ -1,6 +1,6 @@
 import ws from 'ws';
 import { SocketAdapter, SocketAdapterAkalaEventMap } from '../shared-connection.js';
-import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, HttpStatusCode, StatefulSubscription, Subscription, TeardownManager } from '@akala/core';
+import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, HttpStatusCode, StatefulSubscription, Subscription, AsyncTeardownManager } from '@akala/core';
 
 /**
  * json-rpc-ws connection
@@ -9,7 +9,7 @@ import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, Eve
  * @param {Socket} socket - web socket for this connection
  * @param {Object} parent - parent that controls this connection
  */
-export default class WsSocketAdapter extends TeardownManager implements SocketAdapter
+export default class WsSocketAdapter extends AsyncTeardownManager implements SocketAdapter
 {
     constructor(private socket: ws)
     {

@@ -1,8 +1,8 @@
 import { ChildProcess } from "child_process";
 import * as jsonrpc from '@akala/json-rpc-ws';
-import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, TeardownManager } from "@akala/core";
+import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, StatefulSubscription, Subscription, AsyncTeardownManager } from "@akala/core";
 
-export class IpcAdapter extends TeardownManager implements jsonrpc.SocketAdapter
+export class IpcAdapter extends AsyncTeardownManager implements jsonrpc.SocketAdapter
 {
     get open(): boolean { return !!this.cp.pid; }
 
