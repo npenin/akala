@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* specialize ObjectEvent for a better typing 38576c3
+* ObjectEvent definition c764837
 
 
 

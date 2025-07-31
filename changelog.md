@@ -489,6 +489,7 @@
 * npm fs handler using import.meta.resolve 4da63aa
 * npm root fs de6d2a9
 * obersavable array array mimicking d310c55
+* ObjectEvent definition c764837
 * oidc discover properly returns options for authorize, token and keys 0934291
 * oidc discover properly returns options for authorize, token and keys b92665c
 * optimize middleware processing e900bc6
