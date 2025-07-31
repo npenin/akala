@@ -1,4 +1,4 @@
-import { AsyncSubscription, AsyncTeardownManager, Subscription, TeardownManager } from "../teardown-manager.js";
+import { AsyncSubscription, AsyncTeardownManager, Subscription } from "../teardown-manager.js";
 import { Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, IEvent } from "./shared.js";
 
 /**
@@ -22,7 +22,7 @@ export type AllEventKeys<T extends object> = EventKeys<T> | keyof SpecialEvents;
  * @template T
  * @implements {Disposable}
  */
-export interface EventBus<T extends EventMap<T> = Record<PropertyKey, IEvent<unknown[], unknown>>> extends TeardownManager
+export interface EventBus<T extends EventMap<T> = Record<PropertyKey, IEvent<unknown[], unknown>>> extends AsyncTeardownManager
 {
     /**
      * Checks if there are listeners for a given event.
@@ -144,7 +144,7 @@ export interface AsyncEventBus<T extends { [key in keyof T]: IEvent<unknown[], u
  * @template T
  * @implements {Disposable}
  */
-export class EventBusWrapper<T extends Record<string, IEvent<unknown[], unknown>> = Record<string, Event<unknown[]>>> extends TeardownManager implements EventBus<T>
+export class EventBusWrapper<T extends Record<string, IEvent<unknown[], unknown>> = Record<string, Event<unknown[]>>> extends AsyncTeardownManager implements EventBus<T>
 {
     constructor(private readonly emitter: EventBus<T>)
     {

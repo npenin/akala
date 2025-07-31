@@ -1,4 +1,4 @@
-import { combineSubscriptions, Subscription, TeardownManager } from "../teardown-manager.js";
+import { AsyncTeardownManager, combineSubscriptions, Subscription } from "../teardown-manager.js";
 import { AllEventKeys, EventBus, SpecialEvents } from "./event-bus.js";
 import { Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, IEvent } from "./shared.js";
 
@@ -11,7 +11,7 @@ export type AllEvents<T extends object> = T & SpecialEvents
  * @template T
  * @implements {Disposable}
  */
-export class EventEmitter<T extends { [key in keyof T]: IEvent<any[], any> } = Record<PropertyKey, IEvent<unknown[], unknown>>> extends TeardownManager implements EventBus<T & SpecialEvents>
+export class EventEmitter<T extends { [key in keyof T]: IEvent<any[], any> } = Record<PropertyKey, IEvent<unknown[], unknown>>> extends AsyncTeardownManager implements EventBus<T & SpecialEvents>
 {
     /**
      * Checks if there are listeners for a given event.

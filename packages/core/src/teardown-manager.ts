@@ -123,6 +123,16 @@ export class AsyncTeardownManager implements AsyncDisposable
         this.subscriptions.length = 0;
     }
 
+    /** 
+     * Cleans up all registered subscriptions (implements Disposable pattern)
+     */
+    [Symbol.dispose]()
+    {
+        const subs = this.subscriptions.slice(0);
+        this.subscriptions.length = 0;
+        subs.map(s => s());
+    }
+
     /**
      * Registers a teardown subscription or Disposable
      * @typeParam T - Subscription function or Disposable object

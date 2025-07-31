@@ -1,4 +1,4 @@
-import { Subscription, TeardownManager } from "../teardown-manager.js";
+import { AsyncTeardownManager, Subscription } from "../teardown-manager.js";
 
 /**
  * Extracts the keys of events from an object.
@@ -92,7 +92,7 @@ export type IEvent<T extends readonly unknown[], TReturnType, TOptions extends {
  * @extends {TeardownManager}
  * @implements {IEvent<T, TReturnType, TOptions>}
  */
-export class Event<T extends readonly unknown[] = unknown[], TReturnType = void, TOptions extends { once?: boolean } = { once?: boolean }> extends TeardownManager implements IEvent<T, TReturnType, TOptions>
+export class Event<T extends readonly unknown[] = unknown[], TReturnType = void, TOptions extends { once?: boolean } = { once?: boolean }> extends AsyncTeardownManager implements IEvent<T, TReturnType, TOptions>
 {
     /**
      * Combines named events into a single event.
