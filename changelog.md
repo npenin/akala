@@ -1,4 +1,4 @@
-#  (2025-07-28)
+#  (2025-07-31)
 
 
 * chore : code cleanup eae1150
@@ -752,6 +752,7 @@
 * update after commands breaking change 95b04e6
 * update after commands breaking change 5249df2
 * update after commands breaking change d466cc8
+* update after core breaking change 18fdcee
 * update after core breaking change 669c311
 * update after core breaking change 859e291
 * update after core breaking change 990363a
@@ -1127,6 +1128,7 @@
 * introduce master detail, entity and if by default f1c5d91
 * introduce PathLike be0a8f8
 * introduce vite as trigger in vite plugin 43d9826
+* make event and event-emitter inherit asyncteardownmanager 66da89a
 * make help accessible everywhere by any clicontext e18be04
 * make help accessible everywhere by any clicontext 9f5892a
 * module accept Resolvable instead of just strings 0c95374
@@ -1171,6 +1173,7 @@
 
 ### BREAKING CHANGES
 
+* event and event-emitter need to extend asyncteardownmanager
 * some implementors might break during build
 * parsers are required to implement getLength to be able to properly initialize buffers to the right size
 * parserWrite returns a single buffer and is not used internally
