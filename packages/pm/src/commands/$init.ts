@@ -127,7 +127,7 @@ export default async function (this: State, container: RunningContainer & pmCont
         await eachAsync(this.config.mapping.extract(), async (mapping, name) =>
         {
             if (mapping.autostart)
-                container.ready.addListener(() => container.dispatch('start', name, { autostart: true, wait: true }, { args: mapping.cli || [] }));
+                container.ready.addListener(() => container.dispatch('start', name, { autostart: true, wait: true, configFile: context.options.configFile }, { args: mapping.cli || [] }));
         });
     }
 
