@@ -4,12 +4,13 @@ import pmContainer from '../container.js';
 import { eachAsync, Event, ErrorWithStatus, sequencify, HttpStatusCode } from "@akala/core";
 import { CliContext, unparseOptions } from "@akala/cli";
 import getRandomName from "./name.js";
-import { ProxyConfiguration } from "@akala/config";
+import { ProxyConfiguration, unwrap } from "@akala/config";
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { RuntimeInstance } from "../runtimes/shared.js";
 import ChildProcess from "../runtimes/child_process.js";
 import Worker from "../runtimes/worker.js";
+
 
 //eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
@@ -23,6 +24,9 @@ export default async function start(this: State, pm: pmContainer.container & Con
             options.name = getRandomName();
         else if (!options.name)
             options.name = name;
+
+    if (options && !options.configFile)
+        options.configFile = this.config[unwrap].path;
 
     let def: ProxyConfiguration<SidecarMetadata>;
 

@@ -6,7 +6,7 @@ export type ProxyConfiguration<T> = T extends object ? ProxyConfigurationObject<
 export type ProxyConfigurationObject<T extends object> = T extends (infer X)[] ? X[] : ProxyConfigurationObjectNonArray<T>;
 export type ProxyConfigurationObjectNonArray<T extends object> = Configuration<T> & { [key in keyof T]: T[key] extends object ? ProxyConfiguration<T[key]> : T[key] };
 //type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
-const unwrap = Symbol('unwrap configuration');
+export const unwrap = Symbol('unwrap configuration');
 
 const crypto = globalThis.crypto;
 const { subtle } = globalThis.crypto;
@@ -54,7 +54,7 @@ async function aesDecrypt(ciphertext: BufferSource, key: CryptoKey, iv: BufferSo
 export default class Configuration<T extends object = SerializableObject>
 {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private constructor(private readonly path: string, private readonly config?: T, private readonly rootConfig?: any, private cryptKey?: CryptoKey)
+    private constructor(public readonly path: string, private readonly config?: T, private readonly rootConfig?: any, private cryptKey?: CryptoKey)
     {
         if (typeof config == 'undefined')
             config = {} as unknown as T;
@@ -92,6 +92,7 @@ export default class Configuration<T extends object = SerializableObject>
                         case Symbol.toPrimitive:
                             return target[Symbol.toPrimitive];
                         case isProxy:
+                        case unwrap:
                             return true;
                         default:
                             return false;
@@ -214,7 +215,7 @@ export default class Configuration<T extends object = SerializableObject>
 
     public static loadKey(path: string): Promise<CryptoKey | null>
     {
-        return fs.readFile(path + '.key').then(keyContent => subtle.importKey('raw', keyContent, { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']), () => null);
+        return fs.readFile(path + '.key').then(keyContent => subtle.importKey('raw', keyContent, { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']), () => undefined);
     }
 
     public get<TResult = string>(key?: string): ProxyConfiguration<TResult>
@@ -230,25 +231,23 @@ export default class Configuration<T extends object = SerializableObject>
                 return config[key];
             }, this.config);
             if (typeof value == 'object' && value && !Array.isArray(value))
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             {
-                const result = Configuration.new(this.path, value as SerializableObject, this.rootConfig, this.cryptKey);
+                const result = Configuration.new(this.path, value as TResult & object, this.rootConfig, this.cryptKey);
                 Object.defineProperty(result, 'cryptKey', {
                     get: () => this.cryptKey,
                     set: (value) => this.cryptKey = value
                 });
-                return result as ProxyConfiguration<TResult>;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                return result as any;
             }
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            return value as any
-                ;
+            return value;
         }
         else
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return this as any;
     }
 
-    [unwrap] = this;
+    readonly [unwrap] = this;
 
     public async getSecret(key: string): Promise<string>
     {
