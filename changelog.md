@@ -508,6 +508,7 @@
 * pm start 75d92fd
 * pm start d3d04b3
 * pm start when no kept attached 17fc708
+* **pm:** apply configFile inheritance 761a7be
 * **pm:** apply configFile inheritance aaa43d2
 * **pm:** apply configFile inheritance 5355aad
 * pmConnectInfo not populated 8cd0190
