@@ -1,9 +1,10 @@
-#  (2025-07-31)
+#  (2025-08-03)
 
 
 ### Bug Fixes
 
-* update after core breaking change 18fdcee
+* **pm:** apply configFile inheritance aaa43d2
+* **pm:** apply configFile inheritance 5355aad
 
 
 
