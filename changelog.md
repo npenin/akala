@@ -1,4 +1,4 @@
-#  (2025-07-31)
+#  (2025-08-03)
 
 
 * chore : code cleanup eae1150
@@ -508,6 +508,8 @@
 * pm start 75d92fd
 * pm start d3d04b3
 * pm start when no kept attached 17fc708
+* **pm:** apply configFile inheritance aaa43d2
+* **pm:** apply configFile inheritance 5355aad
 * pmConnectInfo not populated 8cd0190
 * positional parameters 0839d7d
 * positional parameters 4c7e6df
