@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* **pm:** apply configFile inheritance aaa43d2
-* **pm:** apply configFile inheritance 5355aad
+* **pm:** apply configFile inheritance 761a7be
 
 
 
