@@ -1,4 +1,9 @@
-#  (2025-07-31)
+#  (2025-08-03)
+
+
+### Bug Fixes
+
+* **pm:** apply configFile inheritance 5355aad
 
 
 
