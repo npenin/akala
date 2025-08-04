@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* permissions for config key 7593b5a
+* config key file mode c55e693
 
 
 
