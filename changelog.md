@@ -1,4 +1,4 @@
-#  (2025-08-03)
+#  (2025-08-04)
 
 
 * chore : code cleanup eae1150
@@ -295,6 +295,7 @@
 * handle container metadata in the activate stage fedf680
 * handle duplicate ws and http servers e1855d7
 * handle edge case on datacontext definition 50c0275
+* handle empty buffer 0135f95
 * handle empty or undefined buffers in concat 3bae07f
 * handle exploding uri templates in matching 07cc4b0
 * handle first run case f1ffe66
@@ -505,6 +506,7 @@
 * pass keepAttached through 9603be4
 * peerDependency reference 89b2555
 * peerDependency reference 1b7e951
+* permissions for config key 7593b5a
 * pm start 75d92fd
 * pm start d3d04b3
 * pm start when no kept attached 17fc708
