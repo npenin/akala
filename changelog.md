@@ -235,6 +235,7 @@
 * enhance relative path handling in FileSystem class for improved URL processing 613e87e
 * enhance updateFrontMatter function to manage parent and nav_order attributes in markdown files dc3f6b0
 * enhance updateFrontMatter function to manage parent and nav_order attributes in markdown files 989c23d
+* ensure abort signal is propagated to asyncEventBus c5feabd
 * ensure akala is not postinstalled ccfb8fa
 * ensure akala is not postinstalled 272b1ee
 * ensure InitAkala warms up correctly when handling the init command c7dd7a2
