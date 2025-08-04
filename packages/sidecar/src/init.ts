@@ -39,7 +39,7 @@ export async function $init(context: CliContext<Record<string, OptionType>, Prox
     context.logger.help('Your application is now ready !');
 }
 
-export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: Sidecar<unknown, TEvents>, config: PubSubConfiguration | undefined)
+export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: Sidecar<unknown, TEvents>, config: PubSubConfiguration | undefined, abort: AbortSignal)
 {
     if (!sidecar.pubsub)
     {
@@ -59,7 +59,7 @@ export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: Sidecar
             password = await sidecar.config.pubsub.transportOptions.getSecret('password');
 
         if (config?.transport)
-            sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(config.transport), Object.assign({},
+            sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(config.transport), Object.assign({ abort },
                 config.transportOptions,
                 {
                     abort: sidecar.abort,
@@ -96,7 +96,7 @@ export default async function app<T extends StoreDefinition, TEvents extends Eve
     sidecar.sidecars = pmsidecar();
     context.logger.info('connection established.');
 
-    await pubsub(sidecar, pubsubConfig);
+    await pubsub(sidecar, pubsubConfig, context.abort.signal);
 
     switch (typeof stateStoreConfig)
     {
