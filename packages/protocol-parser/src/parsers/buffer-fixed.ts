@@ -35,6 +35,7 @@ export default class FixedBuffer implements Parser<IsomorphicBuffer>
 
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: IsomorphicBuffer)
     {
-        buffer.copy(value, cursor.offset, 0, this.length);
+        if (this.length)
+            buffer.copy(value, cursor.offset, 0, this.length);
     }
 }

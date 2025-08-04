@@ -29,7 +29,8 @@ export default class PrefixedBuffer implements Parser<IsomorphicBuffer>
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: IsomorphicBuffer)
     {
         this.prefix.write(buffer, cursor, value.length);
-        buffer.copy(value, cursor.offset);
+        if (value.length)
+            buffer.copy(value, cursor.offset);
         cursor.offset += value.length;
     }
 }

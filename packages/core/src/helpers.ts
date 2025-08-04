@@ -105,8 +105,10 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
 
     public copy(source: IsomorphicBuffer, offset: number, sourceOffset: number = 0, length?: number)
     {
+        if (length === 0 || !length && source.length == 0)
+            return;
         offset = this.ensureOffset(offset);
-        if (sourceOffset == 0 && (typeof length == 'undefined' || length == source.length))
+        if (sourceOffset == 0 && (typeof length == 'undefined' || length === source.length))
             this.buffer.set(source.toArray(), offset);
         else
             this.buffer.set(source.subarray(sourceOffset, sourceOffset + length).toArray(), offset);

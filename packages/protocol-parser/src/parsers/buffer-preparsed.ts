@@ -29,7 +29,8 @@ export default class PreparsedLengthBuffer<T, TKey extends keyof T> implements P
 
     write(buffer: IsomorphicBuffer, cursor: Cursor, value: IsomorphicBuffer)
     {
-        buffer.copy(value, cursor.offset, 0, value.length);
+        if (value.length)
+            buffer.copy(value, cursor.offset, 0, value.length);
     }
 
 }
