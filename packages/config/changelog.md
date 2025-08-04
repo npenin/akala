@@ -1,9 +1,9 @@
-#  (2025-08-03)
+#  (2025-08-04)
 
 
 ### Bug Fixes
 
-* **pm:** apply configFile inheritance 5355aad
+* permissions for config key 7593b5a
 
 
 
