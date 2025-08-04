@@ -159,6 +159,7 @@
 * config 68a8d85
 * config as akala plugin 211cc6b
 * config cli wrong bin path 742aeb7
+* config key file mode c55e693
 * configFile init 79f7467
 * configFile init abcfad1
 * configFile option 9609a93
