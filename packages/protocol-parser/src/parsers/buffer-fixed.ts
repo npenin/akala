@@ -9,7 +9,7 @@ export default class FixedBuffer implements Parser<IsomorphicBuffer>
     }
     getLength(value: IsomorphicBuffer): number
     {
-        return value.length;
+        return this.length;
     }
 
     read(buffer: IsomorphicBuffer, cursor: Cursor): IsomorphicBuffer
