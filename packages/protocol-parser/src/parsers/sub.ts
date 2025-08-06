@@ -20,7 +20,7 @@ export class Sub<TResult, TMessage> implements ParserWithMessage<TResult, TMessa
         return length + this.lengthParser.getLength(length, message);
     }
 
-    length: -1 = -1;
+    readonly length: -1 = -1;
 
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): TResult
     {
