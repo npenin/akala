@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* writing/reading at buffer last offset 10efb8b
+* restore offset check on isomorphicbuffer e366b81
 
 
 
