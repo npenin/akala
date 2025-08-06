@@ -300,6 +300,7 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
 
     private ensureOffset(offset?: number, length: number = 1)
     {
+        // console.log(`${offset} + ${length} = ${offset + length} <= ${this.end}`)
         if (typeof offset == 'undefined')
             offset = 0;
         offset += this.offset;
@@ -317,26 +318,26 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
 
     public readInt8(index: number = 0): number
     {
-        index = this.ensureOffset(index, 0);
+        index = this.ensureOffset(index);
         const val = this.buffer[index];
         return val & 0x80 ? val - 0x100 : val;
     }
 
     public writeInt8(value: number, index: number = 0)
     {
-        index = this.ensureOffset(index, 0);
+        index = this.ensureOffset(index);
         this.buffer[index] = value & 0xff;
     }
 
     public readUInt8(index: number = 0)
     {
-        index = this.ensureOffset(index, 0);
+        index = this.ensureOffset(index);
         return this.buffer[index];
     }
 
     public writeUInt8(value: number, index: number = 0)
     {
-        index = this.ensureOffset(index, 0);
+        index = this.ensureOffset(index);
         this.buffer[index] = value & 0xff;
     }
 
