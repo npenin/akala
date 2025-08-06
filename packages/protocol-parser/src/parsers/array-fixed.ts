@@ -9,7 +9,7 @@ export default class FixedLengthArray<T, TMessage> implements ParserWithMessage<
     }
     getLength(value: T[], message?: TMessage): number
     {
-        return value?.reduce((previous, current) => previous + this.valueParser.getLength(current, message), 0) || 0;
+        return value?.reduce((previous, current, i) => this.length == -1 || this.length > i ? previous + this.valueParser.getLength(current, message) : previous, 0) || 0;
     }
 
     read(buffer: IsomorphicBuffer, cursor: Cursor, message: TMessage): T[]
