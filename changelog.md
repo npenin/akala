@@ -630,6 +630,7 @@
 * resolveKeys 150e763
 * rest parameter overwriting default value 6c22dc2
 * rest parameter overwriting default value a80f45c
+* restore offset check on isomorphicbuffer e366b81
 * restore proper regex from github autofix 154e05b
 * restore string rendering 0bf0efa
 * restructure CLI documentation and add new sections bf15ad8
