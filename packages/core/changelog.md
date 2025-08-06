@@ -1,9 +1,9 @@
-#  (2025-08-04)
+#  (2025-08-06)
 
 
 ### Bug Fixes
 
-* handle empty buffer 0135f95
+* writing/reading at buffer last offset 10efb8b
 
 
 
