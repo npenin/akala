@@ -1,4 +1,4 @@
-#  (2025-08-04)
+#  (2025-08-06)
 
 
 * chore : code cleanup eae1150
@@ -540,6 +540,7 @@
 * properly handle readonly and open flags 8997997
 * protobuf reading 007b724
 * protocol-parser tests after IsomorphicBuffer implementation 338a64d
+* **protocol-parser:** wrong reported length 2875210
 * provide proper logging 445a133
 * provide proper logging 2e02b06
 * publicize fs module 97c3471
