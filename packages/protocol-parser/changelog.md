@@ -1,9 +1,9 @@
-#  (2025-08-04)
+#  (2025-08-06)
 
 
 ### Bug Fixes
 
-* handle empty buffer 0135f95
+* **protocol-parser:** wrong reported length 2875210
 
 
 
