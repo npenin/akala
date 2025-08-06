@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* **protocol-parser:** wrong reported length 2875210
+* edge case with fixed length array parser length compute c9f3b58
 
 
 
