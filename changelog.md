@@ -210,6 +210,7 @@
 * each container in commands cli has its own configuration section 415e113
 * each databinding 89c07e8
 * edge case when pubsub config is defined but not transportOptions 812641a
+* edge case with fixed length array parser length compute c9f3b58
 * edge cases bf341e8
 * edge cases when template is not defined 18add50
 * edge cases when template is not defined 412b6f6
@@ -889,6 +890,7 @@
 * webcomponent registration 5661065
 * webkit workaround #1624 a2ad462
 * when discovering from package.json file 5be62eb
+* writing/reading at buffer last offset 10efb8b
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
 * wrong csv parsing f9359c6
