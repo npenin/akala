@@ -36,8 +36,8 @@
     },
     "version": "13.1.95",
     "scripts": {
-        "test": "node --test --enable-source-maps",
-        "coverage": "yarn test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info --test-reporter=spec --test-reporter-destination=stdout",
+        "test": "node --test --enable-source-maps dist/esm/test/*.js",
+        "coverage": "yarn test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info --test-reporter=spec --test-reporter-destination=stdout dist/esm/test/*.js",
         "generate": "yarn generate-server && yarn generate-oidc-server",
         "generate-metadata": "yarn generate-metadata-server && yarn generate-metadata-oidc-server",
         "generate-server": "akala sdk generate dist/esm/server/commands commands.json --name auth",
