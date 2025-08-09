@@ -47,7 +47,7 @@
         "generate-workflow": "akala sdk generate dist/esm/workflow-commands workflow.json --name workflow",
         "generate-metadata-workflow": "akala sdk generate-metadata workflow.json src/workflow.ts --name workflow",
         "test": "node --test --enable-source-maps --import ./dist/esm/node-loader-for-testing.js 'test/*.yml'",
-        "coverage": "node --test --enable-source-maps --import ./dist/esm/node-loader-for-testing.js  --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info 'test/*.yml'"
+        "coverage": "node --test --enable-source-maps --import ./dist/esm/node-loader-for-testing.js  --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info --test-reporter=spec --test-reporter-destination=stdout 'test/*.yml'"
     },
     "exports": {
         ".": {
