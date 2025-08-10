@@ -5,11 +5,20 @@
 .card {
     composes: non-interactive from './interactive.module.css';
 
-    --standard-item-border-color: var(--separator-color);
-    --item-border-style: solid;
-    --item-border-width: 1px;
+    &.outline {
+        --standard-item-border-color: var(--separator-color);
+        --item-border-style: solid;
+        --item-border-width: 1px;
 
-    --item-border-radius: var(--card-border-radius);
+        --item-border-radius: var(--card-border-radius);
+    }
+
+    &:not(.outline) {
+        --standard-item-background-color: var(--control-background-color);
+
+        --item-border-radius: var(--card-border-radius);
+    }
+
     padding: var(--local-gutter-x) var(--local-gutter-x);
 
     &>header {
