@@ -324,7 +324,7 @@ export class Template
                 const closest = el.parentElement?.closest(selector);
                 let applyInnerTemplate = !!closest || !root;
                 if (!applyInnerTemplate && root)
-                    applyInnerTemplate = root === closest;
+                    applyInnerTemplate = root === closest || closest === null;
                 if (applyInnerTemplate)
                 {
                     disposables.push(
