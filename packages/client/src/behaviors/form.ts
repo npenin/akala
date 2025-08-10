@@ -1,5 +1,5 @@
 import { Container } from "@akala/commands/browser";
-import { type Composer } from "../template.js";
+import type { Composer } from "../template.js";
 import { Binding, Injector, type Subscription } from "@akala/core";
 import { DataBind, type DataBindPlugin } from "./context.js";
 import { subscribe } from "../common.js";

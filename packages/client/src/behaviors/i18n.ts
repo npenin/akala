@@ -1,8 +1,8 @@
-import { type Composer } from "../template.js";
+import type { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
 import { DataContext } from "./context.js";
 import { ParsedString, Parser, StringCursor, type Translator } from "@akala/core";
-import { type Expressions } from "@akala/core/expressions";
+import type { Expressions } from "@akala/core/expressions";
 
 export class I18nParser extends Parser
 {

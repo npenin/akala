@@ -1,4 +1,5 @@
-import { ctorToFunction, Module, module, defaultInjector, EventEmitter, type SpecialNextParam, type MiddlewarePromise, Event as klEvent, type Subscription, type IEventSink, type IEvent } from '@akala/core';
+import { ctorToFunction, EventEmitter, defaultInjector, module, Event as klEvent, } from '@akala/core';
+import type { Module, SpecialNextParam, MiddlewarePromise, Subscription, IEventSink, IEvent } from '@akala/core';
 
 /**
  * The main module for bootstrapping Akala client-side services.
@@ -10,7 +11,9 @@ bootstrapModule.activateEvent.maxListeners = 100;
 /**
  * Module for registering core Akala services.
  */
-export const serviceModule: Module = module('akala-services');
+const serviceModule: Module = module('akala-services');
+
+export { serviceModule };
 
 /**
  * Resolves a relative URL against the base URL defined in the document's <base> tag.

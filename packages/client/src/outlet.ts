@@ -1,5 +1,5 @@
 import { Router, RouterRequest as Request } from './router.js'
-import { Template, type templateFunction } from './template.js'
+import type { Template, templateFunction } from './template.js'
 import { type Scope } from './scope.js'
 import { service } from './common.js'
 import { LocationService as Location } from './locationService.js'
