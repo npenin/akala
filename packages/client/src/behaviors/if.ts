@@ -20,9 +20,12 @@ export class IfComposer<T extends Partial<Disposable>> extends AttributeComposer
 
     applyInternal<const TKey extends PropertyKey>(item: HTMLElement, options: T, event: TKey, value: unknown): Subscription | void
     {
-        const beacon = document.createTextNode('');
+        const beacon = item['replacedWith'] || document.createTextNode('');
         if (!value)
+        {
             item.replaceWith(beacon);
+            item['replacedWith'] = beacon
+        }
         else if (beacon.parentElement)
             beacon.replaceWith(item);
     }
