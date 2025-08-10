@@ -1,9 +1,4 @@
-#  (2025-08-06)
-
-
-### Bug Fixes
-
-* restore offset check on isomorphicbuffer e366b81
+#  (2025-08-10)
 
 
 
