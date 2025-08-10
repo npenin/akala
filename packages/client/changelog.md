@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* if behavior after value change c0f58b9
+* each control to support parent root element 6c36cea
 
 
 
