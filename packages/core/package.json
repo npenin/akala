@@ -3,8 +3,8 @@
     "version": "41.0.3",
     "description": "",
     "scripts": {
-        "test": "node --test --enable-source-maps dist/esm/test/*.js",
-        "coverage": "node --test --enable-source-maps --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info --test-reporter=spec --test-reporter-destination=stdout dist/esm/test/*.js",
+        "test": "node --test --enable-source-maps dist/esm/test/**/*.js",
+        "coverage": "node --test --enable-source-maps --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info --test-reporter=spec --test-reporter-destination=stdout dist/esm/test/**/*.js",
         "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json"
     },
