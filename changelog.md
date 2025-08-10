@@ -210,6 +210,7 @@
 * duplicate akala.mts to support yarn dlx dbf2f5e
 * duplicate akala.mts to support yarn dlx a665a56
 * each container in commands cli has its own configuration section 415e113
+* each control to support parent root element 6c36cea
 * each databinding 89c07e8
 * edge case when pubsub config is defined but not transportOptions 812641a
 * edge case with fixed length array parser length compute c9f3b58
