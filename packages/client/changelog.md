@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add support for parsed expressions other than ParsedObject and ParsedString 7ad6d73
+* if behavior after value change c0f58b9
 
 
 
