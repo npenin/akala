@@ -1,4 +1,4 @@
-#  (2025-08-06)
+#  (2025-08-10)
 
 
 * chore : code cleanup eae1150
@@ -214,6 +214,7 @@
 * edge cases bf341e8
 * edge cases when template is not defined 18add50
 * edge cases when template is not defined 412b6f6
+* enable css bundling 15ac99c
 * enable navigation folding for all Akala documentation sections cfd5444
 * enable navigation folding for all Akala documentation sections 2f46058
 * enable semantic release publish only on main bd9531b
