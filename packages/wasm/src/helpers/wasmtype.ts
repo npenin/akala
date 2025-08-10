@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from "@akala/core";
-import { u32 } from "../transpilers/wasmtype.js";
+import { type u32 } from "../transpilers/wasmtype.js";
 
 /**
  * Core interface for WebAssembly type instances

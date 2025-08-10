@@ -1,8 +1,8 @@
-import { CommandMetadataProcessorSignature, protocolHandlers, registerCommands, Container, Processors } from '@akala/commands'
-import { SocketAdapter, SocketAdapterAkalaEventMap } from '@akala/json-rpc-ws';
-import { AllEventKeys, AllEvents, Argument1, EventEmitter, EventListener, EventOptions, MiddlewareAsync, Subscription } from '@akala/core'
+import { type CommandMetadataProcessorSignature, protocolHandlers, registerCommands, Container, Processors } from '@akala/commands'
+import type { SocketAdapter, SocketAdapterAkalaEventMap } from '@akala/json-rpc-ws';
+import { type AllEventKeys, type AllEvents, type Argument1, EventEmitter, type EventListener, type EventOptions, type MiddlewareAsync, type Subscription } from '@akala/core'
 import { readFile } from 'fs/promises';
-import { Plugin, ViteDevServer } from 'vite';
+import { type Plugin, type ViteDevServer } from 'vite';
 import { fileURLToPath, pathToFileURL } from 'url'
 
 export class ViteSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter

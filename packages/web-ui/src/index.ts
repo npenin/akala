@@ -5,7 +5,7 @@ export * from './controls/dropdown.js'
 export * from './controls/mark.js'
 export * from './controls/table.js'
 
-import { Formatter, formatters } from '@akala/core'
+import { type Formatter, formatters } from '@akala/core'
 import bootstrap from './default.js'
 
 export { bootstrap };

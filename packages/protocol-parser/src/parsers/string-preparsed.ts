@@ -1,5 +1,5 @@
-import { IsomorphicBuffer, BufferEncoding } from '@akala/core';
-import { Cursor, ParserWithMessage } from './_common.js';
+import { IsomorphicBuffer, type BufferEncoding } from '@akala/core';
+import { Cursor, type ParserWithMessage } from './_common.js';
 
 export default class PreparsedString<T, TKey extends keyof T, TString extends string = string> implements ParserWithMessage<TString, T>
 {

@@ -1,5 +1,6 @@
 import { each } from '../each.js';
-import { process, AnySyncMiddleware, ErrorMiddleware, Middleware, MiddlewareResult, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import { process, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import type { AnySyncMiddleware, Middleware, ErrorMiddleware, MiddlewareResult, OptionsResponse, SpecialNextParam } from './shared.js';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
 export interface ExtendableCompositeMiddleware<T extends unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam> { }

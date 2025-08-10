@@ -1,5 +1,5 @@
 import { service } from './common.js'
-import { Binding, Event, EventEmitter, Http, Injector, Interpolate, Parser, SimpleInjector, Subscription, each, grep, map } from '@akala/core';
+import { Binding, Event, EventEmitter, type Http, Injector, Interpolate, Parser, SimpleInjector, type Subscription, each, grep, map } from '@akala/core';
 
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)

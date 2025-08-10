@@ -1,4 +1,4 @@
-import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor } from '../model/processor.js';
+import { type CommandMetadataProcessorSignature, CommandProcessor, type ICommandProcessor } from '../model/processor.js';
 import { protocolHandlers as handlers } from '../protocol-handler.js';
 import { EventProcessor } from './event.js';
 

@@ -1,6 +1,6 @@
-import { CliContext, unparseWithMeta } from '@akala/cli';
+import { type CliContext, unparseWithMeta } from '@akala/cli';
 import * as ac from '@akala/commands'
-import { MiddlewarePromise, MiddlewareResult, Deferred } from '@akala/core';
+import { type MiddlewarePromise, type MiddlewareResult, Deferred } from '@akala/core';
 import { spawn } from 'child_process'
 
 export default class CliGatewayProcessor extends ac.CommandProcessor

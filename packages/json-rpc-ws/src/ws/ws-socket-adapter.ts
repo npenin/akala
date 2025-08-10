@@ -1,6 +1,6 @@
 import ws from 'ws';
-import { SocketAdapter, SocketAdapterAkalaEventMap } from '../shared-connection.js';
-import { AllEventKeys, AllEvents, ErrorWithStatus, EventArgs, EventListener, EventOptions, EventReturnType, HttpStatusCode, StatefulSubscription, Subscription, AsyncTeardownManager } from '@akala/core';
+import type { SocketAdapter, SocketAdapterAkalaEventMap } from '../shared-connection.js';
+import { type AllEventKeys, type AllEvents, ErrorWithStatus, type EventArgs, type EventListener, type EventOptions, type EventReturnType, HttpStatusCode, StatefulSubscription, type Subscription, AsyncTeardownManager } from '@akala/core';
 
 /**
  * json-rpc-ws connection

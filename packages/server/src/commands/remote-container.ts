@@ -1,4 +1,4 @@
-import { State } from '../state.js';
+import { type State } from '../state.js';
 import { Container, Metadata } from "@akala/commands";
 import { HttpRouter } from '../router/index.js';
 

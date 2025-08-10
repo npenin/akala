@@ -1,4 +1,4 @@
-import { Composer, HtmlControlElement, subscribe, wcObserve } from '@akala/client';
+import { type Composer, type HtmlControlElement, subscribe, wcObserve } from '@akala/client';
 import { Popover } from './popover.js';
 import { arrow, flip, offset, shift } from '@floating-ui/dom';
 import { TeardownManager } from '@akala/core';

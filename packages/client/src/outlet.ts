@@ -1,9 +1,9 @@
 import { Router, RouterRequest as Request } from './router.js'
-import { Template, templateFunction } from './template.js'
-import { Scope } from './scope.js'
+import { Template, type templateFunction } from './template.js'
+import { type Scope } from './scope.js'
 import { service } from './common.js'
 import { LocationService as Location } from './locationService.js'
-import { Event, EventBus, EventBusWrapper, EventOptions, SimpleInjector, map } from '@akala/core'
+import { Event, type EventBus, EventBusWrapper, type EventOptions, SimpleInjector, map } from '@akala/core'
 
 /**
  * Represents an instance of a UI part with its associated scope and DOM element.

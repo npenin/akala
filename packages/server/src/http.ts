@@ -1,4 +1,4 @@
-import { FetchHttp, Http as coreHttp } from '@akala/core';
+import { FetchHttp, type Http as coreHttp } from '@akala/core';
 import { XMLParser } from 'fast-xml-parser'
 
 FetchHttp.prototype['getXML'] = function (this: FetchHttp, url: string)

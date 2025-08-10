@@ -1,6 +1,6 @@
-import { OptionOptions, OptionType } from '@akala/cli';
-import { FileSystemConfiguration, HttpConfiguration, SchemaConfiguration } from '../processors/index.js'
-import { InjectMap, Resolvable } from '@akala/core';
+import type { OptionOptions, OptionType } from '@akala/cli';
+import type { FileSystemConfiguration, HttpConfiguration, SchemaConfiguration } from '../processors/index.js'
+import type { InjectMap, Resolvable } from '@akala/core';
 
 export type jsonPrimitive = string | number | boolean | undefined;
 export type jsonObject = { [key: string]: jsonPrimitive | jsonPrimitive[] | jsonObject[] | jsonObject };

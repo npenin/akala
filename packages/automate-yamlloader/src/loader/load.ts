@@ -1,4 +1,4 @@
-import { Workflow } from "@akala/automate";
+import { type Workflow } from "@akala/automate";
 import yaml from 'yaml';
 import { readFile } from 'fs/promises'
 

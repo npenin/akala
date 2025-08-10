@@ -1,4 +1,4 @@
-import { Formatter } from "./common.js";
+import type { Formatter } from "./common.js";
 
 /**
  * A formatter that negates boolean values.

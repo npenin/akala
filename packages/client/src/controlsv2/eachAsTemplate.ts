@@ -1,4 +1,4 @@
-import { Binding, ObservableArray, Subscription } from "@akala/core";
+import { Binding, ObservableArray, type Subscription } from "@akala/core";
 import { Control } from "./shared.js";
 import { Template } from "../template.js";
 import { DataContext } from "../common.js";

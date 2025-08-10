@@ -1,7 +1,8 @@
 ﻿import { AccessRule, AccessRules } from '../access-rule.js';
 import AclManager, { provider } from '../acl-manager.js';
 import { OrderedList } from '../ordered-list.js';
-import IAclProvider, { AclChangedHandler, Event } from './IAclProvider.js';
+import type IAclProvider from './IAclProvider.js';
+import { type AclChangedHandler, Event } from './IAclProvider.js';
 
 @provider('memory')
 export default class MemoryProvider implements IAclProvider

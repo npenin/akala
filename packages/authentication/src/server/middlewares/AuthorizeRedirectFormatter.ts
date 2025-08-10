@@ -1,5 +1,5 @@
-import { ErrorMiddlewareAsync, HttpStatusCode, MiddlewarePromise, MiddlewareResult, NotHandled } from "@akala/core";
-import { Request, Response } from "@akala/server";
+import { type ErrorMiddlewareAsync, HttpStatusCode, type MiddlewarePromise, type MiddlewareResult, NotHandled } from "@akala/core";
+import type { Request, Response } from "@akala/server";
 
 export class AuthorizeRedirectFormatter implements ErrorMiddlewareAsync<[unknown, Response]>
 {

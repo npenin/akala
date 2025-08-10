@@ -1,7 +1,7 @@
 import { EventEmitter } from '../events/event-emitter.js';
 import { Event } from '../events/shared.js';
 import "reflect-metadata";
-import { InjectMap, Injector, LocalInjector, Resolvable, ResolvableArray, injectorLog } from './shared.js';
+import { type InjectMap, Injector, LocalInjector, type Resolvable, type ResolvableArray, injectorLog } from './shared.js';
 
 /** 
  * A simple dependency injection container that provides basic resolution capabilities.

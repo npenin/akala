@@ -2,10 +2,10 @@ import { platform } from 'os';
 import { join } from 'path';
 import { type ServeOptions } from './cli/serve.js';
 import { registerCommands } from './generator.js'
-import { ICommandProcessor } from './model/processor.js';
+import { type ICommandProcessor } from './model/processor.js';
 import { ErrorWithStatus } from '@akala/core';
 import { Container } from './model/container.js';
-import { ConnectionPreference, connectWith } from './serve-metadata.browser.js';
+import { type ConnectionPreference, connectWith } from './serve-metadata.browser.js';
 import { $metadata } from './index.browser.js';
 
 export type ServeMetadata = Record<string, object>

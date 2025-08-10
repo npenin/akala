@@ -1,15 +1,15 @@
 import "reflect-metadata";
-import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField } from './common.js';
+import { type FieldType, StorageFieldType, ModelDefinition, type Relationship, type Attribute, type StorageField, StorageView, Generator, type SerializableDefinition, type SerializedAttribute, type SerializedFieldType, type SerializedRelationship, type SerializedStorageField } from './common.js';
 import { Query } from './Query.js';
 // import { PersistenceEngine, Transaction } from './PersistenceEngine.js';
-import { Update, Create, Delete, CommandResult } from './commands/command.js';
+import { Update, Create, Delete, type CommandResult } from './commands/command.js';
 import { types } from 'util';
 
 import * as Enumerable from './Enumerable.js'
-import { ICustomResolver } from "@akala/core";
+import { type ICustomResolver } from "@akala/core";
 
 export { Cardinality } from './cardinality.js'
-export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
+export { ModelDefinition, type Relationship, type Attribute, type StorageField, StorageView, Generator, type SerializableDefinition, type SerializedAttribute, type SerializedFieldType, type SerializedRelationship, type SerializedStorageField };
 // export { PersistenceEngine, dynamicProxy } from './PersistenceEngine.js'
 
 export interface DbSet<T, TRawQuery = unknown> extends Query<T, TRawQuery>, ICustomResolver
@@ -163,4 +163,4 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
 }
 
 
-export { StorageFieldType as Types, FieldType as Type, Field as ModelField } from './common.js'
+export { StorageFieldType as Types, type FieldType as Type, type Field as ModelField } from './common.js'

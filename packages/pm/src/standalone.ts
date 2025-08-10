@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import * as path from 'path'
 import * as ac from '@akala/commands';
-import { convertToMiddleware, logger, Logger, MiddlewareCompositeAsync } from '@akala/core';
+import { convertToMiddleware, logger, type Logger, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
-import fsHandler, { Stats } from '@akala/fs';
+import fsHandler, { type Stats } from '@akala/fs';
 import { pathToFileURL } from 'url';
 
 program.option('help')

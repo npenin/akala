@@ -1,5 +1,5 @@
-import { MiddlewareAsync, MiddlewarePromise, NotHandled } from '@akala/core'
-import { Request, Response } from './shared.js'
+import { type MiddlewareAsync, type MiddlewarePromise, NotHandled } from '@akala/core'
+import type { Request, Response } from './shared.js'
 import cookie from 'cookie'
 
 export class CookieMiddleware implements MiddlewareAsync<[Request, Response, ...unknown[]]>

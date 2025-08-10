@@ -1,8 +1,8 @@
 import
 {
-    Context,
-    convertToMiddleware, each, ErrorWithStatus, introspect, isPromiseLike, map, MiddlewareAsync, MiddlewareCompositeAsync,
-    MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, MiddlewarePromise,
+    type Context,
+    convertToMiddleware, each, ErrorWithStatus, introspect, isPromiseLike, map, type MiddlewareAsync, MiddlewareCompositeAsync,
+    MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, type MiddlewarePromise,
     NotHandled
 } from '@akala/core';
 import normalize from '../helpers/normalize.js';

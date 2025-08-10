@@ -1,9 +1,9 @@
-import { EventEmitter, MiddlewareAsync, MiddlewarePromise, NotHandled, Event, HttpStatusCode, ErrorWithStatus } from "@akala/core";
-import { Request, Response } from './shared.js'
+import { EventEmitter, type MiddlewareAsync, type MiddlewarePromise, NotHandled, Event, HttpStatusCode, ErrorWithStatus } from "@akala/core";
+import type { Request, Response } from './shared.js'
 import { resolve } from 'path'
 import escapeHtml from 'escape-html';
 import { pathToFileURL } from "url";
-import fsHandler, { FileSystemProvider } from '@akala/fs'
+import fsHandler, { type FileSystemProvider } from '@akala/fs'
 
 export interface Options 
 {

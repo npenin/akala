@@ -1,6 +1,6 @@
 import { Sub as CoreSub } from "../sub.js";
-import { ParsersWithMessage } from "../_common.js";
-import { WireType } from './field.js';
+import { type ParsersWithMessage } from "../_common.js";
+import { type WireType } from './field.js';
 
 
 export class Sub<TResult, TMessage> extends CoreSub<TResult, TMessage>

@@ -1,12 +1,12 @@
 import * as path from 'path'
-import { DocConfiguration, jsonObject } from '../metadata/index.js';
-import { FileSystemConfiguration } from '../processors/fs.js';
+import { type DocConfiguration, type jsonObject } from '../metadata/index.js';
+import { type FileSystemConfiguration } from '../processors/fs.js';
 import { outputHelper } from '../new.js';
 import { resolveToTypeScript } from './generate-ts-from-schema.js';
 import { Metadata, Processors } from '../index.js';
 import { eachAsync, MiddlewareCompositeWithPriorityAsync, toCamelCase } from '@akala/core';
-import { JsonSchema } from '../jsonschema.js';
-import { FileSystemProvider } from '@akala/fs';
+import { type JsonSchema } from '../jsonschema.js';
+import { type FileSystemProvider } from '@akala/fs';
 import { relative } from 'path/posix';
 
 export const generatorPlugin = new MiddlewareCompositeWithPriorityAsync<[options: { name?: string, noContainer?: boolean; noProxy?: boolean; noStandalone?: boolean; noMetadata?: boolean; }, container: Metadata.Container, output: WritableStreamDefaultWriter, outputFs: FileSystemProvider, outputFile: string]>();
@@ -178,11 +178,11 @@ export default async function generate(name?: string, folder?: string, outputFil
         await output.write(`//eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore 6133
 //eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argument5, Argument6, Argument7, Argument8, Argument9, Argument10, Argument11, Argument12, Argument13, Argument14, Argument15, Argument16, Argument17 } from '@akala/core';
+import type {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argument5, Argument6, Argument7, Argument8, Argument9, Argument10, Argument11, Argument12, Argument13, Argument14, Argument15, Argument16, Argument17 } from '@akala/core';
 `)
     }
 
-    await output.write('import {Metadata, ICommandProcessor, Container, registerCommands} from "@akala/commands";\n');
+    await output.write('import {Metadata, type ICommandProcessor, Container, registerCommands} from "@akala/commands";\n');
 
     if (outputFile.endsWith('.d.ts'))
         await output.write('declare namespace ' + toCamelCase(options.name));

@@ -3,14 +3,14 @@ import ProtobufString from './string.js';
 import FixedLengthArray from "../array-fixed.js";
 import Uint32 from "../uint32.js";
 import Uint64 from "../uint64.js";
-import { AnyParser, ParsersWithMessage, ParserWithMessage } from "../_common.js";
-import Property, { ArrayItem } from './property.js';
-import { WireType } from './field.js';
+import type { AnyParser, ParsersWithMessage, ParserWithMessage } from "../_common.js";
+import Property, { type ArrayItem } from './property.js';
+import { type WireType } from './field.js';
 import Message, { UnknownMessage } from './message.js';
 import { Sub } from './sub.js';
 import Varint from './varint.js';
 import { ZeroOrOne } from "../zero-or-one.js";
-import { BufferEncoding } from "@akala/core";
+import { type BufferEncoding } from "@akala/core";
 
 export const varint = new Varint();
 export const raw: PrefixedBuffer & { wireType: WireType } = Object.assign(new PrefixedBuffer(varint), { wireType: 'length-delimited' } as { wireType: 'length-delimited' });

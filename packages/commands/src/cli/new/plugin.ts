@@ -1,6 +1,6 @@
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 import { outputHelper } from "../../new.js";
-import { FileHandle, OpenFlags } from "@akala/fs";
+import { type FileHandle, OpenFlags } from "@akala/fs";
 import { HttpStatusCode, packagejson } from "@akala/core";
 
 export default async function (target: string, options: CliContext<{ force?: boolean, }>['options'], source?: string)

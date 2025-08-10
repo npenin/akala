@@ -1,5 +1,5 @@
-import { Metadata, metadataPluginHandler, tsPluginHandler, protocolHandlers, HandlerResult, ICommandProcessor } from '@akala/commands'
-import { Policy } from '../iam.js';
+import { Metadata, metadataPluginHandler, tsPluginHandler, protocolHandlers, type HandlerResult, type ICommandProcessor } from '@akala/commands'
+import { type Policy } from '../iam.js';
 import { Processors } from '@akala/commands';
 import { sign } from '../signature.js';
 

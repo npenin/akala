@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareRoute, OptionsResponse, RouterAsync, Routable, RouteBuilderArguments, RouterOptions, MiddlewareResult, SpecialNextParam } from '@akala/core';
+import { type Middleware, MiddlewareRoute, type OptionsResponse, RouterAsync, type Routable, type RouteBuilderArguments, type RouterOptions, type MiddlewareResult, type SpecialNextParam } from '@akala/core';
 
 /**
  * Represents a request object containing routing information.

@@ -4,7 +4,7 @@ import { control } from "../transpilers/control.js";
 import { i32 } from "../transpilers/i32.js";
 import { local } from "../transpilers/local.js";
 import { memory } from "../transpilers/memory.js";
-import { u32 } from "../transpilers/wasmtype.js";
+import { type u32 } from "../transpilers/wasmtype.js";
 import { i32 as hi32 } from '../helpers/i32.js'
 import { IsomorphicBuffer } from "@akala/core";
 

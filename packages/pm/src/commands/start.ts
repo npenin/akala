@@ -1,13 +1,14 @@
 import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
-import State, { RunningContainer, SidecarMetadata } from '../state.js';
+import type { RunningContainer, SidecarMetadata } from '../state.js';
+import type State from '../state.js';
 import pmContainer from '../container.js';
 import { eachAsync, Event, ErrorWithStatus, sequencify, HttpStatusCode } from "@akala/core";
-import { CliContext, unparseOptions } from "@akala/cli";
+import { type CliContext, unparseOptions } from "@akala/cli";
 import getRandomName from "./name.js";
-import { ProxyConfiguration, unwrap } from "@akala/config";
+import { type ProxyConfiguration, unwrap } from "@akala/config";
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { RuntimeInstance } from "../runtimes/shared.js";
+import { type RuntimeInstance } from "../runtimes/shared.js";
 import ChildProcess from "../runtimes/child_process.js";
 import Worker from "../runtimes/worker.js";
 

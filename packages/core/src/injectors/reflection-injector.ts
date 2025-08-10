@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { SimpleInjector } from './simple-injector.js';
-import { InjectedParameter } from "./shared.js";
+import type { InjectedParameter } from "./shared.js";
 
 export type PropertyInjection = ((i: SimpleInjector) => void);
 export type ParameterInjection = ((i: SimpleInjector) => InjectedParameter<unknown>);

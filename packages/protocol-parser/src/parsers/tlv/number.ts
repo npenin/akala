@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from "@akala/core";
-import { Cursor, Parser, Parsers } from "../_common.js";
+import { Cursor, type Parser, type Parsers } from "../_common.js";
 
 export class TLVNumber implements Parser<number>
 {

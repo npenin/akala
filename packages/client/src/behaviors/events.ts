@@ -1,5 +1,5 @@
-import { Subscription } from "@akala/core";
-import { Composer } from "../template.js";
+import { type Subscription } from "@akala/core";
+import { type Composer } from "../template.js";
 import { DataContext } from "./context.js";
 import { AttributeComposer } from "./shared.js";
 

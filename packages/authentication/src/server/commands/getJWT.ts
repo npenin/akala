@@ -1,6 +1,6 @@
-import { JWT } from "@akala/jwt";
+import { type JWT } from "@akala/jwt";
 import { AuthenticationMethodReference } from "../../model/session.js";
-import { State } from "../state.js";
+import { type State } from "../state.js";
 import { BinaryOperator } from '@akala/core/expressions'
 
 export interface OidcJwt extends Record<string, string | number | string[] | number[]>

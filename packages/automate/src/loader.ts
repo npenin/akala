@@ -1,4 +1,4 @@
-import { Workflow } from "./index.js";
+import { type Workflow } from "./index.js";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 namespace loader
@@ -13,4 +13,4 @@ namespace loader
 	}
 }
 
-export { loader as default };
+export { type loader as default };

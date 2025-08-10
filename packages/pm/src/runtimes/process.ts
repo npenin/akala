@@ -1,6 +1,6 @@
 import { Readable, Writable } from "stream";
 import { IpcAdapter } from "../ipc-adapter.js";
-import { RuntimeEventMap, RuntimeInstance } from "./shared.js";
+import type { RuntimeEventMap, RuntimeInstance } from "./shared.js";
 import { EventEmitter } from "@akala/core";
 
 export default class Runtime extends EventEmitter<RuntimeEventMap> implements RuntimeInstance

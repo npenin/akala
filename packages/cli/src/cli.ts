@@ -1,4 +1,4 @@
-import program, { CliContext, NamespaceMiddleware } from './router/index.js';
+import program, { type CliContext, NamespaceMiddleware } from './router/index.js';
 import fs from 'fs/promises'
 // import { fileURLToPath, pathToFileURL } from 'url'
 import path from 'path'

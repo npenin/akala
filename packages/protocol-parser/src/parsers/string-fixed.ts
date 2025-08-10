@@ -1,5 +1,5 @@
-import { IsomorphicBuffer, BufferEncoding } from '@akala/core';
-import { Cursor, Parser } from './_common.js';
+import { IsomorphicBuffer, type BufferEncoding } from '@akala/core';
+import { Cursor, type Parser } from './_common.js';
 
 export default class FixedString<TString extends string = string> implements Parser<TString>
 {

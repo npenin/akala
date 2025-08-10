@@ -1,7 +1,7 @@
-import { Cursor, Parser } from './_common.js';
+import { Cursor, type Parser } from './_common.js';
 import Uint16 from './uint16.js';
 import Uint8 from './uint8.js';
-import { int32 } from "../core.js";
+import { type int32 } from "../core.js";
 import { IsomorphicBuffer } from '@akala/core';
 
 const length = 4;
@@ -19,7 +19,7 @@ export default class Int32 implements Parser<int32>
     {
         return length;
     }
-    
+
     public read(buffer: IsomorphicBuffer, cursor: Cursor): int32
     {
         if (cursor.subByteOffset > 0)

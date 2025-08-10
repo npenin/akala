@@ -1,4 +1,4 @@
-﻿import { AclManager, MemoryProvider, RouterProvider, Deny, Allow, IAclProvider } from "../index.js";
+﻿import { AclManager, MemoryProvider, RouterProvider, Deny, Allow, type IAclProvider } from "../index.js";
 import assert from 'assert';
 import { describe, it } from 'node:test'
 

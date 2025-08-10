@@ -1,7 +1,7 @@
 import * as http from 'http';
 import accepts from 'accepts'
 import cobody from 'co-body'
-import { Injector, Routable } from '@akala/core';
+import { Injector, type Routable } from '@akala/core';
 
 export type httpHandler = (req: Request, res: Response) => void;
 

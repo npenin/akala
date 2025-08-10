@@ -1,8 +1,8 @@
-import { wasmtype, wasmtypeInstance } from './wasmtype.js'
+import type { wasmtype, wasmtypeInstance } from './wasmtype.js'
 import { control as transpiler } from '../transpilers/control.js'
 import { func, i32, mergeUInt8Arrays } from './types.js';
 import { Module } from './module.js';
-import { parameters } from './func.js';
+import type { parameters } from './func.js';
 import { IsomorphicBuffer } from '@akala/core';
 
 

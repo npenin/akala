@@ -1,8 +1,8 @@
-import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus, HttpStatusCode, UrlTemplate, MiddlewareCompositeWithPriority } from '@akala/core';
-import { CommandProcessor, StructuredParameters } from '../model/processor.js';
-import { Command, Configuration, ConfigurationWithAuth } from '../metadata/index.js';
+import { Injector, type HttpOptions, each, type Http, defaultInjector, type MiddlewarePromise, type SerializableObject, base64, SimpleInjector, ErrorWithStatus, HttpStatusCode, UrlTemplate, MiddlewareCompositeWithPriority } from '@akala/core';
+import { CommandProcessor, type StructuredParameters } from '../model/processor.js';
+import type { Command, Configuration, ConfigurationWithAuth } from '../metadata/index.js';
 import { Container } from '../model/container.js';
-import { HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
+import { type HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Local } from './local.js';
 import { Metadata } from '../index.browser.js';
 

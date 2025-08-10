@@ -1,5 +1,5 @@
 import { get } from 'node:https';
-import { Resolver, ResolverResult } from '../../index.js';
+import type { Resolver, ResolverResult } from '../../index.js';
 import fs from 'node:fs'
 import path from 'path'
 

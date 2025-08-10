@@ -1,5 +1,5 @@
 import Bit from './bit.js';
-import { Cursor, Parser } from './_common.js';
+import { Cursor, type Parser } from './_common.js';
 import Uint2 from './uint2.js';
 import Uint3 from './uint3.js';
 import Uint4 from './uint4.js';

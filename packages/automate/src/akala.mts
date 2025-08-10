@@ -1,8 +1,8 @@
-import { buildCliContext, CliContext, NamespaceMiddleware } from '@akala/cli'
+import { buildCliContext, type CliContext, NamespaceMiddleware } from '@akala/cli'
 import { Container, SelfDefinedCommand } from '@akala/commands';
 import { LogLevels } from '@akala/core';
 import path from 'path';
-import { Workflow } from './index.js';
+import { type Workflow } from './index.js';
 import workflow from './workflow.js';
 import use from './workflow-commands/use.js';
 

@@ -1,8 +1,8 @@
-import { MiddlewareAsync, MiddlewarePromise, NotHandled } from '@akala/core';
+import { type MiddlewareAsync, type MiddlewarePromise, NotHandled } from '@akala/core';
 import { User } from '../../model/user.js';
-import { AuthRequest } from '../index.js';
-import { CookieMiddleware, Request, Response } from '@akala/server';
-import { IdSerializer, IdStore } from '../authentication-store.js';
+import { type AuthRequest } from '../index.js';
+import { CookieMiddleware, type Request, type Response } from '@akala/server';
+import type { IdSerializer, IdStore } from '../authentication-store.js';
 
 export abstract class AuthenticateMiddleware<T> implements MiddlewareAsync<[AuthRequest<T>, ...unknown[]]>
 {

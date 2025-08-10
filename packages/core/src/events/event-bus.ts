@@ -1,5 +1,5 @@
-import { AsyncSubscription, AsyncTeardownManager, Subscription } from "../teardown-manager.js";
-import { Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, IEvent } from "./shared.js";
+import { type AsyncSubscription, AsyncTeardownManager, type Subscription } from "../teardown-manager.js";
+import { Event, type EventArgs, type EventKeys, type EventListener, type EventOptions, type EventReturnType, type IEvent } from "./shared.js";
 
 /**
  * Represents special events with a dispose symbol.

@@ -1,4 +1,4 @@
-import { Scope as IScope, Page, LocationService, ScopeImpl, page } from '@akala/client'
+import { type Scope as IScope, Page, LocationService, ScopeImpl, page } from '@akala/client'
 import { Container, Metadata, Processors } from '@akala/commands';
 import { ObservableObject, Parser } from '@akala/core';
 import { Login } from './login/login.js';

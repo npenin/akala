@@ -4,14 +4,14 @@ import { BinaryOperator } from "@akala/core/expressions";
 import { Token } from "../../model/access-token.js";
 import { HttpRouter } from "@akala/server";
 import { Container, Processors } from "@akala/commands";
-import { State } from '../state.js';
+import { type State } from '../state.js';
 import { AuthenticationStore } from '../authentication-store.js';
 import { providers, Query } from "@akala/storage";
 // import { webcrypto as crypto } from "crypto";
 import { base64, HttpStatusCode, IsomorphicBuffer } from '@akala/core'
 import { AuthorizeRedirectFormatter } from "../middlewares/AuthorizeRedirectFormatter.js";
 import { User } from "../../model/user.js";
-import { ProxyConfiguration } from '@akala/config';
+import { type ProxyConfiguration } from '@akala/config';
 import fsHandler from "@akala/fs";
 import { pathToFileURL } from "url";
 

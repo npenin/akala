@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Argument0, Argument1, Argument2 } from '@akala/core';
+import type { Argument0, Argument1, Argument2 } from '@akala/core';
 // eslint-disable-next-line @typescript-eslint/no-namespace
 namespace configuration
 {
@@ -19,4 +19,4 @@ namespace configuration
 	}
 }
 
-export { configuration as default };
+export type { configuration as default };

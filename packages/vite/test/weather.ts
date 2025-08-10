@@ -1,4 +1,4 @@
-import { Metadata, ICommandProcessor, Container, registerCommands } from "@akala/commands";
+import { Metadata, type ICommandProcessor, Container, registerCommands } from "@akala/commands";
 // eslint-disable-next-line @typescript-eslint/no-namespace
 namespace weather
 {

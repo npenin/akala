@@ -1,5 +1,5 @@
-import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each, ObservableObject } from '@akala/core';
-import program, { CliContext, NamespaceMiddleware, OptionOptions, OptionType, usageParser } from './router/index.js';
+import { LogLevels, type Logger, logger as LoggerBuilder, grep, map, each, ObservableObject } from '@akala/core';
+import program, { type CliContext, NamespaceMiddleware, type OptionOptions, type OptionType, usageParser } from './router/index.js';
 
 export * from './router/index.js'
 export default program;

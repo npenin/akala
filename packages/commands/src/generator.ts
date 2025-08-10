@@ -1,7 +1,7 @@
 import { Container } from "./model/container.js";
 import * as meta from './metadata/index.js'
 // import { Command, CommandProxy } from './model/command';
-import { CommandProcessor, ICommandProcessor } from './model/processor.js';
+import { CommandProcessor, type ICommandProcessor } from './model/processor.js';
 import { SelfDefinedCommand } from "./model/command.js";
 import { isCommand } from "./metadata/index.js";
 import { Local } from "./processors/local.js";

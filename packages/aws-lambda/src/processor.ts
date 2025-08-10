@@ -1,7 +1,7 @@
-import { CommandProcessor, Container, StructuredParameters, Metadata } from '@akala/commands';
-import { ErrorWithStatus, InjectorMap, MiddlewarePromise } from '@akala/core';
-import { LambdaClient, InvokeCommand, LambdaClientConfig } from '@aws-sdk/client-lambda';
-import { AwsConfiguration } from './trigger.js';
+import { CommandProcessor, Container, type StructuredParameters, Metadata } from '@akala/commands';
+import { ErrorWithStatus, InjectorMap, type MiddlewarePromise } from '@akala/core';
+import { LambdaClient, InvokeCommand, type LambdaClientConfig } from '@aws-sdk/client-lambda';
+import { type AwsConfiguration } from './trigger.js';
 
 export class Processor extends CommandProcessor
 {

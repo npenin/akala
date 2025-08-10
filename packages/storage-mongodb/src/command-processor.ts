@@ -1,4 +1,4 @@
-import { CommandProcessor, CommandResult, Commands } from "@akala/storage";
+import { CommandProcessor, type CommandResult, type Commands } from "@akala/storage";
 import { Generator, ModelMode } from "@akala/storage";
 import { Db } from "mongodb";
 

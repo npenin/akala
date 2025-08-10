@@ -1,6 +1,6 @@
 import { wcObserve } from '@akala/client';
 import { Popover } from './popover.js';
-import { flip, Middleware, offset } from '@floating-ui/dom';
+import { flip, type Middleware, offset } from '@floating-ui/dom';
 
 
 export const parentSize: () => Middleware = () =>

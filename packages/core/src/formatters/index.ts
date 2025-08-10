@@ -7,7 +7,7 @@ export { identity, negate, booleanize };
 import { Module } from '../module.js';
 import json from './json.js';
 import date from './date.js';
-import { FormatterFactory, ReversibleFormatter, ReversibleFormatterFactory } from './common.js';
+import type { FormatterFactory, ReversibleFormatter, ReversibleFormatterFactory } from './common.js';
 import { Debounce } from './debounce.js';
 
 export function reverseFormatter<TResult, TOrigin, TSettings extends unknown[]>(formatter: ReversibleFormatterFactory<TResult, TOrigin, TSettings>): ReversibleFormatterFactory<TOrigin, TResult, TSettings>

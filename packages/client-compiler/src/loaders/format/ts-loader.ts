@@ -1,4 +1,4 @@
-import { Loader, LoaderResult, Resolver } from '../../index.js';
+import type { Loader, LoaderResult, Resolver } from '../../index.js';
 import fs from 'node:fs'
 import { fileURLToPath } from 'url'
 import ts from 'typescript'

@@ -1,13 +1,13 @@
 import { Parser, ParsedString, StringCursor } from '../parser/parser.js';
 import { BinaryOperator } from '../parser/expressions/binary-operator.js';
-import { Formatter, formatters } from '../formatters/index.js';
+import { type Formatter, formatters } from '../formatters/index.js';
 import { EvaluatorAsFunction } from '../parser/evaluator-as-function.js';
 import { ObservableArray } from '../observables/array.js';
 import { it, describe } from 'node:test'
 import assert from 'assert/strict'
 import { delay } from '../promiseHelpers.js';
 import { BinaryExpression } from '../parser/expressions/binary-expression.js';
-import { Expressions } from '../parser/expressions/index.js';
+import { type Expressions } from '../parser/expressions/index.js';
 
 //b*(c+d) ==> (b*c)+d
 

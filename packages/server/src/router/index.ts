@@ -1,9 +1,9 @@
 import * as http from 'http';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { HttpRouter } from './router.js';
-import { convertToMiddleware, MiddlewareAsync, MiddlewareCompositeAsync, NextFunction, RouterOptions } from '@akala/core';
+import { convertToMiddleware, type MiddlewareAsync, MiddlewareCompositeAsync, type NextFunction, type RouterOptions } from '@akala/core';
 import { HttpRouteMiddleware } from './route.js';
-import { Request, Response, requestHandler } from './shared.js';
+import type { Request, Response, requestHandler } from './shared.js';
 
 export * from './route.js'
 export * from './router.js'

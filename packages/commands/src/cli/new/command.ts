@@ -1,4 +1,4 @@
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 import { outputHelper } from "../../new.js";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string, args?: { name: string, type?: string }[])

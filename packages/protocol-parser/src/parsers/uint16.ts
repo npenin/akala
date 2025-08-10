@@ -1,6 +1,6 @@
-import { Cursor, Parser } from './_common.js';
+import { Cursor, type Parser } from './_common.js';
 import Uint8 from './uint8.js';
-import { uint16 } from "../core.js";
+import { type uint16 } from "../core.js";
 import { IsomorphicBuffer } from '@akala/core';
 
 const length = 2;

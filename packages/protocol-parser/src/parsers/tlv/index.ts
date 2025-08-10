@@ -1,8 +1,8 @@
-import { IsomorphicBuffer, BufferEncoding } from '@akala/core';
+import { IsomorphicBuffer, type BufferEncoding } from '@akala/core';
 import * as parsers from '../index.js';
 import { TLVBuffer } from './buffer.js';
 import { TLVNumber } from './number.js';
-import TLVObject, { Map, MapByName } from './object.js';
+import TLVObject, { type Map, type MapByName } from './object.js';
 import { TLVString } from './string.js';
 
 export default function tlv(parser: parsers.Parsers<number>, maxLength: number, encoding?: BufferEncoding)

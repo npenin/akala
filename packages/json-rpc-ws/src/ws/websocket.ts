@@ -1,9 +1,9 @@
 'use strict';
 
 import { default as ClientBase } from './shared-client.js';
-import { SocketAdapter, SocketAdapterAkalaEventMap } from '../shared-connection.js';
+import { type SocketAdapter, type SocketAdapterAkalaEventMap } from '../shared-connection.js';
 import { Connection } from '../browser.js'
-import { EventEmitter, AllEventKeys, AllEvents, EventListener, EventOptions, StatefulSubscription, Subscription } from '@akala/core';
+import { EventEmitter, type AllEventKeys, type AllEvents, type EventListener, type EventOptions, StatefulSubscription, type Subscription } from '@akala/core';
 import debug from 'debug';
 /**
  * json-rpc-ws connection

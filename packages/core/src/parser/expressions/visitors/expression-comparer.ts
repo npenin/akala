@@ -4,7 +4,7 @@ import { ApplySymbolExpression } from "../apply-symbol-expression.js";
 import { BinaryExpression } from "../binary-expression.js";
 import { CallExpression } from "../call-expression.js";
 import { ConstantExpression } from "../constant-expression.js";
-import { Expressions, StrictExpressions } from "../expression.js";
+import type { Expressions, StrictExpressions } from "../expression.js";
 import { TypedLambdaExpression } from "../lambda-expression.js";
 import { MemberExpression } from "../member-expression.js";
 import { NewExpression } from "../new-expression.js";

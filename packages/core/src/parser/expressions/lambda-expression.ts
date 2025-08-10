@@ -1,4 +1,4 @@
-import { Expression, Expressions, TypedExpression } from './expression.js';
+import { Expression, type Expressions, type TypedExpression } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import { ParameterExpression } from './parameter-expression.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';

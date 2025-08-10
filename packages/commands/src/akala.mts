@@ -1,14 +1,14 @@
-import { program as root, ErrorMessage, NamespaceMiddleware, CliContext } from "@akala/cli"
-import { MiddlewarePromise, NotHandled, SimpleInjector, mapAsync, spread } from "@akala/core"
+import { program as root, ErrorMessage, NamespaceMiddleware, type CliContext } from "@akala/cli"
+import { type MiddlewarePromise, NotHandled, SimpleInjector, mapAsync, spread } from "@akala/core"
 import commands from "./commands.js";
-import { CommandProcessor, Metadata, registerCommands, ServeOptions, StructuredParameters, Triggers } from "./index.js";
+import { CommandProcessor, Metadata, registerCommands, type ServeOptions, type StructuredParameters, Triggers } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
-import { Configurations } from "./metadata/configurations.js";
+import { type Configurations } from "./metadata/configurations.js";
 import { isAbsolute } from "node:path";
 import { protocolHandlers } from "./protocol-handler.js";
 import { pathToFileURL } from "node:url";
-import { Command } from "./metadata/command.js";
+import { type Command } from "./metadata/command.js";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { with: { type: 'json' } }).then(x => x.default)
 
 export default async function (_, program: NamespaceMiddleware<{ configFile: string }>, context: CliContext<{ configFile: string }, object>)

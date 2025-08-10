@@ -1,7 +1,7 @@
-import { Expression, TypedExpression, StrictExpressions } from './expression.js';
+import { Expression, type TypedExpression, type StrictExpressions } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';
-import { IVisitable } from './visitable.js';
+import type { IVisitable } from './visitable.js';
 
 /**
  * Represents an expression that applies a symbol (property/method) to a source expression with an optional argument.

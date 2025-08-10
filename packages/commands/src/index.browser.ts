@@ -8,9 +8,9 @@ export * from './model/error-unknowncommand.js'
 import * as Processors from './processors/index.browser.js'
 import * as Metadata from './metadata/index.js'
 export * from './serve-metadata.js'
-import serveMetadata, { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata.browser.js'
-export { ServeMetadata, connectByPreference, connectWith, ConnectionPreference, serveMetadata };
-import { ConfigurationMap, Configurations, Configuration, GenericConfiguration, ExtendedConfigurations } from './metadata/index.js'
+import serveMetadata, { type ServeMetadata, connectByPreference, connectWith, type ConnectionPreference } from './serve-metadata.browser.js'
+export { type ServeMetadata, connectByPreference, connectWith, type ConnectionPreference, serveMetadata };
+import type { ConfigurationMap, Configurations, Configuration, GenericConfiguration, ExtendedConfigurations } from './metadata/index.js'
 
 import { CommandProcessor } from './model/processor.js'
 export { Processors, Metadata }
@@ -19,10 +19,10 @@ import { Container } from './model/container.js'
 import { registerCommands } from './generator.js'
 export { CommandProcessor };
 
-export { ConfigurationMap, Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
+export type { ConfigurationMap, Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
 
-import { protocolHandlers, HandlerResult, serverHandlers, ServerHandler } from './protocol-handler.js';
-export { protocolHandlers, HandlerResult, serverHandlers, ServerHandler };
+import { protocolHandlers, type HandlerResult, serverHandlers, type ServerHandler } from './protocol-handler.js';
+export { protocolHandlers, type HandlerResult, serverHandlers, type ServerHandler };
 
 export const Triggers = {}
 

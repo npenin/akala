@@ -1,5 +1,5 @@
-import { MiddlewareAsync, MiddlewarePromise, NotHandled } from "@akala/core";
-import { Request } from './shared.js'
+import { type MiddlewareAsync, type MiddlewarePromise, NotHandled } from "@akala/core";
+import { type Request } from './shared.js'
 import { Socket } from "net";
 
 export class UpgradeMiddleware implements MiddlewareAsync<[Request, Socket, Buffer]>

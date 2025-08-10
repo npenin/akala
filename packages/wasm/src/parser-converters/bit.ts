@@ -4,7 +4,7 @@ import { func, v128, i32, i64, mergeUInt8Arrays } from "../helpers/types.js";
 import { local } from "../helpers/local.js";
 import { control } from "../helpers/control.js";
 import { memory } from "../helpers/memory.js";
-import { u32 } from "../transpilers/wasmtype.js";
+import { type u32 } from "../transpilers/wasmtype.js";
 
 export class bit extends parsers.Bit
 {

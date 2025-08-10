@@ -1,6 +1,6 @@
 import Uint3 from "../uint3.js";
 import Uint5 from "../uint5.js";
-import { Cursor, Parser } from "../_common.js";
+import { Cursor, type Parser } from "../_common.js";
 import { IsomorphicBuffer } from "@akala/core";
 
 export type WireType = 'varint' | '64-bit' | 'length-delimited' | 'start-group' | 'end-group' | '32-bit';

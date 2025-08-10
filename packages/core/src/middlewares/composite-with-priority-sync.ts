@@ -1,6 +1,7 @@
 import { each } from '../each.js';
-import { process, AnySyncMiddleware, Middleware, MiddlewareResult, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
-import { ExtendableCompositeMiddleware } from './composite-sync.js';
+import { process, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import type { AnySyncMiddleware, Middleware, MiddlewareResult, OptionsResponse, SpecialNextParam } from './shared.js';
+import { type ExtendableCompositeMiddleware } from './composite-sync.js';
 
 /** 
  * A composite middleware class with priority for synchronous operations.

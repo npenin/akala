@@ -1,5 +1,5 @@
 import { BinaryOperator } from "@akala/core/expressions";
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 import { AuthenticationMethodReference } from "../../../model/session.js";
 
 export default async function (this: State, deviceId: string, userId: string, expiresOn?: Date, authenticationMethod?: AuthenticationMethodReference, connectionId?: string)

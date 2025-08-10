@@ -1,4 +1,4 @@
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 import { BinaryOperator } from '@akala/core/expressions'
 
 export default async function (this: State, id: string)

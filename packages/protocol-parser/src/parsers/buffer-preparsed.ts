@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { Cursor, ParserWithMessage } from './_common.js';
+import { Cursor, type ParserWithMessage } from './_common.js';
 
 export default class PreparsedLengthBuffer<T, TKey extends keyof T> implements ParserWithMessage<IsomorphicBuffer, T>
 {

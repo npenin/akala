@@ -1,6 +1,6 @@
 import * as Metadata from '../metadata/index.js'
 import { Trigger } from '../model/trigger.js';
-import { AsyncEventBus, EventBus } from '@akala/core';
+import { type AsyncEventBus, type EventBus } from '@akala/core';
 import { Container } from '../model/container.js'
 
 declare module '@akala/commands'

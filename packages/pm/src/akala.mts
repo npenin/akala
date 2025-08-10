@@ -1,8 +1,8 @@
-import { Processors, Metadata, Container, Triggers, Cli, registerCommands, protocolHandlers, SelfDefinedCommand, StructuredParameters, ICommandProcessor, HandlerResult } from '@akala/commands';
+import { Processors, Metadata, Container, Triggers, Cli, registerCommands, protocolHandlers, SelfDefinedCommand, type StructuredParameters, type ICommandProcessor, type HandlerResult } from '@akala/commands';
 import { Readable } from 'stream';
 
-import { StateConfiguration } from './state.js';
-import { CliContext, NamespaceMiddleware } from '@akala/cli';
+import { type StateConfiguration } from './state.js';
+import { type CliContext, NamespaceMiddleware } from '@akala/cli';
 import { eachAsync, HttpStatusCode, logger } from '@akala/core';
 import commands from './container.js';
 import cliCommands from './cli-container.js';

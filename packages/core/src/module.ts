@@ -1,10 +1,10 @@
 import orchestrator from './orchestrator.js'
 import { defaultInjector, SimpleInjector } from './injectors/simple-injector.js';
 import { logger } from './logger.js';
-import { Event, Listener } from './events/shared.js';
+import { Event, type Listener } from './events/shared.js';
 import { AsyncEvent, } from './events/async.js';
 import { noop } from './helpers.js';
-import { Injectable, InjectableAsyncWithTypedThis, InjectableWithTypedThis, Resolvable } from './injectors/shared.js';
+import type { Injectable, InjectableAsyncWithTypedThis, InjectableWithTypedThis, Resolvable } from './injectors/shared.js';
 
 const orchestratorLog = logger('akala:module:orchestrator');
 

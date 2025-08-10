@@ -1,4 +1,4 @@
-import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event as klEvent, Subscription, IEventSink, IEvent } from '@akala/core';
+import { ctorToFunction, Module, module, defaultInjector, EventEmitter, type SpecialNextParam, type MiddlewarePromise, Event as klEvent, type Subscription, type IEventSink, type IEvent } from '@akala/core';
 
 /**
  * The main module for bootstrapping Akala client-side services.
@@ -51,9 +51,9 @@ export function service(name: string | symbol, ...toInject: string[])
 }
 
 // import component, { webComponent } from './decorators/component.js';
-import { Container, ICommandProcessor, Metadata, StructuredParameters } from '@akala/commands/browser';
+import { Container, type ICommandProcessor, Metadata, type StructuredParameters } from '@akala/commands/browser';
 // export { component, webComponent };
-export { AttributeComposer, WebComponent, webComponent, wcObserve, databind, HtmlControlElement } from './behaviors/shared.js';
+export { AttributeComposer, type WebComponent, webComponent, wcObserve, databind, type HtmlControlElement } from './behaviors/shared.js';
 
 /**
  * Command processor that handles events after remote processing.

@@ -1,9 +1,10 @@
-import program, { CliContext } from "@akala/cli";
-import State, { StateConfiguration } from "../state.js";
+import program, { type CliContext } from "@akala/cli";
+import type State from "../state.js";
+import type { StateConfiguration } from "../state.js";
 import { connect, Container } from "@akala/commands";
 import { platform } from "os";
 import { Triggers } from "@akala/commands";
-import { ProxyConfiguration } from "@akala/config";
+import { type ProxyConfiguration } from "@akala/config";
 import { eachAsync, HttpStatusCode } from "@akala/core";
 import commands from "../container.js";
 

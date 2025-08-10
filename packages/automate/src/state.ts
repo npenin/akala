@@ -1,6 +1,6 @@
-import { Workflow } from './index.js'
+import { type Workflow } from './index.js'
 import { Deferred, Queue } from '@akala/core'
-import loader from './loader.js';
+import type loader from './loader.js';
 import * as trigger from '@akala/pubsub';
 import { Schedule } from '@akala/cron';
 

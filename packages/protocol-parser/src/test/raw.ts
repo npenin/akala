@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 import { array, bit, string, uint16, uint16LE, uint2, uint3, uint32, uint32LE, uint4, uint5, uint6, uint64, uint7, uint8 } from '../parsers/index.js'
-import { Cursor, Parser } from '../parsers/_common.js'
+import { Cursor, type Parser } from '../parsers/_common.js'
 import { describe, it } from 'node:test'
 import { IsomorphicBuffer } from '@akala/core'
 

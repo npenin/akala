@@ -1,5 +1,5 @@
 import { ExpressionType } from "../expression-type.js";
-import { Expressions, StrictExpressions, TypedExpression } from "../expression.js";
+import type { Expressions, StrictExpressions, TypedExpression } from "../expression.js";
 import { MemberExpression } from "../member-expression.js";
 import { NewExpression } from "../new-expression.js";
 import { ExpressionVisitor } from "./expression-visitor.js";

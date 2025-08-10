@@ -1,7 +1,7 @@
-import { State } from '../state.js'
+import { type State } from '../state.js'
 import path from 'node:path'
 import { eachAsync } from '@akala/core';
-import { ProxyConfiguration } from '@akala/config';
+import { type ProxyConfiguration } from '@akala/config';
 import { register } from 'node:module'
 
 export default async function compile(config: ProxyConfiguration<State>, entryPoints: string[])

@@ -1,7 +1,7 @@
-import { State } from '../state.js';
+import { type State } from '../state.js';
 import * as path from 'path'
 import { HttpRouter } from '../router/index.js';
-import { Options, StaticFileMiddleware } from '../router/staticFileMiddleware.js';
+import { type Options, StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
 export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & Options, cwd: string): void
 {

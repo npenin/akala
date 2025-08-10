@@ -1,7 +1,7 @@
-import { Binding, ParsedObject, ParsedString, Parser, SimpleInjector, Subscription, combineSubscriptions, lazy, parser, toCamelCase, toKebabCase } from "@akala/core";
-import { Composer } from "../template.js";
+import { Binding, ParsedObject, ParsedString, Parser, SimpleInjector, type Subscription, combineSubscriptions, lazy, parser, toCamelCase, toKebabCase } from "@akala/core";
+import { type Composer } from "../template.js";
 import { Control } from '../controlsv2/shared.js';
-import { Expressions } from "@akala/core/expressions";
+import { type Expressions } from "@akala/core/expressions";
 
 const databound = new SimpleInjector();
 

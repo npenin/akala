@@ -1,6 +1,6 @@
 import { map as mapAsync } from "../eachAsync.js";
-import { Subscription } from "../teardown-manager.js";
-import { Event, Listener } from "./shared.js";
+import { type Subscription } from "../teardown-manager.js";
+import { Event, type Listener } from "./shared.js";
 
 /**
  * AsyncEvent class to manage asynchronous events.

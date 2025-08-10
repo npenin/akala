@@ -1,4 +1,4 @@
-import { Control, wcObserve, WebComponent } from "@akala/client";
+import { Control, wcObserve, type WebComponent } from "@akala/client";
 
 @wcObserve('needle')
 @wcObserve('text')

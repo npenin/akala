@@ -1,7 +1,7 @@
-import { MiddlewarePromise } from '@akala/core';
-import { CommandProcessor, StructuredParameters } from '../model/processor.js'
+import { type MiddlewarePromise } from '@akala/core';
+import { CommandProcessor, type StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
-import { Command } from '../metadata/index.js';
+import { type Command } from '../metadata/index.js';
 
 export class Pipe<T> extends CommandProcessor
 {

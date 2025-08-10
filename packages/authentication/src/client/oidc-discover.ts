@@ -1,6 +1,6 @@
 import { Metadata } from "@akala/commands";
-import { OIDCDescriptionWithOptional } from "./oidc-state.js";
-import { JWK } from "@akala/jwt";
+import { type OIDCDescriptionWithOptional } from "./oidc-state.js";
+import { type JWK } from "@akala/jwt";
 
 export interface OIDCMetadata
 {

@@ -1,8 +1,8 @@
-import { Binding, EmptyBinding, ObservableObject, Parser, Subscription, combineSubscriptions, each } from "@akala/core";
-import { IScope } from "../scope.js";
-import { Composer } from "../template.js";
+import { Binding, EmptyBinding, ObservableObject, Parser, type Subscription, combineSubscriptions, each } from "@akala/core";
+import { type IScope } from "../scope.js";
+import { type Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
-import { ConstantExpression, Expressions, MemberExpression, NewExpression } from "@akala/core/expressions";
+import { ConstantExpression, type Expressions, MemberExpression, NewExpression } from "@akala/core/expressions";
 import { a } from "../dom-helpers.js";
 // import { MemberExpression, NewExpression } from "@akala/core/expressions";
 

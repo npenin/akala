@@ -1,4 +1,4 @@
-import { Middleware } from '../middlewares/shared.js';
+import type { Middleware } from '../middlewares/shared.js';
 import { Injector } from './shared.js';
 import { process } from '../middlewares/shared.js';
 

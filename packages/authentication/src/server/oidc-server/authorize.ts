@@ -1,6 +1,6 @@
 import { BinaryOperator } from "@akala/core/expressions";
 import { OIDCResponseType } from "../../client/oidc-state.js";
-import { State } from "../state.js";
+import { type State } from "../state.js";
 import { ErrorWithStatus } from "@akala/core";
 import crypto from 'crypto';
 import { User } from "../../model/user.js";

@@ -1,5 +1,5 @@
 import { base64 } from "@akala/core";
-import { OIDCResponseType, OIDCClientState, providers } from "../oidc-state.js";
+import { OIDCResponseType, type OIDCClientState, providers } from "../oidc-state.js";
 
 type X = {
     endpoint: URL;

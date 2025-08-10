@@ -1,5 +1,5 @@
 import { uint8 } from "../index.js";
-import { AnyParser, Cursor, Parsers, Parser } from "../_common.js";
+import { type AnyParser, Cursor, type Parsers, type Parser } from "../_common.js";
 import { IsomorphicBuffer } from "@akala/core";
 
 export type Map<TMessage> = Record<number, { name: keyof TMessage, parser: AnyParser<TMessage[keyof TMessage], Partial<TMessage>> }>

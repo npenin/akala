@@ -1,4 +1,4 @@
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 import { Levels } from "./recommend-bump.js";
 import semver from 'semver'
 import { readFile, writeFile } from "fs/promises";

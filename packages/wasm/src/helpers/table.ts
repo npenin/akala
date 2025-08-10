@@ -1,8 +1,8 @@
 import { mergeUInt8Arrays } from './types.js';
-import { indexes, wasmtype, wasmtypeInstance } from './wasmtype.js'
+import type { indexes, wasmtype, wasmtypeInstance } from './wasmtype.js'
 import { table as transpiler } from '../transpilers/table.js'
 import { Module } from './module.js';
-import { usize } from './memory.js';
+import { type usize } from './memory.js';
 
 /**
  * Represents a WebAssembly table

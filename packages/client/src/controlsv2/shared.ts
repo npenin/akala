@@ -1,5 +1,5 @@
 import { Binding, EmptyBinding, ErrorWithStatus, Event, HttpStatusCode, Parser } from "@akala/core";
-import { DataContext, WebComponent } from "../common.js";
+import { DataContext, type WebComponent } from "../common.js";
 import { TeardownManager } from '@akala/core';
 import { a } from "../dom-helpers.js";
 

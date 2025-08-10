@@ -1,5 +1,5 @@
 import { AssignmentOperator } from './assignment-operator.js';
-import { Expression, Expressions, StrictExpressions } from './expression.js';
+import { Expression, type Expressions, type StrictExpressions } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 

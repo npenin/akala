@@ -1,4 +1,4 @@
-import { TeardownManager, Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray, Subscription } from "@akala/core";
+import { TeardownManager, Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray, type Subscription } from "@akala/core";
 import { Control } from "./shared.js";
 import { Template } from "../template.js";
 import { DataContext } from "../common.js";

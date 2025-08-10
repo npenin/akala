@@ -1,10 +1,10 @@
 import { serverHandlers as commandHandlers, Processors } from "@akala/commands";
-import { NetConnectOpts } from "net";
+import { type NetConnectOpts } from "net";
 import * as ws from 'ws'
 import * as jsonrpcws from '@akala/json-rpc-ws';
 
 import https from 'https';
-import http, { ServerOptions } from 'http';
+import http, { type ServerOptions } from 'http';
 import { trigger } from "./triggers/http.js";
 import http2 from "http2";
 import { HttpStatusCode, UrlHandler } from "@akala/core";

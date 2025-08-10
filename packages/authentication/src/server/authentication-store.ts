@@ -1,10 +1,10 @@
-import { DbSet, StoreDefinition, PersistenceEngine, Store } from '@akala/storage';
+import { type DbSet, type StoreDefinition, PersistenceEngine, Store } from '@akala/storage';
 import { AuthorizationCode } from '../model/authorization-code.js';
 import { Token } from '../model/access-token.js';
 import { Client } from '../model/client.js';
 import { User } from '../model/user.js';
 import { Session } from '../model/session.js';
-import { Request, Response } from '@akala/server';
+import type { Request, Response } from '@akala/server';
 
 export class AuthenticationStore implements StoreDefinition
 {

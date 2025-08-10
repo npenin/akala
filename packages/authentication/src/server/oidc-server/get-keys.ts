@@ -1,5 +1,5 @@
 import { OIDCResponseType } from "../../client/oidc-state.js";
-import { State } from "../state.js";
+import { type State } from "../state.js";
 
 export type X = {
     endpoint: URL;

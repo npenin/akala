@@ -1,6 +1,6 @@
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 import { Container } from "@akala/commands";
-import automate, { JobStepDispatch, JobStepJob, JobStepRun, MiddlewareRunner, JobStepUse, Workflow, simpleRunner, TMiddlewareRunner, MiddlewareRunnerMiddleware } from "../index.js";
+import automate, { type JobStepDispatch, type JobStepJob, type JobStepRun, MiddlewareRunner, type JobStepUse, type Workflow, simpleRunner, type TMiddlewareRunner, MiddlewareRunnerMiddleware } from "../index.js";
 import path from 'path'
 import use from './use.js';
 

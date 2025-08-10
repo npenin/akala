@@ -1,8 +1,8 @@
 import { Base } from './base.js';
 import debug from 'debug';
 const logger = debug('akala:json-rpc-ws');
-import { SocketAdapter, PayloadDataType, Connection } from './shared-connection.js';
-import { Error as MyError } from './errors.js'
+import { type SocketAdapter, type PayloadDataType, Connection } from './shared-connection.js';
+import { type Error as MyError } from './errors.js'
 
 export default abstract class Client<TStreamable, TConnectOptions> extends Base<TStreamable>
 {

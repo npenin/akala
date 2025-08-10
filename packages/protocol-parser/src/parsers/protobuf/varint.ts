@@ -1,10 +1,10 @@
-import { Cursor, Parser } from "../_common.js";
+import { Cursor, type Parser } from "../_common.js";
 import Uint8 from "../uint8.js";
 import Uint7 from "../uint7.js";
 import Uint32LE from "../uint32LE.js";
 import Uint24LE from "../uint24LE.js";
 import Uint16LE from "../uint16LE.js";
-import { WireType } from './field.js';
+import { type WireType } from './field.js';
 import { IsomorphicBuffer } from "@akala/core";
 
 export default class Varint implements Parser<number>

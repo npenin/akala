@@ -1,4 +1,4 @@
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 
 export default async function (this: State, name: string, args: unknown[]): Promise<{ content: unknown, isError: boolean }>
 {

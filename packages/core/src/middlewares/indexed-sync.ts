@@ -1,5 +1,5 @@
-import { convertToErrorMiddleware, isStandardMiddleware, isErrorMiddleware } from './shared.js';
-import { process, AnySyncMiddleware, ErrorMiddleware, Middleware, MiddlewareResult, OptionsResponse, SpecialNextParam } from './shared.js';
+import { process, convertToErrorMiddleware, isStandardMiddleware, isErrorMiddleware } from './shared.js';
+import type { AnySyncMiddleware, ErrorMiddleware, Middleware, MiddlewareResult, OptionsResponse, SpecialNextParam } from './shared.js';
 
 /**
  * MiddlewareIndexed class that implements Middleware.

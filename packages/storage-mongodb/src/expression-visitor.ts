@@ -1,8 +1,8 @@
 import { isPromiseLike } from "@akala/core";
 import * as expressions from "@akala/core/expressions";
-import { ApplySymbolExpression, BinaryExpression, CallExpression, ConstantExpression, Expressions, ExpressionVisitor, LambdaExpression, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, UnaryExpression, UnknownExpression } from "@akala/core/expressions";
-import { Exception, ExpressionExecutor, ModelDefinition, NotSupportedException, QuerySymbols, Relationship } from "@akala/storage";
-import { Document } from "mongodb";
+import { ApplySymbolExpression, BinaryExpression, CallExpression, ConstantExpression, type Expressions, ExpressionVisitor, LambdaExpression, MemberExpression, NewExpression, ParameterExpression, type StrictExpressions, UnaryExpression, type UnknownExpression } from "@akala/core/expressions";
+import { Exception, ExpressionExecutor, ModelDefinition, NotSupportedException, QuerySymbols, type Relationship } from "@akala/storage";
+import { type Document } from "mongodb";
 
 export default class MongoDbTranslator extends ExpressionVisitor
 {

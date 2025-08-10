@@ -1,6 +1,6 @@
-import { Expressions } from '@akala/core/expressions';
+import { type Expressions } from '@akala/core/expressions';
 import { ModelDefinition, PersistenceEngine } from '@akala/storage'
-import { Collection, Db, Document } from 'mongodb';
+import { Collection, Db, type Document } from 'mongodb';
 import CommandProcessor from './command-processor.js';
 import MongoDbTranslator from './expression-visitor.js';
 import { NotHandled } from '@akala/core';

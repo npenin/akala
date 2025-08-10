@@ -1,6 +1,6 @@
 import { a, DataBind, e, OutletService, Page, page, RootElement, t } from '@akala/client'
 import template from './index.html?raw'
-import { PageEventArg, SortEventArg, TableConfig } from '@akala/web-ui';
+import { type PageEventArg, type SortEventArg, type TableConfig } from '@akala/web-ui';
 import { Binding } from '@akala/core';
 
 // type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;

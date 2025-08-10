@@ -1,4 +1,4 @@
-import { defaultInjector, ErrorWithStatus, HttpStatusCode, Resolvable, SimpleInjector } from "@akala/core";
+import { defaultInjector, ErrorWithStatus, HttpStatusCode, type Resolvable, SimpleInjector } from "@akala/core";
 import { providers } from "./PersistenceEngine.js";
 
 class DataInjector extends SimpleInjector

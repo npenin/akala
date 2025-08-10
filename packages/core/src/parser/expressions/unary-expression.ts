@@ -1,4 +1,4 @@
-import { Expression, Expressions } from './expression.js';
+import { Expression, type Expressions } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import { UnaryOperator } from './unary-operator.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';

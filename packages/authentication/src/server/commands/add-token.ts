@@ -1,7 +1,7 @@
 import { BinaryOperator } from "@akala/core/expressions";
 import { randomUUID } from "crypto";
 import { Token } from "../../model/access-token.js";
-import { State } from "../state.js";
+import { type State } from "../state.js";
 
 export default async function (this: State, clientId: string, userName: string, scope: string[], expiresOn?: Date | string)
 {

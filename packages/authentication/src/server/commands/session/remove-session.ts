@@ -1,5 +1,5 @@
 import { BinaryOperator } from "@akala/core/expressions";
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 
 export default async function (this: State, sessionId: string)
 {

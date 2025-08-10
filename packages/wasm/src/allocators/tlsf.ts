@@ -9,12 +9,12 @@ import { func } from "../helpers/func.js";
 import { i32 } from "../helpers/i32.js";
 import { i64 } from "../helpers/i64.js";
 import { local } from "../helpers/local.js";
-import { memarg, memory, usize } from "../helpers/memory.js";
+import { memarg, memory, type usize } from "../helpers/memory.js";
 import { Module } from "../helpers/module.js";
 import { mergeUInt8Arrays } from "../helpers/types.js";
-import { indexes } from "../helpers/wasmtype.js";
-import { u32 } from "../transpilers/wasmtype.js";
-import { Allocator } from "./contract.js";
+import { type indexes } from "../helpers/wasmtype.js";
+import { type u32 } from "../transpilers/wasmtype.js";
+import { type Allocator } from "./contract.js";
 
 // - `ffs(x)` is equivalent to `ctz(x)` with x != 0
 // - `fls(x)` is equivalent to `sizeof(x) * 8 - clz(x) - 1`

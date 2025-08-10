@@ -43,7 +43,8 @@ import PreparsedLengthString from './string-preparsed.js'
 import PrefixedArray from './array-prefixed.js'
 import FixedArray from './array-fixed.js'
 import PreparsedLengthArray from './array-preparsed.js'
-import { AnyParser, Cursor, Parser, Parsers, ParsersWithMessage, ParserWithMessage } from './_common.js'
+import { Cursor } from './_common.js'
+import type { AnyParser, Parser, Parsers, ParsersWithMessage, ParserWithMessage } from './_common.js'
 import Skip, { SkipParser } from './skip.js'
 import PrefixedBuffer from './buffer-prefixed.js'
 import BufferRaw from './buffer-fixed.js'
@@ -64,7 +65,7 @@ import { Conditional } from './conditional-parser.js'
 import * as types from '../core.js'
 import { Ignore } from './ignore-message.js'
 import PreparsedLengthBuffer from './buffer-preparsed.js'
-import { IsomorphicBuffer, BufferEncoding } from '@akala/core'
+import { IsomorphicBuffer, type BufferEncoding } from '@akala/core'
 import SignedLEB128 from './LEB128.signed.js'
 import UnsignedLEB128 from './LEB128.unsigned.js'
 import Cache from './cache.js'
@@ -114,7 +115,7 @@ export const float: Parser<types.float> = new Float();
 export const double: Parser<types.double> = new Double();
 export const doubleLE: Parser<types.double> = new DoubleLE();
 
-export { Parser, ParserWithMessage, Parsers, ParsersWithMessage, AnyParser };
+export type { Parser, ParserWithMessage, Parsers, ParsersWithMessage, AnyParser };
 
 export
 {

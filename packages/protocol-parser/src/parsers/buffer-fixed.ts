@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { Cursor, Parser } from './_common.js';
+import { Cursor, type Parser } from './_common.js';
 
 export default class FixedBuffer implements Parser<IsomorphicBuffer>
 {

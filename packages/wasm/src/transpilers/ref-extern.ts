@@ -1,4 +1,4 @@
-import { wasmtype } from './wasmtype.js'
+import { type wasmtype } from './wasmtype.js'
 
 
 export class externref implements wasmtype<externref>

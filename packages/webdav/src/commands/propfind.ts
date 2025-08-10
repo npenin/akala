@@ -1,7 +1,7 @@
 import { mapAsync } from "@akala/core";
 import { XMLParser } from 'fast-xml-parser'
 import fs from 'fs/promises'
-import State from "../state.js";
+import type State from "../state.js";
 import path from 'path'
 import mime from 'mime-types'
 

@@ -1,9 +1,9 @@
 import { i32 } from './i32.js';
 import { i64 } from './i64.js';
 import { memory as transpiler } from '../transpilers/memory.js';
-import { wasmtype, wasmtypeInstance } from './wasmtype.js'
+import { type wasmtype, type wasmtypeInstance } from './wasmtype.js'
 import { Module } from './module.js';
-import { u32, u8 } from '../transpilers/wasmtype.js';
+import { type u32, type u8 } from '../transpilers/wasmtype.js';
 import { mergeUInt8Arrays } from './types.js';
 import { IsomorphicBuffer } from '@akala/core'
 

@@ -1,5 +1,5 @@
-import { AsyncEventBus, EventBus } from "./events/index.js";
-import { Event, EventKeys, IEvent, IEventSink, EventListener } from "./events/shared.js";
+import type { AsyncEventBus, EventBus } from "./events/index.js";
+import { Event, type EventKeys, type IEvent, type IEventSink, type EventListener } from "./events/shared.js";
 
 export type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>
 export type RejectHandler<TResult> = (reason: unknown) => void | TResult | PromiseLike<TResult>;

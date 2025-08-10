@@ -1,6 +1,6 @@
-import { FileHandle, OpenFlags } from "@akala/fs";
-import { LockFile, resolve, snapshot } from "../lockfile.js";
-import { closest, State } from "../state.js";
+import { type FileHandle, OpenFlags } from "@akala/fs";
+import { type LockFile, resolve, snapshot } from "../lockfile.js";
+import { closest, type State } from "../state.js";
 import Cache from "../cache.js";
 import { versionParser } from "../registry.js";
 import { HttpStatusCode, packagejson, throttle } from "@akala/core";

@@ -1,4 +1,4 @@
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 import { Levels } from "./recommend-bump.js";
 
 type Workspace = { location: string, name: string, workspaceDependencies: string[], bump: keyof typeof Levels };

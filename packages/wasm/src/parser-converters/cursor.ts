@@ -1,9 +1,9 @@
 import { i32 } from "../helpers/i32.js";
 import { i64 } from "../helpers/i64.js";
 import { local } from "../helpers/local.js";
-import { usizeType } from "../helpers/memory.js";
+import { type usizeType } from "../helpers/memory.js";
 import { v128 } from "../helpers/v128.js"
-import { u32 } from "../transpilers/wasmtype.js";
+import { type u32 } from "../transpilers/wasmtype.js";
 
 export class Cursor
 {

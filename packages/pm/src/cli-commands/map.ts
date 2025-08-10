@@ -1,4 +1,5 @@
-import State, { SidecarMetadata } from '../state.js';
+import type State from '../state.js';
+import type { SidecarMetadata } from '../state.js';
 import { isAbsolute, resolve } from "path";
 
 export default async function map<TName extends string>(config: State['config'], name: TName, targetPath: string | URL, runtime: SidecarMetadata['type'], cwd?: string, options?: { commandable?: boolean })

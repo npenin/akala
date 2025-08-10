@@ -1,6 +1,6 @@
 // /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Expressions, StrictExpressions, TypedExpression, UnknownExpression, ExpressionVisitor, NewExpression, ApplySymbolExpression, LambdaExpression, BinaryExpression, CallExpression, MemberExpression, TypedLambdaExpression, ExpressionType, ConstantExpression, ParameterExpression, UnaryExpression, Parameters, IVisitable } from '@akala/core/expressions';
+import { type Expressions, type StrictExpressions, type TypedExpression, type UnknownExpression, ExpressionVisitor, NewExpression, ApplySymbolExpression, LambdaExpression, BinaryExpression, CallExpression, MemberExpression, TypedLambdaExpression, ExpressionType, ConstantExpression, ParameterExpression, UnaryExpression, type Parameters, type IVisitable } from '@akala/core/expressions';
 import { QuerySymbols } from './Query.js';
 import { Exception } from './exceptions.js';
 import { ModelDefinition } from './shared.js';

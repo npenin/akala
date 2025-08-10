@@ -1,5 +1,5 @@
-import { ProxyConfiguration } from "@akala/config";
-import { State } from "../state.js";
+import { type ProxyConfiguration } from "@akala/config";
+import { type State } from "../state.js";
 
 export default async function addLoader(this: ProxyConfiguration<State>, type: 'protocol' | 'format', loader: string)
 {

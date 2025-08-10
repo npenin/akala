@@ -1,18 +1,18 @@
 import { ExpressionType } from './expression-type.js';
-import { TypedLambdaExpression } from './lambda-expression.js';
-import { BinaryExpression } from './binary-expression.js';
-import { UnaryExpression } from './unary-expression.js';
-import { MemberExpression } from './member-expression.js';
-import { ConstantExpression } from './constant-expression.js';
-import { ParameterExpression } from './parameter-expression.js';
-import { CallExpression } from './call-expression.js';
-import { ApplySymbolExpression } from './apply-symbol-expression.js';
-import { NewExpression } from './new-expression.js';
+import type { TypedLambdaExpression } from './lambda-expression.js';
+import type { BinaryExpression } from './binary-expression.js';
+import type { UnaryExpression } from './unary-expression.js';
+import type { MemberExpression } from './member-expression.js';
+import type { ConstantExpression } from './constant-expression.js';
+import type { ParameterExpression } from './parameter-expression.js';
+import type { CallExpression } from './call-expression.js';
+import type { ApplySymbolExpression } from './apply-symbol-expression.js';
+import type { NewExpression } from './new-expression.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';
-import { IVisitable } from './visitable.js';
-import { FormatExpression } from '../parser.js';
-import { TernaryExpression } from './ternary-expression.js';
-import { AssignmentExpression } from './assignment-expression.js';
+import type { IVisitable } from './visitable.js';
+import type { FormatExpression } from '../parser.js';
+import type { TernaryExpression } from './ternary-expression.js';
+import type { AssignmentExpression } from './assignment-expression.js';
 
 export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Expressions };
 

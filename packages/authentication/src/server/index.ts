@@ -1,13 +1,13 @@
-import { convertToMiddleware, defaultInjector, ErrorWithStatus, Http, HttpStatusCode, isStandardMiddleware, lazy } from '@akala/core';
-import oidcDiscover, { OIDCMetadata } from '../client/oidc-discover.js';
+import { convertToMiddleware, defaultInjector, ErrorWithStatus, type Http, HttpStatusCode, isStandardMiddleware, lazy } from '@akala/core';
+import oidcDiscover, { type OIDCMetadata } from '../client/oidc-discover.js';
 import { NonPublicMiddleware } from './middlewares/authorize.js';
-import { HttpRouter, Request, Response } from '@akala/server';
+import { HttpRouter, type Request, type Response } from '@akala/server';
 import { AuthorizeRedirectFormatter } from './middlewares/AuthorizeRedirectFormatter.js';
 import { Processors } from '@akala/commands';
 import { OIDCResponseType } from '../client/oidc-state.js';
-import { AccessTokenResponse, ErrorResponse } from './middlewares/grant.js';
-import { IdSerializer, IdStore } from './authentication-store.js';
-import { jwt, JWT, JWTValues } from '@akala/jwt';
+import type { AccessTokenResponse, ErrorResponse } from './middlewares/grant.js';
+import type { IdSerializer, IdStore } from './authentication-store.js';
+import { jwt, type JWT, type JWTValues } from '@akala/jwt';
 
 export const isAuthorized = new NonPublicMiddleware();
 

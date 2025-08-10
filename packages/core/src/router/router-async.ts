@@ -1,11 +1,11 @@
-import { SpecialNextParam, convertToMiddleware } from '../middlewares/shared.js';
+import { type SpecialNextParam, convertToMiddleware } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
 import { MiddlewareRouteAsync } from './route-async.js';
 import { each } from '../each.js';
-import { RouterOptions, Routes } from './router.js';
-import { Routable, RouteBuilderArguments } from './route.js';
-import { MiddlewareAsync } from '../middlewares/shared.js'
-import { UriTemplate } from '../uri-template/index.js';
+import type { RouterOptions, Routes } from './router.js';
+import type { Routable, RouteBuilderArguments } from './route.js';
+import type { MiddlewareAsync } from '../middlewares/shared.js'
+import type { UriTemplate } from '../uri-template/index.js';
 
 export type RouteBuilderAsync<T extends [Routable, ...unknown[]], TSpecialNextParam extends SpecialNextParam = SpecialNextParam> = (...args: RouteBuilderArguments) => MiddlewareRouteAsync<T, TSpecialNextParam>;
 

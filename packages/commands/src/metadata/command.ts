@@ -1,4 +1,4 @@
-import { Configurations } from "./configurations.js";
+import { type Configurations } from "./configurations.js";
 
 
 export interface Command

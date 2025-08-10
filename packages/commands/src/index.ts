@@ -7,7 +7,7 @@
 export * from './index.browser.js'
 import { program, buildCliContext, buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
 import { Container } from './model/container.js'
-import { ICommandProcessor } from './model/processor.js'
+import { type ICommandProcessor } from './model/processor.js'
 import { registerCommands } from './generator.js'
 import * as Processors from './processors/index.js'
 import * as Triggers from './triggers/index.js'
@@ -17,8 +17,8 @@ export { Processors, Triggers }
 export { NetSocketAdapter } from './net-socket-adapter.js'
 import commands from './commands.js'
 import $metadata from './commands/$metadata.js'
-import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
-export { default as serve, ServeOptions } from './cli/serve.js'
+import { type Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
+export { default as serve, type ServeOptions } from './cli/serve.js'
 import * as FileGenerator from './new.js';
 import { Readable } from 'stream';
 import { Metadata } from './index.browser.js'

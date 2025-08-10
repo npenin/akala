@@ -1,5 +1,5 @@
-import { ErrorWithStatus, Logger } from "@akala/core";
-import { FileHandle, FileSystemProvider, OpenFlags } from "@akala/fs"
+import { ErrorWithStatus, type Logger } from "@akala/core";
+import { type FileHandle, type FileSystemProvider, OpenFlags } from "@akala/fs"
 
 export interface State
 {

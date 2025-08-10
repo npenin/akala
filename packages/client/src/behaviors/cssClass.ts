@@ -1,7 +1,7 @@
-import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, Subscription, map, each, combineSubscriptions } from '@akala/core';
+import { ObservableArray, type ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, type Subscription, map, each, combineSubscriptions } from '@akala/core';
 import { AttributeComposer, databind } from './shared.js';
 import { DataContext } from './context.js';
-import { MaybeBound } from '../clientify.js';
+import { type MaybeBound } from '../clientify.js';
 import { TeardownManager } from '@akala/core';
 
 /** Represents possible parameter types for CSS class binding */

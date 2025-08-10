@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { Cursor, Parser } from './_common.js';
+import { Cursor, type Parser } from './_common.js';
 import Uint16 from './uint16.js';
 import Uint24 from './uint24.js';
 import Uint32 from './uint32.js';

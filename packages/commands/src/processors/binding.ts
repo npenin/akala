@@ -1,6 +1,6 @@
-import { customResolve, each, ICustomResolver, isPromiseLike, lazy, MiddlewarePromise, NotHandled, Resolvable } from "@akala/core";
-import { CommandProcessor, Container, StructuredParameters } from "../index.browser.js";
-import { Command } from "../metadata/command.js";
+import { customResolve, each, type ICustomResolver, isPromiseLike, lazy, type MiddlewarePromise, NotHandled, type Resolvable } from "@akala/core";
+import { CommandProcessor, Container, type StructuredParameters } from "../index.browser.js";
+import { type Command } from "../metadata/command.js";
 import { Local } from "./local.js";
 
 export class BindingProcessor extends CommandProcessor

@@ -1,5 +1,6 @@
 import { each as eachAsync } from '../eachAsync.js';
-import { AnyAsyncMiddleware, MiddlewareAsync, MiddlewarePromise, NotHandled, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import { NotHandled, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import type { AnyAsyncMiddleware, MiddlewareAsync, MiddlewarePromise, OptionsResponse, SpecialNextParam } from './shared.js';
 
 /**
  * A composite middleware class with priority for asynchronous operations.

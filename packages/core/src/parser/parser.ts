@@ -1,4 +1,4 @@
-import { BinaryOperator, BinaryExpression, ConstantExpression, Expression, Expressions, ExpressionType, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, UnaryExpression, UnaryOperator, CallExpression } from './expressions/index.js';
+import { BinaryOperator, BinaryExpression, ConstantExpression, Expression, type Expressions, ExpressionType, MemberExpression, NewExpression, ParameterExpression, type StrictExpressions, type TypedExpression, UnaryExpression, UnaryOperator, CallExpression } from './expressions/index.js';
 
 import identity from '../formatters/identity.js';
 import negate from '../formatters/negate.js';
@@ -6,7 +6,7 @@ import booleanize from '../formatters/booleanize.js';
 import { TernaryOperator } from './expressions/ternary-operator.js';
 import { TernaryExpression } from './expressions/ternary-expression.js';
 import type { ExpressionVisitor } from './expressions/visitors/expression-visitor.js';
-import { Formatter, FormatterFactory } from '../formatters/common.js';
+import type { Formatter, FormatterFactory } from '../formatters/common.js';
 import { formatters } from '../formatters/index.js';
 import { escapeRegExp } from '../reflect.js';
 import { AssignmentOperator } from './expressions/assignment-operator.js';

@@ -1,5 +1,5 @@
-import { ErrorWithStatus, HttpStatusCode, MiddlewareAsync, MiddlewarePromise, NotHandled } from "@akala/core";
-import { AuthRequest } from "../index.js";
+import { ErrorWithStatus, HttpStatusCode, type MiddlewareAsync, type MiddlewarePromise, NotHandled } from "@akala/core";
+import { type AuthRequest } from "../index.js";
 
 export class NonPublicMiddleware implements MiddlewareAsync<[AuthRequest<unknown>, ...unknown[]]>, MiddlewareAsync<[AuthRequest<unknown>, ...unknown[]]>
 {

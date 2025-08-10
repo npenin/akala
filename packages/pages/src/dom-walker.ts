@@ -1,4 +1,4 @@
-import { CompositeTag, CustomTag, CustomTagDefinition, CustomTagInstance, Document, Tag, TextTag, TypedCustomTag } from "./dom.js";
+import type { CompositeTag, CustomTag, CustomTagDefinition, CustomTagInstance, Document, Tag, TextTag, TypedCustomTag } from "./dom.js";
 
 export declare interface TagRef
 {

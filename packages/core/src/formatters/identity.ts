@@ -1,4 +1,4 @@
-import { Formatter, ReversibleFormatter } from "./common.js";
+import type { Formatter, ReversibleFormatter } from "./common.js";
 
 /**
  * Returns the input value.

@@ -1,7 +1,7 @@
-import { Expression, TypedExpression } from './expression.js';
+import { Expression, type TypedExpression } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';
-import { IVisitable } from './visitable.js';
+import type { IVisitable } from './visitable.js';
 
 /**
  * Represents a member expression, which accesses a property of an object.

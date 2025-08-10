@@ -1,7 +1,7 @@
 import { EventEmitter } from './events/event-emitter.js'
-import { IEvent } from './events/shared.js';
+import type { IEvent } from './events/shared.js';
 import { each as eachAsync } from './eachAsync.js';
-import sequencify, { Task } from './sequencify.js'
+import sequencify, { type Task } from './sequencify.js'
 
 interface EventMap
 {

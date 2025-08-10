@@ -1,10 +1,10 @@
 import { IsomorphicBuffer } from '@akala/core';
 import { local } from '../helpers/local.js';
-import { usize } from '../helpers/memory.js';
+import { type usize } from '../helpers/memory.js';
 import { Module } from '../helpers/module.js'
 import { table } from '../helpers/table.js';
 import { externref, f32, f64, i32, i64 } from '../helpers/types.js'
-import { indexes } from '../helpers/wasmtype.js';
+import { type indexes } from '../helpers/wasmtype.js';
 import * as jssys from './js_sys.js'
 
 export const JsTypes = {

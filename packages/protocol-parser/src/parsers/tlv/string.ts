@@ -1,6 +1,6 @@
 import PrefixedString from "../string-prefixed.js";
-import { Cursor, Parsers } from "../_common.js";
-import { IsomorphicBuffer, BufferEncoding } from "@akala/core";
+import { Cursor, type Parsers } from "../_common.js";
+import { IsomorphicBuffer, type BufferEncoding } from "@akala/core";
 
 export class TLVString extends PrefixedString
 {

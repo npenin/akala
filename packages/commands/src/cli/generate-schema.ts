@@ -4,9 +4,9 @@ import * as fs from 'fs';
 import { outputHelper } from '../new.js';
 import ts from 'typescript'
 import type { Schema as BaseSchema, SchemaObject } from "ajv";
-import { Command } from "../metadata/command.js";
-import { SchemaConfiguration, SchemaValidator } from "../processors/schema-validator.js";
-import { FileSystemProvider } from "@akala/fs";
+import { type Command } from "../metadata/command.js";
+import { type SchemaConfiguration, SchemaValidator } from "../processors/schema-validator.js";
+import { type FileSystemProvider } from "@akala/fs";
 
 type JsonSchema = Exclude<BaseSchema, boolean>
 

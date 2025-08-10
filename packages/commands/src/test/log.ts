@@ -2,7 +2,7 @@ import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
 import { LogEventProcessor, Pipe } from '../processors/index.js';
 import { Container } from '../model/container.js';
-import { Command } from '../metadata/index.js';
+import { type Command } from '../metadata/index.js';
 import { registerCommands } from '../generator.js';
 import { describe, it } from 'node:test'
 import { NotHandled } from '@akala/core';

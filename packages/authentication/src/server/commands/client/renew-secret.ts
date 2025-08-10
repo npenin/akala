@@ -1,4 +1,4 @@
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 import { base64 } from '@akala/core'
 import { BinaryOperator } from '@akala/core/expressions'
 

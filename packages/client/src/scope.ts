@@ -1,4 +1,4 @@
-import { Binding, Injectable, ObservableObject, Parser, SimpleInjector, Subscription, each } from "@akala/core";
+import { Binding, type Injectable, ObservableObject, Parser, SimpleInjector, type Subscription, each } from "@akala/core";
 
 /** 
  * The IScope interface defines the contract for a scope object in the application.

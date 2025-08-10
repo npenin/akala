@@ -1,9 +1,9 @@
-import { AnyNode, AtRule, Declaration, Helpers, Node, Plugin, PluginCreator, Root, Rule } from 'postcss';
+import { type AnyNode, AtRule, Declaration, type Helpers, Node, type Plugin, type PluginCreator, Root, Rule } from 'postcss';
 import selectorParser from 'postcss-selector-parser'
 import { readFile } from 'fs/promises'
 import postcss from 'postcss';
 import { unquote } from './postcss-dtcg.js';
-import { lazy, sequencify, Task } from '@akala/core';
+import { lazy, sequencify, type Task } from '@akala/core';
 import { dirname, resolve } from 'path/posix';
 import { fileURLToPath } from 'url';
 

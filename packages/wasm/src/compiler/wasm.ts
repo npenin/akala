@@ -1,4 +1,4 @@
-import ts, { Program } from "typescript";
+import ts, { type Program } from "typescript";
 import { VisitorMap } from "./ts.js";
 
 export class Wasm extends VisitorMap

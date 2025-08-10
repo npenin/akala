@@ -1,10 +1,10 @@
 import { ErrorWithStatus, HttpStatusCode } from '@akala/core';
 import { control } from '../helpers/control.js';
 import { local } from '../helpers/local.js';
-import { usizeType } from '../helpers/memory.js';
-import { ImportedFunc, Module } from '../helpers/module.js'
+import { type usizeType } from '../helpers/memory.js';
+import { type ImportedFunc, Module } from '../helpers/module.js'
 import { externref, func, i32, mergeUInt8Arrays } from '../helpers/types.js'
-import { wasmtypeInstance } from '../helpers/wasmtype.js';
+import { type wasmtypeInstance } from '../helpers/wasmtype.js';
 import * as jssys from './js_sys.js'
 import { JsModule, JsTypes, Marshall, Marshalled } from './js_sys.module.js'
 

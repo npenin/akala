@@ -1,15 +1,15 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { CommandProcessor, StructuredParameters } from '../model/processor.js'
-import { Command, Container as MetaContainer } from '../metadata/index.js';
+import { CommandProcessor, type StructuredParameters } from '../model/processor.js'
+import type { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
-import { lazy, Logger, MiddlewarePromise, noop, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled, MiddlewareResult } from '@akala/core';
-import { HandlerResult, protocolHandlers as handlers, serverHandlers } from '../protocol-handler.js';
+import { lazy, type Logger, type MiddlewarePromise, noop, type SerializableObject, type TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled, type MiddlewareResult } from '@akala/core';
+import { type HandlerResult, protocolHandlers as handlers, serverHandlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 import { NetSocketAdapter } from '../net-socket-adapter.js';
-import { Socket, Server, ServerOpts } from 'net';
-import { TLSSocket, Server as TLSServer, TlsOptions } from 'tls';
+import { Socket, Server, type ServerOpts } from 'net';
+import { TLSSocket, Server as TLSServer, type TlsOptions } from 'tls';
 import $metadataCmd from '../commands/$metadata.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;

@@ -1,6 +1,6 @@
-import { ObservableObject, Parser, Resolvable, SimpleInjector } from "@akala/core"
-import { OutletDefined, OutletDefinition, outletDefinition } from "../outlet.js"
-import { IScope, ScopeImpl } from "../scope.js"
+import { ObservableObject, Parser, type Resolvable, SimpleInjector } from "@akala/core"
+import { type OutletDefined, type OutletDefinition, outletDefinition } from "../outlet.js"
+import { type IScope, ScopeImpl } from "../scope.js"
 // import { DataContext } from "../common.js";
 
 export const RootElement = Symbol('root html template element');

@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { wasmtype, wasmtypeInstance } from './wasmtype.js'
+import type { wasmtype, wasmtypeInstance } from './wasmtype.js'
 import { externref as transpiler } from '../transpilers/ref-extern.js'
 
 

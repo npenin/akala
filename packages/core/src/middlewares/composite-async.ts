@@ -1,5 +1,6 @@
 import { each as eachAsync } from '../eachAsync.js';
-import { AnyAsyncMiddleware, MiddlewareAsync, MiddlewarePromise, MiddlewareResult, NotHandled, OptionsResponse, SpecialNextParam, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import { NotHandled, convertToErrorMiddleware, convertToMiddleware, isErrorMiddleware, isStandardMiddleware } from './shared.js';
+import type { AnyAsyncMiddleware, MiddlewareAsync, MiddlewarePromise, MiddlewareResult, OptionsResponse, SpecialNextParam } from './shared.js';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
 export interface ExtendableCompositeMiddlewareAsync<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> { }

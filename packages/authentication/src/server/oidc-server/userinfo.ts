@@ -1,5 +1,5 @@
 import { BinaryOperator } from "@akala/core/expressions";
-import { State } from "../state.js";
+import { type State } from "../state.js";
 import { ErrorWithStatus } from "@akala/core";
 
 export default async function userInfo(this: State, accessToken: string): Promise<Record<string, any>>

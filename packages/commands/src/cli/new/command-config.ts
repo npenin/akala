@@ -1,8 +1,8 @@
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
 import path from "path";
 import { Processors } from "../../index.js";
-import { Command } from "../../metadata/command.js";
+import { type Command } from "../../metadata/command.js";
 import { outputHelper } from "../../new.js";
 import { pathToFileURL } from "url";
 import fsHandler from "@akala/fs";

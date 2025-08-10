@@ -1,5 +1,5 @@
 import { delay, ErrorWithStatus, packagejson, UrlHandler } from "@akala/core";
-import { closest, State } from "./state.js";
+import { closest, type State } from "./state.js";
 import { glob } from 'fs/promises'
 import { join } from "path";
 

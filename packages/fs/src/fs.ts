@@ -1,6 +1,7 @@
 import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from "@akala/core";
-import { CopyFlags, FileEntry, FileHandle, FileSystemProvider, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
-import { Dirent, promises as fs, OpenDirOptions, GlobOptions as FsGlobOptions, createReadStream, createWriteStream } from 'fs';
+import { CopyFlags, OpenFlags, } from "./shared.js";
+import type { FileEntry, FileHandle, FileSystemProvider, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, StatOptions, Stats } from "./shared.js";
+import { Dirent, promises as fs, type OpenDirOptions, type GlobOptions as FsGlobOptions, createReadStream, createWriteStream } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { basename, dirname } from "path";
 import { Readable, Writable } from "stream";

@@ -1,5 +1,5 @@
 import { convertToErrorMiddleware, isStandardMiddleware, isErrorMiddleware, NotHandled } from './shared.js';
-import { AnyAsyncMiddleware, ErrorMiddleware, ErrorMiddlewareAsync, MiddlewareAsync, MiddlewarePromise, OptionsResponse, SpecialNextParam } from './shared.js';
+import type { AnyAsyncMiddleware, ErrorMiddleware, ErrorMiddlewareAsync, MiddlewareAsync, MiddlewarePromise, OptionsResponse, SpecialNextParam } from './shared.js';
 
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars

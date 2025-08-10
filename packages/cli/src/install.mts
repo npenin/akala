@@ -1,7 +1,7 @@
 import npm from './xpm/npm-helper.js'
 import yarn, { hasYarn } from './xpm/yarn-helper.js'
 import program, { buildCliContextFromContext } from './index.js';
-import { AkalaConfig } from './cli.js';
+import type { AkalaConfig } from './cli.js';
 
 
 export default function (config, mainProgram)

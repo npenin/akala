@@ -1,4 +1,4 @@
-import { Predicate, Project, PredicateAsync } from '@akala/core/expressions';
+import type { Predicate, Project, PredicateAsync } from '@akala/core/expressions';
 import { NotSupportedException } from './exceptions.js';
 import { isPromiseLike } from '@akala/core';
 

@@ -2,7 +2,7 @@
 import debug from 'debug';
 const logger = debug('akala:json-rpc-ws');
 
-import { Connection, Handler, PayloadDataType, Parent, SocketAdapter } from './shared-connection.js';
+import { Connection, type Handler, type PayloadDataType, type Parent, type SocketAdapter } from './shared-connection.js';
 
 
 

@@ -1,6 +1,6 @@
-import { AsyncTeardownManager, combineSubscriptions, Subscription } from "../teardown-manager.js";
-import { AllEventKeys, EventBus, SpecialEvents } from "./event-bus.js";
-import { Event, EventArgs, EventKeys, EventListener, EventOptions, EventReturnType, IEvent } from "./shared.js";
+import { AsyncTeardownManager, combineSubscriptions, type Subscription } from "../teardown-manager.js";
+import type { AllEventKeys, EventBus, SpecialEvents } from "./event-bus.js";
+import { Event, type EventArgs, type EventKeys, type EventListener, type EventOptions, type EventReturnType, type IEvent } from "./shared.js";
 
 //type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
 

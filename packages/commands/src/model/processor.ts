@@ -1,5 +1,5 @@
-import { Injector, MiddlewareAsync, MiddlewarePromise } from '@akala/core';
-import { Command } from '../metadata/index.js';
+import { Injector, type MiddlewareAsync, type MiddlewarePromise } from '@akala/core';
+import { type Command } from '../metadata/index.js';
 import { Container } from './container.js';
 
 export type StructuredParameters<T = unknown[]> = { params: T, [key: string]: unknown, _trigger?: string, injector?: Injector }

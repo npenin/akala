@@ -1,6 +1,6 @@
-import { customResolve, ICustomResolver, ErrorWithStatus, HttpStatusCode, map, ParsedNumber, ParsedString, Parser, Resolvable } from '@akala/core';
+import { customResolve, type ICustomResolver, ErrorWithStatus, HttpStatusCode, map, ParsedNumber, ParsedString, Parser, type Resolvable } from '@akala/core';
 import { ModelDefinition } from './shared.js';
-import { NewExpression, TypedLambdaExpression, LambdaExpression, BinaryOperator, Expression, TypedExpression, Predicate, Expressions, Project, Project2, StrictExpressions, ApplySymbolExpression, ConstantExpression, ParameterExpression, MemberExpression, BinaryExpression, ExpressionType } from '@akala/core/expressions';
+import { NewExpression, TypedLambdaExpression, LambdaExpression, BinaryOperator, Expression, type TypedExpression, type Predicate, type Expressions, type Project, type Project2, type StrictExpressions, ApplySymbolExpression, ConstantExpression, ParameterExpression, MemberExpression, BinaryExpression, ExpressionType } from '@akala/core/expressions';
 
 export type asyncProxy<T> = { [P in keyof T]: PromiseLike<T[P]> };
 

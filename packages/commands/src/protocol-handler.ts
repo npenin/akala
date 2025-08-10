@@ -1,5 +1,5 @@
 import { UrlHandler } from "@akala/core";
-import { ICommandProcessor, Metadata } from "./index.browser.js";
+import { type ICommandProcessor, Metadata } from "./index.browser.js";
 import { Container } from "./model/container.js";
 
 // export default function getHandler(protocol: string, url: URL)

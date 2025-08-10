@@ -1,6 +1,6 @@
 import { IsomorphicBuffer } from '@akala/core';
 import { valtype } from './types.js';
-import { indexes } from './wasmtype.js'
+import { type indexes } from './wasmtype.js'
 
 /**
  * Creates a WebAssembly global type declaration

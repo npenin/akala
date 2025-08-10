@@ -1,5 +1,5 @@
 import Bit from './bit.js';
-import { Cursor, Parser } from './_common.js';
+import { Cursor, type Parser } from './_common.js';
 import { IsomorphicBuffer } from '@akala/core';
 
 const length = .25;

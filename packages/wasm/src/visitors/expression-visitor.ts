@@ -1,4 +1,4 @@
-import { BinaryExpression, BinaryOperator, Expressions, ExpressionVisitor, StrictExpressions } from "@akala/core/expressions";
+import { BinaryExpression, BinaryOperator, type Expressions, ExpressionVisitor, type StrictExpressions } from "@akala/core/expressions";
 import { i32 } from "../helpers/i32.js";
 import { f32 } from "../helpers/f32.js";
 import { i64 } from "../helpers/i64.js";

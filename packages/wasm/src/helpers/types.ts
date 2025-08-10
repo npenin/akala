@@ -5,7 +5,7 @@ import { f64, f64 as f64Type } from './f64.js'
 import { v128, v128 as v128Type } from './v128.js'
 import { externref, externref as externrefType } from './ref-extern.js'
 import { func, func as funcType } from './func.js'
-import { indexes, wasmtype } from './wasmtype.js'
+import type { indexes, wasmtype } from './wasmtype.js'
 import { IsomorphicBuffer } from '@akala/core'
 
 // Type re-exports for convenience

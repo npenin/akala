@@ -1,4 +1,4 @@
-import { AsyncTeardownManager, Subscription } from "../teardown-manager.js";
+import { AsyncTeardownManager, type Subscription } from "../teardown-manager.js";
 
 /**
  * Extracts the keys of events from an object.

@@ -1,6 +1,6 @@
 import changelog from 'conventional-changelog-angular';
-import { Commit as ParserCommit } from 'conventional-commits-parser';
-import { Commit } from './parse.js';
+import { type Commit as ParserCommit } from 'conventional-commits-parser';
+import { type Commit } from './parse.js';
 
 const noteKeywords = ['BREAKING CHANGE', 'BREAKING-CHANGE'];
 const noteKeywordsSelection = noteKeywords.join('|');

@@ -1,5 +1,5 @@
 // import { BinaryOperator } from "@akala/core/expressions";
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 import { ErrorWithStatus, HttpStatusCode } from "@akala/core";
 import { hashPassword } from "./add-user.js";
 import { User } from "../../../model/user.js";

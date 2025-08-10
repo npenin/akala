@@ -2,8 +2,8 @@ import { Cursor, parsers } from '@akala/protocol-parser'
 import './allocators/tlsf.js'
 // import { Runtime } from './runtime/runtime.js';
 import { i32 } from './helpers/i32.js';
-import { u8 } from './transpilers/wasmtype.js';
-import { CodeSection, ExportSection, FuncSection, ImportSection, MemorySection, Module, ModuleSectionMap, ModuleSections, TableSection, TypeSection } from './structure.js';
+import { type u8 } from './transpilers/wasmtype.js';
+import type { CodeSection, ExportSection, FuncSection, ImportSection, MemorySection, Module, ModuleSectionMap, ModuleSections, TableSection, TypeSection } from './structure.js';
 import { valtype } from './helpers/types.js';
 import { IsomorphicBuffer } from '@akala/core';
 

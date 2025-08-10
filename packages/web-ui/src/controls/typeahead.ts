@@ -1,7 +1,7 @@
-import { Control, HtmlControlElement, wcObserve, HotKeyTrigger, Each, ClientBindings, DataContext, Bound, fromEvent } from '@akala/client';
+import { Control, type HtmlControlElement, wcObserve, HotKeyTrigger, Each, ClientBindings, DataContext, type Bound, fromEvent } from '@akala/client';
 import { Popover } from './popover.js';
 import { fromObject } from '@akala/commands/browser';
-import { Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray, Subscription } from '@akala/core';
+import { Binding, EmptyBinding, ErrorWithStatus, HttpStatusCode, ObservableArray, type Subscription } from '@akala/core';
 
 @wcObserve('options')
 @wcObserve('aria-controls')

@@ -1,13 +1,13 @@
 import { global } from "./global.js";
-import { memory, usizeType } from "./memory.js";
-import { func, parameters } from "./func.js";
+import { memory, type usizeType } from "./memory.js";
+import { func, type parameters } from "./func.js";
 import { table } from "./table.js";
 import { getValType, mergeUInt8Arrays } from "./types.js";
 import { control } from "./control.js";
-import { indexes, wasmtype, wasmtypeInstance } from "./wasmtype.js";
+import type { indexes, wasmtype, wasmtypeInstance } from "./wasmtype.js";
 import { local } from "./local.js";
-import { u8 } from "../transpilers/wasmtype.js";
-import { ImportExportDescription, ModuleSection, ModuleSections } from "../structure.js";
+import { type u8 } from "../transpilers/wasmtype.js";
+import { ImportExportDescription, type ModuleSection, type ModuleSections } from "../structure.js";
 import { IsomorphicBuffer } from "@akala/core";
 
 /**

@@ -1,5 +1,5 @@
-import { ErrorMiddlewareAsync, ErrorWithStatus, HttpStatusCode, MiddlewarePromise, NotHandled } from "@akala/core";
-import { Request, Response } from "@akala/server";
+import { type ErrorMiddlewareAsync, ErrorWithStatus, HttpStatusCode, type MiddlewarePromise, NotHandled } from "@akala/core";
+import type { Request, Response } from "@akala/server";
 
 
 export class Authorize401ChallengeFormatter implements ErrorMiddlewareAsync<[Request, Response]>

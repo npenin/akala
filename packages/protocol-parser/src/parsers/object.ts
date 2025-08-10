@@ -1,6 +1,6 @@
-import { ParsersWithMessage } from "./index.js";
+import { type ParsersWithMessage } from "./index.js";
 import Series from './series.js';
-import { AnyParser, Cursor, Parser } from './_common.js';
+import { type AnyParser, Cursor, type Parser } from './_common.js';
 import { IsomorphicBuffer } from "@akala/core";
 
 export default class ObjectParser<T extends object> extends Series<T, Partial<T>> implements Parser<T>

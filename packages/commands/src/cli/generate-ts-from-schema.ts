@@ -3,7 +3,7 @@ import { outputHelper } from '../new.js';
 // import type { Schema as BaseSchema } from "ajv";
 import { fileURLToPath } from "url";
 import { FetchHttp } from "@akala/core";
-import { JsonSchema } from '../jsonschema.js'
+import { type JsonSchema } from '../jsonschema.js'
 // type JsonSchema = Exclude<BaseSchema, boolean>
 
 // const jsonSchemaArrays = ['allOf', 'anyOf', 'oneOf']

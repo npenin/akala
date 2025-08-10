@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { StrictExpressions, ConstantExpression } from '@akala/core/expressions';
+import { type StrictExpressions, ConstantExpression } from '@akala/core/expressions';
 import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine.js';
 import { ExpressionExecutor } from '../expression-executor.js';
 import * as fs from "fs";
 import { basename, join } from "path";
 import { CommandProcessor } from '../commands/command-processor.js';
-import { CommandResult, Commands, Create } from '../commands/command.js';
+import { type CommandResult, type Commands, Create } from '../commands/command.js';
 import { ModelDefinition } from '../shared.js';
 import { promisify } from "util";
-import { Generator, ModelDefinitions } from '../common.js';
+import { Generator, type ModelDefinitions } from '../common.js';
 import { NotSupportedException } from '../exceptions.js';
 import { isPromiseLike } from '@akala/core';
 

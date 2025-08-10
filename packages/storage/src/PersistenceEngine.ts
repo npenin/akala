@@ -1,9 +1,9 @@
-import { Expressions } from '@akala/core/expressions';
-import { CommandResult, Commands, CommandType, Create, Update, Delete } from './commands/command.js';
+import { type Expressions } from '@akala/core/expressions';
+import { type CommandResult, type Commands, CommandType, Create, Update, Delete } from './commands/command.js';
 import { CommandProcessor } from './commands/command-processor.js';
 import type { ModelDefinition, DbSet } from './shared.js';
-import { customResolve, ICustomResolver, ErrorWithStatus, HttpStatusCode, Resolvable, UrlHandler } from '@akala/core';
-import { ModelDefinitions } from './common.js';
+import { customResolve, type ICustomResolver, ErrorWithStatus, HttpStatusCode, type Resolvable, UrlHandler } from '@akala/core';
+import { type ModelDefinitions } from './common.js';
 
 const command = Symbol('command');
 

@@ -6,7 +6,8 @@ import { platform } from 'os';
 import start from './cli-commands/start.js'
 import { Readable } from 'stream';
 
-import State, { StateConfiguration } from './state.js';
+import type State from './state.js';
+import type { StateConfiguration } from './state.js';
 import { program, buildCliContextFromProcess, ErrorMessage, supportInteract } from '@akala/cli';
 import { open } from 'fs/promises';
 import { LogLevels } from '@akala/core';

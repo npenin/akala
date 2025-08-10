@@ -1,7 +1,7 @@
-import { ExtendedConfigurations, GenericConfiguration } from './metadata/configurations.js';
+import { type ExtendedConfigurations, type GenericConfiguration } from './metadata/configurations.js';
 import { SelfDefinedCommand as ModelCommand } from "./model/command.js";
-import { Injectable as baseInjectable } from "@akala/core";
-import { Configurations } from './metadata/configurations.js';
+import { type Injectable as baseInjectable } from "@akala/core";
+import { type Configurations } from './metadata/configurations.js';
 
 type Injectable<T, TArgs extends unknown[]> = baseInjectable<T, TArgs> & { '$inject'?: string[] };
 

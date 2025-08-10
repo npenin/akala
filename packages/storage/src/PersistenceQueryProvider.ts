@@ -1,6 +1,6 @@
-import { IQueryableProvider } from './Query.js';
+import { type IQueryableProvider } from './Query.js';
 import { PersistenceEngine } from './PersistenceEngine.js';
-import { Expressions } from '@akala/core/expressions';
+import { type Expressions } from '@akala/core/expressions';
 
 export class PersistenceEngineQueryProvider implements IQueryableProvider
 {

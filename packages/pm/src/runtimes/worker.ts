@@ -2,7 +2,7 @@ import { Worker } from "worker_threads";
 import { Readable } from "stream";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { MessagePortAdapter } from "../messageport-adapter.js";
-import { RuntimeEventMap, RuntimeInstance } from "./shared.js";
+import type { RuntimeEventMap, RuntimeInstance } from "./shared.js";
 import module from 'module'
 import { EventEmitter } from "@akala/core";
 const require = module.createRequire(import.meta.url);

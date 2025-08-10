@@ -1,6 +1,6 @@
 import { EvaluatorAsFunction } from "./evaluator-as-function.js";
-import { Expressions } from "./expressions/index.js";
-import { Formatter, ReversibleFormatter } from "../formatters/common.js";
+import type { Expressions } from "./expressions/index.js";
+import type { Formatter, ReversibleFormatter } from "../formatters/common.js";
 import { formatters } from "../formatters/index.js";
 import { Parser } from "./parser.js";
 

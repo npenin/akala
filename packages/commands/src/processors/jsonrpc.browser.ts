@@ -1,10 +1,10 @@
 import * as jsonrpcws from '@akala/json-rpc-ws/browser'
-import { CommandProcessor, StructuredParameters } from '../model/processor.js'
-import { Command, Container as MetaContainer } from '../metadata/index.js';
+import { CommandProcessor, type StructuredParameters } from '../model/processor.js'
+import type { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
-import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled } from '@akala/core';
-import { HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
+import { lazy, type Logger, type MiddlewarePromise, noop, type OptionsResponse, type SpecialNextParam, type SerializableObject, type TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled } from '@akala/core';
+import { type HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 import $metadataCmd from '../commands/$metadata.js';
 

@@ -1,5 +1,5 @@
 import PrefixedBuffer from "../buffer-prefixed.js";
-import { Cursor, Parsers } from "../_common.js";
+import { Cursor, type Parsers } from "../_common.js";
 import { IsomorphicBuffer } from "@akala/core";
 
 export class TLVBuffer extends PrefixedBuffer

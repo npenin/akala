@@ -1,8 +1,8 @@
-import { Middleware, SpecialNextParam, convertToMiddleware } from '../middlewares/shared.js';
+import { type Middleware, type SpecialNextParam, convertToMiddleware } from '../middlewares/shared.js';
 import { MiddlewareComposite } from '../middlewares/composite-sync.js';
-import { MiddlewareRoute, Routable, RouteBuilder, RouteBuilderArguments } from './route.js';
+import { MiddlewareRoute, type Routable, type RouteBuilder, type RouteBuilderArguments } from './route.js';
 import { each } from '../each.js';
-import { UriTemplate } from '../uri-template/index.js';
+import type { UriTemplate } from '../uri-template/index.js';
 
 export interface RouterOptions
 {

@@ -1,7 +1,7 @@
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 import { readFile, mkdir } from "fs/promises";
 import { join } from "path";
-import { Container } from "../metadata/index.js";
+import { type Container } from "../metadata/index.js";
 import command from "./new/command.js";
 import { newCommandConfiguration } from "./new/command-config.js";
 

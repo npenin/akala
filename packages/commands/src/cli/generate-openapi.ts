@@ -1,7 +1,7 @@
 import * as akala from "../index.js";
 import * as path from 'path'
 import { outputHelper } from '../new.js';
-import { jsonObject } from "../metadata/configurations.js";
+import { type jsonObject } from "../metadata/configurations.js";
 import { each } from "@akala/core";
 import { pathToFileURL } from "url";
 import { FSFileSystemProvider, hasAccess } from "@akala/fs";

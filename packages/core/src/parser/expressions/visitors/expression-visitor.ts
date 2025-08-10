@@ -1,4 +1,4 @@
-import
+import type
 {
     Expressions,
     TypedExpression,
@@ -12,12 +12,12 @@ import { BinaryExpression } from '../binary-expression.js';
 import { UnaryExpression } from '../unary-expression.js';
 import { ParameterExpression } from '../parameter-expression.js';
 import { ConstantExpression } from '../constant-expression.js';
-import { TypedLambdaExpression, Parameters } from '../lambda-expression.js';
+import { TypedLambdaExpression, type Parameters } from '../lambda-expression.js';
 import { MemberExpression } from '../member-expression.js';
 import { CallExpression } from '../call-expression.js';
 import { ApplySymbolExpression } from '../apply-symbol-expression.js';
 import { NewExpression } from '../new-expression.js';
-import { IVisitable } from '../visitable.js';
+import type { IVisitable } from '../visitable.js';
 import { FormatExpression } from '../../parser.js';
 import { TernaryExpression } from '../ternary-expression.js';
 import { AssignmentExpression } from '../assignment-expression.js';

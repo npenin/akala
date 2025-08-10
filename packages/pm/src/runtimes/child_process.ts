@@ -1,9 +1,9 @@
-import { ChildProcess, SendHandle, Serializable, spawn } from "child_process";
+import { ChildProcess, type SendHandle, type Serializable, spawn } from "child_process";
 import { Readable } from "stream";
 import { IpcAdapter } from "../ipc-adapter.js";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
-import { RuntimeEventMap, RuntimeInstance } from "./shared.js";
-import { EventEmitter, IEvent } from "@akala/core";
+import type { RuntimeEventMap, RuntimeInstance } from "./shared.js";
+import { EventEmitter, type IEvent } from "@akala/core";
 import { fileURLToPath } from "url";
 
 export type ChildProcessRuntimeEventMap = {

@@ -1,4 +1,4 @@
-import { Formatter } from "./common.js";
+import type { Formatter } from "./common.js";
 
 /**
  * A formatter that converts any value to a boolean

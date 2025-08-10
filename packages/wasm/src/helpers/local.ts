@@ -1,4 +1,4 @@
-import { indexes, wasmtype, wasmtypeInstance } from './wasmtype.js'
+import { type indexes, type wasmtype, type wasmtypeInstance } from './wasmtype.js'
 import { local as transpiler } from '../transpilers/local.js'
 import { mergeUInt8Arrays } from './types.js';
 import { IsomorphicBuffer } from '@akala/core';

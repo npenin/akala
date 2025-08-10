@@ -1,10 +1,10 @@
 import * as path from 'path'
 import { outputHelper } from '../new.js';
-import { DiscoveryOptions } from "../processors/fs.js";
+import { type DiscoveryOptions } from "../processors/fs.js";
 import { Metadata, Processors } from "../index.js";
 import { MiddlewareCompositeAsync } from '@akala/core';
 import { pathToFileURL } from 'url';
-import fsHandler, { FileSystemProvider } from '@akala/fs';
+import fsHandler, { type FileSystemProvider } from '@akala/fs';
 
 export const generatorPlugin = new MiddlewareCompositeAsync<[options: Partial<DiscoveryOptions>, meta: Metadata.Container, outputFs: FileSystemProvider, outputFile: string]>();
 

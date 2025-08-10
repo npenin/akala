@@ -1,6 +1,6 @@
 import { ErrorWithStatus, HttpStatusCode, packagejson } from "@akala/core";
 import { handler } from "./registry.js";
-import { State } from "./state.js";
+import { type State } from "./state.js";
 
 export interface LockFile
 {

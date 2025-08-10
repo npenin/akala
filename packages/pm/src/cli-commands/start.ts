@@ -1,6 +1,6 @@
-import State, { } from '../state.js';
-import { StdioOptions } from "child_process";
-import { CliContext, unparseOptions } from "@akala/cli";
+import type State from '../state.js';
+import { type StdioOptions } from "child_process";
+import { type CliContext, unparseOptions } from "@akala/cli";
 import ChildProcess from '../runtimes/child_process.js'
 
 export default async function start(this: State, name: string, context?: CliContext<{ configFile: string, new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>

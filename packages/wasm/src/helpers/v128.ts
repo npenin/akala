@@ -1,6 +1,6 @@
-import { indexes, wasmtypeInstance } from './wasmtype.js'
+import type { indexes, wasmtypeInstance } from './wasmtype.js'
 import { memarg } from './memory.js'
-import { uint8 } from '@akala/protocol-parser';
+import { type uint8 } from '@akala/protocol-parser';
 import { v128 as transpiler } from '../transpilers/v128.js';
 import { i32 as ni32 } from './i32.js';
 import { i64 as ni64 } from './i64.js';

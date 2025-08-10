@@ -1,7 +1,7 @@
-import { StructuredParameters, ICommandProcessor, CommandMetadataProcessorSignature } from '../model/processor.js';
+import type { StructuredParameters, ICommandProcessor, CommandMetadataProcessorSignature } from '../model/processor.js';
 // import { CommandProxy } from '../model/command';
-import { MiddlewarePromise, EventEmitter, MiddlewareResult, Event } from "@akala/core";
-import { Command } from '../metadata/index.js';
+import { type MiddlewarePromise, EventEmitter, type MiddlewareResult, Event } from "@akala/core";
+import { type Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { protocolHandlers as handlers } from '../protocol-handler.js';
 

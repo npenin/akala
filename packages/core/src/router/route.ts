@@ -1,6 +1,6 @@
 import { MiddlewareComposite } from '../middlewares/composite-sync.js';
-import { Middleware, MiddlewareResult, SpecialNextParam } from '../middlewares/shared.js';
-import { match, parse, UriTemplate } from '../uri-template/index.js';
+import type { Middleware, MiddlewareResult, SpecialNextParam } from '../middlewares/shared.js';
+import { match, parse, type UriTemplate } from '../uri-template/index.js';
 
 export interface Routable
 {

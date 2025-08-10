@@ -1,7 +1,7 @@
-import { MiddlewarePromise, NotHandled, SpecialNextParam, MiddlewareAsync } from '../middlewares/shared.js';
+import { type MiddlewarePromise, NotHandled, type SpecialNextParam, type MiddlewareAsync } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
-import { Routable, RouteBuilderArguments } from "./route.js";
-import { match, parse, UriTemplate } from '../uri-template/index.js';
+import { type Routable, type RouteBuilderArguments } from "./route.js";
+import { match, parse, type UriTemplate } from '../uri-template/index.js';
 
 /**
  * Represents an asynchronous route handler for URI template matching in middleware chains.

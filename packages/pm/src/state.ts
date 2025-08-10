@@ -1,8 +1,8 @@
 import { Container } from "@akala/commands";
-import { Event, SerializableObject } from "@akala/core";
-import { SocketAdapter } from "@akala/json-rpc-ws";
-import { ProxyConfiguration } from "@akala/config";
-import { RuntimeInstance } from "./runtimes/shared.js";
+import { Event, type SerializableObject } from "@akala/core";
+import type { SocketAdapter } from "@akala/json-rpc-ws";
+import type { ProxyConfiguration } from "@akala/config";
+import type { RuntimeInstance } from "./runtimes/shared.js";
 
 export default interface State
 {

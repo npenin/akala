@@ -1,5 +1,5 @@
-import { MiddlewarePromise, RouteBuilderArguments, MiddlewareRouteAsync } from "@akala/core";
-import { Request, Response } from './shared.js'
+import { type MiddlewarePromise, type RouteBuilderArguments, MiddlewareRouteAsync } from "@akala/core";
+import type { Request, Response } from './shared.js'
 
 export class HttpRouteMiddleware<T extends [Request, Response]> extends MiddlewareRouteAsync<T>
 {

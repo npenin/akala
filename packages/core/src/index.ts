@@ -17,13 +17,13 @@ export * from './teardown-manager.js';
 export * from './factory.js';
 export * from './http.js';
 export * from './service.js';
-import sequencify, { Task, Tasks } from './sequencify.js';
-export { sequencify, Task, Tasks }
+import sequencify, { type Task, type Tasks } from './sequencify.js';
+export { sequencify, type Task, type Tasks }
 // export { Bound, PossiblyBound } from './binder.js';
 export * from './events/index.js';
 export * from './parser/parser.js';
-export { default as Sort, SortDirection, ParserFormatter } from './parser/formatters.js'
-export * from './type-helper.js'
+export { default as Sort, type SortDirection, ParserFormatter } from './parser/formatters.js'
+export type * from './type-helper.js'
 export * from './helpers.js'
 export * from './router/index.js'
 export * from './queue.js'
@@ -43,8 +43,8 @@ export { expressions };
 import * as parser from './parser/evaluator-as-function.js';
 export { parser };
 export * from './promiseHelpers.js';
-export { each as eachAsync, NextFunction, map as mapAsync, grep as grepAsync, AggregateErrors } from './eachAsync.js';
-export { each, grep, map, Proxy } from './each.js';
+export { each as eachAsync, type NextFunction, map as mapAsync, grep as grepAsync, AggregateErrors } from './eachAsync.js';
+export { each, grep, map, type Proxy } from './each.js';
 export * from './distinct.js'
 export * from './interpolate.js';
 import * as introspect from './reflect.js';

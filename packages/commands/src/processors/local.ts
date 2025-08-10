@@ -1,8 +1,8 @@
-import { Injectable, each, MiddlewarePromise, SpecialNextParam, MiddlewareAsync, SimpleInjector, Resolvable, NotHandled, map, ErrorWithStatus, HttpStatusCode, InjectMap, Injector } from '@akala/core';
+import { type Injectable, each, type MiddlewarePromise, type SpecialNextParam, type MiddlewareAsync, SimpleInjector, type Resolvable, NotHandled, map, ErrorWithStatus, HttpStatusCode, type InjectMap, Injector } from '@akala/core';
 import * as  Metadata from '../metadata/index.js';
-import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor, StructuredParameters } from '../model/processor.js'
+import { type CommandMetadataProcessorSignature, CommandProcessor, type ICommandProcessor, type StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
-import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command.js';
+import { type CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command.js';
 
 
 export class AuthHandler<T extends (...args: unknown[]) => unknown> implements MiddlewareAsync<CommandMetadataProcessorSignature<unknown>>

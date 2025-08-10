@@ -1,5 +1,5 @@
-import { CallbackResponse, Request, Response } from "@akala/server";
-import { State } from "../state.js";
+import type { CallbackResponse, Request, Response } from "@akala/server";
+import { type State } from "../state.js";
 
 export default async function request(this: State, req: Request): Promise<CallbackResponse>
 {

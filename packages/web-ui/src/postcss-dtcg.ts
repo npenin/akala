@@ -1,5 +1,5 @@
 import type { AtRule, Node, Plugin, PluginCreator } from 'postcss';
-import { DTCGToken, DTCGTokenGroup, GenerateCssOptions, generateCssToString } from './design-tokens.js';
+import { type DTCGToken, type DTCGTokenGroup, type GenerateCssOptions, generateCssToString } from './design-tokens.js';
 // import { readFile } from 'fs/promises'
 import valueParser from 'postcss-value-parser';
 import postcssImport from 'postcss-import'

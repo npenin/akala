@@ -1,4 +1,4 @@
-import { base64, HttpOptions } from "@akala/core";
+import { base64, type HttpOptions } from "@akala/core";
 // import crypto from 'crypto'
 
 const algo = { name: 'HMAC', hash: 'SHA-256' }

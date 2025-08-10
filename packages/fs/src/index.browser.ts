@@ -1,5 +1,6 @@
 import { IsomorphicBuffer, UrlHandler } from '@akala/core';
-import { FileEntry, FileHandle, FileSystemProvider, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenFlags, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, StatOptions, Stats } from './shared.js';
+import { OpenFlags } from './shared.js';
+import type { FileEntry, FileHandle, FileSystemProvider, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, StatOptions, Stats } from './shared.js';
 
 export * from './shared.js';
 

@@ -1,11 +1,11 @@
 import { each, map } from './each.js';
 import { service } from './service.js';
-import { Formatter } from './formatters/common.js';
+import type { Formatter } from './formatters/common.js';
 import { formatters } from './formatters/index.js'
 import type { MiddlewareAsync } from './middlewares/shared.js';
 import { defaultInjector } from './injectors/simple-injector.js';
 import { MiddlewareCompositeAsync } from './middlewares/composite-async.js';
-import { TypedSerializableObject } from './helpers.js';
+import type { TypedSerializableObject } from './helpers.js';
 
 /**
  * Configuration options for HTTP requests.

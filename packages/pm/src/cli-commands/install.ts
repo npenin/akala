@@ -1,4 +1,4 @@
-import State from '../state.js';
+import type State from '../state.js';
 import npmHelper from '@akala/cli/npm-helper';
 import yarnHelper, { hasYarn } from '@akala/cli/yarn-helper';
 import { Container } from "@akala/commands";

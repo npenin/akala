@@ -1,13 +1,13 @@
 import { ErrorWithStatus, FetchHttp } from '@akala/core';
 import fs from 'fs/promises'
 import { fileURLToPath } from 'url';
-import { Command } from '../metadata/command.js';
-import { Container } from '../metadata/container.js';
+import { type Command } from '../metadata/command.js';
+import { type Container } from '../metadata/container.js';
 import { outputHelper } from '../new.js';
 import { redirectSchema, simplifySchema } from './generate-schema.js';
-import { OpenApi30, Operation, Parameter, PathItem, Reference, Response } from '../oas30.js';
-import { OpenApi31, operation, parameter, parameterOrReference, pathItem, response } from '../oas31.js';
-import { OpenApi20 } from '../oas20.js';
+import type { OpenApi30, Operation, Parameter, PathItem, Reference, Response } from '../oas30.js';
+import type { OpenApi31, operation, parameter, parameterOrReference, pathItem, response } from '../oas31.js';
+import type { OpenApi20 } from '../oas20.js';
 import { resolve, resolveToTypeScript } from './generate-ts-from-schema.js';
 
 export default async function (pathToOpenApiFile: string | URL, outputFile?: string)

@@ -1,6 +1,6 @@
 import { BinaryOperator } from "@akala/core/expressions";
 import { randomUUID } from "crypto";
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 import { Token } from "../../../model/access-token.js";
 import { ErrorWithStatus, HttpStatusCode, base64 } from "@akala/core";
 import { Client } from "../../../model/client.js";

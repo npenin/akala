@@ -1,8 +1,8 @@
 import fsHandler from "@akala/fs";
-import { State } from "../state.js";
+import { type State } from "../state.js";
 import { pathToFileURL } from 'url'
 import path from "path";
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 
 export default async function (this: State, context: CliContext)
 {

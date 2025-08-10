@@ -1,5 +1,5 @@
-import { Http } from "@akala/core";
-import { OIDCClientState, OIDCResponseType, providers } from "../oidc-state.js";
+import { type Http } from "@akala/core";
+import { type OIDCClientState, OIDCResponseType, providers } from "../oidc-state.js";
 
 type X = {
     "device_code": string,

@@ -1,7 +1,7 @@
-import { Cursor, Parser } from "./_common.js";
+import { Cursor, type Parser } from "./_common.js";
 import Uint8 from "./uint8.js";
 import Uint7 from "./uint7.js";
-import { uint8 } from "../core.js";
+import { type uint8 } from "../core.js";
 import { Int32LE, Int64LE } from "./index.js";
 import Int7 from "./int7.js";
 import { IsomorphicBuffer } from "@akala/core";

@@ -1,4 +1,4 @@
-import { Container, Metadata, ServeMetadata, ConnectionPreference } from "@akala/commands";
+import { Container, Metadata, type ServeMetadata, type ConnectionPreference } from "@akala/commands";
 import { module } from "@akala/core";
 
 import definition from './container.js';
@@ -7,10 +7,10 @@ type pmContainer = definition.container
 
 export const meta = definition.meta;
 
-export { pmContainer as Container, };
+export { type pmContainer as Container, };
 
-import State from './state.js'
-export { State }
+import type State from './state.js'
+export { type State }
 
 export default function interact(message: string, as?: string): void
 {

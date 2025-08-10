@@ -1,6 +1,6 @@
 import { IsomorphicBuffer } from "@akala/core";
 import { valtype } from "./helpers/types.js";
-import { u32, u8 } from "./transpilers/wasmtype.js";
+import { type u32, type u8 } from "./transpilers/wasmtype.js";
 
 export interface Module
 {

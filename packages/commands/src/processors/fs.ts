@@ -1,15 +1,15 @@
 import * as path from 'path'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata/index.js';
-import { CommandProcessor, StructuredParameters } from '../model/processor.js';
+import { CommandProcessor, type StructuredParameters } from '../model/processor.js';
 import { Container } from '../model/container.js';
 import { registerCommands } from '../generator.js';
 import { Local } from './local.js';
-import { jsonObject } from '../metadata/index.js';
-import { MiddlewarePromise, eachAsync } from '@akala/core';
+import { type jsonObject } from '../metadata/index.js';
+import { type MiddlewarePromise, eachAsync } from '@akala/core';
 import { protocolHandlers as handlers, parseQueryString } from '../protocol-handler.js';
 import { fileURLToPath, pathToFileURL } from 'url';
-import fsHandler, { FileSystemProvider, OpenFlags } from '@akala/fs';
+import fsHandler, { type FileSystemProvider, OpenFlags } from '@akala/fs';
 
 async function protocolHandler(url: URL)
 {

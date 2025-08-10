@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { Cursor, OptimizableParser, ParsersWithMessage } from './_common.js';
+import { Cursor, type OptimizableParser, type ParsersWithMessage } from './_common.js';
 
 export default class Series<T extends TMessage, TMessage> implements OptimizableParser<TMessage, TMessage>
 {

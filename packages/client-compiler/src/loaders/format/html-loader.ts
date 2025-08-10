@@ -1,4 +1,4 @@
-import { Loader, Resolver } from "../../index.js";
+import type { Loader, Resolver } from "../../index.js";
 import path from 'node:path'
 import * as parse5 from 'parse5'
 import fs from 'node:fs/promises'

@@ -1,4 +1,4 @@
-import { CommandResult, Store } from "@akala/storage";
+import { type CommandResult, Store } from "@akala/storage";
 
 export default function create<T, TypeName extends string>(db: Store<{ [key in TypeName]: T }>, type: TypeName, entities: T[] | T): PromiseLike<CommandResult[]>
 {

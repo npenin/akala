@@ -8,10 +8,10 @@ export * from './queue.js'
 
 import container from './commands.js'
 export { container }
-export { State } from './state.js'
+export { type State } from './state.js'
 
 import type * as _pm from '@akala/pm'
-import { connectByPreference, ConnectionPreference, ICommandProcessor, ServeMetadata } from '@akala/commands';
+import { connectByPreference, type ConnectionPreference, type ICommandProcessor, type ServeMetadata } from '@akala/commands';
 import { HttpRouter } from './router/router.js';
 import { serverHandlers } from './handlers.js';
 import { StaticFileMiddleware } from './router/staticFileMiddleware.js';

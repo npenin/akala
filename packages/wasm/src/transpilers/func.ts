@@ -1,4 +1,4 @@
-import { valtype } from './types.js';
+import { type valtype } from './types.js';
 
 export class func
 {

@@ -1,6 +1,6 @@
 import { ErrorWithStatus, HttpStatusCode, sequencify } from "@akala/core";
-import { LockFile, snapshot } from "../lockfile.js";
-import { closest, State } from "../state.js";
+import { type LockFile, snapshot } from "../lockfile.js";
+import { closest, type State } from "../state.js";
 import { format } from "util";
 
 export default async function (this: State, pkg: string | URL, signal?: AbortSignal)

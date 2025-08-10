@@ -1,8 +1,8 @@
 import { ErrorWithStatus, each } from "@akala/core";
-import { CommandResult } from "./commands/command.js";
+import { type CommandResult } from "./commands/command.js";
 import { ModelDefinition } from "./common.js";
 import { PersistenceEngine, Transaction } from "./PersistenceEngine.js";
-import { DbSet, DbSetType } from "./shared.js";
+import type { DbSet, DbSetType } from "./shared.js";
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type StoreDefinition<T = any> =

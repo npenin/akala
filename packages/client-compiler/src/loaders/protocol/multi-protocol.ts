@@ -1,4 +1,4 @@
-import { Resolver } from '../../index.js';
+import type { Resolver } from '../../index.js';
 
 export const protocolParser = /^([a-z0-9-\+]+):(.+)$/;
 

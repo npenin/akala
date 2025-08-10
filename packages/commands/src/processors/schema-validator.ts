@@ -1,8 +1,8 @@
-import { InjectorMap, MiddlewarePromise } from '@akala/core';
+import { InjectorMap, type MiddlewarePromise } from '@akala/core';
 import { Container, Metadata } from '../index.browser.js';
-import { Command } from '../metadata/command.js';
-import { ICommandProcessor, StructuredParameters } from '../model/processor.js';
-import Ajv, { ErrorObject, SchemaObject } from 'ajv';
+import { type Command } from '../metadata/command.js';
+import { type ICommandProcessor, type StructuredParameters } from '../model/processor.js';
+import Ajv, { type ErrorObject, type SchemaObject } from 'ajv';
 
 export interface SchemaConfiguration extends Metadata.Configuration
 {

@@ -1,8 +1,8 @@
-import { ErrorMiddlewareAsync, MiddlewareAsync, MiddlewareCompositeAsync, MiddlewarePromise } from '@akala/core';
-import { Request, Response } from '@akala/server'
+import { type ErrorMiddlewareAsync, type MiddlewareAsync, MiddlewareCompositeAsync, type MiddlewarePromise } from '@akala/core';
+import type { Request, Response } from '@akala/server'
 import { Client } from '../../model/client.js';
 import { AuthenticateMiddleware, BasicAuthenticateMiddleware } from './authenticate.js';
-import { AuthRequest } from '../index.js';
+import { type AuthRequest } from '../index.js';
 
 export const EINVREQ = 'invalid_request';
 export const EINVCLI = 'invalid_client';

@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { AnyParser, Cursor, ParserWithMessage } from './_common.js';
+import { type AnyParser, Cursor, type ParserWithMessage } from './_common.js';
 
 export default class Skip<TMessage> implements ParserWithMessage<never, TMessage>
 {

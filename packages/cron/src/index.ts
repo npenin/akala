@@ -1,7 +1,7 @@
 import commands from './container.js';
 import suncalc from 'suncalc'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { SidecarMap } from '@akala/pm';
+import { type SidecarMap } from '@akala/pm';
 
 export function isDST(day, month, dayOfWeek)
 {
@@ -187,7 +187,7 @@ export function parseCronPart(value: string, steps: number): number[]
 }
 
 type container = commands.container;
-export { container };
+export { type container };
 
 declare module '@akala/pm'
 {
@@ -197,7 +197,7 @@ declare module '@akala/pm'
     }
 }
 
-export { SidecarMap }
+export { type SidecarMap }
 
 export function getTargets(requests: DateRequest[], startDate?: Date)
 {

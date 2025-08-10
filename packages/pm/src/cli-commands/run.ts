@@ -2,10 +2,10 @@
 import path from 'path'
 import pmDef from '../container.js';
 import { module as coreModule } from '@akala/core';
-import { buildCliContextFromContext, CliContext, NamespaceMiddleware } from '@akala/cli';
-import { ServeMetadata, registerCommands, SelfDefinedCommand, Container, connectByPreference, Metadata, $metadata, protocolHandlers } from '@akala/commands';
+import { buildCliContextFromContext, type CliContext, NamespaceMiddleware } from '@akala/cli';
+import { type ServeMetadata, registerCommands, SelfDefinedCommand, Container, connectByPreference, Metadata, $metadata, protocolHandlers } from '@akala/commands';
 import { pathToFileURL } from 'url';
-import fsHandler, { Stats } from '@akala/fs';
+import fsHandler, { type Stats } from '@akala/fs';
 import { Triggers } from '@akala/commands';
 import { backChannelContainer, remotePm } from '../akala.mjs';
 

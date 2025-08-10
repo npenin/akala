@@ -1,6 +1,6 @@
 import { Container } from "@akala/commands";
-import { ensureOptionals, JWAlgorithms, OICDAuthMethods, OIDCDescription, OIDCResponseType } from "../../client/oidc-state.js";
-import { State } from "../state.js";
+import { ensureOptionals, JWAlgorithms, OICDAuthMethods, type OIDCDescription, OIDCResponseType } from "../../client/oidc-state.js";
+import { type State } from "../state.js";
 
 export default async function (this: State, url: string | URL, container: Container<void>): Promise<OIDCDescription>
 {

@@ -1,5 +1,5 @@
 import { Event, EventEmitter } from '@akala/core'
-import { WebComponent } from '@akala/client'
+import type { WebComponent } from '@akala/client'
 
 type RecordValueType<T> = T extends Record<any, infer X> ? X : never;
 

@@ -1,6 +1,6 @@
 import { BinaryOperator } from "@akala/core/expressions";
 import { ErrorWithStatus } from "@akala/core";
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 import { hashPassword } from "./add-user.js";
 
 export default async function (this: State, userName: string, code: string, password: string)

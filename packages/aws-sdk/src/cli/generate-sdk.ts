@@ -1,4 +1,4 @@
-import { Http, Interpolate } from '@akala/core'
+import { type Http, Interpolate } from '@akala/core'
 import { basename, extname, sep } from 'path'
 import { Metadata, Processors } from '@akala/commands'
 import type { SchemaObject } from 'ajv';

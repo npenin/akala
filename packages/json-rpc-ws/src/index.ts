@@ -1,8 +1,8 @@
-import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, SocketAdapterEventMap, SocketAdapterAkalaEventMap } from './shared-connection.js';
+import { Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Payload, type SocketAdapter, type SocketAdapterEventMap, type SocketAdapterAkalaEventMap } from './shared-connection.js';
 import { Connection } from './connection.js'
 import { default as Client } from './shared-client.js';
-import { default as Server, ServerAdapter } from './server.js';
-import { default as Errors, Payload as ErrorPayload } from './errors.js';
+import { default as Server, type ServerAdapter } from './server.js';
+import { default as Errors, type Payload as ErrorPayload } from './errors.js';
 
 /**
  * json-rpc-ws: a node.js json-rpc websocket client
@@ -12,4 +12,4 @@ import { default as Errors, Payload as ErrorPayload } from './errors.js';
 
 import * as ws from './ws/index.js';
 export { ws };
-export { Server, Client, ServerAdapter, SocketAdapter, Errors, BaseConnection, Connection, PayloadDataType, SerializedBuffer, Payload, ErrorPayload, SocketAdapterEventMap, SocketAdapterAkalaEventMap };
+export { Server, Client, type ServerAdapter, type SocketAdapter, Errors, BaseConnection, Connection, type PayloadDataType, type SerializedBuffer, type Payload, type ErrorPayload, type SocketAdapterEventMap, type SocketAdapterAkalaEventMap };

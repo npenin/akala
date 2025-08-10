@@ -1,7 +1,7 @@
 import { Metadata, Processors } from "@akala/commands";
 import fs from 'fs/promises'
 import { join, resolve } from "path";
-import { base64, lazy, Logger, mapAsync } from "@akala/core";
+import { base64, lazy, type Logger, mapAsync } from "@akala/core";
 import glob from 'fast-glob';
 import { xpm } from '@akala/cli'
 import * as zip from '@zip.js/zip.js';
@@ -9,7 +9,7 @@ import { hasYarn } from "@akala/cli/yarn-helper";
 import { createWriteStream, Dirent } from "fs";
 import { Writable } from "stream";
 import jsonc from 'jsonc-parser'
-import { ServicePolicy } from "../iam.js";
+import { type ServicePolicy } from "../iam.js";
 
 export const ActionPermissionsRemap = {
     s3: {

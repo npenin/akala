@@ -1,6 +1,6 @@
-import { DbSet } from './shared.js';
+import { type DbSet } from './shared.js';
 import { Cardinality } from './cardinality.js';
-import { Expressions, ConstantExpression } from '@akala/core/expressions';
+import { type Expressions, ConstantExpression } from '@akala/core/expressions';
 import { PersistenceEngine } from './PersistenceEngine.js';
 import { Query } from './Query.js';
 import { PersistenceEngineQueryProvider } from './PersistenceQueryProvider.js';

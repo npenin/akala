@@ -1,6 +1,6 @@
 import { ErrorWithStatus, base64 } from "@akala/core";
 import { BinaryOperator } from "@akala/core/expressions";
-import { State } from "../state.js";
+import { type State } from "../state.js";
 import addSession from "./session/add-session.js";
 import removeSession from "./session/remove-session.js";
 import extendSession from "./session/extend-session.js";

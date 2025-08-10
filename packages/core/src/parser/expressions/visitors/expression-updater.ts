@@ -1,6 +1,6 @@
-import { Expressions, StrictExpressions, StrictTypedExpression, TypedExpression } from "../expression.js";
+import type { Expressions, StrictExpressions, StrictTypedExpression, TypedExpression } from "../expression.js";
 import { ExpressionVisitor } from "./expression-visitor.js";
-import { IVisitable } from "../visitable.js";
+import type { IVisitable } from "../visitable.js";
 
 /** 
  * Replaces occurrences of a specific expression with another during traversal.

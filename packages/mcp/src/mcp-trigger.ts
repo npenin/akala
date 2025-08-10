@@ -1,7 +1,7 @@
-import { Configuration, Container, Processors, Trigger } from "@akala/commands";
+import { type Configuration, Container, Processors, Trigger } from "@akala/commands";
 import { ProcessStdioAdapter } from "./index.js";
 import { delay, ErrorWithStatus, HttpStatusCode, Router1Async } from "@akala/core";
-import { ResourceDefinition, ResourceTemplateDefinition, State, ToolDefinition } from "./state.js";
+import type { ResourceDefinition, ResourceTemplateDefinition, State, ToolDefinition } from "./state.js";
 // import why from 'why-is-node-running'
 
 export type McpConfiguration = McpResourceConfiguration | McpToolConfiguration

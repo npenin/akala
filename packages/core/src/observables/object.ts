@@ -1,23 +1,23 @@
 import { map } from "../each.js";
 import { EventEmitter } from "../events/event-emitter.js";
-import { Event, EventListener, IEvent } from "../events/shared.js";
-import { Formatter, formatters, isReversible, ReversibleFormatter } from "../formatters/index.js";
-import { AllEventKeys, ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
-import { EvaluatorAsFunction, ParsedFunction } from "../parser/evaluator-as-function.js";
+import { Event, type EventListener, type IEvent } from "../events/shared.js";
+import { type Formatter, formatters, isReversible, type ReversibleFormatter } from "../formatters/index.js";
+import { type AllEventKeys, ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
+import { EvaluatorAsFunction, type ParsedFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
 import { CallExpression } from "../parser/expressions/call-expression.js";
 import { ConstantExpression } from "../parser/expressions/constant-expression.js";
 import { ExpressionVisitor } from "../parser/expressions/visitors/expression-visitor.js";
-import { Expressions, StrictExpressions } from "../parser/expressions/expression.js";
+import type { Expressions, StrictExpressions } from "../parser/expressions/expression.js";
 import { MemberExpression } from "../parser/expressions/member-expression.js";
 import { NewExpression } from "../parser/expressions/new-expression.js";
 import { ParameterExpression } from "../parser/expressions/parameter-expression.js";
 import { TernaryExpression } from "../parser/expressions/ternary-expression.js";
 import { TernaryOperator } from "../parser/expressions/ternary-operator.js";
 import { ExpressionSimplifyer } from "../parser/expressions/visitors/expression-simplifyer.js";
-import { combineSubscriptions, Subscription } from "../teardown-manager.js";
-import { watcher, Watcher, WatcherFormatter } from './shared.js'
+import { combineSubscriptions, type Subscription } from "../teardown-manager.js";
+import { watcher, type Watcher, WatcherFormatter } from './shared.js'
 import { AssignmentExpression } from "../parser/expressions/assignment-expression.js";
 import { AssignmentOperator } from "../parser/expressions/assignment-operator.js";
 import { ExpressionType } from "../parser/expressions/expression-type.js";

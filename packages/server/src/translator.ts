@@ -1,4 +1,4 @@
-import { Translator, defaultInjector } from '@akala/core';
+import { type Translator, defaultInjector } from '@akala/core';
 import * as path from 'path';
 
 defaultInjector.registerFactory('$translator', async function (): Promise<Translator>

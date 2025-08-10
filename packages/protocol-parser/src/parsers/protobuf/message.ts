@@ -1,7 +1,7 @@
 import Uint32 from "../uint32.js";
 import Uint64 from "../uint64.js";
-import { Cursor, ParserWithMessage, AnyParser, Parser } from "../_common.js";
-import { Field, WireType } from './field.js';
+import { Cursor, type ParserWithMessage, type AnyParser, type Parser } from "../_common.js";
+import { Field, type WireType } from './field.js';
 import { IsomorphicBuffer } from "@akala/core";
 
 // const varint = new Varint();

@@ -1,6 +1,6 @@
 import { NamespaceMiddleware } from './index.js';
 import fs from 'fs/promises'
-import { Plugin } from './cli.js';
+import type { Plugin } from './cli.js';
 
 const x: Plugin = plugin;
 export default x;

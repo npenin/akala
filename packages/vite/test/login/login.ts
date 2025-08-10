@@ -1,4 +1,4 @@
-import { Scope as IScope, Page, page, LocationService, ScopeImpl } from '@akala/client'
+import { type Scope as IScope, Page, page, LocationService, ScopeImpl } from '@akala/client'
 import { Container, Processors } from '@akala/commands';
 import template from './login.html?raw'
 

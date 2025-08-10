@@ -1,4 +1,4 @@
-import app, { Sidecar, SidecarConfiguration, StoreConfiguration, pubsub } from './init.js'
+import app, { type Sidecar, type SidecarConfiguration, type StoreConfiguration, pubsub } from './init.js'
 
 export default app;
-export { Sidecar, StoreConfiguration, SidecarConfiguration, pubsub };
+export { type Sidecar, type StoreConfiguration, type SidecarConfiguration, pubsub };

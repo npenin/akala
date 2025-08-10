@@ -1,7 +1,7 @@
 import { IsomorphicBuffer } from "@akala/core";
-import { Cursor, AnyParser, ParserWithMessage } from "../_common.js";
-import { WireType } from './field.js';
-import { ArrayItem } from './property.js';
+import { Cursor, type AnyParser, type ParserWithMessage } from "../_common.js";
+import { type WireType } from './field.js';
+import { type ArrayItem } from './property.js';
 
 export default class PackedProperty<T, TKey extends keyof T> implements ParserWithMessage<ArrayItem<T[TKey]>[] | ArrayItem<T[TKey]>, T>
 {

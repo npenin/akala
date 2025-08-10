@@ -1,14 +1,14 @@
 import { i32 } from './i32.js';
 import { memarg } from '../helpers/memory.js';
-import { indexes, wasmtypeInstance } from './wasmtype.js'
+import type { indexes, wasmtypeInstance } from './wasmtype.js'
 import { f32 as transpiler } from '../transpilers/f32.js'
 import { i64 } from './i64.js';
 import { local } from '../transpilers/local.js';
 import { global } from './global.js';
 import { f64 } from './f64.js';
-import { usize } from './memory.js';
+import type { usize } from './memory.js';
 import { mergeUInt8Arrays } from './types.js';
-import { u32 } from '../transpilers/wasmtype.js';
+import { type u32 } from '../transpilers/wasmtype.js';
 import { IsomorphicBuffer } from '@akala/core';
 
 /**

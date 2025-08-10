@@ -1,6 +1,6 @@
 import { Control, wcObserve, pipefromEvent } from '@akala/client';
-import { BindingChangedEvent, pipe, Subscription } from '@akala/core';
-import { autoUpdate, computePosition, Middleware, Placement } from '@floating-ui/dom'
+import { type BindingChangedEvent, pipe, type Subscription } from '@akala/core';
+import { autoUpdate, computePosition, type Middleware, type Placement } from '@floating-ui/dom'
 import css from './popover.css?inline'
 
 @wcObserve('placement')

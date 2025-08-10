@@ -1,10 +1,10 @@
 import { ErrorWithStatus, HttpStatusCode, packagejson } from "@akala/core";
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 import { handler, workspaceCache } from "../../registry.js";
 import { FileType, readTgzEntries } from "../../tar.js";
 import { dirname } from 'path/posix'
-import { FileSystemProvider } from "@akala/fs";
-import { LockPackage } from "../../lockfile.js";
+import { type FileSystemProvider } from "@akala/fs";
+import { type LockPackage } from "../../lockfile.js";
 
 export async function getPackageCachePath(state: State, pkg: URL, pkgJson?: packagejson.CoreProperties | LockPackage): Promise<URL>
 {

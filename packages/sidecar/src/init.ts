@@ -1,9 +1,9 @@
-import { Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
-import { ProxyConfiguration } from '@akala/config'
+import { type Container as pm, type ContainerLite, type Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
+import { type ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container } from '@akala/commands'
-import { SerializableDefinition, PersistenceEngine, providers, Store, StoreDefinition, ModelDefinition } from '@akala/storage'
-import { AsyncEventBus, Serializable, SerializableObject, eachAsync, asyncEventBuses, module, Context, IEvent, EventMap } from '@akala/core';
-import { CliContext, OptionType } from '@akala/cli'
+import { type SerializableDefinition, PersistenceEngine, providers, Store, type StoreDefinition, ModelDefinition } from '@akala/storage'
+import { type AsyncEventBus, type Serializable, type SerializableObject, eachAsync, asyncEventBuses, module, type Context, type IEvent, type EventMap } from '@akala/core';
+import { type CliContext, type OptionType } from '@akala/cli'
 import { remotePm } from '@akala/pm/akala';
 
 export interface PubSubConfiguration

@@ -1,6 +1,7 @@
-import { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/json-rpc-ws";
+import type { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/json-rpc-ws";
 import { ChildProcess } from 'child_process'
-import { AllEventKeys, AllEvents, EventEmitter, EventListener, EventOptions, Subscription } from "@akala/core";
+import type { AllEventKeys, AllEvents, EventListener, EventOptions, Subscription } from "@akala/core";
+import { EventEmitter } from "@akala/core";
 
 export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
 {

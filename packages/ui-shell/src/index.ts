@@ -2,7 +2,7 @@
 
 import { module } from '@akala/core'
 import { connectByPreference, Container } from '@akala/commands'
-import { Container as pmContainer, meta as pmMeta } from '@akala/pm'
+import { type Container as pmContainer, meta as pmMeta } from '@akala/pm'
 
 if (!process.stdin.isTTY)
     process.exit(0)

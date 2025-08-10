@@ -1,5 +1,5 @@
 
-import { Configuration, Container, Metadata, Trigger } from '@akala/commands/browser'
+import { type Configuration, Container, Metadata, Trigger } from '@akala/commands/browser'
 
 export interface KeyboardShortcutConfiguration extends Configuration
 {

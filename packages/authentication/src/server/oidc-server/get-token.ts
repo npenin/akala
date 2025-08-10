@@ -1,5 +1,5 @@
 import { base64 } from "@akala/core";
-import { OIDCClientState, OIDCResponseType, providers, OICDAuthMethods } from "../../client/oidc-state.js";
+import { type OIDCClientState, OIDCResponseType, providers, OICDAuthMethods } from "../../client/oidc-state.js";
 
 
 export type X = {

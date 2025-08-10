@@ -1,4 +1,4 @@
-import { ParserWithMessage } from "./index.js";
+import type { ParserWithMessage } from "./index.js";
 import Series from './series.js';
 import { Cursor } from './_common.js';
 import { IsomorphicBuffer } from "@akala/core";

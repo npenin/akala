@@ -1,6 +1,6 @@
 import { Event } from "../events/shared.js";
 import { debounce } from "../observables/shared.js";
-import { ReversibleFormatter } from "./common.js";
+import type { ReversibleFormatter } from "./common.js";
 
 /**
  * Class representing a Debounce.

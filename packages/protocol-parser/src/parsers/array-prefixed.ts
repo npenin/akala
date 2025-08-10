@@ -1,5 +1,5 @@
-import { AnyParser, ParserWithMessage } from "./index.js";
-import { Cursor, Parsers } from './_common.js';
+import type { AnyParser, ParserWithMessage } from "./index.js";
+import { Cursor, type Parsers } from './_common.js';
 import { IsomorphicBuffer } from "@akala/core";
 
 export default class PrefixedLengthArray<T, TMessage> implements ParserWithMessage<T[], TMessage>

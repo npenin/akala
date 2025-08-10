@@ -1,5 +1,5 @@
 import { Trigger } from './trigger.js';
-import { StructuredParameters, CommandMetadataProcessorSignature, CommandProcessor } from './processor.js';
+import { type StructuredParameters, type CommandMetadataProcessorSignature, CommandProcessor } from './processor.js';
 import { CommandWithAffinityProcessor, Local, Self } from '../processors/index.js';
 import { Pipe } from '../processors/pipe.js';
 import $serve from '../commands/$serve.js'
@@ -7,7 +7,7 @@ import $attach from '../commands/$attach.js'
 import $metadata from '../commands/$metadata.js'
 import { UnknownCommandError } from './error-unknowncommand.js';
 import * as Metadata from '../metadata/index.js'
-import { ErrorWithStatus, Injector, MiddlewareAsync, MiddlewareCompositeWithPriorityAsync, MiddlewarePromise, SimpleInjector } from '@akala/core';
+import { ErrorWithStatus, Injector, type MiddlewareAsync, MiddlewareCompositeWithPriorityAsync, type MiddlewarePromise, SimpleInjector } from '@akala/core';
 import { BindingProcessor } from '../processors/binding.js';
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];

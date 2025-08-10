@@ -2,9 +2,9 @@ import http from 'http';
 import https from 'https';
 import http2 from 'http2';
 import { Socket } from 'net';
-import { ErrorWithStatus, MiddlewareAsync, MiddlewareCompositeWithPriorityAsync, MiddlewarePromise, MiddlewareResult, NotHandled, Router2Async, RouterAsync, RouterOptions } from '@akala/core';
+import { ErrorWithStatus, type MiddlewareAsync, MiddlewareCompositeWithPriorityAsync, type MiddlewarePromise, type MiddlewareResult, NotHandled, Router2Async, RouterAsync, type RouterOptions } from '@akala/core';
 import { UpgradeMiddleware } from './upgradeMiddleware.js';
-import { Request, Response } from './shared.js';
+import type { Request, Response } from './shared.js';
 import accepts from 'accepts';
 import cobody from 'co-body'
 import mime from 'mime-types'

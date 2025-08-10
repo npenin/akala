@@ -1,4 +1,4 @@
-import { Scope as IScope, ScopeImpl, Page, page, LocationService } from '@akala/client'
+import { type Scope as IScope, ScopeImpl, Page, page, LocationService } from '@akala/client'
 import { Container, Processors } from '@akala/commands';
 import { EventEmitter, Event } from '@akala/core';
 

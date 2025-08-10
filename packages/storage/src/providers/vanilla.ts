@@ -1,7 +1,7 @@
 import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine.js';
-import { StrictExpressions } from '@akala/core/expressions';
+import { type StrictExpressions } from '@akala/core/expressions';
 import { CommandProcessor } from '../commands/command-processor.js';
-import { Commands, CommandResult } from '../commands/command.js';
+import type { Commands, CommandResult } from '../commands/command.js';
 import { ExpressionExecutor } from '../expression-executor.js';
 import { ModelDefinition, Generator } from '../shared.js';
 

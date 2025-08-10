@@ -5,7 +5,7 @@
 import ErrorWithStatus, { HttpStatusCode } from "../errorWithStatus.js";
 import { lazy } from "../helpers.js";
 import { StringCursor } from "../parser/parser.js";
-import { Formatter, ReversibleFormatter } from "./common.js";
+import type { Formatter, ReversibleFormatter } from "./common.js";
 
 export interface DateFormatterSettings
 {

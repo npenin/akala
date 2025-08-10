@@ -5,7 +5,7 @@ import { f64 } from './f64.js'
 import { v128 } from './v128.js'
 import { externref } from './ref-extern.js'
 import { func } from './func.js'
-import { indexes } from './wasmtype.js'
+import { type indexes } from './wasmtype.js'
 
 export { i32, i64, f32, f64, v128, externref, func }
 

@@ -1,7 +1,7 @@
 import { Container } from "@akala/commands";
 import { router, HttpRouter } from '../router/index.js';
 import '../triggers/http.js'
-import { State } from '../state.js';
+import { type State } from '../state.js';
 import { logger, SimpleInjector } from "@akala/core";
 import { StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 

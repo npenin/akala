@@ -1,4 +1,4 @@
-import { isProxy, base64, Serializable, SerializableObject, ErrorWithStatus, HttpStatusCode } from '@akala/core';
+import { isProxy, base64, type Serializable, type SerializableObject, ErrorWithStatus, HttpStatusCode } from '@akala/core';
 import fs from 'fs/promises'
 import { inspect } from 'util'
 

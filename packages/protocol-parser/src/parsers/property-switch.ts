@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { AnyParser, Cursor, ParserWithMessage } from './_common.js';
+import { type AnyParser, Cursor, type ParserWithMessage } from './_common.js';
 
 export default class SwitchProperty<TMessage, TKey extends keyof TMessage, TKeyAssign extends keyof TMessage, TResult extends TMessage[TKeyAssign], TValue extends (TMessage[TKey] extends PropertyKey ? TMessage[TKey] : never)>
     implements ParserWithMessage<TResult, TMessage>

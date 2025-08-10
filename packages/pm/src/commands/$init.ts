@@ -1,10 +1,11 @@
-import State, { RunningContainer, StateConfiguration } from '../state.js'
+import type State from '../state.js'
+import type { RunningContainer, StateConfiguration } from '../state.js'
 import fs from 'fs/promises';
 import pmContainer from '../container.js';
 import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand } from '@akala/commands';
 import { PassThrough } from 'stream';
-import { CliContext } from '@akala/cli';
-import { ProxyConfiguration } from '@akala/config';
+import { type CliContext } from '@akala/cli';
+import { type ProxyConfiguration } from '@akala/config';
 import { fileURLToPath } from 'url';
 import { eachAsync, Event } from '@akala/core';
 import Process from '../runtimes/process.js';

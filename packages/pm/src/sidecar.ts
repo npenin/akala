@@ -1,6 +1,6 @@
 import { module } from '@akala/core'
-import { $metadata, connectByPreference, ConnectionPreference, Container, updateCommands } from "@akala/commands";
-import { SideCarConnectionPreference, Sidecar, defaultOrders, connect } from "./index.js";
+import { $metadata, connectByPreference, type ConnectionPreference, Container, updateCommands } from "@akala/commands";
+import { type SideCarConnectionPreference, type Sidecar, defaultOrders, connect } from "./index.js";
 import pm from './container.js'
 
 let instance: Sidecar;

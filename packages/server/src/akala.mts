@@ -1,5 +1,5 @@
 import { NamespaceMiddleware } from '@akala/cli';
-import { AkalaConfig, Plugin } from '@akala/cli/cli'
+import type { AkalaConfig, Plugin } from '@akala/cli/cli'
 import { serve, trigger } from './index.js';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { ErrorWithStatus } from '@akala/core';

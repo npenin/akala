@@ -1,5 +1,5 @@
 import { Writable } from "stream";
-import { FileSystemProvider, FSFileSystemProvider, hasAccess } from "@akala/fs";
+import { type FileSystemProvider, FSFileSystemProvider, hasAccess } from "@akala/fs";
 import { pathToFileURL } from "url";
 
 export type Generator = { output: WritableStreamDefaultWriter, exists: false, outputFile: string, outputFs: FileSystemProvider } | { output?: WritableStreamDefaultWriter, exists: true, outputFile: string, outputFs: FileSystemProvider };

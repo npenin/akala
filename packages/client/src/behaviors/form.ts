@@ -1,9 +1,9 @@
 import { Container } from "@akala/commands/browser";
-import { Composer } from "../template.js";
-import { Binding, Injector, Subscription } from "@akala/core";
-import { DataBind, DataBindPlugin } from "./context.js";
+import { type Composer } from "../template.js";
+import { Binding, Injector, type Subscription } from "@akala/core";
+import { DataBind, type DataBindPlugin } from "./context.js";
 import { subscribe } from "../common.js";
-import { Expressions } from "@akala/core/expressions";
+import { type Expressions } from "@akala/core/expressions";
 
 export class FormInjector extends Injector
 {

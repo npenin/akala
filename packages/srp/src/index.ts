@@ -1,4 +1,4 @@
-import param, { PredefinedSrpParams, SrpParams } from "./params.js";
+import param, { type PredefinedSrpParams, type SrpParams } from "./params.js";
 
 /**
  * Assert a value to be true, or throw error with optional message
@@ -658,4 +658,4 @@ export class Server
     }
 }
 
-export { param, SrpParams } from './params.js'
+export { param, type SrpParams } from './params.js'

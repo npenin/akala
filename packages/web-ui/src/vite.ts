@@ -1,5 +1,5 @@
 import type { Plugin } from 'vite';
-import { DTCGTokenGroup, mergeTokens, generateCssFromTokensToString, expandTokens, WebUI, GenerateCssOptions } from './design-tokens.js';
+import { type DTCGTokenGroup, mergeTokens, generateCssFromTokensToString, expandTokens, type WebUI, type GenerateCssOptions } from './design-tokens.js';
 import webui from './postcss-dtcg.js'
 import contrast from './postcss-contrast.js'
 import fullCompose from './postcss-compose-full.js'

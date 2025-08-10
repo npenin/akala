@@ -1,7 +1,7 @@
-import { InjectableWithTypedThis, InjectMap, Resolvable, ResolvableArray } from "@akala/core";
-import { ICommandProcessor } from './processor.js';
-import { Command } from '../metadata/command.js'
-import { Configurations } from '../metadata/configurations.js'
+import type { InjectableWithTypedThis, InjectMap, Resolvable, ResolvableArray } from "@akala/core";
+import type { ICommandProcessor } from './processor.js';
+import type { Command } from '../metadata/command.js'
+import type { Configurations } from '../metadata/configurations.js'
 
 type Injectable<T, U, TArgs extends unknown[]> = InjectableWithTypedThis<T, U, TArgs> & { '$inject'?: string[] }
 

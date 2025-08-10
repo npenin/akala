@@ -1,4 +1,4 @@
-import { Formatter, ReversibleFormatter } from "./common.js";
+import type { Formatter, ReversibleFormatter } from "./common.js";
 
 /**
  * A formatter that converts values to and from JSON strings. Useful for serializing/deserializing data structures.

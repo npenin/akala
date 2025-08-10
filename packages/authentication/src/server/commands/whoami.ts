@@ -1,5 +1,5 @@
 import { BinaryOperator } from "@akala/core/expressions";
-import { State } from "../state.js";
+import { type State } from "../state.js";
 import { validateSessionOwner } from "./login.js";
 import { Session } from "../../model/session.js";
 

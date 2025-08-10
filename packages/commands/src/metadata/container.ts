@@ -1,5 +1,5 @@
-import { SchemaObject } from 'ajv';
-import { Command } from './command.js';
+import { type SchemaObject } from 'ajv';
+import { type Command } from './command.js';
 
 export interface Container
 {

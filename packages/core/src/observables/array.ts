@@ -1,7 +1,7 @@
 import { Event } from "../events/shared.js";
-import { Formatter, formatters } from "../formatters/index.js";
+import { type Formatter, formatters } from "../formatters/index.js";
 import { isPromiseLike } from "../promiseHelpers.js";
-import { Subscription } from "../teardown-manager.js";
+import { type Subscription } from "../teardown-manager.js";
 import { watcher } from "./shared.js";
 
 export type ObservableArrayPopEvent<T> =

@@ -3,9 +3,9 @@ import { TLSSocket, connect as tlsconnect } from 'tls'
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { protocolHandlers as handlers } from './protocol-handler.js';
 import { JsonRpc } from './processors/jsonrpc.js';
-import { Container } from './metadata/container.js';
-import { AllEventKeys, AllEvents, EventEmitter, EventListener, EventOptions, StatefulSubscription, Subscription } from '@akala/core';
-import { SocketAdapterAkalaEventMap } from '@akala/json-rpc-ws';
+import { type Container } from './metadata/container.js';
+import { type AllEventKeys, type AllEvents, EventEmitter, type EventListener, type EventOptions, StatefulSubscription, type Subscription } from '@akala/core';
+import { type SocketAdapterAkalaEventMap } from '@akala/json-rpc-ws';
 
 handlers.useProtocol('tcp', async (url) =>
 {

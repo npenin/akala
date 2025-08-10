@@ -1,5 +1,5 @@
 import { SelfDefinedCommand } from "@akala/commands";
-import { DateRequest, getTargets } from "./index.js";
+import { type DateRequest, getTargets } from "./index.js";
 import { Deferred } from "@akala/core";
 
 export interface State

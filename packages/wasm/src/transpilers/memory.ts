@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { indexes } from './wasmtype.js'
+import { type indexes } from './wasmtype.js'
 
 export class memory
 {

@@ -1,7 +1,7 @@
 import serve from '../cli/serve.js';
 import serveMetadata from '../serve-metadata.js';
 import { Container } from '../model/container.js';
-import { ServeOptions } from '../index.js';
+import { type ServeOptions } from '../index.js';
 
 export default async function $serve(container: Container<unknown>, options: ServeOptions | string[], signal?: AbortSignal)
 {

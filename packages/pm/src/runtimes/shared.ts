@@ -1,5 +1,5 @@
-import { IEvent, EventBus, SpecialEvents } from "@akala/core";
-import { SocketAdapter } from "@akala/json-rpc-ws";
+import type { IEvent, EventBus, SpecialEvents } from "@akala/core";
+import type { SocketAdapter } from "@akala/json-rpc-ws";
 import { Readable } from "stream";
 
 export interface Runtime

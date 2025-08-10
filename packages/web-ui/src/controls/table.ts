@@ -1,6 +1,6 @@
-import { Bound, c, content, Control, CssClass, DataContext, e, Each, s, subscribe, t } from "@akala/client";
-import { Binding, each, EmptyBinding, ErrorWithStatus, Event, formatters, HttpStatusCode, isPromiseLike, map, ObservableArray, ObservableObject, Parser, Sort, SortDirection, Subscription, Watcher, WatcherFormatter } from "@akala/core";
-import { BinaryExpression, BinaryOperator, ConstantExpression, MemberExpression, TypedExpression } from "@akala/core/expressions";
+import { type Bound, c, content, Control, CssClass, DataContext, e, Each, s, subscribe, t } from "@akala/client";
+import { Binding, each, EmptyBinding, ErrorWithStatus, Event, formatters, HttpStatusCode, isPromiseLike, map, ObservableArray, ObservableObject, Parser, Sort, type SortDirection, type Subscription, type Watcher, WatcherFormatter } from "@akala/core";
+import { BinaryExpression, BinaryOperator, ConstantExpression, MemberExpression, type TypedExpression } from "@akala/core/expressions";
 import tableCss from './table.css?inline'
 
 export type SortEventArg<T> = { columnIndex: number, direction: SortDirection, field: false | keyof T };

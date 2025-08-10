@@ -1,5 +1,5 @@
 import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer } from '@akala/core';
-import fsHandler, { FileSystemProvider, FileHandle, OpenFlags, RmDirOptions, RmOptions, MakeDirectoryOptions, FileEntry, StatOptions, Stats, CopyFlags, OpenStreamOptions, PathLike, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, VirtualFileHandle } from '@akala/fs'
+import fsHandler, { type FileSystemProvider, type FileHandle, OpenFlags, type RmDirOptions, type RmOptions, type MakeDirectoryOptions, type FileEntry, type StatOptions, type Stats, CopyFlags, type OpenStreamOptions, type PathLike, type GlobOptionsWithFileTypes, type GlobOptionsWithoutFileTypes, VirtualFileHandle } from '@akala/fs'
 import { XMLParser } from 'fast-xml-parser';
 import { isMatch } from 'micromatch'
 

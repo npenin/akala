@@ -1,5 +1,5 @@
 import { BinaryOperator } from './binary-operator.js';
-import { Expression, Expressions, StrictExpressions, TypedExpression } from './expression.js';
+import { Expression, type Expressions, type StrictExpressions, type TypedExpression } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 import { MemberExpression } from './member-expression.js';

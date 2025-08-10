@@ -1,4 +1,4 @@
-import { DateRequest, parseCronSyntax } from "../index.js";
+import { type DateRequest, parseCronSyntax } from "../index.js";
 import { Schedule } from '../state.js';
 
 export default function wait(date: DateRequest | string)

@@ -1,5 +1,5 @@
 import { IsomorphicBuffer } from '@akala/core';
-import { AnyParser, Cursor, ParsersWithMessage } from './_common.js';
+import { type AnyParser, Cursor, type ParsersWithMessage } from './_common.js';
 
 
 export default class Property<T extends { [key in TKey]: Exclude<any, object> }, TKey extends keyof T> implements ParsersWithMessage<T[TKey], T>

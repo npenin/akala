@@ -1,4 +1,4 @@
-import { CliContext } from "@akala/cli";
+import { type CliContext } from "@akala/cli";
 import { Container, Processors } from "@akala/commands";
 import { isAbsolute, basename } from 'path'
 import { pathToFileURL, fileURLToPath } from 'url'

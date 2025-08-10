@@ -1,6 +1,6 @@
 import { MiddlewareCompositeAsync } from "./middlewares/composite-async.js";
-import { MiddlewareAsync, MiddlewarePromise } from "./middlewares/shared.js";
-import { Routable } from "./router/route.js";
+import type { MiddlewareAsync, MiddlewarePromise } from "./middlewares/shared.js";
+import type { Routable } from "./router/route.js";
 import ErrorWithStatus, { HttpStatusCode } from "./errorWithStatus.js";
 import { RouterAsync } from "./router/router-async.js";
 

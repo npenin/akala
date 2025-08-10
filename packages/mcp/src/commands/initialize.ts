@@ -1,4 +1,4 @@
-import { ClientCapabilities, ServerCapabilities, State } from "../state.js";
+import type { ClientCapabilities, ServerCapabilities, State } from "../state.js";
 
 export default function (this: State, protocolVersion: string,
     capabilities: ClientCapabilities,

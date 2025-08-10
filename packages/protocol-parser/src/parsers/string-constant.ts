@@ -1,4 +1,4 @@
-import { IsomorphicBuffer, BufferEncoding } from '@akala/core';
+import { IsomorphicBuffer, type BufferEncoding } from '@akala/core';
 import { Cursor } from './_common.js';
 import assert from 'assert';
 import FixedString from './string-fixed.js';

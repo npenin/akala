@@ -1,7 +1,7 @@
-import { Routable } from './route.js';
-import { Router, RouterOptions } from './router.js';
+import type { Routable } from './route.js';
+import { Router, type RouterOptions } from './router.js';
 import { RouterAsync } from './router-async.js';
-import { SpecialNextParam } from '../middlewares/shared.js';
+import { type SpecialNextParam } from '../middlewares/shared.js';
 
 export * from './route.js'
 export * from './router.js'

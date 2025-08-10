@@ -1,5 +1,5 @@
 import { ErrorWithStatus, IsomorphicBuffer } from '@akala/core';
-import { ParserWithMessage, Cursor, AnyParser } from './_common.js';
+import { type ParserWithMessage, Cursor, type AnyParser } from './_common.js';
 
 
 export class Sub<TResult, TMessage> implements ParserWithMessage<TResult, TMessage>

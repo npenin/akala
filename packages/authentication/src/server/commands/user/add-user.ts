@@ -1,6 +1,6 @@
 import { base64 } from "@akala/core";
 import { User } from "../../../model/user.js";
-import { State } from "../../state.js";
+import { type State } from "../../state.js";
 
 export async function hashPassword(state: State, password: string)
 {

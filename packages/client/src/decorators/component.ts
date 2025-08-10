@@ -1,4 +1,4 @@
-import { Argument2, Module, injectable } from "@akala/core";
+import { type Argument2, Module, injectable } from "@akala/core";
 
 export default function (module: Module)
 {

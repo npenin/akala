@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 import { Container, Metadata, Processors, registerCommands } from "@akala/commands";
-import { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/json-rpc-ws";
-import { bootstrapModule, IScope, templateCache, templateFunction } from "@akala/client";
-import { AllEventKeys, AllEvents, EventEmitter, EventListener, EventOptions, isPromiseLike, Subscription } from "@akala/core";
+import { type SocketAdapter, type SocketAdapterAkalaEventMap } from "@akala/json-rpc-ws";
+import { bootstrapModule, type IScope, templateCache, type templateFunction } from "@akala/client";
+import { type AllEventKeys, type AllEvents, EventEmitter, type EventListener, type EventOptions, isPromiseLike, type Subscription } from "@akala/core";
 
 const container = new Container('akala', null);
 

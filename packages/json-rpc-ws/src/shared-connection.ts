@@ -1,6 +1,6 @@
 import debug from 'debug';
-import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors.js';
-import { EventBus, EventListener, IEvent, SerializableObject, SpecialEvents, Subscription } from '@akala/core';
+import { default as Errors, type Error as ConnectionError, type ErrorTypes } from './errors.js';
+import type { EventBus, EventListener, IEvent, SerializableObject, SpecialEvents, Subscription } from '@akala/core';
 const logger = debug('akala:json-rpc-ws');
 
 export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | boolean | boolean[] | number[] | string | string[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;

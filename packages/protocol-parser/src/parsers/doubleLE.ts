@@ -1,5 +1,5 @@
-import { Cursor, Parser } from './_common.js';
-import { double } from "../core.js";
+import { Cursor, type Parser } from './_common.js';
+import { type double } from "../core.js";
 import Uint64 from './uint64.js';
 import { IsomorphicBuffer } from '@akala/core';
 
@@ -16,7 +16,7 @@ export default class DoubleLE implements Parser<double>
     {
         return length;
     }
-    
+
     readonly length = length;
 
     public read(buffer: IsomorphicBuffer, cursor: Cursor): double
