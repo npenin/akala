@@ -122,6 +122,7 @@
 * BinaryOperator parsing cb0abf0
 * bindings implementation 69b3e3f
 * bindings implementation 8362190
+* borderless buttons 2df95f3
 * broken `has` behavior 4c886b7
 * broken `has` behavior de026d0
 * buffer reading when unlimited 8440c4d
@@ -709,6 +710,7 @@
 * style for non-input, but inputs ab463b2
 * subpath api routing 82d6670
 * subpath api routing 2f6623e
+* support for outline and non-outline cards 9c1f7a2
 * switch from try catch to URL.canParse e766f24
 * switch from try catch to URL.canParse 5d093f5
 * switch to xpm + add more logging 59ebe95
@@ -1185,6 +1187,7 @@
 
 ### BREAKING CHANGES
 
+* previous cards are now outline cards
 * event and event-emitter need to extend asyncteardownmanager
 * some implementors might break during build
 * parsers are required to implement getLength to be able to properly initialize buffers to the right size
