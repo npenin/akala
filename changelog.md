@@ -84,6 +84,7 @@
 * add strong typing to refactored functions 103a56a
 * add support for INIT_CWD variable 939b024
 * add support for INIT_CWD variable abd70ea
+* add support for parsed expressions other than ParsedObject and ParsedString 7ad6d73
 * add title to getting started documentation f49ae8c
 * add title to getting started documentation 95b6ca3
 * add title to getting started documentation and enable nav folding for collections 61143a2
