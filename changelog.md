@@ -320,6 +320,7 @@
 * handle object config type a0831b7
 * handle once 3b574b9
 * handle optional chaining in schema serialization functions 122a158
+* handle optional grid option c2f976f
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
 * handle proper termination 91c7535
@@ -646,6 +647,7 @@
 * revert options copy on buildCliContextFromContext 1cbbd3e
 * revert to cayman cf3e496
 * revert to cayman b7cd5e2
+* revert verbatim import setting fa3a993
 * route cli usage 408d064
 * routing 033343d
 * routing 0bd2fdd
