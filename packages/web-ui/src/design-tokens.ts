@@ -183,7 +183,7 @@ export async function generateCssFromTokens(tokens: DTCGTokenGroup<WebUI>, outpu
     })
 
 
-    if (options.grid)
+    if (options?.grid)
     {
         await eachAsync(tokens.breakpoints, async (breakpoint, name) =>
         {
