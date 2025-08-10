@@ -264,6 +264,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
                 }));
                 break;
             case properties instanceof ParsedString:
+            case !this.allowSubProperties:
                 bindings = Object.fromEntries([this.getBindings(item, options, context, AttributeComposer.default, properties)]);
                 break;
         }
