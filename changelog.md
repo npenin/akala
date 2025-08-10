@@ -313,6 +313,7 @@
 * handle no pubsub config 40e7ff2
 * handle NotFound error in asyncEventBuses middleware 71b2ce5
 * handle null case 9c3dc93
+* handle null closest parent c53e4d5
 * handle null configuration value b5d6df1
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
