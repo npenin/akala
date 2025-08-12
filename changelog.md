@@ -538,6 +538,7 @@
 * postinstall to leverage config 4d2cbbe
 * pre-create config file if it does not exist 0c72d08
 * pre-create config file if it does not exist 46d5f72
+* prevent assigning datacontext if already overriden 468afd3
 * prevent http formatter infinite calls e8f33c1
 * prevent invalid stream property if not a stream 1a2caad
 * prevent jsonrpc run if disabled e2f14ac
