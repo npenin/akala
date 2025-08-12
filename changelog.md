@@ -1,4 +1,4 @@
-#  (2025-08-10)
+#  (2025-08-12)
 
 
 * chore : code cleanup eae1150
@@ -11,6 +11,7 @@
 * add @akala/mcp/akala plugin to the configuration 39fd2d3
 * add $metadata command to meta commands in JsonRpc handlers bf60490
 * add basic unit test dcd8665
+* add canSet property to Binding class 0c45820
 * add commands argument normalisation 8c9fb75
 * add commands argument normalisation 34ca419
 * add debug to understand why publish is crashing c463573
@@ -249,6 +250,7 @@
 * ensure postinstall completes 10c4a72
 * ensure prepareMessage is called correctly in getLength and write methods 3c77981
 * ensure using transportOptions if not defined 12b4e5d
+* ensure value is set only if canSet is true in DataContext 5dd18db
 * ensure write method returns an empty array when conditions are not met 929cbc8
 * error codes on connection c73426b
 * error codes on connection ca0ab9b
