@@ -144,7 +144,8 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                                     el = item;
                                 items.push({ element: el, item: arg.newItems[i] });
                                 self.options.push(option);
-                                DataContext.defineDirect(el, DataContext.extend(context, option));
+                                if (!(el as HTMLElement).dataset?.context)
+                                    DataContext.defineDirect(el, DataContext.extend(context, option));
                                 self.teardownManager.teardown(Template.composeAll([el], self.root, option));
                                 self.container.appendChild(el);
                             }
@@ -180,7 +181,8 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                                     el = item;
                                 items.unshift({ element: el, item: arg.newItems[i] });
                                 self.options.unshift(option);
-                                DataContext.defineDirect(el, DataContext.extend(context, option));
+                                if (!(el as HTMLElement).dataset?.context)
+                                    DataContext.defineDirect(el, DataContext.extend(context, option));
                                 self.teardownManager.teardown(Template.composeAll([el], self.root, option));
                                 self.container.prepend(el);
                             }
@@ -212,7 +214,8 @@ export class Each<T, const TOptionIndex extends PropertyKey = typeof Each.defaul
                                     el = item;
                                 items.push({ element: el, item: arg.newItems[i] });
                                 self.options.push(option);
-                                DataContext.defineDirect(el, DataContext.extend(context, option));
+                                if (!(el as HTMLElement).dataset?.context)
+                                    DataContext.defineDirect(el, DataContext.extend(context, option));
                                 self.teardownManager.teardown(Template.composeAll([el], self.root, option));
                                 self.container.appendChild(el);
                             }
