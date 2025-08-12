@@ -788,6 +788,7 @@ export class Binding<T> extends EventEmitter<{
         if (value === binding)
         {
             let settingValue = false;
+            Object.defineProperty(binding, 'canSet', { value: true });
             binding.setValue = function (newValue: T)
             {
                 if (settingValue)
@@ -1004,11 +1005,13 @@ export class Binding<T> extends EventEmitter<{
      * Sets the value.
      * @param {T} value - The value to set.
      */
-    public setValue(value: T)
+    public setValue(value: T)  
     {
         this._setter(this.target, value);
         // this.emit('change', { value, oldValue: this.getValue() });
     }
+
+    public get canSet() { return !!this._setter; }
 
     /**
      * Gets the value.
@@ -1033,6 +1036,11 @@ export class EmptyBinding<T> extends Binding<T>
         super(initialValue, null);
         this.getValue = EmptyBinding.prototype.getValue;
         this.setValue = EmptyBinding.prototype.setValue;
+    }
+
+    override get canSet(): boolean
+    {
+        return true;
     }
 
     /**
