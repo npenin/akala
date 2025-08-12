@@ -1,9 +1,9 @@
-#  (2025-08-10)
+#  (2025-08-12)
 
 
 ### Bug Fixes
 
-* each control to support parent root element 6c36cea
+* ensure value is set only if canSet is true in DataContext 5dd18db
 
 
 
