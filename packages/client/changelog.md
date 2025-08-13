@@ -1,9 +1,9 @@
-#  (2025-08-12)
+#  (2025-08-13)
 
 
 ### Bug Fixes
 
-* prevent assigning datacontext if already overriden 468afd3
+* update fallback value in Outlet scope getter to 'templateOptions' c78f6c3
 
 
 
