@@ -15,7 +15,7 @@ export class Outlet
     {
         serviceModule.ready([OutletService.InjectionToken], (outletService: OutletService) => outletService.register(this.element.getAttribute('name'), {
             element: this.element,
-            get scope() { return DataContext.find(this.element)?.getValue()?.context || bootstrapModule.resolve('$rootScope') }
+            get scope() { return DataContext.find(this.element)?.getValue()?.context || bootstrapModule.resolve('templateOptions') }
         }));
     }
 
