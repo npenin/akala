@@ -1,5 +1,5 @@
 import { Container, Processors } from '@akala/commands/browser'
-import { defaultInjector, type Argument0, type Translator } from '@akala/core';
+import { type Argument0, type Translator } from '@akala/core';
 import { type Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, EventComposer, I18nComposer, webComponent, Each, CssClassComposer, IfComposer } from '@akala/client'
 import { Dropdown, Mark, Popover, Table, TablePager, Tooltip, TooltipComposer, Typeahead } from './index.js';
 import { MasterDetail } from './controls/master-detail.js';
@@ -10,7 +10,6 @@ type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Co
 export default async function bootstrap(rootElement: string | Element, init?: { rootScope: Scope, i18n?: Translator })
 {
     bootstrapModule.register('services', serviceModule);
-
 
     bootstrapModule.activate(['$rootScope'], async (rootScope: Scope) =>
     {
