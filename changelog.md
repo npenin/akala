@@ -45,6 +45,7 @@
 * add missing dependency d1d127b
 * add missing dependency 4435ab1
 * add missing events pass through 7a73f40
+* add missing init on first template binding 5c81b33
 * add missing link targets a2dae65
 * add missing link targets 2fc6516
 * add missing package to be started 48987d1
@@ -617,6 +618,7 @@
 * remove unused dependencies and update route options type 3c70d1c
 * remove unused dependency ansi-escapes from package.json 8bba710
 * remove unused fsHandler import and streamline outputFs initialization ed6981d
+* remove unused import and clean up whitespace in default.ts 7f5d2fe
 * remove unused result parameter from jsonrpc protocol handlers 198fed9
 * remove useless abort 436343b
 * remove useless await 52d94b0
