@@ -1,4 +1,4 @@
-#  (2025-08-12)
+#  (2025-08-13)
 
 
 * chore : code cleanup eae1150
@@ -835,6 +835,7 @@
 * update documentation titles and structure for clarity and organization 581ae20
 * update documentation titles and structure for clarity and organization cad4d78
 * update error status code for unauthorized actions in AuthHandler 663f8b9
+* update fallback value in Outlet scope getter to 'templateOptions' c78f6c3
 * update file command processor to generate UUID only when record key is absent 4c5ff85
 * update file path handling in snapshot function to use URL 68431d9
 * update file path handling to use relative paths for better compatibility 65507c2
