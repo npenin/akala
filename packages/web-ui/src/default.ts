@@ -1,5 +1,5 @@
 import { Container, Processors } from '@akala/commands/browser'
-import { type Argument0, type Translator } from '@akala/core';
+import { defaultInjector, type Argument0, type Translator } from '@akala/core';
 import { type Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, EventComposer, I18nComposer, webComponent, Each, CssClassComposer, IfComposer } from '@akala/client'
 import { Dropdown, Mark, Popover, Table, TablePager, Tooltip, TooltipComposer, Typeahead } from './index.js';
 import { MasterDetail } from './controls/master-detail.js';
@@ -68,7 +68,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
             // const result = (await weatherContainer.dispatch('realtime-weather', 'Mulhouse', 'fr')).current.condition.icon;
             // rootScope['icon'] = result;
 
-            Template.composeAll([typeof rootElement == 'string' ? document.querySelector(rootElement) : rootElement], document.body, { $rootScope: rootScope });
+            Template.composeAll([typeof rootElement == 'string' ? document.querySelector(rootElement) : rootElement], document.body, { $rootScope: rootScope, ...init });
             location.start({ dispatch: true, hashbang: false })
         })
     });
