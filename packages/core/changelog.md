@@ -1,9 +1,14 @@
-#  (2025-08-12)
+#  (2025-08-14)
 
 
 ### Bug Fixes
 
-* add canSet property to Binding class 0c45820
+* dependency cycle 2f2fecb
+
+
+### Features
+
+* expose expression visitors f9e02c3
 
 
 
