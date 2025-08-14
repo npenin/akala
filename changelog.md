@@ -267,6 +267,7 @@
 * existing file generator detection ca3ad06
 * export ParserFormatter 7842585
 * export pubsub configurator 5a2479c
+* ExpressionUpdater to use super.visit 4496683
 * extend Parser interface to include ParserWithMessage for improved type consistency 6c7cc1f
 * extract params considers when array is provided 96c7644
 * extract params considers when array is provided c5eb98b
