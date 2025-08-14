@@ -1,4 +1,4 @@
-#  (2025-08-13)
+#  (2025-08-14)
 
 
 * chore : code cleanup eae1150
@@ -195,6 +195,7 @@
 * default logging level f820f7a
 * dependencies b90de68
 * dependencies sequencing on start 7e2fa87
+* dependency cycle 2f2fecb
 * dependency loop b1e483b
 * dependency loop 1de99cd
 * dependency start logic 4a03673
@@ -667,6 +668,7 @@
 * set relativeTo when using npm protocol 68385e3
 * set yarn version 2427848
 * setAttribute when provided object a3eff3d
+* showcase card outline 06027db
 * simple injector resolution with resolvable arrays 8411f99
 * simplify and smoother observablearray "piping" 18f75b2
 * simplify choose function signature by removing redundant overloads e24c5c1
@@ -896,6 +898,7 @@
 * use proper selector 97fa6f9
 * use TriggerArgs and TriggerReturnType for attach f2bea7f
 * user e92ee55
+* uses options if datacontext extension is not from context 4be5272
 * using $metadata instead of $metadataCmd 453d4fd
 * using code instead of key 475e931
 * using proper branch option 4136d01
@@ -1115,6 +1118,7 @@
 * export serverHandlers and new serve function to quickly build servers e6fc0ea
 * expose config on sidecars f4e2ce7
 * expose directly theme.css 1d83e0b
+* expose expression visitors f9e02c3
 * expose extendRequest 86d2793
 * expose extendRequest 009dcb6
 * expose more middlewares b750c8f
