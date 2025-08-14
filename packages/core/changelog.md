@@ -3,12 +3,7 @@
 
 ### Bug Fixes
 
-* dependency cycle 2f2fecb
-
-
-### Features
-
-* expose expression visitors f9e02c3
+* ExpressionUpdater to use super.visit 4496683
 
 
 
