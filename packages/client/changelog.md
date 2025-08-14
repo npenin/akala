@@ -1,9 +1,9 @@
-#  (2025-08-13)
+#  (2025-08-14)
 
 
 ### Bug Fixes
 
-* update fallback value in Outlet scope getter to 'templateOptions' c78f6c3
+* uses options if datacontext extension is not from context 4be5272
 
 
 
