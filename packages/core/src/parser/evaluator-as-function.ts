@@ -1,5 +1,5 @@
 import { BuildWatcherAndSetter } from "../observables/object.js";
-import { type Expressions, TypedLambdaExpression } from "./expressions/index.js";
+import type { Expressions, TypedLambdaExpression } from "./expressions/index.js";
 
 export type ParsedFunction<T> = (context?: unknown) => T;
 

@@ -1,10 +1,20 @@
-import { BinaryOperator, BinaryExpression, ConstantExpression, Expression, type Expressions, ExpressionType, MemberExpression, NewExpression, ParameterExpression, type StrictExpressions, type TypedExpression, UnaryExpression, UnaryOperator, CallExpression } from './expressions/index.js';
+import type { Expressions, ParameterExpression, StrictExpressions, TypedExpression } from './expressions/index.js';
+import { UnaryOperator } from './expressions/unary-operator.js';
+import { BinaryOperator } from './expressions/binary-operator.js';
+import { TernaryOperator } from './expressions/ternary-operator.js';
+import { ExpressionType } from './expressions/expression-type.js';
+import { Expression } from './expressions/expression.js';
+import { NewExpression } from './expressions/new-expression.js';
+import { ConstantExpression } from './expressions/constant-expression.js';
+import { MemberExpression } from './expressions/member-expression.js';
+import { UnaryExpression } from './expressions/unary-expression.js';
+import { BinaryExpression } from './expressions/binary-expression.js';
+import { TernaryExpression } from './expressions/ternary-expression.js';
+import { CallExpression } from './expressions/call-expression.js';
 
 import identity from '../formatters/identity.js';
 import negate from '../formatters/negate.js';
 import booleanize from '../formatters/booleanize.js';
-import { TernaryOperator } from './expressions/ternary-operator.js';
-import { TernaryExpression } from './expressions/ternary-expression.js';
 import type { ExpressionVisitor } from './expressions/visitors/expression-visitor.js';
 import type { Formatter, FormatterFactory } from '../formatters/common.js';
 import { formatters } from '../formatters/index.js';
