@@ -9,6 +9,7 @@ import json from './json.js';
 import date from './date.js';
 import type { FormatterFactory, ReversibleFormatter, ReversibleFormatterFactory } from './common.js';
 import { Debounce } from './debounce.js';
+import Slice from './slice.js';
 
 export function reverseFormatter<TResult, TOrigin, TSettings extends unknown[]>(formatter: ReversibleFormatterFactory<TResult, TOrigin, TSettings>): ReversibleFormatterFactory<TOrigin, TResult, TSettings>
 {
@@ -40,3 +41,4 @@ formatters.register('#json', json);
 formatters.register('#date', date);
 formatters.register('#toDate', reverseFormatter(date));
 formatters.register('#debounce', Debounce);
+formatters.register('#slice', Slice);
