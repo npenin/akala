@@ -1,4 +1,4 @@
-#  (2025-08-13)
+#  (2025-08-14)
 
 
 ### Bug Fixes
@@ -12,6 +12,7 @@
 * leverage EventProcessor to allow for more use cases 6e85fc6
 * login import 6cb7589
 * missing async formatter in vite test bab96df
+* showcase card outline 06027db
 * update after client breaking change d8abf32
 * update vite tests and vite config b8e8524
 * use proper selector 97fa6f9
