@@ -42,13 +42,13 @@ export class ExpressionUpdater extends ExpressionVisitor
             try
             {
                 this.rootCall = false;
-                return this.visit(expression);
+                return super.visit(expression);
             }
             finally
             {
                 this.original.accept = originalAccept;
             }
-
         }
+        return super.visit(expression);
     }
 }
