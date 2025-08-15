@@ -704,6 +704,7 @@
 * sonar issues 08efb9b
 * sonar issues d8fff97
 * sonar issues 9b4e3c4
+* sonarqube issue b240958
 * sonarqube warning bd2b4b5
 * sonarqube warning 4b5de76
 * specialize ObjectEvent for a better typing 38576c3
@@ -897,6 +898,7 @@
 * use helpers from @akala/cli 74292f2
 * use new spread helper to prevent blocking stdin abf4ad0
 * use of Logger interface instead of limited ILogger 5228151
+* use once when requested 9047586
 * use optional chaining for subscription calls in ReplaceableSubscription classes f11ae03
 * use proper selector 562b53a
 * use proper selector 97fa6f9
@@ -947,6 +949,7 @@
 * revisit typing on event emitters and event buses 91e60ba
 * simplify PartInstance type and update controller parameters in OutletService a5db18f
 * update file handling and output methods to use WritableStreamDefaultWriter 38ccdd5
+* use socketadapter from core 5fad1b7
 
 
 ### Features
@@ -1172,6 +1175,7 @@
 * module accept Resolvable instead of just strings 0c95374
 * move configFile to docker volume b382a24
 * move from param to params to enable mcp e52cbaa
+* move SocketAdapter from json-rpc-ws to core 81abbb6
 * normalizing readdir output ac219a6
 * performance improvement on protocol parsers writing ebcb08c
 * plugins can now be installed with the current cli "program" f535bc0
@@ -1211,6 +1215,7 @@
 
 ### BREAKING CHANGES
 
+* remove SocketAdapter
 * removed legacy Scope property on PartInstance
 * previous cards are now outline cards
 * event and event-emitter need to extend asyncteardownmanager
