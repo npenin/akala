@@ -98,7 +98,7 @@ export default class WsSocketAdapter extends AsyncTeardownManager implements Soc
         else
         {
             if (options?.once)
-                this.socket.on(event, handler);
+                this.socket.once(event, handler);
             else
                 this.socket.on(event, handler);
             return new StatefulSubscription(() => this.socket.off(event, handler)).unsubscribe;
