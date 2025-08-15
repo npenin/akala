@@ -4,7 +4,7 @@ import type { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
-import { lazy, type Logger, type MiddlewarePromise, noop, type SerializableObject, type TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled, type MiddlewareResult } from '@akala/core';
+import { lazy, type Logger, type MiddlewarePromise, noop, type SerializableObject, type TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled, type MiddlewareResult, type SocketAdapter } from '@akala/core';
 import { type HandlerResult, protocolHandlers as handlers, serverHandlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 import { NetSocketAdapter } from '../net-socket-adapter.js';
@@ -159,7 +159,7 @@ serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string
 
 async function handler(url: URL, options: { signal: AbortSignal, container?: Container<unknown> }): Promise<HandlerResult<JsonRpc>>
 {
-    const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve, reject) =>
+    const socket = await new Promise<SocketAdapter>((resolve, reject) =>
     {
         if (url.hostname == '0.0.0.0' || url.hostname == '*')
             url.hostname = '127.0.0.1';
@@ -194,7 +194,7 @@ export class JsonRpc extends CommandProcessor
 {
     public static connect(address: string): Promise<JsonRpc>
     {
-        return new Promise<jsonrpcws.SocketAdapter>((resolve) =>
+        return new Promise<SocketAdapter>((resolve) =>
         {
             const socket = jsonrpcws.ws.connect(address);
             socket.on('open', function ()
@@ -208,7 +208,7 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static trigger = new Trigger('jsonrpc', async function register<T>(container: Container<T>, media: jsonrpcws.SocketAdapter)
+    public static trigger = new Trigger('jsonrpc', async function register<T>(container: Container<T>, media: SocketAdapter)
     {
         // assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
         const error = new Error();
@@ -294,7 +294,7 @@ export class JsonRpc extends CommandProcessor
         return connection;
     })
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
+    public static getConnection(socket: SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
         var containers: Container<unknown>[] = [];

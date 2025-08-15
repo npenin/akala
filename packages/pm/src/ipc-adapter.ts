@@ -1,14 +1,13 @@
 import { ChildProcess } from "child_process";
-import * as jsonrpc from '@akala/json-rpc-ws';
-import type { AllEventKeys, AllEvents, EventArgs, EventListener, EventOptions, EventReturnType, Subscription } from "@akala/core";
+import type { AllEventKeys, AllEvents, EventArgs, EventListener, EventOptions, EventReturnType, SocketAdapter, SocketAdapterAkalaEventMap, Subscription } from "@akala/core";
 import { ErrorWithStatus, StatefulSubscription, AsyncTeardownManager } from "@akala/core";
 
-export class IpcAdapter extends AsyncTeardownManager implements jsonrpc.SocketAdapter
+export class IpcAdapter extends AsyncTeardownManager implements SocketAdapter
 {
     get open(): boolean { return !!this.cp.pid; }
 
 
-    pipe(socket: jsonrpc.SocketAdapter)
+    pipe(socket: SocketAdapter)
     {
         this.on('message', (message) => socket.send(message));
         this.on('close', () => socket.close());
@@ -27,9 +26,9 @@ export class IpcAdapter extends AsyncTeardownManager implements jsonrpc.SocketAd
             console.warn(`process ${this.cp.pid} does not support send over IPC`);
     }
 
-    public off<const TEvent extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(
+    public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
         event: TEvent,
-        handler: EventListener<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
     ): boolean
     {
         switch (event)
@@ -47,10 +46,10 @@ export class IpcAdapter extends AsyncTeardownManager implements jsonrpc.SocketAd
         return true;
     }
 
-    public on<const TEvent extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(
+    public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
         event: TEvent,
-        handler: EventListener<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>,
-        options?: EventOptions<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>,
+        options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
     ): Subscription
     {
         switch (event)
@@ -73,29 +72,29 @@ export class IpcAdapter extends AsyncTeardownManager implements jsonrpc.SocketAd
         }
     }
 
-    public once<const TEvent extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(
+    public once<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
         event: TEvent,
-        handler: EventListener<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>,
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>,
     ): Subscription
     {
-        return this.on(event, handler, { once: true } as EventOptions<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>)
+        return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>)
     }
 
     constructor(private cp: ChildProcess | typeof process)
     {
         super();
     }
-    hasListener<const TKey extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(name: TKey)
+    hasListener<const TKey extends AllEventKeys<SocketAdapterAkalaEventMap>>(name: TKey)
     {
         if (name === 'open')
             return false;
         return !!this.cp.listenerCount(name);
     }
-    get definedEvents(): AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>[]
+    get definedEvents(): AllEventKeys<SocketAdapterAkalaEventMap>[]
     {
         return (['close', 'error', 'message'] as const).filter(ev => this.hasListener(ev));
     }
-    emit<const TEvent extends AllEventKeys<jsonrpc.SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>): false | EventReturnType<AllEvents<jsonrpc.SocketAdapterAkalaEventMap>[TEvent]>
+    emit<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, ...args: EventArgs<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>): false | EventReturnType<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
     {
         throw new ErrorWithStatus(501, "Method not implemented.");
     }

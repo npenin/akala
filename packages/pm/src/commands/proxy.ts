@@ -1,5 +1,5 @@
 import { ErrorWithStatus } from "@akala/core";
-import { type SocketAdapter } from "@akala/json-rpc-ws";
+import { type SocketAdapter } from "@akala/core";
 import { randomUUID } from "crypto";
 import type State from "../state.js";
 

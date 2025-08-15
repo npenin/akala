@@ -1,11 +1,10 @@
 import { Socket } from 'net';
 import { TLSSocket, connect as tlsconnect } from 'tls'
-import * as jsonrpcws from '@akala/json-rpc-ws';
 import { protocolHandlers as handlers } from './protocol-handler.js';
 import { JsonRpc } from './processors/jsonrpc.js';
 import { type Container } from './metadata/container.js';
-import { type AllEventKeys, type AllEvents, EventEmitter, type EventListener, type EventOptions, StatefulSubscription, type Subscription } from '@akala/core';
-import { type SocketAdapterAkalaEventMap } from '@akala/json-rpc-ws';
+import { type AllEventKeys, type AllEvents, EventEmitter, type EventListener, type EventOptions, SocketAdapter, StatefulSubscription, type Subscription } from '@akala/core';
+import { type SocketAdapterAkalaEventMap } from '@akala/core';
 
 handlers.useProtocol('tcp', async (url) =>
 {
@@ -62,7 +61,7 @@ handlers.useProtocol('unixs', async (url) =>
     };
 });
 
-export class NetSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements jsonrpcws.SocketAdapter
+export class NetSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
 {
     constructor(private socket: Socket)
     {
@@ -86,7 +85,7 @@ export class NetSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         return true;
     }
 
-    pipe(socket: jsonrpcws.SocketAdapter)
+    pipe(socket: SocketAdapter)
     {
         if (socket instanceof NetSocketAdapter)
         {

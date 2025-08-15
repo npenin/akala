@@ -1,6 +1,5 @@
 import { Container } from "@akala/commands";
-import { Event, type SerializableObject } from "@akala/core";
-import type { SocketAdapter } from "@akala/json-rpc-ws";
+import type { SerializableObject, SocketAdapter, IEvent } from "@akala/core";
 import type { ProxyConfiguration } from "@akala/config";
 import type { RuntimeInstance } from "./runtimes/shared.js";
 
@@ -45,5 +44,5 @@ export interface RunningContainer<T extends string | SerializableObject = any> e
     process: RuntimeInstance;
     running?: boolean;
     stateless: boolean;
-    ready?: Event<[void]>;
+    ready?: IEvent<[void], void>;
 }

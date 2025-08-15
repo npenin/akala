@@ -1,4 +1,4 @@
-import type { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/json-rpc-ws";
+import type { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/core";
 import { ChildProcess } from 'child_process'
 import type { AllEventKeys, AllEvents, EventListener, EventOptions, Subscription } from "@akala/core";
 import { EventEmitter } from "@akala/core";
