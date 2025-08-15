@@ -35,7 +35,6 @@ const truncate = '…';
 export const backChannelContainer = new Container('', {});
 export const remotePm = new Container('proxy-pm', {}) as commands.container & Container<unknown>;
 
-
 if (process.connected)
     protocolHandlers.useProtocol('ipc', async (url, options) =>
     {
