@@ -1,5 +1,5 @@
 import type { AllEventKeys, AllEvents, EventArgs, EventListener, EventOptions, EventReturnType, Subscription } from "@akala/core";
-import { ErrorWithStatus, StatefulSubscription, AsyncTeardownManager } from "@akala/core";
+import { ErrorWithStatus, StatefulSubscription, AsyncTeardownManager, Deferred } from "@akala/core";
 import type { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/core";
 import { MessagePort, Worker } from "worker_threads";
 
@@ -8,16 +8,21 @@ export class MessagePortAdapter extends AsyncTeardownManager implements SocketAd
     private isOpen: boolean = true;
 
     get open(): boolean { return this.isOpen; }
-    close(): void
+    async close()
     {
-        if (this.cp instanceof Worker)
-            this.cp.terminate();
+        if (this.mp instanceof Worker)
+            await this.mp.terminate();
         else
-            this.cp.close();
+        {
+            const deferred = new Deferred<void>();
+            this.mp.on('close', () => deferred.resolve());
+            this.mp.close();
+            return deferred;
+        }
     }
     send(data: string): void
     {
-        this.cp.postMessage(data);
+        this.mp.postMessage(data);
     }
 
     public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
@@ -30,19 +35,19 @@ export class MessagePortAdapter extends AsyncTeardownManager implements SocketAd
         {
             case 'message':
                 if (options?.once)
-                    this.cp.on('message', handler);
+                    this.mp.on('message', handler);
                 else
-                    this.cp.on('message', handler);
-                return new StatefulSubscription(() => this.cp.off('message', handler)).unsubscribe;
+                    this.mp.on('message', handler);
+                return new StatefulSubscription(() => this.mp.off('message', handler)).unsubscribe;
             case 'open':
                 handler(null);
                 break;
             case 'close':
                 if (options?.once)
-                    this.cp.once('disconnect', handler);
+                    this.mp.once('disconnect', handler);
                 else
-                    this.cp.on('disconnect', handler);
-                return new StatefulSubscription(() => this.cp.off('disconnect', handler)).unsubscribe;
+                    this.mp.on('disconnect', handler);
+                return new StatefulSubscription(() => this.mp.off('disconnect', handler)).unsubscribe;
         }
     }
 
@@ -55,10 +60,10 @@ export class MessagePortAdapter extends AsyncTeardownManager implements SocketAd
     }
 
 
-    constructor(private cp: MessagePort | Worker)
+    constructor(private mp: MessagePort | Worker)
     {
         super();
-        cp.on('close', () => this.isOpen = false);
+        mp.on('close', () => this.isOpen = false);
     }
 
     public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
@@ -69,13 +74,13 @@ export class MessagePortAdapter extends AsyncTeardownManager implements SocketAd
         switch (event)
         {
             case 'message':
-                this.cp.off('message', handler);
+                this.mp.off('message', handler);
                 break;
             case 'open':
                 handler(null);
                 break;
             case 'close':
-                this.cp.off('disconnect', handler);
+                this.mp.off('disconnect', handler);
                 break;
         }
         return true;
@@ -108,7 +113,7 @@ export class MessagePortAdapter extends AsyncTeardownManager implements SocketAd
     {
         if (name === 'open')
             return false;
-        return !!this.cp.listenerCount(name);
+        return !!this.mp.listenerCount(name);
     }
     get definedEvents(): AllEventKeys<SocketAdapterAkalaEventMap>[]
     {

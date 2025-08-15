@@ -1,7 +1,7 @@
 import type { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/core";
 import { ChildProcess } from 'child_process'
 import type { AllEventKeys, AllEvents, EventListener, EventOptions, Subscription } from "@akala/core";
-import { EventEmitter } from "@akala/core";
+import { Deferred, EventEmitter } from "@akala/core";
 
 export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
 {
@@ -112,9 +112,12 @@ export class ChildProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEve
         this.on('close', () => socket.close());
     }
 
-    close(): void
+    close()
     {
+        const deferred = new Deferred<void>();
+        this.process.on('disconnect', () => deferred.resolve());
         this.process.disconnect();
+        return deferred;
     }
     send(data: string): void
     {

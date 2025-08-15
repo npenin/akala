@@ -1,6 +1,6 @@
 import { ChildProcess } from "child_process";
 import type { AllEventKeys, AllEvents, EventArgs, EventListener, EventOptions, EventReturnType, SocketAdapter, SocketAdapterAkalaEventMap, Subscription } from "@akala/core";
-import { ErrorWithStatus, StatefulSubscription, AsyncTeardownManager } from "@akala/core";
+import { ErrorWithStatus, StatefulSubscription, AsyncTeardownManager, Deferred } from "@akala/core";
 
 export class IpcAdapter extends AsyncTeardownManager implements SocketAdapter
 {
@@ -13,9 +13,12 @@ export class IpcAdapter extends AsyncTeardownManager implements SocketAdapter
         this.on('close', () => socket.close());
     }
 
-    close(): void
+    close()
     {
+        const deferred = new Deferred<void>();
+        this.cp.on('disconnect', () => deferred.resolve());
         this.cp.disconnect();
+        return deferred;
     }
     send(data: string): void
     {

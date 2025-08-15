@@ -16,7 +16,7 @@ class ViteSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> impleme
     }
 
     readonly open: boolean = true;
-    close(): void
+    close(): Promise<void>
     {
         throw new Error('Method not implemented.');
     }

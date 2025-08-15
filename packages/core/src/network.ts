@@ -15,7 +15,7 @@ export type SocketAdapterAkalaEventMap = { [key in keyof SocketAdapterEventMap]:
 export interface SocketAdapter extends EventBus<SocketAdapterAkalaEventMap & Partial<SpecialEvents>>
 {
     readonly open: boolean;
-    close(): void;
+    close(): Promise<void>;
     send(data: string | IsomorphicBuffer): void;
     pipe(socket: SocketAdapter): void;
 }

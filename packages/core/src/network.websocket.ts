@@ -2,6 +2,7 @@ import type { AllEventKeys } from "./events/event-bus.js";
 import { EventEmitter, type AllEvents } from "./events/event-emitter.js";
 import type { EventListener, EventOptions } from "./events/shared.js";
 import { SocketAdapterAkalaEventMap, SocketAdapter } from "./network.js";
+import { Deferred } from "./promiseHelpers.js";
 import { type Subscription, StatefulSubscription } from "./teardown-manager.js";
 
 /**
@@ -31,9 +32,12 @@ export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         return this.socket.readyState == WebSocket.OPEN;
     }
 
-    close(): void
+    close(): Promise<void>
     {
+        const deferred = new Deferred<void>();
+        this.socket.addEventListener('close', () => deferred.resolve());
         this.socket.close();
+        return deferred;
     }
 
     send(data: string): void

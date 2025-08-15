@@ -1,6 +1,6 @@
 import ws from 'ws';
 import type { SocketAdapter, SocketAdapterAkalaEventMap } from '@akala/core';
-import { ErrorWithStatus, HttpStatusCode, StatefulSubscription, AsyncTeardownManager, IsomorphicBuffer } from '@akala/core';
+import { ErrorWithStatus, HttpStatusCode, StatefulSubscription, AsyncTeardownManager, IsomorphicBuffer, Deferred } from '@akala/core';
 import
 {
     type AllEventKeys, type AllEvents, type EventArgs, type EventListener, type EventOptions, type EventReturnType, type Subscription
@@ -44,9 +44,12 @@ export default class WsSocketAdapter extends AsyncTeardownManager implements Soc
         return this.socket.readyState == ws.OPEN;
     }
 
-    close(): void
+    close(): Promise<void>
     {
+        const deferred = new Deferred<void>();
+        this.socket.addEventListener('close', () => deferred.resolve());
         this.socket.close();
+        return deferred;
     }
 
     send(data: string): void
