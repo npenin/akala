@@ -1,6 +1,10 @@
 import ws from 'ws';
-import type { SocketAdapter, SocketAdapterAkalaEventMap } from '../shared-connection.js';
-import { type AllEventKeys, type AllEvents, ErrorWithStatus, type EventArgs, type EventListener, type EventOptions, type EventReturnType, HttpStatusCode, StatefulSubscription, type Subscription, AsyncTeardownManager } from '@akala/core';
+import type { SocketAdapter, SocketAdapterAkalaEventMap } from '@akala/core';
+import { ErrorWithStatus, HttpStatusCode, StatefulSubscription, AsyncTeardownManager, IsomorphicBuffer } from '@akala/core';
+import
+{
+    type AllEventKeys, type AllEvents, type EventArgs, type EventListener, type EventOptions, type EventReturnType, type Subscription
+} from '@akala/core';
 
 /**
  * json-rpc-ws connection
@@ -81,11 +85,15 @@ export default class WsSocketAdapter extends AsyncTeardownManager implements Soc
                 {
                     if (Buffer.isBuffer(data))
                         (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, data.toString('utf8'));
-                    else
+                    else if (typeof data === 'string')
                         (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, data);
+                    else if (Array.isArray(data))
+                        data.forEach(data => (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, IsomorphicBuffer.fromBuffer(data)));
+                    else
+                        (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, IsomorphicBuffer.fromArrayBuffer(data));
                 }
                 else
-                    (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, data);
+                    (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, data as string);
 
             }
             this.messageListeners.push([handler, x]);

@@ -1,6 +1,6 @@
 import debug from 'debug';
 import ClientBase from '../shared-client.js';
-import { type SocketAdapter } from '../shared-connection.js';
+import type { SocketAdapter } from '@akala/core';
 
 const logger = debug('akala:json-rpc-ws');
 

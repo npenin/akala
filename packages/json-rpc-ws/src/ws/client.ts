@@ -6,7 +6,7 @@ import { default as ClientBase } from './shared-client.js';
 
 import * as stream from 'stream';
 import { WebSocketAdapter } from './websocket.js';
-import { type SocketAdapter } from '../shared-connection.js';
+import type { SocketAdapter } from '@akala/core';
 
 
 export default class Client extends ClientBase<stream.Readable, ws.ClientOptions>

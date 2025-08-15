@@ -1,6 +1,7 @@
-import debug from 'debug';
 import { default as Errors, type Error as ConnectionError, type ErrorTypes } from './errors.js';
-import type { EventBus, EventListener, IEvent, SerializableObject, SpecialEvents, Subscription } from '@akala/core';
+import debug from 'debug';
+import type { EventListener, SerializableObject, SocketAdapter, SocketAdapterAkalaEventMap, SocketAdapterEventMap, Subscription } from '@akala/core';
+import { IsomorphicBuffer } from '@akala/core';
 const logger = debug('akala:json-rpc-ws');
 
 export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | boolean | boolean[] | number[] | string | string[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
@@ -65,24 +66,6 @@ const emptyCallback = function emptyCallback()
 
     logger('emptycallback');
 };
-
-export interface SocketAdapterEventMap
-{
-    message: string;
-    open: Event;
-    error: Event;
-    close: CloseEvent;
-}
-
-export type SocketAdapterAkalaEventMap = { [key in keyof SocketAdapterEventMap]: IEvent<[SocketAdapterEventMap[key]], void> }
-
-export interface SocketAdapter extends EventBus<SocketAdapterAkalaEventMap & Partial<SpecialEvents>>
-{
-    readonly open: boolean;
-    close(): void;
-    send(data: string): void;
-    pipe(socket: SocketAdapter): void;
-}
 
 export interface Parent<TStreamable, TConnection extends Connection<TStreamable>>
 {
@@ -403,7 +386,7 @@ export abstract class Connection<TStreamable>
      * @returns {void}
      * @private
      */
-    private message(data: string | { data: string }): Payload<TStreamable> | void
+    private message(data: string | { data: string } | IsomorphicBuffer): Payload<TStreamable> | void
     {
         //Validate as json first, easy reply if it's not
         //If it's an array iterate and handle
@@ -413,7 +396,10 @@ export abstract class Connection<TStreamable>
         let payload;
         if (typeof (data) !== 'string') 
         {
-            payload = jsonParse(data.data);
+            if (data instanceof IsomorphicBuffer)
+                payload = jsonParse(data.toString('utf8'));
+            else
+                payload = jsonParse(data.data);
         }
         else if (typeof (data) == 'string')
         {

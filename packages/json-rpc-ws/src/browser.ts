@@ -1,7 +1,11 @@
-import { Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Payload, type SocketAdapter, type Parent, type SocketAdapterEventMap } from './shared-connection.js';
+import
+  {
+    Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Payload,
+    type Parent,
+  } from './shared-connection.js';
 import { default as Client } from './shared-client.js';
 import { default as Errors, type Payload as ErrorPayload } from './errors.js';
-import { type SerializableObject } from '@akala/core'
+import type { SocketAdapter, SocketAdapterEventMap, SerializableObject } from '@akala/core'
 
 import debug from 'debug';
 
