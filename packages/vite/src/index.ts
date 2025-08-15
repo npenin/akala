@@ -1,5 +1,5 @@
 import { type CommandMetadataProcessorSignature, protocolHandlers, registerCommands, Container, Processors } from '@akala/commands'
-import type { SocketAdapter, SocketAdapterAkalaEventMap } from '@akala/json-rpc-ws';
+import type { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/core";
 import { type AllEventKeys, type AllEvents, type Argument1, EventEmitter, type EventListener, type EventOptions, type MiddlewareAsync, type Subscription } from '@akala/core'
 import { readFile } from 'fs/promises';
 import { type Plugin, type ViteDevServer } from 'vite';
