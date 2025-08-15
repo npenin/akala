@@ -122,22 +122,22 @@ export class NetSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
                 this.buffer = this.buffer + sData;
             });
         }
-
     }
 
     get open(): boolean
     {
         return this.socket && (this.socket.readable || this.socket.writable);
     }
-    close(): void
+
+    close()
     {
-        this.socket.end();
+        return new Promise<void>(resolve => this.socket.end(resolve));
     }
+
     send(data: string): void
     {
         this.socket.write(data + '\n');
     }
-
 
     public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
         event: TEvent,
