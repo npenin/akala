@@ -896,6 +896,7 @@
 * use helpers from @akala/cli 74292f2
 * use new spread helper to prevent blocking stdin abf4ad0
 * use of Logger interface instead of limited ILogger 5228151
+* use optional chaining for subscription calls in ReplaceableSubscription classes f11ae03
 * use proper selector 562b53a
 * use proper selector 97fa6f9
 * use TriggerArgs and TriggerReturnType for attach f2bea7f
