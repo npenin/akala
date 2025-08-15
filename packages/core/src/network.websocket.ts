@@ -80,7 +80,7 @@ export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         {
             case 'message':
                 {
-                    const x = function (ev) { return handler.call(this, ev.data); };
+                    const x = function (ev) { return (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, ev.data); };
                     this.messageListeners.push([handler, x]);
                     this.socket.addEventListener('message', x, options);
                     return new StatefulSubscription(() =>
