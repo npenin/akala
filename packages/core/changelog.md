@@ -1,9 +1,10 @@
-#  (2025-08-14)
+#  (2025-08-15)
 
 
-### Bug Fixes
+### Features
 
-* ExpressionUpdater to use super.visit 4496683
+* add ReplaceableSubscription classes 0d48a0e
+* add Slice formatter af9770e
 
 
 
