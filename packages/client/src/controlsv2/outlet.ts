@@ -1,6 +1,6 @@
 import { webComponent } from "../behaviors/shared.js";
 import { OutletService } from "../outlet.js";
-import { bootstrapModule, DataContext, serviceModule } from "../common.js";
+import { serviceModule } from "../common.js";
 
 @webComponent('kl-outlet')
 export class Outlet
@@ -15,7 +15,6 @@ export class Outlet
     {
         serviceModule.ready([OutletService.InjectionToken], (outletService: OutletService) => outletService.register(this.element.getAttribute('name'), {
             element: this.element,
-            get scope() { return DataContext.find(this.element)?.getValue()?.context || bootstrapModule.resolve('templateOptions') }
         }));
     }
 

@@ -8,7 +8,7 @@ import { Event, type EventBus, EventBusWrapper, type EventOptions, SimpleInjecto
 /**
  * Represents an instance of a UI part with its associated scope and DOM element.
  */
-export type PartInstance = { scope: Scope<object>, element: HTMLElement | ShadowRoot };
+export type PartInstance = { element: HTMLElement | ShadowRoot };
 
 /**
  * Unique symbol used to identify outlet definitions.
@@ -133,16 +133,16 @@ export class OutletService
         let templateInstance: Partial<Disposable>;
 
         if (part?.controller)
-            controller = part.controller(p.scope as TScope, p.element, params);
+            controller = part.controller(p.element, params);
 
         if (tpl)
         {
-            const sub = tpl.watch(p.scope, async () =>
+            const sub = tpl.watch(null, async () =>
             {
                 if (templateInstance)
                     templateInstance[Symbol.dispose]?.();
                 p.element.replaceChildren();
-                templateInstance = tpl(p.scope, p.element, controller);
+                templateInstance = tpl(null, p.element, controller);
                 controller?.[OutletService.onLoad]?.();
             }, true);
 
@@ -206,6 +206,11 @@ export interface OutletDefined<TScope extends Scope<object>>
     [outletDefinition]: OutletDefinition<TScope>;
 }
 
+export function isOutletDefined<TScope extends Scope<object>>(value: unknown): value is OutletDefined<TScope>
+{
+    return typeof value === 'object' && value !== null && outletDefinition in value;
+}
+
 /**
  * Configuration interface for outlet parts.
  */
@@ -220,7 +225,6 @@ export interface OutletDefinition<TScope extends Scope<object>>
      * Controller function to initialize the part
      */
     controller?(
-        scope: TScope,
         element: HTMLElement | ShadowRoot,
         params: unknown
     ): { [Symbol.dispose]?(): void; templateReloaded?(): void };
@@ -236,7 +240,7 @@ export class OutletDefinitionBuilder<TScope extends Scope<object>> implements Ou
     }
 
     template?: string | Promise<string>;
-    controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { [Symbol.dispose]?(): void };
+    controller?(element: HTMLElement | ShadowRoot, params: unknown): { [Symbol.dispose]?(): void };
     private controllerCommands: EventBus<Record<string, Event<[unknown]>>>
 
     /**
@@ -257,7 +261,6 @@ export class OutletDefinitionBuilder<TScope extends Scope<object>> implements Ou
      */
     useController(
         controller: (
-            scope: TScope,
             element: HTMLElement | ShadowRoot,
             params: unknown
         ) => Disposable
