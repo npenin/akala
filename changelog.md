@@ -1,4 +1,4 @@
-#  (2025-08-14)
+#  (2025-08-15)
 
 
 * chore : code cleanup eae1150
@@ -417,6 +417,7 @@
 * improve mcp declaration 387555d
 * improve mcp invokation 2303889
 * improve mcp invokation c824af8
+* improve memory management using ReplaceableSubscription 2b19713
 * improve parser performances 158b46d
 * improve process cleanup aff53f4
 * improve reliability 8fc7212
@@ -942,6 +943,7 @@
 * replace void with undefined as NextParam 76398ea
 * replace void with undefined as NextParam 34fcf2a
 * revisit typing on event emitters and event buses 91e60ba
+* simplify PartInstance type and update controller parameters in OutletService a5db18f
 * update file handling and output methods to use WritableStreamDefaultWriter 38ccdd5
 
 
@@ -1045,11 +1047,13 @@
 * add raw query support 940f72e
 * add raw query support 020975f
 * add readonly root URL 9098660
+* add ReplaceableSubscription classes 0d48a0e
 * add resources and tools implementation cb5cb7b
 * add runtime concept 1993141
 * add runtime on RuntimeInstance 008d85a
 * add shadowWithStyles helper function 2c8e6b8
 * add SIGINT and SIGTERM signals handling 6906860
+* add Slice formatter af9770e
 * add sort and parse formatters 5b06cdd
 * add spread helper that does not evaluate getters 9830448
 * add static fromJson on ModelDefinition 78f3d71
@@ -1145,6 +1149,7 @@
 * implement customElement polyfill for server rendering 94bfb96
 * implement dynamic routing based on URL pathname in server handlers e16592f
 * implement dynamic routing based on URL pathname in server handlers f73ea99
+* implement SwitchComposer class 6ef3910
 * implement webdav FS handler 79ef231
 * improve documentation titles and structure for middleware sections 34f33ad
 * improve documentation titles and structure for middleware sections 2395989
@@ -1204,6 +1209,7 @@
 
 ### BREAKING CHANGES
 
+* removed legacy Scope property on PartInstance
 * previous cards are now outline cards
 * event and event-emitter need to extend asyncteardownmanager
 * some implementors might break during build
