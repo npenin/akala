@@ -4,7 +4,6 @@ import { connectByPreference, Container } from '@akala/commands'
 import { type SerializableDefinition, PersistenceEngine, providers, Store, type StoreDefinition, ModelDefinition } from '@akala/storage'
 import { type AsyncEventBus, type Serializable, type SerializableObject, eachAsync, asyncEventBuses, module, type Context, type IEvent, type EventMap } from '@akala/core';
 import { type CliContext, type OptionType } from '@akala/cli'
-import { remotePm } from '@akala/pm/akala';
 
 export interface PubSubConfiguration
 {
@@ -90,7 +89,7 @@ export default async function app<T extends StoreDefinition, TEvents extends Eve
             sidecar.pm = result.container as Container<void> & pm;
         }
     else
-        sidecar.pm = remotePm;
+        sidecar.pm = await import('@akala/pm/akala').then(p => p.remotePm);
 
     module('@akala/pm').register('container', sidecar.pm, true);
     sidecar.sidecars = pmsidecar();
