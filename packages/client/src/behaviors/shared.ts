@@ -1,4 +1,4 @@
-import { Binding, ParsedObject, ParsedString, Parser, SimpleInjector, type Subscription, combineSubscriptions, lazy, parser, toCamelCase, toKebabCase } from "@akala/core";
+import { Binding, ParsedObject, ParsedString, Parser, ReplaceableSubscription, SimpleInjector, type Subscription, lazy, parser, toCamelCase, toKebabCase } from "@akala/core";
 import { type Composer } from "../template.js";
 import { Control } from '../controlsv2/shared.js';
 import { type Expressions } from "@akala/core/expressions";
@@ -203,7 +203,7 @@ export function wcObserve(name: string)
 }
 
 
-export abstract class AttributeComposer<T extends Partial<Disposable>> implements Composer<T>
+export abstract class AttributeComposer<T> implements Composer<T>
 {
     static readonly default = Symbol('ParsedString case');
 
@@ -242,7 +242,7 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
         return toKebabCase(s);
     }
 
-    abstract applyInternal<const TKey extends PropertyKey>(item: Element, options: T, subItem: TKey, value: unknown): Subscription | void;
+    abstract applyInternal<const TKey extends PropertyKey>(item: Element, options: T, subItem: TKey, value: unknown, oldValue: unknown): Subscription | void;
 
     apply(item: Element, options: T, _futureParent?: Element | DocumentFragment)
     {
@@ -285,15 +285,16 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
     getBindings<const TKey extends PropertyKey>(item: Element, options: T, context: Binding<unknown>, member: TKey, source: Expressions)
     {
         const binding = context.pipe<((...args: unknown[]) => unknown) | Record<string, (...args: unknown[]) => unknown>>(source);
-        const subs: Subscription[] = [];
+        const sub = new ReplaceableSubscription();
+
         binding.onChanged(ev =>
         {
-            const sub = this.applyInternal(item, options, member, ev.value);
-            if (sub)
-                subs.push(sub);
+            const result = this.applyInternal(item, options, member, ev.value, ev.oldValue);
+            if (result)
+                sub.update(result, true);
         }, true);
 
-        binding.teardown(combineSubscriptions(...subs));
+        binding.teardown(sub.unsubscribe);
         return [member, binding] as const
 
     }
