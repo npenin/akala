@@ -89,7 +89,7 @@ export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
                         this.socket.removeEventListener('message', x);
                     }).unsubscribe;
                 }
-                break;
+
             case 'close':
             case 'error':
             case 'open':
