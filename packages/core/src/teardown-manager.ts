@@ -224,7 +224,7 @@ export class ReplaceableSubscription extends StatefulSubscription
     {
         super(() =>
         {
-            this.subscription();
+            this.subscription?.();
             this.subscription = null;
         });
     }
@@ -242,7 +242,7 @@ export class ReplaceableAsyncSubscription extends StatefulSubscription
     {
         super(() =>
         {
-            this.subscription();
+            this.subscription?.();
             this.subscription = null;
         });
     }
