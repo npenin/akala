@@ -1,6 +1,8 @@
 import ErrorWithStatus, { HttpStatusCode } from "./errorWithStatus.js";
 import * as base64 from "./base64.js";
 import type { Logger } from "./logger.js";
+import { EventBus, SpecialEvents } from "./events/event-bus.js";
+import { IEvent } from "./events/shared.js";
 
 export type Remote<T> = { [key in keyof T]: T[key] extends (...args) => infer X ? X extends Promise<unknown> ? X : Promise<X> : (T[key] | undefined) }
 export type Serializable = string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[];
@@ -991,6 +993,25 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
         }
         return true;
     }
+}
+
+
+export interface SocketAdapterEventMap
+{
+    message: string | IsomorphicBuffer;
+    open: Event;
+    error: Event;
+    close: CloseEvent;
+}
+
+export type SocketAdapterAkalaEventMap = { [key in keyof SocketAdapterEventMap]: IEvent<[SocketAdapterEventMap[key]], void> }
+
+export interface SocketAdapter extends EventBus<SocketAdapterAkalaEventMap & Partial<SpecialEvents>>
+{
+    readonly open: boolean;
+    close(): void;
+    send(data: string | IsomorphicBuffer): void;
+    pipe(socket: SocketAdapter): void;
 }
 
 export function throttle<T>(threshold: number)
