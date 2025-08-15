@@ -23,8 +23,11 @@ export class IfComposer<T extends Partial<Disposable>> extends AttributeComposer
         const beacon = item['replacedWith'] || document.createTextNode('');
         if (!value)
         {
-            item.replaceWith(beacon);
-            item['replacedWith'] = beacon
+            if (!item['replacedWith'])
+            {
+                item.replaceWith(beacon);
+                item['replacedWith'] = beacon
+            }
         }
         else if (beacon.parentElement)
             beacon.replaceWith(item);
