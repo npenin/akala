@@ -450,6 +450,7 @@
 * jsonrpc find handler f0be1eb
 * jsonrpc indirections 0b82b4c
 * lazy late binding cryptokey 797a5c7
+* lazy load pm/akala when pm is not provided 17e7a8c
 * leb128 writing 3101d3c
 * leb128 writing 84cee52
 * leverage core case converters 63bcf6b
