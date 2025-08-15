@@ -241,6 +241,7 @@
 * enhance parent attribute handling in updateFrontMatter function for improved logic 2cc5c3e
 * enhance parent attribute handling in updateFrontMatter function for improved logic 6706e76
 * enhance relative path handling in FileSystem class for improved URL processing 613e87e
+* enhance type safety for message event handler in WebSocketAdapter 8ada185
 * enhance updateFrontMatter function to manage parent and nav_order attributes in markdown files dc3f6b0
 * enhance updateFrontMatter function to manage parent and nav_order attributes in markdown files 989c23d
 * ensure abort signal is propagated to asyncEventBus c5feabd
@@ -940,6 +941,7 @@
 
 ### Code Refactoring
 
+* consolidate WebSocketAdapter import and remove unused code from websocket.ts 80640c5
 * events to separate files af5211e
 * improve store creation flexibility 957b83e
 * make proper use of index.browser c297379
@@ -1156,6 +1158,7 @@
 * implement dynamic routing based on URL pathname in server handlers f73ea99
 * implement SwitchComposer class 6ef3910
 * implement webdav FS handler 79ef231
+* implement WebSocketAdapter and move SocketAdapter interfaces to network module 46e9223
 * improve documentation titles and structure for middleware sections 34f33ad
 * improve documentation titles and structure for middleware sections 2395989
 * improve translator interface d3884d0
@@ -1215,6 +1218,7 @@
 
 ### BREAKING CHANGES
 
+* websocketadapter now comes from core
 * remove SocketAdapter
 * removed legacy Scope property on PartInstance
 * previous cards are now outline cards
