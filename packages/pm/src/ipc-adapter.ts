@@ -20,10 +20,10 @@ export class IpcAdapter extends AsyncTeardownManager implements SocketAdapter
         this.cp.disconnect();
         return deferred;
     }
-    send(data: string): void
+    send(data: string): Promise<void>
     {
         if (this.cp.send)
-            this.cp.send(data + '\n');
+            return new Promise<void>((resolve, reject) => this.cp.send(data + '\n', err => err ? reject(err) : resolve()));
 
         else
             console.warn(`process ${this.cp.pid} does not support send over IPC`);

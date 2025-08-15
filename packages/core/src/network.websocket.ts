@@ -40,9 +40,10 @@ export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         return deferred;
     }
 
-    send(data: string): void
+    send(data: string): Promise<void>
     {
         this.socket.send(data);
+        return Promise.resolve();
     }
 
     private readonly messageListeners: [(ev: unknown) => void, (ev: unknown) => void][] = [];

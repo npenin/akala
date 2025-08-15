@@ -24,9 +24,9 @@ export class ProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEventMap
         this.off('error');
         this.closeEvent(null);
     }
-    send(data: string): void
+    send(data: string): Promise<void>
     {
-        this.process.stdout.write(data + '\n');
+        return new Promise<void>((resolve, reject) => this.process.stdout.write(data + '\n', err => err ? reject(err) : resolve()));
     }
     off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, handler?: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>): boolean
     {
@@ -119,9 +119,9 @@ export class ChildProcessStdioAdapter extends EventEmitter<SocketAdapterAkalaEve
         this.process.disconnect();
         return deferred;
     }
-    send(data: string): void
+    send(data: string)
     {
-        this.process.stdin.write(data + '\n');
+        return new Promise<void>((resolve, reject) => this.process.stdin.write(data + '\n', err => err ? reject(err) : resolve()));
     }
     off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: TEvent, handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>): boolean
     {

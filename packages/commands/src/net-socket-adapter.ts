@@ -134,9 +134,9 @@ export class NetSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         return new Promise<void>(resolve => this.socket.end(resolve));
     }
 
-    send(data: string): void
+    send(data: string): Promise<void>
     {
-        this.socket.write(data + '\n');
+        return new Promise<void>((resolve, reject) => this.socket.write(data + '\n', err => err ? reject(err) : resolve()));
     }
 
     public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(

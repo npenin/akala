@@ -1,8 +1,8 @@
 /// <reference types="vite/client" />
 import { Container, Metadata, Processors, registerCommands } from "@akala/commands";
-import type { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/core";
+import type { SocketAdapter, SocketAdapterAkalaEventMap, AllEventKeys, AllEvents, EventListener, EventOptions, Subscription } from "@akala/core";
 import { bootstrapModule, type IScope, templateCache, type templateFunction } from "@akala/client";
-import { type AllEventKeys, type AllEvents, EventEmitter, type EventListener, type EventOptions, isPromiseLike, type Subscription } from "@akala/core";
+import { IsomorphicBuffer, EventEmitter, isPromiseLike } from "@akala/core";
 
 const container = new Container('akala', null);
 
@@ -20,9 +20,10 @@ class ViteSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> impleme
     {
         throw new Error('Method not implemented.');
     }
-    send(data: string): void
+    send(data: string | IsomorphicBuffer): Promise<void>
     {
-        import.meta.hot.send('jsonrpc', data)
+        import.meta.hot.send('jsonrpc', data instanceof IsomorphicBuffer ? data.toArray() : data);
+        return Promise.resolve();
     }
     on<K extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: K, handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>, options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[K]>): Subscription
     {

@@ -52,9 +52,10 @@ export default class WsSocketAdapter extends AsyncTeardownManager implements Soc
         return deferred;
     }
 
-    send(data: string): void
+    send(data: string | IsomorphicBuffer): Promise<void>
     {
-        this.socket.send(data, { binary: false });
+        return new Promise<void>((resolve, reject) =>
+            this.socket.send(data instanceof IsomorphicBuffer ? data.toArray() : data, { binary: data instanceof IsomorphicBuffer }, err => err ? reject(err) : resolve()));
     }
 
     public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(

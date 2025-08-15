@@ -1,5 +1,5 @@
 import type { AllEventKeys, AllEvents, EventArgs, EventListener, EventOptions, EventReturnType, Subscription } from "@akala/core";
-import { ErrorWithStatus, StatefulSubscription, AsyncTeardownManager, Deferred } from "@akala/core";
+import { ErrorWithStatus, StatefulSubscription, AsyncTeardownManager, Deferred, IsomorphicBuffer } from "@akala/core";
 import type { SocketAdapter, SocketAdapterAkalaEventMap } from "@akala/core";
 import { MessagePort, Worker } from "worker_threads";
 
@@ -20,9 +20,10 @@ export class MessagePortAdapter extends AsyncTeardownManager implements SocketAd
             return deferred;
         }
     }
-    send(data: string): void
+    send(data: string | IsomorphicBuffer): Promise<void>
     {
-        this.mp.postMessage(data);
+        this.mp.postMessage(data instanceof IsomorphicBuffer ? data.toArray() : data);
+        return Promise.resolve();
     }
 
     public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(

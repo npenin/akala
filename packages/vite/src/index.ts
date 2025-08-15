@@ -28,6 +28,7 @@ export class ViteSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> 
     send(data: any)
     {
         this.server.ws.send('jsonrpc', data)
+        return Promise.resolve();
     }
     on<const K extends AllEventKeys<SocketAdapterAkalaEventMap>>(event: K, handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[K]>, options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[K]>): Subscription
     {

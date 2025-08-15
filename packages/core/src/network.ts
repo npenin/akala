@@ -16,6 +16,6 @@ export interface SocketAdapter extends EventBus<SocketAdapterAkalaEventMap & Par
 {
     readonly open: boolean;
     close(): Promise<void>;
-    send(data: string | IsomorphicBuffer): void;
+    send(data: string | IsomorphicBuffer): Promise<void>;
     pipe(socket: SocketAdapter): void;
 }
