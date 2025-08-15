@@ -166,10 +166,9 @@ export class AsyncTeardownManager implements AsyncDisposable
     }
 }
 
-
 export class StatefulSubscription implements Disposable
 {
-    _unsubscribed: boolean = false;
+    private _unsubscribed: boolean = false;
     constructor(private readonly _unsubscribe: () => void)
     {
     }
@@ -195,7 +194,7 @@ export class StatefulSubscription implements Disposable
 
 export class StatefulAsyncSubscription implements AsyncDisposable
 {
-    _unsubscribed: boolean = false;
+    private _unsubscribed: boolean = false;
     constructor(private readonly _unsubscribe: () => Promise<any>)
     {
     }
@@ -216,5 +215,41 @@ export class StatefulAsyncSubscription implements AsyncDisposable
     async [Symbol.asyncDispose](): Promise<void>
     {
         await this._unsubscribe();
+    }
+}
+
+export class ReplaceableSubscription extends StatefulSubscription
+{
+    constructor(private subscription?: Subscription)
+    {
+        super(() =>
+        {
+            this.subscription();
+            this.subscription = null;
+        });
+    }
+    public update(subscription: Subscription, unsubscribePrevious?: boolean): void
+    {
+        if (unsubscribePrevious)
+            this.subscription?.();
+        this.subscription = subscription;
+    }
+}
+
+export class ReplaceableAsyncSubscription extends StatefulSubscription
+{
+    constructor(private subscription?: AsyncSubscription)
+    {
+        super(() =>
+        {
+            this.subscription();
+            this.subscription = null;
+        });
+    }
+    public update(subscription: AsyncSubscription, unsubscribePrevious?: boolean): void
+    {
+        if (unsubscribePrevious)
+            this.subscription?.();
+        this.subscription = subscription;
     }
 }
