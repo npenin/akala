@@ -1,20 +1,14 @@
 #  (2025-08-15)
 
 
-### Bug Fixes
-
-* sonarqube issue b240958
-* use once when requested 9047586
-
-
 ### Code Refactoring
 
-* use socketadapter from core 5fad1b7
+* consolidate WebSocketAdapter import and remove unused code from websocket.ts 80640c5
 
 
 ### BREAKING CHANGES
 
-* remove SocketAdapter
+* websocketadapter now comes from core
 
 
 
