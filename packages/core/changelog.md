@@ -1,10 +1,9 @@
 #  (2025-08-15)
 
 
-### Features
+### Bug Fixes
 
-* add ReplaceableSubscription classes 0d48a0e
-* add Slice formatter af9770e
+* use optional chaining for subscription calls in ReplaceableSubscription classes f11ae03
 
 
 
