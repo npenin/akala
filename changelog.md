@@ -316,6 +316,7 @@
 * handle init lifecycle stage 54a8169
 * handle lazy loading key on decrypt 8a8eb55
 * handle lazy loading key on encrypt 146c7a7
+* handle message event data type in WebSocketAdapter 99bfa63
 * handle no dependencies provided 07a144d
 * handle no pubsub config 782ba68
 * handle no pubsub config 40e7ff2
