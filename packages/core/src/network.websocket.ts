@@ -13,8 +13,6 @@ import { type Subscription, StatefulSubscription } from "./teardown-manager.js";
  * @param {Socket} socket - web socket for this connection
  * @param {Object} parent - parent that controls this connection
  */
-
-
 export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
 {
     constructor(private readonly socket: WebSocket)
