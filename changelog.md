@@ -1,4 +1,4 @@
-#  (2025-08-15)
+#  (2025-08-16)
 
 
 * chore : code cleanup eae1150
@@ -1026,6 +1026,7 @@
 * add int, cache and leb128 parsers 0fb8868
 * add invoke formatter 2ea1311
 * add IPC protocol handler for improved inter-process communication 96b2326
+* add jsonnd socket adapter ec78e77
 * add jsonrpc name remapping f6ff8b2
 * add JWK and few more improvements 7672b7e
 * add JWK and few more improvements 54d30ae
@@ -1061,6 +1062,7 @@
 * add shadowWithStyles helper function 2c8e6b8
 * add SIGINT and SIGTERM signals handling 6906860
 * add Slice formatter af9770e
+* add SocketProtocolAdapter to support back and forth message transformation 0057219
 * add sort and parse formatters 5b06cdd
 * add spread helper that does not evaluate getters 9830448
 * add static fromJson on ModelDefinition 78f3d71
