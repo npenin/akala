@@ -1,9 +1,9 @@
 #  (2025-08-16)
 
 
-### Features
+### Bug Fixes
 
-* add SocketProtocolAdapter to support back and forth message transformation 0057219
+* handle message event data type in WebSocketAdapter 99bfa63
 
 
 
