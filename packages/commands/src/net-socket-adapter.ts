@@ -3,7 +3,7 @@ import { TLSSocket, connect as tlsconnect } from 'tls'
 import { protocolHandlers as handlers } from './protocol-handler.js';
 import { JsonRpc } from './processors/jsonrpc.js';
 import { type Container } from './metadata/container.js';
-import { type AllEventKeys, type AllEvents, EventEmitter, type EventListener, type EventOptions, SocketAdapter, StatefulSubscription, type Subscription } from '@akala/core';
+import { type AllEventKeys, type AllEvents, EventEmitter, type EventListener, type EventOptions, IsomorphicBuffer, SocketAdapter, StatefulSubscription, type Subscription } from '@akala/core';
 import { type SocketAdapterAkalaEventMap } from '@akala/core';
 
 handlers.useProtocol('tcp', async (url) =>
@@ -134,9 +134,9 @@ export class NetSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         return new Promise<void>(resolve => this.socket.end(resolve));
     }
 
-    send(data: string): Promise<void>
+    send(data: string | IsomorphicBuffer): Promise<void>
     {
-        return new Promise<void>((resolve, reject) => this.socket.write(data + '\n', err => err ? reject(err) : resolve()));
+        return new Promise<void>((resolve, reject) => this.socket.write(data instanceof IsomorphicBuffer ? data.toArray() : data, err => err ? reject(err) : resolve()));
     }
 
     public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
