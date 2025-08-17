@@ -3,6 +3,7 @@ import { Container, Metadata, Processors, registerCommands } from "@akala/comman
 import type { SocketAdapter, SocketAdapterAkalaEventMap, AllEventKeys, AllEvents, EventListener, EventOptions, Subscription } from "@akala/core";
 import { bootstrapModule, type IScope, templateCache, type templateFunction } from "@akala/client";
 import { IsomorphicBuffer, EventEmitter, isPromiseLike } from "@akala/core";
+import { JsonRpcSocketAdapter } from "@akala/json-rpc-ws";
 
 const container = new Container('akala', null);
 
@@ -66,7 +67,7 @@ if (import.meta.hot)
                 f.hotReplace(data.content);
     });
 
-    const processor = new Processors.JsonRpcBrowser(Processors.JsonRpcBrowser.getConnection(new ViteSocketAdapter(), container));
+    const processor = new Processors.JsonRpcBrowser(Processors.JsonRpcBrowser.getConnection(new JsonRpcSocketAdapter(new ViteSocketAdapter()), container));
     const authProcessor = new Processors.AuthPreProcessor(processor)
     const eventProcessor = new Processors.EventProcessor(authProcessor);
 

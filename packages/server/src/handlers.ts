@@ -166,7 +166,7 @@ commandHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options
     container.register('$wsServer:' + url, wsServer);
     wsServer.on('connection', (socket: ws.WebSocket) =>
     {
-        container.attach(Processors.JsonRpc.trigger, new jsonrpcws.ws.SocketAdapter(socket));
+        container.attach(Processors.JsonRpc.trigger, new jsonrpcws.JsonRpcSocketAdapter(new jsonrpcws.ws.SocketAdapter(socket)));
     })
 });
 
@@ -195,6 +195,6 @@ commandHandlers.useProtocol<NetConnectOpts>('wss', async (url, container, option
     container.register('$wssServer:' + url, wsServer);
     wsServer.on('connection', (socket: ws.WebSocket) =>
     {
-        container.attach(Processors.JsonRpc.trigger, new jsonrpcws.ws.SocketAdapter(socket));
+        container.attach(Processors.JsonRpc.trigger, new jsonrpcws.JsonRpcSocketAdapter(new jsonrpcws.ws.SocketAdapter(socket)));
     })
 });

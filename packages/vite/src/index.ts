@@ -4,6 +4,7 @@ import { type AllEventKeys, type AllEvents, type Argument1, EventEmitter, type E
 import { readFile } from 'fs/promises';
 import { type Plugin, type ViteDevServer } from 'vite';
 import { fileURLToPath, pathToFileURL } from 'url'
+import { JsonRpcSocketAdapter } from '@akala/json-rpc-ws';
 
 export class ViteSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
 {
@@ -155,7 +156,7 @@ export function plugin(options: Record<string, { path: string, init?: unknown[],
             })).then(async () =>
             {
                 // console.log('attaching to vite');
-                container.attach(Processors.JsonRpc.trigger, new ViteSocketAdapter(server))
+                container.attach(Processors.JsonRpc.trigger, new JsonRpcSocketAdapter(new ViteSocketAdapter(server)))
             });
             return () => promise;
         },
