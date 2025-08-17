@@ -1,4 +1,5 @@
 import type { IEvent, EventBus, SpecialEvents, SocketAdapter } from "@akala/core";
+import { Payload } from "@akala/json-rpc-ws";
 import { Readable } from "stream";
 
 export interface Runtime
@@ -17,7 +18,7 @@ export interface RuntimeInstance<T extends RuntimeEventMap = RuntimeEventMap> ex
 {
     runtime: Omit<Runtime, 'build'>;
     stop(): Promise<number>;
-    get adapter(): SocketAdapter;
+    get adapter(): SocketAdapter<Payload<Readable>>;
 
     get stderr(): Readable;
     get stdout(): Readable;

@@ -3,8 +3,9 @@ import { Readable } from "stream";
 import { IpcAdapter } from "../ipc-adapter.js";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import type { RuntimeEventMap, RuntimeInstance } from "./shared.js";
-import { EventEmitter, type IEvent } from "@akala/core";
+import { EventEmitter, SocketAdapter, type IEvent } from "@akala/core";
 import { fileURLToPath } from "url";
+import { JsonRpcSocketAdapter, Payload } from "@akala/json-rpc-ws";
 
 export type ChildProcessRuntimeEventMap = {
     "close": IEvent<[code: number | null, signal: NodeJS.Signals | null], void>
@@ -23,7 +24,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
     public readonly runtime = Runtime;
     public static readonly name = 'nodejs';
     private readonly cp: ChildProcess;
-    public readonly adapter: IpcAdapter;
+    public readonly adapter: SocketAdapter<Payload<Readable>>;
     private readonly stderrPrefixer: NewLinePrefixer;
     private readonly stdoutPrefixer: NewLinePrefixer;
     constructor(args: string[], options: ChildProcessRuntimeOptions, signal?: AbortSignal)
@@ -47,7 +48,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
                 this.stdoutPrefixer?.unpipe();
             });
         }
-        this.adapter = new IpcAdapter(this.cp);
+        this.adapter = new JsonRpcSocketAdapter(new IpcAdapter(this.cp));
         this.cp.on('exit', (code, signal) => { this.emit('exit', code, signal) });
         this.cp.on('message', (message, sendHandle) => this.emit('message', message, sendHandle));
 

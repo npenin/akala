@@ -4,14 +4,15 @@ import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { MessagePortAdapter } from "../messageport-adapter.js";
 import type { RuntimeEventMap, RuntimeInstance } from "./shared.js";
 import module from 'module'
-import { EventEmitter } from "@akala/core";
+import { EventEmitter, SocketAdapter } from "@akala/core";
+import { JsonRpcSocketAdapter, Payload } from "@akala/json-rpc-ws";
 const require = module.createRequire(import.meta.url);
 
 export default class Runtime extends EventEmitter<RuntimeEventMap> implements RuntimeInstance
 {
     public readonly runtime = Runtime;
     private readonly cp: Worker;
-    public readonly adapter: MessagePortAdapter;
+    public readonly adapter: SocketAdapter<Payload<Readable>>;
     private _running: boolean;
     constructor(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean })
     {
@@ -19,7 +20,7 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
         this.cp = new Worker(require.resolve('../fork'), { argv: args, stderr: true, stdout: true })
         this.cp.stderr?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stderr);
         this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stdout);
-        this.adapter = new MessagePortAdapter(this.cp);
+        this.adapter = new JsonRpcSocketAdapter(new MessagePortAdapter(this.cp));
         this.cp.on('exit', () => { this._running = false; this.emit('runningChanged') })
     }
     stop(): Promise<number>

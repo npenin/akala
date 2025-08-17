@@ -11,6 +11,7 @@ import type { StateConfiguration } from './state.js';
 import { program, buildCliContextFromProcess, ErrorMessage, supportInteract } from '@akala/cli';
 import { open } from 'fs/promises';
 import { LogLevels } from '@akala/core';
+import { JsonRpcSocketAdapter } from '@akala/json-rpc-ws';
 
 const tableChars = {
     'top': '─'
@@ -142,7 +143,7 @@ cli.preAction(async c =>
     if (socket.readyState == 'open')
     {
         if (!processor)
-            processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
+            processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new JsonRpcSocketAdapter(new NetSocketAdapter(socket))));
         if (!metaContainer)
             metaContainer = (await import(new URL('../../commands.json', import.meta.url).toString(), { assert: { type: 'json' } })).default;
         if (!container)

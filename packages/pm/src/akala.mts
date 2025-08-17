@@ -10,6 +10,7 @@ import Configuration from '@akala/config';
 import { IpcAdapter } from './ipc-adapter.js';
 import { FSFileSystemProvider } from '@akala/fs';
 import { containers, InitAkala } from '@akala/commands/akala';
+import { JsonRpcSocketAdapter } from '@akala/json-rpc-ws';
 
 const log = logger('akala:pm');
 
@@ -38,7 +39,7 @@ export const remotePm = new Container('proxy-pm', {}) as commands.container & Co
 if (process.connected)
     protocolHandlers.useProtocol('ipc', async (url, options) =>
     {
-        const connection = Processors.JsonRpc.getConnection(new IpcAdapter(process), options.container);
+        const connection = Processors.JsonRpc.getConnection(new JsonRpcSocketAdapter(new IpcAdapter(process)), options.container);
 
         return {
             processor: new Processors.JsonRpc(connection),
