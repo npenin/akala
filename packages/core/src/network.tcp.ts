@@ -78,7 +78,7 @@ export class TcpSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         {
             case 'message':
                 {
-                    const x = function (ev) { return (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, typeof ev.data === 'string' ? ev.data : IsomorphicBuffer.fromArrayBuffer(ev.data)); };
+                    const x = function (data) { return (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, typeof data === 'string' ? data : IsomorphicBuffer.fromBuffer(data)); };
                     this.messageListeners.push([handler, x]);
                     if (options?.once)
                         this.socket.once('data', x);
