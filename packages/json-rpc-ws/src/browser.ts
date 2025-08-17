@@ -2,6 +2,7 @@ import
 {
   Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Payload,
   type Parent,
+  JsonRpcSocketAdapter,
 } from './shared-connection.js';
 import { default as Client } from './shared-client.js';
 import { default as Errors, type Payload as ErrorPayload } from './errors.js';
@@ -13,7 +14,7 @@ const logger = debug('akala:json-rpc-ws');
 
 import * as ws from './ws/websocket.js';
 export { ws };
-export { Client, type SocketAdapter, Errors, BaseConnection, type SerializableObject, type PayloadDataType, type SerializedBuffer, type Payload, type ErrorPayload, type SocketAdapterEventMap };
+export { Client, type SocketAdapter, Errors, BaseConnection, JsonRpcSocketAdapter, type SerializableObject, type PayloadDataType, type SerializedBuffer, type Payload, type ErrorPayload, type SocketAdapterEventMap };
 
 class Readable extends ReadableStream<Uint8Array>
 {
