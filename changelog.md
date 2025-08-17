@@ -252,6 +252,7 @@
 * ensure postinstall completes 135afa8
 * ensure postinstall completes 10c4a72
 * ensure prepareMessage is called correctly in getLength and write methods 3c77981
+* ensure safe access to setup packages in install function eba770b
 * ensure setup configuration is initialized before adding packages in install function 7d14afe
 * ensure using transportOptions if not defined 12b4e5d
 * ensure value is set only if canSet is true in DataContext 5dd18db
