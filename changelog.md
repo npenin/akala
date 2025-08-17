@@ -474,6 +474,7 @@
 * make fs private for now 6e84b29
 * make jsonrpc triggers statically discovering metadata df2ef95
 * make modelDefinitions readonly f797208
+* make page as controls c8e603e
 * make rawQuery support optional 3be8917
 * make rawQuery support optional 6050617
 * make ReplayEvent max listeners optional 86f6545
@@ -777,6 +778,7 @@
 * update after akala cli refactoring f69a2f4
 * update after breaking change 78d6ba4
 * update after breaking change 0357943
+* update after client breaking change fd19b43
 * update after client breaking change ffa91c6
 * update after client breaking change d8abf32
 * update after command breaking change 573cfe0
@@ -1236,6 +1238,7 @@
 
 ### BREAKING CHANGES
 
+* Page are now controls, and require the element to be provided as a constructor parameter
 * websocketadapter now comes from core
 * remove SocketAdapter
 * removed legacy Scope property on PartInstance
