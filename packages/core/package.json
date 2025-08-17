@@ -11,7 +11,12 @@
     "type": "module",
     "exports": {
         ".": {
+            "browser": {
+                "types": "./dist/esm/index.browser.d.ts",
+                "default": "./dist/esm/index.browser.js"
+            },
             "import": {
+                "browser": "./dist/esm/index.browser.js",
                 "types": "./dist/esm/index.d.ts",
                 "bun": "./src/index.ts",
                 "default": "./dist/esm/index.js"
