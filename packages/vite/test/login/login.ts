@@ -1,4 +1,4 @@
-import { type Scope as IScope, Page, page, LocationService, ScopeImpl } from '@akala/client'
+import { type Scope as IScope, Page, page, LocationService, ScopeImpl, RootElement } from '@akala/client'
 import { Container, Processors } from '@akala/commands';
 import template from './login.html?raw'
 
@@ -6,7 +6,7 @@ type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Co
 
 @page({
     template: template,
-    inject: [ScopeImpl.injectionToken, '$modules.akala-services.$location']
+    inject: [RootElement, ScopeImpl.injectionToken, '$modules.akala-services.$location']
 })
 export class Login extends Page
 {
@@ -23,9 +23,9 @@ export class Login extends Page
         scope.$set('$authProcessor.authState', undefined);
     }
 
-    constructor(scope: Scope, location: LocationService)
+    constructor(el: HTMLElement, scope: Scope, location: LocationService)
     {
-        super();
+        super(el);
         this.teardown(scope.$commandEvents.once('processed.auth.login', (result: any) =>
         {
             if ((document.getElementsByName('remember-me')[0] as HTMLInputElement).checked)

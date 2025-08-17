@@ -1,4 +1,4 @@
-import { type Scope as IScope, Page, LocationService, ScopeImpl, page } from '@akala/client'
+import { type Scope as IScope, Page, LocationService, ScopeImpl, page, RootElement } from '@akala/client'
 import { Container, Metadata, Processors } from '@akala/commands';
 import { ObservableObject, Parser } from '@akala/core';
 import { Login } from './login/login.js';
@@ -7,9 +7,9 @@ type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Co
 
 class HomePage extends Page
 {
-    constructor(root: Scope, location: LocationService)
+    constructor(element: HTMLElement, root: Scope, location: LocationService)
     {
-        super();
+        super(element);
         Login.loadState(root);
         if (!root.$authProcessor.authState)
             location.dispatch('/login');
@@ -41,7 +41,7 @@ class HomePage extends Page
 export const Home =
     page({
         template: 'test/index.html',
-        inject: [ScopeImpl.injectionToken, '$modules.akala-services.$location']
+        inject: [RootElement, ScopeImpl.injectionToken, '$modules.akala-services.$location']
     })(HomePage);
 
 export default Home;
