@@ -1,10 +1,9 @@
 #  (2025-08-17)
 
 
-### Bug Fixes
+### Features
 
-* ensure SocketProtocolAdapter satisfies SocketAdapters cfc30f5
-* socket closure on adapter dispose c17f391
+* add TcpSocketAdapter for TCP socket handling and update package exports 79e83bd
 
 
 
