@@ -13,7 +13,7 @@ export default async function install(this: State, packageName: string, pm: Cont
     if (!this.config.has('setup.packages'))
         this.config.set('setup.packages', [])
 
-    if (this.config.setup?.packages?.indexOf(packageName) == -1)
+    if (this.config.setup.packages.indexOf(packageName) == -1)
         this.config.setup.packages.push(packageName);
 
     return await pm.dispatch('discover', packageName, !process.versions['pnp'] && 'node_modules' || undefined);
