@@ -1,9 +1,9 @@
-import { Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Payload } from './shared-connection.js';
+import { JsonRpcSocketAdapter, Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Payload } from './shared-connection.js';
 import { Connection } from './connection.js'
 import { default as Client, JsonNDRpcSocketAdapter } from './shared-client.js';
 import { default as Server, type ServerAdapter } from './server.js';
 import { default as Errors, type Payload as ErrorPayload } from './errors.js';
-export { JsonNDRpcSocketAdapter };
+export { JsonNDRpcSocketAdapter, JsonRpcSocketAdapter };
 
 /**
  * json-rpc-ws: a node.js json-rpc websocket client

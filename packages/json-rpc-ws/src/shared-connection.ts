@@ -1,13 +1,49 @@
 import { default as Errors, type Error as ConnectionError, type ErrorTypes } from './errors.js';
 import debug from 'debug';
 import type { EventListener, SerializableObject, SocketAdapter, SocketAdapterAkalaEventMap, SocketAdapterEventMap, Subscription } from '@akala/core';
-import { IsomorphicBuffer } from '@akala/core';
+import { IsomorphicBuffer, SocketProtocolAdapter } from '@akala/core';
 const logger = debug('akala:json-rpc-ws');
 
 export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | boolean | boolean[] | number[] | string | string[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
 export type SerializedBuffer = { type: 'Buffer', data: Uint8Array | number[] };
 
 export type Payload<T> = SerializablePayload | StreamPayload<T>;
+
+export class JsonRpcSocketAdapter<TStreamable> extends SocketProtocolAdapter<Payload<TStreamable> | Payload<TStreamable>[]> implements SocketAdapter<Payload<TStreamable>>
+{
+    constructor(socket: SocketAdapter)
+    {
+        super({
+            receive(data, self)
+            {
+                logger('message %j', data);
+
+                let payload: Payload<TStreamable>;
+                if (typeof (data) !== 'string') 
+                {
+                    if (data instanceof IsomorphicBuffer)
+                        payload = jsonParse(data.toString('utf8'));
+                }
+                else if (typeof (data) == 'string')
+                {
+                    payload = jsonParse(data);
+                }
+
+                if (!payload)
+                {
+                    console.error(data);
+                    socket.send(self.transform.send(Errors('parseError', -1), self));
+                }
+
+                return payload;
+            },
+            send(payload)
+            {
+                return JSON.stringify(payload);
+            }
+        }, socket);
+    }
+}
 
 interface CommonPayload
 {
@@ -88,7 +124,7 @@ export abstract class Connection<TStreamable>
     /**
      *
      */
-    constructor(public readonly socket: SocketAdapter, public readonly parent: Parent<TStreamable, Connection<TStreamable>>)
+    constructor(public readonly socket: SocketAdapter<Payload<TStreamable>>, public readonly parent: Parent<TStreamable, Connection<TStreamable>>)
     {
         if (!this.socket.send)
             throw new Error('socket.send is not defined');
@@ -111,12 +147,12 @@ export abstract class Connection<TStreamable>
     }
 
 
-    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap[K]>): Subscription
+    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap<Payload<TStreamable>>[K]>): Subscription
     {
         return this.socket.on(event, handler);
     }
 
-    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap[K]>): Subscription
+    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap<Payload<TStreamable>>[K]>): Subscription
     {
         return this.socket.once(event, handler);
     }
@@ -136,7 +172,7 @@ export abstract class Connection<TStreamable>
     public sendRaw(payload: Payload<TStreamable>): void
     {
         payload.jsonrpc = '2.0';
-        this.socket.send(JSON.stringify(payload));
+        this.socket.send(payload);
     }
 
 
@@ -386,35 +422,21 @@ export abstract class Connection<TStreamable>
      * @returns {void}
      * @private
      */
-    private message(data: string | { data: string } | IsomorphicBuffer): Payload<TStreamable> | void
+    private message(payload: Payload<TStreamable> | Payload<TStreamable>[]): Payload<TStreamable> | void
     {
         //Validate as json first, easy reply if it's not
         //If it's an array iterate and handle
         //If it's an object handle
         //name of handle function ?!?!?
-        logger('message %j', data);
-        let payload;
-        if (typeof (data) !== 'string') 
-        {
-            if (data instanceof IsomorphicBuffer)
-                payload = jsonParse(data.toString('utf8'));
-            else
-                payload = jsonParse(data.data);
-        }
-        else if (typeof (data) == 'string')
-        {
-            payload = jsonParse(data);
-        }
 
-        if (payload === null)
-        {
-            console.error(data);
-            return this.sendError('parseError', -1);
-        }
+        if (!payload)
+            return;
+
         //Object or array
         if (payload instanceof Array)
         {
-            payload.forEach(this.processPayload, this);
+            for (const innerPayload of payload)
+                this.processPayload(innerPayload);
         }
         else
         {

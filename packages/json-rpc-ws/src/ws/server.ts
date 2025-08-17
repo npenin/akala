@@ -2,6 +2,8 @@ import { type ServerAdapter } from '../server.js';
 import * as ws from 'ws';
 import type { SocketAdapter } from '@akala/core';
 import WsSocketAdapter from './ws-socket-adapter.js';
+import { JsonRpcSocketAdapter, Payload } from '../shared-connection.js';
+import { Readable } from 'stream';
 
 export class Adapter implements ServerAdapter
 {
@@ -14,11 +16,11 @@ export class Adapter implements ServerAdapter
     return this.closed;
   }
 
-  onConnection(handler: (socket: SocketAdapter) => void): void
+  onConnection(handler: (socket: SocketAdapter<Payload<Readable>>) => void): void
   {
     this.server?.on('connection', function (socket: ws.WebSocket)
     {
-      handler(new WsSocketAdapter(socket));
+      handler(new JsonRpcSocketAdapter(new WsSocketAdapter(socket)));
     });
   }
 

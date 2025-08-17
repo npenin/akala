@@ -1,8 +1,8 @@
 import
-  {
-    Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Payload,
-    type Parent,
-  } from './shared-connection.js';
+{
+  Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Payload,
+  type Parent,
+} from './shared-connection.js';
 import { default as Client } from './shared-client.js';
 import { default as Errors, type Payload as ErrorPayload } from './errors.js';
 import type { SocketAdapter, SocketAdapterEventMap, SerializableObject } from '@akala/core'
@@ -49,7 +49,7 @@ class Readable extends ReadableStream<Uint8Array>
 
 export class Connection extends BaseConnection<ReadableStream<Uint8Array>>
 {
-  constructor(socket: SocketAdapter, parent: Parent<ReadableStream, Connection>)
+  constructor(socket: SocketAdapter<object>, parent: Parent<ReadableStream, Connection>)
   {
     super(socket, parent as Parent<ReadableStream, BaseConnection<ReadableStream>>);
   }

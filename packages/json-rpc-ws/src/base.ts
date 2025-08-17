@@ -2,7 +2,7 @@
 import debug from 'debug';
 const logger = debug('akala:json-rpc-ws');
 
-import { Connection, type Handler, type PayloadDataType, type Parent } from './shared-connection.js';
+import { Connection, type Handler, type PayloadDataType, type Parent, Payload } from './shared-connection.js';
 import type { SocketAdapter } from '@akala/core';
 
 
@@ -53,7 +53,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @param {Object} socket - new socket connection
    * @private
    */
-  public connected(socket: SocketAdapter): void
+  public connected(socket: SocketAdapter<Payload<TStreamable>>): void
   {
     const connection = this.connection(socket);
     logger('%s connected with id %s', this.type, connection.id);
@@ -61,7 +61,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
     this.connections[connection.id] = connection;
   }
 
-  abstract connection(socket: SocketAdapter): Connection<TStreamable>;
+  abstract connection(socket: SocketAdapter<Payload<TStreamable>>): Connection<TStreamable>;
 
 
   /**

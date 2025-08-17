@@ -1,7 +1,7 @@
 import { Base } from './base.js';
 import debug from 'debug';
 const logger = debug('akala:json-rpc-ws');
-import { type PayloadDataType, Connection } from './shared-connection.js';
+import { type PayloadDataType, Connection, Payload } from './shared-connection.js';
 import { type Error as MyError } from './errors.js'
 import { IsomorphicBuffer, SocketProtocolAdapter, type SocketAdapter } from '@akala/core';
 
@@ -26,13 +26,13 @@ export class JsonNDRpcSocketAdapter<T> extends SocketProtocolAdapter<T> implemen
 
 export default abstract class Client<TStreamable, TConnectOptions> extends Base<TStreamable>
 {
-    constructor(private socketConstructor: (address: string, options?: TConnectOptions) => SocketAdapter, private options?: TConnectOptions)
+    constructor(private socketConstructor: (address: string, options?: TConnectOptions) => SocketAdapter<Payload<TStreamable>>, private options?: TConnectOptions)
     {
         super('client');
         logger('new Client');
     }
 
-    public socket?: SocketAdapter;
+    public socket?: SocketAdapter<Payload<TStreamable>>;
 
     /**
      * Connect to a json-rpc-ws server

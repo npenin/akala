@@ -2,7 +2,7 @@
 
 import { Base } from './base.js';
 import { default as Errors } from './errors.js';
-import type { ReplyCallback, PayloadDataType as BasePayloadDataType } from './shared-connection.js';
+import type { ReplyCallback, PayloadDataType as BasePayloadDataType, Payload } from './shared-connection.js';
 import { Connection } from './connection.js';
 import * as stream from 'stream'
 import debug from 'debug';
@@ -14,10 +14,10 @@ function assert(ok: unknown, message: string): void
 }
 const logger = debug('akala:json-rpc-ws');
 
-export interface ServerAdapter 
+export interface ServerAdapter
 {
   close(): Promise<void>;
-  onConnection(arg1: (socket: SocketAdapter) => void): void;
+  onConnection(arg1: (socket: SocketAdapter<Payload<stream.Readable>>) => void): void;
   once(event: 'listening', callback: () => void): void;
   start(): void;
 }
@@ -36,7 +36,7 @@ export default class Server<TConnection extends Connection> extends Base<stream.
     logger('new Server');
   }
 
-  connection(socket: SocketAdapter): Connection
+  connection(socket: SocketAdapter<Payload<stream.Readable>>): Connection
   {
     return new Connection(socket, this);
   }
