@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* ensure setup configuration is initialized before adding packages in install function 7d14afe
+* ensure safe access to setup packages in install function eba770b
 
 
 
