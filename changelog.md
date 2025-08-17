@@ -1084,6 +1084,7 @@
 * add string-fixed-or-null terminated parser 5cbd71f
 * add support for password secret in config 135edfa
 * add table row event handlers 392d906
+* add TcpSocketAdapter for TCP socket handling and update package exports 79e83bd
 * add TileManager (incomplete) 9e0d08f
 * add TopDown and BottomUp namespace event emitters d8e148e
 * add type to status fb8961e
