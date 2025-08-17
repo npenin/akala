@@ -254,6 +254,7 @@
 * ensure prepareMessage is called correctly in getLength and write methods 3c77981
 * ensure safe access to setup packages in install function eba770b
 * ensure setup configuration is initialized before adding packages in install function 7d14afe
+* ensure SocketProtocolAdapter satisfies SocketAdapters cfc30f5
 * ensure using transportOptions if not defined 12b4e5d
 * ensure value is set only if canSet is true in DataContext 5dd18db
 * ensure write method returns an empty array when conditions are not met 929cbc8
@@ -270,6 +271,7 @@
 * existing file generator detection ca3ad06
 * export ParserFormatter 7842585
 * export pubsub configurator 5a2479c
+* expose JsonNDRpcSocketAdapter 5588d11
 * ExpressionUpdater to use super.visit 4496683
 * extend Parser interface to include ParserWithMessage for improved type consistency 6c7cc1f
 * extract params considers when array is provided 96c7644
@@ -685,6 +687,7 @@
 * simplify titles and remove unnecessary metadata in CLI documentation f331a8e
 * simplify titles and remove unnecessary metadata in CLI documentation 7702b95
 * simplify URL handling in install function by removing unnecessary try-catch and improving path resolution df95034
+* socket closure on adapter dispose c17f391
 * sonar coverage discovery 505f9b3
 * sonar coverage discovery 9363979
 * sonar coverage discovery c70faa9
@@ -808,6 +811,10 @@
 * update after fs breaking change 27ec208
 * update after fs breaking change 56df9a7
 * update after fs FileHandle interface update 552b3f0
+* update after jsonrpc breaking change 1703f52
+* update after jsonrpc breaking change 9051a86
+* update after jsonrpc breaking change e651084
+* update after jsonrpc breaking change 057d989
 * update after protocol parser breaking change 2d306f6
 * update after protocol parsers breaking change db4574e
 * update after refactor 5672623
@@ -884,9 +891,11 @@
 * update permalink structure and footer content in documentation 01f1715
 * update protocolHandler to correctly set relativeTo and improve directory handling dca8258
 * update pubsub to use AsyncEventBus for improved asynchronous handling 1618567
+* update send method to accept IsomorphicBuffer in NetSocketAdapter 1f69c74
 * update Serializable to SerializableObject in event buses and sidecar configurations f865e03
 * update serve function to accept URL objects instead of strings 9f68893
 * update serve function to accept URL objects instead of strings 51f45ec
+* update socket adapter types to include Payload for improved type safety 80b1e76
 * update Switch constructor to accept a function for dynamic key resolution 8cc1de4
 * update tests after refactor ae50c4a
 * update titles and parent attributes in markdown files for improved documentation clarity c562dc3
@@ -919,6 +928,7 @@
 * webcomponent registration 5661065
 * webkit workaround #1624 a2ad462
 * when discovering from package.json file 5be62eb
+* wrap NetSocketAdapter with JsonNDRpcSocketAdapter in jsonrpc handlers 868da47
 * writing/reading at buffer last offset 10efb8b
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
