@@ -1,6 +1,6 @@
 import type { AllEventKeys, EventBus, SpecialEvents } from "./events/event-bus.js";
 import { type AllEvents, EventEmitter } from "./events/event-emitter.js";
-import type { IEvent, EventListener, EventOptions } from "./events/shared.js";
+import type { IEvent, EventListener, EventOptions, EventArgs, EventReturnType } from "./events/shared.js";
 import type { IsomorphicBuffer } from "./helpers.js";
 import { Subscription } from "./teardown-manager.js";
 
@@ -22,12 +22,14 @@ export interface SocketAdapter<T = string | IsomorphicBuffer> extends EventBus<S
     pipe(socket: SocketAdapter<T>): void;
 }
 
+// export type SocketProtocolAdapter<T> = SocketAdapter<T>;
+
 
 export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEventMap<T>> implements SocketAdapter<T>
 {
-    constructor(private readonly transform: {
-        receive: (data: string | IsomorphicBuffer) => T,
-        send: (data: T) => string | IsomorphicBuffer,
+    constructor(public readonly transform: {
+        receive: (data: string | IsomorphicBuffer, socket: SocketProtocolAdapter<T>) => T,
+        send: (data: T, socket: SocketProtocolAdapter<T>) => string | IsomorphicBuffer,
         close?: (socket: SocketAdapter) => Promise<void>
     }, private readonly socket: SocketAdapter)
     {
@@ -53,7 +55,7 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
 
     send(data: T): Promise<void>
     {
-        return this.socket.send(this.transform.send(data));
+        return this.socket.send(this.transform.send(data, this));
     }
 
     private readonly messageListeners: ((ev: T) => void)[] = [];
@@ -61,7 +63,7 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
 
     public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap<T>>>(
         event: TEvent,
-        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>
+        handler: EventListener<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>
     ): boolean
     {
         switch (event)
@@ -88,8 +90,8 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
 
     public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap<T>>>(
         event: TEvent,
-        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>,
-        options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>
+        handler: EventListener<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>,
+        options?: EventOptions<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>
     ): Subscription
     {
         switch (event)
@@ -100,7 +102,7 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
                     if (this.messageListeners.length === 0)
                         this.messageSubscription = this.socket.on('message', message =>
                         {
-                            const m = this.transform.receive(message);
+                            const m = this.transform.receive(message, this);
                             this.messageListeners.forEach(l => l(m))
                         }, options);
                     this.messageListeners.push(handler as EventListener<SocketAdapterAkalaEventMap<T>['message']>);
@@ -124,7 +126,7 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
 
     public once<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap<T>>>(
         event: TEvent,
-        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>
+        handler: EventListener<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>
     ): Subscription
     {
         switch (event)
@@ -138,5 +140,10 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
             default:
                 throw new Error(`Unsupported event ${event?.toString()}`);
         }
+    }
+
+    override emit<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap<T>>>(event: TEvent, ...args: EventArgs<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>): false | EventReturnType<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>
+    {
+        return super.emit(event, ...args);
     }
 }
