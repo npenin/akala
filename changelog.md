@@ -45,6 +45,7 @@
 * add missing dependency d1d127b
 * add missing dependency 4435ab1
 * add missing events pass through 7a73f40
+* add missing export ba342f5
 * add missing init on first template binding 5c81b33
 * add missing link targets a2dae65
 * add missing link targets 2fc6516
