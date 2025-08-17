@@ -1,9 +1,10 @@
-#  (2025-08-16)
+#  (2025-08-17)
 
 
 ### Bug Fixes
 
-* handle message event data type in WebSocketAdapter 99bfa63
+* ensure SocketProtocolAdapter satisfies SocketAdapters cfc30f5
+* socket closure on adapter dispose c17f391
 
 
 
