@@ -1,9 +1,9 @@
 #  (2025-08-17)
 
 
-### Features
+### Bug Fixes
 
-* add TcpSocketAdapter for TCP socket handling and update package exports 79e83bd
+* update message event handler to use IsomorphicBuffer.fromBuffer for data conversion 828f010
 
 
 
