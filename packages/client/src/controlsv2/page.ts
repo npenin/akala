@@ -1,6 +1,6 @@
 import { ObservableObject, Parser, type Resolvable, SimpleInjector } from "@akala/core"
 import { type OutletDefined, type OutletDefinition, outletDefinition } from "../outlet.js"
-import { type IScope, ScopeImpl } from "../scope.js"
+import { type IScope } from "../scope.js"
 import { Control } from "./shared.js";
 import { DataContext } from "../common.js";
 // import { DataContext } from "../common.js";
@@ -15,12 +15,12 @@ export function pageOutlet<TScope extends IScope<object>>(options: { template: s
     {
         return {
             template: options.template,
-            controller: (scope, element, param) =>
+            controller: (element, param) =>
             {
                 if (options.inject)
                 {
                     const inj = new SimpleInjector();
-                    inj.register(ScopeImpl.injectionToken, scope);
+                    // inj.register(ScopeImpl.injectionToken, scope);
                     inj.register(RootElement, element);
                     inj.register('param', param);
                     const result = inj.injectNewWithName(options.inject || [], target)();
