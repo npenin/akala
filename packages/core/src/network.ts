@@ -28,12 +28,13 @@ export interface SocketAdapter<T = string | IsomorphicBuffer> extends EventBus<S
 export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEventMap<T>> implements SocketAdapter<T>
 {
     constructor(public readonly transform: {
-        receive: (data: string | IsomorphicBuffer, socket: SocketProtocolAdapter<T>) => T,
-        send: (data: T, socket: SocketProtocolAdapter<T>) => string | IsomorphicBuffer,
+        receive: (data: string | IsomorphicBuffer, self: SocketProtocolAdapter<T>) => T,
+        send: (data: T, self: SocketProtocolAdapter<T>) => string | IsomorphicBuffer,
         close?: (socket: SocketAdapter) => Promise<void>
     }, private readonly socket: SocketAdapter)
     {
         super();
+        this.on(Symbol.dispose, () => socket.close());
     }
 
     pipe(socket: SocketAdapter<T>)
@@ -72,8 +73,11 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
                 {
                     let listeners = this.messageListeners;
                     if (handler)
-                        listeners = listeners.filter(f => f[0] == handler);
-                    listeners.forEach(l => this.socket.off('message', l[1]));
+                        this.messageListeners.splice(listeners.findIndex(f => f[0] == handler), 1)
+                    else
+                        this.messageListeners.length = 0;
+                    if (this.messageListeners.length == 0)
+                        this.messageSubscription?.();
                 }
                 break;
             case 'close':
@@ -117,6 +121,7 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
             case 'close':
             case 'error':
             case 'open':
+            case Symbol.dispose:
                 //eslint-disable-next-line @typescript-eslint/no-explicit-any
                 return this.socket.on(event, handler as any);
             default:

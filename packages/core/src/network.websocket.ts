@@ -103,6 +103,8 @@ export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
                 {
                     this.socket.removeEventListener(event, handler as any);
                 }).unsubscribe;
+            case Symbol.dispose:
+                return super.on(event, handler, options);
             default:
                 throw new Error(`Unsupported event ${String(event)}`);
         }
@@ -120,9 +122,11 @@ export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
             case 'close':
             case 'error':
             case 'open':
+            case Symbol.dispose:
                 return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>);
             default:
-                throw new Error(`Unsupported event ${event?.toString()}`);
+                let x: never = event;
+                throw new Error(`Unsupported event ${x}`);
         }
     }
 }
