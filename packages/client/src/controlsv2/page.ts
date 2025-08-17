@@ -1,6 +1,8 @@
 import { ObservableObject, Parser, type Resolvable, SimpleInjector } from "@akala/core"
 import { type OutletDefined, type OutletDefinition, outletDefinition } from "../outlet.js"
 import { type IScope, ScopeImpl } from "../scope.js"
+import { Control } from "./shared.js";
+import { DataContext } from "../common.js";
 // import { DataContext } from "../common.js";
 
 export const RootElement = Symbol('root html template element');
@@ -52,4 +54,12 @@ export function withOutlet<T extends new (...args: any[]) => {}, TScope extends 
     } as T & OutletDefined<TScope>;
 }
 
-export { TeardownManager as Page } from '@akala/core'
+export class Page extends Control<{}, HTMLElement>
+{
+    constructor(el: HTMLElement)
+    {
+        super(el);
+        DataContext.define(el, { controller: this });
+    }
+
+}
