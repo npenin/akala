@@ -116,7 +116,7 @@ describe('test jsonrpcws processing', function ()
 
             const server = new net.Server().listen({ path: socketPath }).on('connection', (socket) =>
             {
-                c1.attach(JsonRpc.trigger, new NetSocketAdapter(socket));
+                c1.attach(JsonRpc.trigger, new jsonrpc.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)));
             });
 
             const socket = new net.Socket();
@@ -124,7 +124,7 @@ describe('test jsonrpcws processing', function ()
             {
                 socket.connect({ path: socketPath }, function ()
                 {
-                    resolve(proxy(metadata(c1, false, true), new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), c2))));
+                    resolve(proxy(metadata(c1, false, true), new JsonRpc(JsonRpc.getConnection(new jsonrpc.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)), c2))));
                 });
             })
 

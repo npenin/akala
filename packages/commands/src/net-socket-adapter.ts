@@ -5,13 +5,14 @@ import { JsonRpc } from './processors/jsonrpc.js';
 import { type Container } from './metadata/container.js';
 import { type AllEventKeys, type AllEvents, EventEmitter, type EventListener, type EventOptions, IsomorphicBuffer, SocketAdapter, StatefulSubscription, type Subscription } from '@akala/core';
 import { type SocketAdapterAkalaEventMap } from '@akala/core';
+import { JsonRpcSocketAdapter } from '@akala/json-rpc-ws';
 
 handlers.useProtocol('tcp', async (url) =>
 {
     const socket = new Socket();
     await new Promise<void>(resolve => socket.connect({ port: url.port && Number(url.port) || 31416, host: url.hostname }, resolve));
 
-    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+    const connection = JsonRpc.getConnection(new JsonRpcSocketAdapter(new NetSocketAdapter(socket)));
 
     return {
         processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
@@ -24,7 +25,7 @@ handlers.useProtocol('tcps', async (url) =>
 {
     const socket = await new Promise<TLSSocket>(resolve => { const socket = tlsconnect({ port: url.port && Number(url.port) || 31416, host: url.hostname, servername: url.hostname }, () => resolve(socket)) });
 
-    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+    const connection = JsonRpc.getConnection(new JsonRpcSocketAdapter(new NetSocketAdapter(socket)));
 
     return {
         processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { params: true }, (err, metadata) =>
@@ -38,7 +39,7 @@ handlers.useProtocol('unix', async (url) =>
     const socket = new Socket();
     await new Promise<void>(resolve => socket.connect({ path: url.hostname + url.pathname }, resolve));
 
-    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+    const connection = JsonRpc.getConnection(new JsonRpcSocketAdapter(new NetSocketAdapter(socket)));
 
     return {
         processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>
@@ -52,7 +53,7 @@ handlers.useProtocol('unixs', async (url) =>
 {
     const socket = await new Promise<TLSSocket>(resolve => { const socket = tlsconnect({ path: url.hostname + url.pathname }, () => resolve(socket)) });
 
-    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+    const connection = JsonRpc.getConnection(new JsonRpcSocketAdapter(new NetSocketAdapter(socket)));
 
     return {
         processor: new JsonRpc(connection), getMetadata: () => new Promise<Container>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>

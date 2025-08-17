@@ -159,7 +159,7 @@ serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string
 
 async function handler(url: URL, options: { signal: AbortSignal, container?: Container<unknown> }): Promise<HandlerResult<JsonRpc>>
 {
-    const socket = await new Promise<SocketAdapter>((resolve, reject) =>
+    const socket = await new Promise<SocketAdapter<jsonrpcws.Payload<Readable>>>((resolve, reject) =>
     {
         if (url.hostname == '0.0.0.0' || url.hostname == '*')
             url.hostname = '127.0.0.1';
@@ -194,7 +194,7 @@ export class JsonRpc extends CommandProcessor
 {
     public static connect(address: string): Promise<JsonRpc>
     {
-        return new Promise<SocketAdapter>((resolve) =>
+        return new Promise<SocketAdapter<jsonrpcws.Payload<Readable>>>((resolve) =>
         {
             const socket = jsonrpcws.ws.connect(address);
             socket.on('open', function ()
@@ -208,7 +208,7 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static trigger = new Trigger('jsonrpc', async function register<T>(container: Container<T>, media: SocketAdapter)
+    public static trigger = new Trigger('jsonrpc', async function register<T>(container: Container<T>, media: SocketAdapter<jsonrpcws.Payload<Readable>>)
     {
         // assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
         const error = new Error();
@@ -294,7 +294,7 @@ export class JsonRpc extends CommandProcessor
         return connection;
     })
 
-    public static getConnection(socket: SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
+    public static getConnection(socket: SocketAdapter<jsonrpcws.Payload<Readable>>, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
         var containers: Container<unknown>[] = [];

@@ -12,7 +12,7 @@ type OnlyArray<T> = Extract<T, unknown[]>;
 
 export async function handler(url: URL, options: { signal: AbortSignal }): Promise<HandlerResult<JsonRpcBrowser>>
 {
-    const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve, reject) =>
+    const socket = await new Promise<jsonrpcws.SocketAdapter<jsonrpcws.Payload<ReadableStream>>>((resolve, reject) =>
     {
         if (url.hostname == '0.0.0.0' || url.hostname == '*')
             url.hostname = '127.0.0.1';
@@ -47,7 +47,7 @@ export class JsonRpcBrowser extends CommandProcessor
 {
     public static connect(address: string): Promise<JsonRpcBrowser>
     {
-        return new Promise<jsonrpcws.SocketAdapter>((resolve) =>
+        return new Promise<jsonrpcws.SocketAdapter<jsonrpcws.Payload<ReadableStream>>>((resolve) =>
         {
             const socket = jsonrpcws.ws.connect(address);
             socket.on('open', function ()
@@ -61,7 +61,7 @@ export class JsonRpcBrowser extends CommandProcessor
         });
     }
 
-    public static trigger = new Trigger('jsonrpc', async function register<T>(container: Container<T>, media: jsonrpcws.SocketAdapter)
+    public static trigger = new Trigger('jsonrpc', async function register<T>(container: Container<T>, media: jsonrpcws.SocketAdapter<jsonrpcws.Payload<ReadableStream>>)
     {
         // assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
         const error = new Error();
@@ -147,7 +147,7 @@ export class JsonRpcBrowser extends CommandProcessor
         return connection;
     })
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter<jsonrpcws.Payload<ReadableStream>>, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
         var containers: Container<unknown>[] = [];
