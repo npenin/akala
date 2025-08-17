@@ -607,6 +607,7 @@
 * remove handler on attach d52021c
 * remove invalid require usage 360ced2
 * remove invalid require usage 72645d2
+* remove legacy scope concept 4506d0e
 * remove name option "mandatoryness" as we should already be in a valid node project 575e95a
 * remove name option "mandatoryness" as we should already be in a valid node project 75141b8
 * remove nav exclusion from documentation files and add placeholders for upcoming content 453224e
