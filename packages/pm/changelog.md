@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* ensure safe access to setup packages in install function eba770b
+* update after jsonrpc breaking change 9051a86
 
 
 
