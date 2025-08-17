@@ -2,6 +2,7 @@ import { type Configuration, Container, Processors, Trigger } from "@akala/comma
 import { ProcessStdioAdapter } from "./index.js";
 import { delay, ErrorWithStatus, HttpStatusCode, Router1Async } from "@akala/core";
 import type { ResourceDefinition, ResourceTemplateDefinition, State, ToolDefinition } from "./state.js";
+import { JsonRpcSocketAdapter } from "@akala/json-rpc-ws";
 // import why from 'why-is-node-running'
 
 export type McpConfiguration = McpResourceConfiguration | McpToolConfiguration
@@ -78,7 +79,7 @@ export const McpTrigger = new Trigger('mcp', async (container, signal: AbortSign
 
     await Processors.FileSystem.discoverCommands(import.meta.resolve('../commands.json'), mcp)
 
-    const connection = await Processors.JsonRpc.trigger.register(mcp, new ProcessStdioAdapter(process, signal));
+    const connection = await Processors.JsonRpc.trigger.register(mcp, new JsonRpcSocketAdapter(new ProcessStdioAdapter(process, signal)));
 
     signal.addEventListener('abort', async () =>
     {
