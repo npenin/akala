@@ -29,10 +29,14 @@ export class SwitchComposer extends AttributeComposer<void> implements Composer<
             let sub: Subscription;
             value.then(r =>
             {
-                sub = this.applyInternal(item, options, event, r, oldValue) as Subscription;
+                if (r)
+                    sub = this.applyInternal(item, options, event, r, oldValue) as Subscription;
             })
-            return () => sub();
+            return () => sub?.();
         }
+
+        if (!value)
+            return;
 
         if (isOutletDefined(value))
             value = value[outletDefinition];
