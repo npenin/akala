@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* import cycle 7426ead
+* handle promised value in switch 6139636
 
 
 
