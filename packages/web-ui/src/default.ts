@@ -1,6 +1,6 @@
 import { Container, Processors } from '@akala/commands/browser'
 import { type Argument0, type Translator } from '@akala/core';
-import { type Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, EventComposer, I18nComposer, webComponent, Each, CssClassComposer, IfComposer } from '@akala/client'
+import { type Scope as IScope, LocationService, Template, serviceModule, FormComposer, bootstrapModule, DataContext, DataBind, EventComposer, I18nComposer, webComponent, Each, CssClassComposer, IfComposer, SwitchComposer, OutletService } from '@akala/client'
 import { Dropdown, Mark, Popover, Table, TablePager, Tooltip, TooltipComposer, Typeahead } from './index.js';
 import { MasterDetail } from './controls/master-detail.js';
 import { Entity } from './controls/crud.js';
@@ -11,7 +11,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
 {
     bootstrapModule.register('services', serviceModule);
 
-    bootstrapModule.activate(['$rootScope'], async (rootScope: Scope) =>
+    bootstrapModule.activate(['$rootScope', OutletService.InjectionToken], async (rootScope: Scope, outletService: OutletService) =>
     {
         Template.composers.push(new FormComposer(rootScope.container))
         Template.composers.push(new DataContext());
@@ -21,6 +21,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
         Template.composers.push(new CssClassComposer());
         Template.composers.push(new I18nComposer());
         Template.composers.push(new TooltipComposer());
+        Template.composers.push(new SwitchComposer(outletService));
         webComponent('kl-popover')(Popover);
         webComponent('kl-each')(Each);
         webComponent('ul-each', { extends: 'ul' })(Each);
