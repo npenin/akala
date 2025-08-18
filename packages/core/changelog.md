@@ -1,9 +1,9 @@
-#  (2025-08-17)
+#  (2025-08-18)
 
 
 ### Bug Fixes
 
-* update message event handler to use IsomorphicBuffer.fromBuffer for data conversion 828f010
+* avoid crash on non-simplifyable expression c5fb595
 
 
 
