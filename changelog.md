@@ -337,6 +337,7 @@
 * handle optional grid option c2f976f
 * handle pre-processed context d0b91a8
 * handle pre-processed context 64bf574
+* handle promised value in switch 6139636
 * handle proper termination 91c7535
 * handle Self during registration 9cdbd4c
 * handle setting a binding a boundproperty value aec03f6
