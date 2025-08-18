@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle promised value in switch 6139636
+* handle undefined value 277a4b9
 
 
 
