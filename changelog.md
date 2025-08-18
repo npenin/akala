@@ -457,6 +457,7 @@
 * install command should now handle any package (as long as it contains an akala plugin) cad421f
 * introduce BufferEncoding to stop node dependency and add missing implementation in IsomorphicBuffer e2ee6b4
 * IsomorphicBuffer 1885b99
+* isOutletDefined returns proper evaluation 9dc86fc
 * jsonrpc find handler f0be1eb
 * jsonrpc indirections 0b82b4c
 * lazy late binding cryptokey 797a5c7
