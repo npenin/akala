@@ -1,4 +1,4 @@
-import { StatefulSubscription, type Subscription } from "@akala/core";
+import { isPromiseLike, StatefulSubscription, type Subscription } from "@akala/core";
 import type { Composer } from "../template.js";
 import { DataContext } from "./context.js";
 import { AttributeComposer } from "./shared.js";
@@ -23,6 +23,16 @@ export class SwitchComposer extends AttributeComposer<void> implements Composer<
     {
         if (value === oldValue)
             return;
+
+        if (isPromiseLike(value))
+        {
+            let sub: Subscription;
+            value.then(r =>
+            {
+                sub = this.applyInternal(item, options, event, r, oldValue) as Subscription;
+            })
+            return () => sub();
+        }
 
         if (isOutletDefined(value))
             value = value[outletDefinition];
