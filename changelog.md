@@ -562,6 +562,7 @@
 * prevent parsing formatters e1ec937
 * prevent tag creation 49c9302
 * propagate the abort reason d3df91f
+* proper outletService injection 2917475
 * properly handle event emitters failure a24cafe
 * properly handle readonly and open flags 8997997
 * protobuf reading 007b724
