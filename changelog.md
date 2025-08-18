@@ -116,6 +116,7 @@
 * artificially bump akala 0057047
 * artificially bump akala c6407f8
 * attach signature c8722b0
+* avoid crash on non-simplifyable expression c5fb595
 * await for container to be ready 064a452
 * aws sdk generation and update services 7b922cf
 * base64UrlEncode properly strips = 8a9274d
