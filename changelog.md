@@ -345,6 +345,7 @@
 * handle undefined connect mapping f74b982
 * handle undefined dateFormat 114f4c3
 * handle undefined each source 823b7cd
+* handle undefined value 277a4b9
 * handle upper case methods 974659f
 * handle upper case methods b915081
 * handle verbose behavior db8b8e7
