@@ -11,7 +11,7 @@ export default async function bootstrap(rootElement: string | Element, init?: { 
 {
     bootstrapModule.register('services', serviceModule);
 
-    bootstrapModule.activate(['$rootScope', OutletService.InjectionToken], async (rootScope: Scope, outletService: OutletService) =>
+    bootstrapModule.activate(['$rootScope', [serviceModule, OutletService.InjectionToken]], async (rootScope: Scope, outletService: OutletService) =>
     {
         Template.composers.push(new FormComposer(rootScope.container))
         Template.composers.push(new DataContext());
