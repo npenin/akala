@@ -1,4 +1,4 @@
-#  (2025-08-17)
+#  (2025-08-18)
 
 
 * chore : code cleanup eae1150
@@ -1127,6 +1127,7 @@
 * enable info logging by default 521849c
 * enable info logging by default e65f143
 * enable opentofu/terraform generation for aws lambda deployment 667a77b
+* enable switch composer 74a99b2
 * enable switch parser to use functions 229a371
 * enable wrap function 9630317
 * enforce URL usage and switch to @akala/fs 207908d
@@ -1157,6 +1158,7 @@
 * expose more middlewares b750c8f
 * expose more middlewares 24e8e4a
 * expose outlet as symbol b7a49ec
+* expose switch composer 92b2f25
 * expose TriggerArgs and TriggerReturnType e2a2c89
 * expose xpm f60e75a
 * extend AkalaConfig to include API URLs and enhance URL handling in plugin 5e28461
