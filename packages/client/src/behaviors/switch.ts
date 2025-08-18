@@ -41,7 +41,7 @@ export class SwitchComposer extends AttributeComposer<void> implements Composer<
         if (isOutletDefined(value))
             value = value[outletDefinition];
 
-        const result = this.outlsetService.apply(() => ({ element: item }), value, undefined);
+        const result = this.outlsetService.apply(() => ({ element: item }), value, value);
         return new StatefulSubscription(() => result.then(r => r[Symbol.dispose]())).unsubscribe;
 
         // const beacon = item['replacedWith'] || document.createTextNode('');
