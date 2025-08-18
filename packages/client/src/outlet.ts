@@ -208,7 +208,7 @@ export interface OutletDefined<TScope extends Scope<object>>
 
 export function isOutletDefined<TScope extends Scope<object>>(value: unknown): value is OutletDefined<TScope>
 {
-    return typeof value === 'object' && value !== null && outletDefinition in value;
+    return typeof value === 'function' && outletDefinition in value;
 }
 
 /**
