@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle undefined value 277a4b9
+* isOutletDefined returns proper evaluation 9dc86fc
 
 
 
