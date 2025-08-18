@@ -2,7 +2,7 @@ import { Binding, EmptyBinding, ObservableObject, Parser, type Subscription, com
 import type { IScope } from "../scope.js";
 import type { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
-import { ConstantExpression, type Expressions, ExpressionUpdater, MemberExpression, NewExpression, ParameterExpression, TypedExpression } from "@akala/core/expressions";
+import { ConstantExpression, type Expressions, ExpressionType, ExpressionUpdater, MemberExpression, NewExpression, ParameterExpression, TypedExpression } from "@akala/core/expressions";
 import { a } from "../dom-helpers.js";
 // import { MemberExpression, NewExpression } from "@akala/core/expressions";
 
@@ -65,57 +65,58 @@ export class DataContext implements Composer<IDataContext>
     static extend<T = unknown>(sourceContext: Binding<IDataContext>, options?: T, newContextPath?: string): Binding<IDataContext & T>
     static extend<T = unknown>(sourceContext: Binding<IDataContext>, options?: object, newContextPath?: string): Binding<IDataContext & T> | Binding<IDataContext>
     {
-        if (sourceContext.expression?.type == 'new' && sourceContext.expression.newType == '{')
-        {
-            if (options && typeof options == 'object')
-                return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
-                    ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
-                        new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
-                    ...sourceContext.expression.init,
-                    new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
-                ));
-            else if (newContextPath)
-                return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
-                    ...sourceContext.expression.init,
-                    new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
-                ));
-            else
-                return sourceContext as Binding<IDataContext>;
-        }
-        if (options && typeof options == 'object')
+        const makeMembers = (options: any) => [
+            ...Object.entries(options || {}).filter(([k]) => k !== 'context').map(
+                ([k, v]) => new MemberExpression<any, any, any>(new ConstantExpression(v), new ConstantExpression(k), false)
+            ),
+            ...DataContext.propagateProperties.filter(p => !(options && p in options)).map(
+                p => new MemberExpression<any, any, any>(
+                    new MemberExpression(null, new ConstantExpression(p), false),
+                    new ConstantExpression(p),
+                    false
+                )
+            )
+        ];
+
+        const makeContextMember = (options: any, newContextPath?: string) =>
         {
             if (!newContextPath || newContextPath.startsWith('context.'))
-                return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
-                    ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
-                        new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
-                    ...DataContext.propagateProperties.filter(p => !(p in options)).map(e =>
-                        new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
-                    new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
-                ));
-            else
+            {
+                return new MemberExpression<any, any, any>(
+                    Parser.parameterLess.parse(newContextPath || 'context') as any,
+                    new ConstantExpression('context'),
+                    false
+                );
+            } else
             {
                 const param = new ParameterExpression();
                 const parser = new Parser(param);
-                const contextExp = new ExpressionUpdater(param, new ConstantExpression(options)).visit(parser.parse(newContextPath)) as TypedExpression<any>;
+                const contextExp = new ExpressionUpdater(param, new ConstantExpression(options || {}))
+                    .visit(parser.parse(newContextPath)) as TypedExpression<any>;
 
-                return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
-                    ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
-                        new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
-                    ...DataContext.propagateProperties.filter(p => !(p in options)).map(e =>
-                        new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
-                    new MemberExpression(contextExp, new ConstantExpression('context'), false),
-                ));
+                return new MemberExpression(contextExp, new ConstantExpression('context'), false);
             }
-        }
-        else if (newContextPath)
+        };
+
+        if (sourceContext.expression?.type === 'new' && sourceContext.expression.newType === '{')
+        {
+            // Handle new-expression branch with parity
             return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
-                ...DataContext.propagateProperties.map(e =>
-                    new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
-                new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
+                ...makeMembers(options),
+                ...sourceContext.expression.init.filter(
+                    m => m.member.type == ExpressionType.ConstantExpression && !(options && m.member.value in options)
+                ),
+                makeContextMember(options, newContextPath),
             ));
-        else
-            return sourceContext;
+        }
+
+        // Default branch (non-new expression)
+        return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
+            ...makeMembers(options),
+            makeContextMember(options, newContextPath),
+        ));
     }
+
 
     /**
      * @private
