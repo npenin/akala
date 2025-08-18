@@ -1,9 +1,9 @@
-#  (2025-08-17)
+#  (2025-08-18)
 
 
-### Bug Fixes
+### Features
 
-* remove legacy scope concept 4506d0e
+* expose switch composer 92b2f25
 
 
 
