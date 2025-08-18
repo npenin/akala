@@ -106,7 +106,6 @@ export { DataBind, DataContext } from './behaviors/context.js';
 export { EventComposer } from './behaviors/events.js';
 export { CssClass, CssClassComposer } from './behaviors/cssClass.js';
 export { I18nComposer } from './behaviors/i18n.js';
-export { SwitchComposer } from './behaviors/switch.js';
 export { ClientBindings } from './client-bindings.js';
 export * from './dom-helpers.js';
 
