@@ -16,7 +16,7 @@ export default async function discover(path: string | URL, pm: pmContainer.conta
     // eslint-disable-next-line prefer-rest-params
     log.debug(arguments);
 
-    const moduleFs = await fsHandler.process(new URL(path + '/', pathToFileURL((cwd || process.cwd()) + '/')));
+    const moduleFs = await fsHandler.process(new URL(path, pathToFileURL((cwd || process.cwd()) + '/')));
 
     const packageConfig = await moduleFs.readFile<any>('./package.json', { encoding: 'json' })
 
