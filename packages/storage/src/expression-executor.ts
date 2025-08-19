@@ -178,7 +178,7 @@ export class ExpressionExecutor extends ExpressionVisitor
         {
             if (!this.isTypedExpression(source))
                 throw new Error('source is of type ' + source['type'] + ' and cannot be considered as a typed expression');
-            return new CallExpression<T, TMethod>(source, arg0.method, args);
+            return new CallExpression<T, TMethod>(source, arg0.method, args, arg0.optional);
         }
         return arg0;
     }
