@@ -209,6 +209,7 @@
 * disable jsonrpc run 7aea19a
 * disable nav folding for all documentation sections 6bc5e4d
 * disable nav folding for all documentation sections 9d5bcf4
+* discover command metadata f99348e
 * discover enforces nodejs runtime 09fb7b3
 * discover not using proper FS 9b5b428
 * do not through on empty list 0305479
