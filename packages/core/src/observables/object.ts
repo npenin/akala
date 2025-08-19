@@ -538,9 +538,9 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
                 const f = sourceGetter(target, watcher) as Function;
 
                 if (arg0.optional)
-                    return f && f[member(target)]?.apply(f, argGetters.map(g => g(target, watcher)));
+                    return f?.[member(target)]?.apply(f, argGetters.map(g => g(target, watcher)));
 
-                return f && f[member(target)].apply(f, argGetters.map(g => g(target, watcher)));
+                return f?.[member(target)].apply(f, argGetters.map(g => g(target, watcher)));
             };
         }
         else
