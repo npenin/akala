@@ -100,6 +100,7 @@
 * add web-ui connection to client in documentation flowchart e43978b
 * adjust end calculation in subarray method to account for offset 4d4a878
 * akala commands start 99d55d6
+* akala sdk page generator 9d3d969
 * allow line breaks and tabs in parser a5bb001
 * allow optional spaces 002c4a2
 * allow optional spaces 951a42d
@@ -1123,6 +1124,8 @@
 * allow CustomResolver as Resolvable b1cfa93
 * allow for signal to be provided to chain abort signal 320c767
 * allow late pubsub configuration ea3661e
+* allow new context to be provided as expression 0200948
+* allow new contextPage to be provided as expression 357ddb7
 * allow not assigning result as last parameter c93f78c
 * allow not assigning result as last parameter cbc28b4
 * allow promised subscriptions to be tearred down 74aaa72
