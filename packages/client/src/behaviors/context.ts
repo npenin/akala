@@ -31,8 +31,8 @@ export class DataContext implements Composer<IDataContext>
      * @param {object} context - The context to define.
      */
     static define(item: Element | ShadowRoot): Binding<IDataContext>
-    static define<T = unknown>(item: Element | ShadowRoot, context?: T, newContextPath?: string): Binding<IDataContext & T>
-    static define<T = unknown>(item: Element | ShadowRoot, context?: T, newContextPath?: string): Binding<IDataContext & T>
+    static define<T = unknown>(item: Element | ShadowRoot, context?: T, newContextPath?: string | TypedExpression<any>): Binding<IDataContext & T>
+    static define<T = unknown>(item: Element | ShadowRoot, context?: T, newContextPath?: string | TypedExpression<any>): Binding<IDataContext & T>
     {
         const dataContext = DataContext.extend<T>(DataContext.find(item), context, newContextPath);
         DataContext.defineDirect(item, dataContext);
@@ -62,8 +62,8 @@ export class DataContext implements Composer<IDataContext>
      * @returns {Binding<IDataContext>} The extended context.
      */
     static extend<T>(sourceContext: Binding<IDataContext>): Binding<IDataContext>
-    static extend<T = unknown>(sourceContext: Binding<IDataContext>, options?: T, newContextPath?: string): Binding<IDataContext & T>
-    static extend<T = unknown>(sourceContext: Binding<IDataContext>, options?: object, newContextPath?: string): Binding<IDataContext & T> | Binding<IDataContext>
+    static extend<T = unknown>(sourceContext: Binding<IDataContext>, options?: T, newContextPath?: string | TypedExpression<any>): Binding<IDataContext & T>
+    static extend<T = unknown>(sourceContext: Binding<IDataContext>, options?: object, newContextPath?: string | TypedExpression<any>): Binding<IDataContext & T> | Binding<IDataContext>
     {
         const makeMembers = (options: any) => [
             ...Object.entries(options || {}).filter(([k]) => k !== 'context').map(
@@ -78,16 +78,17 @@ export class DataContext implements Composer<IDataContext>
             )
         ];
 
-        const makeContextMember = (options: any, newContextPath?: string) =>
+        const makeContextMember = (options: any, newContextPath?: string | TypedExpression<any>) =>
         {
-            if (!newContextPath || newContextPath.startsWith('context.'))
+            if (!newContextPath || typeof newContextPath == 'string' && newContextPath.startsWith('context.'))
             {
                 return new MemberExpression<any, any, any>(
-                    Parser.parameterLess.parse(newContextPath || 'context') as any,
+                    Parser.parameterLess.parse((newContextPath || 'context') as string) as any,
                     new ConstantExpression('context'),
                     false
                 );
-            } else
+            }
+            else if (typeof newContextPath == 'string')
             {
                 const param = new ParameterExpression();
                 const parser = new Parser(param);
@@ -96,6 +97,8 @@ export class DataContext implements Composer<IDataContext>
 
                 return new MemberExpression(contextExp, new ConstantExpression('context'), false);
             }
+            else
+                return new MemberExpression(newContextPath, new ConstantExpression('context'), false);
         };
 
         if (sourceContext.expression?.type === 'new' && sourceContext.expression.newType === '{')
