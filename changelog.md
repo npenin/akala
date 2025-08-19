@@ -212,6 +212,9 @@
 * discover command metadata f99348e
 * discover enforces nodejs runtime 09fb7b3
 * discover not using proper FS 9b5b428
+* discover start path 48f4250
+* discover start path a3425fb
+* discover start path d4b1ec8
 * do not through on empty list 0305479
 * dockerfile 480944e
 * don't publish style updates 2f7631e
