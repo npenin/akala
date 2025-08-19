@@ -182,6 +182,7 @@
 * correct offset usage in read method for FixedString parser fb03327
 * correct title casing in formatters documentation ae403f9
 * correct title casing in formatters documentation 0477e0d
+* crash on standard use case 2b27048
 * css syntax 595ab12
 * cwd c335202
 * cwd a6dee22
