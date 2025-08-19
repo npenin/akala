@@ -104,7 +104,7 @@ export class DataContext implements Composer<IDataContext>
             return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
                 ...makeMembers(options),
                 ...sourceContext.expression.init.filter(
-                    m => m.member.type == ExpressionType.ConstantExpression && !(options && m.member.value in options)
+                    m => m.member.type == ExpressionType.ConstantExpression && !(options && m.member.value in options) && m.member.value !== 'context'
                 ),
                 makeContextMember(options, newContextPath),
             ));
@@ -174,7 +174,7 @@ export class DataContext implements Composer<IDataContext>
                 if (closest)
                 {
                     const oldBinding = binding;
-                    binding = DataContext.extend(closest, options, item.dataset.context);
+                    binding = DataContext.extend(binding, options, item.dataset.context);
                     binding.onChanged(ev => oldBinding.canSet && oldBinding.setValue(ev.value), true);
                 }
                 else
