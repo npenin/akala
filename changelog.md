@@ -105,6 +105,7 @@
 * allow optional spaces 951a42d
 * allow typed pubsub on sidecar 20d640d
 * allow typed pubsub on sidecar 1656a15
+* allow updating controller 98ecc37
 * allow using npx/yarn dlx 21e2024
 * allow using npx/yarn dlx 2b7f40e
 * allow using npx/yarn dlx e308778
