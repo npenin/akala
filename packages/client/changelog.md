@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* crash on standard use case 2b27048
+* improve data context c9c2a6f
+* provide switch options as params 1b559dd
 
 
 
