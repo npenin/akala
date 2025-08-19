@@ -1,4 +1,4 @@
-#  (2025-08-18)
+#  (2025-08-19)
 
 
 * chore : code cleanup eae1150
@@ -531,6 +531,7 @@
 * output logging 8045a93
 * overriding serveMetadata and connectByPreference in non browser dc2ade3
 * package definition 5571baf
+* ParsedArray legacy $$length 1aeb1ab
 * parsing ! expressions 0115a31
 * parsing on first parenthesis e3c07e4
 * pass keepAttached through 9603be4
@@ -573,6 +574,7 @@
 * **protocol-parser:** wrong reported length 2875210
 * provide proper logging 445a133
 * provide proper logging 2e02b06
+* provide switch value as template param 4b5d711
 * publicize fs module 97c3471
 * re-tag tag deletion 4a49a1c
 * re-tag tag deletion e6274d1
@@ -1093,6 +1095,8 @@
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
 * add string-fixed-or-null terminated parser 5cbd71f
+* add support for optional function call 5730ab2
+* add support for optional function call ae9ae21
 * add support for password secret in config 135edfa
 * add table row event handlers 392d906
 * add TcpSocketAdapter for TCP socket handling and update package exports 79e83bd
