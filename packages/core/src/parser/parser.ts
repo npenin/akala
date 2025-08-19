@@ -172,7 +172,7 @@ export class ParsedObject<T extends object = object> extends NewExpression<T>
 export class ParsedArray extends NewExpression<unknown[]> 
 {
 
-    constructor(public $$length: number, ...init: MemberExpression<unknown[], number, unknown>[])
+    constructor(...init: MemberExpression<unknown[], number, unknown>[])
     {
         super(...init);
         this.newType = '['
@@ -251,7 +251,11 @@ export class Parser
     public parse(expression: string, parseFormatter?: boolean, reset?: () => void): Expressions
     {
         expression = expression.trim();
-        return this.parseAny(new StringCursor(expression), (typeof parseFormatter !== 'boolean') || parseFormatter, reset);
+        const cursor = new StringCursor(expression);
+        const result = this.parseAny(cursor, (typeof parseFormatter !== 'boolean') || parseFormatter, reset);
+        if (cursor.offset < cursor.length)
+            throw new Error(`invalid character ${cursor.char} at ${cursor.offset}`);
+        return result;
     }
 
     /**
@@ -332,9 +336,9 @@ export class Parser
             const result = new ParsedBoolean(boolMatch[0]);
             if (formatter !== identity)
             {
-                return new ParsedBoolean(formatter.instance.format(result.value));
+                return this.tryParseOperator(expression, new ParsedBoolean(formatter.instance.format(result.value)), true);
             }
-            return result;
+            return this.tryParseOperator(expression, result, true);
         }
         else if (formatter !== identity)
         {
@@ -596,7 +600,7 @@ export class Parser
         }, ']');
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return this.tryParseOperator(expression, new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()), false))), parseFormatter, reset);
+        return this.tryParseOperator(expression, new ParsedArray(...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()), false))), parseFormatter, reset);
     }
 
     /**
