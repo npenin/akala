@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* provide switch value as template param 4b5d711
+* allow updating controller 98ecc37
 
 
 
