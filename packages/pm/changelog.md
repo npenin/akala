@@ -3,7 +3,9 @@
 
 ### Bug Fixes
 
-* discover command metadata f99348e
+* discover start path 48f4250
+* discover start path a3425fb
+* discover start path d4b1ec8
 
 
 
