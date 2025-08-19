@@ -1,9 +1,14 @@
-#  (2025-08-18)
+#  (2025-08-19)
 
 
 ### Bug Fixes
 
-* avoid crash on non-simplifyable expression c5fb595
+* ParsedArray legacy $$length 1aeb1ab
+
+
+### Features
+
+* add support for optional function call ae9ae21
 
 
 
