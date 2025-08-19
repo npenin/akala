@@ -143,9 +143,12 @@ export class DataContext implements Composer<IDataContext>
      * @param {object} options - The options to get.
      * @returns {{ context: Scope; controller: Partial<Disposable>; }} The context and controller options.
      */
-    optionGetter(options: object): { context: Scope; controller: Partial<Disposable>; }
+    optionGetter(options: IDataContext): IDataContext
     {
-        return { context: options['$rootScope'], controller: options['controller'], ...options };
+        const result: IDataContext = { ...options };
+        if (!options['context'] && options['$rootScope'])
+            result.context = options['$rootScope'];
+        return result;
     }
 
     /**
