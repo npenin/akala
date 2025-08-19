@@ -1,8 +1,10 @@
-import { ObservableObject, Parser, type Resolvable, SimpleInjector } from "@akala/core"
+import { Binding, ObservableObject, Parser, type Resolvable, SimpleInjector } from "@akala/core"
 import { type OutletDefined, type OutletDefinition, outletDefinition } from "../outlet.js"
 import { type IScope } from "../scope.js"
 import { Control } from "./shared.js";
 import { DataContext } from "../common.js";
+import { IDataContext } from "../behaviors/context.js";
+import { ConstantExpression, ExpressionType, MemberExpression, NewExpression } from "@akala/core/expressions";
 // import { DataContext } from "../common.js";
 
 export const RootElement = Symbol('root html template element');
@@ -59,7 +61,19 @@ export class Page extends Control<{}, HTMLElement>
     constructor(el: HTMLElement)
     {
         super(el);
-        DataContext.define(el, { controller: this });
+        if (el['dataContext'])
+        {
+            const context = el['dataContext'] as Binding<IDataContext>;
+            const indexOfController = context.expression?.type == ExpressionType.NewExpression && context.expression.init.findIndex(e => e.member.type == ExpressionType.ConstantExpression && e.member.value == 'controller');
+            const oldValue = context.getValue();
+            if (typeof indexOfController == 'number' && indexOfController > -1)
+                (context.expression as NewExpression<any>).init.splice(indexOfController, 1, new MemberExpression<any, any, any>(new ConstantExpression(this), new ConstantExpression('controller'), false))
+            else
+                throw new Error('Unknown case');
+            context.emit('change', { oldValue: oldValue, value: context.getValue() });
+        }
+        else
+            DataContext.define(el, { controller: this });
     }
 
 }
