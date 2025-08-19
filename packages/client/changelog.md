@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* allow updating controller 98ecc37
+* crash on standard use case 2b27048
 
 
 
