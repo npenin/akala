@@ -417,6 +417,7 @@
 * improper config init 70efb0d
 * improper config init 0f90955
 * improve akala plugin ed46190
+* improve data context c9c2a6f
 * improve discover using @akala/fs e96ea22
 * improve discovery 31bdd8a
 * improve discovery 3e0d64b
@@ -576,6 +577,7 @@
 * **protocol-parser:** wrong reported length 2875210
 * provide proper logging 445a133
 * provide proper logging 2e02b06
+* provide switch options as params 1b559dd
 * provide switch value as template param 4b5d711
 * publicize fs module 97c3471
 * re-tag tag deletion 4a49a1c
@@ -724,6 +726,7 @@
 * sonar issues 08efb9b
 * sonar issues d8fff97
 * sonar issues 9b4e3c4
+* sonarqube issue 31fab89
 * sonarqube issue b240958
 * sonarqube warning bd2b4b5
 * sonarqube warning 4b5de76
