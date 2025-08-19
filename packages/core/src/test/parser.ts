@@ -181,13 +181,14 @@ describe('parser tests', () =>
 
         it('parses function calls', () =>
         {
-            assert.ok(() => parser.parse('foo(1,2)'));
+            assert.strictEqual(3, evaluator.eval(parser.parse('foo(1,2)'))({ foo(a: number, b: number) { return a + b; } }));
+            assert.strictEqual(undefined, evaluator.eval(parser.parse('foo?.(1,2)'))({}));
         });
 
         it('parses member access', () =>
         {
-            assert.ok(() => parser.parse('foo.bar'));
-            assert.ok(() => parser.parse('foo?.bar'));
+            assert.ok(parser.parse('foo.bar'));
+            assert.ok(parser.parse('foo?.bar'));
         });
 
         it('parses formatter expression', () =>

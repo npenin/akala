@@ -23,7 +23,7 @@ export class CallExpression<T, TMethod extends keyof T> extends Expression
      * @param {TypedExpression<TMethod>} method - The method expression.
      * @param {StrictExpressions[]} args - The arguments of the call expression.
      */
-    constructor(public readonly source: TypedExpression<T>, public readonly method: TypedExpression<TMethod>, args: StrictExpressions[])
+    constructor(public readonly source: TypedExpression<T>, public readonly method: TypedExpression<TMethod>, args: StrictExpressions[], public readonly optional: boolean)
     {
         super();
         this.arguments = args;

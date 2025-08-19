@@ -171,7 +171,7 @@ export class ExpressionVisitor
         {
             if (!this.isTypedExpression(source))
                 throw new Error(`Source expression of type ${source?.['type']} cannot be treated as typed`);
-            return new CallExpression<T, TMethod>(source, expression.method, args);
+            return new CallExpression<T, TMethod>(source, expression.method, args, expression.optional);
         }
         return expression;
     }

@@ -524,7 +524,8 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
     visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): StrictExpressions
     {
         const getter = this.getter;
-        this.visit(arg0.source);
+        if (arg0.source)
+            this.visit(arg0.source);
         const sourceGetter = this.getter;
 
         const argGetters = arg0.arguments.map(a => { this.getter = getter; this.visit(a); return this.getter; })
@@ -535,6 +536,10 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
             this.getter = (target, watcher) =>
             {
                 const f = sourceGetter(target, watcher) as Function;
+
+                if (arg0.optional)
+                    return f && f[member(target)]?.apply(f, argGetters.map(g => g(target, watcher)));
+
                 return f && f[member(target)].apply(f, argGetters.map(g => g(target, watcher)));
             };
         }

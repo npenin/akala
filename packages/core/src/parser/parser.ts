@@ -467,10 +467,11 @@ export class Parser
                     }
                     return this.parseFormatter(expression, lhs, reset);
                 case '(':
+                case '.(':
                     reset?.();
                     if (lhs)
                     {
-                        expression.offset -= operator[0].length;
+                        expression.offset--;
                         return this.parseFunctionCall(expression, lhs, parseFormatter);
                     }
                     else
@@ -551,6 +552,8 @@ export class Parser
     {
         const results: (StrictExpressions)[] = [];
 
+        const optional = expression.offset > 1 && expression.string[expression.offset - 2] == '?';
+
         this.parseCSV(expression, () =>
         {
             const item = this.parseAny(expression, parseFormatter);
@@ -565,7 +568,8 @@ export class Parser
                     // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     lhs.source as Expressions & TypedExpression<any>,
                     lhs.member,
-                    results
+                    results,
+                    optional
                 ),
                 parseFormatter
             );
@@ -575,7 +579,8 @@ export class Parser
             new CallExpression(
                 lhs as Expressions & TypedExpression<unknown>,
                 null,
-                results
+                results,
+                optional
             ),
             parseFormatter,
         );
