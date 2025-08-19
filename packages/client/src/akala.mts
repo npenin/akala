@@ -238,9 +238,9 @@ import template from './${name}.html?raw'
 @page({ template, 'inject': [RootElement] })
 export default class ${toPascalCase(name)} extends Page
 {
-    constructor(private el: HTMLElement)
+    constructor(el: HTMLElement)
     {
-        super();
+        super(el);
     }
 `);
 
