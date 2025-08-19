@@ -67,10 +67,13 @@ export class Page extends Control<{}, HTMLElement>
             const indexOfController = context.expression?.type == ExpressionType.NewExpression && context.expression.init.findIndex(e => e.member.type == ExpressionType.ConstantExpression && e.member.value == 'controller');
             const oldValue = context.getValue();
             if (typeof indexOfController == 'number' && indexOfController > -1)
+            {
                 (context.expression as NewExpression<any>).init.splice(indexOfController, 1, new MemberExpression<any, any, any>(new ConstantExpression(this), new ConstantExpression('controller'), false))
+                context.emit('change', { oldValue: oldValue, value: context.getValue() });
+            }
             else
-                throw new Error('Unknown case');
-            context.emit('change', { oldValue: oldValue, value: context.getValue() });
+                DataContext.define(el, { controller: this });
+
         }
         else
             DataContext.define(el, { controller: this });
