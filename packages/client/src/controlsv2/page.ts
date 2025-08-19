@@ -4,7 +4,7 @@ import { type IScope } from "../scope.js"
 import { Control } from "./shared.js";
 import { DataContext } from "../common.js";
 import { IDataContext } from "../behaviors/context.js";
-import { ConstantExpression, ExpressionType, MemberExpression, NewExpression } from "@akala/core/expressions";
+import { ConstantExpression, ExpressionType, MemberExpression, NewExpression, TypedExpression } from "@akala/core/expressions";
 // import { DataContext } from "../common.js";
 
 export const RootElement = Symbol('root html template element');
@@ -58,7 +58,7 @@ export function withOutlet<T extends new (...args: any[]) => {}, TScope extends 
 
 export class Page extends Control<{}, HTMLElement>
 {
-    constructor(el: HTMLElement)
+    constructor(el: HTMLElement, contextExpression?: TypedExpression<any>)
     {
         super(el);
         if (el['dataContext'])
@@ -69,14 +69,16 @@ export class Page extends Control<{}, HTMLElement>
             if (typeof indexOfController == 'number' && indexOfController > -1)
             {
                 (context.expression as NewExpression<any>).init.splice(indexOfController, 1, new MemberExpression<any, any, any>(new ConstantExpression(this), new ConstantExpression('controller'), false))
+                if (contextExpression)
+                    (context.expression as NewExpression<any>).init.splice((context.expression as NewExpression<any>).init.length - 1, 1, new MemberExpression<any, any, any>(contextExpression, new ConstantExpression('context'), false));
                 context.emit('change', { oldValue: oldValue, value: context.getValue() });
             }
             else
-                DataContext.define(el, { controller: this });
+                DataContext.define(el, { controller: this }, contextExpression);
 
         }
         else
-            DataContext.define(el, { controller: this });
+            DataContext.define(el, { controller: this }, contextExpression);
     }
 
 }
