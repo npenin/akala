@@ -532,6 +532,7 @@
 * outlet root scope fb5cfd1
 * outlet root scope 3c0d3e6
 * output logging 8045a93
+* overriden context extension 5702229
 * overriding serveMetadata and connectByPreference in non browser dc2ade3
 * package definition 5571baf
 * ParsedArray legacy $$length 1aeb1ab
@@ -1186,6 +1187,7 @@
 * formatters can be registered by priority 80d96e1
 * formatters can be registered by priority 1204aa8
 * generalize signature to open it to $http options too 09eee3a
+* handle vertical split button fe64a5f
 * hotkey trigger moved to config instead of command name df81271
 * http-client now has body support 9895032
 * http-client now has body support d217cac
