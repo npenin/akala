@@ -59,7 +59,6 @@ export default async function (this: State, config: ProxyConfiguration<{ provide
 
         if (user && await this.verifyHash(password, base64.base64DecToArr(user.password), base64.base64DecToArr(user.salt)))
             return user;
-
     }))
 
     ExchangeMiddleware.register('code', async (code, clientId, req) =>
