@@ -163,39 +163,30 @@ export class DataContext implements Composer<IDataContext>
      */
     apply(item: HTMLElement, options?: { context: Scope, controller: Partial<Disposable> }, root?: HTMLElement | ShadowRoot): Disposable
     {
-        if (item.dataset.context == '$rootScope' || item.dataset.context === '')
-        {
-            if (item['dataContext'])
-                return item['dataContext'];
-            return item['dataContext'] = new Binding(options, null);
-        }
-        else
-        {
-            let binding: Binding<IDataContext> = item['dataContext'];
-            const closest = DataContext.find(item.parentElement || root);
-            if (binding)
-                if (closest)
-                {
-                    const oldBinding = binding;
-                    binding = DataContext.extend(binding, options, item.dataset.context);
-                    binding.onChanged(ev => oldBinding.canSet && oldBinding.setValue(ev.value), true);
-                }
-                else
-                {
-                    const oldBinding = binding;
-                    binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
-                    binding.onChanged(ev => oldBinding.canSet && oldBinding.setValue(ev.value), true);
-                }
+        let binding: Binding<IDataContext> = item['dataContext'];
+        const closest = DataContext.find(item.parentElement || root);
+        if (binding)
+            if (closest)
+            {
+                const oldBinding = binding;
+                binding = DataContext.extend(binding, options, item.dataset.context);
+                binding.onChanged(ev => oldBinding.canSet && oldBinding.setValue(ev.value), true);
+            }
             else
-                if (closest)
-                    binding = DataContext.extend(closest, options, item.dataset.context);
-                else
-                    binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
+            {
+                const oldBinding = binding;
+                binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
+                binding.onChanged(ev => oldBinding.canSet && oldBinding.setValue(ev.value), true);
+            }
+        else
+            if (closest)
+                binding = DataContext.extend(closest, options, item.dataset.context);
+            else
+                binding = DataContext.extend(new EmptyBinding(options), null, item.dataset.context);
 
-            ObservableObject.setValue(item, DataContext.dataContextExpression, binding);
+        ObservableObject.setValue(item, DataContext.dataContextExpression, binding);
 
-            return binding;
-        }
+        return binding;
     }
 
     /**
