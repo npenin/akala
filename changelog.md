@@ -1209,6 +1209,7 @@
 * implement WebSocketAdapter and move SocketAdapter interfaces to network module 46e9223
 * improve documentation titles and structure for middleware sections 34f33ad
 * improve documentation titles and structure for middleware sections 2395989
+* improve event plugins 6bd06a3
 * improve event plugins 9ae4041
 * improve translator interface d3884d0
 * include URI in request logging for improved traceability 16891b5
