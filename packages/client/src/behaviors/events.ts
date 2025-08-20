@@ -4,16 +4,15 @@ import { DataContext } from "./context.js";
 import { AttributeComposer } from "./shared.js";
 import { fromEvent } from "../common.js";
 
-export interface EventPlugin<TEvent extends PropertyKey>
+export interface EventPlugin
 {
-    eventName: TEvent;
-    beforeEventRegistration<T>(item: Element, options: T, handler: (...args: unknown[]) => unknown): void | Subscription;
-    afterEventRegistration<T>(item: Element, options: T, handler: (...args: unknown[]) => unknown, subscription: Subscription): Subscription | void;
+    beforeEventRegistration?<T>(item: Element, options: T, handler: (...args: unknown[]) => unknown): void | Subscription;
+    afterEventRegistration?<T>(item: Element, options: T, handler: (...args: unknown[]) => unknown, subscription: Subscription): Subscription | void;
 }
 
 export class EventComposer<T extends Partial<Disposable>> extends AttributeComposer<T> implements Composer<T>
 {
-    public static readonly plugins: { [key in PropertyKey]: EventPlugin<key> } = {};
+    public static readonly plugins: Record<PropertyKey, EventPlugin> = {};
 
     getContext(item: HTMLElement, options?: T)
     {
