@@ -339,6 +339,7 @@
 * handle null case 9c3dc93
 * handle null closest parent c53e4d5
 * handle null configuration value b5d6df1
+* handle null formatters 8fc63ea
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
 * handle object config type a0831b7
