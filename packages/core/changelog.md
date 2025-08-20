@@ -1,9 +1,9 @@
 #  (2025-08-20)
 
 
-### Features
+### Bug Fixes
 
-* enable spaces on json formatter b648144
+* handle null watcher on visitConstant bdeddad
 
 
 
