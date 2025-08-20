@@ -320,6 +320,7 @@
 * handle case when url pathname is empty b44a1dc
 * handle cases when no auth is configured for the current trigger a4ac9a0
 * handle container metadata in the activate stage fedf680
+* handle datacontext root 0452a62
 * handle duplicate ws and http servers e1855d7
 * handle edge case on datacontext definition 50c0275
 * handle empty buffer 0135f95
@@ -1110,6 +1111,7 @@
 * add support for optional function call 5730ab2
 * add support for optional function call ae9ae21
 * add support for password secret in config 135edfa
+* add support for URLs in server routes c10cf67
 * add table row event handlers 392d906
 * add TcpSocketAdapter for TCP socket handling and update package exports 79e83bd
 * add TileManager (incomplete) 9e0d08f
