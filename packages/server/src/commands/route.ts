@@ -3,7 +3,7 @@ import * as path from 'path'
 import { HttpRouter } from '../router/index.js';
 import { type Options, StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
-export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & Options, cwd: string): void
+export default function route(this: State, route: string, target: string | URL, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & Options, cwd: string): void
 {
     let method: 'get' | 'use' | 'useGet';
 
@@ -20,9 +20,12 @@ export default function route(this: State, route: string, target: string, option
     else
         method = 'get';
 
-
-    if (target && !path.isAbsolute(target))
-        target = path.resolve(cwd, target);
+    if (target && (target instanceof URL || URL.canParse(target)))
+    {
+        target = new URL(target);
+    }
+    else if (target && !path.isAbsolute(target as string))
+        target = path.resolve(cwd, target as string);
 
     let router: HttpRouter;
 
