@@ -3,7 +3,7 @@
 
 ### Features
 
-* improve event plugins 9ae4041
+* improve event plugins 6bd06a3
 
 
 
