@@ -342,6 +342,7 @@
 * handle null formatters 8fc63ea
 * handle null in sort formatter 5c27a43
 * handle null options during datacontext extension 8d1a88b
+* handle null watcher on visitConstant bdeddad
 * handle object config type a0831b7
 * handle once 3b574b9
 * handle optional chaining in schema serialization functions 122a158
