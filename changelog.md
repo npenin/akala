@@ -1126,6 +1126,7 @@
 * akala plugin implementation d050e1a
 * allow customizing the context name with the name attribute a9d0353
 * allow CustomResolver as Resolvable b1cfa93
+* allow dialog dragging 99e1399
 * allow for signal to be provided to chain abort signal 320c767
 * allow late pubsub configuration ea3661e
 * allow new context to be provided as expression 0200948
