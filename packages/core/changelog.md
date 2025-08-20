@@ -1,9 +1,9 @@
-#  (2025-08-19)
+#  (2025-08-20)
 
 
 ### Bug Fixes
 
-* sonarqube issue 31fab89
+* handle null formatters 8fc63ea
 
 
 
