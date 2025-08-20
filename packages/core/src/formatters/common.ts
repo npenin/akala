@@ -48,7 +48,7 @@ export function isReversible<T, TArgs extends unknown[]>(formatter: Formatter<T>
         case 'function':
             return 'unformat' in formatter.prototype && typeof formatter.prototype.unformat == 'function';
         case 'object':
-            return 'unformat' in formatter && typeof formatter.unformat == 'function';
+            return formatter && 'unformat' in formatter && typeof formatter.unformat == 'function';
         default:
             return false;
     }
