@@ -130,6 +130,7 @@
 * bindings implementation 69b3e3f
 * bindings implementation 8362190
 * borderless buttons 2df95f3
+* bottom dialog correct animation cb83a47
 * broken `has` behavior 4c886b7
 * broken `has` behavior de026d0
 * buffer reading when unlimited 8440c4d
