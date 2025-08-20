@@ -1158,6 +1158,7 @@
 * enable info logging by default 521849c
 * enable info logging by default e65f143
 * enable opentofu/terraform generation for aws lambda deployment 667a77b
+* enable spaces on json formatter b648144
 * enable switch composer 74a99b2
 * enable switch parser to use functions 229a371
 * enable wrap function 9630317
