@@ -1,14 +1,9 @@
 #  (2025-08-20)
 
 
-### Bug Fixes
+### Features
 
-* remove unnecessary formatter # registration 173d3e9
-
-
-### BREAKING CHANGES
-
-* formatters are now registered without a hash
+* enable spaces on json formatter b648144
 
 
 
