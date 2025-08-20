@@ -5,7 +5,7 @@ dialog {
     box-shadow: var(--shadow);
     top: 0;
     left: 50%;
-    transform: translateX(-50%) var(--dialog-animation-transform-start);
+    transform: translateX(-50%) var(--dialog-animation-transform-start) var(--drag);
     padding: var(--local-gutter-y) var(--local-gutter-x);
 
     opacity: 0;
@@ -13,7 +13,7 @@ dialog {
 
     &[open] {
         opacity: 1;
-        transform: translateX(-50%) var(--dialog-animation-transform-end);
+        transform: translateX(-50%) var(--dialog-animation-transform-end) var(--drag);
 
         &::backdrop {
             opacity: 1;
@@ -33,11 +33,11 @@ dialog {
     &.centered {
         top: 50%;
         left: 50%;
-        transform: translateX(-50%) var(--dialog-animation-transform-start);
+        transform: translateX(-50%) var(--dialog-animation-transform-start) var(--drag);
 
         &[open] {
             opacity: 1;
-            transform: translateX(-50%) var(--dialog-animation-transform-end);
+            transform: translateX(-50%) var(--dialog-animation-transform-end) var(--drag);
         }
     }
 
@@ -45,11 +45,11 @@ dialog {
         top: unset;
         bottom: 0;
         left: 50%;
-        transform: translateX(-50%) var(--dialog-animation-transform-start);
+        transform: translateX(-50%) var(--dialog-animation-transform-start) var(--drag);
 
         &[open] {
             opacity: 1;
-            transform: translateX(-50%) var(--dialog-animation-transform-end);
+            transform: translateX(-50%) var(--dialog-animation-transform-end) var(--drag);
         }
     }
 
@@ -96,15 +96,15 @@ body:has(dialog[open]::backdrop) {
 
     dialog[open] {
         opacity: 0;
-        transform: translateX(-50%) var(--dialog-animation-transform-start);
+        transform: translateX(-50%) var(--dialog-animation-transform-start) var(--drag);
     }
 
     dialog.centered[open] {
-        transform: translateX(-50%) var(--dialog-animation-transform-start);
+        transform: translateX(-50%) var(--dialog-animation-transform-start) var(--drag);
     }
 
     dialog.bottom[open] {
-        transform: translateX(-50%) var(--dialog-animation-transform-start);
+        transform: translateX(-50%) var(--dialog-animation-transform-start) var(--drag);
     }
 
     dialog[open]::backdrop {
