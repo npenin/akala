@@ -2,9 +2,19 @@ import type { Subscription } from "@akala/core";
 import type { Composer } from "../template.js";
 import { DataContext } from "./context.js";
 import { AttributeComposer } from "./shared.js";
+import { fromEvent } from "../common.js";
+
+export interface EventPlugin<TEvent extends PropertyKey>
+{
+    eventName: TEvent;
+    beforeEventRegistration<T>(item: Element, options: T, handler: (...args: unknown[]) => unknown): void;
+    afterEventRegistration<T>(item: Element, options: T, handler: (...args: unknown[]) => unknown, subscription: Subscription): void;
+}
 
 export class EventComposer<T extends Partial<Disposable>> extends AttributeComposer<T> implements Composer<T>
 {
+    public static readonly plugins: { [key in PropertyKey]: EventPlugin<key> } = {};
+
     getContext(item: HTMLElement, options?: T)
     {
         return DataContext.find(item);
@@ -17,9 +27,16 @@ export class EventComposer<T extends Partial<Disposable>> extends AttributeCompo
 
     optionName = 'controller';
 
-    applyInternal<const TKey extends PropertyKey>(item: HTMLElement, options: T, event: TKey, handler: unknown): Subscription | void
+    applyInternal<const TKey extends PropertyKey>(item: HTMLElement, options: T, event: TKey, handler: (...args: unknown[]) => unknown): Subscription | void
     {
-        item.addEventListener(event as any, handler as (...args: unknown[]) => unknown);
-        return () => { item.removeEventListener(event as any, handler as (...args: unknown[]) => unknown); return true; };
+        const ev = fromEvent(item, event as keyof HTMLElementEventMap);
+
+        EventComposer.plugins[event]?.beforeEventRegistration?.(item, options, handler);
+
+        const result = ev.addListener(handler);
+
+        EventComposer.plugins[event]?.afterEventRegistration?.(item, options, handler, result)
+
+        return result;
     }
 }
