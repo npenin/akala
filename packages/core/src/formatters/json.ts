@@ -5,6 +5,10 @@ import type { Formatter, ReversibleFormatter } from "./common.js";
  */
 export default class Json implements Formatter<string>, ReversibleFormatter<string, unknown>
 {
+    constructor(private readonly settings: { space: string | number })
+    {
+
+    }
     /**
      * Converts a value to a JSON string using default serialization.
      * @template T - The type of the input value.
@@ -13,7 +17,7 @@ export default class Json implements Formatter<string>, ReversibleFormatter<stri
      */
     format<T>(value: T): string
     {
-        return JSON.stringify(value);
+        return JSON.stringify(value, null, this.settings.space);
     }
 
     /**
