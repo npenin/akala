@@ -1,9 +1,9 @@
 #  (2025-08-20)
 
 
-### Features
+### Bug Fixes
 
-* improve event plugins 6bd06a3
+* handle datacontext root 0452a62
 
 
 
