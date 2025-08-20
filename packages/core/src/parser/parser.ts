@@ -432,7 +432,7 @@ export class Parser
             settings = this.parseAny(expression, false);
         }
 
-        const result = new FormatExpression(lhs, formatters.resolve<FormatterFactory<unknown>>('#' + item[1]), settings);
+        const result = new FormatExpression(lhs, formatters.resolve<FormatterFactory<unknown>>(item[1]), settings);
         return this.tryParseOperator(expression, result, true, reset);
     }
 

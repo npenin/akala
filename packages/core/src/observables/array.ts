@@ -486,4 +486,4 @@ export class AsyncArrayFormatter<T> implements Formatter<ObservableArray<T>>
     }
 }
 
-formatters.register('#asyncArray', AsyncArrayFormatter);
+formatters.register('asyncArray', AsyncArrayFormatter);

@@ -35,10 +35,10 @@ export function reverseFormatter<TResult, TOrigin, TSettings extends unknown[]>(
 
 export const formatters: Module & { resolve<T>(formatter: string extends `#${infer X}` ? `#${X} ` : never): FormatterFactory<T> } = new Module('$formatters');
 
-formatters.register('#not', negate);
-formatters.register('#bool', booleanize);
-formatters.register('#json', json);
-formatters.register('#date', date);
-formatters.register('#toDate', reverseFormatter(date));
-formatters.register('#debounce', Debounce);
-formatters.register('#slice', Slice);
+formatters.register('not', negate);
+formatters.register('bool', booleanize);
+formatters.register('json', json);
+formatters.register('date', date);
+formatters.register('toDate', reverseFormatter(date));
+formatters.register('debounce', Debounce);
+formatters.register('slice', Slice);

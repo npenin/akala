@@ -211,7 +211,7 @@ export default class Sort<T> implements Formatter<T[]>
     }
 }
 
-formatters.register('#sort', Sort);
+formatters.register('sort', Sort);
 
 export class ParserFormatter implements ReversibleFormatter<Expressions, string>
 {
@@ -226,5 +226,5 @@ export class ParserFormatter implements ReversibleFormatter<Expressions, string>
 
 }
 
-formatters.register('#parse', ParserFormatter);
+formatters.register('parse', ParserFormatter);
 

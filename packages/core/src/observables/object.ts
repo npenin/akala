@@ -69,7 +69,7 @@ export class AsyncFormatter extends WatcherFormatter
     }
 }
 
-formatters.register('#async', AsyncFormatter);
+formatters.register('async', AsyncFormatter);
 
 export class EventFormatter<T extends unknown[]> extends WatcherFormatter
 {
@@ -114,7 +114,7 @@ export class EventFormatter<T extends unknown[]> extends WatcherFormatter
     }
 }
 
-formatters.register('#event', EventFormatter);
+formatters.register('event', EventFormatter);
 
 
 export default class Watch<T extends object> extends WatcherFormatter
@@ -139,7 +139,7 @@ export default class Watch<T extends object> extends WatcherFormatter
 
 };
 
-formatters.register('#watch', Watch);
+formatters.register('watch', Watch);
 
 export class BindingFormatter extends WatcherFormatter
 {
@@ -189,7 +189,7 @@ export class BindingFormatter extends WatcherFormatter
     }
 }
 
-formatters.register('#unbind', BindingFormatter);
+formatters.register('unbind', BindingFormatter);
 
 // export interface IWatched<T>
 // {

@@ -358,4 +358,4 @@ export class HttpCallFormatter implements Formatter<PromiseLike<Response>>
     }
 }
 
-formatters.register('#http', HttpCallFormatter);
+formatters.register('http', HttpCallFormatter);

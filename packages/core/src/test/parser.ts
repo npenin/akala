@@ -48,7 +48,7 @@ describe('parser tests', () =>
             return `$http on '${value}'`;
         }
     }
-    formatters.register('#http', DummyHttpFormatter, true);
+    formatters.register('http', DummyHttpFormatter, true);
 
     it('should return number', () =>
     {
