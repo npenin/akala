@@ -1,4 +1,4 @@
-#  (2025-08-19)
+#  (2025-08-20)
 
 
 * chore : code cleanup eae1150
@@ -1146,6 +1146,7 @@
 * disable comments 5b33949
 * disable comments f2c7940
 * disable comments dbd2848
+* enable event plugins 20734a8
 * enable general purpose verbose flag e49a4fb
 * enable info logging by default 521849c
 * enable info logging by default e65f143
