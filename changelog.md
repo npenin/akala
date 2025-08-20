@@ -646,6 +646,7 @@
 * remove production flag on npm helper 83a1885
 * remove reference to a legacy function e8c2c3b
 * remove reference to a legacy function b7dc12e
+* remove unnecessary formatter # registration 173d3e9
 * remove unnecessary metadata from CLI documentation files c472f4c
 * remove unnecessary metadata from CLI documentation files 6b2386c
 * remove unused close function to clean up code e100b49
@@ -833,6 +834,7 @@
 * update after core breaking change 6ea3ca9
 * update after core breaking changes 481dcd6
 * update after core BufferEncoding introduction 298da96
+* update after core change de72dd3
 * update after core Translator interface upgrade a6500a1
 * update after fs breaking change 27ec208
 * update after fs breaking change 56df9a7
@@ -1273,6 +1275,7 @@
 
 ### BREAKING CHANGES
 
+* formatters are now registered without a hash
 * Page are now controls, and require the element to be provided as a constructor parameter
 * websocketadapter now comes from core
 * remove SocketAdapter

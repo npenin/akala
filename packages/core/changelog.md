@@ -3,7 +3,12 @@
 
 ### Bug Fixes
 
-* handle null formatters 8fc63ea
+* remove unnecessary formatter # registration 173d3e9
+
+
+### BREAKING CHANGES
+
+* formatters are now registered without a hash
 
 
 
