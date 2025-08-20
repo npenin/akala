@@ -12,7 +12,7 @@ export { bootstrap };
 export default bootstrap;
 
 
-formatters.register('#invoke', class implements Formatter<(ev: Event) => unknown>
+formatters.register('invoke', class implements Formatter<(ev: Event) => unknown>
 {
     constructor(private readonly inner: (value, ev) => unknown) { }
 

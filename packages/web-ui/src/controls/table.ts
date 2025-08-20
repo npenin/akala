@@ -480,4 +480,4 @@ export class TableFormatter<T> extends WatcherFormatter<ObservableArray<T>>
 
 }
 
-formatters.register('#table', TableFormatter);
+formatters.register('table', TableFormatter);
