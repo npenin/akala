@@ -444,7 +444,7 @@ export class BuildWatcherAndSetter<T> extends ExpressionVisitor
                 if (!sub)
                 {
                     sub = arg0.value.onChanged(ev => watcher.emit('change', arg0.value as object));
-                    watcher.on(Symbol.dispose, sub);
+                    watcher?.on(Symbol.dispose, sub);
                 }
                 return arg0.value.getValue();
             }
