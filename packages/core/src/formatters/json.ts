@@ -5,7 +5,7 @@ import type { Formatter, ReversibleFormatter } from "./common.js";
  */
 export default class Json implements Formatter<string>, ReversibleFormatter<string, unknown>
 {
-    constructor(private readonly settings: { space: string | number })
+    constructor(private readonly settings?: { space: string | number })
     {
 
     }
@@ -17,7 +17,7 @@ export default class Json implements Formatter<string>, ReversibleFormatter<stri
      */
     format<T>(value: T): string
     {
-        return JSON.stringify(value, null, this.settings.space);
+        return JSON.stringify(value, null, this.settings?.space);
     }
 
     /**
