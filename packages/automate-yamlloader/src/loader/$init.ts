@@ -1,5 +1,5 @@
 import { sidecar } from '@akala/pm'
-import { Container } from '@akala/commands';
+import type { Container } from '@akala/commands';
 
 export default async function (container: Container<void>)
 {
