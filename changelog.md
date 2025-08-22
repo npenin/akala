@@ -1,4 +1,4 @@
-#  (2025-08-20)
+#  (2025-08-22)
 
 
 * chore : code cleanup eae1150
@@ -489,6 +489,7 @@
 * make event keys match types properly 1c71c4b
 * make fromEvent bind only once dd7addd
 * make fs private for now 6e84b29
+* make json formatter settings optional f461122
 * make jsonrpc triggers statically discovering metadata df2ef95
 * make modelDefinitions readonly f797208
 * make page as controls c8e603e
