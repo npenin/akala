@@ -31,7 +31,7 @@ export type Listener<T extends readonly unknown[] = unknown[], TReturnType = voi
  * @template T
  * @typedef {function(...TArgs): TReturnType} EventListener
  */
-export type EventListener<T extends IEventSink<readonly unknown[], unknown, any>> = T extends IEventSink<infer TArgs, infer TReturnType, any> ? (...args: TArgs) => TReturnType : never
+export type EventListener<T> = T extends IEventSink<infer TArgs, infer TReturnType, any> ? (...args: TArgs) => TReturnType : never
 
 /**
  * Extracts the argument types of an event.
