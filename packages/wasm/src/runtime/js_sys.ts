@@ -7,7 +7,7 @@ const heap = new WebAssembly.Table({ initial: 8, element: 'externref' });
 let lastOffset: number = -1;
 addObject(undefined);
 addObject(true);
-addObject(global);
+addObject(globalThis);
 addObject([]);
 
 export enum Types
