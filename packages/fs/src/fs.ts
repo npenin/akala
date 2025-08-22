@@ -20,7 +20,7 @@ function direntToFileEntry<T extends string | IsomorphicBuffer = string | Isomor
         get isSymbolicLink() { return f.isSymbolicLink() },
         get isFIFO() { return f.isFIFO() },
         get isSocket() { return f.isSocket() },
-        name: (Buffer.isBuffer(f.name) ? new IsomorphicBuffer(f.name) : f.name) as T,
+        name: (Buffer.isBuffer(f.name) ? new IsomorphicBuffer(f.name as Buffer<ArrayBuffer>) : f.name) as T,
         parentPath: new URL(root),
     }
 }
@@ -31,7 +31,7 @@ function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, pa
         path,
         openReadStream(options: OpenStreamOptions): ReadableStream
         {
-            return Readable.toWeb(handle.createReadStream(options));
+            return Readable.toWeb(handle.createReadStream(options)) as ReadableStream;
         },
         openWriteStream(options: OpenStreamOptions): WritableStream
         {
@@ -76,7 +76,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
     {
         if (this.isFileHandle(path))
             return path.openReadStream(options);
-        return Readable.toWeb(createReadStream(this.resolvePath(path), options));
+        return Readable.toWeb(createReadStream(this.resolvePath(path), options)) as ReadableStream;
     }
 
     openWriteStream(path: PathLike<FullFileHandle>, options?: OpenStreamOptions): WritableStream
@@ -177,7 +177,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
                 return (files as unknown as Dirent[]).map(f => direntToFileEntry(f, new URL(path, this.root)));
             }
             if (options.encoding == 'binary')
-                return files.map(f => IsomorphicBuffer.fromBuffer(f as unknown as Buffer));
+                return files.map(f => IsomorphicBuffer.fromBuffer(f as unknown as Buffer<ArrayBuffer>));
             return files;
         });
     }
