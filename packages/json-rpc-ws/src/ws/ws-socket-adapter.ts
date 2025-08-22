@@ -92,7 +92,7 @@ export default class WsSocketAdapter extends AsyncTeardownManager implements Soc
                     else if (typeof data === 'string')
                         (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, data);
                     else if (Array.isArray(data))
-                        data.forEach(data => (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, IsomorphicBuffer.fromBuffer(data)));
+                        data.forEach(data => (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, IsomorphicBuffer.fromBuffer(data as Buffer<ArrayBuffer>)));
                     else
                         (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, IsomorphicBuffer.fromArrayBuffer(data));
                 }
