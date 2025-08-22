@@ -628,20 +628,20 @@ export class WebDavFS implements FileSystemProvider<WebDavFileHandle>
     {
         throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'WebDAV does not support watching.');
     }
-    async writeFile(path: PathLike<FileHandle>, data: string | IsomorphicBuffer | ArrayBuffer | SharedArrayBuffer): Promise<void>
+    async writeFile(path: PathLike<FileHandle>, data: string | IsomorphicBuffer | ArrayBuffer): Promise<void>
     {
         const url = this.resolveUrl(path as PathLike);
 
         try
         {
-            const body = typeof data === 'string' ? data : data instanceof IsomorphicBuffer ? data.toArray() : new Uint8Array(data);
+            const body = typeof data === 'string' ? data : (data instanceof IsomorphicBuffer ? data.toArray() : new Uint8Array(data)).buffer;
 
             const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': typeof data === 'string' ? `text/plain; charset=utf-8` : 'application/octet-stream',
                 },
-                body,
+                body: body,
             });
 
             if (!response.ok)

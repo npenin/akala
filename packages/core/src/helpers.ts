@@ -68,7 +68,7 @@ export type BufferEncoding =
 
 export class IsomorphicBuffer implements Iterable<number, number, number>
 {
-    private readonly buffer: Uint8Array<ArrayBufferLike>
+    private readonly buffer: Uint8Array<ArrayBuffer>
     constructor(buffer: Uint8Array<ArrayBufferLike> | number | number[], private readonly offset?: number, private readonly end?: number)
     {
         if (typeof buffer == 'number')
@@ -76,7 +76,7 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
         else if (Array.isArray(buffer))
             this.buffer = new Uint8Array(buffer);
         else
-            this.buffer = buffer;
+            this.buffer = buffer as Uint8Array<ArrayBuffer>;
         if (!offset)
             this.offset = 0;
         if (!end)
@@ -86,7 +86,7 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
 
     public readonly length: number;
 
-    public static fromBuffer(buffer: Uint8Array)
+    public static fromBuffer(buffer: Uint8Array<ArrayBufferLike>)
     {
         return new IsomorphicBuffer(buffer)
     }
@@ -113,7 +113,7 @@ export class IsomorphicBuffer implements Iterable<number, number, number>
         else
             this.buffer.set(source.subarray(sourceOffset, sourceOffset + length).toArray(), offset);
     }
-    toArray(): Uint8Array
+    toArray(): Uint8Array<ArrayBuffer>
     {
         return this.buffer.slice(this.offset, this.end);
     }
