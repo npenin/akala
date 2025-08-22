@@ -1,9 +1,9 @@
-#  (2025-08-20)
+#  (2025-08-22)
 
 
 ### Bug Fixes
 
-* handle null watcher on visitConstant bdeddad
+* make json formatter settings optional f461122
 
 
 
