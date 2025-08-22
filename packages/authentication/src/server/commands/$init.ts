@@ -48,7 +48,7 @@ export default async function (this: State, config: ProxyConfiguration<{ provide
     const cryptoKey = this.cryptoKey = key ? await crypto.subtle.importKey('raw', key.toArray(), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']) : await crypto.subtle.generateKey({ name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
 
     this.getHash = async (value: string, salt?: Uint8Array) => base64.base64EncArrBuff(await crypto.subtle.sign({ name: 'HMAC', hash: 'SHA-256' }, cryptoKey, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value)));
-    this.verifyHash = async (value: string, signature: Uint8Array, salt?: Uint8Array) => await crypto.subtle.verify({ name: 'HMAC', hash: 'SHA-256' }, cryptoKey, signature, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value));
+    this.verifyHash = async (value: string, signature: Uint8Array<ArrayBuffer>, salt?: Uint8Array<ArrayBuffer>) => await crypto.subtle.verify({ name: 'HMAC', hash: 'SHA-256' }, cryptoKey, signature, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value));
     this.session = { slidingExpiration: 300000 };
 
     router?.formatters.useMiddleware(1, new AuthorizeRedirectFormatter(loginUrl || config.loginUrl, 'return_url'))
