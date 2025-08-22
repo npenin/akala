@@ -253,5 +253,5 @@ export function strUTF8ByteLength(sDOMStr: string): number
  */
 export function strToUTF8Arr(sDOMStr: string)
 {
-    return new TextEncoder().encode(sDOMStr);
+    return new TextEncoder().encode(sDOMStr) as Uint8Array<ArrayBuffer>;
 }
