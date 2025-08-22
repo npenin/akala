@@ -28,7 +28,7 @@ const BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345
  * @param nBlocksSize Optional size for line breaks in the output.
  * @returns The decoded byte array.
  */
-export function base64DecToArr(sBase64: string, nBlocksSize?: number): Uint8Array
+export function base64DecToArr(sBase64: string)
 {
     const clean = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
 
@@ -251,7 +251,7 @@ export function strUTF8ByteLength(sDOMStr: string): number
  * @param sDOMStr The input string to encode.
  * @returns The UTF-8 encoded ArrayBuffer.
  */
-export function strToUTF8Arr(sDOMStr: string): Uint8Array
+export function strToUTF8Arr(sDOMStr: string)
 {
     return new TextEncoder().encode(sDOMStr);
 }
