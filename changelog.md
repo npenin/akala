@@ -1,4 +1,4 @@
-#  (2025-08-22)
+#  (2025-08-23)
 
 
 * chore : code cleanup eae1150
@@ -136,6 +136,7 @@
 * buffer reading when unlimited 8440c4d
 * bug when result is null 4596a13
 * bug when result is null b6a9828
+* build 89d6c2a
 * build b92d150
 * build e6cbc6d
 * build fbd741f
@@ -310,6 +311,7 @@
 * getProperty methods in jssys 1f22de3
 * git rev list command bbc7fa2
 * git rev list command cd73e5a
+* globalThis registration a4895db
 * handle 'undefined' abort reason 1c2cb6f
 * handle 0.0.0.0 and * to connect to localhost 5f54dd4
 * handle 0.0.0.0 and * to connect to localhost e303589
@@ -708,11 +710,18 @@
 * simple injector resolution with resolvable arrays 8411f99
 * simplify and smoother observablearray "piping" 18f75b2
 * simplify choose function signature by removing redundant overloads e24c5c1
+* simplify EventListener interface 420728f
 * simplify generic constraints in Switch class and choose function e4c2c04
 * simplify start command 508cedd
 * simplify start command 70cf360
 * simplify titles and remove unnecessary metadata in CLI documentation f331a8e
 * simplify titles and remove unnecessary metadata in CLI documentation 7702b95
+* simplify types 7850188
+* simplify types 8fde6c6
+* simplify types 19624bd
+* simplify types 2d0a4c3
+* simplify types abba267
+* simplify types 10b1b95
 * simplify URL handling in install function by removing unnecessary try-catch and improving path resolution df95034
 * socket closure on adapter dispose c17f391
 * sonar coverage discovery 505f9b3
@@ -1273,11 +1282,13 @@
 * update documentation with usage examples for parsing and formatters 3970fc6
 * update documentation with usage examples for parsing and formatters 293bbae
 * update SocketAdapter extend EventBus 1065904
+* use @akala/fs to access config 7210d90
 * vite plugin to auto-import required webui css plugins d89aafd
 
 
 ### BREAKING CHANGES
 
+* fs parameter is required if not using newAsync
 * formatters are now registered without a hash
 * Page are now controls, and require the element to be provided as a constructor parameter
 * websocketadapter now comes from core
