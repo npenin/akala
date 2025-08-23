@@ -488,7 +488,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param data - The data to write.
      * @returns A promise that resolves when the data is written.
      */
-    writeFile(path: PathLike<TFileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer): Promise<void>;
+    writeFile(path: PathLike<TFileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer, options?: { mode?: number }): Promise<void>;
 
     /**
      * Changes the root directory of the file system provider.

@@ -79,7 +79,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return Readable.toWeb(createReadStream(this.resolvePath(path), options)) as ReadableStream;
     }
 
-    openWriteStream(path: PathLike<FullFileHandle>, options?: OpenStreamOptions): WritableStream
+    openWriteStream(path: PathLike<FullFileHandle>, options?: OpenStreamOptions & Partial<{ mode: number }>): WritableStream
     {
         if (this.isFileHandle(path))
             return path.openWriteStream(options);
@@ -332,16 +332,19 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return fs.watch(this.resolvePath(filename), options);
     }
 
-    async writeFile(path: FsPathLike, data: string | IsomorphicBuffer | ArrayBuffer | SharedArrayBuffer | Buffer | Uint8Array): Promise<void>
+    async writeFile(path: FsPathLike, data: string | IsomorphicBuffer | ArrayBuffer | SharedArrayBuffer | Buffer | Uint8Array, options?: { mode?: number }): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
         const buffer = data instanceof IsomorphicBuffer ? data.toArray() : Buffer.isBuffer(data) ? data : Buffer.from(data as ArrayBuffer);
 
         if (this.isFileHandle(path))
+        {
+            if (options?.mode)
+                throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'You may not specify mode with a file handle');
             return path.writeFile(buffer);
-
-        return fs.writeFile(this.resolvePath(path), buffer);
+        }
+        return fs.writeFile(this.resolvePath(path), buffer, options);
     }
 
     public isFileHandle(p: unknown): p is FullFileHandle

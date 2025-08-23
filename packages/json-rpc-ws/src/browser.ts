@@ -34,14 +34,14 @@ class Readable extends ReadableStream<Uint8Array>
     })
   }
 
-  private buffer: (Uint8Array | null)[] = [];
+  private buffer: (Uint8Array<ArrayBuffer> | null)[] = [];
 
   emitError(error: Error)
   {
     return super.cancel(error);
   }
 
-  push(chunk: Uint8Array | null)
+  push(chunk: Uint8Array<ArrayBuffer> | null)
   {
     this.buffer.push(chunk);
   }
@@ -91,7 +91,7 @@ export class Connection extends BaseConnection<ReadableStream<Uint8Array>>
     const f = this.responseHandlers[id] = (error, result: { event: string, isBuffer?: boolean, data?: SerializedBuffer }) =>
     {
       if (error)
-        s.emitError(error as unknown as Error);
+        s.cancel(error);
       else
         switch (result.event)
         {

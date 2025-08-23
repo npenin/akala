@@ -33,7 +33,7 @@ export function base64DecToArr(sBase64: string)
     const clean = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
 
     if (typeof Buffer !== "undefined")
-        return new Uint8Array(Buffer.from(clean, "base64"));
+        return new Uint8Array<ArrayBuffer>(Buffer.from(clean, "base64").buffer);
     else
     {
         const length = Math.floor(clean.length * 3 / 4);
@@ -87,7 +87,7 @@ export function base64UrlEncIsomorphicBuffer(aBytes: IsomorphicBuffer): string
  * @param s The Base64URL encoded string.
  * @returns The decoded byte array.
  */
-export function base64UrlDecToArr(s: string): Uint8Array
+export function base64UrlDecToArr(s: string)
 {
     let t = s.replace(/-/g, "+").replace(/_/g, "/").replace(/\s+/g, "");
     const rem = t.length % 4;
@@ -105,7 +105,7 @@ export function base64UrlDecToArr(s: string): Uint8Array
  * @param pem The PEM string containing the private key.
  * @returns The decoded binary content of the private key.
  */
-export function extractPrivateKey(pem: string): Uint8Array
+export function extractPrivateKey(pem: string)
 {
     const pemHeader = "-----BEGIN PRIVATE KEY-----";
     const pemFooter = "-----END PRIVATE KEY-----";
@@ -122,7 +122,7 @@ export function extractPrivateKey(pem: string): Uint8Array
  * @param pem The PEM string containing the public key.
  * @returns The decoded binary content of the public key.
  */
-export function extractPublicKey(pem: string): Uint8Array
+export function extractPublicKey(pem: string)
 {
     const pemHeader = "-----BEGIN PUBLIC KEY-----";
     const pemFooter = "-----END PUBLIC KEY-----";

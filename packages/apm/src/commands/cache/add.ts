@@ -94,7 +94,7 @@ export default async function (this: State, pkg: string | URL, force?: boolean):
                     const parent = dirname(path);
 
                     await packageFolder.mkdir(parent + '/', { recursive: true });
-                    await packageFolder.writeFile(path, entry.data.toArray());
+                    await packageFolder.writeFile(path, entry.data);
                     break;
                 }
             case FileType.SymbolicLink:

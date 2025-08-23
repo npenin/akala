@@ -151,7 +151,7 @@ nodeLinker: node-modules
             {
                 return {
                     output_path: join(outputPath, 'container-deps.zip'),
-                    output_hash: base64.base64EncArrBuff(await crypto.subtle.digest('SHA-1', await fs.readFile(join(packagingFolder, 'container-deps/nodejs/node_modules/.yarn-state.yml'))))
+                    output_hash: base64.base64EncArrBuff(await crypto.subtle.digest('SHA-1', (await fs.readFile(join(packagingFolder, 'container-deps/nodejs/node_modules/.yarn-state.yml'))).buffer as ArrayBuffer))
                 }
             }
             catch (e)
@@ -159,7 +159,7 @@ nodeLinker: node-modules
                 if (e.code == 'ENOENT')
                     return {
                         output_path: join(outputPath, 'container-deps.zip'),
-                        output_hash: base64.base64EncArrBuff(await crypto.subtle.digest('SHA-1', await fs.readFile(join(packagingFolder, 'container-deps/nodejs/package-lock.json'))))
+                        output_hash: base64.base64EncArrBuff(await crypto.subtle.digest('SHA-1', (await fs.readFile(join(packagingFolder, 'container-deps/nodejs/package-lock.json'))).buffer as ArrayBuffer))
                     }
                 else
                     throw e;
@@ -168,7 +168,7 @@ nodeLinker: node-modules
         else
             return {
                 output_path: join(outputPath, 'container-deps.zip'),
-                output_hash: base64.base64EncArrBuff(await crypto.subtle.digest('SHA-1', await fs.readFile(join(packagingFolder, 'container-deps/nodejs/package-lock.json'))))
+                output_hash: base64.base64EncArrBuff(await crypto.subtle.digest('SHA-1', (await fs.readFile(join(packagingFolder, 'container-deps/nodejs/package-lock.json'))).buffer as ArrayBuffer))
             }
 
 
@@ -217,7 +217,7 @@ nodeLinker: node-modules
     {
         return {
             output_path: join(outputPath, 'container.zip'),
-            output_hash: base64.base64EncArrBuff(await crypto.subtle.digest('SHA-256', await fs.readFile(join(outputPath, 'container.zip'))))
+            output_hash: base64.base64EncArrBuff(await crypto.subtle.digest('SHA-256', (await fs.readFile(join(outputPath, 'container.zip'))).buffer as ArrayBuffer))
         }
     });
 

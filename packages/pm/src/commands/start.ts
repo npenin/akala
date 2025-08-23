@@ -27,7 +27,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             options.name = name;
 
     if (options && !options.configFile)
-        options.configFile = this.config[unwrap].path;
+        options.configFile = this.config[unwrap].path.toString();
 
     let def: ProxyConfiguration<SidecarMetadata>;
 

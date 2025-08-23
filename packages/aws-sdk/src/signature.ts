@@ -72,7 +72,7 @@ export function sign(accessKey: string, region: string, service: string)
         else if (request.body instanceof ArrayBuffer)
             payload = request.body;
         else if (ArrayBuffer.isView(request.body))
-            payload = request.body;
+            payload = request.body as ArrayBufferView<ArrayBuffer>;
         else if (request.body instanceof URLSearchParams)
             payload = encoder.encode(request.body.toString());
         else

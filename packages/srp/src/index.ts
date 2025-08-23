@@ -86,7 +86,7 @@ export function bigIntToBuffer(n: bigint): Buffer
  * @param {Number} len Desired length of result
  * @return {Buffer}
  */
-function padTo(n: Buffer, len: number): Buffer
+function padTo(n: Buffer, len: number): Uint8Array<ArrayBuffer>
 {
     assertIsBuffer(n, 'n');
     let padding = len - n.length;
@@ -163,7 +163,7 @@ function assertIsBigInt(arg: any): asserts arg is bigint
     assert_(typeof arg === 'bigint');
 }
 
-function mergeUInt8Arrays(sources: (ArrayBuffer | BufferSource | Uint8Array)[]): Uint8Array
+function mergeUInt8Arrays(sources: (ArrayBuffer | BufferSource | Uint8Array)[]): Uint8Array<ArrayBuffer>
 {
     // Calculate total length
     const totalLength = sources.reduce((sum, source) =>
@@ -398,7 +398,7 @@ function serverGetS(params: SrpParams, vNum: bigint, ANum: bigint, bNum: bigint,
  * @param {Buffer} SBuf SRP session key (S)
  * @return {Buffer} SRP strong session key (K)
  */
-async function getK(params: SrpParams, SBuf: Uint8Array)
+async function getK(params: SrpParams, SBuf: Uint8Array<ArrayBuffer>)
 {
     assertIsNBuffer(SBuf, params, 'S');
     return new Uint8Array(await crypto.subtle.digest(params.hash, SBuf))

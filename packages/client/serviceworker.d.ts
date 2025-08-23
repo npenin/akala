@@ -79,7 +79,7 @@ interface InstallEvent
 
 interface Body
 {
-    readonly body: ReadableStream<Uint8Array>;
+    readonly body: ReadableStream<Uint8Array<ArrayBuffer>>;
 }
 
 interface Headers
