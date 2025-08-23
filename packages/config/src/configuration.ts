@@ -1,5 +1,6 @@
 import { isProxy, base64, type Serializable, type SerializableObject, ErrorWithStatus, HttpStatusCode } from '@akala/core';
-import fs from 'fs/promises'
+import fsHandler, { FileSystemProvider } from '@akala/fs';
+import { isAbsolute } from 'path';
 import { inspect } from 'util'
 
 export type ProxyConfiguration<T> = T extends object ? ProxyConfigurationObject<T> : Extract<Exclude<Serializable, SerializableObject | SerializableObject[]>, T>;
@@ -54,7 +55,7 @@ async function aesDecrypt(ciphertext: BufferSource, key: CryptoKey, iv: BufferSo
 export default class Configuration<T extends object = SerializableObject>
 {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private constructor(public readonly path: string, private readonly config?: T, private readonly rootConfig?: any, private cryptKey?: CryptoKey)
+    private constructor(private readonly fs: FileSystemProvider, public readonly path: string | URL, private readonly config?: T, private readonly rootConfig?: any, private cryptKey?: CryptoKey)
     {
         if (typeof config == 'undefined')
             config = {} as unknown as T;
@@ -67,20 +68,35 @@ export default class Configuration<T extends object = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static async newAsync<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): Promise<ProxyConfigurationObjectNonArray<T>>
+    public static async newAsync<T extends object = SerializableObject>(path: string | URL, config?: T, rootConfig?: any, cryptKey?: CryptoKey): Promise<ProxyConfigurationObjectNonArray<T>>
     {
+
+        if (typeof path === 'string')
+            if (!URL.canParse(path))
+                if (isAbsolute(path))
+                    path = new URL('file://' + path);
+                else
+                    path = new URL('file:' + path);
+            else
+                path = new URL(path)
+
+        const fs = await fsHandler.process(new URL('./', path));
+
         if (typeof cryptKey == 'undefined')
         {
-            cryptKey = await Configuration.loadKey(path)
+            cryptKey = await Configuration.loadKey(fs, path)
         }
-        return Configuration.new(path, config, rootConfig, cryptKey);
+        return Configuration.new(fs, path, config, rootConfig, cryptKey);
     }
 
-    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): ProxyConfigurationObjectNonArray<T>
+    public static new<T extends object = SerializableObject>(fs: FileSystemProvider, path: string | URL, config?: T, rootConfig?: any, cryptKey?: CryptoKey): ProxyConfigurationObjectNonArray<T>
     {
         if (config && 'commit' in config && typeof config.commit == 'function')
             delete config.commit;
-        return new Proxy(new Configuration<T>(path, config, rootConfig, cryptKey), {
+
+
+
+        return new Proxy(new Configuration<T>(fs, path, config, rootConfig, cryptKey), {
             has(target, key)
             {
                 if (typeof (key) == 'symbol')
@@ -174,23 +190,43 @@ export default class Configuration<T extends object = SerializableObject>
         return this[unwrap].toString();
     }
 
-    public static async load<T extends object = SerializableObject>(file: string, createIfEmpty?: boolean, needle?: string): Promise<ProxyConfiguration<T>>
+    public static async load<T extends object = SerializableObject>(file: string | URL, createIfEmpty?: boolean, needle?: string): Promise<ProxyConfiguration<T>>
     {
         let content: string;
         let cryptKey: CryptoKey;
         if (!needle)
         {
-            const indexOfHash = file.indexOf('#');
-            if (indexOfHash > 0)
+            if (file instanceof URL)
             {
-                needle = file.substring(indexOfHash + 1);
-                file = file.substring(0, indexOfHash);
+                needle = file.hash;
+                file = new URL('', file);
+            }
+            else
+            {
+                const indexOfHash = file.indexOf('#');
+                if (indexOfHash > 0)
+                {
+                    needle = file.substring(indexOfHash + 1);
+                    file = file.substring(0, indexOfHash);
+                }
             }
         }
+        if (typeof file === 'string')
+            if (!URL.canParse(file))
+                if (isAbsolute(file))
+                    file = new URL('file://' + file);
+                else
+                    file = new URL('file:' + file);
+            else
+                file = new URL(file)
+
+        const fs = await fsHandler.process(new URL('./', file));
+
         try
         {
-            content = await fs.readFile(file, 'utf8');
-            cryptKey = await Configuration.loadKey(file);
+
+            content = await fs.readFile(file, { encoding: 'utf8' });
+            cryptKey = await Configuration.loadKey(fs, file);
 
         }
         catch (e)
@@ -200,7 +236,7 @@ export default class Configuration<T extends object = SerializableObject>
 
             await fs.writeFile(file, content = '{}');
         }
-        const config = Configuration.new(file, JSON.parse(content), undefined, cryptKey);
+        const config = Configuration.new(fs, file, JSON.parse(content), undefined, cryptKey);
         const unwrapped = config[unwrap] as Configuration<T>;
         if (needle)
         {
@@ -213,9 +249,9 @@ export default class Configuration<T extends object = SerializableObject>
         return config as ProxyConfiguration<T>;
     }
 
-    public static loadKey(path: string): Promise<CryptoKey | null>
+    public static loadKey(fs: FileSystemProvider, path: string | URL): Promise<CryptoKey | null>
     {
-        return fs.readFile(path + '.key').then(keyContent => subtle.importKey('raw', keyContent, { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']), () => undefined);
+        return fs.readFile(path + '.key').then(keyContent => subtle.importKey('raw', keyContent.toArray(), { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']), () => undefined);
     }
 
     public get<TResult = string>(key?: string): ProxyConfiguration<TResult>
@@ -232,7 +268,7 @@ export default class Configuration<T extends object = SerializableObject>
             }, this.config);
             if (typeof value == 'object' && value && !Array.isArray(value))
             {
-                const result = Configuration.new(this.path, value as TResult & object, this.rootConfig, this.cryptKey);
+                const result = Configuration.new(this.fs, this.path, value as TResult & object, this.rootConfig, this.cryptKey);
                 Object.defineProperty(result, 'cryptKey', {
                     get: () => this.cryptKey,
                     set: (value) => this.cryptKey = value
@@ -255,7 +291,7 @@ export default class Configuration<T extends object = SerializableObject>
         const secret = self.get<{ iv: string, value: string }>(key).extract();
         if (!self.cryptKey)
             if (self.path)
-                self.cryptKey = await Configuration.loadKey(self.path);
+                self.cryptKey = await Configuration.loadKey(this.fs, self.path);
             else
                 throw new ErrorWithStatus(HttpStatusCode.NotFound, 'No key was provided to read the secret ' + key);
         return aesDecrypt(base64.base64DecToArr(secret.value), self.cryptKey, base64.base64DecToArr(secret.iv));
@@ -301,7 +337,7 @@ export default class Configuration<T extends object = SerializableObject>
         const self = this[unwrap];
         if (!self.cryptKey)
             if (self.path)
-                self.cryptKey = await Configuration.loadKey(self.path);
+                self.cryptKey = await Configuration.loadKey(this.fs, self.path);
             else
                 self.cryptKey = await generateAesKey();
         const secret = await aesEncrypt(newConfig, self.cryptKey);
@@ -335,9 +371,9 @@ export default class Configuration<T extends object = SerializableObject>
         const self = this[unwrap];
         if (typeof formatted == 'undefined')
             formatted = process.env.NODE_ENV !== 'production';
-        await fs.writeFile(file || self.path, JSON.stringify(self.rootConfig, null, formatted && 4 || undefined), 'utf8');
+        await this.fs.writeFile(file || self.path, JSON.stringify(self.rootConfig, null, formatted && 4 || undefined));
         if (self.cryptKey)
-            await fs.writeFile((file || self.path) + '.key', Buffer.from(await subtle.exportKey('raw', self.cryptKey)), { mode: 0o700 });
+            await this.fs.writeFile((file || self.path) + '.key', await subtle.exportKey('raw', self.cryptKey), { mode: 0o700 });
 
     }
 }
