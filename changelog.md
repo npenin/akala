@@ -695,6 +695,7 @@
 * revert to cayman cf3e496
 * revert to cayman b7cd5e2
 * revert verbatim import setting fa3a993
+* revisit docker implementation 8635edf
 * route cli usage 408d064
 * routing 033343d
 * routing 0bd2fdd
@@ -978,6 +979,7 @@
 * wrong inferred dependency path 7a1f1ab
 * wrong this 182e22a
 * wrongly reporting existing file 40afc19
+* xpm f050b21
 * xpm init 0fb1f90
 * xpm init 37af8c5
 * xpm issues bd430af
@@ -1070,6 +1072,7 @@
 * add helper to identify deadlinks and ran it d9101ac
 * add http auth in schema and auth in general 6cbe68a
 * add http auth in schema and auth in general 4cf5e55
+* add info on xpm 949acc9
 * add InitAkala command processor 4e2d4cb
 * add InitAkala command processor 652270a
 * add initial documentation for command processors and triggers 8bb8685
@@ -1202,6 +1205,7 @@
 * expose more middlewares b750c8f
 * expose more middlewares 24e8e4a
 * expose outlet as symbol b7a49ec
+* expose parseVersion df6ab5a
 * expose switch composer 92b2f25
 * expose TriggerArgs and TriggerReturnType e2a2c89
 * expose xpm f60e75a
