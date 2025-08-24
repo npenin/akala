@@ -2,7 +2,7 @@ import { NamespaceMiddleware } from './index.js';
 import { pathToFileURL } from 'url';
 import yarnHelper, { hasYarn } from './xpm/yarn-helper.js';
 import npmHelper from './xpm/npm-helper.js';
-import { ErrorWithStatus, HttpStatusCode } from '@akala/core';
+import { ErrorWithStatus, HttpStatusCode, packagejson } from '@akala/core';
 import pnpmHelper from './xpm/pnpm-helper.js';
 
 interface Package

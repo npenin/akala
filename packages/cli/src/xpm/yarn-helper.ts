@@ -3,6 +3,8 @@ import { stat } from 'fs';
 import { promisify } from 'util';
 import { spawnAsync } from '../cli-helper.js';
 import { join } from 'path';
+import { Writable } from "stream";
+import { packagejson } from "@akala/core";
 
 
 // if (typeof (process.versions.pnp) != 'undefined')
@@ -41,5 +43,29 @@ export default
         async link(packageName: string, path?: string): Promise<void>
         {
             await spawnAsync(npm, { cwd: path, shell: true }, 'link', packageName)
+        },
+        async info(packageName: string, path?: string): Promise<packagejson.CoreProperties>
+        {
+            let stdoutString = '';
+            const stdout = new Writable({
+                defaultEncoding: 'utf-8', write(chunk, encoding, callback)
+                {
+                    try
+                    {
+                        if (typeof chunk == 'string')
+                            stdoutString += chunk;
+                        else
+                            stdoutString += chunk.toString(encoding);
+                        callback();
+                    }
+                    catch (e)
+                    {
+                        callback(e)
+                    }
+                },
+            })
+            await spawnAsync(npm, { stdio: ['ignore', stdout, 'pipe'], shell: true, cwd: path || process.cwd() }, 'info', packageName, '--json');
+
+            return JSON.parse(stdoutString);
         }
     }
