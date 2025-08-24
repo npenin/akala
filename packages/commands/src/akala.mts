@@ -76,7 +76,7 @@ export async function install(_context: CliContext<{ configFile: string }, objec
                     uri = new URL(path);
                 else
                     if (!isAbsolute(path))
-                        uri = new URL(path, pathToFileURL(context.options['configFile'] as string));
+                        uri = new URL(path, context.options['configFile'] as string);
                     else
                         uri = pathToFileURL(path);
 

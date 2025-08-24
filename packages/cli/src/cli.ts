@@ -1,14 +1,22 @@
 import program, { type CliContext, NamespaceMiddleware } from './router/index.js';
-import fs from 'fs/promises'
 // import { fileURLToPath, pathToFileURL } from 'url'
-import path from 'path'
+import path, { isAbsolute } from 'path'
 import * as akala from '@akala/core'
 import { supportInteract } from './index.js';
 import normalize from './helpers/normalize.js';
+import fsHandler, { FileSystemProvider } from '@akala/fs';
+import { pathToFileURL } from 'url';
 
-function isRoot(indexOfSep: number): boolean
+function isRootFileUrl(url: URL)
 {
-    return path.sep == '\\' ? indexOfSep == 2 : indexOfSep == 0
+    // Linux/macOS root
+    if (url.pathname === '/') return true;
+
+    // Windows root: must be like /C:/
+    const windowsRootPattern = /^\/[a-zA-Z]:\/$/;
+    if (windowsRootPattern.test(url.pathname)) return true;
+
+    return false;
 }
 
 export interface AkalaConfig
@@ -19,20 +27,38 @@ export interface AkalaConfig
 
 export type Plugin = (config: AkalaConfig, program: NamespaceMiddleware<{ help: boolean, configFile: string }>, context: CliContext<{ configFile: string }, AkalaConfig>) => Promise<void> | void;
 
+
 export async function loadConfig(context: CliContext<{ configFile: string }, AkalaConfig>)
 {
-
     let loadedConfig: AkalaConfig;
+
+    let fs: FileSystemProvider;
 
     if (context.options.configFile)
     {
-        context.logger.info('loading config file from specified option flag');
+        let configFile: string | URL = context.options.configFile;
+
+
+        if (typeof configFile === 'string')
+            if (!URL.canParse(configFile))
+                if (isAbsolute(configFile))
+                    configFile = new URL('file://' + configFile);
+                else
+                    configFile = new URL('file:' + configFile);
+            else
+                configFile = new URL(configFile);
+
+        context.options.configFile = configFile.toString();
+
+        fs = await fsHandler.process(new URL('./', configFile));
+
+        context.logger.info(`loading config file from specified option flag (${context.options.configFile})`);
         try
         {
-            const stats = await fs.lstat(context.options.configFile);
-            if (stats.isFile())
+            const stats = await fs.stat(configFile);
+            if (stats.isFile)
             {
-                loadedConfig = JSON.parse(await fs.readFile(context.options.configFile, 'utf-8'));
+                loadedConfig = await fs.readFile(configFile, { encoding: 'json' });
                 context.logger.debug('config file loaded')
             }
         }
@@ -45,42 +71,45 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
     else if (!loadedConfig)
     {
         context.logger.info('loading config file from current working directory and/or parents');
-        const cwd = context.currentWorkingDirectory;
+        const cwd = pathToFileURL(context.currentWorkingDirectory?.endsWith(path.sep) ? context.currentWorkingDirectory : context.currentWorkingDirectory + path.sep);
 
-        let indexOfSlash = cwd.lastIndexOf(path.sep);
-        let filePath: string = cwd;
-        if (indexOfSlash !== cwd.length - 1)
+        let indexOfSlash = cwd.pathname.lastIndexOf(path.sep);
+        let filePath = cwd;
+        if (indexOfSlash !== cwd.pathname.length - 1)
         {
-            indexOfSlash = cwd.length;
-            filePath += path.sep;
+            indexOfSlash = cwd.pathname.length;
+            filePath = new URL('./', filePath);
         }
+
+        let prefix = '';
+
         do
         {
+            fs = await fsHandler.process(new URL(prefix, filePath));
             try
             {
-                filePath = path.join(filePath.substring(0, indexOfSlash), './.akala.json');
-                context.options.configFile = filePath;
-                loadedConfig = JSON.parse(await fs.readFile(filePath, 'utf-8'));
+                loadedConfig = await fs.readFile('./.akala.json', { encoding: 'json' });
+                context.options.configFile = new URL('./.akala.json', fs.root).toString();
                 break;
             }
             catch (e)
             {
-                if (e && e.code == 'ENOENT')
+                if (e && e.statusCode == 404)
                 {
-                    indexOfSlash = filePath.lastIndexOf(path.sep, indexOfSlash - 1);
+                    prefix += '../'
                     continue;
                 }
                 throw e;
             }
         }
-        while (!loadedConfig && !isRoot(indexOfSlash))
+        while (!loadedConfig && !isRootFileUrl(fs.root))
 
         if (!loadedConfig)
         {
             context.logger.debug('config not found, setting configFile path to cwd');
-            context.logger.debug('cwd is ', cwd);
+            context.logger.debug('cwd is ' + cwd);
 
-            context.options.configFile = path.join(cwd, '/.akala.json');
+            context.options.configFile = new URL('/.akala.json', cwd).toString();
         }
     }
 
