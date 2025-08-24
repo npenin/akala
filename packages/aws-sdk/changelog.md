@@ -1,4 +1,4 @@
-#  (2025-08-22)
+#  (2025-08-23)
 
 
 ### Bug Fixes
@@ -6,6 +6,7 @@
 * add missing case in marshall 598c8c0
 * add missing case in marshall 8c814f2
 * aws sdk generation and update services 7b922cf
+* build 89d6c2a
 * build fbd741f
 * build 88b29f4
 * build after dependency upgrade 877c53a
