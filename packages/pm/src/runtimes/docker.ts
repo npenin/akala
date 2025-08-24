@@ -1,5 +1,7 @@
-import { EventEmitter } from "events";
 import { Readable, PassThrough } from "stream";
+import { RuntimeEventMap, RuntimeInstance } from "./shared.js";
+import { EventEmitter, SocketAdapter } from "@akala/core";
+import { Payload } from "@akala/json-rpc-ws";
 
 const sockBase = `http+unix://${encodeURIComponent("/var/run/docker.sock")}`;
 
@@ -48,14 +50,14 @@ function demuxDockerStream(stream: Readable, stdout: PassThrough, stderr: PassTh
     });
 }
 
-export class DockerRuntime
+export class Runtime extends EventEmitter<RuntimeEventMap> implements RuntimeInstance
 {
-    name = "docker";
+    static readonly name = "docker";
 
-    async build(
+    static async build(
         args: string[],
         options: { new?: boolean; name: string; keepAttached?: boolean; inspect?: boolean; verbose?: boolean; wait?: boolean }
-    ): Promise<DockerRuntimeInstance>
+    ): Promise<Runtime>
     {
         const image = args[0];
         const cmd = args.slice(1);
@@ -78,27 +80,27 @@ export class DockerRuntime
         // start container
         await dockerFetch(`/containers/${container.Id}/start`, { method: "POST" });
 
-        return new DockerRuntimeInstance(container.Id, this);
+        return new Runtime(container.Id);
     }
-}
 
-export class DockerRuntimeInstance extends EventEmitter
-{
-    runtime: Omit<DockerRuntime, "build">;
+    public readonly runtime = Runtime;
     private containerId: string;
     private _running = true;
 
     private _stdout = new PassThrough();
     private _stderr = new PassThrough();
 
-    constructor(id: string, runtime: DockerRuntime)
+    constructor(id: string)
     {
         super();
-        this.runtime = runtime;
         this.containerId = id;
 
         this.attach();
         this.monitor();
+    }
+    get adapter(): SocketAdapter<Payload<Readable>>
+    {
+        return null;
     }
 
     get running(): boolean
