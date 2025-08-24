@@ -4,6 +4,7 @@ import yarnHelper, { hasYarn } from './xpm/yarn-helper.js';
 import npmHelper from './xpm/npm-helper.js';
 import { ErrorWithStatus, HttpStatusCode, packagejson } from '@akala/core';
 import pnpmHelper from './xpm/pnpm-helper.js';
+import apmHelper from './xpm/apm-helper.js';
 
 interface Package
 {
@@ -13,7 +14,17 @@ interface Package
     exports?: object;
 }
 
-export async function xpm(cwd: string)
+export async function xpm(cwd: string): Promise<{
+    name: string;
+    setup(path?: string, options?: {
+        production?: boolean;
+    }): Promise<void>;
+    install(packageName: string, path?: string): Promise<void>;
+    uninstall(packageName: string, path?: string): Promise<void>;
+    update(packageName: string, path?: string): Promise<void>;
+    link(packageName: string, path?: string): Promise<void>;
+    info(packageName: string, path?: string): Promise<packagejson.CoreProperties>;
+}>
 {
     const pkg = (await import(new URL('./package.json', pathToFileURL(cwd) + '/').toString(), { with: { type: 'json' } })).default as Package;
     let pkgManager: string;
@@ -38,6 +49,8 @@ export async function xpm(cwd: string)
             return npmHelper;
         case 'pnpm':
             return pnpmHelper;
+        case 'apm':
+            return apmHelper;
         default:
             throw new ErrorWithStatus(HttpStatusCode.NotAcceptable, 'Unfortunately your package manager is not (yet) supported');
     }
