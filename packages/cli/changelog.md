@@ -1,14 +1,9 @@
-#  (2025-08-24)
+#  (2025-08-25)
 
 
 ### Bug Fixes
 
-* xpm f050b21
-
-
-### Features
-
-* add info on xpm 949acc9
+* make sure CLI uses URL to load config (because of config breaking change) 9985f43
 
 
 
