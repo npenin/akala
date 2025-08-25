@@ -265,8 +265,8 @@ describe('Cron Syntax Parsing', () =>
         it('should calculate next daily target', () =>
         {
             const target = getTarget({ minutes: 0, hour: 0 }, fixedDate);
-            assert.strictEqual(target.getUTCMinutes(), 0);
-            assert.strictEqual(target.getUTCHours(), 22);
+            assert.strictEqual(target.getMinutes(), 0);
+            assert.strictEqual(target.getHours(), 0);
             assert.strictEqual(target.getUTCDate(), 16); // Next day
         });
 
