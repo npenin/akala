@@ -257,14 +257,14 @@ describe('Cron Syntax Parsing', () =>
 
         it('should calculate next hourly target', () =>
         {
-            const target = getTarget({ minutes: 0 }, fixedDate);
+            const target = getTarget({ minutes: 0 }, new Date(fixedDate));
             assert.strictEqual(target.getUTCMinutes(), 0);
             assert.strictEqual(target.getUTCHours(), 11); // Next hour
         });
 
         it('should calculate next daily target', () =>
         {
-            const target = getTarget({ minutes: 0, hour: 0 }, fixedDate);
+            const target = getTarget({ minutes: 0, hour: 0 }, new Date(fixedDate));
             assert.strictEqual(target.getMinutes(), 0);
             assert.strictEqual(target.getHours(), 0);
             assert.strictEqual(target.getUTCDate(), 16); // Next day
@@ -272,7 +272,7 @@ describe('Cron Syntax Parsing', () =>
 
         it('should calculate next weekly target', () =>
         {
-            const target = getTarget({ minutes: 0, hour: 0, day: [0] }, fixedDate);
+            const target = getTarget({ minutes: 0, hour: 0, day: [0] }, new Date(fixedDate));
             assert.strictEqual(target.getMinutes(), 0);
             assert.strictEqual(target.getHours(), 0);
             assert.strictEqual(target.getDay(), 0); // Sunday
@@ -280,14 +280,14 @@ describe('Cron Syntax Parsing', () =>
 
         it('should calculate monthly target', () =>
         {
-            const target = getTarget({ minutes: 0, hour: 0, date: 1 }, fixedDate);
+            const target = getTarget({ minutes: 0, hour: 0, date: 1 }, new Date(fixedDate));
             assert.strictEqual(target.getDate(), 1);
             assert.strictEqual(target.getMonth(), 8); // Next month (September)
         });
 
         it('should handle day of week constraints', () =>
         {
-            const target = getTarget({ minutes: 0, hour: 0, day: [3] }, fixedDate); // Wednesday
+            const target = getTarget({ minutes: 0, hour: 0, day: [3] }, new Date(fixedDate)); // Wednesday
             assert.strictEqual(target.getDay(), 3);
         });
     });
