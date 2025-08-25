@@ -13,10 +13,10 @@
     "homepage": "https://akala.js.org/cron",
     "type": "module",
     "scripts": {
+        "test": "node --test --enable-source-maps dist/esm/test/**/*.js",
+        "coverage": "node --test --enable-source-maps --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info --test-reporter=spec --test-reporter-destination=stdout dist/esm/test/**/*.js",
         "generate": "akala sdk generate dist/esm/commands commands.json --name @akala/cron",
-        "generate-metadata": "akala sdk generate-metadata commands.json src/container.ts",
-        "generate-pubsub": "akala sdk generate dist/esm/pubsub pubsub-commands.json --name cron-pubsub",
-        "generate-metadata-pubsub": "akala sdk generate-metadata pubsub-commands.json src/pubsub-container.ts --name cron-pubsub"
+        "generate-metadata": "akala sdk generate-metadata commands.json src/container.ts"
     },
     "dependencies": {
         "@akala/commands": "workspace:^",

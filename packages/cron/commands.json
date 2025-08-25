@@ -18,19 +18,26 @@
             "name": "add-job",
             "config": {
                 "fs": {
-                    "path": "dist/esm/commands/add-job.js",
-                    "source": "src/commands/add-job.ts",
                     "inject": [
                         "params.0",
                         "params.1",
                         "params.2"
-                    ]
+                    ],
+                    "path": "dist/esm/commands/add-job.js",
+                    "source": "src/commands/add-job.ts"
                 },
                 "": {
                     "inject": [
                         "params.0",
                         "params.1",
                         "params.2"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "$container",
+                        "param.1"
                     ]
                 }
             }
@@ -39,12 +46,12 @@
             "name": "add-job-schedule",
             "config": {
                 "fs": {
-                    "path": "dist/esm/commands/add-job-schedule.js",
-                    "source": "src/commands/add-job-schedule.ts",
                     "inject": [
                         "params.0",
                         "params.1"
-                    ]
+                    ],
+                    "path": "dist/esm/commands/add-job-schedule.js",
+                    "source": "src/commands/add-job-schedule.ts"
                 },
                 "": {
                     "inject": [
@@ -58,45 +65,48 @@
             "name": "add-schedule",
             "config": {
                 "fs": {
-                    "path": "dist/esm/commands/add-schedule.js",
-                    "source": "src/commands/add-schedule.ts",
                     "inject": [
                         "params.0",
                         "params.1"
-                    ]
+                    ],
+                    "path": "dist/esm/commands/add-schedule.js",
+                    "source": "src/commands/add-schedule.ts"
                 },
                 "": {
                     "inject": [
                         "params.0",
                         "params.1"
                     ]
-                }
+                },
+                "cli": true
             }
         },
         {
             "name": "list-jobs",
             "config": {
                 "fs": {
+                    "inject": [],
                     "path": "dist/esm/commands/list-jobs.js",
-                    "source": "src/commands/list-jobs.ts",
-                    "inject": []
+                    "source": "src/commands/list-jobs.ts"
                 },
                 "": {
                     "inject": []
-                }
+                },
+                "cli": true
             }
         },
         {
             "name": "list-schedules",
             "config": {
                 "fs": {
+                    "inject": [],
                     "path": "dist/esm/commands/list-schedules.js",
-                    "source": "src/commands/list-schedules.ts",
-                    "inject": []
+                    "source": "src/commands/list-schedules.ts"
                 },
                 "": {
                     "inject": []
-                }
+                },
+                "cli": true
             }
         },
         {

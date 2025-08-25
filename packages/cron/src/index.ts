@@ -33,9 +33,8 @@ export type DateRequest = {
     tz?: number
 };
 
-export default function getTarget(config: DateRequest, target?: Date): Date
+export function getTarget(config: DateRequest, target?: Date): Date
 {
-
     var now = new Date();
     now.setSeconds(0);
     now.setMilliseconds(0);
@@ -58,8 +57,8 @@ export default function getTarget(config: DateRequest, target?: Date): Date
         if (target <= now)
             target.setDate(target.getDate() + 1);
     }
-    else if (typeof (config.minutes) != 'undefined' && target <= now)
-        target.setHours(target.getHours() + 1);
+    // else if (typeof (config.minutes) != 'undefined' && target <= now)
+    //     target.setHours(target.getHours() + 1);
     if (typeof (config.day) != 'undefined')
     {
         while ((config.day || [0, 1, 2, 3, 4, 5, 6]).filter(function (element) { return element == target.getDay() }).length === 0)
@@ -115,8 +114,8 @@ export default function getTarget(config: DateRequest, target?: Date): Date
     return target;
 }
 
-export const cronRegex = /^(\d+(?:-\d+)?|\*(?:\/\d+)?) +(\d+(?:-\d+)?|\*(?:\/\d+)?) +(\d+(?:-\d+)?|\*(?:\/\d+)?) +(\d+(?:-\d+)?|\*(?:\/\d+)?) +(\d+(?:-\d+)?|\*(?:\/\d+)?)$/g
-export const cronPartRegex = /(\d+(?:-(\d+))?)|(\*(?:\/(\d+))?)/;
+export const cronRegex = /^([-\d\*,\/]+) +([-\d\*,\/]+) +([-\dL\*,\/]+) +([-\d\*,\/]+) +([-\d\*,\/]+)$/;
+export const cronPartRegex = /^(?:(?:(?:(\d+)(?:-(\d+))?)|\*)(?:\/(\d+))?)$/;
 
 
 export function parseCronSyntax(cron: string): DateRequest[]
@@ -146,42 +145,58 @@ export function parseCronSyntax(cron: string): DateRequest[]
     const combination = {
         minutes: parseCronPart(minute, 60),
         hour: parseCronPart(hours, 24),
-        date: parseCronPart(dayOfMonth, 31),
+        date: parseCronPart(dayOfMonth, 31, true),
         month: parseCronPart(month, 12),
         day: parseCronPart(dayOfWeek, 7),
     };
 
-    return combination.minutes.map(minute =>
-        combination.hour.map(hour =>
-            combination.date.map(date =>
-                combination.month.map(month =>
-                    ({ minutes: minute, hour, date: date + 1, month, day: combination.day, lat: null, lng: null, tz: null } as DateRequest)
+    return (combination.minutes || [undefined]).map(minute =>
+        (combination.hour || [undefined]).map(hour =>
+            (combination.date || [undefined]).map(date =>
+                (combination.month || [undefined]).map(month =>
+                    ({ minutes: minute, hour, date, month, day: combination.day, lat: null, lng: null, tz: null } as DateRequest)
                 )
             )
         )
     ).flat(3);
 }
 
-export function parseCronPart(value: string, steps: number): number[] 
+export function parseCronPart(value: string, steps: number, allowLast: true): (number | 'last')[]
+export function parseCronPart(value: string, steps: number, allowLast?: boolean): number[]
+export function parseCronPart(value: string, steps: number, allowLast?: boolean): (number | 'last')[] 
 {
     if (value == null || value === '*')
         return undefined;
+    if (allowLast && value == 'L')
+        return ['last'];
     return value.split(',').map(value =>
     {
         const part = cronPartRegex.exec(value);
-        if (part[1])
-            if (part[2])
+        if (part && part[0].length === value.length)
+            if (part[1])
             {
-                const length = Number(part[2]) - Number(part[1]);
-                return new Array(length).fill(0, 0, length).map((v, i) => Number(part[1]) + i);
+                const part1 = Number(part[1]);
+                if (part[3])
+                {
+                    const part3 = Number(part[3]);
+                    const length = Number(part[2]) - part1 + 1;
+                    return new Array(Math.ceil(length / part3)).fill(0, 0, Math.ceil(length / part3)).map((v, i) => part1 + i * part3);
+                }
+                else if (part[2])
+                {
+                    const length = Number(part[2]) - part1 + 1;
+                    return new Array(length).fill(0, 0, length).map((v, i) => Number(part1) + i);
+                }
+                else if (part1 >= steps)
+                    throw new Error(`value cannot be bigger that steps: ${value}>=${steps}`)
+                else
+                    return part1;
             }
-            else
-                return [Number(part[1])];
-        else if (part[4])
-        {
-            const part4 = Number(part[4]);
-            return new Array(Math.floor(steps / part4)).fill(0, 0, steps / part4).map((v, i) => i * part4);
-        }
+            else if (part[3])
+            {
+                const part3 = Number(part[3]);
+                return new Array(Math.floor(steps / part3)).fill(0, 0, steps / part3).map((v, i) => i * part3);
+            }
         throw new Error('invalid parsing ' + value)
     }).flat(2);
 }
@@ -201,7 +216,7 @@ export { type SidecarMap }
 
 export function getTargets(requests: DateRequest[], startDate?: Date)
 {
-    return requests.map(d => ({ request: d, target: getTarget(d, startDate) })).sort((a, b) => a.target.valueOf() - b.target.valueOf())
+    return requests.map(d => ({ request: d, target: getTarget(d, new Date(startDate)) })).sort((a, b) => a.target.valueOf() - b.target.valueOf())
 }
 
 export * from './state.js'
