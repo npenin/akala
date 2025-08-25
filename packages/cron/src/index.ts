@@ -219,7 +219,7 @@ export { type SidecarMap }
 
 export function getTargets(requests: DateRequest[], startDate?: Date)
 {
-    return requests.map(d => ({ request: d, target: getTarget(d, new Date(startDate)) })).sort((a, b) => a.target.valueOf() - b.target.valueOf())
+    return requests.map(d => ({ request: d, target: getTarget(d, startDate && new Date(startDate)) })).sort((a, b) => a.target.valueOf() - b.target.valueOf())
 }
 
 export * from './state.js'
