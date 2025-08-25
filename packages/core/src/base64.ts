@@ -33,7 +33,7 @@ export function base64DecToArr(sBase64: string)
     const clean = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
 
     if (typeof Buffer !== "undefined")
-        return new Uint8Array<ArrayBuffer>(Buffer.from(clean, "base64").buffer);
+        return Buffer.from(clean, "base64");
     else
     {
         const length = Math.floor(clean.length * 3 / 4);
