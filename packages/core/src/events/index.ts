@@ -15,9 +15,7 @@ export const asyncEventBuses = new UrlHandler(true) as UrlHandler<[url: URL, con
 
 eventBuses.useProtocol('memory', (_, config) =>
 {
-    const result = new EventEmitter();
-    config?.abort?.addEventListener('abort', () => result[Symbol.dispose]());
-    return Promise.resolve(result);
+    return Promise.resolve(new EventEmitter(null, config?.abort) as any);
 })
 
 asyncEventBuses.protocol.useMiddleware({

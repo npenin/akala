@@ -38,9 +38,10 @@ export class EventEmitter<T extends { [key in keyof T]: IEvent<any[], any> } = R
      * Creates an instance of EventEmitter.
      * @param {number | T} [init] - Initial value or number of max listeners.
      */
-    constructor(init?: number | T)
+    constructor(init?: number | T, abort?: AbortSignal)
     {
         super();
+
         switch (typeof init)
         {
             case 'number':
@@ -54,6 +55,7 @@ export class EventEmitter<T extends { [key in keyof T]: IEvent<any[], any> } = R
             default:
                 throw new Error('Unsupported usage')
         }
+        abort?.addEventListener('abort', () => this[Symbol.dispose]());
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
