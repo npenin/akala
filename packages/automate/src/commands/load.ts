@@ -51,14 +51,14 @@ export default async function (this: State, container: Container<unknown>, name:
                 if (typeof (value) == 'string')
                 {
                     this.schedules[value] = this.schedules[value] || new Schedule(value, parseCronSyntax(value));
-                    this.schedules[value].jobs.push(command);
+                    this.schedules[value].addJob(command);
                     this.schedules[value].start();
                 }
                 else
                 {
                     const stringValue = JSON.stringify(value);
                     this.schedules[stringValue] = this.schedules[stringValue] || new Schedule(stringValue, [value]);
-                    this.schedules[stringValue].jobs.push(command);
+                    this.schedules[stringValue].addJob(command);
                     this.schedules[stringValue].start();
                 }
             }

@@ -23,9 +23,9 @@ export default async function (this: State, container: Container<unknown>, name:
                     stringValue = value;
                 else
                     stringValue = JSON.stringify(value);
-                this.schedules[stringValue].jobs.splice(this.schedules[stringValue].jobs.indexOf(command), 1);
+                this.schedules[stringValue].removeJob(command);
 
-                if (this.schedules[stringValue].jobs.length == 0)
+                if (!this.schedules[stringValue].hasListeners)
                     this.schedules[stringValue].stop();
             }
             else if (triggerName in this.triggers)
