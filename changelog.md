@@ -535,6 +535,7 @@
 * move HttpStatusCode to be more "independent" of Http 0bcb3aa
 * multiple modules may be started simultaneously 3ea8a55
 * nested bindings change detection and oldValue assignment 8f373ca
+* no configFile error e545efd
 * node test pattern cbfe1b4
 * normalize on discover path c1a6b5f
 * npm fs handler using import.meta.resolve 4da63aa
