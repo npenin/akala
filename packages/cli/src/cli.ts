@@ -64,7 +64,7 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
         }
         catch (e)
         {
-            if (e.code !== 'ENOENT')
+            if (e.statusCode !== 404)
                 throw e;
         }
     }
