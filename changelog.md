@@ -696,6 +696,7 @@
 * return 204 when no content 5f4185c
 * return an empty array instead of null in write method of ZeroOrOne parser 310f7a8
 * return empty array is no output was written in buffer 2621d25
+* returns proper splice return type dfc3590
 * revert options copy on buildCliContextFromContext 084cf1a
 * revert options copy on buildCliContextFromContext 1cbbd3e
 * revert to cayman cf3e496
@@ -955,6 +956,7 @@
 * update yarn.lock to add ansi-escapes and yoctocolors dependencies fbadb14
 * upgrade module generation to esm only faee1d3
 * url handler will fail with Error 404 if not found e13a9a6
+* use addJob/removeJob since jobs is now private b19a7e4
 * use combineSubscriptions helper e569526
 * use helpers from @akala/cli 74292f2
 * use new spread helper to prevent blocking stdin abf4ad0
@@ -1023,6 +1025,7 @@
 * add / in default separators in case helpers and allow to specify different separators ca313c2
 * add 1stline as accept run format 24e51ce
 * add 1stline as accept run format 8cc6945
+* add abortsignal to cancel all events on event emitter 0496912
 * add akala plugin as referenced in doc ef39d5c
 * add api serving on akala CLI 4df8528
 * add api serving on akala CLI b649800
@@ -1124,6 +1127,7 @@
 * add resources and tools implementation cb5cb7b
 * add runtime concept 1993141
 * add runtime on RuntimeInstance 008d85a
+* add Scheduler as EventEmitter 1f5b122
 * add shadowWithStyles helper function 2c8e6b8
 * add SIGINT and SIGTERM signals handling 6906860
 * add Slice formatter af9770e
@@ -1301,6 +1305,7 @@
 
 ### BREAKING CHANGES
 
+* jobs is now private on Schedule
 * fs parameter is required if not using newAsync
 * formatters are now registered without a hash
 * Page are now controls, and require the element to be provided as a constructor parameter
