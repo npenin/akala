@@ -266,7 +266,7 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
      * @param {...T[]} replaceItems - The items to replace.
      * @returns {T[]} The deleted items.
      */
-    public splice(start: number, deleteCount?: number, ...replaceItems: T[])
+    public splice(start: number, deleteCount?: number, ...replaceItems: T[]): T[]
     {
         if (deleteCount === (replaceItems?.length ?? 0))
         {
