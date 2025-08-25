@@ -2,6 +2,8 @@ import commands from './container.js';
 import suncalc from 'suncalc'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { type SidecarMap } from '@akala/pm';
+import { AllEventKeys, AllEvents, eventBuses, EventEmitter, IEvent } from '@akala/core';
+import { Schedule, WaitInfo } from './state.js';
 
 export function isDST(day, month, dayOfWeek)
 {
@@ -223,3 +225,20 @@ export function getTargets(requests: DateRequest[], startDate?: Date)
 }
 
 export * from './state.js'
+
+export class Scheduler extends EventEmitter<Record<string, IEvent<[Schedule, WaitInfo], void>>>
+{
+    constructor(abort?: AbortSignal)
+    {
+        super();
+    }
+
+    protected eventFactory<const TEvent extends AllEventKeys<Record<string, IEvent<[Schedule, WaitInfo], void>>>>(name: TEvent): AllEvents<Record<string, IEvent<[Schedule, WaitInfo], void>>>[TEvent]
+    {
+        if (typeof name == 'string')
+            return new Schedule(name, parseCronSyntax(name)) as any;
+        return super.eventFactory(name);
+    }
+}
+
+eventBuses.useProtocol('cron', (_, config) => Promise.resolve(new Scheduler(config?.abort) as any))

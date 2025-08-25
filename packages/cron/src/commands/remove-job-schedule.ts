@@ -5,9 +5,5 @@ export default function schedule(
     jobName: string,
     scheduleName: string)
 {
-    const indexOfJob = this.schedules[scheduleName].jobs.indexOf(this.jobs[jobName]);
-    if (indexOfJob >= 0)
-        this.schedules[scheduleName].jobs.splice(indexOfJob);
-    else
-        throw new Error(`job ${jobName} is not scheduled with ${scheduleName}`);
+    this.schedules[scheduleName].removeJob(this.jobs[jobName]);
 }
