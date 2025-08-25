@@ -312,6 +312,7 @@
 * generator bug when force=true 0817c02
 * generator bug when force=true ec5d977
 * getProperty methods in jssys 1f22de3
+* getTargets to properly support undefined startDate a9cc84c
 * git rev list command bbc7fa2
 * git rev list command cd73e5a
 * globalThis registration a4895db
