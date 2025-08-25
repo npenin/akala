@@ -33,85 +33,88 @@ export type DateRequest = {
     tz?: number
 };
 
-export function getTarget(config: DateRequest, target?: Date): Date
+export function getTarget(config: DateRequest, from?: Date, now?: Date): Date
 {
-    var now = new Date();
-    now.setSeconds(0);
-    now.setMilliseconds(0);
-    if (typeof (target) == 'undefined')
+    if (typeof now == 'undefined')
     {
-        target = new Date();
-        target.setSeconds(0);
-        target.setMilliseconds(0);
+        now = new Date();
+        now.setSeconds(0);
+        now.setMilliseconds(0);
+    }
+    if (typeof (from) == 'undefined')
+    {
+        from = new Date();
+        from.setSeconds(0);
+        from.setMilliseconds(0);
     }
 
     if (typeof (config.minutes) != 'undefined')
     {
-        target.setMinutes(config.minutes);
-        if (target <= now)
-            target.setHours(target.getHours() + 1);
+        from.setMinutes(config.minutes);
+        if (from <= now)
+            from.setHours(from.getHours() + 1);
     }
     if (typeof (config.hour) != 'undefined')
     {
-        target.setHours(config.hour);
-        if (target <= now)
-            target.setDate(target.getDate() + 1);
+        from.setHours(config.hour);
+        if (from <= now)
+            from.setDate(from.getDate() + 1);
     }
     // else if (typeof (config.minutes) != 'undefined' && target <= now)
     //     target.setHours(target.getHours() + 1);
     if (typeof (config.day) != 'undefined')
     {
-        while ((config.day || [0, 1, 2, 3, 4, 5, 6]).filter(function (element) { return element == target.getDay() }).length === 0)
+        while ((config.day || [0, 1, 2, 3, 4, 5, 6]).filter(function (element) { return element == from.getDay() }).length === 0)
         {
-            target.setDate(target.getDate() + 1);
+            from.setDate(from.getDate() + 1);
         }
     }
-    else if (typeof (config.hour) != 'undefined' && target <= now)
-        target.setDate(target.getDate() + 1);
+    else if (typeof (config.hour) != 'undefined' && from <= now)
+        from.setDate(from.getDate() + 1);
     if (typeof (config.date) != 'undefined')
     {
         if (typeof config.date == 'number' && config.date <= 28)
-            target.setDate(config.date);
+            from.setDate(config.date);
         else if (config.date == 'last')
         {
-            var lastDay = new Date(target.getTime());
+            var lastDay = new Date(from.getTime());
             lastDay.setDate(1);
             lastDay.setMonth(lastDay.getMonth() + 1);
             lastDay.setDate(0);
-            target.setDate(lastDay.getDate());
+            from.setDate(lastDay.getDate());
         }
-        if (target <= now)
+        if (from <= now)
         {
-            target.setMonth(target.getMonth() + 1);
-            target.setDate(1);
-            return getTarget(config, target);
+            from.setMonth(from.getMonth() + 1);
+            from.setDate(1);
+            return getTarget(config, from);
         }
     }
     if (typeof (config.month) != 'undefined')
     {
-        target.setMonth(config.month);
-        if (target <= now)
-            target.setFullYear(target.getFullYear() + 1);
+        from.setMonth(config.month);
+        if (from <= now)
+            from.setFullYear(from.getFullYear() + 1);
     }
-    else if (typeof (config.date) != 'undefined' && target <= now)
-        target.setMonth(target.getMonth() + 1);
+    else if (typeof (config.date) != 'undefined' && from <= now)
+        from.setMonth(from.getMonth() + 1);
 
     if (typeof (config['rise/set']) != 'undefined')
     {
-        const times = suncalc.getTimes(target, config.lat, config.lng);
+        const times = suncalc.getTimes(from, config.lat, config.lng);
         if (config['rise/set'] === 'rise')
-            target = times.sunriseEnd;
+            from = times.sunriseEnd;
         else
-            target = times.sunset;
+            from = times.sunset;
 
-        if (target <= now)
+        if (from <= now)
         {
-            target.setDate(target.getDate() + 1);
-            return getTarget(config, target);
+            from.setDate(from.getDate() + 1);
+            return getTarget(config, from);
         }
     }
 
-    return target;
+    return from;
 }
 
 export const cronRegex = /^([-\d\*,\/]+) +([-\d\*,\/]+) +([-\dL\*,\/]+) +([-\d\*,\/]+) +([-\d\*,\/]+)$/;
