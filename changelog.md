@@ -1,4 +1,4 @@
-#  (2025-08-24)
+#  (2025-08-25)
 
 
 * chore : code cleanup eae1150
@@ -14,6 +14,7 @@
 * add canSet property to Binding class 0c45820
 * add commands argument normalisation 8c9fb75
 * add commands argument normalisation 34ca419
+* add cron to config 34d06a0
 * add debug to understand why publish is crashing c463573
 * add default layout configuration for all project files in collections fcf7918
 * add default layout configuration for all project files in collections e85e03e
@@ -186,6 +187,7 @@
 * correct title casing in formatters documentation ae403f9
 * correct title casing in formatters documentation 0477e0d
 * crash on standard use case 2b27048
+* cron implementation c14aefe
 * css syntax 595ab12
 * cwd c335202
 * cwd a6dee22
@@ -498,6 +500,7 @@
 * make rawQuery support optional 3be8917
 * make rawQuery support optional 6050617
 * make ReplayEvent max listeners optional 86f6545
+* make sure CLI uses URL to load config (because of config breaking change) 9985f43
 * make sure to use cryptKey from root config bb9c843
 * make sure to use cryptKey from root config ca5727e
 * many fixes (still not prod ready) d4f40d2
@@ -781,6 +784,7 @@
 * switching to working teme 91a852a
 * ternary operator parsing 2deff53
 * test 9dcc33b
+* test cases f2e3233
 * test cases to match UTC 2e8ef88
 * testing command bindings and auth 888755a
 * testing command bindings and auth 96220e8
@@ -1102,6 +1106,7 @@
 * add new plugin command with configuration and update command options 963a893
 * add NO_AKALAPOSTINSTALL support bb60b83
 * add NO_AKALAPOSTINSTALL support bebd6b1
+* add now as parameter to also compute in the past or the future a6bbaf7
 * add oidc formatter factory 11b2d52
 * add oidc formatter factory fba4a73
 * add openStream on FileHandle 2868198
