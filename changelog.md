@@ -122,6 +122,7 @@
 * avoid crash on non-simplifyable expression c5fb595
 * await for container to be ready 064a452
 * aws sdk generation and update services 7b922cf
+* base64 decode to array 6445f15
 * base64UrlEncode properly strips = 8a9274d
 * base64UrlEncode properly strips = 54ca5ff
 * better handle of password in config fdd2bde
