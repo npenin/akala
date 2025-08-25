@@ -3,7 +3,12 @@
 
 ### Bug Fixes
 
-* base64 decode to array 6445f15
+* returns proper splice return type dfc3590
+
+
+### Features
+
+* add abortsignal to cancel all events on event emitter 0496912
 
 
 
