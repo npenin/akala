@@ -1,13 +1,17 @@
 import { type CliContext } from "@akala/cli";
-import { readFile, mkdir } from "fs/promises";
+import { mkdir } from "fs/promises";
 import { join } from "path";
 import { type Container } from "../metadata/index.js";
 import command from "./new/command.js";
 import { newCommandConfiguration } from "./new/command-config.js";
+import fsHandler from "@akala/fs";
 
 export default async function implement(pathToCommandFile: string, destination: string, options: CliContext<{ force?: boolean }>['options']): Promise<void>
 {
-    var metadata: Container = JSON.parse(await readFile(pathToCommandFile, 'utf-8'));
+    if (!URL.canParse(pathToCommandFile))
+        pathToCommandFile = 'file:' + pathToCommandFile;
+    const sourceFs = await fsHandler.process(new URL(pathToCommandFile))
+    var metadata = await sourceFs.readFile<Container>(new URL(pathToCommandFile), { encoding: 'json' });
     try
     {
         await mkdir(join(destination, metadata.name), { recursive: true });
