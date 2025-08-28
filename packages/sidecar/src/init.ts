@@ -40,10 +40,19 @@ export async function $init(context: CliContext<Record<string, OptionType>, Prox
 
 export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: Sidecar<unknown, TEvents>, config: PubSubConfiguration | undefined, abort: AbortSignal)
 {
+    let transport: URL;
     if (!sidecar.pubsub)
     {
         if (!config)
-            return;
+        {
+            if (process.env.PUBSUB_URL)
+                transport = new URL(process.env.PUBSUB_URL);
+            else
+                return;
+        }
+        else
+            transport = new URL(config.transport);
+
         let password = config?.transportOptions?.password;
         if (typeof password === 'string')
         {
@@ -57,8 +66,8 @@ export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: Sidecar
         else if (typeof password === 'object')
             password = await sidecar.config.pubsub.transportOptions.getSecret('password');
 
-        if (config?.transport)
-            sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(config.transport), Object.assign({ abort },
+        if (transport)
+            sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(transport), Object.assign({ abort },
                 config.transportOptions,
                 {
                     abort: sidecar.abort,
