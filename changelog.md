@@ -1,4 +1,4 @@
-#  (2025-08-26)
+#  (2025-08-28)
 
 
 * chore : code cleanup eae1150
@@ -1142,6 +1142,7 @@
 * add support for optional function call 5730ab2
 * add support for optional function call ae9ae21
 * add support for password secret in config 135edfa
+* add support for PUBSUB_URL environment variable b07f9b8
 * add support for URLs in server routes c10cf67
 * add table row event handlers 392d906
 * add TcpSocketAdapter for TCP socket handling and update package exports 79e83bd
