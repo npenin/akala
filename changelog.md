@@ -221,6 +221,7 @@
 * discover start path 48f4250
 * discover start path a3425fb
 * discover start path d4b1ec8
+* discover to support reading files in folder 2cc49d4
 * do not through on empty list 0305479
 * dockerfile 480944e
 * don't publish style updates 2f7631e
