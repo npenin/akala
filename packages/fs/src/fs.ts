@@ -184,9 +184,10 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         });
     }
 
-    readFile(path: PathLike<FullFileHandle>, options?: { encoding?: null | 'binary', flag?: OpenFlags } | 'binary'): Promise<IsomorphicBuffer>;
-    readFile(path: PathLike<FullFileHandle>, options: { encoding: BufferEncoding, flag?: OpenFlags } | BufferEncoding): Promise<string>;
-    readFile<T>(path: PathLike<FullFileHandle>, options: { encoding: 'json', flag?: OpenFlags } | 'json'): Promise<T>;
+    // Order matters for json parsing
+    readFile(path: FsPathLike, options: { encoding: BufferEncoding, flag?: OpenFlags } | BufferEncoding): Promise<string>;
+    readFile(path: FsPathLike, options?: { encoding?: null | 'binary', flag?: OpenFlags } | 'binary'): Promise<IsomorphicBuffer>;
+    readFile<T>(path: FsPathLike, options: { encoding: 'json', flag?: OpenFlags } | 'json'): Promise<T>;
     async readFile<T = unknown>(path: FsPathLike, options?: any): Promise<string | IsomorphicBuffer | T>
     {
         if (this.isFileHandle(path))
@@ -196,7 +197,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
             options = { encoding: options };
 
         if (options?.encoding === 'json')
-            return this.readFile(path, { ...options, encoding: 'utf8' }).then(c => c && JSON.parse(c) || undefined);
+            return this.readFile(path, { ...options, encoding: 'utf8' }).then(c => c && JSON.parse(c as string) || undefined);
 
         return fs.readFile(this.resolvePath(path), options).then(content => Buffer.isBuffer(content) ? IsomorphicBuffer.fromBuffer(content) : content, e =>
         {

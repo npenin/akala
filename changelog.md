@@ -1,4 +1,4 @@
-#  (2025-08-28)
+#  (2025-08-30)
 
 
 * chore : code cleanup eae1150
@@ -138,6 +138,7 @@
 * buffer reading when unlimited 8440c4d
 * bug when result is null 4596a13
 * bug when result is null b6a9828
+* build e06465b
 * build 89d6c2a
 * build b92d150
 * build e6cbc6d
@@ -762,6 +763,7 @@
 * specialize ObjectEvent for a better typing 38576c3
 * standardize parent attribute casing in documentation for consistency 99b4952
 * standardize parent attribute casing in documentation for consistency b5ce37c
+* standardize runtimes building 79efdfa
 * standardize section titles in documentation for consistency d8b067b
 * standardize section titles in documentation for consistency b2026f2
 * start in cli c0ad45e
@@ -1063,6 +1065,7 @@
 * add cryptokey to state 4337e56
 * add customResolve and ICustomResolver to simplify injector and non injector chaining e9a9eae
 * add customResolve and ICustomResolver to simplify injector and non injector chaining 93107ce
+* add depencencies during map 9452187
 * add dependency diagram builder 2c09ead
 * add dependency diagram builder ad6060b
 * add doc from gh-pages branch a024fed
@@ -1118,6 +1121,7 @@
 * add oidc formatter factory fba4a73
 * add openStream on FileHandle 2868198
 * add package.json interface and export in core package c4094d7
+* add possibility to provide encoding directly e91fa81
 * add pubsub triggers 042d460
 * add raw query and custom resolvers 91f1063
 * add raw query and custom resolvers 19a38cc
