@@ -568,6 +568,8 @@
 * **pm:** apply configFile inheritance aaa43d2
 * **pm:** apply configFile inheritance 5355aad
 * pmConnectInfo not populated 8cd0190
+* pnpm helper cd370d1
+* pnpm info helper a6d30b5
 * positional parameters 0839d7d
 * positional parameters 4c7e6df
 * postinstall after cli update 6e53e1f
@@ -581,6 +583,7 @@
 * pre-create config file if it does not exist 0c72d08
 * pre-create config file if it does not exist 46d5f72
 * prevent assigning datacontext if already overriden 468afd3
+* prevent crash on double starts d36ecd0
 * prevent http formatter infinite calls e8f33c1
 * prevent invalid stream property if not a stream 1a2caad
 * prevent jsonrpc run if disabled e2f14ac
