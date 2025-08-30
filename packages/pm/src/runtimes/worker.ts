@@ -15,7 +15,7 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
     private readonly cp: Worker;
     public readonly adapter: SocketAdapter<Payload<Readable>>;
     private _running: boolean;
-    constructor(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean })
+    constructor(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean }, signal?: AbortSignal)
     {
         super();
         this.cp = new Worker(require.resolve('../fork'), { argv: args, stderr: true, stdout: true })
@@ -23,15 +23,21 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
         this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: true })).pipe(process.stdout);
         this.adapter = new JsonRpcSocketAdapter(new MessagePortAdapter(this.cp));
         this.cp.on('exit', () => { this._running = false; this.emit('runningChanged') })
+
+        signal?.addEventListener('abort', () =>
+        {
+            this.stop();
+        })
     }
-    stop(): Promise<number>
+
+    public stop()
     {
         return this.cp.terminate();
     }
 
-    public static build(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean })
+    public static build(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean }, signal?: AbortSignal)
     {
-        return new Runtime(args, options);
+        return Promise.resolve(new Runtime(args, options, signal));
     }
 
     get stderr(): Readable { return this.cp.stderr }

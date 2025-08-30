@@ -50,13 +50,13 @@ function demuxDockerStream(stream: Readable, stdout: PassThrough, stderr: PassTh
     });
 }
 
-export class Runtime extends EventEmitter<RuntimeEventMap> implements RuntimeInstance
+export default class Runtime extends EventEmitter<RuntimeEventMap> implements RuntimeInstance
 {
     static readonly name = "docker";
 
     static async build(
         args: string[],
-        options: { new?: boolean; name: string; keepAttached?: boolean; inspect?: boolean; verbose?: boolean; wait?: boolean }
+        options: { new?: boolean; name: string; keepAttached?: boolean; inspect?: boolean; verbose?: number; wait?: boolean }
     ): Promise<Runtime>
     {
         const image = args[0];

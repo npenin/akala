@@ -13,7 +13,7 @@ export default async function start(this: State, name: string, context?: CliCont
         inspect: undefined, new: undefined, wait: undefined
     })];
 
-    const cp = ChildProcess.build(args, { ...context.options, inheritStdio: true }, context.abort.signal);
+    const cp = await ChildProcess.build(args, { ...context.options, inheritStdio: true }, context.abort.signal);
     cp.on('exit', function (...args: unknown[])
     {
         console.log(args);

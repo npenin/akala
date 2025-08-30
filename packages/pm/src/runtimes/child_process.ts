@@ -7,17 +7,25 @@ import { EventEmitter, SocketAdapter, type IEvent } from "@akala/core";
 import { fileURLToPath } from "url";
 import { JsonRpcSocketAdapter, Payload } from "@akala/json-rpc-ws";
 
-export type ChildProcessRuntimeEventMap = {
+export interface ChildProcessRuntimeEventMap extends RuntimeEventMap
+{
     "close": IEvent<[code: number | null, signal: NodeJS.Signals | null], void>
     "disconnect": IEvent<[], void>
     "error": IEvent<[err: Error], void>
-    "exit": IEvent<[code: number | null, signal: NodeJS.Signals | null], void>
     "message": IEvent<[message: Serializable, sendHandle: SendHandle], void>
     "spawn": IEvent<[], void>
 
-} & RuntimeEventMap;
+}
 
-export type ChildProcessRuntimeOptions = { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean, inheritStdio?: boolean }
+export type ChildProcessRuntimeOptions = {
+    new?: boolean,
+    name: string,
+    keepAttached?: boolean,
+    inspect?: boolean,
+    verbose?: number,
+    wait?: boolean,
+    inheritStdio?: boolean
+}
 
 export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> implements RuntimeInstance<ChildProcessRuntimeEventMap>
 {
@@ -40,7 +48,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
             this.stderrPrefixer.pipe(process.stderr);
             this.stdoutPrefixer = this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stdout.isTTY }), { end: true });
             this.stdoutPrefixer.pipe(process.stdout);
-            this.on('disconnect', () =>
+            this.cp.on('disconnect', () =>
             {
                 this.cp.stderr?.unpipe();
                 this.cp.stdout?.unpipe();
@@ -90,9 +98,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
 
     public static build(args: string[], options: ChildProcessRuntimeOptions, signal?: AbortSignal)
     {
-        return new Runtime(args, options, signal) as Runtime & RuntimeInstance;
-
-
+        return Promise.resolve(new Runtime(args, options, signal));
     }
 
     public unref()

@@ -8,9 +8,10 @@ import getRandomName from "./name.js";
 import { type ProxyConfiguration, unwrap } from "@akala/config";
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { type RuntimeInstance } from "../runtimes/shared.js";
+import { RuntimeEventMap, type RuntimeInstance } from "../runtimes/shared.js";
 import ChildProcess from "../runtimes/child_process.js";
 import Worker from "../runtimes/worker.js";
+import Docker from "../runtimes/docker.js";
 
 
 //eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -99,11 +100,13 @@ export default async function start(this: State, pm: pmContainer.container & Con
     switch (def?.type)
     {
         case 'worker':
-            cp = Worker.build(args, options);
+            cp = await Worker.build(args, options);
             break;
+        case 'docker':
+            cp = await Docker.build(args, options);
         case 'nodejs':
             args.push('--pm-sock', 'ipc://')
-            cp = ChildProcess.build(args, { ...options, keepAttached: true });
+            cp = await ChildProcess.build(args, { ...options, keepAttached: true }) as RuntimeInstance<RuntimeEventMap>;
             break;
         default:
             throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
