@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* prevent crash on double starts d36ecd0
+* discover to support reading files in folder 2cc49d4
 
 
 
