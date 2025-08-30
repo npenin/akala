@@ -3,7 +3,7 @@ import { IsomorphicBuffer } from "@akala/core";
 export interface FileHandle
 {
     readonly path: URL;
-    openReadStream(options?: OpenStreamOptions): ReadableStream;
+    openReadStream(options?: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream;
     openWriteStream(options?: OpenStreamOptions): WritableStream;
     readFile(encoding: Exclude<BufferEncoding, 'binary'>): Promise<string>;
     readFile(encoding: 'binary'): Promise<IsomorphicBuffer>;
@@ -23,7 +23,7 @@ export class VirtualFileHandle<FSP extends FileSystemProvider> implements FileHa
 
     constructor(protected readonly fs: FSP, public path: URL) { }
 
-    openReadStream(options?: OpenStreamOptions): ReadableStream
+    openReadStream(options?: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream
     {
         return this.fs.openReadStream(this.path, options);
     }
@@ -310,7 +310,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Optional settings for opening the stream.
      * @returns A {@link ReadableStream} for reading file data.
      */
-    openReadStream(path: PathLike<TFileHandle>, options?: OpenStreamOptions): ReadableStream;
+    openReadStream(path: PathLike<TFileHandle>, options?: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream;
 
     /**
      * Opens a writable stream for writing data to the file system.
@@ -319,7 +319,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Optional settings for opening the stream.
      * @returns A {@link WritableStream} for writing file data.
      */
-    openWriteStream(path: PathLike<TFileHandle>, options?: OpenStreamOptions): WritableStream;
+    openWriteStream(path: PathLike<TFileHandle>, options?: OpenStreamOptions | OpenStreamOptions['encoding']): WritableStream;
 
     /**
      * Checks the accessibility of a file or directory.
@@ -403,9 +403,9 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param options - Options for reading the file.
      * @returns A promise that resolves with the file contents.
      */
-    readFile(path: PathLike<TFileHandle>, options?: { encoding?: null | 'binary', flag?: OpenFlags }): Promise<IsomorphicBuffer>;
-    readFile(path: PathLike<TFileHandle>, options: { encoding: BufferEncoding, flag?: OpenFlags }): Promise<string>;
-    readFile<T>(path: PathLike<TFileHandle>, options: { encoding: 'json', flag?: OpenFlags }): Promise<T>;
+    readFile(path: PathLike<TFileHandle>, options?: { encoding?: null | 'binary', flag?: OpenFlags } | 'binary'): Promise<IsomorphicBuffer>;
+    readFile(path: PathLike<TFileHandle>, options: { encoding: BufferEncoding, flag?: OpenFlags } | BufferEncoding): Promise<string>;
+    readFile<T>(path: PathLike<TFileHandle>, options: { encoding: 'json', flag?: OpenFlags } | 'json'): Promise<T>;
 
     /**
      * Renames a file or directory.

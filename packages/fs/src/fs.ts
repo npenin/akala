@@ -29,8 +29,10 @@ function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, pa
 {
     return Object.assign({}, handle as Omit<fs.FileHandle, 'readFile'>, {
         path,
-        openReadStream(options: OpenStreamOptions): ReadableStream
+        openReadStream(options: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream
         {
+            if (typeof options == 'string')
+                return Readable.toWeb(handle.createReadStream({ encoding: options })) as ReadableStream;
             return Readable.toWeb(handle.createReadStream(options)) as ReadableStream;
         },
         openWriteStream(options: OpenStreamOptions): WritableStream
@@ -72,7 +74,7 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return this.resolvePath(path);
     }
 
-    openReadStream(path: PathLike<FullFileHandle>, options?: OpenStreamOptions): ReadableStream
+    openReadStream(path: PathLike<FullFileHandle>, options?: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream
     {
         if (this.isFileHandle(path))
             return path.openReadStream(options);
@@ -182,13 +184,16 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         });
     }
 
-    async readFile<TEncoding extends BufferEncoding>(path: FsPathLike, options: { encoding: TEncoding; flag?: OpenFlags; }): Promise<string>;
-    async readFile(path: FsPathLike, options?: { flag?: OpenFlags; }): Promise<IsomorphicBuffer>;
-    async readFile<T = unknown>(path: FsPathLike, options: { encoding: 'json'; flag?: OpenFlags; }): Promise<T>;
+    readFile(path: PathLike<FullFileHandle>, options?: { encoding?: null | 'binary', flag?: OpenFlags } | 'binary'): Promise<IsomorphicBuffer>;
+    readFile(path: PathLike<FullFileHandle>, options: { encoding: BufferEncoding, flag?: OpenFlags } | BufferEncoding): Promise<string>;
+    readFile<T>(path: PathLike<FullFileHandle>, options: { encoding: 'json', flag?: OpenFlags } | 'json'): Promise<T>;
     async readFile<T = unknown>(path: FsPathLike, options?: any): Promise<string | IsomorphicBuffer | T>
     {
         if (this.isFileHandle(path))
             return path.readFile(options?.encoding);
+
+        if (typeof options == 'string')
+            options = { encoding: options };
 
         if (options?.encoding === 'json')
             return this.readFile(path, { ...options, encoding: 'utf8' }).then(c => c && JSON.parse(c) || undefined);
