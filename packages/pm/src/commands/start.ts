@@ -49,7 +49,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
     var container = this.processes[options.name || name];
     if (container?.running)
-        throw new Error(container.name + ' is already started');
+        throw new ErrorWithStatus(HttpStatusCode.Conflict, container.name + ' is already started');
 
     args = [];
 
@@ -91,7 +91,18 @@ export default async function start(this: State, pm: pmContainer.container & Con
             if (dep === name)
                 return;
             if (!this.processes[dep])
-                await pm.dispatch('start', dep, { wait: true })
+            {
+                try
+                {
+                    await pm.dispatch('start', dep, { wait: true })
+                }
+                catch (e)
+                {
+                    if (e.statusCode !== HttpStatusCode.Conflict)
+                        throw e;
+                    await new Promise(resolve => this.processes[dep].ready?.addListener(resolve, { once: true }));
+                }
+            }
             else
                 await new Promise(resolve => this.processes[dep].ready?.addListener(resolve, { once: true }));
         });
