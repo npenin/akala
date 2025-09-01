@@ -89,7 +89,7 @@ export function getTarget(config: DateRequest, from?: Date, now?: Date): Date
         {
             from.setMonth(from.getMonth() + 1);
             from.setDate(1);
-            return getTarget(config, from);
+            return getTarget(config, from, now);
         }
     }
     if (typeof (config.month) != 'undefined')
@@ -112,7 +112,7 @@ export function getTarget(config: DateRequest, from?: Date, now?: Date): Date
         if (from <= now)
         {
             from.setDate(from.getDate() + 1);
-            return getTarget(config, from);
+            return getTarget(config, from, now);
         }
     }
 
