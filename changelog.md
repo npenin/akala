@@ -1,4 +1,4 @@
-#  (2025-08-30)
+#  (2025-09-01)
 
 
 * chore : code cleanup eae1150
@@ -967,6 +967,7 @@
 * use combineSubscriptions helper e569526
 * use helpers from @akala/cli 74292f2
 * use new spread helper to prevent blocking stdin abf4ad0
+* use now in all cases 109d663
 * use of Logger interface instead of limited ILogger 5228151
 * use once when requested 9047586
 * use optional chaining for subscription calls in ReplaceableSubscription classes f11ae03
@@ -1134,6 +1135,7 @@
 * add readonly root URL 9098660
 * add ReplaceableSubscription classes 0d48a0e
 * add resources and tools implementation cb5cb7b
+* add retry socket adapter strategies 5823c12
 * add runtime concept 1993141
 * add runtime on RuntimeInstance 008d85a
 * add Scheduler as EventEmitter 1f5b122
