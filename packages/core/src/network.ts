@@ -1,8 +1,8 @@
 import type { AllEventKeys, EventBus, SpecialEvents } from "./events/event-bus.js";
 import { type AllEvents, EventEmitter } from "./events/event-emitter.js";
-import type { IEvent, EventListener, EventOptions, EventArgs, EventReturnType } from "./events/shared.js";
+import type { IEvent, EventListener, EventOptions, EventArgs, EventReturnType, EventKeys } from "./events/shared.js";
 import type { IsomorphicBuffer } from "./helpers.js";
-import { Subscription } from "./teardown-manager.js";
+import { AsyncTeardownManager, Subscription } from "./teardown-manager.js";
 
 export interface SocketAdapterEventMap<T = string | IsomorphicBuffer> 
 {
@@ -150,5 +150,101 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
     override emit<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap<T>>>(event: TEvent, ...args: EventArgs<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>): false | EventReturnType<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>
     {
         return super.emit(event, ...args);
+    }
+}
+
+export interface RetryStrategy
+{
+    start(): void;
+    stop(): void;
+};
+
+export class IntervalRetry implements RetryStrategy
+{
+    constructor(private handler: () => void, private readonly startDelayInMs: number, private readonly step: (current: number) => number)
+    {
+    }
+
+    public static fixedInterval(handler: () => void, delayInMs: number)
+    {
+        return new IntervalRetry(handler, delayInMs, () => delayInMs);
+    }
+
+    private timeout: NodeJS.Timeout;
+
+    start(): void
+    {
+        const nextRetry = (delayInMs: number) =>
+        {
+            this.timeout = setTimeout(() =>
+            {
+                this.handler();
+                nextRetry(this.step(delayInMs));
+            }, delayInMs)
+        }
+
+        if (!this.timeout)
+            nextRetry(this.startDelayInMs);
+    }
+
+    stop(): void
+    {
+        if (this.timeout)
+            clearTimeout(this.timeout);
+        this.timeout = undefined;
+    }
+}
+
+export class SocketWithConnectionRetry<T> extends AsyncTeardownManager implements SocketAdapter<T>
+{
+    private shouldRetry: boolean = true;
+
+    constructor(private readonly inner: SocketAdapter<T>, readonly strategy: RetryStrategy)
+    {
+        super([inner.on('close', () => this.shouldRetry ? strategy.start() : strategy.stop())]);
+    }
+
+    get open(): boolean
+    {
+        return this.inner.open;
+    };
+
+    close(): Promise<void>
+    {
+        this.shouldRetry = false;
+        return this.inner.close();
+    }
+    send(data: T): Promise<void>
+    {
+        return this.inner.send(data);
+    }
+    pipe(socket: SocketAdapter<T>): void
+    {
+        return this.inner.pipe(socket);
+    }
+
+    hasListener<const TKey extends EventKeys<SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>>>(name: TKey): boolean
+    {
+        return this.inner.hasListener(name);
+    }
+    get definedEvents(): EventKeys<SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>>[]
+    {
+        return this.inner.definedEvents;
+    }
+    emit<const TEvent extends EventKeys<SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>>>(event: TEvent, ...args: EventArgs<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>): false | EventReturnType<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>
+    {
+        return this.inner.emit(event, ...args);
+    }
+    on<const TEvent extends EventKeys<SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>>>(event: TEvent, handler: EventListener<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>, options?: EventOptions<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>): Subscription
+    {
+        return this.inner.on(event, handler, options);
+    }
+    once<const TEvent extends EventKeys<SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>>>(event: TEvent, handler: EventListener<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>, options?: Omit<EventOptions<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>, "once">): Subscription
+    {
+        return this.inner.once(event, handler, options);
+    }
+    off<const TEvent extends EventKeys<SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>>>(event: TEvent, handler?: EventListener<(SocketAdapterAkalaEventMap<T> & Partial<SpecialEvents>)[TEvent]>): boolean
+    {
+        return this.inner.off(event, handler);
     }
 }
