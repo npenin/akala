@@ -1,14 +1,9 @@
-#  (2025-08-25)
-
-
-### Bug Fixes
-
-* returns proper splice return type dfc3590
+#  (2025-09-01)
 
 
 ### Features
 
-* add abortsignal to cancel all events on event emitter 0496912
+* add retry socket adapter strategies 5823c12
 
 
 
