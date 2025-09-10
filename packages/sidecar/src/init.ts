@@ -1,15 +1,11 @@
 import { type Container as pm, type ContainerLite, type Sidecar as pmSidecar, sidecar as pmsidecar, meta as pmMeta } from '@akala/pm'
-import { type ProxyConfiguration } from '@akala/config'
+import type { ProxyConfiguration } from '@akala/config'
 import { connectByPreference, Container } from '@akala/commands'
 import { type SerializableDefinition, PersistenceEngine, providers, Store, type StoreDefinition, ModelDefinition } from '@akala/storage'
-import { type AsyncEventBus, type Serializable, type SerializableObject, eachAsync, asyncEventBuses, module, type Context, type IEvent, type EventMap } from '@akala/core';
-import { type CliContext, type OptionType } from '@akala/cli'
+import { type AsyncEventBus, type Serializable, eachAsync, module, type Context, type IEvent, type EventMap } from '@akala/core';
+import type { CliContext, OptionType } from '@akala/cli'
+import { pubsub, PubSubConfiguration } from './pubsub.js';
 
-export interface PubSubConfiguration
-{
-    transport: string;
-    transportOptions?: SerializableObject;
-}
 
 export interface StoreConfiguration
 {
@@ -36,44 +32,6 @@ export async function $init(context: CliContext<Record<string, OptionType>, Prox
 {
     Object.assign(this, await app(context, remotePm));
     context.logger.help('Your application is now ready !');
-}
-
-export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: Sidecar<unknown, TEvents>, config: PubSubConfiguration | undefined, abort: AbortSignal)
-{
-    let transport: URL;
-    if (!sidecar.pubsub)
-    {
-        if (!config)
-        {
-            if (process.env.PUBSUB_URL)
-                transport = new URL(process.env.PUBSUB_URL);
-            else
-                return;
-        }
-        else
-            transport = new URL(config.transport);
-
-        let password = config?.transportOptions?.password;
-        if (typeof password === 'string')
-        {
-            if (!sidecar.config.pubsub)
-                sidecar.config.set('pubsub', config)
-            if (!sidecar.config.pubsub.transportOptions)
-                sidecar.config.pubsub.set('transportOptions', config.transportOptions);
-            await sidecar.config.pubsub.transportOptions.setSecret('password', password);
-            await sidecar.config.commit();
-        }
-        else if (typeof password === 'object')
-            password = await sidecar.config.pubsub.transportOptions.getSecret('password');
-
-        if (transport)
-            sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(transport), Object.assign({ abort },
-                config.transportOptions,
-                {
-                    abort: sidecar.abort,
-                    password
-                }));
-    }
 }
 
 export default async function app<T extends StoreDefinition, TEvents extends EventMap<TEvents>>(context: Context<ProxyConfiguration<SidecarConfiguration>>, localRemotePm?: string | (pm & Container<unknown>)): Promise<Sidecar<T, TEvents>>
