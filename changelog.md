@@ -1,4 +1,4 @@
-#  (2025-09-01)
+#  (2025-09-10)
 
 
 * chore : code cleanup eae1150
@@ -1283,6 +1283,7 @@
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
 * pm fork can be triggered from pm run command cd61525
+* provide a browser variant 8c4cc60
 * provide additional file handle methods ce68f35
 * provide akala plugin for registering mongodb provider. a120302
 * provide akala plugin for registering mongodb provider. f776509
