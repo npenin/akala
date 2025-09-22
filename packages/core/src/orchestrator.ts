@@ -22,7 +22,7 @@ interface EventMap
  * @fires Orchestrator#error
  * @fires Orchestrator#stop
  */
-export default class Orchestrator extends EventEmitter<EventMap>
+export class Orchestrator extends EventEmitter<EventMap>
 {
     public readonly tasks: Record<string, Task & { name: string, action?: () => void | Promise<void> }> = {};
 

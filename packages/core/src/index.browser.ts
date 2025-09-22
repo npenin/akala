@@ -19,6 +19,7 @@ export * from './http.js';
 export * from './service.js';
 import sequencify, { type Task, type Tasks } from './sequencify.js';
 export { sequencify, type Task, type Tasks }
+export * from './orchestrator.js'
 // export { Bound, PossiblyBound } from './binder.js';
 export * from './events/index.js';
 export * from './parser/parser.js';

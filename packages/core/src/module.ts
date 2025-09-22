@@ -1,4 +1,4 @@
-import orchestrator from './orchestrator.js'
+import { Orchestrator } from './orchestrator.js'
 import { defaultInjector, SimpleInjector } from './injectors/simple-injector.js';
 import { logger } from './logger.js';
 import { Event, type Listener } from './events/shared.js';
@@ -159,7 +159,7 @@ export class Module extends SimpleInjector
         Module.registerModule(this);
     }
 
-    private static readonly o = new orchestrator();
+    private static readonly o = new Orchestrator();
 
     /** Event triggered when module activates */
     public readonly activateEvent = new ExtendableEvent(true);
