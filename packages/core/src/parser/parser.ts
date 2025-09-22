@@ -35,12 +35,75 @@ export interface Cursor
 
 export class StringCursor implements Cursor
 {
+    /**
+     * Gets the length of the string being parsed.
+     */
     get length(): number { return this.string.length };
+
+    /**
+     * Gets the current character at the cursor position.
+     */
     get char(): string { return this.string[this._offset]; };
+
+    /**
+     * Gets whether the cursor has reached the end of the file.
+     */
+    get eof(): boolean { return this._offset >= this.string.length; };
+
+    /**
+     * Creates a new StringCursor instance.
+     * @param string - The string to parse.
+     */
     constructor(public readonly string: string) { }
 
+    /**
+     * Gets the current line number based on the cursor position.
+     * @returns The line number.
+     */
+    public getLineNo(): number
+    {
+        let n = 0;
+        for (let i = 0; i <= this.offset; i++)
+        {
+            if (this.string[i] == '\n')
+                n++;
+        }
+        return n;
+    }
+
+    /**
+     * Gets the current column position within the current line.
+     * @returns The column number (0-based).
+     */
+    public getColumn(): number
+    {
+        for (let i = this.offset; i >= 0; i--)
+        {
+            if (this.string[i] == '\n')
+                return this.offset - i;
+        }
+    }
+
+    /**
+     * Gets a human-readable representation of the current cursor position.
+     * @returns A string in the format "line:column".
+     */
+    public getReadableOffset(): string
+    {
+        return this.getLineNo() + ':' + this.getColumn();
+    }
+
     private _offset: number = 0;
+
+    /**
+     * Gets the current cursor offset in the string.
+     */
     get offset(): number { return this._offset; };
+
+    /**
+     * Sets the cursor offset in the string.
+     * @throws Error if the offset is beyond the string length.
+     */
     set offset(value: number)
     {
         this._offset = value;
@@ -48,6 +111,10 @@ export class StringCursor implements Cursor
             throw new Error('Cursor cannot go beyond the string limit');
     };
 
+    /**
+     * Creates a copy of the current cursor state.
+     * @returns A new StringCursor with the same position and content.
+     */
     public freeze()
     {
         const c = new StringCursor(this.string);
@@ -55,6 +122,11 @@ export class StringCursor implements Cursor
         return c;
     }
 
+    /**
+     * Executes a regular expression at the current cursor position.
+     * @param regex - The regular expression to execute.
+     * @returns The regex match result or null if no match at current position.
+     */
     public exec(regex: RegExp)
     {
         if (!regex.global)
@@ -68,6 +140,82 @@ export class StringCursor implements Cursor
             this.offset += result[0].length;
         }
         return result;
+    }
+
+    /**
+     * Reads a specific string at the current cursor position.
+     * @param s - The string to read.
+     * @returns true if the string was found and consumed, false otherwise.
+     */
+    public read(s: string)
+    {
+        if (this.string.length < this._offset + s.length)
+            return false;
+
+        for (let i = 0; i < s.length; i++)
+        {
+            if (s.charCodeAt(i) !== this.string.charCodeAt(this._offset + i))
+                return false;
+        }
+
+        this._offset += s.length;
+
+        return true;
+    }
+
+    /**
+     * Reads a specific string, skipping whitespace before and after.
+     * @param s - The string to read.
+     * @returns true if the string was found and consumed, false otherwise.
+     */
+    public trimRead(s: string)
+    {
+        this.skipWhitespace();
+
+        if (this.read(s))
+        {
+            this.skipWhitespace();
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Reads a specific string, skipping whitespace before the string.
+     * @param s - The string to read.
+     * @returns true if the string was found and consumed, false otherwise.
+     */
+    public trimStartRead(s: string)
+    {
+        this.skipWhitespace();
+
+        return this.read(s);
+    }
+
+    /**
+     * Reads a specific string, skipping whitespace after the string.
+     * @param s - The string to read.
+     * @returns true if the string was found and consumed, false otherwise.
+     */
+    public trimEndRead(s: string)
+    {
+        if (this.read(s))
+        {
+            this.skipWhitespace();
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Skips any whitespace characters at the current cursor position.
+     * @returns The skipped whitespace string or undefined if none found.
+     */
+    public skipWhitespace()
+    {
+        return this.exec(/\s+/)?.[0];
     }
 }
 
