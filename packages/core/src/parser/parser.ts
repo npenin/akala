@@ -65,10 +65,19 @@ export class StringCursor implements Cursor
         let n = 0;
         for (let i = 0; i <= this.offset; i++)
         {
-            if (this.string[i] == '\n')
+            if (this.string[i] === '\n')
                 n++;
         }
         return n;
+    }
+
+    public getLine(): string
+    {
+        const nextLine = this.string.indexOf('\n', this.offset);
+        if (nextLine == -1)
+            return this.string.substring(this._offset - this.getColumn());
+        else
+            return this.string.substring(this._offset - this.getColumn(), nextLine);
     }
 
     /**
