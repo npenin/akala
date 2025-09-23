@@ -1,4 +1,4 @@
-import { IsomorphicBuffer } from "@akala/core";
+import { IsomorphicBuffer, ErrorWithStatus, HttpStatusCode } from "@akala/core";
 
 export interface FileHandle
 {
@@ -67,6 +67,108 @@ export class VirtualFileHandle<FSP extends FileSystemProvider> implements FileHa
     [Symbol.asyncDispose](): Promise<void>
     {
         return Promise.resolve();
+    }
+}
+
+export abstract class ReadonlyFileSystemProvider<TFileHandle extends FileHandle = FileHandle> implements FileSystemProvider<TFileHandle>
+{
+    readonly readonly = true;
+
+    public constructor(public readonly root: URL) { }
+
+    abstract toImportPath(path: PathLike<never>, options?: { withSideEffects?: boolean }): string;
+
+    abstract openReadStream(path: PathLike<TFileHandle>, options?: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream;
+
+    abstract access(path: PathLike<TFileHandle>, mode?: OpenFlags): Promise<void>;
+
+    abstract opendir(path: PathLike, options?: { bufferSize?: number, encoding?: string }): Promise<any>;
+
+    abstract readdir(path: PathLike, options?: { encoding?: Exclude<BufferEncoding, 'binary'> | null; withFileTypes?: false; }): Promise<string[]>;
+    abstract readdir(path: PathLike, options: { encoding: 'binary'; withFileTypes?: false; }): Promise<IsomorphicBuffer[]>;
+    abstract readdir(path: PathLike, options: { withFileTypes: true; }): Promise<FileEntry[]>;
+    abstract readdir(path: PathLike, options?: { encoding?: BufferEncoding | null; withFileTypes?: boolean; }): Promise<string[] | IsomorphicBuffer[] | FileEntry[]>;
+
+    abstract readFile(path: PathLike<TFileHandle>, options?: { encoding?: null | 'binary', flag?: OpenFlags } | 'binary'): Promise<IsomorphicBuffer>;
+    abstract readFile(path: PathLike<TFileHandle>, options: { encoding: BufferEncoding, flag?: OpenFlags } | BufferEncoding): Promise<string>;
+    abstract readFile<T>(path: PathLike<TFileHandle>, options: { encoding: 'json', flag?: OpenFlags } | 'json'): Promise<T>;
+
+    abstract stat(path: PathLike<TFileHandle>, opts?: StatOptions & { bigint?: false }): Promise<Stats>;
+    abstract stat(path: PathLike<TFileHandle>, opts: StatOptions & { bigint: true }): Promise<Stats<bigint>>;
+    abstract stat(path: PathLike<TFileHandle>, opts: StatOptions): Promise<Stats<bigint> | Stats>;
+
+    abstract open(path: PathLike, flags: OpenFlags): Promise<TFileHandle>;
+
+    abstract watch(filename: PathLike<TFileHandle>, options?: { encoding?: BufferEncoding, recursive?: boolean }): Promise<any>;
+
+    abstract glob(pattern: string | string[], options: GlobOptionsWithFileTypes): AsyncIterable<FileEntry>;
+    abstract glob(pattern: string | string[], options?: GlobOptionsWithoutFileTypes): AsyncIterable<URL>;
+    abstract glob(pattern: string | string[], options?: GlobOptions): AsyncIterable<URL> | AsyncIterable<FileEntry>;
+
+    abstract isFileHandle(x: any): x is TFileHandle;
+
+    abstract chroot(root: PathLike): void;
+
+    abstract newChroot(root: PathLike): FileSystemProvider<TFileHandle>;
+
+    openWriteStream(path: PathLike<TFileHandle>, options?: OpenStreamOptions): WritableStream
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    copyFile(src: PathLike<TFileHandle>, dest: string | URL, mode?: number): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    cp(src: PathLike<TFileHandle>, dest: string | URL, options?: { force?: boolean; recursive?: boolean }): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    mkdir(path: PathLike, options?: MakeDirectoryOptions): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    symlink(source: PathLike<TFileHandle>, target: PathLike, type?: 'dir' | 'file' | 'junction'): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    rename(oldPath: PathLike<TFileHandle>, newPath: string | URL): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    rmdir(path: PathLike, options?: RmDirOptions): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    rm(path: PathLike, options?: RmOptions): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    truncate(path: PathLike<TFileHandle>, len?: number): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    unlink(path: PathLike<TFileHandle>): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    utimes(path: PathLike<TFileHandle>, atime: string | number | Date, mtime: string | number | Date): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
+    }
+
+    writeFile(path: PathLike<TFileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer, options?: { mode?: number }): Promise<void>
+    {
+        throw new ErrorWithStatus(HttpStatusCode.Forbidden);
     }
 }
 
