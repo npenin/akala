@@ -4,7 +4,7 @@ import { join } from "path";
 import { type Container } from "../metadata/index.js";
 import command from "./new/command.js";
 import { newCommandConfiguration } from "./new/command-config.js";
-import { openFile, OpenFlags } from "@akala/fs";
+import { readFile } from "@akala/fs";
 import { resolveToTypeScript } from "./generate-ts-from-schema.js";
 
 export default async function implement(pathToCommandFile: string, destination: string, options: CliContext<{ force?: boolean }>['options']): Promise<void>
@@ -16,8 +16,8 @@ export default async function implement(pathToCommandFile: string, destination: 
     //     commandsUrl = new URL(pathToCommandFile);
     // const sourceFs = await fsHandler.process(commandsUrl);
 
+    const metadata = await readFile<Container>(pathToCommandFile, 'json')
 
-    var metadata = await (await openFile(pathToCommandFile, OpenFlags.Read)).readFile<Container>('json');
     try
     {
         await mkdir(join(destination, metadata.name), { recursive: true });
@@ -32,7 +32,7 @@ export default async function implement(pathToCommandFile: string, destination: 
         if (!c.config)
             c.config = {};
         let paramConfig: { name: string, type?: string }[];// = c.config["types"] && c.config["types"].inject && c.config["types"].inject.map((a, i) => ({ name: a, type: c.config["types"].types && c.config["types"].types[i] }));
-        const types = {};
+        const types: Record<string, string> = {};
         if (c.config.schema)
         {
             paramConfig = (await Promise.all(Array.isArray(c.config.schema.inject) ? c.config.schema.inject.map(x =>
@@ -49,14 +49,24 @@ export default async function implement(pathToCommandFile: string, destination: 
                     const namespaces = e[0].split('.');
                     if (namespaces.length > 1)
                     {
-                        await output.write(`export namespace ${namespaces.slice(0, -1).join('.')} {
+
+                        if (e[1].startsWith('enum('))
+                            await output.write(`export namespace ${namespaces.slice(0, -1).join('.')} {
+    export enum ${namespaces[namespaces.length - 1]} { ${e[1].slice(5, -1)} };
+}\n`)
+                        else
+                            await output.write(`export namespace ${namespaces.slice(0, -1).join('.')} {
     export type ${namespaces[namespaces.length - 1]}=${e[1]};
 }\n`)
                     }
                     else
 
-                        await output.write(`export type ${e[0].replace(/\./g, '_')
-                            }=${e[1]}; \n`);
+                        if (e[1].startsWith('enum('))
+                            await output.write(`export enum ${namespaces[namespaces.length - 1]} {${e[1].slice(5, -1)};
+}\n`)
+                        else
+                            await output.write(`export type ${e[0].replace(/\./g, '_')
+                                }=${e[1]}; \n`);
                 }
             },
         });
