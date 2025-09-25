@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* **config:** Add optional chaining to inspect.custom access a2c7fe1
+* **config:** Add optional chaining to inspect.custom access 0bb7aa4
 
 
 
