@@ -1,13 +1,13 @@
 import { EnumDefinition, MessageDefinition, ProtoAST, ProtoParser } from '../grpc-proto-parser.js';
 import { ProtoToJsonSchemaConverter } from '../proto-to-json-schema-converter.js';
 import { Metadata } from '@akala/commands';
-import { openFile, OpenFlags } from '@akala/fs';
+import { readFile } from '@akala/fs';
 import { GrpcMessageDefinition } from '../index.js';
 
 export default async function generateContainerFromProto(file: string | URL)
 {
     const parser = new ProtoParser();
-    const ast = parser.parse((await (await openFile(file, OpenFlags.Read)).readFile('utf-8')));
+    const ast = parser.parse((await readFile(file, 'utf-8')));
 
     return JSON.stringify(generateContainer(ast), null, 4);
 }
