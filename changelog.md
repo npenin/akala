@@ -174,6 +174,7 @@
 * config as akala plugin 211cc6b
 * config cli wrong bin path 742aeb7
 * config key file mode c55e693
+* **config:** Add optional chaining to inspect.custom access 0bb7aa4
 * **config:** Add optional chaining to inspect.custom access a2c7fe1
 * configFile init 79f7467
 * configFile init abcfad1
