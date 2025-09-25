@@ -1,4 +1,4 @@
-#  (2025-09-10)
+#  (2025-09-25)
 
 
 * chore : code cleanup eae1150
@@ -38,6 +38,7 @@
 * add isomorphic buffer support for Base64 and UTF-8 encoding/decoding 176c16f
 * add js extension to fork files 39368e9
 * add loginUrl and keyPath to auth configuration 9751a94
+* add missing $defs attribute 102e668
 * add missing case in marshall 598c8c0
 * add missing case in marshall 8c814f2
 * add missing context and options to init c083eff
@@ -231,6 +232,7 @@
 * each container in commands cli has its own configuration section 415e113
 * each control to support parent root element 6c36cea
 * each databinding 89c07e8
+* early file garbage collection b728a91
 * edge case when pubsub config is defined but not transportOptions 812641a
 * edge case with fixed length array parser length compute c9f3b58
 * edge cases bf341e8
@@ -311,6 +313,7 @@
 * formatter parsing within objects 98c53c9
 * forward undefined to parent url handler 93d7d10
 * fs processor extensions 3e5dab9
+* generate enum as expected by json schema e0279e2
 * generator bug when force=true 0817c02
 * generator bug when force=true ec5d977
 * getProperty methods in jssys 1f22de3
@@ -814,6 +817,7 @@
 * typescript:S4524 fd42ef6
 * typescript:S4524 365d20a
 * typo and enforce type 935051c
+* typo in enum generation 3e236e4
 * typo in filename 5ad48f8
 * typo in filename 098f7a1
 * unit test 11df8e7
@@ -1017,6 +1021,7 @@
 * events to separate files af5211e
 * improve store creation flexibility 957b83e
 * make proper use of index.browser c297379
+* remove legacy NetSocketAdapter in favor or @akala/core/TcpSocketAdapter 6a4de9f
 * remove ModelDefinition.definitions fd11999
 * replace void with undefined as NextParam 76398ea
 * replace void with undefined as NextParam 34fcf2a
@@ -1148,6 +1153,7 @@
 * add static fromJson on ModelDefinition 78f3d71
 * add staticFolders to config 30e244e
 * add staticFolders to config 0106e9f
+* add stdio socket adapters 99ec39a
 * add string-fixed-or-null terminated parser 5cbd71f
 * add support for optional function call 5730ab2
 * add support for optional function call ae9ae21
@@ -1172,6 +1178,7 @@
 * allow customizing the context name with the name attribute a9d0353
 * allow CustomResolver as Resolvable b1cfa93
 * allow dialog dragging 99e1399
+* allow for enum implementation from json schema 9663251
 * allow for signal to be provided to chain abort signal 320c767
 * allow late pubsub configuration ea3661e
 * allow new context to be provided as expression 0200948
@@ -1187,6 +1194,7 @@
 * attempt to improve the nocode base 44684fd
 * code from akala helper to trigger akala install b95b3bb
 * code from akala helper to trigger akala install 003219e
+* **commands:** Enhance CLI new command to support optional result type and pre/post 6fdcd4a
 * complete bit and uint2 wasm parsers 95a295f
 * disable comments 60901b4
 * disable comments 5b33949
@@ -1208,6 +1216,7 @@
 * enhance IsomorphicBuffer to support dynamic end in toString and add throttle function 89794bb
 * enhance NetSocketAdapter to extend EventEmitter and improve event handling 81ed6c5
 * enhance ProcessStdioAdapter and McpTrigger to support abort signal handling f0fb23d
+* enhance StringCursor with additional methods and tests 61632ba
 * enhance teardown management with async support and improved subscription handling 56a806a
 * enhance ViteSocketAdapter to improve event handling and subscription management c28f992
 * errorWithStatus can be assigned a name fb0ef99
@@ -1221,6 +1230,7 @@
 * export Generator type and allow actionIfExists to prevent to generate a file if result ===false 32ae777
 * export serverHandlers and new serve function to quickly build servers 8a1bb74
 * export serverHandlers and new serve function to quickly build servers e6fc0ea
+* export type JsonSchema d251e81
 * expose config on sidecars f4e2ce7
 * expose directly theme.css 1d83e0b
 * expose expression visitors f9e02c3
@@ -1230,6 +1240,7 @@
 * expose more middlewares 24e8e4a
 * expose outlet as symbol b7a49ec
 * expose parseVersion df6ab5a
+* expose readFile and writeFile d77630b
 * expose switch composer 92b2f25
 * expose TriggerArgs and TriggerReturnType e2a2c89
 * expose xpm f60e75a
@@ -1242,6 +1253,8 @@
 * first wasm commit on main branch 09227cd
 * formatters can be registered by priority 80d96e1
 * formatters can be registered by priority 1204aa8
+* **fs:** add HTTPS-based read-only filesystem support 074c24d
+* **fs:** add ReadonlyFileSystemProvider abstract class 75480ee
 * generalize signature to open it to $http options too 09eee3a
 * handle vertical split button fe64a5f
 * hotkey trigger moved to config instead of command name df81271
@@ -1271,6 +1284,7 @@
 * introduce master detail, entity and if by default f1c5d91
 * introduce PathLike be0a8f8
 * introduce vite as trigger in vite plugin 43d9826
+* leverage json schema to generate proper types during implement 6c47750
 * make event and event-emitter inherit asyncteardownmanager 66da89a
 * make help accessible everywhere by any clicontext e18be04
 * make help accessible everywhere by any clicontext 9f5892a
@@ -1279,10 +1293,12 @@
 * move from param to params to enable mcp e52cbaa
 * move SocketAdapter from json-rpc-ws to core 81abbb6
 * normalizing readdir output ac219a6
+* **parser:** add getLine method and fix equality check in StringCursor 2a0c74a
 * performance improvement on protocol parsers writing ebcb08c
 * plugins can now be installed with the current cli "program" f535bc0
 * plugins can now be installed with the current cli "program" c2ac89a
 * pm fork can be triggered from pm run command cd61525
+* **protobuf:** expose WireType type for external use 62c3b32
 * provide a browser variant 8c4cc60
 * provide additional file handle methods ce68f35
 * provide akala plugin for registering mongodb provider. a120302
@@ -1291,6 +1307,7 @@
 * provide serverHandlers in addition to the commandServerHandlers registration 0d4ee97
 * provide the Plugin interface to help providing better plugin typing 6cfe309
 * provide the Plugin interface to help providing better plugin typing 8e9d3a2
+* release the package cdbb317
 * remove cjs support 145dc5f
 * remove cjs support c967b21
 * remove legacy global injector functions 29d5996
@@ -1312,6 +1329,7 @@
 * update app function to be less dependent on cli thanks to new Context interface in core 684e2c1
 * update documentation with usage examples for parsing and formatters 3970fc6
 * update documentation with usage examples for parsing and formatters 293bbae
+* update orchestrator import and export in module and index.browser c2b6af3
 * update SocketAdapter extend EventBus 1065904
 * use @akala/fs to access config 7210d90
 * vite plugin to auto-import required webui css plugins d89aafd
@@ -1319,6 +1337,7 @@
 
 ### BREAKING CHANGES
 
+* NetSocketAdapter does not exist any more
 * jobs is now private on Schedule
 * fs parameter is required if not using newAsync
 * formatters are now registered without a hash
