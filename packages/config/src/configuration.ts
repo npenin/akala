@@ -231,7 +231,7 @@ export default class Configuration<T extends object = SerializableObject>
         }
         catch (e)
         {
-            if (!createIfEmpty || e.code !== 'ENOENT')
+            if (!createIfEmpty || e.statusCode !== 404)
                 throw e;
 
             await fs.writeFile(file, content = '{}');
