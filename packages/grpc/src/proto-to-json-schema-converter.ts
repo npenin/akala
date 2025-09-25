@@ -266,7 +266,10 @@ export class ProtoToJsonSchemaConverter
     {
         return {
             type: 'integer',
-            enum: Object.values(enumDef.values)
+            oneOf: Object.entries(enumDef.values).map(e => ({
+                const: e[1],
+                title: e[0]
+            }))
         };
     }
 }
