@@ -62,8 +62,8 @@ export default async function implement(pathToCommandFile: string, destination: 
                     else
 
                         if (e[1].startsWith('enum('))
-                            await output.write(`export enum ${namespaces[namespaces.length - 1]} {${e[1].slice(5, -1)};
-}\n`)
+                            await output.write(`export enum ${namespaces[namespaces.length - 1]} {${e[1].slice(5, -1)}
+};\n`)
                         else
                             await output.write(`export type ${e[0].replace(/\./g, '_')
                                 }=${e[1]}; \n`);
