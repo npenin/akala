@@ -1,5 +1,6 @@
 import { Configuration, Trigger } from "@akala/commands";
-import { MessageDefinition, ProtoAST, ProtoToJSONSchemaConverter } from "./grpc-proto-parser.js";
+import { MessageDefinition, ProtoAST } from "./grpc-proto-parser.js";
+import { ProtoToJsonSchemaConverter } from './proto-to-json-schema-converter.js';
 import { HttpStatusCode, IsomorphicBuffer, SocketAdapter } from "@akala/core";
 import { protobuf, parsers, Cursor } from "@akala/protocol-parser";
 import { ProtobufMessage } from "@akala/protocol-parser/dist/parsers/protobuf/index.js";
@@ -28,7 +29,7 @@ export enum GrpcStatusCode
 /**
  * A field type can be either a string (for unnamed fields) or a tuple of [type, name]
  */
-export type GrpcFieldType = string | [string, string];
+export type GrpcFieldType = string | readonly [string, string];
 
 /**
  * A message definition is an array of field types
@@ -47,6 +48,9 @@ export interface GrpcConfiguration extends Configuration
     };
     messages: {
         [key: string]: GrpcMessageDefinition;
+    };
+    enums: {
+        [key: string]: string[];
     };
 }
 
@@ -111,7 +115,7 @@ function getWireType(type: string, nested: MessageDefinition['nested'], ast: Pro
     throw new Error(`Unknown type: ${type}`);
 }
 
-export { ProtoToJSONSchemaConverter };
+export { ProtoToJsonSchemaConverter };
 
 export const trigger = new Trigger('grpc', (container, grpc: ProtoAST, socket: SocketAdapter<IsomorphicBuffer>) =>
 {

@@ -1,6 +1,7 @@
 import { describe, test } from 'node:test';
 import assert from 'node:assert';
-import { ProtoParser, ProtoToJSONSchemaConverter } from '../grpc-proto-parser.js';
+import { ProtoParser } from '../grpc-proto-parser.js';
+import { ProtoToJsonSchemaConverter } from '../proto-to-json-schema-converter.js';
 
 describe('Proto Parser', () =>
 {
@@ -278,7 +279,7 @@ describe('Proto Parser', () =>
         test('should convert simple message to schema', () =>
         {
             const parser = new ProtoParser();
-            const converter = new ProtoToJSONSchemaConverter();
+            const converter = new ProtoToJsonSchemaConverter();
 
             const ast = parser.parse(`
                 syntax = "proto3";
@@ -298,12 +299,14 @@ describe('Proto Parser', () =>
 
             const schema = converter.convert(ast);
 
+            assert.ok(schema);
+
             assert.strictEqual(schema.$schema, 'https://json-schema.org/draft-07/schema#');
             assert.strictEqual(schema.type, 'object');
-            assert.ok(schema.definitions);
+            assert.ok(schema.$defs);
 
             // Test message schema
-            const testMessage = schema.definitions!['Test'];
+            const testMessage = schema.$defs!['Test'];
             assert.strictEqual(testMessage.type, 'object');
             assert.deepStrictEqual(testMessage.required, ['name', 'age', 'items']);
             assert.deepStrictEqual(Object.keys(testMessage.properties!), ['name', 'age', 'items', 'active']);
@@ -324,7 +327,7 @@ describe('Proto Parser', () =>
             assert.deepStrictEqual(testMessage.properties!['active'], { type: 'boolean' });
 
             // Test enum schema
-            const statusEnum = schema.definitions!['Status'];
+            const statusEnum = schema.$defs!['Status'];
             assert.strictEqual(statusEnum.type, 'integer');
             assert.deepStrictEqual(statusEnum.enum, [0, 1, 2]);
         });
@@ -332,7 +335,7 @@ describe('Proto Parser', () =>
         test('should handle nested messages and enums', () =>
         {
             const parser = new ProtoParser();
-            const converter = new ProtoToJSONSchemaConverter();
+            const converter = new ProtoToJsonSchemaConverter();
 
             const ast = parser.parse(`
                 syntax = "proto3";
@@ -352,21 +355,22 @@ describe('Proto Parser', () =>
             `);
 
             const schema = converter.convert(ast);
+            assert.ok(schema);
 
             // Test nested message definition
-            const addressDef = schema.definitions!['Person.Address'];
+            const addressDef = schema.$defs!['Person.Address'];
             assert.ok(addressDef);
             assert.strictEqual(addressDef.type, 'object');
             assert.deepStrictEqual(addressDef.required, ['street', 'city']);
 
             // Test that nested message reference works
-            const personDef = schema.definitions!['Person'];
+            const personDef = schema.$defs!['Person'];
             console.log('Person def properties:', JSON.stringify(personDef.properties, null, 2));
-            console.log('Available definitions:', Object.keys(schema.definitions));
-            assert.deepStrictEqual(personDef.properties!['address'], { $ref: '#/definitions/Person.Address' });
+            console.log('Available definitions:', Object.keys(schema.$defs));
+            assert.deepStrictEqual(personDef.properties!['address'], { $ref: '#/$defs/Person.Address' });
 
             // Test nested enum
-            const genderEnum = schema.definitions!['Person.Gender'];
+            const genderEnum = schema.$defs!['Person.Gender'];
             assert.ok(genderEnum);
             assert.deepStrictEqual(genderEnum.enum, [0, 1]);
         });
@@ -374,7 +378,7 @@ describe('Proto Parser', () =>
         test('should handle oneof fields', () =>
         {
             const parser = new ProtoParser();
-            const converter = new ProtoToJSONSchemaConverter();
+            const converter = new ProtoToJsonSchemaConverter();
 
             const ast = parser.parse(`
                 syntax = "proto3";
@@ -388,7 +392,10 @@ describe('Proto Parser', () =>
             `);
 
             const schema = converter.convert(ast);
-            const testDef = schema.definitions!['Test'];
+
+            assert.ok(schema);
+
+            const testDef = schema.$defs!['Test'];
 
             const oneofSchema = testDef.properties!['value'];
             assert.ok(oneofSchema.oneOf);
@@ -408,7 +415,7 @@ describe('Proto Parser', () =>
         test('should handle map types', () =>
         {
             const parser = new ProtoParser();
-            const converter = new ProtoToJSONSchemaConverter();
+            const converter = new ProtoToJsonSchemaConverter();
 
             const ast = parser.parse(`
                 syntax = "proto3";
@@ -418,7 +425,10 @@ describe('Proto Parser', () =>
             `);
 
             const schema = converter.convert(ast);
-            const testDef = schema.definitions!['Test'];
+
+            assert.ok(schema);
+
+            const testDef = schema.$defs!['Test'];
 
             const mapField = testDef.properties!['scores'];
             assert.strictEqual(mapField.type, 'object');

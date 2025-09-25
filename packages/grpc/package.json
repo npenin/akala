@@ -1,6 +1,7 @@
 {
     "name": "@akala/grpc",
     "version": "0.0.0",
+    "private": true,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "type": "module",
@@ -20,7 +21,7 @@
         }
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\"",
+        "test": "node --enable-source-maps --test 'dist/test/*.js'",
         "generate": "akala sdk generate dist/commands commands.json --name @akala/grpc"
     }
 }
