@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle error from @akala/fs 238d294
+* **config:** Add optional chaining to inspect.custom access a2c7fe1
 
 
 
