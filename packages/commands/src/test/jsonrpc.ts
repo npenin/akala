@@ -7,7 +7,6 @@ import { JsonRpc, LogEventProcessor } from '../processors/index.js';
 import { Container } from '../model/container.js';
 // import { Command } from '../model/command';
 import { configure } from '../decorators.js';
-import { NetSocketAdapter } from "../net-socket-adapter.js";
 import * as net from 'net';
 import { unlink } from 'fs';
 import { promisify } from 'util';
@@ -15,6 +14,7 @@ import { SelfDefinedCommand } from '../model/command.js';
 import { describe, it, before, after } from 'node:test'
 import $metadataCmd from '../commands/$metadata.js';
 import { extractCommandMetadata } from '../metadata/command.js';
+import { TcpSocketAdapter } from '@akala/core';
 
 describe('test jsonrpcws processing', function ()
 {
@@ -116,7 +116,7 @@ describe('test jsonrpcws processing', function ()
 
             const server = new net.Server().listen({ path: socketPath }).on('connection', (socket) =>
             {
-                c1.attach(JsonRpc.trigger, new jsonrpc.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)));
+                c1.attach(JsonRpc.trigger, new jsonrpc.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)));
             });
 
             const socket = new net.Socket();
@@ -124,7 +124,7 @@ describe('test jsonrpcws processing', function ()
             {
                 socket.connect({ path: socketPath }, function ()
                 {
-                    resolve(proxy(metadata(c1, false, true), new JsonRpc(JsonRpc.getConnection(new jsonrpc.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)), c2))));
+                    resolve(proxy(metadata(c1, false, true), new JsonRpc(JsonRpc.getConnection(new jsonrpc.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)), c2))));
                 });
             })
 

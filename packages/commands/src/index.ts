@@ -15,7 +15,7 @@ export { Processors, Triggers }
 export type { JsonSchema } from './jsonschema.js'
 
 // import * as cli from './cli'
-export { NetSocketAdapter } from './net-socket-adapter.js'
+import './net-socket-adapter.js'
 import commands from './commands.js'
 import $metadata from './commands/$metadata.js'
 import { type Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
@@ -109,3 +109,4 @@ export class Cli
 
     public static Metadata = $metadata;
 }
+

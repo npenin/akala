@@ -4,10 +4,9 @@ import type { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
-import { lazy, type Logger, type MiddlewarePromise, noop, type SerializableObject, type TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled, type MiddlewareResult, type SocketAdapter } from '@akala/core';
+import { lazy, type Logger, type MiddlewarePromise, noop, type SerializableObject, type TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled, type MiddlewareResult, type SocketAdapter, TcpSocketAdapter } from '@akala/core';
 import { type HandlerResult, protocolHandlers as handlers, serverHandlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
-import { NetSocketAdapter } from '../net-socket-adapter.js';
 import { Socket, Server, type ServerOpts } from 'net';
 import { TLSSocket, Server as TLSServer, type TlsOptions } from 'tls';
 import $metadataCmd from '../commands/$metadata.js';
@@ -22,7 +21,7 @@ handlers.useProtocol('jsonrpc+tcp', async function (url, options)
     else
         await new Promise<void>((resolve, reject) => { socket.on('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); socket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
-    const connection = JsonRpc.getConnection(new jsonrpcws.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)), options.container);
+    const connection = JsonRpc.getConnection(new jsonrpcws.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
 
     return {
@@ -38,7 +37,7 @@ serverHandlers.useProtocol('jsonrpc+tcp', async function (url: URL | string, con
     const server = new Server(options, (socket) =>
     {
         socket.setDefaultEncoding('utf8');
-        container.attach(JsonRpc.trigger, new jsonrpcws.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)));
+        container.attach(JsonRpc.trigger, new jsonrpcws.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)));
     });
 
     if (!(url instanceof URL))
@@ -60,7 +59,7 @@ handlers.useProtocol('jsonrpc+tcp+tls', async function (url, options)
     else
         await new Promise<void>((resolve, reject) => { tlsSocket.on('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); tlsSocket.connect({ host: url.hostname, port: isNaN(Number(url.port)) ? 31416 : Number(url.port) }, resolve) });
 
-    const connection = JsonRpc.getConnection(new jsonrpcws.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)), options.container);
+    const connection = JsonRpc.getConnection(new jsonrpcws.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
 
     return {
@@ -76,7 +75,7 @@ serverHandlers.useProtocol('jsonrpc+tcp+tls', async function (url: URL | string,
     const server = new TLSServer(options, (socket) =>
     {
         socket.setDefaultEncoding('utf8');
-        container.attach(JsonRpc.trigger, new jsonrpcws.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)));
+        container.attach(JsonRpc.trigger, new jsonrpcws.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)));
     });
     if (!(url instanceof URL))
         url = new URL(url);
@@ -103,7 +102,7 @@ handlers.useProtocol('jsonrpc+unix', async function (url, options)
         }); socket.connect({ path: url.hostname + url.pathname }, resolve)
     });
 
-    const connection = JsonRpc.getConnection(new jsonrpcws.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)), options.container);
+    const connection = JsonRpc.getConnection(new jsonrpcws.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
 
     return {
@@ -119,7 +118,7 @@ serverHandlers.useProtocol('jsonrpc+unix', async function (url: URL | string, co
     const server = new Server(options, (socket) =>
     {
         socket.setDefaultEncoding('utf8');
-        container.attach(JsonRpc.trigger, new jsonrpcws.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)));
+        container.attach(JsonRpc.trigger, new jsonrpcws.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)));
     });
     if (!(url instanceof URL))
         url = new URL(url);
@@ -133,7 +132,7 @@ handlers.useProtocol('jsonrpc+unix+tls', async function (url, options)
     const tlsSocket = new TLSSocket(socket);
     await new Promise<void>((resolve, reject) => { tlsSocket.on('error', err => reject(new ErrorWithStatus(HttpStatusCode.BadGateway, err.message, err.name, err))); tlsSocket.connect({ path: url.hostname + url.pathname }, resolve) });
 
-    const connection = JsonRpc.getConnection(new jsonrpcws.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)), options.container);
+    const connection = JsonRpc.getConnection(new jsonrpcws.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)), options.container);
     options?.signal?.addEventListener('abort', () => socket.end());
 
     return {
@@ -149,7 +148,7 @@ serverHandlers.useProtocol('jsonrpc+unix+tls', async function (url: URL | string
     const server = new TLSServer(options, (socket) =>
     {
         socket.setDefaultEncoding('utf8');
-        container.attach(JsonRpc.trigger, new jsonrpcws.JsonNDRpcSocketAdapter(new NetSocketAdapter(socket)));
+        container.attach(JsonRpc.trigger, new jsonrpcws.JsonNDRpcSocketAdapter(new TcpSocketAdapter(socket)));
     });
     if (!(url instanceof URL))
         url = new URL(url);
