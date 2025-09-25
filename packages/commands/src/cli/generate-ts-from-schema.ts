@@ -1,38 +1,13 @@
-import * as fs from 'fs/promises';
 import { outputHelper } from '../new.js';
-// import type { Schema as BaseSchema } from "ajv";
-import { fileURLToPath } from "url";
-import { FetchHttp } from "@akala/core";
 import { type JsonSchema } from '../jsonschema.js'
-// type JsonSchema = Exclude<BaseSchema, boolean>
-
-// const jsonSchemaArrays = ['allOf', 'anyOf', 'oneOf']
+import { readFile } from '@akala/fs';
 
 export default async function generate(pathToSchemaFile: string | URL, name: string, outputFile?: string)
 {
     let output: WritableStreamDefaultWriter;
     ({ output } = await outputHelper(outputFile, 'openapi.json', true));
-    if (typeof pathToSchemaFile == 'string')
-    {
-        if (pathToSchemaFile.indexOf(':') < 1)
-            pathToSchemaFile = 'file://' + pathToSchemaFile;
-        pathToSchemaFile = new URL(pathToSchemaFile);
-    }
-    let content: string;
-    switch (pathToSchemaFile.protocol)
-    {
-        case 'file:':
-            content = await fs.readFile(fileURLToPath(pathToSchemaFile), { encoding: 'utf8' });
-            break;
-        case 'https:':
-            content = await new FetchHttp(null).getJSON(pathToSchemaFile.toString(), new URLSearchParams({ format: 'json' }));
-            break;
-        default:
-            throw new Error('Unsupported URL scheme');
-    }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const schema = typeof content == 'string' ? JSON.parse(content) : content;
+    const schema = await readFile(pathToSchemaFile, 'json');
 
     const types = { '': name };
     types[name] = await resolveToTypeScript(schema, { '#': schema }, types);
@@ -40,7 +15,19 @@ export default async function generate(pathToSchemaFile: string | URL, name: str
 
     if (outputFile)
     {
-        await output.write(Object.entries(types).map(e => `export type ${e[0]}=${e[1]}`).join(';\n'));
+        const declarations = Object.entries(types).map(e =>
+        {
+            if (e[1].startsWith('enum('))
+            {
+                const content = e[1].slice(5, -1); // remove enum()
+                return `export enum ${e[0]} { ${content} }`;
+            }
+            else
+            {
+                return `export type ${e[0]}=${e[1]}`;
+            }
+        }).join(';\n');
+        await output.write(declarations);
         await output.close();
     }
     else
@@ -108,6 +95,12 @@ export async function resolveToTypeScript(p: string | JsonSchema, anchors: Recor
                 }
                 if ('oneOf' in p)
                 {
+                    if ('type' in p && (p.type == 'string' || p.type == 'integer' || p.type == 'number') &&
+                        p.oneOf.every(o => typeof o == 'object' && o && 'const' in o && 'title' in o))
+                    {
+                        const enumDef = p.oneOf.map(o => `${o.title} = ${JSON.stringify(o.const)}`).join(', ');
+                        return `enum(${enumDef})`;
+                    }
                     return '(' + (await Promise.all(p.oneOf.map(p => resolveToTypeScript(p, anchors, types)))).join(') | (') + ')'
                 }
                 if ('type' in p)
