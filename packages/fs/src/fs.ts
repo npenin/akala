@@ -42,13 +42,37 @@ function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, pa
 
             return Writable.toWeb(handle.createWriteStream(options));
         },
-        async writeFile(data: string | IsomorphicBuffer)
+        async writeFile(data, options?: { encoding?: BufferEncoding | 'json' })
         {
             if (readonly)
                 throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
 
-            let buffer = typeof data == 'string' ? Buffer.from(data) : data.toArray();
-            await handle.truncate(buffer.length)
+            let buffer: Buffer;
+            if (options?.encoding)
+                switch (options.encoding)
+                {
+                    case "ascii":
+                    case "utf8":
+                    case "utf-8":
+                    case "utf16le":
+                    case "utf-16le":
+                    case "ucs2":
+                    case "ucs-2":
+                    case "base64":
+                    case "base64url":
+                    case "latin1":
+                    case "binary":
+                        buffer = typeof data == 'string' ? Buffer.from(data, options.encoding) : data.toArray();
+                        break;
+                    case "hex":
+                        buffer = typeof data == 'string' ? Buffer.from(data) : data.toArray();
+                        buffer = Buffer.from(buffer.toString('hex'))
+                        break;
+                    case "json":
+                        buffer = Buffer.from(JSON.stringify(data));
+                        break;
+                }
+            await handle.truncate(buffer.length);
             await handle.write(buffer, 0, buffer.length, 0);
 
         },

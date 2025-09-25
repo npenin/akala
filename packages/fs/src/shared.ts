@@ -9,7 +9,7 @@ export interface FileHandle
     readFile(encoding: 'binary'): Promise<IsomorphicBuffer>;
     readFile<T>(encoding: 'json'): Promise<T>;
     readFile<T>(encoding: 'json' | BufferEncoding): Promise<T | IsomorphicBuffer | string>;
-    writeFile(data: string | IsomorphicBuffer): Promise<void>;
+    writeFile(data: unknown, encoding?: BufferEncoding | 'json'): Promise<void>;
     close(): Promise<void>;
     [Symbol.dispose](): void;
     [Symbol.asyncDispose](): Promise<void>;
@@ -41,9 +41,9 @@ export class VirtualFileHandle<FSP extends FileSystemProvider> implements FileHa
     {
         return this.fs.readFile(this.path, { encoding } as any) as any;
     }
-    writeFile(data: string | IsomorphicBuffer): Promise<void>
+    writeFile(data: unknown, encoding?: BufferEncoding | 'json'): Promise<void>
     {
-        return this.fs.writeFile(this.path, data);
+        return this.fs.writeFile(this.path, data, { encoding });
     }
     close(): Promise<void>
     {
@@ -590,7 +590,7 @@ export interface FileSystemProvider<TFileHandle extends FileHandle = FileHandle>
      * @param data - The data to write.
      * @returns A promise that resolves when the data is written.
      */
-    writeFile(path: PathLike<TFileHandle>, data: IsomorphicBuffer | string | ArrayBuffer | SharedArrayBuffer, options?: { mode?: number }): Promise<void>;
+    writeFile(path: PathLike<TFileHandle>, data: unknown, options?: { mode?: number, encoding?: BufferEncoding | 'json' }): Promise<void>;
 
     /**
      * Changes the root directory of the file system provider.

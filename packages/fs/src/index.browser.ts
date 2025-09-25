@@ -163,6 +163,26 @@ export async function openFile(filePath: string | URL, flags: OpenFlags)
     return await fs.open(filePath, flags)
 }
 
+export function readFile(filePath: string | URL, encoding: Exclude<BufferEncoding, 'binary'>, flags?: OpenFlags): Promise<string>;
+export function readFile(filePath: string | URL, encoding: 'binary', flags?: OpenFlags): Promise<IsomorphicBuffer>;
+export function readFile<T>(filePath: string | URL, encoding: 'json', flags?: OpenFlags): Promise<T>;
+export function readFile<T>(filePath: string | URL, encoding: 'json' | BufferEncoding, flags?: OpenFlags): Promise<T | IsomorphicBuffer | string>;
+export async function readFile(filePath: string | URL, encoding?: BufferEncoding | 'json', flags?: OpenFlags)
+{
+    const f = await openFile(filePath, typeof flags === 'undefined' ? OpenFlags.Read : flags)
+    const result = f.readFile(encoding);
+    await f.close();
+    return result;
+}
+
+export async function writeFile(filePath: string | URL, data: unknown, encoding?: BufferEncoding | 'json', flags?: OpenFlags): Promise<void>
+{
+    const f = await openFile(filePath, typeof flags === 'undefined' ? OpenFlags.Write : flags)
+    const result = f.writeFile(data, encoding);
+    await f.close();
+    return result;
+}
+
 fsHandler.useProtocol('https', url =>
 {
     return Promise.resolve(new (class FetchFs extends ReadonlyFileSystemProvider implements FileSystemProvider<FileHandle>
