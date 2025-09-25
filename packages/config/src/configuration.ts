@@ -103,7 +103,7 @@ export default class Configuration<T extends object = SerializableObject>
                 {
                     switch (key)
                     {
-                        case inspect.custom:
+                        case inspect?.custom:
                             return () => target.config;
                         case Symbol.toPrimitive:
                             return target[Symbol.toPrimitive];
