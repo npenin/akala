@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { Processors, NetSocketAdapter, Metadata, Container, proxy, Triggers, Cli } from '@akala/commands';
+import { Processors, Metadata, Container, proxy, Triggers, Cli } from '@akala/commands';
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
 import { platform } from 'os';
@@ -10,7 +10,7 @@ import type State from './state.js';
 import type { StateConfiguration } from './state.js';
 import { program, buildCliContextFromProcess, ErrorMessage, supportInteract } from '@akala/cli';
 import { open } from 'fs/promises';
-import { LogLevels } from '@akala/core';
+import { LogLevels, TcpSocketAdapter } from '@akala/core';
 import { JsonRpcSocketAdapter } from '@akala/json-rpc-ws';
 
 const tableChars = {
@@ -143,7 +143,7 @@ cli.preAction(async c =>
     if (socket.readyState == 'open')
     {
         if (!processor)
-            processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new JsonRpcSocketAdapter(new NetSocketAdapter(socket))));
+            processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new JsonRpcSocketAdapter(new TcpSocketAdapter(socket))));
         if (!metaContainer)
             metaContainer = (await import(new URL('../../commands.json', import.meta.url).toString(), { assert: { type: 'json' } })).default;
         if (!container)
