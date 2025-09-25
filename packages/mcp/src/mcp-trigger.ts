@@ -1,6 +1,5 @@
 import { type Configuration, Container, Processors, Trigger } from "@akala/commands";
-import { ProcessStdioAdapter } from "./index.js";
-import { delay, ErrorWithStatus, HttpStatusCode, Router1Async } from "@akala/core";
+import { delay, ErrorWithStatus, HttpStatusCode, ProcessStdioAdapter, Router1Async } from "@akala/core";
 import type { ResourceDefinition, ResourceTemplateDefinition, State, ToolDefinition } from "./state.js";
 import { JsonRpcSocketAdapter } from "@akala/json-rpc-ws";
 // import why from 'why-is-node-running'
