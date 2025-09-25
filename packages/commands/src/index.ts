@@ -12,6 +12,7 @@ import { registerCommands } from './generator.js'
 import * as Processors from './processors/index.js'
 import * as Triggers from './triggers/index.js'
 export { Processors, Triggers }
+export type { JsonSchema } from './jsonschema.js'
 
 // import * as cli from './cli'
 export { NetSocketAdapter } from './net-socket-adapter.js'
