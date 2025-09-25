@@ -1,0 +1,29 @@
+{
+    "name": "@akala/grpc",
+    "commands": [
+        {
+            "name": "generate",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "params.0"
+                    ],
+                    "path": "dist/commands/generate.js",
+                    "source": "src/commands/generate.ts"
+                },
+                "": {
+                    "inject": [
+                        "params.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.protoFile"
+                    ],
+                    "usage": "generate <protoFile>"
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/main/packages/commands/container-schema.json"
+}

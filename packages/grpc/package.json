@@ -1,0 +1,26 @@
+{
+    "name": "@akala/grpc",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/protocol-parser": "workspace:^"
+    },
+    "devDependencies": {
+        "@akala/cli": "workspace:^"
+    },
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        }
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "generate": "akala sdk generate dist/commands commands.json --name @akala/grpc"
+    }
+}
