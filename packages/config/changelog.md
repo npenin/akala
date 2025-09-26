@@ -1,9 +1,4 @@
-#  (2025-09-25)
-
-
-### Bug Fixes
-
-* **config:** Add optional chaining to inspect.custom access 0bb7aa4
+#  (2025-09-26)
 
 
 
