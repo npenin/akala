@@ -1,6 +1,5 @@
-import { IsomorphicBuffer, type BufferEncoding } from '@akala/core';
+import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer, type BufferEncoding } from '@akala/core';
 import { Cursor } from './_common.js';
-import assert from 'assert';
 import FixedString from './string-fixed.js';
 
 export default class ConstantString<TString extends string = string> extends FixedString<TString>
@@ -13,7 +12,8 @@ export default class ConstantString<TString extends string = string> extends Fix
     read(buffer: IsomorphicBuffer, cursor: Cursor): TString
     {
         const value = super.read(buffer, cursor);
-        assert.strictEqual(value, this.value);
+        if (this.value !== value)
+            throw new ErrorWithStatus(HttpStatusCode.BadRequest, `${this.value} was expected, but received ${value}`);
 
         return value;
     }
@@ -22,7 +22,8 @@ export default class ConstantString<TString extends string = string> extends Fix
         if (typeof buffer == 'string')
             value = buffer;
 
-        assert.strictEqual(value, this.value);
+        if (this.value !== value)
+            throw new ErrorWithStatus(HttpStatusCode.BadRequest, `${this.value} was expected, but received ${value}`);
 
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
