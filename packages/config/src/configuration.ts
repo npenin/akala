@@ -1,6 +1,5 @@
 import { isProxy, base64, type Serializable, type SerializableObject, ErrorWithStatus, HttpStatusCode } from '@akala/core';
 import fsHandler, { FileSystemProvider, openFile, OpenFlags, writeFile } from '@akala/fs';
-import { inspect } from 'util'
 
 export type ProxyConfiguration<T> = T extends object ? ProxyConfigurationObject<T> : Extract<Exclude<Serializable, SerializableObject | SerializableObject[]>, T>;
 export type ProxyConfigurationObject<T extends object> = T extends (infer X)[] ? X[] : ProxyConfigurationObjectNonArray<T>;
@@ -95,7 +94,7 @@ export default class Configuration<T extends object = SerializableObject>
                 {
                     switch (key)
                     {
-                        case inspect?.custom:
+                        case Symbol.for('nodejs.util.inspect.custom'):
                             return () => target.config;
                         case Symbol.toPrimitive:
                             return target[Symbol.toPrimitive];
@@ -122,7 +121,7 @@ export default class Configuration<T extends object = SerializableObject>
                 {
                     switch (key)
                     {
-                        case inspect?.custom:
+                        case Symbol.for('nodejs.util.inspect.custom'):
                             return () => target.config;
                         case unwrap:
                             return target;
