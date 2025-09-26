@@ -106,6 +106,7 @@
 * allow line breaks and tabs in parser a5bb001
 * allow optional spaces 002c4a2
 * allow optional spaces 951a42d
+* allow proper pubsub init if config is undefined a757ef6
 * allow typed pubsub on sidecar 20d640d
 * allow typed pubsub on sidecar 1656a15
 * allow updating controller 98ecc37
