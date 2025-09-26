@@ -1,6 +1,5 @@
 import { isProxy, base64, type Serializable, type SerializableObject, ErrorWithStatus, HttpStatusCode } from '@akala/core';
-import fsHandler, { FileSystemProvider } from '@akala/fs';
-import { isAbsolute } from 'path';
+import fsHandler, { FileSystemProvider, openFile, OpenFlags, writeFile } from '@akala/fs';
 import { inspect } from 'util'
 
 export type ProxyConfiguration<T> = T extends object ? ProxyConfigurationObject<T> : Extract<Exclude<Serializable, SerializableObject | SerializableObject[]>, T>;
@@ -70,17 +69,10 @@ export default class Configuration<T extends object = SerializableObject>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public static async newAsync<T extends object = SerializableObject>(path: string | URL, config?: T, rootConfig?: any, cryptKey?: CryptoKey): Promise<ProxyConfigurationObjectNonArray<T>>
     {
-
-        if (typeof path === 'string')
-            if (!URL.canParse(path))
-                if (isAbsolute(path))
-                    path = new URL('file://' + path);
-                else
-                    path = new URL('file:' + path);
-            else
-                path = new URL(path)
-
-        const fs = await fsHandler.process(new URL('./', path));
+        const f = await openFile(path, OpenFlags.Write | OpenFlags.NonExisting);
+        path = f.path;
+        await f.close();
+        const fs = await fsHandler.process(path);
 
         if (typeof cryptKey == 'undefined')
         {
@@ -192,7 +184,6 @@ export default class Configuration<T extends object = SerializableObject>
 
     public static async load<T extends object = SerializableObject>(file: string | URL, createIfEmpty?: boolean, needle?: string): Promise<ProxyConfiguration<T>>
     {
-        let content: string;
         let cryptKey: CryptoKey;
         if (!needle)
         {
@@ -211,42 +202,46 @@ export default class Configuration<T extends object = SerializableObject>
                 }
             }
         }
-        if (typeof file === 'string')
-            if (!URL.canParse(file))
-                if (isAbsolute(file))
-                    file = new URL('file://' + file);
-                else
-                    file = new URL('file:' + file);
-            else
-                file = new URL(file)
+        // if (typeof file === 'string')
+        //     if (!URL.canParse(file))
+        //         if (isAbsolute(file))
+        //             file = new URL('file://' + file);
+        //         else
+        //             file = new URL('file:' + file);
+        //     else
+        //         file = new URL(file)
 
-        const fs = await fsHandler.process(new URL('./', file));
+        // const fs = await fsHandler.process(new URL('./', file));
 
         try
         {
 
-            content = await fs.readFile(file, { encoding: 'utf8' });
+            const f = await openFile(file, OpenFlags.ReadWrite | OpenFlags.CreateIfNotExist);
+            const fs = await fsHandler.process(f.path);
+            const config = Configuration.new<T>(fs, f.path, await f.readFile('json'), undefined, cryptKey);
+            await f.close();
+            //, { encoding: 'json' }
             cryptKey = await Configuration.loadKey(fs, file);
 
+            // const config = Configuration.new(fs, file, JSON.parse(content), undefined, cryptKey);
+            const unwrapped = config[unwrap] as Configuration<T>;
+            if (needle)
+            {
+                const needleConfig = unwrapped.get<T>(needle);
+                if (needleConfig)
+                    return needleConfig;
+                unwrapped.set(needle, {});
+                return unwrapped.get<T>(needle);
+            }
+            return config as ProxyConfiguration<T>;
         }
         catch (e)
         {
             if (!createIfEmpty || e.statusCode !== 404)
                 throw e;
 
-            await fs.writeFile(file, content = '{}');
+            await writeFile(file, '{}');
         }
-        const config = Configuration.new(fs, file, JSON.parse(content), undefined, cryptKey);
-        const unwrapped = config[unwrap] as Configuration<T>;
-        if (needle)
-        {
-            const needleConfig = unwrapped.get<T>(needle);
-            if (needleConfig)
-                return needleConfig;
-            unwrapped.set(needle, {});
-            return unwrapped.get<T>(needle);
-        }
-        return config as ProxyConfiguration<T>;
     }
 
     public static loadKey(fs: FileSystemProvider, path: string | URL): Promise<CryptoKey | null>
