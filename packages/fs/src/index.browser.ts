@@ -1,7 +1,6 @@
 import { ErrorWithStatus, HttpStatusCode, IsomorphicBuffer, UrlHandler } from '@akala/core';
 import { OpenFlags, ReadonlyFileSystemProvider, VirtualFileHandle } from './shared.js';
 import type { FileEntry, FileHandle, FileSystemProvider, GlobOptions, GlobOptionsWithFileTypes, GlobOptionsWithoutFileTypes, MakeDirectoryOptions, OpenStreamOptions, PathLike, RmDirOptions, RmOptions, StatOptions, Stats } from './shared.js';
-import { pathToFileURL } from 'url';
 
 export * from './shared.js';
 
@@ -157,7 +156,7 @@ export async function openFile(filePath: string | URL, flags: OpenFlags)
         if (URL.canParse(filePath))
             filePath = new URL(filePath);
         else
-            filePath = pathToFileURL(filePath);
+            filePath = new URL(filePath, window.location.href);
 
     const fs = await fsHandler.process(filePath);
     return await fs.open(filePath, flags)

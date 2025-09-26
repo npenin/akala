@@ -1,5 +1,6 @@
+import { IsomorphicBuffer } from '@akala/core';
 import { FSFileSystemProvider } from './fs.js';
-import fsHandler, { FileSystemProviderProxy } from './index.browser.js';
+import fsHandler, { FileSystemProviderProxy, OpenFlags } from './index.browser.js';
 import { dirname } from 'path/posix'
 
 export * from './index.browser.js';
@@ -63,3 +64,38 @@ fsHandler.useProtocol('npm', async url =>
     return fakeNpm;
 });
 export default fsHandler;
+
+// WARNING: Duplicated implementation in index.browser because of pathToFileURL import requirement in nodejs
+import { pathToFileURL } from 'url';
+
+export async function openFile(filePath: string | URL, flags: OpenFlags)
+{
+    if (typeof filePath == 'string')
+        if (URL.canParse(filePath))
+            filePath = new URL(filePath);
+        else
+            filePath = pathToFileURL(filePath);
+
+    const fs = await fsHandler.process(filePath);
+    return await fs.open(filePath, flags)
+}
+
+export function readFile(filePath: string | URL, encoding: Exclude<BufferEncoding, 'binary'>, flags?: OpenFlags): Promise<string>;
+export function readFile(filePath: string | URL, encoding: 'binary', flags?: OpenFlags): Promise<IsomorphicBuffer>;
+export function readFile<T>(filePath: string | URL, encoding: 'json', flags?: OpenFlags): Promise<T>;
+export function readFile<T>(filePath: string | URL, encoding: 'json' | BufferEncoding, flags?: OpenFlags): Promise<T | IsomorphicBuffer | string>;
+export async function readFile(filePath: string | URL, encoding?: BufferEncoding | 'json', flags?: OpenFlags)
+{
+    const f = await openFile(filePath, typeof flags === 'undefined' ? OpenFlags.Read : flags)
+    const result = f.readFile(encoding);
+    await f.close();
+    return result;
+}
+
+export async function writeFile(filePath: string | URL, data: unknown, encoding?: BufferEncoding | 'json', flags?: OpenFlags): Promise<void>
+{
+    const f = await openFile(filePath, typeof flags === 'undefined' ? OpenFlags.Write : flags)
+    const result = f.writeFile(data, encoding);
+    await f.close();
+    return result;
+}
