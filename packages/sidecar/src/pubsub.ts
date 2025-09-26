@@ -37,7 +37,7 @@ export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: { abort
 
         if (transport)
             sidecar.pubsub = await asyncEventBuses.process<TEvents>(new URL(transport), Object.assign({ abort },
-                config.transportOptions,
+                config?.transportOptions,
                 {
                     abort: sidecar.abort,
                     password
