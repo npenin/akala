@@ -1,4 +1,4 @@
-#  (2025-09-25)
+#  (2025-09-26)
 
 
 * chore : code cleanup eae1150
@@ -552,6 +552,7 @@
 * ObjectEvent definition c764837
 * oidc discover properly returns options for authorize, token and keys 0934291
 * oidc discover properly returns options for authorize, token and keys b92665c
+* openFile implementation in browser dd12afd
 * optimize middleware processing e900bc6
 * options setup 185ffa4
 * options setup 387b195
