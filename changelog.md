@@ -1,4 +1,4 @@
-#  (2025-09-26)
+#  (2025-09-27)
 
 
 * chore : code cleanup eae1150
@@ -195,6 +195,7 @@
 * crash on standard use case 2b27048
 * cron implementation c14aefe
 * css syntax 595ab12
+* CVE-2025-59844 41d68f0
 * cwd c335202
 * cwd a6dee22
 * cwd init 03ed2d1
