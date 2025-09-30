@@ -8,6 +8,7 @@
 * dockerfile 480944e
 * improve yarn config a47ff40
 * merge run steps b508445
+* paths to akala 45c2241
 * remove useless dependency and add missing permissions e5694d9
 * run as user instead of root f06cbb8
 * set yarn version 2427848
