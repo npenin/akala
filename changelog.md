@@ -569,6 +569,7 @@
 * parsing ! expressions 0115a31
 * parsing on first parenthesis e3c07e4
 * pass keepAttached through 9603be4
+* paths to akala 45c2241
 * peerDependency reference 89b2555
 * peerDependency reference 1b7e951
 * permissions for config key 7593b5a
