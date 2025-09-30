@@ -1,9 +1,9 @@
-#  (2025-09-26)
+#  (2025-09-30)
 
 
 ### Bug Fixes
 
-* allow proper pubsub init if config is undefined a757ef6
+* handle cases where transport is not set but transportOptions is 71cd7dc
 
 
 

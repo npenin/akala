@@ -1,4 +1,4 @@
-#  (2025-09-27)
+#  (2025-09-30)
 
 
 * chore : code cleanup eae1150
@@ -334,6 +334,7 @@
 * handle case when both ws and http are trying to start the same server 998fbb3
 * handle case when url pathname is empty b44a1dc
 * handle cases when no auth is configured for the current trigger a4ac9a0
+* handle cases where transport is not set but transportOptions is 71cd7dc
 * handle container metadata in the activate stage fedf680
 * handle datacontext root 0452a62
 * handle duplicate ws and http servers e1855d7
