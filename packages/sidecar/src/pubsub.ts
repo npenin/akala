@@ -12,7 +12,7 @@ export async function pubsub<TEvents extends EventMap<TEvents>>(sidecar: { abort
     let transport: URL;
     if (!sidecar.pubsub)
     {
-        if (!config)
+        if (!config?.transport)
         {
             if (process.env.PUBSUB_URL)
                 transport = new URL(process.env.PUBSUB_URL);
