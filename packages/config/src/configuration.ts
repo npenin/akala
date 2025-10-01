@@ -183,7 +183,6 @@ export default class Configuration<T extends object = SerializableObject>
 
     public static async load<T extends object = SerializableObject>(file: string | URL, createIfEmpty?: boolean, needle?: string): Promise<ProxyConfiguration<T>>
     {
-        let cryptKey: CryptoKey;
         if (!needle)
         {
             if (file instanceof URL)
@@ -217,10 +216,10 @@ export default class Configuration<T extends object = SerializableObject>
 
             const f = await openFile(file, OpenFlags.ReadWrite | OpenFlags.CreateIfNotExist);
             const fs = await fsHandler.process(f.path);
+            const cryptKey = await Configuration.loadKey(fs, file);
             const config = Configuration.new<T>(fs, f.path, await f.readFile('json'), undefined, cryptKey);
             await f.close();
             //, { encoding: 'json' }
-            cryptKey = await Configuration.loadKey(fs, file);
 
             // const config = Configuration.new(fs, file, JSON.parse(content), undefined, cryptKey);
             const unwrapped = config[unwrap] as Configuration<T>;
