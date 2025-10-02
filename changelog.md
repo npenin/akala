@@ -1,4 +1,4 @@
-#  (2025-09-30)
+#  (2025-10-01)
 
 
 * chore : code cleanup eae1150
@@ -1006,6 +1006,7 @@
 * wrong generated key algorithm fc8360d
 * wrong inferred dependency path baed476
 * wrong inferred dependency path 7a1f1ab
+* wrong key loading order dae1711
 * wrong this 182e22a
 * wrongly reporting existing file 40afc19
 * xpm f050b21
