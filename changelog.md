@@ -1,4 +1,4 @@
-#  (2025-10-01)
+#  (2025-10-02)
 
 
 * chore : code cleanup eae1150
@@ -61,6 +61,7 @@
 * add more logging 1bc54b5
 * add more logging in automate ebd2397
 * add more logging in automate e788de4
+* add more logging on serve failures 120e105
 * add more logs 43455f8
 * add more logs a905ac4
 * add more logs b90e354
