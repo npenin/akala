@@ -6,6 +6,7 @@ import { ErrorWithStatus } from '@akala/core';
 import { containers, InitAkala } from '@akala/commands/akala';
 import { Container, protocolHandlers, registerCommands, serverHandlers } from '@akala/commands';
 import { dirname, relative } from 'path';
+import './handlers.js'
 
 const x: Plugin = plugin;
 export default x;
