@@ -84,9 +84,35 @@ export interface ServeOptions
 export default async function <T = void>(container: Container<T>, options: string[] | Record<string, object>, signal?: AbortSignal)
 {
     if (Array.isArray(options))
-        await eachAsync(options, url => serverHandlers.process(new URL(url), container, { signal }));
+        await eachAsync(options, async url =>
+        {
+            try
+            {
+                await serverHandlers.process(new URL(url), container, { signal });
+            }
+            catch (e)
+            {
+                if (e.statusCode == 404)
+                    console.error('Cannot listen on ' + url);
+                else
+                    throw e;
+            }
+        });
     else
-        await eachAsync(options, (options, url) => serverHandlers.process(new URL(url), container, { ...options, signal }))
+        await eachAsync(options, async (options, url) =>
+        {
+            try
+            {
+                await serverHandlers.process(new URL(url), container, { ...options, signal })
+            }
+            catch (e)
+            {
+                if (e.statusCode == 404)
+                    console.error('Cannot listen on ' + url);
+                else
+                    throw e;
+            }
+        })
 
     Object.keys(options).forEach(o =>
     {
