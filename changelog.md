@@ -184,6 +184,7 @@
 * configFile option 366f55a
 * configFile references 0c54a52
 * configFile references a58dfbf
+* configuration.newAsync overwrites the config if it exists fb4eee9
 * context inheritance during install 2a2a587
 * context inheritance during install de44263
 * copy paste issue 762f797
