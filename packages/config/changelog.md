@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* configuration.newAsync overwrites the config if it exists fb4eee9
+* **config:** update openFile flags to create and truncate file 32433f9
 
 
 
