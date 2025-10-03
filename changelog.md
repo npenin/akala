@@ -1,4 +1,4 @@
-#  (2025-10-02)
+#  (2025-10-03)
 
 
 * chore : code cleanup eae1150
@@ -307,6 +307,7 @@
 * flexible file detection fdbe01d
 * for pm standalone init 81df590
 * for pm standalone init 81a261f
+* force import of handlers in akala plugin c43df63
 * force run init-akala only once (no matter the trigger) 2827d75
 * force run init-akala only once (no matter the trigger) 1acbe99
 * force set configFile path c42e60b
@@ -504,6 +505,7 @@
 * links 53c17f6
 * login import 6cb7589
 * login page sonar issues e620328
+* make commands as a peer dependency 961bf4a
 * make event keys match types properly 1c71c4b
 * make fromEvent bind only once dd7addd
 * make fs private for now 6e84b29
