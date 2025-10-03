@@ -1,10 +1,10 @@
 import program, { type CliContext, NamespaceMiddleware } from './router/index.js';
 // import { fileURLToPath, pathToFileURL } from 'url'
-import path, { isAbsolute } from 'path'
+import path from 'path'
 import * as akala from '@akala/core'
 import { supportInteract } from './index.js';
 import normalize from './helpers/normalize.js';
-import fsHandler, { FileSystemProvider } from '@akala/fs';
+import fsHandler, { FileSystemProvider, readFile } from '@akala/fs';
 import { pathToFileURL } from 'url';
 
 function isRootFileUrl(url: URL)
@@ -36,31 +36,11 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
 
     if (context.options.configFile)
     {
-        let configFile: string | URL = context.options.configFile;
-
-
-        if (typeof configFile === 'string')
-            if (!URL.canParse(configFile))
-                if (isAbsolute(configFile))
-                    configFile = new URL('file://' + configFile);
-                else
-                    configFile = new URL('file:' + configFile);
-            else
-                configFile = new URL(configFile);
-
-        context.options.configFile = configFile.toString();
-
-        fs = await fsHandler.process(new URL('./', configFile));
-
         context.logger.info(`loading config file from specified option flag (${context.options.configFile})`);
         try
         {
-            const stats = await fs.stat(configFile);
-            if (stats.isFile)
-            {
-                loadedConfig = await fs.readFile(configFile, { encoding: 'json' });
-                context.logger.debug('config file loaded')
-            }
+            loadedConfig = await readFile(context.options.configFile, 'json');
+            context.logger.debug('config file loaded')
         }
         catch (e)
         {
@@ -68,7 +48,7 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
                 throw e;
         }
     }
-    else if (!loadedConfig)
+    else 
     {
         context.logger.info('loading config file from current working directory and/or parents');
         const cwd = pathToFileURL(context.currentWorkingDirectory?.endsWith(path.sep) ? context.currentWorkingDirectory : context.currentWorkingDirectory + path.sep);
