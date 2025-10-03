@@ -1,22 +1,18 @@
 FROM node:lts-alpine
 ENV NODE_ENV=production
-WORKDIR /akala
-# RUN npm i -g yarn
-# COPY ash.sh /usr/bin/ash-env
 RUN mkdir /root/.yarn && ln -s /akala/.yarn /root/.yarn
 VOLUME ["/akala/db"]
-WORKDIR /akala
-RUN chown -R node .
+COPY package.json /akala/package.json
+RUN chown -R node /akala
 USER node
 WORKDIR /akala
-COPY package.json package.json
 RUN mkdir /akala/db && \
     yarn set version berry && \
     yarn config set nodeLinker node-modules && \
     yarn config set enableGlobalCache false && \
     yarn config set compressionLevel mixed && \
     yarn set version latest && \
-    yarn add @akala/pm @akala/server
+    yarn add @akala/pm @akala/commands @akala/server
 ENV PATH=/akala/node_modules/.bin:${PATH}
 ENV NODE_ENV=production
 ENV DEBUG=*
