@@ -20,10 +20,10 @@ RUN mkdir /akala/db && \
 ENV PATH=/akala/node_modules/.bin:${PATH}
 ENV NODE_ENV=production
 ENV DEBUG=*
-RUN akala --configFile=/akala/db/.akala.json plugins add @akala/config/akala && \
-    akala --configFile=/akala/db/.akala.json plugins add @akala/commands/akala && \
-    akala --configFile=/akala/db/.akala.json plugins add @akala/pm/akala && \
-    akala --configFile=/akala/db/.akala.json plugins add @akala/server/akala
+RUN akala --configFile=file:///akala/db/.akala.json plugins add @akala/config/akala && \
+    akala --configFile=file:///akala/db/.akala.json plugins add @akala/commands/akala && \
+    akala --configFile=file:///akala/db/.akala.json plugins add @akala/pm/akala && \
+    akala --configFile=file:///akala/db/.akala.json plugins add @akala/server/akala
 ENTRYPOINT ["yarn", "start"]
 CMD [ "tcp", "--tcpPort=31416"]
 EXPOSE 31416
