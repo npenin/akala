@@ -68,7 +68,7 @@ export default class Configuration<T extends object = SerializableObject>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public static async newAsync<T extends object = SerializableObject>(path: string | URL, config?: T, rootConfig?: any, cryptKey?: CryptoKey): Promise<ProxyConfigurationObjectNonArray<T>>
     {
-        const f = await openFile(path, OpenFlags.Write);
+        const f = await openFile(path, OpenFlags.Write | OpenFlags.CreateIfNotExist | OpenFlags.Truncate);
         path = f.path;
         await f.close();
         const fs = await fsHandler.process(path);
