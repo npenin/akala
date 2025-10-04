@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:22.15.1-alpine3.21
 ENV NODE_ENV=production
 RUN mkdir /root/.yarn && ln -s /akala/.yarn /root/.yarn
 VOLUME ["/akala/db"]
