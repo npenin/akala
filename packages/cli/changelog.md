@@ -1,4 +1,9 @@
-#  (2025-10-03)
+#  (2025-10-05)
+
+
+### Bug Fixes
+
+* default write when config module is not registered cd96b92
 
 
 
