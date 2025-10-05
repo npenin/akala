@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add more logging to understand when a file is closed 0349960
+* add missing awaits 59abeca
 
 
 
