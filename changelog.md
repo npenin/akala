@@ -62,6 +62,7 @@
 * add more logging in automate ebd2397
 * add more logging in automate e788de4
 * add more logging on serve failures 120e105
+* add more logging to understand when a file is closed 0349960
 * add more logs 43455f8
 * add more logs a905ac4
 * add more logs b90e354
