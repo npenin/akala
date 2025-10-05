@@ -4,7 +4,7 @@ import path from 'path'
 import * as akala from '@akala/core'
 import { supportInteract } from './index.js';
 import normalize from './helpers/normalize.js';
-import fsHandler, { FileSystemProvider, readFile } from '@akala/fs';
+import fsHandler, { FileSystemProvider, readFile, writeFile } from '@akala/fs';
 import { pathToFileURL } from 'url';
 
 function isRootFileUrl(url: URL)
@@ -31,8 +31,6 @@ export type Plugin = (config: AkalaConfig, program: NamespaceMiddleware<{ help: 
 export async function loadConfig(context: CliContext<{ configFile: string }, AkalaConfig>)
 {
     let loadedConfig: AkalaConfig;
-
-    let fs: FileSystemProvider;
 
     if (context.options.configFile)
     {
@@ -63,9 +61,11 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
 
         let prefix = '';
 
+        let fs: FileSystemProvider;
+
         do
         {
-            fs = await fsHandler.process(new URL(prefix, filePath));
+            let fs = await fsHandler.process(new URL(prefix, filePath));
             try
             {
                 loadedConfig = await fs.readFile('./.akala.json', { encoding: 'json' });
@@ -98,7 +98,7 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
         context.logger.debug('config loaded from ' + context.options.configFile);
         context.state = loadedConfig;
         if (!('commit' in context.state && typeof context.state.commit === 'function'))
-            context.state.commit = () => fs.writeFile(context.options.configFile, JSON.stringify(context.state, null, 4));
+            context.state.commit = () => writeFile(context.options.configFile, JSON.stringify(context.state, null, 4), 'utf-8');
         plugins.push(...loadedConfig.plugins)
     }
     return loadedConfig;
