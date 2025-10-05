@@ -359,6 +359,7 @@
 * handle no dependencies provided 07a144d
 * handle no pubsub config 782ba68
 * handle no pubsub config 40e7ff2
+* handle non provided encoding in writeFile 941d642
 * handle NotFound error in asyncEventBuses middleware 71b2ce5
 * handle null case 9c3dc93
 * handle null closest parent c53e4d5
