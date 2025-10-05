@@ -39,6 +39,7 @@
 * add js extension to fork files 39368e9
 * add loginUrl and keyPath to auth configuration 9751a94
 * add missing $defs attribute 102e668
+* add missing awaits 59abeca
 * add missing case in marshall 598c8c0
 * add missing case in marshall 8c814f2
 * add missing context and options to init c083eff
