@@ -32,8 +32,6 @@ export default function (config: Configuration, program: NamespaceMiddleware)
             if (pkg.exports)
                 pkg.exports['./akala'] = target;
             else
-
-
                 await pkgHandle.writeFile(JSON.stringify(pkg, null, 4));
         }
     }
