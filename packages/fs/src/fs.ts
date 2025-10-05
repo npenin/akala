@@ -48,30 +48,30 @@ function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, pa
                 throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
 
             let buffer: Buffer;
-            if (options?.encoding)
-                switch (options.encoding)
-                {
-                    case "ascii":
-                    case "utf8":
-                    case "utf-8":
-                    case "utf16le":
-                    case "utf-16le":
-                    case "ucs2":
-                    case "ucs-2":
-                    case "base64":
-                    case "base64url":
-                    case "latin1":
-                    case "binary":
-                        buffer = typeof data == 'string' ? Buffer.from(data, options.encoding) : data.toArray();
-                        break;
-                    case "hex":
-                        buffer = typeof data == 'string' ? Buffer.from(data) : data.toArray();
-                        buffer = Buffer.from(buffer.toString('hex'))
-                        break;
-                    case "json":
-                        buffer = Buffer.from(JSON.stringify(data));
-                        break;
-                }
+            switch (options?.encoding)
+            {
+                case "ascii":
+                case "utf8":
+                case "utf-8":
+                case "utf16le":
+                case "utf-16le":
+                case "ucs2":
+                case "ucs-2":
+                case "base64":
+                case "base64url":
+                case "latin1":
+                case "binary":
+                default:
+                    buffer = typeof data == 'string' ? Buffer.from(data, options?.encoding) : data.toArray();
+                    break;
+                case "hex":
+                    buffer = typeof data == 'string' ? Buffer.from(data) : data.toArray();
+                    buffer = Buffer.from(buffer.toString('hex'))
+                    break;
+                case "json":
+                    buffer = Buffer.from(JSON.stringify(data));
+                    break;
+            }
             await handle.truncate(buffer.length);
             await handle.write(buffer, 0, buffer.length, 0);
 
