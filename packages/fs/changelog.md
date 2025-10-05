@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle non provided encoding in writeFile 941d642
+* add more logging to understand when a file is closed 0349960
 
 
 
