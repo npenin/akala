@@ -1,4 +1,4 @@
-#  (2025-10-03)
+#  (2025-10-05)
 
 
 * chore : code cleanup eae1150
@@ -214,6 +214,7 @@
 * default logging level 072212e
 * default logging level f8f9a2c
 * default logging level f820f7a
+* default write when config module is not registered cd96b92
 * dependencies b90de68
 * dependencies sequencing on start 7e2fa87
 * dependency cycle 2f2fecb
