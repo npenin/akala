@@ -29,6 +29,11 @@ function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, pa
 {
     return Object.assign({}, handle as Omit<fs.FileHandle, 'readFile'>, {
         path,
+        close()
+        {
+            console.trace('closing file');
+            return handle.close();
+        },
         openReadStream(options: OpenStreamOptions | OpenStreamOptions['encoding']): ReadableStream
         {
             if (typeof options == 'string')
