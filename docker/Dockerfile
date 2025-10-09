@@ -6,7 +6,7 @@ COPY package.json /akala/package.json
 RUN chown -R node /akala
 USER node
 WORKDIR /akala
-RUN mkdir /akala/db && \
+RUN mkdir -p /akala/db && \
     yarn set version berry && \
     yarn config set nodeLinker node-modules && \
     yarn config set enableGlobalCache false && \
