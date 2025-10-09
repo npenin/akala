@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* prevent truncating config on open c3676a8
+* leverage resolve to first config access issues b1e1fa0
 
 
 
