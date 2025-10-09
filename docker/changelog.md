@@ -1,8 +1,9 @@
-#  (2025-10-05)
+#  (2025-10-09)
 
 
 ### Bug Fixes
 
+* add hierarchical mkdir option 656ea93
 * add missing server plugin b294302
 * add user options 3c953f7
 * configFile references 0c54a52
