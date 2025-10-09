@@ -1,4 +1,4 @@
-#  (2025-10-05)
+#  (2025-10-09)
 
 
 * chore : code cleanup eae1150
@@ -29,6 +29,7 @@
 * add front matter attributes to index.md for improved documentation structure cacdb9a
 * add front matter title and parent attributes to markdown files for consistency cb199f6
 * add front matter title and parent attributes to markdown files for consistency 995d102
+* add hierarchical mkdir option 656ea93
 * add i18n 603ec11
 * add InitAkala and AuthHandler on server eabf4fe
 * add InitAkala and AuthHandler on server 54f96ca
@@ -614,6 +615,7 @@
 * prevent overwriting data-context attribute 1cd19e0
 * prevent parsing formatters e1ec937
 * prevent tag creation 49c9302
+* prevent truncating config on open c3676a8
 * propagate the abort reason d3df91f
 * proper outletService injection 2917475
 * properly handle event emitters failure a24cafe
@@ -1205,6 +1207,7 @@
 * allow new contextPage to be provided as expression 357ddb7
 * allow not assigning result as last parameter c93f78c
 * allow not assigning result as last parameter cbc28b4
+* allow parser with message in array length d8fb57e
 * allow promised subscriptions to be tearred down 74aaa72
 * allow providing transaction during commit 271f464
 * allow providing transaction during commit a1460f9
