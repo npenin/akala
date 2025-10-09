@@ -213,14 +213,14 @@ export function buffer<T = unknown>(length: Parser<number> | Parser<number> | nu
         return new PreparsedLengthBuffer<T, typeof length>(length, dismissMainBuffer);
     return new PrefixedBuffer(length, dismissMainBuffer);
 }
-export function array<T, TMessage>(length: Parser<number>, value: AnyParser<T, TMessage>): TMessage extends Cursor ? Parser<T[]> : ParserWithMessage<T[], TMessage>
-export function array<T, TMessage>(length: Parser<number>, value: AnyParser<T, TMessage>): Parser<T[]>
+export function array<T, TMessage>(length: Parser<number> | ParserWithMessage<number, TMessage>, value: AnyParser<T, TMessage>): TMessage extends Cursor ? Parser<T[]> : ParserWithMessage<T[], TMessage>
+export function array<T, TMessage>(length: Parser<number> | ParserWithMessage<number, TMessage>, value: AnyParser<T, TMessage>): Parser<T[]>
 export function array<T, TMessage>(length: -1, value: Parser<T>): Parser<T[]>
 export function array<T, TMessage>(length: -1, value: ParserWithMessage<T, unknown>): ParserWithMessage<T[], TMessage>
 export function array<T, TMessage>(length: -1, value: ParserWithMessage<T, unknown>): ParserWithMessage<T[], TMessage>
 export function array<T, TMessage>(length: number, value: Parser<T>): Parser<T[]>
 export function array<T, TMessage>(length: keyof TMessage, value: AnyParser<T, Partial<T>>): ParserWithMessage<T[], TMessage>
-export function array<T, TMessage>(length: keyof TMessage | number | Parsers<number>, value: AnyParser<T, TMessage>): AnyParser<T[], TMessage>
+export function array<T, TMessage>(length: keyof TMessage | number | AnyParser<number, TMessage>, value: AnyParser<T, TMessage>): AnyParser<T[], TMessage>
 {
     if (typeof (length) === 'number')
         return new FixedArray<T, TMessage>(length, value);
