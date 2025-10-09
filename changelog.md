@@ -508,6 +508,7 @@
 * leverage core case converters 63bcf6b
 * leverage EventProcessor to allow for more use cases 6e85fc6
 * leverage remotePm if no pm is provided 1c7c6ff
+* leverage resolve to first config access issues b1e1fa0
 * link to pm source 27aad27
 * link to pm source fc73c95
 * links e6a33ea
@@ -1336,6 +1337,7 @@
 * remove legacy global injector functions 29d5996
 * rename control to akala e88f358
 * repl command announces itself as $repl option 44f4a4b
+* resolve to URL and FSProvider 119cae6
 * SelfDefinedCommand accepts InjectMap 9b71e5c
 * SRP implementation 354ac26
 * start apm implementation bc60ca3
