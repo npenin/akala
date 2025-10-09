@@ -4,7 +4,9 @@ title: Gateway Module
 # Gateway Module
 
 ## Overview
-The `gateway` module provides a framework for managing API gateways within the Akala ecosystem. It supports routing, middleware, and integration with various backend services.
+The `@akala/gateway` module provides a CLI wrapper processor that allows you to integrate external command-line tools into the Akala command system. It acts as a bridge between Akala commands and external CLI binaries by spawning child processes and handling their input/output.
+
+This is useful when you want to expose existing CLI tools through Akala's command container system while maintaining proper input/output handling and error reporting.
 
 ## Installation
 To install the `gateway` module, use the following command:
@@ -13,56 +15,92 @@ To install the `gateway` module, use the following command:
 npm install @akala/gateway
 ```
 
+## Key Components
+
+### CliGatewayProcessor
+
+The main class that wraps CLI command execution. It extends `CommandProcessor` from `@akala/commands` and handles spawning external processes.
+
+**Constructor:**
+- `bin: string` - The path or name of the CLI binary to execute
+
+**Methods:**
+- `handle(origin, cmd, param)` - Processes commands by spawning the CLI binary with parsed arguments
+
+### $init Command
+
+Initializes a container with the CLI gateway processor.
+
+**Parameters:**
+- `container: Container<void>` - The command container to initialize
+- `bin: string` - (Optional) The CLI binary path. Defaults to the container name if not provided
+
 ## Usage
-Import the module and use its features as follows:
+
+### Basic Setup
 
 ```javascript
-import * as gateway from '@akala/gateway';
+import { Container } from '@akala/commands';
+import $init from '@akala/gateway/commands/$init.js';
 
-// Example usage
-gateway.create('myGateway', { routes: [] });
+// Create a container for your CLI tool
+const container = new Container('my-cli-tool');
+
+// Initialize with default binary name (uses container name)
+await $init(container);
+
+// Or specify a custom binary
+await $init(container, '/path/to/my-binary');
 ```
 
-## API Reference
+### How It Works
 
-| Method | Description |
-| --- | --- |
-| `create(name: string, options: GatewayOptions): Gateway` | Creates a new API gateway with the specified name and options. |
-| `addRoute(gateway: Gateway, route: Route): void` | Adds a route to the specified gateway. |
-| `removeRoute(gateway: Gateway, routeId: string): void` | Removes a route from the specified gateway by its ID. |
+1. The `CliGatewayProcessor` is registered as middleware in the command container
+2. When a command is executed, it converts Akala command parameters to CLI arguments
+3. The external binary is spawned as a child process with proper I/O handling
+4. stdout/stderr are captured and returned to the caller
+5. Exit codes are handled - non-zero codes result in errors
 
-## Examples
+### Example: Wrapping Git Commands
 
-### Create a Gateway
 ```javascript
-import * as gateway from '@akala/gateway';
+import { Container } from '@akala/commands';
+import $init from '@akala/gateway/commands/$init.js';
 
-// Create a new gateway
-gateway.create('myGateway', { routes: [] });
-console.log('Gateway created');
+// Create a container for git commands
+const gitContainer = new Container('git');
+
+// Initialize with git binary
+await $init(gitContainer, 'git');
+
+// Now commands executed on this container will spawn git processes
+// with appropriate argument parsing
 ```
 
-### Add a Route
-```javascript
-import * as gateway from '@akala/gateway';
+## Architecture
 
-const myGateway = gateway.create('myGateway', { routes: [] });
-const route = { id: 'route1', path: '/api', handler: () => {} };
-gateway.addRoute(myGateway, route);
-console.log('Route added');
-```
+The gateway processor:
+- Uses `@akala/cli` for argument parsing/unparsing
+- Spawns child processes with `child_process.spawn`
+- Inherits stdin and pipes stdout/stderr for capture
+- Returns promises that resolve/reject based on exit codes
+- Integrates seamlessly with the `@akala/commands` middleware pipeline
 
-### Remove a Route
-```javascript
-import * as gateway from '@akala/gateway';
+## Use Cases
 
-const myGateway = gateway.create('myGateway', { routes: [] });
-gateway.removeRoute(myGateway, 'route1');
-console.log('Route removed');
-```
+- **Wrapping existing CLI tools** into Akala command containers
+- **Standardizing access** to system utilities through Akala's command system
+- **Managing external processes** with proper error handling
+- **Building gateways** to external command-line applications
+
+## Related Modules
+
+- [@akala/commands](../commands/) - Command container system
+- [@akala/cli](../cli/) - CLI argument parsing
+- [@akala/core](../core/) - Core utilities (MiddlewarePromise, Deferred)
 
 ## Contributing
 Contributions are welcome! Please follow the guidelines in the main repository.
 
 ## License
-This module is licensed under the MIT License. See the LICENSE file for details.
+This module is licensed under the BSD-3-Clause License.
