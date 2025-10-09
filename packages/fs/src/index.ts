@@ -68,7 +68,7 @@ export default fsHandler;
 // WARNING: Duplicated implementation in index.browser because of pathToFileURL import requirement in nodejs
 import { pathToFileURL } from 'url';
 
-export async function openFile(filePath: string | URL, flags: OpenFlags)
+export async function resolve(filePath: string | URL)
 {
     if (typeof filePath == 'string')
         if (URL.canParse(filePath))
@@ -77,7 +77,14 @@ export async function openFile(filePath: string | URL, flags: OpenFlags)
             filePath = pathToFileURL(filePath);
 
     const fs = await fsHandler.process(filePath);
-    return await fs.open(filePath, flags)
+
+    return { fs, filePath };
+}
+
+export async function openFile(filePath: string | URL, flags: OpenFlags)
+{
+    const resolved = await resolve(filePath);
+    return await resolved.fs.open(resolved.filePath, flags)
 }
 
 export function readFile(filePath: string | URL, encoding: Exclude<BufferEncoding, 'binary'>, flags?: OpenFlags): Promise<string>;

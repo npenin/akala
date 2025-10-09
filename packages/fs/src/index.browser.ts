@@ -150,7 +150,7 @@ export class FileSystemProviderProxy<TFileHandle extends FileHandle> implements 
     }
 }
 
-export async function openFile(filePath: string | URL, flags: OpenFlags)
+export async function resolve(filePath: string | URL)
 {
     if (typeof filePath == 'string')
         if (URL.canParse(filePath))
@@ -159,7 +159,14 @@ export async function openFile(filePath: string | URL, flags: OpenFlags)
             filePath = new URL(filePath, window.location.href);
 
     const fs = await fsHandler.process(filePath);
-    return await fs.open(filePath, flags)
+
+    return { fs, filePath };
+}
+
+export async function openFile(filePath: string | URL, flags: OpenFlags)
+{
+    const resolved = await resolve(filePath);
+    return await resolved.fs.open(resolved.filePath, flags)
 }
 
 export function readFile(filePath: string | URL, encoding: Exclude<BufferEncoding, 'binary'>, flags?: OpenFlags): Promise<string>;
