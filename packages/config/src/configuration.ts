@@ -1,5 +1,5 @@
 import { isProxy, base64, type Serializable, type SerializableObject, ErrorWithStatus, HttpStatusCode } from '@akala/core';
-import fsHandler, { FileSystemProvider, openFile, OpenFlags, writeFile } from '@akala/fs';
+import fsHandler, { FileSystemProvider, openFile, OpenFlags, resolve, writeFile } from '@akala/fs';
 
 export type ProxyConfiguration<T> = T extends object ? ProxyConfigurationObject<T> : Extract<Exclude<Serializable, SerializableObject | SerializableObject[]>, T>;
 export type ProxyConfigurationObject<T extends object> = T extends (infer X)[] ? X[] : ProxyConfigurationObjectNonArray<T>;
@@ -68,24 +68,19 @@ export default class Configuration<T extends object = SerializableObject>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public static async newAsync<T extends object = SerializableObject>(path: string | URL, config?: T, rootConfig?: any, cryptKey?: CryptoKey): Promise<ProxyConfigurationObjectNonArray<T>>
     {
-        const f = await openFile(path, OpenFlags.Read | OpenFlags.NonExisting);
-        path = f.path;
-        await f.close();
-        const fs = await fsHandler.process(path);
+        const resolved = await resolve(path);
 
         if (typeof cryptKey == 'undefined')
         {
-            cryptKey = await Configuration.loadKey(fs, path)
+            cryptKey = await Configuration.loadKey(resolved.fs, resolved.filePath)
         }
-        return Configuration.new(fs, path, config, rootConfig, cryptKey);
+        return Configuration.new(resolved.fs, resolved.filePath, config, rootConfig, cryptKey);
     }
 
     public static new<T extends object = SerializableObject>(fs: FileSystemProvider, path: string | URL, config?: T, rootConfig?: any, cryptKey?: CryptoKey): ProxyConfigurationObjectNonArray<T>
     {
         if (config && 'commit' in config && typeof config.commit == 'function')
             delete config.commit;
-
-
 
         return new Proxy(new Configuration<T>(fs, path, config, rootConfig, cryptKey), {
             has(target, key)
