@@ -42,7 +42,7 @@ function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, pa
 
             return Writable.toWeb(handle.createWriteStream(options));
         },
-        async writeFile(data, options?: { encoding?: BufferEncoding | 'json' })
+        async writeFile(data, options?: { encoding?: BufferEncoding | 'json', format?: boolean })
         {
             if (readonly)
                 throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
@@ -69,7 +69,10 @@ function fsFileHandleAdapter(handle: fs.FileHandle, fs: FSFileSystemProvider, pa
                     buffer = Buffer.from(buffer.toString('hex'))
                     break;
                 case "json":
-                    buffer = Buffer.from(JSON.stringify(data));
+                    if (options?.format)
+                        buffer = Buffer.from(JSON.stringify(data, null, 4));
+                    else
+                        buffer = Buffer.from(JSON.stringify(data));
                     break;
             }
             await handle.truncate(buffer.length);
@@ -362,19 +365,50 @@ export class FSFileSystemProvider implements FileSystemProvider<FullFileHandle>
         return fs.watch(this.resolvePath(filename), options);
     }
 
-    async writeFile(path: FsPathLike, data: string | IsomorphicBuffer | ArrayBuffer | SharedArrayBuffer | Buffer | Uint8Array, options?: { mode?: number }): Promise<void>
+    async writeFile(path: FsPathLike, data: string | IsomorphicBuffer | ArrayBuffer | SharedArrayBuffer | Buffer | Uint8Array, options?: { mode?: number, encoding?: BufferEncoding | 'json', format?: boolean }): Promise<void>
     {
         if (this.readonly)
             throw new ErrorWithStatus(HttpStatusCode.Forbidden, 'The file system is readonly');
-        const buffer = data instanceof IsomorphicBuffer ? data.toArray() : Buffer.isBuffer(data) ? data : Buffer.from(data as ArrayBuffer);
+
+        let buffer: Buffer;
+        switch (options?.encoding)
+        {
+            case "ascii":
+            case "utf8":
+            case "utf-8":
+            case "utf16le":
+            case "utf-16le":
+            case "ucs2":
+            case "ucs-2":
+            case "base64":
+            case "base64url":
+            case "latin1":
+            case "binary":
+            default:
+                buffer = typeof data == 'string' ? Buffer.from(data, options?.encoding) : data instanceof IsomorphicBuffer ? Buffer.from(data.toArray()) : Buffer.from(data as ArrayBufferLike);
+                break;
+            case "hex":
+                buffer = typeof data == 'string' ? Buffer.from(data) : data instanceof IsomorphicBuffer ? Buffer.from(data.toArray()) : Buffer.from(data as ArrayBufferLike);
+                buffer = Buffer.from(buffer.toString('hex'))
+                break;
+            case "json":
+                if (options?.format)
+                    buffer = Buffer.from(JSON.stringify(data, null, 4));
+                else
+                    buffer = Buffer.from(JSON.stringify(data));
+                options.encoding = 'utf-8'
+                break;
+        }
 
         if (this.isFileHandle(path))
         {
             if (options?.mode)
                 throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'You may not specify mode with a file handle');
-            return path.writeFile(buffer);
+            return path.writeFile(buffer, options?.encoding, options?.format);
         }
-        return fs.writeFile(this.resolvePath(path), buffer, options);
+
+
+        return fs.writeFile(this.resolvePath(path), buffer, options as { encoding?: BufferEncoding, mode?: number });
     }
 
     public isFileHandle(p: unknown): p is FullFileHandle

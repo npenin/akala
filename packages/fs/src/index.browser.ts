@@ -181,10 +181,10 @@ export async function readFile(filePath: string | URL, encoding?: BufferEncoding
     return result;
 }
 
-export async function writeFile(filePath: string | URL, data: unknown, encoding?: BufferEncoding | 'json', flags?: OpenFlags): Promise<void>
+export async function writeFile(filePath: string | URL, data: unknown, encoding?: BufferEncoding | 'json', format?: boolean, flags?: OpenFlags): Promise<void>
 {
     const f = await openFile(filePath, typeof flags === 'undefined' ? OpenFlags.Write : flags)
-    const result = await f.writeFile(data, encoding);
+    const result = await f.writeFile(data, encoding, format);
     await f.close();
     return result;
 }
