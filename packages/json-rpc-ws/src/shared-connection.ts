@@ -35,7 +35,7 @@ export class JsonRpcSocketAdapter<TStreamable> extends SocketProtocolAdapter<Pay
                     socket.send(self.transform.send(Errors('parseError', -1), self));
                 }
 
-                return payload;
+                return [payload];
             },
             send(payload)
             {

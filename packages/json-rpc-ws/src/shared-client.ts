@@ -17,8 +17,24 @@ export class JsonNDRpcSocketAdapter<T> extends SocketProtocolAdapter<T> implemen
 {
     constructor(socket: SocketAdapter)
     {
+        const accumulator: string[] = [];
         super({
-            receive: (data: string | IsomorphicBuffer) => JSON.parse((data instanceof IsomorphicBuffer ? data.toString('utf8') : data)),
+            receive: (data: string | IsomorphicBuffer) =>
+            {
+                if (typeof (data) !== 'string')
+                    data = data.toString('utf8');
+
+                let messages = data.split('\n');
+                if (messages.length == 1)
+                {
+                    accumulator.push(messages[0]);
+                    return [];
+                }
+                if (accumulator.length)
+                    messages = accumulator.concat(messages);
+                messages = messages.filter(d => d)
+                return messages.map(data => JSON.parse(data));
+            },
             send: (data: T) => JSON.stringify(data) + '\n',
         }, socket);
     }
