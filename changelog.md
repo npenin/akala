@@ -1,4 +1,4 @@
-#  (2025-10-09)
+#  (2025-10-16)
 
 
 * chore : code cleanup eae1150
@@ -181,6 +181,7 @@
 * config key file mode c55e693
 * **config:** Add optional chaining to inspect.custom access 0bb7aa4
 * **config:** Add optional chaining to inspect.custom access a2c7fe1
+* configFile detection d199b4b
 * configFile init 79f7467
 * configFile init abcfad1
 * configFile option 9609a93
@@ -1130,6 +1131,7 @@
 * add int, cache and leb128 parsers 0fb8868
 * add invoke formatter 2ea1311
 * add IPC protocol handler for improved inter-process communication 96b2326
+* add json formatting option when writing 2075735
 * add jsonnd socket adapter ec78e77
 * add jsonrpc name remapping f6ff8b2
 * add JWK and few more improvements 7672b7e
