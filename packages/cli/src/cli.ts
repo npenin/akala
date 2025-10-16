@@ -65,7 +65,7 @@ export async function loadConfig(context: CliContext<{ configFile: string }, Aka
 
         do
         {
-            let fs = await fsHandler.process(new URL(prefix, filePath));
+            fs = await fsHandler.process(new URL(prefix, filePath));
             try
             {
                 loadedConfig = await fs.readFile('./.akala.json', { encoding: 'json' });
