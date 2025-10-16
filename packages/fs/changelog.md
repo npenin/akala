@@ -1,9 +1,9 @@
-#  (2025-10-09)
+#  (2025-10-16)
 
 
 ### Features
 
-* resolve to URL and FSProvider 119cae6
+* add json formatting option when writing 2075735
 
 
 
