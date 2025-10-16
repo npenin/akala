@@ -28,7 +28,7 @@ export interface SocketAdapter<T = string | IsomorphicBuffer> extends EventBus<S
 export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEventMap<T>> implements SocketAdapter<T>
 {
     constructor(public readonly transform: {
-        receive: (data: string | IsomorphicBuffer, self: SocketProtocolAdapter<T>) => T,
+        receive: (data: string | IsomorphicBuffer, self: SocketProtocolAdapter<T>) => T[],
         send: (data: T, self: SocketProtocolAdapter<T>) => string | IsomorphicBuffer,
         close?: (socket: SocketAdapter) => Promise<void>
     }, private readonly socket: SocketAdapter)
@@ -107,7 +107,9 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
                         this.messageSubscription = this.socket.on('message', message =>
                         {
                             const m = this.transform.receive(message, this);
-                            this.messageListeners.forEach(l => l(m))
+                            for (const message of m)
+                                for (const listener of this.messageListeners)
+                                    listener(message);
                         }, options);
                     this.messageListeners.push(handler as EventListener<SocketAdapterAkalaEventMap<T>['message']>);
                     return () =>
