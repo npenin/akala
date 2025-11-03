@@ -485,6 +485,7 @@
 * improve type checking 457c1b3
 * improve typing in vite.config.mts 11e538a
 * improve yarn config a47ff40
+* imrpove network performances de5abd9
 * infinite loop b9aedbb
 * inherit options from parent context 3bb58b9
 * inherit options from parent context 7080536
@@ -869,6 +870,7 @@
 * update after commands breaking change 95b04e6
 * update after commands breaking change 5249df2
 * update after commands breaking change d466cc8
+* update after core breaking change 41383e4
 * update after core breaking change 18fdcee
 * update after core breaking change 669c311
 * update after core breaking change 859e291
@@ -1364,6 +1366,7 @@
 
 ### BREAKING CHANGES
 
+* SocketProtocolAdapter returns a message array
 * NetSocketAdapter does not exist any more
 * jobs is now private on Schedule
 * fs parameter is required if not using newAsync
