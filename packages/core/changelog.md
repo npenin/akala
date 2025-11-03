@@ -1,14 +1,9 @@
-#  (2025-10-16)
+#  (2025-11-03)
 
 
 ### Bug Fixes
 
-* imrpove network performances de5abd9
-
-
-### BREAKING CHANGES
-
-* SocketProtocolAdapter returns a message array
+* improve error message in url handler 3605926
 
 
 
