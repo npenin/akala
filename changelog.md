@@ -1,4 +1,4 @@
-#  (2025-10-16)
+#  (2025-11-03)
 
 
 * chore : code cleanup eae1150
@@ -462,6 +462,7 @@
 * improve error handling in HTTP command wrapping 42daa25
 * improve error handling in JsonRpc and JsonRpcBrowser classes by adding try-catch around sendMethod calls 3a537b9
 * improve error handling in protocol command by throwing errors for better debugging 99c47e1
+* improve error message in url handler 3605926
 * improve formatter behavior 954fd43
 * improve formatter behavior 30996cd
 * improve isomorphicbuffer usability e0ff541
@@ -509,6 +510,7 @@
 * leb128 writing 84cee52
 * leverage core case converters 63bcf6b
 * leverage EventProcessor to allow for more use cases 6e85fc6
+* leverage json formatter from fs.writeFile 159289c
 * leverage remotePm if no pm is provided 1c7c6ff
 * leverage resolve to first config access issues b1e1fa0
 * link to pm source 27aad27
