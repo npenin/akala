@@ -359,7 +359,7 @@ export default class Configuration<T extends object = SerializableObject>
         const self = this[unwrap];
         if (typeof formatted == 'undefined')
             formatted = process.env.NODE_ENV !== 'production';
-        await this.fs.writeFile(file || self.path, JSON.stringify(self.rootConfig, null, formatted && 4 || undefined));
+        await this.fs.writeFile(file || self.path, self.rootConfig, { encoding: 'json', format: formatted });
         if (self.cryptKey)
             await this.fs.writeFile((file || self.path) + '.key', await subtle.exportKey('raw', self.cryptKey), { mode: 0o700 });
 
