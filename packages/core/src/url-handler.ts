@@ -129,7 +129,7 @@ export class UrlHandler<T extends [URL, ...unknown[], Partial<TResult> | void], 
         }, ...context);
         if (error)
             return error;
-        return new ErrorWithStatus(HttpStatusCode.NotFound)
+        return new ErrorWithStatus(HttpStatusCode.NotFound, `${context[0]} is not supported`)
     }
 }
 
