@@ -6,7 +6,7 @@ import { SocketAdapterAkalaEventMap, SocketAdapter } from "./network.js";
 import { type Subscription, StatefulSubscription } from "./teardown-manager.js";
 import { Socket } from 'net';
 
-export class TcpSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> implements SocketAdapter
+export class TcpSocketAdapter<T extends string | IsomorphicBuffer = string | IsomorphicBuffer> extends EventEmitter<SocketAdapterAkalaEventMap<T>> implements SocketAdapter<T>
 {
     constructor(private readonly socket: Socket)
     {
@@ -36,9 +36,9 @@ export class TcpSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
 
     private readonly messageListeners: [(ev: unknown) => void, (ev: unknown) => void][] = [];
 
-    public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+    public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap<T>>>(
         event: TEvent,
-        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>
     ): boolean
     {
         switch (event)
@@ -68,17 +68,17 @@ export class TcpSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         return true;
     }
 
-    public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+    public on<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap<T>>>(
         event: TEvent,
-        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>,
-        options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>,
+        options?: EventOptions<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>
     ): Subscription
     {
         switch (event)
         {
             case 'message':
                 {
-                    const x = function (data) { return (handler as EventListener<SocketAdapterAkalaEventMap['message']>).call(this, typeof data === 'string' ? data : IsomorphicBuffer.fromBuffer(data)); };
+                    const x = function (data) { return (handler as EventListener<SocketAdapterAkalaEventMap<T>['message']>).call(this, typeof data === 'string' ? data : IsomorphicBuffer.fromBuffer(data)); };
                     this.messageListeners.push([handler, x]);
                     if (options?.once)
                         this.socket.once('data', x);
@@ -110,20 +110,20 @@ export class TcpSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         }
     }
 
-    public once<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(
+    public once<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap<T>>>(
         event: TEvent,
-        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>
+        handler: EventListener<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>
     ): Subscription
     {
         switch (event)
         {
             case 'message':
-                return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>);
+                return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>);
             case 'close':
             case 'error':
             case 'open':
             case Symbol.dispose:
-                return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap>[TEvent]>);
+                return this.on(event, handler, { once: true } as EventOptions<AllEvents<SocketAdapterAkalaEventMap<T>>[TEvent]>);
             default:
                 let x: never = event;
                 throw new Error(`Unsupported event ${x}`);
