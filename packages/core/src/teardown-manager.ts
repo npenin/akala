@@ -32,6 +32,11 @@ export function combineSubscriptions(...subs: (void | undefined | Subscription)[
     };
 }
 
+export function teardown(subscription: Subscription | AsyncSubscription, abort: AbortSignal)
+{
+    abort.addEventListener('abort', () => subscription());
+}
+
 export function combineAsyncSubscriptions(...subs: (void | undefined | Subscription | AsyncSubscription)[]): AsyncSubscription
 {
     return async () =>
