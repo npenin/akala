@@ -150,7 +150,7 @@ export class FetchHttp implements Http<Response>
     {
         let body = '<?xml version="1.0" encoding="utf-8"?><s:Envelope s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body>' +
             '<u:' + action + ' xmlns:u="' + namespace + '">';
-        each(params, function (paramValue, paramName)
+        each(params ?? {}, function (paramValue, paramName)
         {
             body += '<' + paramName + '><![CDATA[' + paramValue + ']]></' + paramName + '>';
         });
