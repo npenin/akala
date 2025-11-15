@@ -134,6 +134,7 @@ const plugins = [new URL('./helpers/repl.js', import.meta.url).toString(), new U
 
 export function cli()
 {
+    program.preAction(async c => akala.setDefaultContext(c));
     const mainProgram = program.command(null).option<boolean, 'help'>('help', { needsValue: false });
     program.useError(supportInteract(mainProgram))
     program.option('verbose', {

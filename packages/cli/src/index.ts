@@ -1,4 +1,4 @@
-import { LogLevels, type Logger, logger as LoggerBuilder, grep, map, each, ObservableObject } from '@akala/core';
+import { LogLevels, type Logger, logger as LoggerBuilder, grep, map, each, ObservableObject, defaultContext, setDefaultContext } from '@akala/core';
 import program, { type CliContext, NamespaceMiddleware, type OptionOptions, type OptionType, usageParser } from './router/index.js';
 
 export * from './router/index.js'
@@ -106,6 +106,8 @@ export function buildCliContextFromProcess<T extends Record<string, OptionType> 
         currentWorkingDirectory: process.cwd(),
     };
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
+    if (!defaultContext)
+        setDefaultContext(result as CliContext<T, TState>);
     return result as CliContext<T, TState>;
 }
 
