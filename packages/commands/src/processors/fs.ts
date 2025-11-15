@@ -118,7 +118,7 @@ export class FileSystem extends CommandProcessor
     public static async discoverMetaCommands(root: string | URL, options?: DiscoveryOptions): Promise<Metadata.Container>
     {
         const log = akala.defaultContext?.logger('commands:fs:discovery');
-        log.info(`discovering commands in ${root}`)
+        log?.info(`discovering commands in ${root}`)
 
         if (!options)
             options = {};
@@ -263,7 +263,7 @@ export class FileSystem extends CommandProcessor
                     if (!options)
                         throw new Error('cannot happen');
                     const cmd: Metadata.Command = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig } };
-                    log.debug(cmd.name);
+                    log?.debug(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
                         const sourceMap = JSON.parse(await options.fs.readFile(new URL(path.basename(f.name) + '.map', root), { encoding: 'utf8' }));
@@ -293,7 +293,7 @@ export class FileSystem extends CommandProcessor
 
                     if (otherConfigs)
                     {
-                        log.debug(`found config file ${otherConfigsFile}`)
+                        log?.debug(`found config file ${otherConfigsFile}`)
                         delete otherConfigs.$schema;
                         const fsConfig = cmd.config.fs;
                         cmd.config = { ...cmd.config, ...otherConfigs };
@@ -301,7 +301,7 @@ export class FileSystem extends CommandProcessor
                     }
                     if (!cmd.config.fs.inject)
                     {
-                        log.debug(`looking for fs default definition`)
+                        log?.debug(`looking for fs default definition`)
                         if (Array.isArray(cmd.config['']?.inject))
                         {
                             const params: string[] = [];
@@ -363,12 +363,12 @@ export class FileSystem extends CommandProcessor
 
                         if (!cmd.config.fs.inject && func.$inject)
                         {
-                            log.debug(`taking $inject`)
+                            log?.debug(`taking $inject`)
                             cmd.config.fs.inject = func.$inject;
                         }
                         else
                         {
-                            log.debug(`reflection on function arguments`)
+                            log?.debug(`reflection on function arguments`)
                             let n = 0;
                             cmd.config.fs.inject = akala.introspect.getParamNames(func).map(v =>
                             {
