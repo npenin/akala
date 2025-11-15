@@ -85,7 +85,7 @@ function setLevel(rootNamespace: string, logLevel: LogLevels)
  */
 export interface Logger extends ILogger
 {
-    (rootNamespace: string, logLevel: LogLevels): ILogger
+    (rootNamespace: string, logLevel?: LogLevels): ILogger
     level: LogLevels
 }
 

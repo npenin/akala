@@ -1,6 +1,7 @@
 import ErrorWithStatus, { HttpStatusCode } from "./errorWithStatus.js";
 import * as base64 from "./base64.js";
-import type { Logger } from "./logger.js";
+import { Logger } from "./logger.js";
+// import type { Logger } from "./logging/shared.js";
 
 export type Remote<T> = { [key in keyof T]: T[key] extends (...args) => infer X ? X extends Promise<unknown> ? X : Promise<X> : (T[key] | undefined) }
 export type Serializable = string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[];
@@ -15,6 +16,12 @@ export interface Context<TState = unknown>
     abort: AbortController;
 }
 
+export let defaultContext: Context;
+
+export function setDefaultContext(context: Context)
+{
+    defaultContext = context;
+}
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-empty-function
 export function noop() { }
