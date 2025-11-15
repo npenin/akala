@@ -3,13 +3,14 @@ import type State from "../state.js";
 import type { WorkflowInstance } from "../state.js";
 import { getRandomName, sidecar, type Container as pmContainer } from '@akala/pm'
 import workflow from "../workflow.js";
+import { Context } from "@akala/core";
 
-export default async function init(this: State, pm: pmContainer, persistTo?: string)
+export default async function init(this: State, pm: pmContainer, context: Context, persistTo?: string)
 {
     const queueProcessor = (msg: WorkflowInstance<object>, next: (processed: boolean) => void) =>
     {
         const name = msg.workflow.name || getRandomName();
-        pm.dispatch('start', '@akala/automate/workflow', { new: true, name: name, wait: true }, { args: ['local'] }).then(async () =>
+        pm.dispatch('start', '@akala/automate/workflow', { new: true, name: name, wait: true }, { logger: this.logger, args: ['local'] }).then(async () =>
         {
             const workflow: workflow.container = (await sidecar()[name]);
             await workflow.dispatch('set-config', msg.context);
@@ -42,4 +43,6 @@ export default async function init(this: State, pm: pmContainer, persistTo?: str
     this.loaders = {};
     this.schedules = {};
     this.triggers = {};
+
+    this.logger = context.logger;
 }
