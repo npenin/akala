@@ -4,6 +4,7 @@ import type { EventArgs, IEvent } from '../events/shared.js';
 import "reflect-metadata";
 import { Injector, LocalInjector, injectorLog } from './shared.js';
 import { defaultInjector } from './simple-injector.js';
+import { LogLevels } from '../logging/shared.js';
 
 export type NestedKeys<TypeMap extends object, TKey> = TKey extends keyof TypeMap ? Exclude<TKey, number> : TKey extends `${infer A}.${infer B}` ? A extends keyof TypeMap ? TypeMap[A] extends Record<string, unknown> ? NestedKeys<TypeMap[A], B> : never : never : never;
 export type NestedPath<TypeMap extends object, TKey> = TKey extends keyof TypeMap ? TypeMap[TKey] : TKey extends `${infer A}.${infer B}` ? A extends keyof TypeMap ? TypeMap[A] extends Record<string, unknown> ? NestedPath<TypeMap[A], B> : never : never : never;
@@ -113,7 +114,7 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
 
         if (param in this.injectables)
         {
-            if (injectorLog.verbose.enabled)
+            if (injectorLog.isEnabled(LogLevels.verbose))
             {
                 const obj = this.injectables[param as keyof TypeMap];
                 if (typeof obj === 'object' && 'name' in obj)

@@ -54,7 +54,19 @@ import * as introspect from './reflect.js';
 export { introspect };
 export * from './chain.js';
 export * from './polymorph.js';
-export * from './logger.js'
+export * from './logging/shared.js'
+export * from './logging/sync/console.js'
+export * from './logging/sync/debug.js'
+export * from './logging/sync/multicast.js'
+export * from './logging/sync/route.js'
+export * from './logging/sync/wrapper.js'
+export * from './logging/async/web-stream.js'
+export * from './logging/async/sync.js'
+export * from './logging/async/multicast.js'
+export * from './logging/async/route.js'
+export * from './logging/async/wrapper.js'
+export * from './logging/index.js'
+
 export * from './errorWithStatus.js'
 
 export * from './formatters/index.js'

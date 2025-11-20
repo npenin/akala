@@ -172,9 +172,9 @@ export function isStandardMiddleware<T extends unknown[], TSpecialNextParam exte
  * @param ...req - The context parameters for processing.
  * @returns The processed result.
  */
-export function process<X = unknown, T extends unknown[] = unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam>(middleware: Middleware<T, TSpecialNextParam>, ...req: T): X
+export function process<X = unknown, T extends unknown[] = unknown[], TSpecialNextParam extends string | undefined = SpecialNextParam>(middleware: Middleware<T, TSpecialNextParam> | MiddlewareAsync<T, TSpecialNextParam>, ...req: T): X
 {
-    let error: MiddlewareResult<TSpecialNextParam>;
+    let error: MiddlewareResult<TSpecialNextParam> | Promise<MiddlewareResult<TSpecialNextParam>>;
     try
     {
         error = middleware.handle(...req)

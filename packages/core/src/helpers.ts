@@ -1,7 +1,6 @@
 import ErrorWithStatus, { HttpStatusCode } from "./errorWithStatus.js";
 import * as base64 from "./base64.js";
-import { Logger } from "./logger.js";
-// import type { Logger } from "./logging/shared.js";
+import type { LoggerWrapper } from "./logging/index.js";
 
 export type Remote<T> = { [key in keyof T]: T[key] extends (...args) => infer X ? X extends Promise<unknown> ? X : Promise<X> : (T[key] | undefined) }
 export type Serializable = string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[];
@@ -12,7 +11,7 @@ export type TypedSerializableObject<T> = { [key in keyof T]: TypedSerializable<T
 export interface Context<TState = unknown>
 {
     state?: TState;
-    logger: Logger;
+    logger: LoggerWrapper;
     abort: AbortController;
 }
 

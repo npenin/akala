@@ -1,5 +1,5 @@
 import { each, map } from "../each.js";
-import { logger } from "../logger.js";
+import { logger } from "../logging/index.js";
 import { isPromiseLike } from "../promiseHelpers.js";
 import { getParamNames } from "../reflect.js";
 
@@ -69,7 +69,7 @@ type SimpleResolvable<T> = InjectMap<T> | string | symbol;
 export type ResolvableArray<T> = SimpleResolvable<T>[] | [ICustomResolver, ...SimpleResolvable<T>[]];
 export type Resolvable<T = object> = ResolvableArray<T> | SimpleResolvable<T>;
 
-export const injectorLog = logger('akala:core:injector');
+export const injectorLog = logger.use('akala:core:injector');
 
 /**
  * Converts a constructor to a function that creates new instances.

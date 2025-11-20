@@ -2,6 +2,7 @@ import { EventEmitter } from '../events/event-emitter.js';
 import { Event } from '../events/shared.js';
 import "reflect-metadata";
 import { type InjectMap, Injector, LocalInjector, type Resolvable, type ResolvableArray, injectorLog } from './shared.js';
+import { LogLevels } from '../logging/shared.js';
 
 /** 
  * A simple dependency injection container that provides basic resolution capabilities.
@@ -134,7 +135,7 @@ export class SimpleInjector extends LocalInjector
 
         if (this.injectables && param in this.injectables)
         {
-            if (injectorLog.verbose.enabled)
+            if (injectorLog.isEnabled(LogLevels.verbose))
             {
                 const obj = this.injectables[param];
                 if (typeof obj === 'object' && 'name' in obj)
