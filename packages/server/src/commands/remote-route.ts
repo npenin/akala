@@ -3,7 +3,7 @@ import { type CallbackResponse, type Request as BaseRequest, type Response, Http
 import { Container } from "@akala/commands";
 import stream from "stream";
 import { logger } from '@akala/core';
-const log = logger('remote-route');
+const log = logger.use('remote-route');
 
 export default function route(this: State, route: string, target: Container<void>, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean }): void
 {

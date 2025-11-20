@@ -5,7 +5,7 @@ import akala from './akala.mjs'
 
 (async function ()
 {
-    const logger = LoggerBuilder('automate-cli', LogLevels.info)
+    const logger = LoggerBuilder.use('automate-cli', LogLevels.info)
 
     akala({}, cli);
 

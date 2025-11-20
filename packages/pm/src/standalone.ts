@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import * as path from 'path'
 import * as ac from '@akala/commands';
-import { convertToMiddleware, logger, type Logger, MiddlewareCompositeAsync } from '@akala/core';
+import { convertToMiddleware, logger, type LoggerWrapper, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import fsHandler, { type Stats } from '@akala/fs';
 import { pathToFileURL } from 'url';
@@ -10,7 +10,7 @@ program.option('help')
 let folderOrFile: Stats;
 let cliContainer: ac.Container<unknown>;
 let processor: ac.CommandProcessor;
-let log: Logger;
+let log: LoggerWrapper;
 const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string>()('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
@@ -48,7 +48,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
         if (folderOrFile.isFile && path.extname(c.options.program) === '.js')
             return import(c.options.program);
 
-        log = logger(c.options.name);
+        log = logger.use(c.options.name);
 
         cliContainer = new ac.Container('cli', {});
 

@@ -1,4 +1,4 @@
-import { LogLevels, type Logger, logger as LoggerBuilder, grep, map, each, ObservableObject, defaultContext, setDefaultContext } from '@akala/core';
+import { LogLevels, logger as LoggerBuilder, grep, map, each, ObservableObject, defaultContext, setDefaultContext, LoggerWrapper } from '@akala/core';
 import program, { type CliContext, NamespaceMiddleware, type OptionOptions, type OptionType, usageParser } from './router/index.js';
 
 export * from './router/index.js'
@@ -78,7 +78,7 @@ export function readLine()
 
 
 
-export function buildCliContext<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }>(logger: Logger, ...args: string[]): CliContext<T, unknown>
+export function buildCliContext<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }>(logger: LoggerWrapper, ...args: string[]): CliContext<T, unknown>
 {
     const result: Omit<CliContext<T>, 'logger'> = { abort: new AbortController(), args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined };
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
@@ -90,12 +90,12 @@ export function buildCliContextFromContext<T extends Record<string, OptionType> 
     Object.defineProperty(result, 'logger', { enumerable: false, value: context.logger });
     return result as CliContext<T, TState>;
 }
-export function buildCliContextFromProcess<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }, TState = unknown>(logger?: Logger, state?: TState): CliContext<T, TState>
+export function buildCliContextFromProcess<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }, TState = unknown>(logger?: LoggerWrapper, state?: TState): CliContext<T, TState>
 {
     if (process.env.NODE_ENV == 'production')
-        logger = logger || LoggerBuilder(process.argv0, LogLevels.error);
+        logger = logger || LoggerBuilder.use(process.argv0, LogLevels.error);
     else
-        logger = logger || LoggerBuilder(process.argv0, LogLevels.warn);
+        logger = logger || LoggerBuilder.use(process.argv0, LogLevels.warn);
     const result: Omit<CliContext<T, TState>, 'logger'> = {
         args: process.argv.slice(2),
         argv: process.argv,

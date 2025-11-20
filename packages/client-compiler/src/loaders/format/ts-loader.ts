@@ -9,7 +9,7 @@ import { inspectOpts } from 'debug'
 
 inspectOpts.colors = true;
 
-const logger = coreLogger('hook:ts')
+const logger = coreLogger.use('hook:ts')
 
 type CacheItem = {
     source: string,

@@ -3,7 +3,7 @@ import { CommandProcessor, type StructuredParameters } from '../model/processor.
 import type { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
-import { lazy, type Logger, type MiddlewarePromise, noop, type OptionsResponse, type SpecialNextParam, type SerializableObject, type TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled } from '@akala/core';
+import { lazy, type LoggerWrapper, type MiddlewarePromise, noop, type OptionsResponse, type SpecialNextParam, type SerializableObject, type TypedSerializableObject, logger, ErrorWithStatus, HttpStatusCode, NotHandled } from '@akala/core';
 import { type HandlerResult, protocolHandlers as handlers } from '../protocol-handler.js';
 import { Trigger } from '../model/trigger.js'
 import $metadataCmd from '../commands/$metadata.js';
@@ -65,7 +65,7 @@ export class JsonRpcBrowser extends CommandProcessor
     {
         // assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
         const error = new Error();
-        const log = logger('akala:commands:jsonrpc:' + container.name)
+        const log = logger.use('akala:commands:jsonrpc:' + container.name)
 
         const meta = await container.dispatch('$metadata', true);
         meta.commands.push($metadataCmd);
@@ -147,7 +147,7 @@ export class JsonRpcBrowser extends CommandProcessor
         return connection;
     })
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter<jsonrpcws.Payload<ReadableStream>>, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter<jsonrpcws.Payload<ReadableStream>>, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: LoggerWrapper): jsonrpcws.Connection
     {
         const error = new Error();
         var containers: Container<unknown>[] = [];

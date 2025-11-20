@@ -8,8 +8,7 @@ import sourceMap from "source-map";
 import * as ts from './ts-loader.js'
 import { logger as coreLogger } from '@akala/core'
 
-const logger = coreLogger('hook:html')
-
+const logger = coreLogger.use('hook:html')
 
 const tsExts = new Set([
     '.html',

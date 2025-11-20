@@ -6,7 +6,7 @@ process.setSourceMapsEnabled(true);
 import { cli } from '@akala/cli/cli'
 import { logger, LogLevels } from '@akala/core';
 
-const context = buildCliContextFromProcess(logger('akala', LogLevels.help), { plugins: [] });
+const context = buildCliContextFromProcess(logger.use('akala', LogLevels.help), { plugins: [] });
 cli();
 
 process.on('SIGINT', () => context.abort.abort('SIGINT'));

@@ -5,7 +5,7 @@ import { type State } from '../state.js';
 import { logger, SimpleInjector } from "@akala/core";
 import { StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
-const log = logger('akala:server')
+const log = logger.use('akala:server')
 
 export default async function $init(container: Container<State>, options: Record<string, unknown>, pm: Container<void>): Promise<void>
 {

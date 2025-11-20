@@ -12,7 +12,7 @@ import { FSFileSystemProvider } from '@akala/fs';
 import { containers, InitAkala } from '@akala/commands/akala';
 import { JsonRpcSocketAdapter } from '@akala/json-rpc-ws';
 
-const log = logger('akala:pm');
+const log = logger.use('akala:pm');
 
 const tableChars = {
     'top': '─'

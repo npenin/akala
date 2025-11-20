@@ -8,7 +8,7 @@ import fsHandler, { hasAccess, OpenFlags } from "@akala/fs";
 type Unpromise<T> = T extends Promise<infer X> ? X : never;
 type mapReturn = Unpromise<ReturnType<typeof map>>;
 
-const log = logger('discover');
+const log = logger.use('discover');
 
 
 export default async function discover(path: string | URL, pm: pmContainer.container, name?: string, cwd?: string): Promise<mapReturn[] | mapReturn>

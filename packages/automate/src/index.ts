@@ -1,19 +1,19 @@
 import Orchestrator from 'orchestrator';
 import { spawn, type StdioNull, type StdioPipe, type SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container.js';
-import { type SerializableObject, Interpolate, mapAsync, MiddlewareCompositeWithPriorityAsync, Parser, parser, AggregateErrors, type MiddlewarePromise, logger, type Logger, LogLevels, type MiddlewareAsync, NotHandled } from '@akala/core';
+import { type SerializableObject, Interpolate, mapAsync, MiddlewareCompositeWithPriorityAsync, Parser, parser, AggregateErrors, type MiddlewarePromise, logger, type LoggerWrapper, LogLevels, type MiddlewareAsync, NotHandled } from '@akala/core';
 import { Stream } from 'stream';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process.js';
 import { Container } from '@akala/commands';
 import { type DateRequest } from '@akala/cron';
 
-export const defaultLogger = logger('automate', LogLevels.warn);
+export const defaultLogger: LoggerWrapper = logger.use('automate', LogLevels.warn);
 
 export const interpolate = new Interpolate('$(', ')');
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object & { logger: Logger }, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
+export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object & { logger: LoggerWrapper }, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any> = JobStepDef<string, unknown, unknown>> = MiddlewareAsync<MiddlewareSignature<TSupportedJobSteps>>;
@@ -279,7 +279,7 @@ export function simpleRunner(name: string)
 }
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: { logger?: Logger }, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: { logger?: LoggerWrapper }, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
     // const inputForLog = !inputs ? '' : Object.entries(inputs).filter(e => e[0] !== 'logger').map(entry => entry[0] + '=' + JSON.stringify(entry[1])).join(", ");
@@ -288,7 +288,7 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     orchestrator.on('task_start', (t) =>
     {
         logger.info('running %s', t.task);
-        if (logger.silly.enabled)
+        if (logger.isEnabled(LogLevels.silly))
             logger.silly('%O', Object.assign({}, inputs[workflow.name], { logger: undefined }));
     });
     orchestrator.on('task_stop', (t) =>

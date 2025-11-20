@@ -28,6 +28,10 @@ const $metadataCmd = configure({
                 ]
             }
         }
+    },
+    grpc:{
+        method:"$metadata",
+        
     }
 })($metadata);
 export default $metadataCmd;

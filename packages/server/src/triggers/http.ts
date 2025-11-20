@@ -5,7 +5,7 @@ import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
 
-const log = logger('commands:trigger:http')
+const log = logger.use('commands:trigger:http')
 
 function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injector?: Injector)
 {

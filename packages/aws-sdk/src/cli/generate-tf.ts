@@ -1,7 +1,7 @@
 import { Metadata, Processors } from "@akala/commands";
 import fs from 'fs/promises'
 import { join, resolve } from "path";
-import { base64, lazy, type Logger, mapAsync } from "@akala/core";
+import { base64, lazy, type LoggerWrapper, mapAsync } from "@akala/core";
 import glob from 'fast-glob';
 import { xpm } from '@akala/cli'
 import * as zip from '@zip.js/zip.js';
@@ -20,7 +20,7 @@ export const ActionPermissionsRemap = {
     }
 }
 
-export default async function (logger: Logger, inputPath: string, commandsName: string, environment: string, outputPath: string)
+export default async function (logger: LoggerWrapper, inputPath: string, commandsName: string, environment: string, outputPath: string)
 {
     const prefix = environment + '-'
     let commandsPath: string;

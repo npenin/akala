@@ -1,5 +1,5 @@
 import { type Workflow } from './index.js'
-import { Deferred, Logger, Queue } from '@akala/core'
+import { Deferred, LoggerWrapper, Queue } from '@akala/core'
 import type loader from './loader.js';
 import * as trigger from '@akala/pubsub';
 import { Schedule } from '@akala/cron';
@@ -13,5 +13,5 @@ export default interface State
     loaders: { [key: string]: loader.container }
     triggers: { [key: string]: trigger.Container }
     schedules: { [key: string]: Schedule }
-    logger: Logger
+    logger: LoggerWrapper
 }

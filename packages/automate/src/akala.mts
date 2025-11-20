@@ -19,15 +19,15 @@ export default function (config, cli: NamespaceMiddleware)
         if (context.options.verbose)
         {
             if (context.options.verbose in LogLevels)
-                context.logger.level = LogLevels[context.options.verbose];
+                context.logger.maxLevel = LogLevels[context.options.verbose];
             else
             {
                 const levelEntry = Object.entries(LogLevels).find((_name, level) => level.toString() == context.options.verbose);
                 if (levelEntry)
                     if (typeof (levelEntry[1]) == 'number')
-                        context.logger.level = levelEntry[1];
+                        context.logger.maxLevel = levelEntry[1];
                     else
-                        context.logger.level = LogLevels[levelEntry[0]];
+                        context.logger.maxLevel = LogLevels[levelEntry[0]];
             }
         }
         const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', new URL('../../workflow.json', import.meta.url));
