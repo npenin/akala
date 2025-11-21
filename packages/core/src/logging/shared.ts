@@ -1,5 +1,6 @@
 import { bold, italic, strikethrough, underline } from 'yoctocolors'
 import { Middleware, MiddlewareAsync, MiddlewareResult } from '../middlewares/shared.js';
+import { each } from '../each.js';
 
 /**
  * Enum representing logging levels mapped to numeric priorities
@@ -72,6 +73,40 @@ export class LoggerAdapterMiddleware<
         return this.logger[LogLevels[logLevel]].handle(logLevel, namespaces, ...context);
     }
 }
+
+export const logConfig: {
+    defaultLevel: LogLevels;
+    namespaceConfig: LogConfig
+} = { defaultLevel: LogLevels.error, namespaceConfig: {} };
+
+export function configureLogging(config: { defaultLevel: LogLevels, namespaceConfig: EasyLogConfig })
+{
+    if (typeof config.defaultLevel !== 'undefined')
+        logConfig.defaultLevel = config.defaultLevel;
+    if (typeof config.namespaceConfig != 'undefined')
+    {
+        deepMerge(logConfig.namespaceConfig, config.namespaceConfig);
+    }
+}
+
+function deepMerge(a: LogConfig, b: EasyLogConfig)
+{
+    each(b, (c, k) =>
+    {
+        if (typeof a[k] == 'undefined')
+            if (typeof c == 'number')
+                a[k] = { level: c };
+            else
+                deepMerge(a[k] = {}, c);
+        else if (typeof c == 'number')
+            a[k].level = c;
+        else
+            deepMerge(a[k] as unknown as LogConfig, c);
+    })
+}
+
+type LogConfig = { [key: string]: { level?: LogLevels } & LogConfig };
+export type EasyLogConfig = { [key: string]: LogLevels | EasyLogConfig };
 
 export class LoggerMiddleware<
     TLogger extends ILogMiddleware | ILogMiddlewareAsync

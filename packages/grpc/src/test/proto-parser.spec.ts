@@ -329,7 +329,12 @@ describe('Proto Parser', () =>
             // Test enum schema
             const statusEnum = schema.$defs!['Status'];
             assert.strictEqual(statusEnum.type, 'integer');
-            assert.deepStrictEqual(statusEnum.enum, [0, 1, 2]);
+            assert.deepStrictEqual(statusEnum, {
+                type: 'integer', oneOf: [
+                    { const: 0, title: 'UNKNOWN' },
+                    { const: 1, title: 'ACTIVE' },
+                    { const: 2, title: 'INACTIVE' }]
+            });
         });
 
         test('should handle nested messages and enums', () =>
@@ -372,7 +377,13 @@ describe('Proto Parser', () =>
             // Test nested enum
             const genderEnum = schema.$defs!['Person.Gender'];
             assert.ok(genderEnum);
-            assert.deepStrictEqual(genderEnum.enum, [0, 1]);
+            assert.deepStrictEqual(genderEnum, {
+                type: 'integer', oneOf: [{
+                    const: 0, title: 'MALE'
+                }, {
+                    const: 1, title: 'FEMALE'
+                }]
+            });
         });
 
         test('should handle oneof fields', () =>

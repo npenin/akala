@@ -1,4 +1,4 @@
-import { isPromiseLike } from "../promiseHelpers.js";
+import { isPromiseLike } from "../teardown-manager.js";
 
 /* A middleware promise is the opposite of a promise which will fail when there is a result 
  * and which will succeed as long as there is no middleware that handled the context

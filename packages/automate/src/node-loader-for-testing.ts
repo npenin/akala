@@ -11,7 +11,7 @@ import { logger as LoggerBuilder, LogLevels } from '@akala/core';
 
 describe('Workflow: ${path.basename(filePath)}', () => {
     it('should be a run workflow', async () => {
-        const logger = LoggerBuilder('node-test', LogLevels.info)
+        const logger = LoggerBuilder.use('node-test', LogLevels.info)
 
         akala({}, cli);
 

@@ -1,4 +1,4 @@
-import { LogLevels, logger as LoggerBuilder, grep, map, each, ObservableObject, defaultContext, setDefaultContext, LoggerWrapper } from '@akala/core';
+import { LogLevels, logger as LoggerBuilder, grep, map, each, ObservableObject, defaultContext, setDefaultContext, LoggerWrapper, configureLogging, EasyLogConfig } from '@akala/core';
 import program, { type CliContext, NamespaceMiddleware, type OptionOptions, type OptionType, usageParser } from './router/index.js';
 
 export * from './router/index.js'
@@ -92,10 +92,7 @@ export function buildCliContextFromContext<T extends Record<string, OptionType> 
 }
 export function buildCliContextFromProcess<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }, TState = unknown>(logger?: LoggerWrapper, state?: TState): CliContext<T, TState>
 {
-    if (process.env.NODE_ENV == 'production')
-        logger = logger || LoggerBuilder.use(process.argv0, LogLevels.error);
-    else
-        logger = logger || LoggerBuilder.use(process.argv0, LogLevels.warn);
+    logger = logger || LoggerBuilder.use(process.argv0);
     const result: Omit<CliContext<T, TState>, 'logger'> = {
         args: process.argv.slice(2),
         argv: process.argv,
@@ -105,6 +102,34 @@ export function buildCliContextFromProcess<T extends Record<string, OptionType> 
         abort: new AbortController(),
         currentWorkingDirectory: process.cwd(),
     };
+    const logConfig: EasyLogConfig = {};
+    let maxLogLevel: LogLevels = LogLevels.error;
+    if (process.env.NODE_ENV !== 'production')
+        maxLogLevel = LogLevels.warn;
+
+    if (process.env.DEBUG)
+    {
+        process.env.DEBUG.split(',').forEach(v =>
+        {
+            if (v === '*')
+            {
+                maxLogLevel = LogLevels.silly;
+            }
+            const namespaceLogLevel = Object.keys(LogLevels).find(k => v.endsWith('=' + k));
+            if (namespaceLogLevel)
+            {
+                namespaceLogLevel.split(':').reduce((logConfig, namespace, i, array) =>
+                {
+                    if (i == array.length - 1)
+                        logConfig[namespace] = LogLevels[namespaceLogLevel];
+                    else
+                        return logConfig[namespace] ??= {};
+                }, logConfig)
+            }
+        })
+
+        configureLogging({ defaultLevel: maxLogLevel, namespaceConfig: logConfig });
+    }
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     if (!defaultContext)
         setDefaultContext(result as CliContext<T, TState>);

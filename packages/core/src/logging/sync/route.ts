@@ -11,14 +11,15 @@ export class LogRouteMiddleware<TMiddleware extends ILogMiddleware> implements I
 
     shouldHandle(logLevel: LogLevels, namespaces: string[]): boolean
     {
-        return (this.pattern === '*' || this.pattern == namespaces[0]) && this.logLevel <= logLevel;
+        return (this.pattern === '*' || namespaces.length === 0 || this.pattern == namespaces[0]) && this.logLevel <= logLevel;
 
     }
 
-    handle(level: LogLevels, namespaces: string[], ...context: unknown[]): MiddlewareResult<'break'>
+    handle(level: LogLevels, namespaces: string[], ...context: unknown[]): MiddlewareResult
     {
         if (this.shouldHandle(level, namespaces))
             return this.logger.handle(level, namespaces.slice(1), ...context);
+        throw undefined;
     }
 }
 

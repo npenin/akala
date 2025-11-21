@@ -3,7 +3,7 @@ import { ILogMiddlewareAsync, LogLevels } from '../shared.js';
 import { MiddlewareResult } from '../../middlewares/shared.js';
 
 
-export function webStream(stream: Writable): ILogMiddlewareAsync
+export function stream(stream: Writable): ILogMiddlewareAsync
 {
     return {
         handle(logLevel: LogLevels, namespaces: string[], ...obj: unknown[]): Promise<MiddlewareResult>
@@ -18,4 +18,4 @@ export function webStream(stream: Writable): ILogMiddlewareAsync
     };
 }
 
-export default webStream;
+export default stream;
