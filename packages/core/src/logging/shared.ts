@@ -79,7 +79,7 @@ export const logConfig: {
     namespaceConfig: LogConfig
 } = { defaultLevel: LogLevels.error, namespaceConfig: {} };
 
-export function configureLogging(config: { defaultLevel: LogLevels, namespaceConfig: EasyLogConfig })
+export function configureLogging(config: { defaultLevel?: LogLevels, namespaceConfig?: EasyLogConfig })
 {
     if (typeof config.defaultLevel !== 'undefined')
         logConfig.defaultLevel = config.defaultLevel;
