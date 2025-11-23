@@ -106,6 +106,7 @@
 * add web-ui connection to client in documentation flowchart 47abc33
 * add web-ui connection to client in documentation flowchart e43978b
 * adjust end calculation in subarray method to account for offset 4d4a878
+* akala cli 2051292
 * akala commands start 99d55d6
 * akala sdk page generator 9d3d969
 * allow line breaks and tabs in parser a5bb001
