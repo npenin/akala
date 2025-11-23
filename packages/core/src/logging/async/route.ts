@@ -54,18 +54,23 @@ export class LoggerRouteAsync implements ILoggerAsync
     {
         const sub = new LoggerRouteAsync(namespace);
 
-        this.error.use(sub.error);
-        this.warn.use(sub.warn);
-        this.help.use(sub.help);
-        this.data.use(sub.data);
-        this.info.use(sub.info);
-        this.debug.use(sub.debug);
-        this.prompt.use(sub.prompt);
-        this.verbose.use(sub.verbose);
-        this.input.use(sub.input);
-        this.silly.use(sub.silly);
+        this.pipe(sub);
 
         return sub;
+    }
+
+    public pipe(logger: ILoggerAsync)
+    {
+        this.error.use(logger.error);
+        this.warn.use(logger.warn);
+        this.help.use(logger.help);
+        this.data.use(logger.data);
+        this.info.use(logger.info);
+        this.debug.use(logger.debug);
+        this.prompt.use(logger.prompt);
+        this.verbose.use(logger.verbose);
+        this.input.use(logger.input);
+        this.silly.use(logger.silly);
     }
 
     public readonly error: MulticastLogRouteMiddlewareAsync;

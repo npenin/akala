@@ -3,7 +3,7 @@
  * @packageDocumentation
  */
 
-import { LogLevels } from './shared.js';
+import { ILogger, ILoggerAsync, LogLevels } from './shared.js';
 import { process } from '../middlewares/shared.js';
 import { LoggerRoute, MulticastLogRouteMiddleware } from './sync/route.js';
 import { LoggerRouteAsync, MulticastLogRouteMiddlewareAsync } from './async/route.js';
@@ -75,6 +75,11 @@ export class LoggerWrapper<TLogger extends LoggerRoute | LoggerRouteAsync = Logg
     }
 
     private namespaces: string[];
+
+    public pipe(logger: ILogger | ILoggerAsync)
+    {
+        return this.logger.pipe(logger);
+    }
 
     public use(namespace: string, logLevel?: LogLevels): LoggerWrapper<TLogger>
     {
