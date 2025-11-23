@@ -1,6 +1,6 @@
 import { buildCliContext, type CliContext, NamespaceMiddleware } from '@akala/cli'
 import { Container, SelfDefinedCommand } from '@akala/commands';
-import { LogLevels } from '@akala/core';
+import { configureLogging, LogLevels } from '@akala/core';
 import path from 'path';
 import { type Workflow } from './index.js';
 import workflow from './workflow.js';
@@ -19,17 +19,18 @@ export default function (config, cli: NamespaceMiddleware)
         if (context.options.verbose)
         {
             if (context.options.verbose in LogLevels)
-                context.logger.maxLevel = LogLevels[context.options.verbose];
+                configureLogging({ defaultLevel: LogLevels[context.options.verbose] });
             else
             {
                 const levelEntry = Object.entries(LogLevels).find((_name, level) => level.toString() == context.options.verbose);
                 if (levelEntry)
                     if (typeof (levelEntry[1]) == 'number')
-                        context.logger.maxLevel = levelEntry[1];
+                        configureLogging({ defaultLevel: levelEntry[1] });
                     else
-                        context.logger.maxLevel = LogLevels[levelEntry[0]];
+                        configureLogging({ defaultLevel: LogLevels[levelEntry[0]] });
             }
         }
+
         const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', new URL('../../workflow.json', import.meta.url));
         let loader: Container<CliContext>;
 
