@@ -78,7 +78,7 @@ export class LoggerWrapper<TLogger extends LoggerRoute | LoggerRouteAsync = Logg
 
     public pipe(logger: ILogger | ILoggerAsync)
     {
-        return this.logger.pipe(logger);
+        return this.logger.pipe(logger as any);
     }
 
     public use(namespace: string, logLevel?: LogLevels): LoggerWrapper<TLogger>
