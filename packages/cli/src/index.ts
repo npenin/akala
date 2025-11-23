@@ -1,4 +1,4 @@
-import { LogLevels, logger as LoggerBuilder, grep, map, each, ObservableObject, defaultContext, setDefaultContext, LoggerWrapper, configureLogging, EasyLogConfig } from '@akala/core';
+import { LogLevels, logger as LoggerBuilder, grep, map, each, ObservableObject, defaultContext, setDefaultContext, LoggerWrapper, configureLogging, EasyLogConfig, ConsoleLogger } from '@akala/core';
 import program, { type CliContext, NamespaceMiddleware, type OptionOptions, type OptionType, usageParser } from './router/index.js';
 
 export * from './router/index.js'
@@ -93,6 +93,8 @@ export function buildCliContextFromContext<T extends Record<string, OptionType> 
 export function buildCliContextFromProcess<T extends Record<string, OptionType> = Record<string, OptionType> & { help: boolean }, TState = unknown>(logger?: LoggerWrapper, state?: TState): CliContext<T, TState>
 {
     logger = logger || LoggerBuilder.use(process.argv0);
+    logger.pipe(new ConsoleLogger());
+
     const result: Omit<CliContext<T, TState>, 'logger'> = {
         args: process.argv.slice(2),
         argv: process.argv,
