@@ -23,7 +23,7 @@ export class MulticastLogMiddlewareAsync implements ILogMiddlewareAsync
             const fullfilled: MiddlewareResult[] = results.filter(r => r.status === 'fulfilled').map(r => r.value).filter(r => r);
             const rejected: any[] = results.filter(r => r.status === 'rejected').map(r => r.reason);
             if (results.length === 0 || rejected.length == 0)
-                return;
+                return Promise.reject();
             if (fullfilled.length === 1)
                 return (fullfilled[0]);
             if (rejected.length === 1)
