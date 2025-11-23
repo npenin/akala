@@ -1,4 +1,4 @@
-#  (2025-11-03)
+#  (2025-11-23)
 
 
 ### Bug Fixes
@@ -10,6 +10,7 @@
 * sonar issues 7528b67
 * sonar issues 9b157ec
 * update after commands breaking change ab04f29
+* update after core logging system breaking change 421c896
 
 
 
