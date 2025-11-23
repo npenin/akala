@@ -1,4 +1,4 @@
-#  (2025-11-03)
+#  (2025-11-23)
 
 
 * chore : code cleanup eae1150
@@ -38,6 +38,7 @@
 * add IPC socket argument for nodejs process creation 87425d8
 * add isomorphic buffer support for Base64 and UTF-8 encoding/decoding 176c16f
 * add js extension to fork files 39368e9
+* add logger to automate a3bcd49
 * add loginUrl and keyPath to auth configuration 9751a94
 * add missing $defs attribute 102e668
 * add missing awaits 59abeca
@@ -153,6 +154,8 @@
 * build after dependency upgrade 877c53a
 * build from scratch issue b2f5bde
 * busbox compatibility by switching from env -S to env and enabling sourcemap in js a510d42
+* call configureLogging in akala CLI 68d765a
+* call configureLogging in automate CLI 4f1823b
 * cancel breaking change e5ab02a
 * case when x is null 4631c51
 * case when x is null 8c0dd0d
@@ -255,6 +258,7 @@
 * enable css bundling 15ac99c
 * enable navigation folding for all Akala documentation sections cfd5444
 * enable navigation folding for all Akala documentation sections 2f46058
+* enable pipes on logger routes 1300606
 * enable semantic release publish only on main bd9531b
 * enable tag lookup if current version is not tagged 39888a6
 * enable tag lookup if current version is not tagged 6fd51df
@@ -352,6 +356,7 @@
 * handle edge case on datacontext definition 50c0275
 * handle empty buffer 0135f95
 * handle empty or undefined buffers in concat 3bae07f
+* handle empty params on SOAP invoke 6b1a3d5
 * handle error from @akala/fs 238d294
 * handle exploding uri templates in matching 07cc4b0
 * handle first run case f1ffe66
@@ -467,6 +472,7 @@
 * improve formatter behavior 30996cd
 * improve isomorphicbuffer usability e0ff541
 * improve logging 9319332
+* improve logging on start 1bfc1b4
 * improve mcp declaration 387555d
 * improve mcp invokation 2303889
 * improve mcp invokation c824af8
@@ -519,6 +525,7 @@
 * links 53c17f6
 * login import 6cb7589
 * login page sonar issues e620328
+* make CliContext register console logger 5d38924
 * make commands as a peer dependency 961bf4a
 * make event keys match types properly 1c71c4b
 * make fromEvent bind only once dd7addd
@@ -561,6 +568,7 @@
 * move autostart to ready event fe98d3f
 * move cursor when writing string a4a9d34
 * move HttpStatusCode to be more "independent" of Http 0bcb3aa
+* multicast to properly handle logging 7288584
 * multiple modules may be started simultaneously 3ea8a55
 * nested bindings change detection and oldValue assignment 8f373ca
 * no configFile error e545efd
@@ -617,6 +625,7 @@
 * prevent invalid stream property if not a stream 1a2caad
 * prevent jsonrpc run if disabled e2f14ac
 * prevent overriding command name to undefined 9fe0d0d
+* prevent overriding options between runs 09dcda0
 * prevent overwriting data-context attribute 1cd19e0
 * prevent parsing formatters e1ec937
 * prevent tag creation 49c9302
@@ -708,6 +717,7 @@
 * remove useless config section b3e2680
 * remove useless dependency and add missing permissions e5694d9
 * remove useless dependency and add missing permissions 4bc7c91
+* remove useless loglevel setup e51d42b
 * remove variables.css file generated in wrong place 9b4241f
 * remove variables.css file generated in wrong place f0e638c
 * rename core to _core collection ea09139
@@ -817,6 +827,7 @@
 * support for outline and non-outline cards 9c1f7a2
 * switch from try catch to URL.canParse e766f24
 * switch from try catch to URL.canParse 5d093f5
+* switch to configureLogging 8521a69
 * switch to xpm + add more logging 59ebe95
 * switch to xpm + add more logging 46e58e8
 * switching to working teme 8944649
@@ -829,6 +840,7 @@
 * testing command bindings and auth 96220e8
 * testing nav_order without parent e2dd071
 * testing nav_order without parent 3fcd008
+* tests after refactor 20f2949
 * try to fix links 048b05f
 * try to fix links db045fd
 * trying to fix akala cli 35fedc0
@@ -842,6 +854,7 @@
 * typescript:S4524 0985abf
 * typescript:S4524 fd42ef6
 * typescript:S4524 365d20a
+* typing issue dfb5de7
 * typo and enforce type 935051c
 * typo in enum generation 3e236e4
 * typo in filename 5ad48f8
@@ -849,6 +862,7 @@
 * unit test 11df8e7
 * unit test 3f5abd5
 * unit test a5932d1
+* unit tests 404bd45
 * unit tests 5ea6752
 * unit tests ddef0ab
 * unknown storage provider 37b9109
@@ -892,6 +906,7 @@
 * update after core breaking changes 481dcd6
 * update after core BufferEncoding introduction 298da96
 * update after core change de72dd3
+* update after core logging system breaking change 421c896
 * update after core Translator interface upgrade a6500a1
 * update after fs breaking change 27ec208
 * update after fs breaking change 56df9a7
@@ -1048,6 +1063,7 @@
 * consolidate WebSocketAdapter import and remove unused code from websocket.ts 80640c5
 * events to separate files af5211e
 * improve store creation flexibility 957b83e
+* **logging:** restructure logging system and remove legacy logger 7ae0d50
 * make proper use of index.browser c297379
 * remove legacy NetSocketAdapter in favor or @akala/core/TcpSocketAdapter 6a4de9f
 * remove ModelDefinition.definitions fd11999
@@ -1103,6 +1119,7 @@
 * add cryptokey to state 4337e56
 * add customResolve and ICustomResolver to simplify injector and non injector chaining e9a9eae
 * add customResolve and ICustomResolver to simplify injector and non injector chaining 93107ce
+* add defaultContext concept 8f1befd
 * add depencencies during map 9452187
 * add dependency diagram builder 2c09ead
 * add dependency diagram builder ad6060b
@@ -1191,9 +1208,11 @@
 * add support for URLs in server routes c10cf67
 * add table row event handlers 392d906
 * add TcpSocketAdapter for TCP socket handling and update package exports 79e83bd
+* add teardown function 69c739e
 * add TileManager (incomplete) 9e0d08f
 * add TopDown and BottomUp namespace event emitters d8e148e
 * add type to status fb8961e
+* add udp socket adapter 9a30b7d
 * add uri on request to be able to know the full url of a request a189409
 * add uri on request to be able to know the full url of a request 3ed1dd0
 * add usize convert c50a87f
@@ -1314,6 +1333,7 @@
 * introduce master detail, entity and if by default f1c5d91
 * introduce PathLike be0a8f8
 * introduce vite as trigger in vite plugin 43d9826
+* leverage defaultContext concept 46eb11a
 * leverage json schema to generate proper types during implement 6c47750
 * make event and event-emitter inherit asyncteardownmanager 66da89a
 * make help accessible everywhere by any clicontext e18be04
@@ -1368,6 +1388,7 @@
 
 ### BREAKING CHANGES
 
+* **logging:** logging system has completely changed
 * SocketProtocolAdapter returns a message array
 * NetSocketAdapter does not exist any more
 * jobs is now private on Schedule

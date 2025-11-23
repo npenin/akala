@@ -1,4 +1,4 @@
-#  (2025-11-03)
+#  (2025-11-23)
 
 
 ### Bug Fixes
@@ -18,6 +18,7 @@
 * update after command breaking change 796613c
 * update after commands breaking change 04b457c
 * update after commands breaking change ab04f29
+* update after core logging system breaking change 421c896
 * update after zip.js breaking change a35d7f5
 * update aws services definition 9bb0b0b
 * update commands 168670b
