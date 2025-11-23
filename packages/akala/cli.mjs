@@ -19,7 +19,7 @@ process.emit = function (name, data, ...args)
     return originalEmit.call(process, name, data, ...args);
 };
 
-const context = buildCliContextFromProcess(logger('akala', LogLevels.help), { plugins: [] });
+const context = buildCliContextFromProcess(logger.use('akala', LogLevels.help), { plugins: [] });
 cli();
 await program.process(context).then(
     result =>
