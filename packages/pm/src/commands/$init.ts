@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 import pmContainer from '../container.js';
 import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand } from '@akala/commands';
 import { PassThrough } from 'stream';
-import { type CliContext } from '@akala/cli';
+import { buildCliContextFromContext, type CliContext } from '@akala/cli';
 import { type ProxyConfiguration } from '@akala/config';
 import { fileURLToPath } from 'url';
 import { eachAsync, Event } from '@akala/core';
@@ -128,7 +128,7 @@ export default async function (this: State, container: RunningContainer & pmCont
         await eachAsync(this.config.mapping.extract(), async (mapping, name) =>
         {
             if (mapping.autostart)
-                container.ready.addListener(() => container.dispatch('start', name, { autostart: true, wait: true }, { args: mapping.cli || [] }));
+                container.ready.addListener(() => container.dispatch('start', name, { autostart: true, wait: true }, buildCliContextFromContext(context, ...(mapping.cli || []))));
         });
     }
 
