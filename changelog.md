@@ -1,4 +1,4 @@
-#  (2025-11-23)
+#  (2025-11-24)
 
 
 * chore : code cleanup eae1150
@@ -1037,6 +1037,7 @@
 * writing/reading at buffer last offset 10efb8b
 * wrong bootstrap link 69bd482
 * wrong bootstrap link 1fae1bd
+* wrong context buidling 3e1c368
 * wrong csv parsing f9359c6
 * wrong generated key algorithm fc8360d
 * wrong inferred dependency path baed476
