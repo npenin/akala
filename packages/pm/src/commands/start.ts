@@ -95,7 +95,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             {
                 try
                 {
-                    await pm.dispatch('start', dep, { wait: true })
+                    await pm.dispatch('start', dep, { wait: true }, context)
                 }
                 catch (e)
                 {
