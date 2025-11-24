@@ -1,11 +1,9 @@
-#  (2025-11-23)
+#  (2025-11-24)
 
 
 ### Bug Fixes
 
-* improve logging on start 1bfc1b4
-* prevent overriding options between runs 09dcda0
-* update after core logging system breaking change 421c896
+* wrong context buidling 3e1c368
 
 
 
