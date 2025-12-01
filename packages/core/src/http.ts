@@ -152,10 +152,10 @@ export class FetchHttp implements Http<Response>
             '<u:' + action + ' xmlns:u="' + namespace + '">';
         each(params ?? {}, function (paramValue, paramName)
         {
-            body += '<' + paramName + '><![CDATA[' + paramValue + ']]></' + paramName + '>';
+            body += `<${paramName}>${paramValue}</${paramName}>`;
         });
         body += '</u:' + action + '></s:Body></s:Envelope>';
-        return this.call({ method: 'POST', url: url, type: 'xml', headers: { SOAPAction: namespace + '#' + action }, body: body });
+        return this.call({ method: 'POST', url: url, type: 'xml', headers: { 'content-type': 'text/xml', SOAPAction: `"${namespace}#${action}"` }, body: body });
     }
 
     /**
