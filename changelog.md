@@ -1,4 +1,4 @@
-#  (2025-11-24)
+#  (2025-12-01)
 
 
 * chore : code cleanup eae1150
@@ -776,6 +776,7 @@
 * simplify types abba267
 * simplify types 10b1b95
 * simplify URL handling in install function by removing unnecessary try-catch and improving path resolution df95034
+* soap invoke f5da70a
 * socket closure on adapter dispose c17f391
 * sonar coverage discovery 505f9b3
 * sonar coverage discovery 9363979
