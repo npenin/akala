@@ -4,8 +4,14 @@ import type { EventListener, EventOptions } from "./events/shared.js";
 import { IsomorphicBuffer } from "./helpers.js";
 import { SocketAdapterAkalaEventMap, SocketAdapter } from "./network.js";
 import { type Subscription, StatefulSubscription } from "./teardown-manager.js";
-import { RemoteInfo, Socket } from 'dgram';
+import { Socket } from 'dgram';
 import os from 'os';
+
+export interface RemoteInfo
+{
+    address: string;
+    port: number
+}
 
 export interface UdpMessage
 {
