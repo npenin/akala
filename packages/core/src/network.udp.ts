@@ -1,24 +1,28 @@
 import type { AllEventKeys } from "./events/event-bus.js";
 import { EventEmitter, type AllEvents } from "./events/event-emitter.js";
-import type { EventArgs, EventListener, EventOptions, IEvent } from "./events/shared.js";
+import type { EventListener, EventOptions } from "./events/shared.js";
 import { IsomorphicBuffer } from "./helpers.js";
 import { SocketAdapterAkalaEventMap, SocketAdapter } from "./network.js";
 import { type Subscription, StatefulSubscription } from "./teardown-manager.js";
-import { Socket } from 'dgram';
+import { RemoteInfo, Socket } from 'dgram';
+import os from 'os';
 
-interface UdpSocketAdapterAkalaEventMap<T> extends Omit<SocketAdapterAkalaEventMap<T>, 'message'>
+export interface UdpMessage
 {
-    message: IEvent<[T, remoteInfo?: { address: string, port: number }], void>
+    message: IsomorphicBuffer
+    remote: RemoteInfo
 }
 
-export class UdpSocketAdapter<T extends string | IsomorphicBuffer = string | IsomorphicBuffer> extends EventEmitter<UdpSocketAdapterAkalaEventMap<T>> implements SocketAdapter<T>
+export type UdpSocketAdapterAkalaEventMap = SocketAdapterAkalaEventMap<UdpMessage>;
+
+export class UdpSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap<UdpMessage>> implements SocketAdapter<UdpMessage>
 {
     constructor(private readonly socket: Socket)
     {
         super();
     }
 
-    pipe(socket: SocketAdapter<T>)
+    pipe(socket: SocketAdapter<UdpMessage>)
     {
         this.on('message', (message) => socket.send(message));
         this.on('close', () => socket.close());
@@ -36,12 +40,25 @@ export class UdpSocketAdapter<T extends string | IsomorphicBuffer = string | Iso
          **/
     public addMembership(address: string, interfaceAddress?: string)
     {
-        this.socket.addMembership(address, interfaceAddress);
+        if (!interfaceAddress)
+        {
+            for (const netifs of Object.values(os.networkInterfaces()))
+            {
+                const netif = netifs.find(netif => netif.family == 'IPv4');
+                if (!netif)
+                    continue;
+                this.socket.addMembership(address, netif.address);
+            }
+        }
+        else
+            this.socket.addMembership(address, interfaceAddress);
     }
 
     public bind(port: number, address?: string)
     {
+        this.teardown(() => { const wasOpen = this.open; this.socket.close(); return wasOpen })
         return new Promise<void>(resolve => this.socket.bind(port, address, resolve));
+
     }
 
     private closed: boolean;
@@ -60,27 +77,23 @@ export class UdpSocketAdapter<T extends string | IsomorphicBuffer = string | Iso
         }));
     }
 
-    send(data: T, port?: number, address?: string): Promise<void>
+    send(data: UdpMessage): Promise<void>
     {
-        var socketData: Uint8Array | string;
-        if (data instanceof IsomorphicBuffer)
-            socketData = data.toArray();
-        else
-            socketData = data;
-        if (port)
-            if (address)
-                return new Promise((resolve, reject) => this.socket.send(socketData, port, address, err => err ? reject(err) : resolve()));
+        if (data.remote?.port)
+            if (data.remote?.address)
+                return new Promise((resolve, reject) => this.socket.send(data.message.toArray(), data.remote.port, data.remote.address, err =>
+                    err ? reject(err) : resolve()));
             else
-                return new Promise((resolve, reject) => this.socket.send(socketData, port, err => err ? reject(err) : resolve()));
+                return new Promise((resolve, reject) => this.socket.send(data.message.toArray(), data.remote.port, err => err ? reject(err) : resolve()));
         else
-            return new Promise((resolve, reject) => this.socket.send(socketData, err => err ? reject(err) : resolve()));
+            return new Promise((resolve, reject) => this.socket.send(data.message.toArray(), err => err ? reject(err) : resolve()));
     }
 
     private readonly messageListeners: [(ev: unknown, x) => void, (ev: unknown, x) => void][] = [];
 
-    public off<const TEvent extends AllEventKeys<UdpSocketAdapterAkalaEventMap<T>>>(
+    public off<const TEvent extends AllEventKeys<UdpSocketAdapterAkalaEventMap>>(
         event: TEvent,
-        handler: EventListener<AllEvents<UdpSocketAdapterAkalaEventMap<T>>[TEvent]>
+        handler: EventListener<AllEvents<UdpSocketAdapterAkalaEventMap>[TEvent]>
     ): boolean
     {
         switch (event)
@@ -110,22 +123,25 @@ export class UdpSocketAdapter<T extends string | IsomorphicBuffer = string | Iso
         return true;
     }
 
-    public on<const TEvent extends AllEventKeys<UdpSocketAdapterAkalaEventMap<T>>>(
+    public on<const TEvent extends AllEventKeys<UdpSocketAdapterAkalaEventMap>>(
         event: TEvent,
-        handler: EventListener<AllEvents<UdpSocketAdapterAkalaEventMap<T>>[TEvent]>,
-        options?: EventOptions<AllEvents<UdpSocketAdapterAkalaEventMap<T>>[TEvent]>
+        handler: EventListener<AllEvents<UdpSocketAdapterAkalaEventMap>[TEvent]>,
+        options?: EventOptions<AllEvents<UdpSocketAdapterAkalaEventMap>[TEvent]>
     ): Subscription
     {
         switch (event)
         {
             case 'message':
                 {
-                    const x = function (...args: EventArgs<UdpSocketAdapterAkalaEventMap<T>['message']>) { return (handler as EventListener<UdpSocketAdapterAkalaEventMap<T>['message']>).apply(this, args); };
+                    const x = function (data: Uint8Array, remote: RemoteInfo)
+                    {
+                        return (handler as EventListener<UdpSocketAdapterAkalaEventMap['message']>).call(this, { message: IsomorphicBuffer.fromBuffer(data), remote });
+                    };
                     this.messageListeners.push([handler, x]);
                     if (options?.once)
-                        this.socket.once('data', x);
+                        this.socket.once('message', x);
                     else
-                        this.socket.on('data', x);
+                        this.socket.on('message', x);
                     return new StatefulSubscription(() =>
                     {
                         this.messageListeners.splice(this.messageListeners.findIndex(x => x[0] === handler), 1);
@@ -152,20 +168,20 @@ export class UdpSocketAdapter<T extends string | IsomorphicBuffer = string | Iso
         }
     }
 
-    public once<const TEvent extends AllEventKeys<UdpSocketAdapterAkalaEventMap<T>>>(
+    public once<const TEvent extends AllEventKeys<UdpSocketAdapterAkalaEventMap>>(
         event: TEvent,
-        handler: EventListener<AllEvents<UdpSocketAdapterAkalaEventMap<T>>[TEvent]>
+        handler: EventListener<AllEvents<UdpSocketAdapterAkalaEventMap>[TEvent]>
     ): Subscription
     {
         switch (event)
         {
             case 'message':
-                return this.on(event, handler, { once: true } as EventOptions<AllEvents<UdpSocketAdapterAkalaEventMap<T>>[TEvent]>);
+                return this.on(event, handler, { once: true } as EventOptions<AllEvents<UdpSocketAdapterAkalaEventMap>[TEvent]>);
             case 'close':
             case 'error':
             case 'open':
             case Symbol.dispose:
-                return this.on(event, handler, { once: true } as EventOptions<AllEvents<UdpSocketAdapterAkalaEventMap<T>>[TEvent]>);
+                return this.on(event, handler, { once: true } as EventOptions<AllEvents<UdpSocketAdapterAkalaEventMap>[TEvent]>);
             default:
                 let x: never = event;
                 throw new Error(`Unsupported event ${x}`);
