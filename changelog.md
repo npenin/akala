@@ -1,4 +1,4 @@
-#  (2025-12-01)
+#  (2025-12-02)
 
 
 * chore : code cleanup eae1150
@@ -861,6 +861,7 @@
 * typo in enum generation 3e236e4
 * typo in filename 5ad48f8
 * typo in filename 098f7a1
+* udp implementation 0dc2ffd
 * unit test 11df8e7
 * unit test 3f5abd5
 * unit test a5932d1
