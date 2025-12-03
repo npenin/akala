@@ -1,9 +1,9 @@
-#  (2025-12-02)
+#  (2025-12-03)
 
 
 ### Bug Fixes
 
-* udp implementation ee10ad4
+* network message subscription 398b366
 
 
 
