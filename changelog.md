@@ -1,4 +1,4 @@
-#  (2025-12-02)
+#  (2025-12-03)
 
 
 * chore : code cleanup eae1150
@@ -572,6 +572,7 @@
 * multicast to properly handle logging 7288584
 * multiple modules may be started simultaneously 3ea8a55
 * nested bindings change detection and oldValue assignment 8f373ca
+* network message subscription 398b366
 * no configFile error e545efd
 * node test pattern cbfe1b4
 * normalize on discover path c1a6b5f
