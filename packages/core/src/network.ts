@@ -114,7 +114,7 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
                     this.messageListeners.push(handler as EventListener<SocketAdapterAkalaEventMap<T>['message']>);
                     return () =>
                     {
-                        this.messageListeners.splice(this.messageListeners.findIndex(x => x[0] === handler), 1);
+                        this.messageListeners.splice(this.messageListeners.findIndex(x => x === handler), 1);
                         if (this.messageListeners.length === 0 && this.messageSubscription)
                             return this.messageSubscription();
                     };
