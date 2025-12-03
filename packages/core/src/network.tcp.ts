@@ -87,7 +87,7 @@ export class TcpSocketAdapter<T extends string | IsomorphicBuffer = string | Iso
                     return new StatefulSubscription(() =>
                     {
                         this.messageListeners.splice(this.messageListeners.findIndex(x => x[0] === handler), 1);
-                        this.socket.off('message', x);
+                        this.socket.off('data', x);
                     }).unsubscribe;
                 }
 
