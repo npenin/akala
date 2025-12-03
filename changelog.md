@@ -835,6 +835,7 @@
 * switch to xpm + add more logging 46e58e8
 * switching to working teme 8944649
 * switching to working teme 91a852a
+* tcp message subscription a7823b4
 * ternary operator parsing 2deff53
 * test 9dcc33b
 * test cases f2e3233
