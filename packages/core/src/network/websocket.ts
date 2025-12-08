@@ -1,10 +1,10 @@
-import type { AllEventKeys } from "./events/event-bus.js";
-import { EventEmitter, type AllEvents } from "./events/event-emitter.js";
-import type { EventListener, EventOptions } from "./events/shared.js";
-import { IsomorphicBuffer } from "./helpers.js";
-import { SocketAdapterAkalaEventMap, SocketAdapter } from "./network.js";
-import { Deferred } from "./promiseHelpers.js";
-import { type Subscription, StatefulSubscription } from "./teardown-manager.js";
+import type { AllEventKeys } from "../events/event-bus.js";
+import { EventEmitter, type AllEvents } from "../events/event-emitter.js";
+import type { EventListener, EventOptions } from "../events/shared.js";
+import { IsomorphicBuffer } from "../helpers.js";
+import { SocketAdapterAkalaEventMap, SocketAdapter } from "./shared.js";
+import { Deferred } from "../promiseHelpers.js";
+import { type Subscription, StatefulSubscription } from "../teardown-manager.js";
 
 /**
  * json-rpc-ws connection
