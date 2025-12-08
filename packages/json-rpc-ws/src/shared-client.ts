@@ -3,7 +3,7 @@ import debug from 'debug';
 const logger = debug('akala:json-rpc-ws');
 import { type PayloadDataType, Connection, Payload } from './shared-connection.js';
 import { type Error as MyError } from './errors.js'
-import { IsomorphicBuffer, SocketProtocolAdapter, type SocketAdapter } from '@akala/core';
+import { ErrorWithStatus, HttpStatusCode, IncompleteMessageError, IsomorphicBuffer, SocketProtocolTransformer, type SocketAdapter } from '@akala/core';
 
 /**
  * json-rpc-ws connection
@@ -12,31 +12,53 @@ import { IsomorphicBuffer, SocketProtocolAdapter, type SocketAdapter } from '@ak
  * @param {Socket} socket - web socket for this connection
  * @param {Object} parent - parent that controls this connection
  */
-
-export class JsonNDRpcSocketAdapter<T> extends SocketProtocolAdapter<T> implements SocketAdapter<T>
+export function JsonNDRpcTransformer<T>(): SocketProtocolTransformer<any, string[]>
 {
-    constructor(socket: SocketAdapter)
-    {
-        const accumulator: string[] = [];
-        super({
-            receive: (data: string | IsomorphicBuffer) =>
-            {
-                if (typeof (data) !== 'string')
-                    data = data.toString('utf8');
+    return {
+        receive(chunks: string[] | IsomorphicBuffer[])
+        {
+            if (typeof chunks !== 'object' || !Array.isArray(chunks))
+                if (typeof chunks == 'string')
+                    chunks = [chunks];
+                else if (typeof chunks == 'object' && (chunks as any) instanceof IsomorphicBuffer)
+                    chunks = [chunks];
 
-                let messages = data.split('\n');
-                if (messages.length == 1)
-                {
-                    accumulator.push(messages[0]);
-                    return [];
-                }
-                if (accumulator.length)
-                    messages = accumulator.concat(messages);
-                messages = messages.filter(d => d)
-                return messages.map(data => JSON.parse(data));
-            },
-            send: (data: T) => JSON.stringify(data) + '\n',
-        }, socket);
+            let stringCount: number = 0;
+            let bufferCount: number = 0;
+
+            for (const chunk of chunks)
+            {
+                if (typeof chunk == 'string')
+                    stringCount++;
+                else if (chunk instanceof IsomorphicBuffer)
+                    bufferCount++;
+                else
+                    throw new ErrorWithStatus(HttpStatusCode.BadRequest, 'Expected a string or IsomorphicBuffer, but got ' + typeof chunk);
+            }
+
+            let data: string;
+            if (stringCount > bufferCount)
+                data = chunks.reduce((previous, current) => previous + (typeof current == 'string' ? current : current.toString('utf8')), '') as string;
+            else if (bufferCount == chunks.length)
+                data = IsomorphicBuffer.concat(chunks as IsomorphicBuffer[]).toString('utf-8');
+            else
+                data = chunks.reduce((previous, chunk) => previous + (typeof chunk == 'string' ? chunk : chunk.toString('utf8')), '') as string;
+
+            let messages = data.split('\n');
+            if (messages.length == 1)
+                throw new IncompleteMessageError([], messages);
+
+            if (messages[messages.length - 1] != '')
+                throw new IncompleteMessageError(
+                    messages.slice(0, messages.length - 1).map(message => JSON.parse(message)),
+                    [messages[messages.length - 1]]);
+
+            return messages.slice(0, messages.length - 1).map(data => JSON.parse(data));
+        },
+        send(data: T)
+        {
+            return [JSON.stringify(data) + '\n'];
+        }
     }
 }
 

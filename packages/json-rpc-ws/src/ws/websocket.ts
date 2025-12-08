@@ -3,9 +3,9 @@
 import { default as ClientBase } from './shared-client.js';
 import type { SocketAdapter } from '@akala/core';
 import { Connection, Payload } from '../browser.js'
-import { WebSocketAdapter } from '@akala/core';
+import { LongMessageProtocolTransformer, SocketProtocolAdapter, WebSocketAdapter } from '@akala/core';
 import debug from 'debug';
-import { JsonNDRpcSocketAdapter } from '../shared-client.js';
+import { JsonNDRpcTransformer } from '../shared-client.js';
 
 export default class Client extends ClientBase<ReadableStream, { protocols?: string | string[] }>
 {
@@ -21,7 +21,7 @@ export default class Client extends ClientBase<ReadableStream, { protocols?: str
 
     public static connect(address: string, options?: { protocols?: string | string[] }): SocketAdapter<Payload<ReadableStream>>
     {
-        return new JsonNDRpcSocketAdapter(new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'), options?.protocols)));
+        return new SocketProtocolAdapter(LongMessageProtocolTransformer(JsonNDRpcTransformer()), new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'), options?.protocols)));
     }
 }
 
