@@ -11,6 +11,7 @@
 * add @akala/mcp/akala plugin to the configuration 39fd2d3
 * add $metadata command to meta commands in JsonRpc handlers bf60490
 * add basic unit test dcd8665
+* add browser entry point to package.json exports 80d9a55
 * add canSet property to Binding class 0c45820
 * add commands argument normalisation 8c9fb75
 * add commands argument normalisation 34ca419
