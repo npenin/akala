@@ -11,20 +11,28 @@
     "type": "module",
     "exports": {
         ".": {
-            "browser": {
-                "types": "./dist/esm/index.browser.d.ts",
-                "default": "./dist/esm/index.browser.js"
-            },
             "import": {
-                "browser": "./dist/esm/index.browser.js",
-                "types": "./dist/esm/index.d.ts",
-                "bun": "./src/index.ts",
-                "default": "./dist/esm/index.js"
+                "browser": {
+                    "types": "./dist/esm/index.browser.d.ts",
+                    "default": "./dist/esm/index.browser.js"
+                },
+                "bun": {
+                    "default": "./src/index.ts"
+                },
+                "default": {
+                    "types": "./dist/esm/index.d.ts",
+                    "default": "./dist/esm/index.js"
+                }
             },
             "require": {
-                "types": "./dist/cjs/index.d.ts",
-                "bun": "./src/index.ts",
-                "default": "./dist/cjs/index.js"
+                "browser": {
+                    "types": "./dist/cjs/index.browser.d.ts",
+                    "default": "./dist/cjs/index.browser.js"
+                },
+                "default": {
+                    "types": "./dist/cjs/index.d.ts",
+                    "default": "./dist/cjs/index.js"
+                }
             }
         },
         "./expressions": {
