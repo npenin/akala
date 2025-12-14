@@ -609,6 +609,7 @@
 * pmConnectInfo not populated 8cd0190
 * pnpm helper cd370d1
 * pnpm info helper a6d30b5
+* polyfill for debug import (browser vs non browser) be5a312
 * positional parameters 0839d7d
 * positional parameters 4c7e6df
 * postinstall after cli update 6e53e1f
@@ -670,6 +671,7 @@
 * remove cjs reference 2284b79
 * remove console log from metadata function 9d30b2c
 * remove copy/paste issue d625947
+* remove default debug import 0bae8d7
 * remove default value for Event option in IEventSink interface cfc1e34
 * remove deprecated ac command usage 5cf4a82
 * remove deprecated command documentation files and navigation exclusions 90bceca
