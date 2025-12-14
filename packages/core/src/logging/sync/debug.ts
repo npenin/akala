@@ -1,5 +1,8 @@
-import { debug } from "debug";
+import * as debugImport from "debug";
 import { ILogMiddleware, ILogger, LogLevels } from "../shared.js";
+
+// Polyfill for debug import (browser vs non browser)
+const debug = debugImport.default ?? debugImport.debug
 
 /**
  * Debug-based implementation of ILoggerAdapter using debug package
