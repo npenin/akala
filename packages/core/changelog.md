@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* update LoggerWrapper use method to pass namespace correctly a28fb83
+* add browser entry point to package.json exports 80d9a55
 
 
 
