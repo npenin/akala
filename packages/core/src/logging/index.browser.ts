@@ -83,9 +83,9 @@ export class LoggerWrapper<TLogger extends LoggerRoute | LoggerRouteAsync = Logg
 
     public use(namespace: string, logLevel?: LogLevels): LoggerWrapper<TLogger>
     {
-        const route = namespace.split(':').reduce((previous, current) => previous.use(current), this.logger) as TLogger;
+        namespace.split(':').reduce((previous, current) => previous.use(current), this.logger) as TLogger;
         // const route = this.logger.use(namespace) as TLogger;
-        return new LoggerWrapper(route, logLevel ?? this.maxLevel);
+        return new LoggerWrapper(this.logger, logLevel ?? this.maxLevel, namespace);
     }
 
     public isEnabled(logLevel: LogLevels)
