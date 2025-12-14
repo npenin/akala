@@ -982,6 +982,7 @@
 * update links in documentation to remove file extensions 41271f9
 * update links in documentation to remove file extensions 17391c9
 * update lock files a1575cf
+* update LoggerWrapper use method to pass namespace correctly a28fb83
 * update message event handler to use IsomorphicBuffer.fromBuffer for data conversion 828f010
 * update metadata command discovery to reflect new command count 69ffaf9
 * update output_hash calculation to use base64.base64EncArrBuff for consistency 70cf535
