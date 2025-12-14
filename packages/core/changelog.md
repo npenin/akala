@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add browser entry point to package.json exports 80d9a55
+* update logger imports to use browser-specific paths 4a8a059
 
 
 
