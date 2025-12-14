@@ -1,4 +1,4 @@
-#  (2025-12-03)
+#  (2025-12-08)
 
 
 * chore : code cleanup eae1150
@@ -917,6 +917,7 @@
 * update after fs breaking change 27ec208
 * update after fs breaking change 56df9a7
 * update after fs FileHandle interface update 552b3f0
+* update after jsonrpc breaking change 468de17
 * update after jsonrpc breaking change 1703f52
 * update after jsonrpc breaking change 9051a86
 * update after jsonrpc breaking change e651084
@@ -1171,6 +1172,7 @@
 * add locale support 5054537
 * add logo e5bd83f
 * add logo 2b3af22
+* add LongMessageProtocolAdapter 2e51e6b
 * add merge-coverage to SDK bcd0cd4
 * add more flexibility to aws configuration (used in generate tf) 1951d59
 * add name in xpm 2082639
@@ -1365,6 +1367,7 @@
 * provide serverHandlers in addition to the commandServerHandlers registration 0d4ee97
 * provide the Plugin interface to help providing better plugin typing 6cfe309
 * provide the Plugin interface to help providing better plugin typing 8e9d3a2
+* refactor JsonNDRpcSocketAdapter to JsonNDRpcTransformer 5940680
 * release the package cdbb317
 * remove cjs support 145dc5f
 * remove cjs support c967b21
@@ -1396,6 +1399,7 @@
 
 ### BREAKING CHANGES
 
+* refactor JsonNDRpcSocketAdapter to JsonNDRpcTransformer
 * **logging:** logging system has completely changed
 * SocketProtocolAdapter returns a message array
 * NetSocketAdapter does not exist any more

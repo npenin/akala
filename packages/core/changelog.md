@@ -1,9 +1,9 @@
-#  (2025-12-03)
+#  (2025-12-08)
 
 
-### Bug Fixes
+### Features
 
-* tcp message subscription a7823b4
+* add LongMessageProtocolAdapter 2e51e6b
 
 
 
