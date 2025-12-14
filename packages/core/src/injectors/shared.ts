@@ -1,5 +1,5 @@
 import { each, map } from "../each.js";
-import { logger } from "../logging/index.js";
+import { logger } from "../logging/index.browser.js";
 import { isPromiseLike } from "../promiseHelpers.js";
 import { getParamNames } from "../reflect.js";
 

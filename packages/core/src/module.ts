@@ -1,6 +1,6 @@
 import { Orchestrator } from './orchestrator.js'
 import { defaultInjector, SimpleInjector } from './injectors/simple-injector.js';
-import { logger } from './logging/index.js';
+import { logger } from './logging/index.browser.js';
 import { Event, type Listener } from './events/shared.js';
 import { AsyncEvent, } from './events/async.js';
 import { noop } from './helpers.js';

@@ -2,7 +2,7 @@ import { map } from "../each.js";
 import { EventEmitter } from "../events/event-emitter.js";
 import { Event, type EventListener, type IEvent } from "../events/shared.js";
 import { type Formatter, formatters, isReversible, type ReversibleFormatter } from "../formatters/index.js";
-import { type AllEventKeys, ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
+// import { type AllEventKeys, ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, ObservableArray, Parser } from "../index.js";
 import { EvaluatorAsFunction, type ParsedFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
@@ -16,11 +16,15 @@ import { ParameterExpression } from "../parser/expressions/parameter-expression.
 import { TernaryExpression } from "../parser/expressions/ternary-expression.js";
 import { TernaryOperator } from "../parser/expressions/ternary-operator.js";
 import { ExpressionSimplifyer } from "../parser/expressions/visitors/expression-simplifyer.js";
-import { combineSubscriptions, type Subscription } from "../teardown-manager.js";
+import { combineSubscriptions, isPromiseLike, type Subscription } from "../teardown-manager.js";
 import { watcher, type Watcher, WatcherFormatter } from './shared.js'
 import { AssignmentExpression } from "../parser/expressions/assignment-expression.js";
 import { AssignmentOperator } from "../parser/expressions/assignment-operator.js";
 import { ExpressionType } from "../parser/expressions/expression-type.js";
+import { ObservableArray } from "./array.js";
+import ErrorWithStatus, { HttpStatusCode } from "../errorWithStatus.js";
+import { FormatExpression, Parser } from "../parser/parser.js";
+import { AllEventKeys } from "../events/index.js";
 
 export interface ObjectEvent<T, TKey extends keyof T>
 {
