@@ -143,9 +143,7 @@ export class LoggerMiddleware<
         ...context: unknown[]
     ): Promise<MiddlewareResult> | MiddlewareResult
     {
-        if (this.logLevel > logLevel)
-            return;
-        if (this.namespace !== '*' && this.namespace != namespaces[0])
+        if (this.shouldHandle(logLevel, namespaces))
             return this.logger(logLevel, namespaces, ...context) as TLogger extends ILogMiddlewareAsync
                 ? Promise<MiddlewareResult>
                 : MiddlewareResult;
@@ -157,9 +155,9 @@ export class LoggerMiddleware<
         namespaces: string[]
     ): boolean
     {
-        if (this.logLevel > logLevel)
+        if (this.logLevel < logLevel)
             return false;
-        if (this.namespace !== '*' && this.namespace != namespaces[0])
+        if (this.namespace !== '*' && this.namespace !== namespaces[0])
             return false
         return true;
     }
@@ -200,9 +198,7 @@ export class LogMiddlewareWrapper<
         ...context: unknown[]
     ): Promise<MiddlewareResult> | MiddlewareResult
     {
-        if (this.logLevel > logLevel)
-            return;
-        if (this.namespace !== '*' && this.namespace != namespaces[0])
+        if (this.shouldHandle(logLevel, namespaces))
             return this.logger.handle(logLevel, namespaces, ...context) as TLogger extends ILogMiddlewareAsync
                 ? Promise<MiddlewareResult>
                 : MiddlewareResult;
@@ -214,7 +210,7 @@ export class LogMiddlewareWrapper<
         namespaces: string[]
     ): boolean
     {
-        if (this.logLevel > logLevel)
+        if (this.logLevel < logLevel)
             return false;
         if (this.namespace !== '*' && this.namespace != namespaces[0])
             return false
