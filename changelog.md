@@ -72,6 +72,7 @@
 * add more logs b90e354
 * add new documentation files for command processors and CLI usage 269c44d
 * add new documentation files for command processors and CLI usage 043d656
+* add optional chaining for process.env in pubsub function 5eb650b
 * add options overload 7651592
 * add options overload 7f35ab7
 * add parent 857a604
