@@ -1,4 +1,4 @@
-#  (2025-12-14)
+#  (2025-12-18)
 
 
 * chore : code cleanup eae1150
@@ -746,6 +746,7 @@
 * return an empty array instead of null in write method of ZeroOrOne parser 310f7a8
 * return empty array is no output was written in buffer 2621d25
 * returns proper splice return type dfc3590
+* reverse logging conditions cfb4574
 * revert options copy on buildCliContextFromContext 084cf1a
 * revert options copy on buildCliContextFromContext 1cbbd3e
 * revert to cayman cf3e496
