@@ -1,4 +1,4 @@
-#  (2025-12-18)
+#  (2025-12-19)
 
 
 * chore : code cleanup eae1150
@@ -133,6 +133,7 @@
 * await for container to be ready 064a452
 * aws sdk generation and update services 7b922cf
 * base64 decode to array 6445f15
+* base64 padding 2e1d1dc
 * base64UrlEncode properly strips = 8a9274d
 * base64UrlEncode properly strips = 54ca5ff
 * better handle of password in config fdd2bde
