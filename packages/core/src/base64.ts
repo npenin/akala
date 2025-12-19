@@ -152,16 +152,18 @@ export function base64EncArr(aBytes: Uint8Array, nBlocksSize?: number): string
         let i = 0;
         while (i < aBytes.length)
         {
+            const start = i;
             const byte1 = aBytes[i++]!;
             const byte2 = i < aBytes.length ? aBytes[i++]! : 0;
             const byte3 = i < aBytes.length ? aBytes[i++]! : 0;
 
             const triplet = (byte1 << 16) | (byte2 << 8) | byte3;
+            const bytesRead = i - start;
 
             out += BASE64_CHARS[(triplet >> 18) & 63];
             out += BASE64_CHARS[(triplet >> 12) & 63];
-            out += i - 2 <= aBytes.length ? BASE64_CHARS[(triplet >> 6) & 63] : "=";
-            out += i - 1 <= aBytes.length ? BASE64_CHARS[triplet & 63] : "=";
+            out += bytesRead > 1 ? BASE64_CHARS[(triplet >> 6) & 63] : "=";
+            out += bytesRead > 2 ? BASE64_CHARS[triplet & 63] : "=";
         }
     }
 
