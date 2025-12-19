@@ -1025,6 +1025,7 @@
 * url handler will fail with Error 404 if not found e13a9a6
 * use addJob/removeJob since jobs is now private b19a7e4
 * use combineSubscriptions helper e569526
+* use globalThis for process.env access in pubsub function 55d4385
 * use helpers from @akala/cli 74292f2
 * use new spread helper to prevent blocking stdin abf4ad0
 * use now in all cases 109d663

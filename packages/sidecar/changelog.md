@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add optional chaining for process.env in pubsub function 5eb650b
+* use globalThis for process.env access in pubsub function 55d4385
 
 
 
