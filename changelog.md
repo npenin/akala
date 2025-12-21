@@ -1,4 +1,4 @@
-#  (2025-12-19)
+#  (2025-12-21)
 
 
 * chore : code cleanup eae1150
@@ -468,6 +468,7 @@
 * improve discover using @akala/fs e96ea22
 * improve discovery 31bdd8a
 * improve discovery 3e0d64b
+* improve documentation for base64 utility functions 4fdb0e7
 * improve error handling in HTTP command wrapping 42daa25
 * improve error handling in JsonRpc and JsonRpcBrowser classes by adding try-catch around sendMethod calls 3a537b9
 * improve error handling in protocol command by throwing errors for better debugging 99c47e1
