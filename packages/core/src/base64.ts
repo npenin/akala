@@ -6,7 +6,13 @@ import { IsomorphicBuffer } from "./helpers.js";
 
 // --- Base64 utils ---
 
-export function base64ByteLength(sBase64: string, nBlocksSize?: number): number
+/**
+ * Calculates the decoded byte length of a Base64 string.
+ * @param sBase64 The Base64 encoded string.
+ * @param nBlocksSize Optional size to round up to (for buffer alignment).
+ * @returns The decoded byte length.
+ */
+export function base64ByteLength(sBase64: string, nBlocksSize: number = 0): number
 {
     // Keep original semantics: strip everything except Base64 alphabet (no '=')
     const sB64Enc = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
@@ -25,7 +31,6 @@ const BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345
 /**
  * Decodes a Base64 string into a Uint8Array.
  * @param sBase64 The Base64 encoded string.
- * @param nBlocksSize Optional size for line breaks in the output.
  * @returns The decoded byte array.
  */
 export function base64DecToArr(sBase64: string)
@@ -59,13 +64,24 @@ export function base64DecToArr(sBase64: string)
 }
 
 /**
- * Encodes an ArrayBuffer/Uint8Array to Base64URL format.
+ * Encodes an Uint8Array to Base64URL format.
  * @param aBytes The byte array to encode.
  * @returns The Base64URL encoded string.
  */
 export function base64UrlEncArr(aBytes: Uint8Array): string
 {
     const s = base64EncArr(aBytes).replace(/\+/g, "-").replace(/\//g, "_");
+    return s.replace(/=+$/g, "");
+}
+
+/**
+ * Encodes an ArrayBuffer to Base64URL format.
+ * @param aBytes The ArrayBuffer to encode.
+ * @returns The Base64URL encoded string.
+ */
+export function base64UrlEncArrBuff(aBytes: ArrayBuffer): string
+{
+    const s = base64EncArrBuff(aBytes).replace(/\+/g, "-").replace(/\//g, "_");
     return s.replace(/=+$/g, "");
 }
 
