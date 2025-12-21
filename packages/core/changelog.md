@@ -1,9 +1,9 @@
-#  (2025-12-19)
+#  (2025-12-21)
 
 
 ### Bug Fixes
 
-* base64 padding 2e1d1dc
+* improve documentation for base64 utility functions 4fdb0e7
 
 
 
