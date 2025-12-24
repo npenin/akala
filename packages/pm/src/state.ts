@@ -1,10 +1,11 @@
 import { Container } from "@akala/commands";
-import type { SerializableObject, SocketAdapter, IEvent } from "@akala/core";
+import type { SerializableObject, SocketAdapter, IEvent, LoggerWrapper } from "@akala/core";
 import type { ProxyConfiguration } from "@akala/config";
 import type { RuntimeInstance } from "./runtimes/shared.js";
 
 export default interface State
 {
+    logger: LoggerWrapper;
     processes: { [key: string]: RunningContainer };
     isDaemon: boolean;
     config: ProxyConfiguration<StateConfiguration>
