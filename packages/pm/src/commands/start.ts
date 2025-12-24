@@ -20,7 +20,7 @@ const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fil
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ configFile?: string, new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean, autostart?: boolean }>['options'], context?: Pick<CliContext<{}>, 'args' | 'logger'>): Promise<void | { execPath: string, args: string[], cwd: string, shell: boolean, windowsHide: boolean }>
 {
-    context.logger.info('starting ', options);
+    (context.logger || this.logger).info('starting ', options);
     let args: string[];
     if (options)
         if (!options.name && options.new)

@@ -55,6 +55,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     this.isDaemon = true;
     this.processes = {};
     this.bridges = {};
+    this.logger = context.logger;
     const stderr = process.stderr.write;
     const stderrPT = new PassThrough();
     process.stderr.write = function (...args)
