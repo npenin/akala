@@ -1,4 +1,4 @@
-#  (2025-12-21)
+#  (2025-12-24)
 
 
 * chore : code cleanup eae1150
@@ -40,6 +40,8 @@
 * add isomorphic buffer support for Base64 and UTF-8 encoding/decoding 176c16f
 * add js extension to fork files 39368e9
 * add logger to automate a3bcd49
+* add logger to pm runtime state a36215d
+* add logger to pm runtime state a4bfedb
 * add loginUrl and keyPath to auth configuration 9751a94
 * add missing $defs attribute 102e668
 * add missing awaits 59abeca
