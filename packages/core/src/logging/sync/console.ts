@@ -16,16 +16,16 @@ export class ConsoleLogger implements ILogger
     {
         if (ConsoleLogger.instance)
             return ConsoleLogger.instance;
-        this.error = new LoggerMiddleware((...args) => console.error(...args), LogLevels.error, '*');
-        this.warn = new LoggerMiddleware((...args) => console.warn(...args), LogLevels.warn, '*');
-        this.help = new LoggerMiddleware((...args) => console.info(...args), LogLevels.help, '*');
-        this.data = new LoggerMiddleware((...args) => console.log(...args), LogLevels.data, '*');
-        this.info = new LoggerMiddleware((...args) => console.info(...args), LogLevels.info, '*');
-        this.debug = new LoggerMiddleware((...args) => console.debug(...args), LogLevels.debug, '*');
-        this.prompt = new LoggerMiddleware((...args) => console.log(...args), LogLevels.prompt, '*');
-        this.verbose = new LoggerMiddleware((...args) => console.log(...args), LogLevels.verbose, '*');
-        this.input = new LoggerMiddleware((...args) => console.log(...args), LogLevels.input, '*');
-        this.silly = new LoggerMiddleware((...args) => console.log(...args), LogLevels.silly, '*');
+        this.error = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.error(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.error, '*');
+        this.warn = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.warn(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.warn, '*');
+        this.help = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.info(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.help, '*');
+        this.data = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.log(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.data, '*');
+        this.info = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.info(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.info, '*');
+        this.debug = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.debug(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.debug, '*');
+        this.prompt = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.log(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.prompt, '*');
+        this.verbose = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.log(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.verbose, '*');
+        this.input = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.log(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.input, '*');
+        this.silly = new LoggerMiddleware((logLevel: LogLevels, namespace: string[], format: any, ...args: unknown[]) => console.log(`${LogLevels[logLevel]}:[${namespace.join(':')}] ${format}`, ...args), LogLevels.silly, '*');
     }
 
     public readonly error: ILogMiddleware;
