@@ -147,7 +147,6 @@ export class LoggerMiddleware<
             return this.logger(logLevel, namespaces, ...context) as TLogger extends ILogMiddlewareAsync
                 ? Promise<MiddlewareResult>
                 : MiddlewareResult;
-        return;
     }
 
     shouldHandle(
