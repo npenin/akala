@@ -3,7 +3,6 @@ import { MessageDefinition, ProtoAST } from "./grpc-proto-parser.js";
 import { ProtoToJsonSchemaConverter } from './proto-to-json-schema-converter.js';
 import { HttpStatusCode, IsomorphicBuffer, SocketAdapter } from "@akala/core";
 import { protobuf, parsers, Cursor } from "@akala/protocol-parser";
-import { ProtobufMessage } from "@akala/protocol-parser/dist/parsers/protobuf/index.js";
 
 export enum GrpcStatusCode
 {
@@ -120,7 +119,7 @@ export { ProtoToJsonSchemaConverter };
 export const trigger = new Trigger('grpc', (container, grpc: ProtoAST, socket: SocketAdapter<IsomorphicBuffer>) =>
 {
     const messages = Object.fromEntries(grpc.messages.map(m => [m.name, protobuf.object(
-        ...m.fields.sort((a, b) => a.tag - b.tag).map(f => protobuf.property<ProtobufMessage<any>, string>(f.name, getWireType(f.type, m.nested, grpc), getParser(f.type, m.nested, grpc))
+        ...m.fields.sort((a, b) => a.tag - b.tag).map(f => protobuf.property<parsers.protobuf.ProtobufMessage<any>, string>(f.name, getWireType(f.type, m.nested, grpc), getParser(f.type, m.nested, grpc))
         ))]));
 
     const methods = new Map(grpc.services[0].methods.map(method => [method.name, {
