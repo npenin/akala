@@ -1,4 +1,4 @@
-#  (2025-12-24)
+#  (2025-12-26)
 
 
 * chore : code cleanup eae1150
@@ -199,6 +199,7 @@
 * configFile references a58dfbf
 * **config:** update openFile flags to create and truncate file 32433f9
 * configuration.newAsync overwrites the config if it exists fb4eee9
+* console logging b8683cb
 * context inheritance during install 2a2a587
 * context inheritance during install de44263
 * copy paste issue 762f797
@@ -1059,6 +1060,7 @@
 * wrong context buidling 3e1c368
 * wrong csv parsing f9359c6
 * wrong generated key algorithm fc8360d
+* wrong import path 9d569c6
 * wrong inferred dependency path baed476
 * wrong inferred dependency path 7a1f1ab
 * wrong key loading order dae1711
