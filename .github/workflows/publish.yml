@@ -38,14 +38,14 @@ jobs:
       - name: Tests
         run: yarn coverage
       - name: Archive build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: build
           path: |
             **/dist
             **/tsconfig.tsbuildinfo
       - name: Archive build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: coverage
           path: |
@@ -62,7 +62,7 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: build
       - name: Install Packages
@@ -95,11 +95,11 @@ jobs:
         env:
           NO_AKALAPOSTINSTALL: 1
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: build
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: coverage
       - name: Run coverage
