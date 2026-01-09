@@ -1,4 +1,4 @@
-#  (2025-12-26)
+#  (2026-01-09)
 
 
 * chore : code cleanup eae1150
@@ -1244,6 +1244,7 @@
 * add version field to package.json for documentation package 42a4cc8
 * add version field to package.json for documentation package ac5b028
 * add wasm and fs to build e5177d6
+* add webrtc data channel implementation 7a8544f
 * add xpm (but not leverage it yet) 84f1def
 * akala plugin implementation f99043a
 * akala plugin implementation d050e1a
