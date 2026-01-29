@@ -1,10 +1,9 @@
 import { Base } from './base.js';
-import debug from 'debug';
-const logger = debug('akala:json-rpc-ws');
 import { type PayloadDataType, Connection, Payload } from './shared-connection.js';
 import { type Error as MyError } from './errors.js'
-import { ErrorWithStatus, HttpStatusCode, IncompleteMessageError, IsomorphicBuffer, SocketProtocolTransformer, type SocketAdapter } from '@akala/core';
+import { ErrorWithStatus, HttpStatusCode, IncompleteMessageError, IsomorphicBuffer, logger, SocketProtocolTransformer, type SocketAdapter } from '@akala/core';
 
+const log = logger.use('akala:json-rpc-ws');
 /**
  * json-rpc-ws connection
  *
@@ -50,10 +49,10 @@ export function JsonNDRpcTransformer<T>(): SocketProtocolTransformer<any, string
 
             if (messages[messages.length - 1] != '')
                 throw new IncompleteMessageError(
-                    messages.slice(0, messages.length - 1).map(message => JSON.parse(message)),
+                    messages.slice(0, - 1).map(message => JSON.parse(message)),
                     [messages[messages.length - 1]]);
 
-            return messages.slice(0, messages.length - 1).map(data => JSON.parse(data));
+            return messages.slice(0, - 1).map(data => JSON.parse(data));
         },
         send(data: T)
         {
@@ -64,13 +63,13 @@ export function JsonNDRpcTransformer<T>(): SocketProtocolTransformer<any, string
 
 export default abstract class Client<TStreamable, TConnectOptions> extends Base<TStreamable>
 {
-    constructor(private socketConstructor: (address: string, options?: TConnectOptions) => SocketAdapter<Payload<TStreamable>>, private options?: TConnectOptions)
+    constructor(private socketConstructor: (address: string, options?: TConnectOptions) => SocketAdapter<Payload<TStreamable>[]>, private options?: TConnectOptions)
     {
         super('client');
-        logger('new Client');
+        log.debug('new Client');
     }
 
-    public socket?: SocketAdapter<Payload<TStreamable>>;
+    public socket?: SocketAdapter<Payload<TStreamable>[]>;
 
     /**
      * Connect to a json-rpc-ws server
@@ -81,7 +80,7 @@ export default abstract class Client<TStreamable, TConnectOptions> extends Base<
      */
     public connect(address: string, callback: (err?: Event) => void): void
     {
-        logger('Client connect %s', address);
+        log.debug('Client connect %s', address);
         if (this.isConnected())
             throw new Error('Already connected');
         let opened = false;
@@ -152,7 +151,7 @@ export default abstract class Client<TStreamable, TConnectOptions> extends Base<
      */
     public send<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, params: TParamType, callback?: (error?: MyError, result?: TReplyType) => void): void
     {
-        logger('send %s', method);
+        log.data('send %s', method);
         if (!this.isConnected())
             throw new Error('Not connected');
         const connection = this.getConnection();

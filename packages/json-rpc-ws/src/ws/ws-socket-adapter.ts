@@ -15,7 +15,7 @@ import
  */
 export default class WsSocketAdapter extends AsyncTeardownManager implements SocketAdapter
 {
-    constructor(private socket: ws)
+    constructor(private readonly socket: ws)
     {
         super();
     }
@@ -52,10 +52,23 @@ export default class WsSocketAdapter extends AsyncTeardownManager implements Soc
         return deferred;
     }
 
-    send(data: string | IsomorphicBuffer): Promise<void>
+    async send(data: string | IsomorphicBuffer): Promise<void>
     {
+        if (!this.open)
+            await new Promise<void>(resolve =>
+            {
+                this.socket.addEventListener('open', () => resolve(), { once: true });
+            });
         return new Promise<void>((resolve, reject) =>
-            this.socket.send(data instanceof IsomorphicBuffer ? data.toArray() : data, { binary: data instanceof IsomorphicBuffer }, err => err ? reject(err) : resolve()));
+        {
+            try
+            {
+                this.socket.send(data instanceof IsomorphicBuffer ? data.toArray() : data, { binary: data instanceof IsomorphicBuffer }, err => err ? reject(err) : resolve())
+            } catch (err)
+            {
+                reject(err);
+            }
+        });
     }
 
     public off<const TEvent extends AllEventKeys<SocketAdapterAkalaEventMap>>(

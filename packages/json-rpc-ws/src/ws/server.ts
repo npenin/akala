@@ -16,7 +16,7 @@ export class Adapter implements ServerAdapter
     return this.closed;
   }
 
-  onConnection(handler: (socket: SocketAdapter<Payload<Readable>>) => void): void
+  onConnection(handler: (socket: SocketAdapter<Payload<Readable>[]>) => void): void
   {
     this.server?.on('connection', function (socket: ws.WebSocket)
     {

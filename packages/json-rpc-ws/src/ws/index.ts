@@ -5,18 +5,18 @@ import Server from '../server.js';
 import { Connection } from '../connection.js';
 import Client from './client.js';
 export { SocketAdapter, ServerAdapter }
-import debug from 'debug';
 import * as ws from 'ws';
-const logger = debug('akala:json-rpc-ws');
+import { logger } from '@akala/core';
+const log = logger.use('akala:json-rpc-ws');
 
 export function createClient(): Client
 {
-  logger('create ws client');
+  log.debug('create ws client');
   return new Client();
 }
 export function createServer<TConnection extends Connection = Connection>(options?: ws.ServerOptions): Server<TConnection>
 {
-  logger('create ws server');
+  log.debug('create ws server');
   if (options)
     return new Server<TConnection>(new ServerAdapter(options));
   else

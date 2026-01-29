@@ -1,9 +1,8 @@
 
-import type { SocketAdapter, SerializableObject } from '@akala/core';
-import debug from 'debug';
+import { type SocketAdapter, type SerializableObject, logger } from '@akala/core';
 import * as stream from 'stream';
 import { Connection as BaseConnection, type PayloadDataType, type SerializedBuffer, type Parent, Payload } from './shared-connection.js'
-const logger = debug('akala:json-rpc-ws');
+const log = logger.use('akala:json-rpc-ws');
 
 
 function isBuffer(obj: unknown): obj is Uint8Array
@@ -13,7 +12,7 @@ function isBuffer(obj: unknown): obj is Uint8Array
 
 export class Connection extends BaseConnection<stream.Readable>
 {
-    constructor(socket: SocketAdapter<Payload<stream.Readable>>, parent: Parent<stream.Readable, Connection>)
+    constructor(socket: SocketAdapter<Payload<stream.Readable>[]>, parent: Parent<stream.Readable, Connection>)
     {
         super(socket, parent as Parent<stream.Readable, BaseConnection<stream.Readable>>);
     }
@@ -41,7 +40,7 @@ export class Connection extends BaseConnection<stream.Readable>
                     this.sendRaw({ id: id, result: { event: 'data', isBuffer: false, data: chunk.toString() } });
             else
             {
-                logger('socket was closed before endof stream')
+                log.debug('socket was closed before endof stream')
                 params.unpipe(pt);
             }
         });
@@ -50,7 +49,7 @@ export class Connection extends BaseConnection<stream.Readable>
             if (this.socket.open)
                 this.sendRaw({ id: id, result: { event: 'end' }, stream: true });
             else
-                logger('socket was closed before end of stream')
+                log.debug('socket was closed before end of stream')
         });
     }
 

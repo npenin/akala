@@ -8,7 +8,7 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
 {
     public static readonly name = 'self'
     public readonly runtime = Runtime;
-    public readonly adapter: SocketAdapter<Payload<Readable>>;
+    public readonly adapter: SocketAdapter<Payload<Readable>[]>;
     private stdio: { stderr: Readable, stdout: Readable, stdin: Writable }
     constructor(stdio?: { stderr: Readable, stdout: Readable, stdin: Writable })
     {

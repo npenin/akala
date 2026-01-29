@@ -5,19 +5,18 @@ import { default as Errors } from './errors.js';
 import type { ReplyCallback, PayloadDataType as BasePayloadDataType, Payload } from './shared-connection.js';
 import { Connection } from './connection.js';
 import * as stream from 'stream'
-import debug from 'debug';
-import type { SocketAdapter } from '@akala/core';
+import { logger, type SocketAdapter } from '@akala/core';
 function assert(ok: unknown, message: string): void
 {
   if (!ok)
     throw new Error(message);
 }
-const logger = debug('akala:json-rpc-ws');
+const log = logger.use('akala:json-rpc-ws');
 
 export interface ServerAdapter
 {
   close(): Promise<void>;
-  onConnection(arg1: (socket: SocketAdapter<Payload<stream.Readable>>) => void): void;
+  onConnection(arg1: (socket: SocketAdapter<Payload<stream.Readable>[]>) => void): void;
   once(event: 'listening', callback: () => void): void;
   start(): void;
 }
@@ -33,10 +32,10 @@ export default class Server<TConnection extends Connection> extends Base<stream.
   constructor(private server?: ServerAdapter)
   {
     super('server');
-    logger('new Server');
+    log.debug('new Server');
   }
 
-  connection(socket: SocketAdapter<Payload<stream.Readable>>): Connection
+  connection(socket: SocketAdapter<Payload<stream.Readable>[]>): Connection
   {
     return new Connection(socket, this);
   }
@@ -51,7 +50,7 @@ export default class Server<TConnection extends Connection> extends Base<stream.
   public start(server?: ServerAdapter, callback?: () => void): void
   {
 
-    logger('Server start');
+    log.debug('Server start');
     if (server && this.server && server !== this.server)
       throw new Error('a ServerAdapter was already defined at construction, and a different server is provided at start');
     if (server)
@@ -77,7 +76,7 @@ export default class Server<TConnection extends Connection> extends Base<stream.
   public async stop(): Promise<void>
   {
 
-    logger('Server stop');
+    log.debug('Server stop');
     this.hangup();
     await this.server?.close();
     this.server = null;
@@ -94,7 +93,7 @@ export default class Server<TConnection extends Connection> extends Base<stream.
    */
   public send<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(id: string | number, method: string, params?: TParam, callback?: ReplyCallback<TReplyParam>): void
   {
-    logger('Server send %s %s', id, method);
+    log.debug('Server send %s %s', id, method);
     const connection = this.getConnection(id);
     if (connection)
     {

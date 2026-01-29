@@ -1,10 +1,9 @@
 'use strict';
-import debug from 'debug';
-const logger = debug('akala:json-rpc-ws');
 
 import { Connection, type Handler, type PayloadDataType, type Parent, Payload } from './shared-connection.js';
-import type { SocketAdapter } from '@akala/core';
+import { logger, type SocketAdapter } from '@akala/core';
 
+const log = logger.use('akala:json-rpc-ws');
 
 
 /**
@@ -39,7 +38,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    */
   public expose<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, handler: Handler<TConnection, TStreamable, TParamType, TReplyType>): void
   {
-    logger('registering handler for %s', method);
+    log.debug('registering handler for %s', method);
     if (this.requestHandlers[method])
     {
       throw Error('cannot expose handler, already exists ' + method);
@@ -53,15 +52,15 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @param {Object} socket - new socket connection
    * @private
    */
-  public connected(socket: SocketAdapter<Payload<TStreamable>>): void
+  public connected(socket: SocketAdapter<Payload<TStreamable>[]>): void
   {
     const connection = this.connection(socket);
-    logger('%s connected with id %s', this.type, connection.id);
+    log.debug('%s connected with id %s', this.type, connection.id);
 
     this.connections[connection.id] = connection;
   }
 
-  abstract connection(socket: SocketAdapter<Payload<TStreamable>>): Connection<TStreamable>;
+  abstract connection(socket: SocketAdapter<Payload<TStreamable>[]>): Connection<TStreamable>;
 
 
   /**
@@ -73,7 +72,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
   public disconnected(connection: Connection<TStreamable>): void
   {
 
-    logger('disconnected');
+    log.debug('disconnected');
     delete this.connections[connection.id];
   }
 
@@ -124,7 +123,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    */
   public hangup(): void
   {
-    logger('hangup');
+    log.debug('hangup');
     const connections = Object.keys(this.connections);
     connections.forEach(function hangupConnection(this: Base<TStreamable, TConnection>, id)
     {

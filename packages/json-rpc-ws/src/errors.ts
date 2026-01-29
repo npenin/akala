@@ -1,8 +1,8 @@
 'use strict';
 
-import debug from 'debug';
+import { logger } from "@akala/core";
 
-const logger = debug('akala:json-rpc-ws');
+const log = logger.use('akala:json-rpc-ws');
 
 /*
  * http://www.jsonrpc.org/specification#error_object
@@ -59,6 +59,6 @@ export default function getError(type: ErrorTypes, id?: number | string, data?: 
   {
     payload.error.data = data;
   }
-  logger('error %j', payload);
+  log.debug('error %j', payload);
   return payload;
 }

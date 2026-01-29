@@ -1,45 +1,95 @@
 import { default as Errors, type Error as ConnectionError, type ErrorTypes } from './errors.js';
-import debug from 'debug';
-import type { EventListener, SerializableObject, SocketAdapter, SocketAdapterAkalaEventMap, SocketAdapterEventMap, Subscription } from '@akala/core';
-import { IsomorphicBuffer, SocketProtocolAdapter } from '@akala/core';
-const logger = debug('akala:json-rpc-ws');
+import type { EventListener, SerializableObject, SocketAdapter, SocketAdapterAkalaEventMap, SocketAdapterEventMap, SocketProtocolTransformer, Subscription } from '@akala/core';
+import { IsomorphicBuffer, logger, SocketProtocolAdapter } from '@akala/core';
+const log = logger.use('akala:json-rpc-ws');
 
 export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | boolean | boolean[] | number[] | string | string[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
 export type SerializedBuffer = { type: 'Buffer', data: Uint8Array | number[] };
 
 export type Payload<T> = SerializablePayload | StreamPayload<T>;
 
+export function JsonRpcSocketTransformer<TStreamable>(): SocketProtocolTransformer<Payload<TStreamable>, string | IsomorphicBuffer>
+{
+    return {
+        receive(data, self)
+        {
+            log.debug('message %j', data);
+
+            let payload: Payload<TStreamable>;
+            if (typeof (data) !== 'string') 
+            {
+                if (data instanceof IsomorphicBuffer)
+                    payload = jsonParse(data.toString('utf8'));
+            }
+            else if (typeof (data) == 'string')
+            {
+                payload = jsonParse(data);
+            }
+
+            if (!payload)
+            {
+                console.error(data);
+                return [Errors('parseError', -1)];
+            }
+
+            return [payload];
+        },
+        send(payload)
+        {
+            return JSON.stringify(payload);
+        }
+    }
+}
+
+
+export function MultiJsonRpcSocketTransformer<TStreamable>(): SocketProtocolTransformer<Payload<TStreamable>[], (string | IsomorphicBuffer)[]>
+{
+    const transformer = JsonRpcSocketTransformer<TStreamable>();
+
+    return {
+        receive(data, self)
+        {
+            log.debug('message %j', data);
+
+            return data.map(d => transformer.receive(d, self));
+        },
+        send(payload, self)
+        {
+            return payload.map(p => transformer.send(p, self));
+        }
+    }
+}
+
 export class JsonRpcSocketAdapter<TStreamable> extends SocketProtocolAdapter<Payload<TStreamable> | Payload<TStreamable>[]> implements SocketAdapter<Payload<TStreamable>>
 {
     constructor(socket: SocketAdapter)
     {
+        const transformer = JsonRpcSocketTransformer<TStreamable>();
         super({
             receive(data, self)
             {
-                logger('message %j', data);
-
-                let payload: Payload<TStreamable>;
-                if (typeof (data) !== 'string') 
-                {
-                    if (data instanceof IsomorphicBuffer)
-                        payload = jsonParse(data.toString('utf8'));
-                }
-                else if (typeof (data) == 'string')
-                {
-                    payload = jsonParse(data);
-                }
-
-                if (!payload)
-                {
-                    console.error(data);
-                    socket.send(self.transform.send(Errors('parseError', -1), self));
-                }
-
-                return [payload];
+                return transformer.receive(data, self);
             },
-            send(payload)
+            send(data, self)
             {
-                return JSON.stringify(payload);
+                if (!Array.isArray(data))
+                    data = [data];
+
+                const result = data.flatMap(chunk =>
+                {
+                    const transformed = transformer.send(chunk, self);
+                    return transformed;
+                });
+
+                if (result.length == 1)
+                    return result[0];
+
+                if (result.length > 1)
+                    if (result.every(r => typeof r == 'string'))
+                        return result.reduce((previous, current) => previous + current, '');
+                    else
+                        return IsomorphicBuffer.concat(result.map(r => typeof r == 'string' ? IsomorphicBuffer.from(r, 'utf8') : r as IsomorphicBuffer));
+                return '';
             }
         }, socket);
     }
@@ -86,7 +136,7 @@ const jsonParse = function jsonParse(data: string): any
     }
     catch (error)
     {
-        logger(error);
+        log.error(error);
         payload = null;
     }
     return payload;
@@ -100,7 +150,7 @@ const jsonParse = function jsonParse(data: string): any
 const emptyCallback = function emptyCallback()
 {
 
-    logger('emptycallback');
+    log.debug('emptycallback');
 };
 
 export interface Parent<TStreamable, TConnection extends Connection<TStreamable>>
@@ -124,16 +174,20 @@ export abstract class Connection<TStreamable>
     /**
      *
      */
-    constructor(public readonly socket: SocketAdapter<Payload<TStreamable>>, public readonly parent: Parent<TStreamable, Connection<TStreamable>>)
+    constructor(public readonly socket: SocketAdapter<Payload<TStreamable>[]>, public readonly parent: Parent<TStreamable, Connection<TStreamable>>)
     {
         if (!this.socket.send)
             throw new Error('socket.send is not defined');
-        logger('new Connection to %s', parent.type);
+        log.debug('new Connection to %s', parent.type);
 
         this.sub = socket.on('message', this.message.bind(this));
         // this.on('message', this.message.bind(this));
         this.once('close', this.close.bind(this));
-        this.once('error', this.close.bind(this));
+        this.on('error', (err) =>
+        {
+            log.error('socket error event', err);
+            this.close(err);
+        });
         // if (isBrowserSocket(parent, socket))
         // {
         //     socket.addEventListener('close', socketClosed.bind(this), { once: true });
@@ -147,12 +201,12 @@ export abstract class Connection<TStreamable>
     }
 
 
-    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap<Payload<TStreamable>>[K]>): Subscription
+    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap<Payload<TStreamable>[]>[K]>): Subscription
     {
         return this.socket.on(event, handler);
     }
 
-    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap<Payload<TStreamable>>[K]>): Subscription
+    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: EventListener<SocketAdapterAkalaEventMap<Payload<TStreamable>[]>[K]>): Subscription
     {
         return this.socket.once(event, handler);
     }
@@ -172,7 +226,7 @@ export abstract class Connection<TStreamable>
     public sendRaw(payload: Payload<TStreamable>): void
     {
         payload.jsonrpc = '2.0';
-        this.socket.send(payload);
+        this.socket.send([payload]);
     }
 
 
@@ -219,14 +273,14 @@ export abstract class Connection<TStreamable>
             {
                 return this.sendError('invalidRequest', id, { info: 'params, if provided, must be one of: null, object, array' });
             }
-            logger('message method %s', payload.method);
+            log.debug('message method %s', payload.method);
             if (id === null || typeof id === 'undefined')
             {
                 return handler.call(this, params, emptyCallback);
             }
             const handlerCallback = function handlerCallback(this: Connection<TStreamable>, err: ConnectionError, reply: PayloadDataType<TStreamable>)
             {
-                logger('handler got callback %j, %j', err, reply);
+                log.debug('handler got callback %j, %j', err, reply);
                 if (typeof this.socket != 'undefined')
                     this.sendResult(id, err, reply);
                 else
@@ -244,7 +298,7 @@ export abstract class Connection<TStreamable>
         }
         if (typeof id === 'string' || typeof id === 'number')
         {
-            logger('message id %s result %j error %j', id, result, error);
+            log.debug('message id %s result %j error %j', id, result, error);
             const responseHandler = this.responseHandlers[id];
             if (!responseHandler)
             {
@@ -277,7 +331,7 @@ export abstract class Connection<TStreamable>
     public sendResult(id: string | number | undefined, error: ConnectionError | undefined, result?: PayloadDataType<TStreamable>, isStream?: boolean): void
     {
 
-        logger('sendResult %s %s %j %j', id, isStream, error, result);
+        log.debug('sendResult %s %s %j %j', id, isStream, error, result);
         // Assert(id, 'Must have an id.');
         // Assert(error || result, 'Must have an error or a result.');
         if (error && result)
@@ -305,7 +359,7 @@ export abstract class Connection<TStreamable>
             {
                 if (typeof id == 'undefined')
                     throw new Error('streams are not supported without an id');
-                logger('result is stream');
+                log.debug('result is stream');
                 this.sendStream(id, result as TStreamable);
             }
         }
@@ -335,7 +389,7 @@ export abstract class Connection<TStreamable>
             throw new Error('method must be a non-empty string');
         if (params !== null && params !== undefined && !(params instanceof Object))
             throw new Error('params, if provided,  must be an array, object or null');
-        logger('sendMethod %s', method, id);
+        log.debug('sendMethod %s', method, id);
         if (callback)
         {
             this.responseHandlers[id] = callback;
@@ -374,7 +428,7 @@ export abstract class Connection<TStreamable>
     public sendError(error: ErrorTypes, id: number | string | undefined, data?: SerializableObject): void
     {
 
-        logger('sendError %s', error);
+        log.debug('sendError %s', error);
         //TODO if id matches a responseHandler, we should dump it right?
         this.sendRaw(Errors(error, id, data));
     }
@@ -387,11 +441,26 @@ export abstract class Connection<TStreamable>
      */
     public close(error?: ConnectionError | 1000 | Error | Event): void
     {
-        logger('close');
+        log.debug('close');
         if (error && error !== 1000)
         {
             // debugger;
-            logger('close error %s', error['stack'] || error);
+            if (error instanceof CloseEvent)
+            {
+                log.error('close error CloseEvent code=%d reason=%s wasClean=%s', error.code, error.reason, error.wasClean);
+            }
+            else if (error instanceof Event)
+            {
+                log.error('close error Event type=%s', error.type);
+            }
+            else if (error instanceof Error)
+            {
+                log.error('close error %s', error.stack || error.message || error);
+            }
+            else
+            {
+                log.error('close error %s', error);
+            }
         }
         this.sub?.();
         this.parent.disconnected(this); //Tell parent what went on so it can track connections
@@ -403,7 +472,7 @@ export abstract class Connection<TStreamable>
      */
     public hangup(): Promise<CloseEvent>
     {
-        logger('hangup');
+        log.debug('hangup');
         if (!this.socket)
             throw new Error('Not connected');
         return new Promise<CloseEvent>((resolve, reject) =>

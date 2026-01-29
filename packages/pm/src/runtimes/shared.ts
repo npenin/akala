@@ -18,7 +18,7 @@ export interface RuntimeInstance<T extends RuntimeEventMap = RuntimeEventMap> ex
 {
     runtime: Omit<Runtime, 'build'>;
     stop(): Promise<number>;
-    get adapter(): SocketAdapter<Payload<Readable>>;
+    get adapter(): SocketAdapter<Payload<Readable>[]>;
 
     get stderr(): Readable;
     get stdout(): Readable;

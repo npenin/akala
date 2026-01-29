@@ -32,7 +32,7 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
     public readonly runtime = Runtime;
     public static readonly name = 'nodejs';
     private readonly cp: ChildProcess;
-    public readonly adapter: SocketAdapter<Payload<Readable>>;
+    public readonly adapter: SocketAdapter<Payload<Readable>[]>;
     private readonly stderrPrefixer: NewLinePrefixer;
     private readonly stdoutPrefixer: NewLinePrefixer;
     constructor(args: string[], options: ChildProcessRuntimeOptions, signal?: AbortSignal)
@@ -44,9 +44,9 @@ export default class Runtime extends EventEmitter<ChildProcessRuntimeEventMap> i
         this.cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !options.keepAttached, env: Object.assign({ DEBUG_COLORS: process.stdout.isTTY }, process.env), stdio: ['ignore', options.inheritStdio ? 'inherit' : 'pipe', options.inheritStdio ? 'inherit' : 'pipe', 'ipc'], shell: false, windowsHide: true });
         if (options.keepAttached && !options.inheritStdio)
         {
-            this.stderrPrefixer = this.cp.stderr?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stderr.isTTY }), { end: true });
+            this.stderrPrefixer = this.cp.stderr?.pipe(new NewLinePrefixer(options.name.replace(/^@(\w+)\//, '$1:') + ':', { useColors: process.stderr.isTTY }), { end: true });
             this.stderrPrefixer.pipe(process.stderr);
-            this.stdoutPrefixer = this.cp.stdout?.pipe(new NewLinePrefixer(options.name + ' ', { useColors: process.stdout.isTTY }), { end: true });
+            this.stdoutPrefixer = this.cp.stdout?.pipe(new NewLinePrefixer(options.name.replace(/^@(\w+)\//, '$1:') + ':', { useColors: process.stdout.isTTY }), { end: true });
             this.stdoutPrefixer.pipe(process.stdout);
             this.cp.on('disconnect', () =>
             {

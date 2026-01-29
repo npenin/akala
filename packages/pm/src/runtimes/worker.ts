@@ -13,7 +13,7 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
     public static readonly name = 'worker'
     public readonly runtime = Runtime;
     private readonly cp: Worker;
-    public readonly adapter: SocketAdapter<Payload<Readable>>;
+    public readonly adapter: SocketAdapter<Payload<Readable>[]>;
     private _running: boolean;
     constructor(args: string[], options: { new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: number, wait?: boolean }, signal?: AbortSignal)
     {

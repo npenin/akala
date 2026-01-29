@@ -6,11 +6,9 @@ import
 } from './shared-connection.js';
 import { default as Client } from './shared-client.js';
 import { default as Errors, type Payload as ErrorPayload } from './errors.js';
-import type { SocketAdapter, SocketAdapterEventMap, SerializableObject } from '@akala/core'
+import { type SocketAdapter, type SocketAdapterEventMap, type SerializableObject, logger } from '@akala/core'
 
-import debug from 'debug';
-
-const logger = debug('akala:json-rpc-ws');
+const log = logger.use('akala:json-rpc-ws');
 
 import * as ws from './ws/websocket.js';
 export { ws };
@@ -65,7 +63,7 @@ export class Connection extends BaseConnection<ReadableStream<Uint8Array>>
     else if (this.socket.open)
       this.sendRaw({ id: id, result: { event: 'end' }, stream: false });
     else
-      logger('socket was closed before end of stream')
+      log.debug('socket was closed before end of stream')
   }
 
   protected isStream(result: PayloadDataType<ReadableStream>): result is ReadableStream  

@@ -98,7 +98,7 @@ export default class Runtime extends EventEmitter<RuntimeEventMap> implements Ru
         this.attach();
         this.monitor();
     }
-    get adapter(): SocketAdapter<Payload<Readable>>
+    get adapter(): SocketAdapter<Payload<Readable>[]>
     {
         return null;
     }
