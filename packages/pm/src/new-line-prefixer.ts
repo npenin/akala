@@ -31,7 +31,7 @@ export class NewLinePrefixer extends Transform
         {
             const c = selectColor(prefix);
             const colorCode = '\u001B[3' + (c < 8 ? c : '8;5;' + c);
-            this.prefix = `  ${colorCode};1m${prefix} \u001B[0m`;
+            this.prefix = `  ${colorCode};1m${prefix}\u001B[0m`;
         }
     }
 

@@ -5,7 +5,6 @@ import { logger } from "@akala/core";
 import { cli } from "./cli.js";
 import program, { buildCliContextFromProcess, ErrorMessage } from "./index.js";
 
-
 const originalEmit = process.emit;
 // @ts-expect-error - TS complains about the return type of originalEmit.apply
 process.emit = function (name, data, ...args)

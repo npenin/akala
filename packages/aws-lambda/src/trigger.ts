@@ -1,5 +1,5 @@
 import { Metadata, Processors, Trigger } from '@akala/commands'
-import { SimpleInjector, mapAsync } from '@akala/core';
+import { SimpleInjector, logger, mapAsync } from '@akala/core';
 import type { APIGatewayEvent, Context } from 'aws-lambda'
 
 export interface AwsConfiguration extends Metadata.Configuration
@@ -14,6 +14,8 @@ declare module '@akala/commands'
     }
 }
 
+const log = logger.use('commands:trigger:aws');
+
 export const trigger = new Trigger('aws', (container, config: { [key: string]: string } | string) =>
 {
     return (event: { Records: { eventSource: string }[] } | APIGatewayEvent, context: Context, ...args: []) =>
@@ -27,8 +29,8 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
             {
                 const cmdInjector = new SimpleInjector(ctxInjector);
                 cmdInjector.register('event', record);
-                console.log(config);
-                console.log(cmdInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));
+                log.debug(config);
+                log.debug(cmdInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));
                 // container.inspect();
                 const cmd = cmdInjector.injectWithName([typeof config == 'string' ? config : config[record.eventSource]],
                     cmdName => container.resolve((cmdName as string).replace(/:/g, '.')))(this);
@@ -49,8 +51,8 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
         else
         {
             ctxInjector.register('event', event);
-            console.log(config);
-            console.log(ctxInjector.resolve(typeof config == 'string' ? config : config.aws));
+            log.debug(config);
+            log.debug(ctxInjector.resolve(typeof config == 'string' ? config : config.aws));
             container.inspect();
             const cmd = ctxInjector.injectWithName([typeof config == 'string' ? config : config.aws],
                 (cmdName) => container.resolve((cmdName as string).replace(/:/g, '.')))(this);

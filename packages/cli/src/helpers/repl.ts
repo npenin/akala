@@ -1,6 +1,9 @@
 import program, { ErrorMessage } from '../router/index.js';
 import * as repl from 'repl'
 import { buildCliContextFromContext } from '../index.js';
+import { logger } from '@akala/core';
+
+const log = logger.use('akala:cli:repl');
 
 export function replEval(input: string): string[]
 {
@@ -83,7 +86,7 @@ export default function (_config, mainprogram)
         {
             if (replStarted)
             {
-                console.log('repl is already started');
+                log.warn('repl is already started');
                 return Promise.resolve(null);
             }
 

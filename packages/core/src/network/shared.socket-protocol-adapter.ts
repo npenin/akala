@@ -24,6 +24,9 @@ export class SocketProtocolAdapter<T> extends EventEmitter<SocketAdapterAkalaEve
     {
         super();
         this.on(Symbol.dispose, () => socket.close());
+        socket.on('error', (err) => this.emit('error', err));
+        socket.on('close', (ev) => this.emit('close', ev));
+        socket.on('open', (ev) => this.emit('open', ev));
     }
 
     /**

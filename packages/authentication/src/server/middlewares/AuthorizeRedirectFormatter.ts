@@ -1,5 +1,8 @@
-import { type ErrorMiddlewareAsync, HttpStatusCode, type MiddlewarePromise, type MiddlewareResult, NotHandled } from "@akala/core";
+import { type ErrorMiddlewareAsync, HttpStatusCode, logger, type MiddlewarePromise, type MiddlewareResult, NotHandled } from "@akala/core";
 import type { Request, Response } from "@akala/server";
+
+const log = logger.use('akala:auth:redirect-formatter');
+
 
 export class AuthorizeRedirectFormatter implements ErrorMiddlewareAsync<[unknown, Response]>
 {
@@ -9,7 +12,7 @@ export class AuthorizeRedirectFormatter implements ErrorMiddlewareAsync<[unknown
 
     handleError(error: MiddlewareResult, req: Request, response: Response): MiddlewarePromise<never>
     {
-        console.log(error);
+        log.debug(error);
         if (error && typeof error == 'object' && 'statusCode' in error && error.statusCode === HttpStatusCode.Unauthorized && !response.headersSent)
         {
             let url = this.redirectUrl;

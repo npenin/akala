@@ -7,20 +7,8 @@ export class SyncLoggerAsync implements ILogMiddlewareAsync
     {
     }
 
-    shouldHandle(logLevel: LogLevels, namespaces: string[]): boolean
+    async handle(level: LogLevels, namespaces: string[], ...context: unknown[]): Promise<MiddlewareResult>
     {
-        return this.logger.shouldHandle(logLevel, namespaces);
-    }
-
-    handle(level: LogLevels, namespaces: string[], ...context: unknown[]): Promise<MiddlewareResult<'break'>>
-    {
-        try
-        {
-            return Promise.resolve(this.logger.handle(level, namespaces.slice(1), ...context));
-        }
-        catch (e)
-        {
-            return Promise.reject(e);
-        }
+        return this.logger.handle(level, namespaces, ...context);
     }
 }

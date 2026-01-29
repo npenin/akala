@@ -13,7 +13,7 @@ import akala from './akala.mjs'
 
     cli.format(async r =>
     {
-        console.log('%O', r);
+        logger.info('%O', r);
     });
     try
     {
@@ -22,7 +22,7 @@ import akala from './akala.mjs'
     }
     catch (e)
     {
-        console.error(e);
+        logger.error(e);
         process.exit(1);
     }
 })();

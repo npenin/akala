@@ -39,10 +39,15 @@ export class WebSocketAdapter extends EventEmitter<SocketAdapterAkalaEventMap> i
         return deferred;
     }
 
-    send(data: string | IsomorphicBuffer): Promise<void>
+    async send(data: string | IsomorphicBuffer): Promise<void>
     {
+        if (!this.open)
+            await new Promise<void>(resolve =>
+            {
+                this.socket.addEventListener('open', () => resolve(), { once: true });
+            });
         this.socket.send(data instanceof IsomorphicBuffer ? data.toArray() : data);
-        return Promise.resolve();
+        console.log('data sent');
     }
 
     private readonly messageListeners: [(ev: unknown) => void, (ev: unknown) => void][] = [];

@@ -1,8 +1,8 @@
-import { type Http, Interpolate } from '@akala/core'
-import { basename, extname, sep } from 'path'
+import { type Http, Interpolate, logger } from '@akala/core'
+import { basename, extname, sep } from 'node:path'
 import { Metadata, Processors } from '@akala/commands'
 import type { SchemaObject } from 'ajv';
-import fs from 'fs/promises'
+import fs from 'node:fs/promises'
 
 function parseRoute(uri: string): { route: string, parameters: { name: string, multiple: boolean }[] }
 {
@@ -109,6 +109,8 @@ export type SmithyEndpoint = { url: string, properties: Record<string, string>, 
 
 const smithyEvaluator = new Interpolate('{', '}');
 
+const log = logger.use('akala:aws-sdk:generate-sdk');
+
 const arg = (argument: { ref: string } | boolean | string | SmithyRuleCondition<string, string>) =>
 {
     switch (typeof (argument))
@@ -116,26 +118,28 @@ const arg = (argument: { ref: string } | boolean | string | SmithyRuleCondition<
         case 'boolean':
             return argument;
         case 'string':
-            const evaluator = smithyEvaluator.build(argument, false, (exp) =>
             {
-                let endOfRootParameter = exp.length;
-                endOfRootParameter = exp.indexOf('#');
-                if (endOfRootParameter > -1)
-                    return arg({ ref: exp.substring(1, endOfRootParameter) }) + '["' + exp.substring(endOfRootParameter + 1).split('#').join('"]["') + '"]';
-                return arg({ ref: exp.substring(1, exp.length - 1) });
-            })
-            if (!evaluator.expressions?.length)
-                return JSON.stringify(argument)
-            return evaluator("config");
-
+                const evaluator = smithyEvaluator.build(argument, false, (exp) =>
+                {
+                    let endOfRootParameter = exp.indexOf('#');
+                    if (endOfRootParameter > -1)
+                        return arg({ ref: exp.substring(1, endOfRootParameter) }) + '["' + exp.substring(endOfRootParameter + 1).split('#').join('"]["') + '"]';
+                    return arg({ ref: exp.substring(1, exp.length - 1) });
+                })
+                if (!evaluator.expressions?.length)
+                    return JSON.stringify(argument)
+                return evaluator("config");
+            }
         // return JSON.stringify(arg);
         case 'object':
-            if ('ref' in argument)
-                return `config[${JSON.stringify(argument.ref)}]`;
-            const result = conditionRules[argument.fn](argument);
-            if (argument.assign)
-                return `config[${JSON.stringify(argument.assign)}]= await ${result} `;
-            return result;
+            {
+                if ('ref' in argument)
+                    return `config[${JSON.stringify(argument.ref)}]`;
+                const result = conditionRules[argument.fn](argument);
+                if (argument.assign)
+                    return `config[${JSON.stringify(argument.assign)}]= await ${result} `;
+                return result;
+            }
     }
 }
 
@@ -269,7 +273,7 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
     if (!service)
         throw new Error('Service not found');
 
-    const container: Metadata.Container = { name: service.traits['aws.api#service']!.arnNamespace, commands: [] };
+    const container: Metadata.Container = { name: service.traits['aws.api#service'].arnNamespace, commands: [] };
 
     const schemaCache: Record<string, SchemaObject> = {
         'smithy.api#Unit': { type: 'object' },
@@ -347,7 +351,7 @@ export default async function generateSdk(http: Http, serviceName?: string, outp
         }
         catch (e)
         {
-            console.error(`error happened for service ${serviceName} and operation ${op.target.substring(urn.length)} `)
+            log.error(`error happened for service ${serviceName} and operation ${op.target.substring(urn.length)} `)
             throw e;
         }
     });

@@ -59,5 +59,5 @@ export default async function $init(container: Container<State>, options: Record
         //     })
         // });
     });
-    console.error('there is no router yet; Working in degraded mode');
+    log.error('there is no router yet; Working in degraded mode');
 }

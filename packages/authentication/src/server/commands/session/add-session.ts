@@ -1,12 +1,15 @@
 import { BinaryOperator } from "@akala/core/expressions";
 import { type State } from "../../state.js";
 import { AuthenticationMethodReference } from "../../../model/session.js";
+import { logger } from "@akala/core";
+
+const log = logger.use('akala:auth:add-session');
 
 export default async function (this: State, deviceId: string, userId: string, expiresOn?: Date, authenticationMethod?: AuthenticationMethodReference, connectionId?: string)
 {
     let session = await this.store.Session.where('userId', BinaryOperator.Equal, userId).where('deviceId', BinaryOperator.Equal, deviceId).firstOrDefault();
-    console.log(session);
-    console.log(connectionId);
+    log.debug(session);
+    log.debug(connectionId);
     if (session && (session.expiresOn > new Date() || !session.expiresOn) && (!connectionId || session.id == connectionId))
     {
         //already valid existing session

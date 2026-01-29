@@ -111,13 +111,13 @@ export default async function (this: State, pkg: string | URL, force?: boolean):
             case 'e':
             case 'g':
                 this.logger.warn(`Unknown tar typeflag: '${entry.typeFlag}' at path ${path} in ${pkgJson.dist.tarball}`);
-                this.logger.warn(entry);
+                this.logger.debug(entry);
                 skip++;
                 break;
             default:
                 this.logger.warn(`Unknown tar typeflag: '${entry.typeFlag}' at path ${path} in ${pkgJson.dist.tarball}`);
-                console.log(previousEntry);
-                console.log(entry);
+                this.logger.debug(previousEntry);
+                this.logger.debug(entry);
                 throw new ErrorWithStatus(HttpStatusCode.NotImplemented);
         }
         previousEntry = entry;

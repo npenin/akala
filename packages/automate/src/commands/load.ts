@@ -39,7 +39,7 @@ export default async function (this: State, container: Container<unknown>, name:
 
     container.register(command);
 
-    console.log(workflow.on);
+    this.logger.info(workflow.on);
     if (workflow.on)
     {
         await eachAsync(workflow.on, async (value: TriggerMap[typeof triggerName], triggerName: keyof TriggerMap) =>

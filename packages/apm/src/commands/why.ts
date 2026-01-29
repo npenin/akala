@@ -1,9 +1,11 @@
-import { ErrorWithStatus, HttpStatusCode, sequencify } from "@akala/core";
+import { ErrorWithStatus, HttpStatusCode, logger, sequencify } from "@akala/core";
 import { type LockFile, snapshot } from "../lockfile.js";
 import { closest, type State } from "../state.js";
 import { format } from "util";
 
-export default async function (this: State, pkg: string | URL, signal?: AbortSignal)
+const log = logger.use('akala:apm:why');
+
+export default async function why(this: State, pkg: string | URL, signal?: AbortSignal)
 {
     if (typeof pkg == 'string' && !URL.canParse(pkg))
         throw new Error('only URLs are supported');
@@ -45,7 +47,7 @@ export default async function (this: State, pkg: string | URL, signal?: AbortSig
     }
     catch (e)
     {
-        console.error(`Error while processing package.json: ${e}`);
+        log.error(`Error while processing package.json: ${e}`);
         throw e;
     }
 

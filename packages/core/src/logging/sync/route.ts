@@ -1,62 +1,98 @@
 import { ILogger, ILogMiddleware, LogLevels } from '../shared.js';
 import { MiddlewareResult } from '../../middlewares/shared.js';
-import { MulticastLogMiddleware } from './multicast.js';
 
-
-export class LogRouteMiddleware<TMiddleware extends ILogMiddleware> implements ILogMiddleware
+/**
+ * Fast multicast middleware for routing log messages to multiple handlers
+ */
+export class MulticastLogMiddleware implements ILogMiddleware
 {
-    constructor(public readonly pattern: string, protected readonly logger: TMiddleware, public readonly logLevel: LogLevels)
+    constructor(private readonly loggers: ILogMiddleware[] = []) { }
+
+    public use(...middlewares: ILogMiddleware[])
     {
+        this.loggers.push(...middlewares);
     }
 
-    shouldHandle(logLevel: LogLevels, namespaces: string[]): boolean
+    handle(logLevel: LogLevels, namespaces: string[], ...args: unknown[]): MiddlewareResult
     {
-        return (this.pattern === '*' || namespaces.length === 0 || this.pattern == namespaces[0]) && this.logLevel <= logLevel;
-
-    }
-
-    handle(level: LogLevels, namespaces: string[], ...context: unknown[]): MiddlewareResult
-    {
-        if (this.shouldHandle(level, namespaces))
-            return this.logger.handle(level, namespaces.slice(1), ...context);
-        throw undefined;
+        const results = this.loggers.map(l =>
+        {
+            try
+            {
+                return { status: 'fulfilled' as const, value: l.handle(logLevel, namespaces, ...args) };
+            }
+            catch (e)
+            {
+                return { status: 'rejected' as const, reason: e }
+            }
+        }).filter(Boolean);
+        const fulfilled: MiddlewareResult[] = results.filter(r => r.status === 'fulfilled').map(r => r.value).filter(Boolean);
+        const rejected: any[] = results.filter(r => r.status === 'rejected').map(r => r.reason);
+        if (results.length === 0 || rejected.length == 0)
+            throw undefined;
+        if (fulfilled.length === 1)
+            return (fulfilled[0]);
+        if (rejected.length === 1)
+            throw rejected[0];
+        if (fulfilled.length > 1)
+            return new AggregateError(fulfilled, 'Multiple loggers handled the message');
+        if (rejected.length > 1)
+            throw rejected;
     }
 }
 
-
-export class MulticastLogRouteMiddleware extends LogRouteMiddleware<MulticastLogMiddleware>
+/**
+ * Pattern-based routing middleware that wraps a multicast
+ */
+export class MulticastLogRouteMiddleware implements ILogMiddleware
 {
-    constructor(pattern: string, logLevel: LogLevels)
+    private readonly multicast: MulticastLogMiddleware;
+
+    constructor(public readonly pattern: string)
     {
-        super(pattern, new MulticastLogMiddleware(), logLevel);
-        this.use = this.logger.use.bind(this.logger);
+        this.multicast = new MulticastLogMiddleware();
     }
 
-    public readonly use: MulticastLogMiddleware['use'];
+    handle(logLevel: LogLevels, namespaces: string[], ...args: unknown[]): MiddlewareResult
+    {
+        // Pattern matching: '*' matches everything, otherwise match first namespace
+        if (this.pattern !== '*' && namespaces.length > 0 && this.pattern !== namespaces[0])
+            throw undefined;
+
+        return this.multicast.handle(logLevel, namespaces.slice(1), ...args);
+    }
+
+    public use(...middlewares: ILogMiddleware[])
+    {
+        this.multicast.use(...middlewares);
+    }
 }
 
+/**
+ * Simplified namespace-based router for logging
+ * Pre-resolves shouldHandle and handle per namespace
+ */
 export class LoggerRoute implements ILogger
 {
-    constructor(private pattern: string)
+    constructor(private readonly pattern: string = '*')
     {
-        this.error = new MulticastLogRouteMiddleware(this.pattern, LogLevels.error)
-        this.warn = new MulticastLogRouteMiddleware(this.pattern, LogLevels.warn)
-        this.help = new MulticastLogRouteMiddleware(this.pattern, LogLevels.help)
-        this.data = new MulticastLogRouteMiddleware(this.pattern, LogLevels.data)
-        this.info = new MulticastLogRouteMiddleware(this.pattern, LogLevels.info)
-        this.debug = new MulticastLogRouteMiddleware(this.pattern, LogLevels.debug)
-        this.prompt = new MulticastLogRouteMiddleware(this.pattern, LogLevels.prompt)
-        this.verbose = new MulticastLogRouteMiddleware(this.pattern, LogLevels.verbose)
-        this.input = new MulticastLogRouteMiddleware(this.pattern, LogLevels.input)
-        this.silly = new MulticastLogRouteMiddleware(this.pattern, LogLevels.silly)
+        // Create multicasters for each log level with pattern-based routing
+        this.error = new MulticastLogRouteMiddleware(this.pattern);
+        this.warn = new MulticastLogRouteMiddleware(this.pattern);
+        this.help = new MulticastLogRouteMiddleware(this.pattern);
+        this.data = new MulticastLogRouteMiddleware(this.pattern);
+        this.info = new MulticastLogRouteMiddleware(this.pattern);
+        this.debug = new MulticastLogRouteMiddleware(this.pattern);
+        this.prompt = new MulticastLogRouteMiddleware(this.pattern);
+        this.verbose = new MulticastLogRouteMiddleware(this.pattern);
+        this.input = new MulticastLogRouteMiddleware(this.pattern);
+        this.silly = new MulticastLogRouteMiddleware(this.pattern);
     }
 
     public use(namespace: string)
     {
         const sub = new LoggerRoute(namespace);
-
         this.pipe(sub);
-
         return sub;
     }
 
@@ -85,3 +121,4 @@ export class LoggerRoute implements ILogger
     public readonly input: MulticastLogRouteMiddleware;
     public readonly silly: MulticastLogRouteMiddleware;
 }
+

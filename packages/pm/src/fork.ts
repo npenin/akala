@@ -4,9 +4,9 @@ import program, { buildCliContextFromProcess } from '@akala/cli';
 process.setSourceMapsEnabled(true);
 
 import { cli } from '@akala/cli/cli'
-import { logger, LogLevels } from '@akala/core';
+import { logger } from '@akala/core';
 
-const context = buildCliContextFromProcess(logger.use('akala', LogLevels.help), { plugins: [] });
+const context = buildCliContextFromProcess(logger.use('akala'), { plugins: [] });
 cli();
 
 process.on('SIGINT', () => context.abort.abort('SIGINT'));

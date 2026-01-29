@@ -1,9 +1,9 @@
 import { Trigger, Container, metadata, Metadata } from '@akala/commands';
 import { HttpRouter as Router, type Request, type Response } from '../router/index.js';
 import { HttpStatusCode, Injector, logger } from '@akala/core';
-import * as http from 'http';
-import * as https from 'https';
-import * as http2 from 'http2';
+import * as http from 'node:http';
+import * as https from 'node:https';
+import * as http2 from 'node:http2';
 
 const log = logger.use('commands:trigger:http')
 

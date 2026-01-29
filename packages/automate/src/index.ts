@@ -8,7 +8,7 @@ import { runnerMiddleware } from './workflow-commands/process.js';
 import { Container } from '@akala/commands';
 import { type DateRequest } from '@akala/cron';
 
-export const defaultLogger: LoggerWrapper = logger.use('automate', LogLevels.warn);
+export const defaultLogger: LoggerWrapper = logger.use('automate');
 
 export const interpolate = new Interpolate('$(', ')');
 

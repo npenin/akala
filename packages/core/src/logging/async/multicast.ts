@@ -1,44 +1,27 @@
+// This file is deprecated - use route.ts instead
+export { MulticastLogMiddlewareAsync, MulticastLogRouteMiddlewareAsync } from './route.js';
+
 import { MiddlewareResult } from "../../middlewares/shared.js";
 import { ILogMiddlewareAsync, LogLevels } from "../shared.js";
 
-export class MulticastLogMiddlewareAsync implements ILogMiddlewareAsync
-{
-    constructor(private loggers: ILogMiddlewareAsync[] = []) { }
-
-    public use(...middlewares: ILogMiddlewareAsync[])
-    {
-        this.loggers.push(...middlewares);
-    }
-
-    shouldHandle(logLevel: LogLevels, namespaces: string[])
-    {
-        return this.loggers.reduce((previous, current) => previous && current.shouldHandle(logLevel, namespaces), true);
-    }
-
-    handle(logLevel: LogLevels, namespaces: string[], ...args): Promise<MiddlewareResult>
-    {
-        return Promise.allSettled(this.loggers.filter(l => l.shouldHandle(logLevel, namespaces)).map(l => l.handle(logLevel, namespaces, ...args))).then((res) =>
-        {
-            const results = res.filter(x => x);
-            const fullfilled: MiddlewareResult[] = results.filter(r => r.status === 'fulfilled').map(r => r.value).filter(r => r);
-            const rejected: any[] = results.filter(r => r.status === 'rejected').map(r => r.reason);
-            if (results.length === 0 || rejected.length == 0)
-                return Promise.reject();
-            if (fullfilled.length === 1)
-                return (fullfilled[0]);
-            if (rejected.length === 1)
-                return Promise.reject(rejected[0]);
-            if (fullfilled.length > 1)
-                return new AggregateError(fullfilled, 'Multiple loggers handled the message');
-            if (rejected.length > 1)
-                return Promise.reject(rejected);
-        });
-    }
-
-
-}
-
 export function multicastLoggerAsync(...loggers: ILogMiddlewareAsync[]): ILogMiddlewareAsync
 {
-    return new MulticastLogMiddlewareAsync(loggers);
+    return {
+        async handle(logLevel: LogLevels, namespaces: string[], ...args: unknown[]): Promise<MiddlewareResult>
+        {
+            const results = await Promise.allSettled(loggers.map(l => l.handle(logLevel, namespaces, ...args)));
+            const fulfilled: MiddlewareResult[] = results.filter(r => r.status === 'fulfilled').map(r => (r as PromiseFulfilledResult<MiddlewareResult>).value).filter(Boolean);
+            const rejected: any[] = results.filter(r => r.status === 'rejected').map(r => (r as PromiseRejectedResult).reason);
+            if (results.length === 0 || rejected.length == 0)
+                throw undefined;
+            if (fulfilled.length === 1)
+                return (fulfilled[0]);
+            if (rejected.length === 1)
+                throw rejected[0];
+            if (fulfilled.length > 1)
+                return new AggregateError(fulfilled, 'Multiple loggers handled the message');
+            if (rejected.length > 1)
+                throw rejected;
+        }
+    };
 }

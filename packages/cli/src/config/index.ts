@@ -3,6 +3,8 @@ import * as fs from 'fs';
 import { promisify } from 'util';
 import * as akala from '@akala/core'
 
+const log = akala.logger.use('akala:cli:config');
+
 async function updateConfig(newConfig, key)
 {
     const config = await getConfig();
@@ -91,7 +93,7 @@ function writeConfig(config)
     return promisify(fs.writeFile)('./config.json', JSON.stringify(config, null, 4), 'utf8').catch(function (err)
     {
         if (err)
-            console.error(err);
+            log.error(err);
     });
 }
 

@@ -1,7 +1,7 @@
 import { Metadata, Processors } from "@akala/commands";
 import fs from 'fs/promises'
 import { join, resolve } from "path";
-import { base64, lazy, type LoggerWrapper, mapAsync } from "@akala/core";
+import { base64, lazy, logger, type LoggerWrapper, mapAsync } from "@akala/core";
 import glob from 'fast-glob';
 import { xpm } from '@akala/cli'
 import * as zip from '@zip.js/zip.js';
@@ -19,6 +19,8 @@ export const ActionPermissionsRemap = {
         Invoke: 'InvokeFunction'
     }
 }
+
+const log = logger.use('akala:aws-sdk:generate-tf');
 
 export default async function (logger: LoggerWrapper, inputPath: string, commandsName: string, environment: string, outputPath: string)
 {
@@ -95,7 +97,7 @@ export default async function (logger: LoggerWrapper, inputPath: string, command
             catch (e)
             {
                 if (e.code !== 'ENOENT')
-                    console.error(e);
+                    log.error(e);
             }
         }
 

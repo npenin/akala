@@ -18,7 +18,7 @@ export type { JsonSchema } from './jsonschema.js'
 import './net-socket-adapter.js'
 import commands from './commands.js'
 import $metadata from './commands/$metadata.js'
-import { type LoggerWrapper, logger as LoggerBuilder, LogLevels } from '@akala/core'
+import { type LoggerWrapper, logger as LoggerBuilder } from '@akala/core'
 export { default as serve, type ServeOptions } from './cli/serve.js'
 import * as FileGenerator from './new.js';
 import { Readable } from 'stream';
@@ -97,16 +97,13 @@ export class Cli
         await this.promise;
         if (args)
         {
-            if (process.env.NODE_ENV == 'production')
-                logger = logger || LoggerBuilder.use(process.argv0, LogLevels.error);
-            else
-                logger = logger || LoggerBuilder.use(process.argv0, LogLevels.warn);
+            logger ??= LoggerBuilder.use(process.argv0);
 
             return await this.program.process(Object.assign(buildCliContext(logger, ...args), { currentWorkingDirectory: process.cwd() }));
         }
         return await this.program.process(buildCliContextFromProcess());
     }
 
-    public static Metadata = $metadata;
+    public static readonly Metadata = $metadata;
 }
 

@@ -8,12 +8,14 @@ import { type State } from '../state.js';
 import { AuthenticationStore } from '../authentication-store.js';
 import { providers, Query } from "@akala/storage";
 // import { webcrypto as crypto } from "crypto";
-import { base64, HttpStatusCode, IsomorphicBuffer } from '@akala/core'
+import { base64, HttpStatusCode, IsomorphicBuffer, logger } from '@akala/core'
 import { AuthorizeRedirectFormatter } from "../middlewares/AuthorizeRedirectFormatter.js";
 import { User } from "../../model/user.js";
 import { type ProxyConfiguration } from '@akala/config';
 import fsHandler from "@akala/fs";
 import { pathToFileURL } from "url";
+
+const log = logger.use('akala:auth:init');
 
 export default async function (this: State, config: ProxyConfiguration<{ provider: string, loginUrl: string, keyPath: string }>, container: Container<State>, providerName: string, keyPath: string, loginUrl: string, router?: HttpRouter)
 {
@@ -39,11 +41,11 @@ export default async function (this: State, config: ProxyConfiguration<{ provide
             await fs.writeFile(keyPath, key)
         }
         else
-            console.error(e);
+            log.error(e);
     }
 
     if (!key)
-        console.warn('a temporary key will be generated. That means that entries created with that key will not be valid on the next run. If you want to persist the key, please specify the `keyPath` in the config');
+        log.warn('a temporary key will be generated. That means that entries created with that key will not be valid on the next run. If you want to persist the key, please specify the `keyPath` in the config');
 
     const cryptoKey = this.cryptoKey = key ? await crypto.subtle.importKey('raw', key.toArray(), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']) : await crypto.subtle.generateKey({ name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
 

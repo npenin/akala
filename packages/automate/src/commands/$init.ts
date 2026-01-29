@@ -27,7 +27,7 @@ export default async function init(this: State, pm: pmContainer, context: Contex
             }, async (err) =>
             {
                 await pm.dispatch('stop', name);
-                console.error(err);
+                this.logger.error(err);
                 next(true);
                 if (msg.complete)
                     msg.complete.reject(err);

@@ -1,6 +1,8 @@
 import { Container } from '../model/container.js';
-import { eachAsync } from '@akala/core';
+import { eachAsync, logger } from '@akala/core';
 import { serverHandlers } from '../protocol-handler.js';
+
+const log = logger.use('akala:commands:serve');
 
 export interface ServeOptions
 {
@@ -116,8 +118,8 @@ export default async function <T = void>(container: Container<T>, options: strin
 
     Object.keys(options).forEach(o =>
     {
-        console.log('listening on ' + o);
+        log.warn('listening on ' + o);
     })
 
-    console.log('server ready');
+    log.info('server ready');
 }

@@ -1,5 +1,5 @@
 import { bold, italic, strikethrough, underline } from 'yoctocolors'
-import { Middleware, MiddlewareAsync, MiddlewareResult } from '../middlewares/shared.js';
+import { Middleware, MiddlewareAsync } from '../middlewares/shared.js';
 import { each } from '../each.js';
 
 /**
@@ -8,10 +8,10 @@ import { each } from '../each.js';
  * @property {number} error - Highest priority error level (0)
  * @property {number} warn - Warning level (1)
  * @property {number} help - Help information (2)
- * @property {number} data - Data tracing (3)
- * @property {number} info - General information (4)
+ * @property {number} info - General information (3)
+ * @property {number} prompt - Prompt messages (4)
  * @property {number} debug - Debug-level messages (5)
- * @property {number} prompt - Prompt messages (6)
+ * @property {number} data - Data tracing (6)
  * @property {number} verbose - Verbose output (7)
  * @property {number} input - Input tracing (8)
  * @property {number} silly - Lowest priority tracing (9)
@@ -21,10 +21,10 @@ export enum LogLevels
     error = 0,
     warn = 1,
     help = 2,
-    data = 3,
-    info = 4,
+    info = 3,
+    prompt = 4,
     debug = 5,
-    prompt = 6,
+    data = 6,
     verbose = 7,
     input = 8,
     silly = 9
@@ -40,12 +40,10 @@ export interface LogContext
 
 export interface ILogMiddleware extends Middleware<[LogLevels, string[], ...unknown[]]>
 {
-    shouldHandle(logLevel: LogLevels, namespaces: string[]): boolean;
 }
 
 export interface ILogMiddlewareAsync extends MiddlewareAsync<[LogLevels, string[], ...unknown[]]>
 {
-    shouldHandle(logLevel: LogLevels, namespaces: string[]): boolean;
 }
 
 export type ILogger<TLogger = ILogMiddleware> =
@@ -55,37 +53,116 @@ export type ILogger<TLogger = ILogMiddleware> =
 
 export type ILoggerAsync = ILogger<ILogMiddlewareAsync>
 
-export class LoggerAdapterMiddleware<
-    TLogger extends ILogger | ILoggerAsync
->
-{
-    constructor(private readonly logger: TLogger) { }
-
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): TLogger extends ILoggerAsync
-        ? Promise<MiddlewareResult>
-        : MiddlewareResult
-    {
-
-        return this.logger[LogLevels[logLevel]].handle(logLevel, namespaces, ...context);
-    }
-}
-
 export const logConfig: {
     defaultLevel: LogLevels;
     namespaceConfig: LogConfig
 } = { defaultLevel: LogLevels.error, namespaceConfig: {} };
 
+// Configuration change listeners
+const configListeners: Set<() => void> = new Set();
+
+/**
+ * Subscribe to configuration changes
+ * @param listener Callback function to invoke when config changes
+ * @returns Unsubscribe function
+ */
+export function onConfigChange(listener: () => void): () => void
+{
+    configListeners.add(listener);
+    return () => configListeners.delete(listener);
+}
+
+/**
+ * Notify all listeners that config has changed
+ */
+function notifyConfigChange(): void
+{
+    configListeners.forEach(listener => listener());
+}
+
+/**
+ * Get the effective log level for a given namespace
+ * Checks namespace-specific config first, then falls back to default level
+ */
+export function getEffectiveLogLevel(namespace: string[]): LogLevels
+{
+    if (namespace.length === 0)
+        return logConfig.defaultLevel;
+
+    return resolveNamespaceLevel(logConfig.namespaceConfig, namespace, 0);
+}
+
+function tryResolveFromMatch(match: any, namespace: string[], index: number, isLastPart: boolean): LogLevels | undefined
+{
+    if (match === undefined)
+        return undefined;
+
+    const level = match.level;
+
+    // Return level if found and this is the last part
+    if (isLastPart && level !== undefined)
+        return level;
+
+    // Check if we can descend further
+    const hasChildren = Object.keys(match).some(k => k !== 'level');
+    if (hasChildren)
+        return resolveNamespaceLevel(match, namespace, index + 1);
+
+    // Only has level property, return it
+    if (level !== undefined)
+        return level;
+
+    return undefined;
+}
+
+function resolveNamespaceLevel(config: any, namespace: string[], index: number): LogLevels
+{
+    // Base case: reached end of namespace
+    if (index >= namespace.length)
+        return logConfig.defaultLevel;
+
+    const part = namespace[index];
+    const isLastPart = index === namespace.length - 1;
+
+    // Try exact match first
+    const exactResult = tryResolveFromMatch(config[part], namespace, index, isLastPart);
+    if (exactResult !== undefined)
+        return exactResult;
+
+    // Try wildcard match
+    const wildcardResult = tryResolveFromMatch(config['*'], namespace, index, isLastPart);
+    if (wildcardResult !== undefined)
+        return wildcardResult;
+
+    return logConfig.defaultLevel;
+}
+
 export function configureLogging(config: { defaultLevel?: LogLevels, namespaceConfig?: EasyLogConfig })
 {
-    if (typeof config.defaultLevel !== 'undefined')
-        logConfig.defaultLevel = config.defaultLevel;
-    if (typeof config.namespaceConfig != 'undefined')
+    let changed = false;
+    if (config.defaultLevel !== undefined)
     {
-        deepMerge(logConfig.namespaceConfig, config.namespaceConfig);
+        if (logConfig.defaultLevel !== config.defaultLevel)
+            changed = true;
+        logConfig.defaultLevel = config.defaultLevel;
+    }
+    if (config.namespaceConfig !== undefined)
+    {
+        // If namespaceConfig is empty, clear the existing config
+        if (Object.keys(config.namespaceConfig).length === 0)
+        {
+            logConfig.namespaceConfig = {};
+            changed = true;
+        }
+        else
+        {
+            deepMerge(logConfig.namespaceConfig, config.namespaceConfig);
+            changed = true;
+        }
+    }
+    if (changed)
+    {
+        notifyConfigChange();
     }
 }
 
@@ -93,11 +170,14 @@ function deepMerge(a: LogConfig, b: EasyLogConfig)
 {
     each(b, (c, k) =>
     {
-        if (typeof a[k] == 'undefined')
+        if (a[k] === undefined)
             if (typeof c == 'number')
                 a[k] = { level: c };
             else
-                deepMerge(a[k] = {}, c);
+            {
+                a[k] = {};
+                deepMerge(a[k] as LogConfig, c);
+            }
         else if (typeof c == 'number')
             a[k].level = c;
         else
@@ -105,117 +185,8 @@ function deepMerge(a: LogConfig, b: EasyLogConfig)
     })
 }
 
-type LogConfig = { [key: string]: { level?: LogLevels } & LogConfig };
+export type LogConfig = { [key: string]: { level?: LogLevels } & LogConfig };
 export type EasyLogConfig = { [key: string]: LogLevels | EasyLogConfig };
-
-export class LoggerMiddleware<
-    TLogger extends ILogMiddleware | ILogMiddlewareAsync
->
-{
-    constructor(private readonly logger: TLogger['handle'] | ((...args: Parameters<TLogger['handle']>) => void), public readonly logLevel: LogLevels, public readonly namespace: string)
-    { }
-
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): Promise<MiddlewareResult>
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): MiddlewareResult
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): TLogger extends ILogMiddlewareAsync
-        ? Promise<MiddlewareResult>
-        : MiddlewareResult
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): Promise<MiddlewareResult> | MiddlewareResult
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): Promise<MiddlewareResult> | MiddlewareResult
-    {
-        if (this.shouldHandle(logLevel, namespaces))
-            return this.logger(logLevel, namespaces, ...context) as TLogger extends ILogMiddlewareAsync
-                ? Promise<MiddlewareResult>
-                : MiddlewareResult;
-    }
-
-    shouldHandle(
-        logLevel: LogLevels,
-        namespaces: string[]
-    ): boolean
-    {
-        if (this.logLevel < logLevel)
-            return false;
-        if (this.namespace !== '*' && this.namespace !== namespaces[0])
-            return false
-        return true;
-    }
-}
-
-export class LogMiddlewareWrapper<
-    TLogger extends ILogMiddleware | ILogMiddlewareAsync
->
-{
-    constructor(private readonly logger: TLogger, public readonly logLevel: LogLevels, public readonly namespace: string)
-    { }
-
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): Promise<MiddlewareResult>
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): MiddlewareResult
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): TLogger extends ILogMiddlewareAsync
-        ? Promise<MiddlewareResult>
-        : MiddlewareResult
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): Promise<MiddlewareResult> | MiddlewareResult
-    handle(
-        logLevel: LogLevels,
-        namespaces: string[],
-        ...context: unknown[]
-    ): Promise<MiddlewareResult> | MiddlewareResult
-    {
-        if (this.shouldHandle(logLevel, namespaces))
-            return this.logger.handle(logLevel, namespaces, ...context) as TLogger extends ILogMiddlewareAsync
-                ? Promise<MiddlewareResult>
-                : MiddlewareResult;
-        return;
-    }
-
-    shouldHandle(
-        logLevel: LogLevels,
-        namespaces: string[]
-    ): boolean
-    {
-        if (this.logLevel < logLevel)
-            return false;
-        if (this.namespace !== '*' && this.namespace != namespaces[0])
-            return false
-        return this.logger.shouldHandle(logLevel, namespaces.slice(1));
-    }
-}
 
 export const emojiMap = {
     smile: '😄',
@@ -255,9 +226,9 @@ console.error = function (format, ...args)
     if (typeof format == 'string')
         oldErrorLog.call(console, format
             .replace(/__((?:[^_]|_[^_])+)__/g, (_, text) => bold(text))
-            .replace(/\*\*((?:[^\*]|\*[^\*])+)\*\*/g, (_, text) => bold(text))
+            .replace(/\*\*((?:[^*]|\*[^*])+)\*\*/g, (_, text) => bold(text))
             .replace(/_([^_]+)_/g, (_, text) => underline(text))
-            .replace(/\*([^\*]+)\*/g, (_, text) => italic(text))
+            .replace(/\*([^*]+)\*/g, (_, text) => italic(text))
             .replace(/```.*\n((?:[^`]|\n)+)\n```/g, (_, text) => italic(bold(text)))
             .replace(/`([^`]+)`/g, (_, text) => italic(bold(text)))
             .replace(/~~((?:[^~]|~[^~])+)~~/g, (_, text) => strikethrough(text))

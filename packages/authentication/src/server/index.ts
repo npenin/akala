@@ -1,4 +1,4 @@
-import { convertToMiddleware, defaultInjector, ErrorWithStatus, type Http, HttpStatusCode, isStandardMiddleware, lazy } from '@akala/core';
+import { convertToMiddleware, defaultInjector, ErrorWithStatus, type Http, HttpStatusCode, isStandardMiddleware, lazy, logger } from '@akala/core';
 import oidcDiscover, { type OIDCMetadata } from '../client/oidc-discover.js';
 import { NonPublicMiddleware } from './middlewares/authorize.js';
 import { HttpRouter, type Request, type Response } from '@akala/server';
@@ -34,6 +34,8 @@ export function azure(tenantId: string)
     return oidcDiscover(`https://login.microsoftonline.com/${tenantId}/v2.0/`);
 }
 
+const log = logger.use('akala:auth:oidc');
+
 export class OidcFormatter<T extends { clientId: string, redirectUri: string }> extends AuthorizeRedirectFormatter
 {
     constructor(public readonly name: string, private readonly metadata: OIDCMetadata, public readonly options: T)
@@ -41,7 +43,7 @@ export class OidcFormatter<T extends { clientId: string, redirectUri: string }> 
         super((req) =>
         {
             const httpOptions = Processors.HttpClient.buildCall(metadata.authorize, (url: string) => new URL(url, metadata.rootUrl).toString(), null, { ...options, redirectUri: new URL(options.redirectUri, req.uri), responseType: OIDCResponseType.Code });
-            console.log(httpOptions);
+            log.debug(httpOptions);
             const url = new URL(httpOptions.url);
             if (typeof httpOptions.queryString === 'string')
                 url.search = httpOptions.queryString;
@@ -63,7 +65,7 @@ export class OidcFormatter<T extends { clientId: string, redirectUri: string }> 
 
         router.use(this.options.redirectUri, async (req: Request, res: Response) =>
         {
-            const result = await this.getToken(req.query.get('code')!, new URL(req.query.get('redirect_uri') || this.options.redirectUri, req.uri))
+            const result = await this.getToken(req.query.get('code'), new URL(req.query.get('redirect_uri') || this.options.redirectUri, req.uri))
 
             if ('access_token' in result)
             {
@@ -82,9 +84,9 @@ export class OidcFormatter<T extends { clientId: string, redirectUri: string }> 
             grantType: 'authorization_code',
             redirectUri: redirectUri.toString(),
         });
-        console.log(call);
+        log.debug(call);
         const result = await (await defaultInjector.resolve<Http>('$http').call(call)).json();
-        console.log(result);
+        log.debug(result);
         if (result.error)
             throw new ErrorWithStatus(HttpStatusCode.BadRequest, result.error_description, result.error);
         return result;

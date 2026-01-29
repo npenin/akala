@@ -19,7 +19,8 @@ serverHandlers.useProtocol('http', async (url, options) =>
     await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-        server.listen(Number(url.port), url.hostname, resolve);
+        const port = url.port ? Number(url.port) : 80;
+        server.listen(port, url.hostname, resolve);
         options.signal.addEventListener('abort', async () =>
         {
             await new Promise<void>((resolve, reject) => server.close(err =>
@@ -34,6 +35,7 @@ serverHandlers.useProtocol('http', async (url, options) =>
             server.unref();
         });
     });
+    console.log(`server listening on http://${url.hostname}:${url.port ? Number(url.port) : 80}`);
 
     return server;
 });
@@ -45,7 +47,8 @@ serverHandlers.useProtocol('http2', async (url, options) =>
     await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-        server.listen(Number(url.port), url.hostname, resolve);
+        const port = url.port ? Number(url.port) : 80;
+        server.listen(port, url.hostname, resolve);
         options.signal.addEventListener('abort', async () =>
         {
             await new Promise<void>((resolve, reject) => server.close(err =>
@@ -58,7 +61,7 @@ serverHandlers.useProtocol('http2', async (url, options) =>
             server.unref();
         });
     });
-    console.log(`server listening on http2://${url.hostname}:${url.port}`);
+    console.log(`server listening on http2://${url.hostname}:${url.port ? Number(url.port) : 80}`);
 
     return server;
 });
@@ -69,7 +72,8 @@ serverHandlers.useProtocol('https', async (url, options) =>
     await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-        server.listen(Number(url.port), url.hostname, resolve);
+        const port = url.port ? Number(url.port) : 443;
+        server.listen(port, url.hostname, resolve);
         options.signal.addEventListener('abort', async () =>
         {
             await new Promise<void>((resolve, reject) => server.close(err =>
@@ -84,7 +88,7 @@ serverHandlers.useProtocol('https', async (url, options) =>
             server.unref();
         });
     });
-    console.log(`server listening on https://${url.hostname}:${url.port}`);
+    console.log(`server listening on https://${url.hostname}:${url.port ? Number(url.port) : 443}`);
 
     return server;
 });
@@ -94,7 +98,8 @@ serverHandlers.useProtocol('http2s', async (url, options) =>
     await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-        server.listen(Number(url.port), url.hostname, resolve);
+        const port = url.port ? Number(url.port) : 443;
+        server.listen(port, url.hostname, resolve);
         options.signal.addEventListener('abort', async () =>
         {
             await new Promise<void>((resolve, reject) => server.close(err =>
@@ -107,7 +112,7 @@ serverHandlers.useProtocol('http2s', async (url, options) =>
             server.unref();
         });
     });
-    console.log(`server listening on http2s://${url.hostname}:${url.port}`);
+    console.log(`server listening on http2s://${url.hostname}:${url.port ? Number(url.port) : 443}`);
 
     return server;
 });
@@ -155,7 +160,35 @@ commandHandlers.useProtocol<NetConnectOpts>('ws', async (url, container, options
         server = container.resolve('$webServer:' + webUrl);
     }
 
-    const wsServer = new ws.WebSocketServer({ server });
+    const wsServer = new ws.WebSocketServer({ noServer: true });
+
+    server.on('upgrade', (request, socket, head) =>
+    {
+        if (request.url === url.pathname)
+        {
+            const originalDestroy = socket.destroy;
+            socket.destroy = function (...args)
+            {
+                console.trace("SOCKET DESTROY CALLED BY:");
+                return originalDestroy.apply(this, args);
+            };
+
+            const originalEnd = socket.end;
+            socket.end = function (...args)
+            {
+                console.trace("SOCKET END CALLED BY:");
+                return originalEnd.apply(this, args);
+            };
+            wsServer.handleUpgrade(request, socket, head, (ws) =>
+            {
+                wsServer.emit('connection', ws, request);
+            });
+        }
+        else
+        {
+            socket.destroy();
+        }
+    });
     options.signal?.addEventListener('abort', () => new Promise<void>((resolve, reject) => wsServer.close(err =>
     {
         if (err)

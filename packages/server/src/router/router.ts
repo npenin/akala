@@ -56,7 +56,8 @@ export class HttpRouter extends Router2Async<Request, Response>
         server.on('upgrade', (msg: http.IncomingMessage, socket: Socket, head) =>
         {
             const req = HttpRouter.extendRequest(msg);
-            this.upgradeRouter.process(req, socket, head).catch(x => !x && socket.end());
+            this.upgradeRouter.process(req, socket, head).catch(x =>
+                x && socket.end());
         });
         server.on('request', (msg: http.IncomingMessage, res: Response) =>
         {

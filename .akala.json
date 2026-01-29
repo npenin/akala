@@ -37,15 +37,15 @@
             "pm": {
                 "container": "pm",
                 "connect": {
-                    "ws://0.0.0.0:80": {}
+                    "ws://0.0.0.0:80": {},
+                    "jsonrpc+unix:./pm.sock": {}
                 }
             },
             "@akala/server": {
                 "connect": {
                     "ws://0.0.0.0:8081": {},
                     "http://0.0.0.0:8081": {}
-                },
-                "autostart": true
+                }
             }
         },
         "plugins": []

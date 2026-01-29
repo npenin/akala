@@ -2,7 +2,7 @@ import { NamespaceMiddleware } from '@akala/cli';
 import type { AkalaConfig, Plugin } from '@akala/cli/cli'
 import { serve, trigger } from './index.js';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { ErrorWithStatus } from '@akala/core';
+import { ErrorWithStatus, logger } from '@akala/core';
 import { containers, InitAkala } from '@akala/commands/akala';
 import { Container, protocolHandlers, registerCommands, serverHandlers } from '@akala/commands';
 import { dirname, relative } from 'path';
@@ -10,6 +10,8 @@ import './handlers.js'
 
 const x: Plugin = plugin;
 export default x;
+
+const log = logger.use('akala:server');
 
 declare module '@akala/cli/cli'
 {
@@ -111,7 +113,7 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                 await Promise.all(listenUrls.filter(url => !alreadyListeningUrls.includes(url)).map(async url =>
                 {
                     await serverHandlers.process(url, container, { signal: context.abort.signal });
-                    console.log(`${container.name} listening on ${url.toString()}`)
+                    log.info(`${container.name} listening on ${url.toString()}`)
                 }));
                 if (alreadyListeningUrls.length)
                 {
@@ -121,11 +123,11 @@ function plugin(config: AkalaConfig, program: NamespaceMiddleware<{ configFile: 
                         router.useMiddleware(alreadyListeningUrls[0].pathname, containerRouter);
                     else
                         router.useMiddleware(containerRouter);
-                    console.log(`${container.name} listening on ${alreadyListeningUrls[0].pathname} on ${urls.map(url => url.toString()).join(', ')}`)
+                    log.info(`${container.name} listening on ${alreadyListeningUrls[0].pathname} on ${urls.map(url => url.toString()).join(', ')}`)
                 }
             }
             else
-                console.warn(`The container ${containerName} could not be found`);
+                log.warn(`The container ${containerName} could not be found`);
         }
 
         await new Promise((resolve) =>
