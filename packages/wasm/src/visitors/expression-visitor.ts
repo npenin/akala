@@ -29,9 +29,11 @@ export class WasmTranslator<TNative extends number | bigint> extends ExpressionV
             case BinaryOperator.Equal:
             case BinaryOperator.StrictEqual:
                 this.lastEval = left.eq(right as any);
+                break;
             case BinaryOperator.NotEqual:
             case BinaryOperator.StrictNotEqual:
                 this.lastEval = left.ne(right as any);
+                break;
             case BinaryOperator.LessThan:
             case BinaryOperator.LessThanOrEqual:
             case BinaryOperator.GreaterThan:

@@ -116,6 +116,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             break;
         case 'docker':
             cp = await Docker.build(args, options);
+            break;
         case 'nodejs':
             args.push('--pm-sock', 'ipc://')
             cp = await ChildProcess.build(args, { ...options, keepAttached: true }) as RuntimeInstance<RuntimeEventMap>;
